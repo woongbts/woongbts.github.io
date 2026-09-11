@@ -105,7 +105,7 @@ jobs:
 
           with open('index.html', 'r', encoding='utf-8') as f:
               index = f.read()
-          index = re.sub(r'assets/site-pro\.js\?v=[^"\']+', 'assets/site-pro.js?v=20260912-news5', index)
+          index = re.sub(r'assets/site-pro\.js\?v=[^"\']+', 'assets/site-pro.js?v=20260912-news6', index)
           with open('index.html', 'w', encoding='utf-8') as f:
               f.write(index)
           PY
