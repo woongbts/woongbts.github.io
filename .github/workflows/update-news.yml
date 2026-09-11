@@ -1,0 +1,101 @@
+name: Update Woongbi News
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '15 */3 * * *'
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/update-news.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  update-news:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Fetch Naver Blog RSS
+        run: |
+          python - <<'PY'
+          import datetime
+          import email.utils
+          import html
+          import json
+          import re
+          import urllib.request
+          import xml.etree.ElementTree as ET
+
+          RSS_URL = 'https://rss.blog.naver.com/swb3301.xml'
+          req = urllib.request.Request(
+              RSS_URL,
+              headers={'User-Agent': 'Mozilla/5.0 WoongbiNewsBot/1.0'}
+          )
+          with urllib.request.urlopen(req, timeout=30) as r:
+              raw = r.read()
+
+          root = ET.fromstring(raw)
+          channel = root.find('channel')
+          items = []
+
+          def clean_text(value):
+              value = value or ''
+              value = re.sub(r'<[^>]+>', ' ', value)
+              value = html.unescape(value)
+              value = re.sub(r'\s+', ' ', value).strip()
+              return value
+
+          for item in channel.findall('item')[:6]:
+              title = clean_text(item.findtext('title'))
+              link = (item.findtext('link') or '').strip()
+              description = clean_text(item.findtext('description'))
+              if len(description) > 120:
+                  description = description[:117].rstrip() + '...'
+
+              pub_raw = (item.findtext('pubDate') or '').strip()
+              date = ''
+              if pub_raw:
+                  try:
+                      dt = email.utils.parsedate_to_datetime(pub_raw)
+                      date = dt.strftime('%Y.%m.%d')
+                  except Exception:
+                      date = pub_raw[:10]
+
+              if title and link:
+                  items.append({
+                      'source': 'BLOG',
+                      'title': title,
+                      'summary': description,
+                      'date': date,
+                      'url': link,
+                  })
+
+          payload = {
+              'updated_at': datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9))).isoformat(timespec='minutes'),
+              'items': items,
+          }
+          with open('news.json', 'w', encoding='utf-8') as f:
+              json.dump(payload, f, ensure_ascii=False, indent=2)
+              f.write('\n')
+          PY
+
+      - name: Commit updated news
+        run: |
+          if git diff --quiet -- news.json; then
+            echo "No news changes"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add news.json
+          git commit -m "Update Woongbi news feed"
+          git push
