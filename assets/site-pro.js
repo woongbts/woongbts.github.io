@@ -28,11 +28,23 @@
       `;document.head.appendChild(serviceStyle);
     }
 
+    const about=document.getElementById('about');
+    if(about){
+      const heading=about.querySelector('h2');if(heading)heading.innerHTML='오래 믿고 찾을 수 있는<br>동네 통신매장이 되겠습니다.';
+      const facts=about.querySelector('.facts');if(facts)facts.remove();
+      const ownerCopy=about.querySelector('.owner-note p');if(ownerCopy)ownerCopy.textContent='복잡한 조건보다 이해하기 쉬운 설명으로, 필요할 때 다시 찾아올 수 있는 매장을 지향합니다.';
+      if(!document.getElementById('about-compact-style')){const st=document.createElement('style');st.id='about-compact-style';st.textContent='#about .strengths{grid-template-columns:minmax(0,760px)!important;justify-content:start}#about .owner-note{max-width:760px}';document.head.appendChild(st);}
+    }
+
+    const quickCta=document.querySelector('.quick-cta');if(quickCta)quickCta.remove();
+    const lowerReviews=document.getElementById('reviews');if(lowerReviews)lowerReviews.remove();
+    const steps=document.querySelector('.steps');if(steps&&steps.closest('section'))steps.closest('section').remove();
+    const bottomContact=document.querySelector('.contact');if(bottomContact)bottomContact.remove();
+
     const nav=document.querySelector('.menu');
-    if(nav&&!nav.querySelector('a[href="#news"]')){
-      const a=document.createElement('a');a.href='#news';a.textContent='웅비통신 소식';
-      const social=nav.querySelector('a[href="/links.html"]');
-      social?nav.insertBefore(a,social):nav.appendChild(a);
+    if(nav){
+      const reviewLink=nav.querySelector('a[href="#reviews"]');if(reviewLink)reviewLink.href='#review-highlight';
+      if(!nav.querySelector('a[href="#news"]')){const a=document.createElement('a');a.href='#news';a.textContent='웅비통신 소식';const social=nav.querySelector('a[href="/links.html"]');social?nav.insertBefore(a,social):nav.appendChild(a);}
     }
 
     if(!document.getElementById('woongbi-news-style')){
@@ -53,8 +65,8 @@
     if(!document.getElementById('news')){
       const section=document.createElement('section');section.className='content';section.id='news';
       section.innerHTML=`<div class="wrap"><p class="eyebrow">웅비통신 소식</p><div class="news-head"><h2>매장에서 전하는<br>새로운 소식과 이야기</h2><a class="news-more" href="https://blog.naver.com/swb3301" target="_blank" rel="noopener noreferrer">네이버 블로그 더 보기 →</a></div><div class="news-grid" id="news-grid"><div class="news-empty">최신 소식을 불러오는 중입니다.</div></div></div>`;
-      const reviews=document.getElementById('reviews');
-      reviews?reviews.insertAdjacentElement('afterend',section):document.querySelector('main').appendChild(section);
+      const principles=document.getElementById('principles');
+      principles?principles.insertAdjacentElement('afterend',section):document.querySelector('main').appendChild(section);
     }
 
     const grid=document.getElementById('news-grid');
