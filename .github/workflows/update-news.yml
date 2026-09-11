@@ -36,9 +36,16 @@ jobs:
           import xml.etree.ElementTree as ET
 
           RSS_URL = 'https://rss.blog.naver.com/swb3301.xml'
+          BUSINESS_KEYWORDS = [
+              '웅비통신', '휴대폰', '알뜰폰', '선불폰', '인터넷', '통신', '요금제',
+              '아이폰', '갤럭시', '유심', '중고폰', '번호이동', '기기변경', '사전예약',
+              'skt', 'kt', 'lgu', 'lg u+', '렌탈', '정수기', '개통', '3g', '5g', 'lte',
+              '공신폰', '키즈폰'
+          ]
+
           req = urllib.request.Request(
               RSS_URL,
-              headers={'User-Agent': 'Mozilla/5.0 WoongbiNewsBot/1.0'}
+              headers={'User-Agent': 'Mozilla/5.0 WoongbiNewsBot/1.1'}
           )
           with urllib.request.urlopen(req, timeout=30) as r:
               raw = r.read()
@@ -54,12 +61,17 @@ jobs:
               value = re.sub(r'\s+', ' ', value).strip()
               return value
 
-          for item in channel.findall('item')[:6]:
+          for item in channel.findall('item')[:30]:
               title = clean_text(item.findtext('title'))
               link = (item.findtext('link') or '').strip()
               description = clean_text(item.findtext('description'))
-              if len(description) > 120:
-                  description = description[:117].rstrip() + '...'
+              haystack = f'{title} {description}'.lower()
+
+              if not any(keyword.lower() in haystack for keyword in BUSINESS_KEYWORDS):
+                  continue
+
+              if len(description) > 110:
+                  description = description[:107].rstrip() + '...'
 
               pub_raw = (item.findtext('pubDate') or '').strip()
               date = ''
@@ -79,8 +91,12 @@ jobs:
                       'url': link,
                   })
 
+              if len(items) >= 3:
+                  break
+
           payload = {
               'updated_at': datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9))).isoformat(timespec='minutes'),
+              'filter': 'business',
               'items': items,
           }
           with open('news.json', 'w', encoding='utf-8') as f:
@@ -89,7 +105,7 @@ jobs:
 
           with open('index.html', 'r', encoding='utf-8') as f:
               index = f.read()
-          index = re.sub(r'assets/site-pro\.js\?v=[^"\']+', 'assets/site-pro.js?v=20260912-news1', index)
+          index = re.sub(r'assets/site-pro\.js\?v=[^"\']+', 'assets/site-pro.js?v=20260912-news2', index)
           with open('index.html', 'w', encoding='utf-8') as f:
               f.write(index)
           PY
@@ -103,5 +119,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add news.json index.html
-          git commit -m "Update Woongbi news feed"
+          git commit -m "Update filtered Woongbi news feed"
           git push
