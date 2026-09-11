@@ -47,6 +47,16 @@
       if(!nav.querySelector('a[href="#news"]')){const a=document.createElement('a');a.href='#news';a.textContent='웅비통신 소식';const social=nav.querySelector('a[href="/links.html"]');social?nav.insertBefore(a,social):nav.appendChild(a);}
     }
 
+    const locationActions=document.querySelector('#location .actions');
+    if(locationActions&&!locationActions.querySelector('.naver-booking-link')){
+      const booking=document.createElement('a');
+      booking.className='btn yellow naver-booking-link';
+      booking.href='https://pcmap.place.naver.com/place/1853546364/ticket?bookingRedirectUrl=https%3A%2F%2Fm.booking.naver.com%2Fbooking%2F6%2Fbizes%2F281910%3Ftheme%3Dplace%26service-target%3Dmap-pc%26entry%3Dbmp%26lang%3Dko&entry=bmp&fromPanelNum=2&timestamp=202609111203&locale=ko&svcName=map_pcv5&searchText=%EC%9B%85%EB%B9%84%ED%86%B5%EC%8B%A0&area=bmp';
+      booking.target='_blank';booking.rel='noopener noreferrer';booking.textContent='네이버 예약하기';
+      const kakao=locationActions.querySelector('a.kakao');
+      kakao?locationActions.insertBefore(booking,kakao):locationActions.appendChild(booking);
+    }
+
     if(!document.getElementById('woongbi-news-style')){
       const st=document.createElement('style');st.id='woongbi-news-style';st.textContent=`
         #news{background:#f7fafb;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
