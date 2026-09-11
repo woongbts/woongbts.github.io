@@ -12,17 +12,19 @@
         <article class="card"><span class="number">01 / 휴대폰</span><h3>휴대폰</h3><p>신규가입, 기기변경, 번호이동 등 휴대폰 구매와 변경을 상담합니다.</p><a href="tel:0513437677">전화로 문의하기 →</a></article>
         <article class="card"><span class="number">02 / 알뜰폰·선불폰</span><h3>알뜰폰·선불폰</h3><p>사용 패턴과 원하는 조건을 확인해 알뜰폰·선불폰 개통을 상담합니다.</p><a href="tel:0513437677">전화로 문의하기 →</a></article>
         <article class="card"><span class="number">03 / 인터넷·TV</span><h3>인터넷·TV</h3><p>신규가입, 이전설치, 재약정 등 현재 이용 상황부터 확인합니다.</p><a href="tel:0513437677">전화로 문의하기 →</a></article>
-        <article class="card rental-service-card"><span class="number">04 / 정수기·가전렌탈</span><h3>정수기·가전렌탈</h3><p>정수기와 생활가전 렌탈 상품을 각각 편하게 확인해 보세요.</p><div class="rental-buttons"><a class="rental-link" href="http://woongbi.vip-rental.com" target="_blank" rel="noopener noreferrer">정수기 렌탈 보기 →</a><a class="rental-link rental-appliance-link" href="https://clvrental777.com/" target="_blank" rel="noopener noreferrer">생활가전 렌탈 보기 →</a></div></article>`;
+        <article class="card rental-service-card"><span class="number">04 / 정수기·가전렌탈</span><h3>정수기·가전렌탈</h3><p>정수기와 생활가전 렌탈 상품을 각각 편하게 확인해 보세요.</p><div class="rental-buttons"><a class="rental-link rental-water-link" href="http://woongbi.vip-rental.com" target="_blank" rel="noopener noreferrer">정수기 렌탈 보기 →</a><a class="rental-link rental-appliance-link" href="https://clvrental777.com/" target="_blank" rel="noopener noreferrer">생활가전 렌탈 보기 →</a></div></article>`;
     }
 
     if(!document.getElementById('service-grid-2x2')){
       const serviceStyle=document.createElement('style');serviceStyle.id='service-grid-2x2';serviceStyle.textContent=`
         #services .grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
         #services .card{min-width:0}
-        #services .rental-buttons{display:flex;gap:8px;flex-wrap:wrap;margin-top:auto;padding-top:16px}
-        #services .rental-buttons .rental-link{display:inline-flex;align-items:center;justify-content:center;flex:1 1 180px;min-height:42px;margin:0!important;padding:9px 12px!important;border:1px solid #c9dedb;border-radius:12px;background:#eef8f6;color:#075f59!important;font-size:.82rem;font-weight:900;text-align:center;text-decoration:none}
-        #services .rental-buttons .rental-appliance-link{background:#eef5fb!important;border-color:#c9d9e8!important;color:#164b6b!important}
-        @media(max-width:640px){#services .grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important}#services .card{padding:16px!important}#services .card .number{font-size:.68rem}#services .card h3{font-size:1rem;line-height:1.35}#services .card p{font-size:.8rem;line-height:1.48}#services .card>a:not(.rental-link){font-size:.78rem}#services .rental-buttons{gap:6px;padding-top:10px}#services .rental-buttons .rental-link{flex:1 1 100%;min-height:38px;padding:7px 8px!important;font-size:.72rem}}
+        #services .rental-buttons{display:flex;gap:9px;flex-wrap:wrap;margin-top:auto;padding-top:16px}
+        #services .rental-buttons .rental-link{display:inline-flex;align-items:center;justify-content:center;flex:1 1 180px;min-height:44px;margin:0!important;padding:10px 13px!important;border:1px solid transparent;border-radius:12px;color:#fff!important;font-size:.82rem;font-weight:900;text-align:center;text-decoration:none;box-shadow:0 7px 16px rgba(16,60,82,.13);transition:transform .18s ease,box-shadow .18s ease,filter .18s ease}
+        #services .rental-buttons .rental-water-link{background:#0f766e!important;border-color:#0f766e!important}
+        #services .rental-buttons .rental-appliance-link{background:#2563eb!important;border-color:#2563eb!important;color:#fff!important}
+        #services .rental-buttons .rental-link:hover{transform:translateY(-1px);box-shadow:0 10px 20px rgba(16,60,82,.18);filter:brightness(1.05)}
+        @media(max-width:640px){#services .grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important}#services .card{padding:16px!important}#services .card .number{font-size:.68rem}#services .card h3{font-size:1rem;line-height:1.35}#services .card p{font-size:.8rem;line-height:1.48}#services .card>a:not(.rental-link){font-size:.78rem}#services .rental-buttons{gap:6px;padding-top:10px}#services .rental-buttons .rental-link{flex:1 1 100%;min-height:39px;padding:8px!important;font-size:.72rem}}
       `;document.head.appendChild(serviceStyle);
     }
 
