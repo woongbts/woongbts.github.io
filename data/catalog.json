@@ -3,51 +3,68 @@
     "updated_at": null,
     "status": "structure-ready",
     "source_basis": "ZeroNote wireless/wired consultation screens",
-    "notice": "실제 상품값은 확인된 자료만 수동 반영합니다. 단말기는 제로노트 표시 순서(최신순), 요금제는 해당 조건에서 '가능한 요금제'로 표시되는 항목만 반영합니다."
+    "notice": "실제 상품값은 확인된 자료만 수동 반영합니다. 단말기는 제로노트 최신순, 요금제는 선택한 기종·가입유형의 '가능한 요금제' 기준으로 표시합니다. 추가지원금은 홈페이지에 공개하지 않고 매장 문의로 안내합니다."
   },
   "rules": {
     "device_order": "xeronote_latest_first",
     "plan_filter": "xeronote_eligible_only",
+    "public_support_key": "carrier + join_type + device + plan",
+    "extra_support": "store_inquiry_only",
+    "mvno_welfare_discount": false,
     "internet_order": "xeronote_display_order"
   },
   "carriers": ["SKT", "KT", "LGU+"],
   "devices": [],
-  "plans": [],
+  "mobile_plans": [],
+  "mobile_supports": [],
+  "welfare_discounts": [],
   "mvno_plans": [],
   "internet_products": [],
-  "discount_types": [
-    "공시지원금",
-    "선택약정",
-    "가족·유무선 결합",
-    "복지할인",
-    "제휴카드"
-  ],
   "schema_guide": {
     "device": {
-      "id": "통신사-모델 식별자",
+      "id": "SKT-SM-XXXX",
       "carrier": "SKT | KT | LGU+",
       "name": "표시 기종명",
       "model": "모델명",
       "release_date": "YYYY-MM-DD",
-      "source_order": "제로노트 최신순 표시 번호. 숫자가 작을수록 위",
+      "source_order": 1,
       "retail_price": 0,
-      "support": {
-        "기기변경": {"public": 0, "extra": 0},
-        "번호이동": {"public": 0, "extra": 0},
-        "신규가입": {"public": 0, "extra": 0}
-      }
+      "installment_months": [24, 30, 36]
     },
-    "plan": {
-      "id": "요금제 식별자",
+    "mobile_plan": {
+      "id": "SKT-plan-id",
       "carrier": "SKT | KT | LGU+",
       "name": "요금제명",
       "monthly_fee": 0,
-      "source_order": "제로노트 가능한 요금제 탭 표시 순서",
-      "eligible_devices": ["*"],
-      "eligible_join_types": ["기기변경", "번호이동", "신규가입"]
+      "source_order": 1
+    },
+    "mobile_support": {
+      "device_id": "SKT-SM-XXXX",
+      "join_type": "기기변경 | 번호이동 | 신규가입",
+      "plan_id": "SKT-plan-id",
+      "public_support": 0
+    },
+    "welfare_discount": {
+      "carrier": "SKT | KT | LGU+",
+      "plan_id": "SKT-plan-id",
+      "monthly_discount": 0,
+      "note": "확인된 복지할인 규칙만 등록"
+    },
+    "mvno_plan": {
+      "id": "mvno-plan-id",
+      "provider": "알뜰폰 사업자명",
+      "network": "SKT | KT | LGU+",
+      "name": "요금제명",
+      "monthly_fee": 0,
+      "promo_monthly_fee": null,
+      "promo_months": null,
+      "regular_monthly_fee": null,
+      "data": "예: 7GB + 1Mbps",
+      "voice": "예: 기본제공",
+      "source_order": 1
     },
     "internet_product": {
-      "id": "유선상품 식별자",
+      "id": "KT-500M-TV",
       "carrier": "SKT | KT | LGU+",
       "name": "상품명",
       "source_order": 1,

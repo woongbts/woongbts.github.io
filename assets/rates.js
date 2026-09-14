@@ -1,6 +1,11 @@
 (function(){
-  const money=n=>Number(String(n||'').replace(/[^0-9.-]/g,''))||0;
-  const won=n=>Math.max(0,Math.round(n)).toLocaleString('ko-KR')+'원';
+  const won=n=>Number.isFinite(Number(n))?Math.max(0,Math.round(Number(n))).toLocaleString('ko-KR')+'원':'—';
+  const bySourceOrder=(a,b)=>{
+    const ao=Number(a?.source_order),bo=Number(b?.source_order);
+    if(Number.isFinite(ao)&&Number.isFinite(bo)&&ao!==bo)return ao-bo;
+    if(Number.isFinite(ao))return -1;if(Number.isFinite(bo))return 1;
+    return String(b?.release_date||'').localeCompare(String(a?.release_date||''));
+  };
   let catalog=null;
 
   document.querySelectorAll('.rate-tab').forEach(tab=>tab.addEventListener('click',()=>{
@@ -8,159 +13,132 @@
     document.querySelectorAll('.rate-panel').forEach(panel=>panel.classList.toggle('active',panel.dataset.panel===tab.dataset.tab));
   }));
 
-  const discountType=document.getElementById('discount-type');
-  const supportFields=document.getElementById('support-fields');
-  function syncDiscountMode(){supportFields.classList.toggle('is-hidden',discountType.value==='contract')}
-  discountType.addEventListener('change',syncDiscountMode);syncDiscountMode();
+  const $=id=>document.getElementById(id);
+  const carrier=$('carrier'),joinType=$('join-type'),deviceSelect=$('device-select'),planSelect=$('plan-select'),monthsSelect=$('installment-months'),welfareEnabled=$('welfare-enabled');
 
-  function ensureCatalogInputs(){
-    const deviceInput=document.getElementById('device-name');
-    if(deviceInput&&!document.getElementById('device-list')){
-      const dl=document.createElement('datalist');dl.id='device-list';document.body.appendChild(dl);deviceInput.setAttribute('list','device-list');
-    }
-    if(!document.getElementById('plan-name')){
-      const planFee=document.getElementById('plan-fee');
-      const feeLabel=planFee&&planFee.closest('label');
-      if(feeLabel){
-        const label=document.createElement('label');
-        label.innerHTML='가능한 요금제<input id="plan-name" type="text" list="plan-list" placeholder="기종을 선택하면 가능한 요금제를 표시합니다"><datalist id="plan-list"></datalist><small style="display:block;margin-top:6px;color:#71858c;font-size:.72rem;line-height:1.45">제로노트의 ‘가능한 요금제’ 기준으로 반영합니다.</small>';
-        feeLabel.parentNode.insertBefore(label,feeLabel);
-      }
-    }
+  function option(select,value,label){const o=document.createElement('option');o.value=value;o.textContent=label;select.appendChild(o)}
+  function clearSelect(select,placeholder){select.innerHTML='';option(select,'',placeholder)}
+  function currentDevice(){return (catalog?.devices||[]).find(d=>d.id===deviceSelect.value)||null}
+  function currentPlan(){return (catalog?.mobile_plans||[]).find(p=>p.id===planSelect.value)||null}
+  function currentSupport(){
+    const d=currentDevice(),p=currentPlan();if(!d||!p)return null;
+    return (catalog?.mobile_supports||[]).find(s=>s.device_id===d.id&&s.plan_id===p.id&&s.join_type===joinType.value)||null;
+  }
+  function currentWelfare(){
+    const p=currentPlan();if(!p)return null;
+    return (catalog?.welfare_discounts||[]).find(w=>w.carrier===carrier.value&&w.plan_id===p.id)||null;
   }
 
-  function bySourceOrder(a,b){
-    const ao=Number(a?.source_order);const bo=Number(b?.source_order);
-    if(Number.isFinite(ao)&&Number.isFinite(bo)&&ao!==bo)return ao-bo;
-    if(Number.isFinite(ao))return -1;if(Number.isFinite(bo))return 1;
-    return String(b?.release_date||'').localeCompare(String(a?.release_date||''));
+  function fillDevices(){
+    const keep=deviceSelect.value;
+    clearSelect(deviceSelect,'기종을 선택하세요');
+    (catalog?.devices||[]).filter(d=>d.carrier===carrier.value).sort(bySourceOrder).forEach(d=>option(deviceSelect,d.id,d.model?`${d.name} · ${d.model}`:d.name));
+    if([...deviceSelect.options].some(o=>o.value===keep))deviceSelect.value=keep;
+    else deviceSelect.value='';
+    fillPlans();
   }
 
-  function currentDevice(){
-    if(!catalog)return null;
-    const carrier=document.getElementById('carrier').value;
-    const name=document.getElementById('device-name').value.trim();
-    return (catalog.devices||[]).find(d=>d.carrier===carrier&&(d.name===name||d.model===name))||null;
+  function fillPlans(){
+    const d=currentDevice();
+    const keep=planSelect.value;
+    clearSelect(planSelect,d?'가능한 요금제를 선택하세요':'기종을 먼저 선택하세요');
+    planSelect.disabled=!d;
+    if(!d){syncMobile();return}
+    const supportRows=(catalog?.mobile_supports||[]).filter(s=>s.device_id===d.id&&s.join_type===joinType.value);
+    const ids=[...new Set(supportRows.map(s=>s.plan_id))];
+    (catalog?.mobile_plans||[]).filter(p=>p.carrier===carrier.value&&ids.includes(p.id)).sort(bySourceOrder).forEach(p=>option(planSelect,p.id,`${p.name} · ${won(p.monthly_fee)}`));
+    if([...planSelect.options].some(o=>o.value===keep))planSelect.value=keep;
+    else planSelect.value='';
+    fillInstallments();syncMobile();
   }
 
-  function syncCatalogChoices(){
-    if(!catalog)return;
-    ensureCatalogInputs();
-    const carrier=document.getElementById('carrier').value;
-    const joinType=document.getElementById('join-type').value;
-    const deviceInput=document.getElementById('device-name');
-    const deviceList=document.getElementById('device-list');
-    const planList=document.getElementById('plan-list');
-    const planName=document.getElementById('plan-name');
-
-    const devices=(catalog.devices||[]).filter(d=>d.carrier===carrier).sort(bySourceOrder);
-    if(deviceList){
-      deviceList.innerHTML='';
-      devices.forEach(d=>{const o=document.createElement('option');o.value=d.name;o.label=d.model?`${d.name} · ${d.model}`:d.name;deviceList.appendChild(o)});
-    }
-
-    const selected=currentDevice();
-    if(selected){
-      if(selected.retail_price!=null)document.getElementById('device-price').value=selected.retail_price;
-      const support=selected.support&&selected.support[joinType];
-      if(support){
-        if(support.public!=null)document.getElementById('public-support').value=support.public;
-        if(support.extra!=null)document.getElementById('extra-support').value=support.extra;
-      }
-    }
-
-    const selectedId=selected?.id||null;
-    const plans=(catalog.plans||[]).filter(p=>{
-      if(p.carrier!==carrier)return false;
-      const joins=Array.isArray(p.eligible_join_types)?p.eligible_join_types:[];
-      if(joins.length&&!joins.includes(joinType))return false;
-      const eligible=Array.isArray(p.eligible_devices)?p.eligible_devices:['*'];
-      if(selectedId&&!eligible.includes('*')&&!eligible.includes(selectedId))return false;
-      return true;
-    }).sort(bySourceOrder);
-
-    if(planList){
-      planList.innerHTML='';
-      plans.forEach(p=>{const o=document.createElement('option');o.value=p.name;o.label=p.monthly_fee!=null?`${p.name} · ${won(p.monthly_fee)}`:p.name;planList.appendChild(o)});
-    }
-
-    if(planName){
-      const chosen=plans.find(p=>p.name===planName.value.trim());
-      if(chosen&&chosen.monthly_fee!=null)document.getElementById('plan-fee').value=chosen.monthly_fee;
-    }
+  function fillInstallments(){
+    const d=currentDevice();
+    const values=Array.isArray(d?.installment_months)&&d.installment_months.length?d.installment_months:[24,30,36];
+    const keep=monthsSelect.value;
+    monthsSelect.innerHTML='';
+    values.forEach(m=>option(monthsSelect,String(m),`${m}개월`));
+    monthsSelect.disabled=!d;
+    if(values.map(String).includes(keep))monthsSelect.value=keep;
   }
 
-  function bindCatalogEvents(){
-    ['carrier','join-type','device-name'].forEach(id=>{
-      const el=document.getElementById(id);if(el)el.addEventListener(id==='device-name'?'input':'change',syncCatalogChoices);
-    });
-    const planName=document.getElementById('plan-name');
-    if(planName)planName.addEventListener('input',()=>{
-      if(!catalog)return;
-      const carrier=document.getElementById('carrier').value;
-      const p=(catalog.plans||[]).find(x=>x.carrier===carrier&&x.name===planName.value.trim());
-      if(p&&p.monthly_fee!=null)document.getElementById('plan-fee').value=p.monthly_fee;
-    });
+  function syncMobile(){
+    const d=currentDevice(),p=currentPlan(),s=currentSupport();
+    $('device-price-view').textContent=d&&Number.isFinite(Number(d.retail_price))?won(d.retail_price):'—';
+    $('plan-fee-view').textContent=p&&Number.isFinite(Number(p.monthly_fee))?won(p.monthly_fee):'—';
+    $('public-support-view').textContent=s&&Number.isFinite(Number(s.public_support))?won(s.public_support):'—';
+    const dataNote=$('mobile-data-note');
+    if(!(catalog?.devices||[]).length){dataNote.textContent='아직 실제 상품 데이터가 등록되지 않았습니다. 확인된 제로노트 기준값을 넣으면 이 화면이 자동으로 동작합니다.'}
+    else if(d&&!p){dataNote.textContent='이 기종과 가입유형에서 가능한 요금제를 선택하세요.'}
+    else if(d&&p&&!s){dataNote.textContent='해당 조합의 공시지원금 데이터가 아직 등록되지 않았습니다.'}
+    else{dataNote.textContent='공시지원금과 월정액은 선택한 조건에 맞춰 자동 반영됩니다.'}
+
+    if(!d||!p||!s){
+      $('principal').textContent='—';$('device-monthly').textContent='—';$('service-monthly').textContent='—';$('monthly-total').textContent='—';$('welfare-view').textContent=welfareEnabled.value==='yes'?'확인 필요':'미적용';
+      $('calc-summary').textContent='통신사, 가입유형, 기종, 요금제를 선택하면 자동으로 계산됩니다.';return;
+    }
+
+    const price=Number(d.retail_price)||0,support=Number(s.public_support)||0,months=Number(monthsSelect.value)||24,planFee=Number(p.monthly_fee)||0;
+    const principal=Math.max(0,price-support),deviceMonthly=principal/months;
+    let welfare=0,welfareText='미적용';
+    if(welfareEnabled.value==='yes'){
+      const w=currentWelfare();
+      if(w&&Number.isFinite(Number(w.monthly_discount))){welfare=Math.max(0,Number(w.monthly_discount));welfareText='-'+won(welfare)}
+      else welfareText='매장 확인';
+    }
+    const service=Math.max(0,planFee-welfare),total=deviceMonthly+service;
+    $('principal').textContent=won(principal);$('device-monthly').textContent=won(deviceMonthly);$('service-monthly').textContent=won(service);$('monthly-total').textContent=won(total);$('welfare-view').textContent=welfareText;
+    $('calc-summary').textContent=`${carrier.value} · ${d.name} · ${joinType.value} · ${p.name} · ${months}개월 기준 예상치입니다.`;
   }
 
-  document.getElementById('mobile-form').addEventListener('submit',e=>{
-    e.preventDefault();
-    const mode=discountType.value;
-    const price=money(document.getElementById('device-price').value);
-    const support=mode==='support'?money(document.getElementById('public-support').value):0;
-    const extra=mode==='support'?money(document.getElementById('extra-support').value):0;
-    const upfront=money(document.getElementById('upfront').value);
-    const months=money(document.getElementById('installment-months').value)||24;
-    const plan=money(document.getElementById('plan-fee').value);
-    const bundle=money(document.getElementById('bundle-discount').value);
-    const welfare=money(document.getElementById('welfare-discount').value);
-    const card=money(document.getElementById('card-discount').value);
-    const other=money(document.getElementById('other-monthly').value);
-    const principal=Math.max(0,price-support-extra-upfront);
-    const deviceMonthly=principal/months;
-    const contractDiscount=mode==='contract'?plan*.25:0;
-    const serviceMonthly=Math.max(0,plan-contractDiscount-bundle-welfare-card)+other;
-    const total=deviceMonthly+serviceMonthly;
-    document.getElementById('principal').textContent=won(principal);
-    document.getElementById('device-monthly').textContent=won(deviceMonthly);
-    document.getElementById('service-monthly').textContent=won(serviceMonthly);
-    document.getElementById('monthly-total').textContent=won(total);
-    const carrier=document.getElementById('carrier').value;
-    const device=document.getElementById('device-name').value.trim()||'선택 기종';
-    const type=document.getElementById('join-type').value;
-    const planName=document.getElementById('plan-name')?.value.trim();
-    const label=mode==='contract'?'선택약정 25% 단순 반영':'공시지원금 반영';
-    document.getElementById('calc-summary').textContent=`${carrier} · ${device}${planName?' · '+planName:''} · ${type} · ${label} 기준의 단순 예상치입니다.`;
-  });
+  [carrier,joinType].forEach(el=>el.addEventListener('change',fillDevices));
+  deviceSelect.addEventListener('change',fillPlans);
+  planSelect.addEventListener('change',syncMobile);
+  monthsSelect.addEventListener('change',syncMobile);
+  welfareEnabled.addEventListener('change',syncMobile);
 
-  document.getElementById('mvno-form').addEventListener('submit',e=>{
-    e.preventDefault();
-    const promo=money(document.getElementById('mvno-promo').value);
-    const promoMonths=Math.min(12,Math.max(0,money(document.getElementById('mvno-months').value)));
-    const after=money(document.getElementById('mvno-after').value);
-    const annual=promo*promoMonths+after*(12-promoMonths);
-    const avg=annual/12;
-    document.getElementById('mvno-average').textContent=won(avg);
-    const name=document.getElementById('mvno-name').value.trim()||'선택 요금제';
-    document.getElementById('mvno-summary').textContent=`${name}을 12개월 사용한다고 가정하면 총 ${won(annual)}, 월평균 ${won(avg)} 정도입니다.`;
-  });
+  const mvnoProvider=$('mvno-provider'),mvnoPlan=$('mvno-plan');
+  function fillMvnoProviders(){
+    clearSelect(mvnoProvider,'통신사를 선택하세요');
+    const providers=[...new Set((catalog?.mvno_plans||[]).map(p=>p.provider).filter(Boolean))];
+    providers.forEach(p=>option(mvnoProvider,p,p));
+    fillMvnoPlans();
+  }
+  function fillMvnoPlans(){
+    clearSelect(mvnoPlan,mvnoProvider.value?'요금제를 선택하세요':'통신사를 먼저 선택하세요');
+    mvnoPlan.disabled=!mvnoProvider.value;
+    (catalog?.mvno_plans||[]).filter(p=>p.provider===mvnoProvider.value).sort(bySourceOrder).forEach(p=>option(mvnoPlan,p.id,`${p.name} · ${won(p.promo_monthly_fee??p.monthly_fee)}`));
+    syncMvno();
+  }
+  function syncMvno(){
+    const p=(catalog?.mvno_plans||[]).find(x=>x.id===mvnoPlan.value)||null;
+    if(!p){$('mvno-fee-view').textContent='—';$('mvno-total').textContent='—';$('mvno-detail').textContent='알뜰폰은 복지할인을 적용하지 않습니다.';$('mvno-summary').textContent='통신사와 요금제를 선택하면 자동으로 반영됩니다.';return}
+    const current=Number(p.promo_monthly_fee??p.monthly_fee)||0;
+    $('mvno-fee-view').textContent=won(current);$('mvno-total').textContent=won(current);
+    const bits=[];if(p.network)bits.push(`${p.network}망`);if(p.data)bits.push(`데이터 ${p.data}`);if(p.voice)bits.push(`통화 ${p.voice}`);if(p.promo_months)bits.push(`${p.promo_months}개월 프로모션`);if(p.regular_monthly_fee!=null)bits.push(`이후 ${won(p.regular_monthly_fee)}`);
+    $('mvno-detail').textContent=(bits.length?bits.join(' · ')+' · ':'')+'복지할인 미적용';
+    $('mvno-summary').textContent=`${p.provider} · ${p.name} 기준 현재 월요금입니다.`;
+  }
+  mvnoProvider.addEventListener('change',fillMvnoPlans);mvnoPlan.addEventListener('change',syncMvno);
 
-  document.getElementById('internet-form').addEventListener('submit',e=>{
-    e.preventDefault();
-    const internet=money(document.getElementById('internet-fee').value);
-    const tv=money(document.getElementById('tv-fee').value);
-    const bundle=money(document.getElementById('internet-bundle').value);
-    const card=money(document.getElementById('internet-card').value);
-    const total=Math.max(0,internet+tv-bundle-card);
-    document.getElementById('internet-total').textContent=won(total);
-    document.getElementById('internet-summary').textContent=`${document.getElementById('internet-speed').value} 기준 단순 예상치입니다. 설치비·장비임대료·프로모션은 포함하지 않았습니다.`;
-  });
+  const internetCarrier=$('internet-carrier'),internetProduct=$('internet-product');
+  function fillInternet(){
+    clearSelect(internetProduct,'상품을 선택하세요');
+    (catalog?.internet_products||[]).filter(p=>p.carrier===internetCarrier.value).sort(bySourceOrder).forEach(p=>option(internetProduct,p.id,p.name));
+    syncInternet();
+  }
+  function syncInternet(){
+    const p=(catalog?.internet_products||[]).find(x=>x.id===internetProduct.value)||null;
+    if(!p){$('internet-fee-view').textContent='—';$('tv-fee-view').textContent='—';$('internet-total').textContent='—';$('internet-summary').textContent='상품을 선택하면 기본 월정액이 자동으로 반영됩니다.';return}
+    const i=Number(p.internet_fee)||0,t=Number(p.tv_fee)||0;
+    $('internet-fee-view').textContent=won(i);$('tv-fee-view').textContent=won(t);$('internet-total').textContent=won(i+t);
+    $('internet-summary').textContent=`${p.carrier} · ${p.name} 기본 월정액 기준입니다.${p.notes?' '+p.notes:''}`;
+  }
+  internetCarrier.addEventListener('change',fillInternet);internetProduct.addEventListener('change',syncInternet);
 
-  ensureCatalogInputs();
-  fetch('data/catalog.json?v=20260915-2').then(r=>r.json()).then(data=>{
+  fetch('data/catalog.json?v=20260915-4').then(r=>r.json()).then(data=>{
     catalog=data;
-    const el=document.getElementById('catalog-updated');
-    if(el&&data?.meta){el.textContent=data.meta.updated_at?`상품 데이터 ${data.meta.updated_at} 기준`:'제로노트 기준 상품 데이터 반영 준비 중'}
-    syncCatalogChoices();bindCatalogEvents();
-  }).catch(()=>{});
+    const meta=data?.meta||{};$('catalog-updated').textContent=meta.updated_at?`상품 데이터 ${meta.updated_at} 기준`:'제로노트 기준 데이터 입력 준비 중';
+    fillDevices();fillMvnoProviders();fillInternet();
+  }).catch(()=>{$('mobile-data-note').textContent='상품 데이터를 불러오지 못했습니다. 잠시 후 다시 확인해 주세요.'});
 })();
