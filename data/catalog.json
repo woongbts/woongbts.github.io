@@ -2,7 +2,13 @@
   "meta": {
     "updated_at": null,
     "status": "structure-ready",
-    "notice": "현재는 계산 구조 검증용 베타 데이터입니다. 실제 상품값은 확인된 자료만 수동 반영합니다."
+    "source_basis": "ZeroNote wireless/wired consultation screens",
+    "notice": "실제 상품값은 확인된 자료만 수동 반영합니다. 단말기는 제로노트 표시 순서(최신순), 요금제는 해당 조건에서 '가능한 요금제'로 표시되는 항목만 반영합니다."
+  },
+  "rules": {
+    "device_order": "xeronote_latest_first",
+    "plan_filter": "xeronote_eligible_only",
+    "internet_order": "xeronote_display_order"
   },
   "carriers": ["SKT", "KT", "LGU+"],
   "devices": [],
@@ -15,5 +21,39 @@
     "가족·유무선 결합",
     "복지할인",
     "제휴카드"
-  ]
+  ],
+  "schema_guide": {
+    "device": {
+      "id": "통신사-모델 식별자",
+      "carrier": "SKT | KT | LGU+",
+      "name": "표시 기종명",
+      "model": "모델명",
+      "release_date": "YYYY-MM-DD",
+      "source_order": "제로노트 최신순 표시 번호. 숫자가 작을수록 위",
+      "retail_price": 0,
+      "support": {
+        "기기변경": {"public": 0, "extra": 0},
+        "번호이동": {"public": 0, "extra": 0},
+        "신규가입": {"public": 0, "extra": 0}
+      }
+    },
+    "plan": {
+      "id": "요금제 식별자",
+      "carrier": "SKT | KT | LGU+",
+      "name": "요금제명",
+      "monthly_fee": 0,
+      "source_order": "제로노트 가능한 요금제 탭 표시 순서",
+      "eligible_devices": ["*"],
+      "eligible_join_types": ["기기변경", "번호이동", "신규가입"]
+    },
+    "internet_product": {
+      "id": "유선상품 식별자",
+      "carrier": "SKT | KT | LGU+",
+      "name": "상품명",
+      "source_order": 1,
+      "internet_fee": 0,
+      "tv_fee": 0,
+      "notes": "설치비·장비임대료·결합조건 등"
+    }
+  }
 }
