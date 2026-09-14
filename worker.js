@@ -25,7 +25,7 @@ export default {
         return json({ error: "질문을 입력해주세요." }, 400, corsHeaders);
       }
 
-      const prompt = `너는 부산 북구 만덕동 '웅비통신 덕천만덕점'의 AI 안내 도우미다.
+      const systemPrompt = `너는 부산 북구 만덕동 '웅비통신 덕천만덕점'의 AI 안내 도우미다.
 
 매장 정보:
 - 상호명: 웅비통신 덕천만덕점
@@ -46,23 +46,55 @@ export default {
 5. 온라인 전용 알뜰폰 요금제처럼 매장에서 취급하지 않는 상품이 있을 수 있다고 안내한다.
 6. 매장 정보와 무관한 질문이면 '매장 이용과 관련된 질문을 도와드릴게요.'라고 짧게 안내한다.
 7. 모르는 내용은 추측하지 않는다.
-8. 개인정보, 신분증 정보, 계좌번호, 비밀번호 등을 입력하라고 요구하지 않는다.
-
-고객 질문: ${question}`;
+8. 개인정보, 신분증 정보, 계좌번호, 비밀번호 등을 입력하라고 요구하지 않는다.`;
 
       const result = await env.AI.run("@cf/zai-org/glm-4.7-flash", {
-        prompt,
+        messages: [
+          { role: "system", content: systemPrompt },
+          { role: "user", content: question },
+        ],
         max_completion_tokens: 220,
         temperature: 0.3,
       });
 
-      const answer = String(result?.response || "죄송합니다. 지금은 답변을 불러오지 못했습니다. 매장으로 문의해주세요.").trim();
+      const answer = extractAnswer(result);
+      if (!answer) {
+        console.log("Unexpected Workers AI response shape", JSON.stringify(result));
+        return json({ error: "AI 답변 형식을 확인하지 못했습니다. 잠시 후 다시 시도해주세요." }, 502, corsHeaders);
+      }
+
       return json({ answer }, 200, corsHeaders);
     } catch (error) {
+      console.log("Workers AI error", String(error?.stack || error));
       return json({ error: "AI 응답 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요." }, 500, corsHeaders);
     }
   },
 };
+
+function extractAnswer(result) {
+  const candidates = [
+    result?.response,
+    result?.result?.response,
+    result?.choices?.[0]?.message?.content,
+    result?.choices?.[0]?.text,
+    result?.output_text,
+  ];
+
+  for (const value of candidates) {
+    if (typeof value === "string" && value.trim()) return value.trim();
+  }
+
+  const content = result?.choices?.[0]?.message?.content;
+  if (Array.isArray(content)) {
+    const text = content
+      .map((item) => (typeof item === "string" ? item : item?.text || item?.content || ""))
+      .join("")
+      .trim();
+    if (text) return text;
+  }
+
+  return "";
+}
 
 function json(data, status, corsHeaders) {
   return new Response(JSON.stringify(data), {
