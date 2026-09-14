@@ -105,7 +105,12 @@ jobs:
 
           with open('index.html', 'r', encoding='utf-8') as f:
               index = f.read()
-          index = re.sub(r'assets/site-pro\.js\?v=[^"\']+', 'assets/site-pro.js?v=20260912-news9', index)
+          index = re.sub(r'assets/site-pro\.js\?v=[^"\']+', 'assets/site-pro.js?v=20260915-ai1', index)
+          ai_script = '<script src="assets/ai-chat.js?v=20260915-1" defer></script>'
+          if re.search(r'<script src="assets/ai-chat\.js\?v=[^"]+" defer></script>', index):
+              index = re.sub(r'<script src="assets/ai-chat\.js\?v=[^"]+" defer></script>', ai_script, index)
+          elif 'assets/ai-chat.js' not in index:
+              index = index.replace('</body>', ai_script + '</body>')
           with open('index.html', 'w', encoding='utf-8') as f:
               f.write(index)
           PY
