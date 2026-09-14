@@ -1,0 +1,19 @@
+{
+  "meta": {
+    "updated_at": null,
+    "status": "structure-ready",
+    "notice": "현재는 계산 구조 검증용 베타 데이터입니다. 실제 상품값은 확인된 자료만 수동 반영합니다."
+  },
+  "carriers": ["SKT", "KT", "LGU+"],
+  "devices": [],
+  "plans": [],
+  "mvno_plans": [],
+  "internet_products": [],
+  "discount_types": [
+    "공시지원금",
+    "선택약정",
+    "가족·유무선 결합",
+    "복지할인",
+    "제휴카드"
+  ]
+}

@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#103c52">
+  <title>요금 알아보기 | 웅비통신 덕천만덕점</title>
+  <meta name="description" content="휴대폰·알뜰폰·인터넷·TV 요금 구조와 할인 항목을 간단히 계산해보는 웅비통신 요금 안내 페이지입니다.">
+  <link rel="icon" type="image/svg+xml" href="assets/woongbi-mark.svg">
+  <link rel="stylesheet" href="assets/rates.css?v=20260915-1">
+</head>
+<body>
+  <header class="rate-top">
+    <div class="rate-wrap rate-nav">
+      <a class="rate-brand" href="/"><img src="assets/woongbi-mark.svg" alt=""><span>웅비통신<small>덕천만덕점</small></span></a>
+      <a class="rate-home" href="/">홈으로</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="rate-hero">
+      <div class="rate-wrap">
+        <span class="rate-badge">BETA · 요금 구조 미리보기</span>
+        <h1>내 월요금,<br><em>어떻게 만들어지는지</em> 먼저 보세요.</h1>
+        <p>통신사·기종·공시지원금·선택약정·결합·복지·카드할인처럼 복잡한 항목을 한 화면에서 정리해보는 웅비통신 간편 계산기입니다.</p>
+        <div class="rate-hero-note">현재는 계산 구조를 먼저 만든 베타 버전입니다. 실제 기종별 출고가·공시지원금·요금제 데이터는 확인된 값만 순차적으로 반영합니다.</div>
+      </div>
+    </section>
+
+    <section class="rate-content">
+      <div class="rate-wrap">
+        <div class="rate-tabs" role="tablist" aria-label="요금 계산 종류">
+          <button class="rate-tab active" data-tab="mobile" type="button">휴대폰</button>
+          <button class="rate-tab" data-tab="mvno" type="button">알뜰폰</button>
+          <button class="rate-tab" data-tab="internet" type="button">인터넷·TV</button>
+          <button class="rate-tab" data-tab="discount" type="button">결합·복지할인</button>
+        </div>
+
+        <section class="rate-panel active" data-panel="mobile">
+          <div class="rate-panel-head"><div><span class="eyebrow">휴대폰 월요금 계산</span><h2>단말기 + 요금제 + 할인</h2></div><span class="updated" id="catalog-updated">데이터 기준 확인 중</span></div>
+          <div class="rate-grid">
+            <form class="rate-card rate-form" id="mobile-form">
+              <div class="field-row two"><label>통신사<select id="carrier"><option>SKT</option><option>KT</option><option>LGU+</option></select></label><label>가입유형<select id="join-type"><option>기기변경</option><option>번호이동</option><option>신규가입</option></select></label></div>
+              <label>기종<input id="device-name" type="text" placeholder="예: Galaxy S26 / iPhone 18"></label>
+              <div class="field-row two"><label>할인 방식<select id="discount-type"><option value="support">공시지원금</option><option value="contract">선택약정</option></select></label><label>할부개월<select id="installment-months"><option value="24">24개월</option><option value="30">30개월</option><option value="36">36개월</option></select></label></div>
+              <label>출고가<input id="device-price" inputmode="numeric" placeholder="원"></label>
+              <div id="support-fields"><div class="field-row two"><label>공시지원금<input id="public-support" inputmode="numeric" placeholder="원"></label><label>추가지원금<input id="extra-support" inputmode="numeric" placeholder="원"></label></div></div>
+              <label>선입금 / 중고폰 보상 등<input id="upfront" inputmode="numeric" placeholder="원"></label>
+              <label>요금제 월정액<input id="plan-fee" inputmode="numeric" placeholder="원"></label>
+              <div class="field-row two"><label>결합할인<input id="bundle-discount" inputmode="numeric" placeholder="월 할인액"></label><label>복지할인<input id="welfare-discount" inputmode="numeric" placeholder="월 할인액"></label></div>
+              <div class="field-row two"><label>제휴카드 할인<input id="card-discount" inputmode="numeric" placeholder="월 할인액"></label><label>기타 월비용<input id="other-monthly" inputmode="numeric" placeholder="보험·부가서비스 등"></label></div>
+              <button class="primary" type="submit">예상 월요금 계산</button>
+            </form>
+
+            <div class="rate-card rate-result" id="mobile-result">
+              <span class="result-label">예상 월 납부액</span>
+              <strong id="monthly-total">—</strong>
+              <div class="result-breakdown"><div><span>예상 단말 할부원금</span><b id="principal">—</b></div><div><span>월 단말금</span><b id="device-monthly">—</b></div><div><span>월 통신요금</span><b id="service-monthly">—</b></div></div>
+              <p id="calc-summary">값을 입력하면 계산 결과가 여기에 표시됩니다.</p>
+              <div class="rate-warning">선택약정은 기본적으로 월정액의 25% 할인으로 단순 계산합니다. 실제 할인대상 금액, 할부이자, 유심비, 보험, 부가서비스, 결합 중복조건 등에 따라 실제 청구액은 달라질 수 있습니다.</div>
+              <div class="rate-actions"><a href="tel:0513437677">전화로 최종 확인</a><a class="kakao" href="http://pf.kakao.com/_nWwNT/chat" target="_blank" rel="noopener noreferrer">카카오톡 문의</a></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="rate-panel" data-panel="mvno">
+          <div class="rate-panel-head"><div><span class="eyebrow">알뜰폰 요금 비교</span><h2>프로모션 기간까지 같이 보기</h2></div></div>
+          <div class="rate-grid">
+            <form class="rate-card rate-form" id="mvno-form">
+              <label>요금제 이름<input id="mvno-name" placeholder="예: 데이터 7GB + 1Mbps"></label>
+              <div class="field-row two"><label>프로모션 월요금<input id="mvno-promo" inputmode="numeric" placeholder="원"></label><label>프로모션 기간<input id="mvno-months" inputmode="numeric" placeholder="개월"></label></div>
+              <label>프로모션 종료 후 월요금<input id="mvno-after" inputmode="numeric" placeholder="원"></label>
+              <button class="primary" type="submit">1년 평균 요금 보기</button>
+            </form>
+            <div class="rate-card rate-result"><span class="result-label">12개월 기준 평균 월요금</span><strong id="mvno-average">—</strong><p id="mvno-summary">할인기간이 끝난 뒤 요금까지 함께 확인해보세요.</p><div class="rate-warning">일부 온라인 전용 알뜰폰 요금제는 매장에서 취급하지 않을 수 있습니다. 실제 개통 가능 여부는 상담 시 확인합니다.</div></div>
+          </div>
+        </section>
+
+        <section class="rate-panel" data-panel="internet">
+          <div class="rate-panel-head"><div><span class="eyebrow">인터넷·TV 예상요금</span><h2>기본료에서 할인 빼기</h2></div></div>
+          <div class="rate-grid">
+            <form class="rate-card rate-form" id="internet-form">
+              <label>상품 구성<select id="internet-speed"><option>100M 인터넷</option><option>500M 인터넷</option><option>1G 인터넷</option><option>인터넷 + TV</option></select></label>
+              <div class="field-row two"><label>인터넷 월정액<input id="internet-fee" inputmode="numeric" placeholder="원"></label><label>TV 월정액<input id="tv-fee" inputmode="numeric" placeholder="없으면 0"></label></div>
+              <div class="field-row two"><label>유무선 결합할인<input id="internet-bundle" inputmode="numeric" placeholder="원"></label><label>제휴카드 할인<input id="internet-card" inputmode="numeric" placeholder="원"></label></div>
+              <button class="primary" type="submit">예상 월요금 계산</button>
+            </form>
+            <div class="rate-card rate-result"><span class="result-label">예상 월 납부액</span><strong id="internet-total">—</strong><p id="internet-summary">설치비·장비임대료·프로모션·휴대폰 결합조건은 별도 확인이 필요합니다.</p></div>
+          </div>
+        </section>
+
+        <section class="rate-panel" data-panel="discount">
+          <div class="rate-panel-head"><div><span class="eyebrow">할인 체크</span><h2>내가 확인할 할인은 무엇일까?</h2></div></div>
+          <div class="discount-grid">
+            <article class="discount-card"><span>01</span><h3>선택약정</h3><p>공시지원금 대신 요금할인을 선택하는 방식입니다. 단말 지원과 동시에 적용되지 않는 구조라 비교가 필요합니다.</p></article>
+            <article class="discount-card"><span>02</span><h3>가족·유무선 결합</h3><p>같은 통신사의 휴대폰 회선 수, 인터넷 이용 여부, 요금제 조건 등에 따라 할인 방식이 달라질 수 있습니다.</p></article>
+            <article class="discount-card"><span>03</span><h3>복지할인</h3><p>대상 자격과 통신사 규정에 따라 적용 가능 여부와 할인 범위가 달라집니다.</p></article>
+            <article class="discount-card"><span>04</span><h3>제휴카드</h3><p>전월 실적과 카드별 할인 조건이 있으므로 단순 최저가보다 실제 사용 가능성을 함께 보는 것이 좋습니다.</p></article>
+          </div>
+          <div class="rate-card check-box"><h3>상담 전에 이것만 알려주세요</h3><p>현재 통신사 · 원하는 기종 · 번호이동/기기변경 · 월 데이터 사용량 · 가족 휴대폰 통신사 · 인터넷 통신사 · 복지할인 대상 여부</p><div class="rate-actions"><a href="tel:0513437677">051-343-7677</a><a class="kakao" href="http://pf.kakao.com/_nWwNT/chat" target="_blank" rel="noopener noreferrer">카카오톡 상담</a></div></div>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <footer class="rate-footer"><div class="rate-wrap"><strong>웅비통신 덕천만덕점</strong><p>부산광역시 북구 만덕대로178번길 17 · 월~토 11:00~20:00 · 일요일 휴무 · 051-343-7677</p><p>이 페이지의 계산값은 상담을 돕기 위한 예상치이며 실제 개통 조건과 다를 수 있습니다.</p></div></footer>
+  <script src="assets/rates.js?v=20260915-1" defer></script>
+</body>
+</html>
