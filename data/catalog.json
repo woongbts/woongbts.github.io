@@ -3,11 +3,12 @@
     "updated_at": null,
     "status": "structure-ready",
     "source_basis": "manually verified telecom product data",
-    "notice": "실제 상품값은 확인된 자료만 수동 반영합니다. 단말기는 출시일 최신순으로 정렬하고, 선택한 기종·가입유형에 적용 가능한 요금제만 표시합니다. 추가지원금은 홈페이지에 공개하지 않고 매장 문의로 안내합니다."
+    "notice": "실제 상품값은 확인된 자료만 수동 반영합니다. 단말기는 출시일 최신순으로 정렬하고, 선택한 기종·가입유형에 적용 가능한 요금제만 표시합니다. 공시지원금은 기기변경·번호이동·신규가입을 각각 별도 값으로 관리하며, 추가지원금은 홈페이지에 공개하지 않고 매장 문의로 안내합니다."
   },
   "rules": {
     "device_order": "release_date_desc",
     "plan_filter": "eligible_only",
+    "join_types": ["기기변경", "번호이동", "신규가입"],
     "public_support_key": "carrier + join_type + device + plan",
     "extra_support": "store_inquiry_only",
     "installment_apr": 0.059,
