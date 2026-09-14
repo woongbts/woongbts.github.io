@@ -2,24 +2,47 @@
   "meta": {
     "updated_at": null,
     "status": "structure-ready",
-    "source_basis": "ZeroNote wireless/wired consultation screens",
-    "notice": "실제 상품값은 확인된 자료만 수동 반영합니다. 단말기는 제로노트 최신순, 요금제는 선택한 기종·가입유형의 '가능한 요금제' 기준으로 표시합니다. 추가지원금은 홈페이지에 공개하지 않고 매장 문의로 안내합니다."
+    "source_basis": "manually verified telecom product data",
+    "notice": "실제 상품값은 확인된 자료만 수동 반영합니다. 단말기는 출시일 최신순으로 정렬하고, 선택한 기종·가입유형에 적용 가능한 요금제만 표시합니다. 추가지원금은 홈페이지에 공개하지 않고 매장 문의로 안내합니다."
   },
   "rules": {
-    "device_order": "xeronote_latest_first",
-    "plan_filter": "xeronote_eligible_only",
+    "device_order": "release_date_desc",
+    "plan_filter": "eligible_only",
     "public_support_key": "carrier + join_type + device + plan",
     "extra_support": "store_inquiry_only",
+    "installment_apr": 0.059,
+    "installment_method": "equal_total_payment",
     "mvno_welfare_discount": false,
-    "internet_order": "xeronote_display_order"
+    "internet_order": "configured_order"
   },
   "carriers": ["SKT", "KT", "LGU+"],
   "devices": [],
   "mobile_plans": [],
   "mobile_supports": [],
-  "welfare_discounts": [],
   "mvno_plans": [],
   "internet_products": [],
+  "welfare_types": [
+    {
+      "id": "disabled_veteran",
+      "name": "장애인·국가유공자",
+      "summary": "월정액 기준 35% 감면으로 간편 계산"
+    },
+    {
+      "id": "livelihood_medical",
+      "name": "생계·의료급여 수급자",
+      "summary": "월정액 감면은 최대 28,600원까지 간편 계산"
+    },
+    {
+      "id": "housing_education_lowincome",
+      "name": "주거·교육급여 수급자·차상위",
+      "summary": "월정액 최대 12,100원 감면 후 잔여 대상금액 35% 감면, 총 감면 한도 23,650원 기준 간편 계산"
+    },
+    {
+      "id": "basic_pension",
+      "name": "기초연금 수급자",
+      "summary": "월정액 기준 50% 감면, 최대 12,100원까지 간편 계산"
+    }
+  ],
   "schema_guide": {
     "device": {
       "id": "SKT-SM-XXXX",
@@ -43,12 +66,6 @@
       "join_type": "기기변경 | 번호이동 | 신규가입",
       "plan_id": "SKT-plan-id",
       "public_support": 0
-    },
-    "welfare_discount": {
-      "carrier": "SKT | KT | LGU+",
-      "plan_id": "SKT-plan-id",
-      "monthly_discount": 0,
-      "note": "확인된 복지할인 규칙만 등록"
     },
     "mvno_plan": {
       "id": "mvno-plan-id",
