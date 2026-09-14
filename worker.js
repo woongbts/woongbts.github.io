@@ -1,3 +1,4 @@
+// Git-connected Cloudflare Worker for Woongbi AI
 export default {
   async fetch(request, env) {
     const allowedOrigin = "https://woongbts.github.io";
