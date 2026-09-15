@@ -7,7 +7,7 @@
   <title>요금 알아보기 | 웅비통신 덕천만덕점</title>
   <meta name="description" content="휴대폰·알뜰폰·선불폰·인터넷·TV 요금을 선택 조건에 따라 확인할 수 있는 웅비통신 요금 안내 페이지입니다.">
   <link rel="icon" type="image/svg+xml" href="assets/woongbi-mark.svg">
-  <link rel="stylesheet" href="assets/rates.css?v=20260915-3">
+  <link rel="stylesheet" href="assets/rates.css?v=20260915-4">
 </head>
 <body>
   <header class="rate-top">
@@ -20,7 +20,7 @@
   <main>
     <section class="rate-hero">
       <div class="rate-wrap">
-        <span class="rate-badge">요금 알아보기 · BETA</span>
+        <span class="rate-badge">휴대폰·알뜰폰·인터넷 간편견적</span>
         <h1>고객이 고르면,<br><em>필요한 금액만 자동으로.</em></h1>
         <p>휴대폰부터 알뜰폰·선불폰·인터넷·TV까지 선택한 조건에 맞춰 확인 가능한 금액을 자동으로 계산합니다.</p>
         <div class="rate-hero-note">추가지원금, 실시간 재고, 일부 결합·프로모션처럼 최종 확인이 필요한 항목은 매장 문의로 안내합니다.</div>
@@ -44,8 +44,9 @@
                 <label>통신사<select id="carrier"><option>SKT</option><option>KT</option><option>LGU+</option></select></label>
                 <label>가입유형<select id="join-type"><option>기기변경</option><option>번호이동</option><option>신규가입</option></select></label>
               </div>
-              <label>할인방식<select id="discount-method"><option value="support">공시지원금 · 단말 할인</option><option value="contract">선택약정 · 통신요금 25% 할인</option></select><small class="field-help">두 방식은 동시에 적용되지 않습니다.</small></label>
-              <label>기종<select id="device-select"><option value="">기종을 선택하세요</option></select><small class="field-help">등록된 기종을 최신 출시순으로 표시합니다.</small></label>
+              <label>상세 계산 기준<select id="discount-method"><option value="support">공시지원금 · 단말 할인</option><option value="contract">선택약정 · 통신요금 25% 할인</option></select><small class="field-help">아래 비교표에서는 공시지원금과 선택약정을 동시에 계산합니다.</small></label>
+              <label>기종 검색<input id="device-search" type="search" autocomplete="off" placeholder="예: 아이폰18, S26, Wide9, SM-M176S"><small class="field-help">기종명이나 모델명으로 검색하세요. 검색 전에는 최신 기종 30개를 표시합니다.</small></label>
+              <label>기종<select id="device-select"><option value="">기종을 선택하세요</option></select><small class="field-help">검색 결과에서 원하는 기종을 선택하세요.</small></label>
               <label>요금제<select id="plan-select" disabled><option value="">기종을 먼저 선택하세요</option></select><small class="field-help">선택한 가입유형·기종에서 가입 가능한 요금제만 표시합니다.</small></label>
               <div class="field-row two">
                 <label>할부개월<select id="installment-months" disabled><option value="24">24개월</option></select></label>
@@ -79,6 +80,24 @@
                 <div><span>월 통신요금</span><b id="service-monthly">—</b></div>
               </div>
               <p id="calc-summary">통신사, 가입유형, 할인방식, 기종, 요금제를 선택하면 자동으로 계산됩니다.</p>
+              <section class="mobile-compare" id="mobile-compare" aria-live="polite">
+                <div class="compare-head"><div><strong>공시지원금 vs 선택약정</strong><span>24개월 약정 총비용 · 단말 총 할부액 포함</span></div><b id="compare-best">조건을 선택해 주세요</b></div>
+                <div class="compare-grid">
+                  <button type="button" class="compare-card" id="compare-support-card" data-method="support">
+                    <span>공시지원금</span><strong id="compare-support-monthly">—</strong><small>예상 월 납부액</small><em id="compare-support-total">24개월 총비용 —</em><i id="compare-support-benefit">지원금 —</i>
+                  </button>
+                  <button type="button" class="compare-card" id="compare-contract-card" data-method="contract">
+                    <span>선택약정 25%</span><strong id="compare-contract-monthly">—</strong><small>예상 월 납부액</small><em id="compare-contract-total">24개월 총비용 —</em><i id="compare-contract-benefit">월 할인 —</i>
+                  </button>
+                </div>
+                <div class="compare-diff" id="compare-diff">기종과 요금제를 선택하면 두 방식의 차이를 한눈에 비교합니다.</div>
+              </section>
+              <div class="quote-tools">
+                <button type="button" id="copy-quote">견적 복사</button>
+                <button type="button" id="share-quote">견적 공유</button>
+                <button type="button" class="primary" id="consult-quote">이 조건으로 상담하기</button>
+                <small id="quote-action-status" aria-live="polite"></small>
+              </div>
               <div class="rate-warning">공시지원 코스는 확인된 가입유형·기종·요금제별 지원금이 있을 때 할부원금과 월 납부액까지 계산합니다. 선택약정 코스는 단말 지원금 없이 통신요금 25% 할인을 반영합니다. 단말 할부는 연 5.9% 원리금균등 방식의 예상치이며 실제 청구액은 달라질 수 있습니다.</div>
               <div class="rate-actions"><a href="tel:0513437677">전화로 최종 확인</a><a class="kakao" href="http://pf.kakao.com/_nWwNT/chat" target="_blank" rel="noopener noreferrer">카카오톡 문의</a></div>
             </div>
@@ -169,6 +188,12 @@
   </main>
 
   <footer class="rate-footer"><div class="rate-wrap"><strong>웅비통신 덕천만덕점</strong><p>부산광역시 북구 만덕대로178번길 17 · 월~토 11:00~20:00 · 일요일 휴무 · 051-343-7677</p><p>표시 금액은 상담을 돕기 위한 예상치이며 실제 개통 조건과 다를 수 있습니다.</p></div></footer>
-  <script src="assets/rates.js?v=20260915-13" defer></script>
+  <script src="assets/rates.js?v=20260915-14" defer></script>
+
+  <div class="mobile-quote-bar" id="mobile-quote-bar" hidden>
+    <div class="mobile-quote-bar-value"><span>현재 예상 월 납부액</span><strong id="mobile-quote-bar-total">—</strong></div>
+    <button type="button" id="mobile-quote-detail">상세</button>
+    <button type="button" class="primary" id="mobile-quote-consult">상담</button>
+  </div>
 </body>
 </html>
