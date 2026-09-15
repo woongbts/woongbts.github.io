@@ -10,7 +10,12 @@
   let supportSchedules=[];
   let mvnoData={providers:[],plans:[]};
   let prepaidData={providers:[],plans:[]};
-  let internetData={providers:[],internet_products:[],tv_products:[],bundle_rules:[]};
+  let internetData={providers:[],internet_products:[],tv_products:[],settop_products:[],bundle_rules:[]};
+  const WIRED_COMBO_DEFAULTS={
+    SKB:{settopNames:['스마트3'],fallbackSettopFee:4400,internetDiscount:5500,tvDiscount:2200},
+    KT:{settopNames:['기가지니3'],fallbackSettopFee:4400,internetDiscount:5500,tvDiscount:2640},
+    'LGU+':{settopNames:['4K UHD4','UHD4'],fallbackSettopFee:4400,internetDiscount:5500,tvDiscount:2200}
+  };
 
   const byNewest=(a,b)=>{
     const ao=Number(a?.source_order),bo=Number(b?.source_order);
@@ -210,13 +215,23 @@
     ).sort(byOrder);
   }
   function fillBundleSelect(select,kind){
-    const p=currentInternetProduct();select.innerHTML='';option(select,'none','미적용');select.disabled=!p;
+    const p=currentInternetProduct();select.innerHTML='';
+    const autoCombo=kind==='wired'&&p&&tvProduct.value!=='none'&&WIRED_COMBO_DEFAULTS[p.provider_id];
+    if(autoCombo)option(select,'auto-combo','인터넷+TV 결합 자동적용');
+    else option(select,'none','미적용');
     eligibleInternetBundles(p,kind).forEach(r=>option(select,r.id,r.name));
+    select.disabled=!p;
+    select.value=autoCombo?'auto-combo':'none';
   }
   function fillInternetBundles(){
     fillBundleSelect(wiredBundle,'wired');fillBundleSelect(mobileBundle,'mobile');syncInternet();
   }
   function selectedRule(select){return (internetData.bundle_rules||[]).find(r=>r.id===select.value)||null}
+  function defaultSettop(providerId,tv){
+    const cfg=WIRED_COMBO_DEFAULTS[providerId];if(!cfg||!tv)return null;
+    const list=(internetData.settop_products||[]).filter(x=>x.provider_id===providerId&&(!x.tv_product_id||x.tv_product_id===tv.id));
+    return list.find(x=>cfg.settopNames.some(n=>String(x.name||'').includes(n)))||list.find(x=>hasAmount(x.monthly_fee))||null;
+  }
   function syncInternet(){
     const p=currentInternetProduct(),tv=currentTvProduct(),provider=(internetData.providers||[]).find(x=>x.id===internetCarrier.value)||null;
     if(!p){
@@ -227,34 +242,47 @@
     }
 
     const internetKnown=hasAmount(p.monthly_fee??p.internet_fee),internetFee=internetKnown?Number(p.monthly_fee??p.internet_fee):null;
-    const tvSelected=tvProduct.value!=='none',tvKnown=!tvSelected||!!(tv&&hasAmount(tv.monthly_fee??tv.tv_fee)),tvFee=!tvSelected?0:(tvKnown?Number(tv.monthly_fee??tv.tv_fee):null);
-    const baseKnown=internetKnown&&tvKnown,base=baseKnown?internetFee+tvFee:null;
+    const tvSelected=tvProduct.value!=='none',tvKnown=!tvSelected||!!(tv&&hasAmount(tv.monthly_fee??tv.tv_fee)),tvBaseFee=!tvSelected?0:(tvKnown?Number(tv.monthly_fee??tv.tv_fee):null);
+    const combo=tvSelected?WIRED_COMBO_DEFAULTS[p.provider_id]:null;
+    const stb=tvSelected?defaultSettop(p.provider_id,tv):null;
+    const settopKnown=!tvSelected||!!combo;
+    const settopFee=!tvSelected?0:(stb&&hasAmount(stb.monthly_fee)?Number(stb.monthly_fee):Number(combo?.fallbackSettopFee||0));
+    const autoInternetDiscount=combo&&internetKnown?Math.min(internetFee,Number(combo.internetDiscount)||0):0;
+    const autoTvDiscount=combo&&tvKnown?Math.min(tvBaseFee,Number(combo.tvDiscount)||0):0;
+    const autoWiredDiscount=autoInternetDiscount+autoTvDiscount;
+    const baseKnown=internetKnown&&tvKnown&&settopKnown,base=baseKnown?internetFee+tvBaseFee+settopFee:null;
+
     const wiredRule=selectedRule(wiredBundle),mobileRule=selectedRule(mobileBundle);
     const wiredKnown=!wiredRule||hasAmount(wiredRule.discount),mobileKnown=!mobileRule||hasAmount(mobileRule.discount);
-    const wiredDiscount=wiredRule&&wiredKnown?Number(wiredRule.discount):0,mobileDiscount=mobileRule&&mobileKnown?Number(mobileRule.discount):0;
+    const extraWiredDiscount=wiredRule&&wiredKnown?Number(wiredRule.discount):0,mobileDiscount=mobileRule&&mobileKnown?Number(mobileRule.discount):0;
+    const wiredDiscount=autoWiredDiscount+extraWiredDiscount;
     const totalKnown=baseKnown&&wiredKnown&&mobileKnown,totalDiscount=totalKnown?Math.min(base,wiredDiscount+mobileDiscount):null,total=totalKnown?Math.max(0,base-totalDiscount):null;
 
-    $('internet-fee-view').textContent=internetKnown?won(internetFee):'매장 확인';
-    $('tv-fee-view').textContent=!tvSelected?'미선택':(tvKnown?won(tvFee):'매장 확인');
+    $('internet-fee-view').textContent=internetKnown?won(Math.max(0,internetFee-autoInternetDiscount)):'매장 확인';
+    $('tv-fee-view').textContent=!tvSelected?'미선택':(tvKnown&&settopKnown?won(Math.max(0,tvBaseFee-autoTvDiscount)+settopFee):'매장 확인');
     $('internet-base-total').textContent=baseKnown?won(base):'매장 확인';
     $('internet-bundle-discount').textContent=totalKnown?(totalDiscount?'-'+won(totalDiscount):'미적용'):'매장 확인';
     $('internet-total').textContent=totalKnown?won(total):'매장 확인';
     $('internet-result-base').textContent=baseKnown?won(base):'매장 확인';
-    $('internet-result-wired-discount').textContent=wiredRule?(wiredKnown?'-'+won(wiredDiscount):'매장 확인'):'미적용';
+    $('internet-result-wired-discount').textContent=tvSelected&&combo?(wiredDiscount?'-'+won(wiredDiscount):'미적용'):(wiredRule?(wiredKnown?'-'+won(extraWiredDiscount):'매장 확인'):'미적용');
     $('internet-result-mobile-discount').textContent=mobileRule?(mobileKnown?'-'+won(mobileDiscount):'매장 확인'):'미적용';
 
     const installParts=[];
     if(hasAmount(p.installation_fee))installParts.push(Number(p.installation_fee));else installParts.push(null);
-    if(tvSelected){if(tv&&hasAmount(tv.installation_fee))installParts.push(Number(tv.installation_fee));else installParts.push(null)}
+    if(tvSelected){
+      if(stb&&hasAmount(stb.installation_fee))installParts.push(Number(stb.installation_fee));
+      else if(tv&&hasAmount(tv.installation_fee)&&Number(tv.installation_fee)>0)installParts.push(Number(tv.installation_fee));
+      else installParts.push(null);
+    }
     $('internet-installation').textContent=installParts.every(v=>v!==null)?won(installParts.reduce((a,b)=>a+b,0)):'매장 확인';
 
-    const bits=[];if(p.speed_mbps)bits.push(`${p.speed_mbps}Mbps`);if(tvSelected&&tv?.name)bits.push(tv.name);if(wiredRule?.notes)bits.push(wiredRule.notes);if(mobileRule?.notes)bits.push(mobileRule.notes);
+    const bits=[];if(p.speed_mbps)bits.push(`${p.speed_mbps}Mbps`);if(tvSelected&&tv?.name)bits.push(tv.name);if(tvSelected&&combo)bits.push('인터넷+TV 결합할인 자동 반영');if(wiredRule?.notes)bits.push(wiredRule.notes);if(mobileRule?.notes)bits.push(mobileRule.notes);
     $('internet-detail').textContent=bits.length?bits.join(' · '):'3년 약정 기준 월요금';
     $('internet-summary').textContent=totalKnown?`${provider?.name||p.provider_id} · ${p.name}${tvSelected&&tv?.name?' + '+tv.name:''} 기준 예상 월요금입니다.`:`${provider?.name||p.provider_id} · 선택 상품의 최신 금액은 매장에서 확인해 주세요.`;
   }
   internetCarrier.addEventListener('change',fillInternetProducts);
   internetProduct.addEventListener('change',fillInternetBundles);
-  tvProduct.addEventListener('change',syncInternet);
+  tvProduct.addEventListener('change',fillInternetBundles);
   wiredBundle.addEventListener('change',syncInternet);
   mobileBundle.addEventListener('change',syncInternet);
 
