@@ -1,6 +1,8 @@
 (function(){
   const won=n=>Number.isFinite(Number(n))?Math.max(0,Math.round(Number(n))).toLocaleString('ko-KR')+'원':'—';
   const $=id=>document.getElementById(id);
+  const hasAmount=v=>v!==null&&v!==undefined&&v!==''&&Number.isFinite(Number(v));
+  const amountText=v=>hasAmount(v)?won(v):'매장 확인';
   const INSTALLMENT_APR=.059;
   const DEFAULT_CONTRACT_RATE=.25;
   let catalog=null;
@@ -8,7 +10,7 @@
   let supportSchedules=[];
   let mvnoData={providers:[],plans:[]};
   let prepaidData={providers:[],plans:[]};
-  let internetData={providers:[],products:[],bundle_rules:[]};
+  let internetData={providers:[],internet_products:[],tv_products:[],bundle_rules:[]};
 
   const byNewest=(a,b)=>{
     const ao=Number(a?.source_order),bo=Number(b?.source_order);
@@ -40,8 +42,8 @@
     const d=currentDevice(),p=currentPlan();
     if(!d||!p)return null;
     const exact=(catalog?.mobile_supports||[]).find(s=>s.device_id===d.id&&s.plan_id===p.id&&s.join_type===joinType.value);
-    if(exact&&Number.isFinite(Number(exact.public_support)))return exact;
-    const rule=(supportSchedules||[]).find(r=>r.carrier===carrier.value&&Array.isArray(r.device_ids)&&r.device_ids.includes(d.id)&&Array.isArray(r.join_types)&&r.join_types.includes(joinType.value)&&r.amounts&&Number.isFinite(Number(r.amounts[p.id])));
+    if(exact&&hasAmount(exact.public_support))return exact;
+    const rule=(supportSchedules||[]).find(r=>r.carrier===carrier.value&&Array.isArray(r.device_ids)&&r.device_ids.includes(d.id)&&Array.isArray(r.join_types)&&r.join_types.includes(joinType.value)&&r.amounts&&hasAmount(r.amounts[p.id]));
     return rule?{device_id:d.id,join_type:joinType.value,plan_id:p.id,public_support:Number(rule.amounts[p.id])}:null;
   }
   function installment(principal,months){
@@ -83,16 +85,16 @@
   }
   function syncMobile(){
     const d=currentDevice(),p=currentPlan(),s=currentSupport(),isContract=discountMethod.value==='contract';
-    const hasPrice=d&&Number.isFinite(Number(d.retail_price))&&Number(d.retail_price)>0;
+    const hasPrice=d&&hasAmount(d.retail_price)&&Number(d.retail_price)>0;
     $('device-price-view').textContent=hasPrice?won(d.retail_price):'매장 확인';
-    $('plan-fee-view').textContent=p&&Number.isFinite(Number(p.monthly_fee))?won(p.monthly_fee):'—';
+    $('plan-fee-view').textContent=p&&hasAmount(p.monthly_fee)?won(p.monthly_fee):'—';
     $('discount-amount-label').textContent=isContract?'선택약정 월 할인':'공시지원금';
     $('principal-label').textContent=isContract?'단말 할부원금':'공시지원 반영 할부원금';
     $('plan-discount-label').textContent=isContract?'선택약정 할인':'요금 할인';
     $('extra-support-view').textContent='매장 문의';
     const planFee=Number(p?.monthly_fee)||0,contractDiscount=isContract&&p?planFee*contractRate:0;
     if(isContract){$('discount-amount-view').textContent=p?'-'+won(contractDiscount):'—';$('plan-discount-view').textContent=p?'-'+won(contractDiscount):'—'}
-    else{$('discount-amount-view').textContent=s&&Number.isFinite(Number(s.public_support))?won(s.public_support):d&&p?'매장 확인':'—';$('plan-discount-view').textContent='미적용'}
+    else{$('discount-amount-view').textContent=s&&hasAmount(s.public_support)?won(s.public_support):d&&p?'매장 확인':'—';$('plan-discount-view').textContent='미적용'}
     const note=$('mobile-data-note');
     if(!(catalog?.devices||[]).length)note.textContent='실제 상품 데이터가 아직 등록되지 않았습니다.';
     else if(d&&!hasPrice)note.textContent='이 기종의 현재 출고가는 매장에서 최신 금액을 확인해 주세요.';
@@ -123,60 +125,138 @@
   function fillMvnoPlans(){
     const pid=mvnoProvider.value,provider=(mvnoData.providers||[]).find(p=>p.id===pid);clearSelect(mvnoPlan,pid?'요금제를 선택하세요':'통신사를 먼저 선택하세요');mvnoPlan.disabled=!pid;
     $('mvno-network').textContent=provider?.network||'—';
-    const plans=(mvnoData.plans||[]).filter(p=>p.provider_id===pid).sort(byOrder);plans.forEach(p=>option(mvnoPlan,p.id,`${p.name} · ${won(p.special_monthly_fee??p.monthly_fee)}`));
-    if(pid&&!plans.length){mvnoPlan.disabled=true;$('mvno-detail').textContent='현재 등록된 요금제 금액은 매장에서 확인해 주세요.'}syncMvno();
+    const plans=(mvnoData.plans||[]).filter(p=>p.provider_id===pid).sort(byOrder);
+    plans.forEach(p=>{const fee=p.special_monthly_fee??p.monthly_fee;option(mvnoPlan,p.id,`${p.name} · ${hasAmount(fee)?won(fee):'매장 확인'}`)});
+    if(pid&&!plans.length){mvnoPlan.disabled=true;$('mvno-detail').textContent='확인된 요금제 금액은 매장에서 안내해 드립니다.'}
+    syncMvno();
   }
   function syncMvno(){
     const p=(mvnoData.plans||[]).find(x=>x.id===mvnoPlan.value)||null,provider=(mvnoData.providers||[]).find(x=>x.id===mvnoProvider.value)||null;
     $('mvno-network').textContent=p?.network||provider?.network||'—';
-    if(!p){$('mvno-fee-view').textContent='—';$('mvno-total').textContent='—';$('mvno-summary').textContent=mvnoProvider.value?'요금제 금액은 매장에서 확인해 주세요.':'통신사와 요금제를 선택하면 자동으로 반영됩니다.';return}
-    const fee=Number(p.special_monthly_fee??p.monthly_fee)||0;$('mvno-fee-view').textContent=won(fee);$('mvno-total').textContent=won(fee);
-    const bits=[];if(p.data)bits.push(`데이터 ${p.data}`);if(p.voice)bits.push(`통화 ${p.voice}`);if(p.sms)bits.push(`문자 ${p.sms}`);$('mvno-detail').textContent=(bits.length?bits.join(' · ')+' · ':'')+'복지할인 미적용';$('mvno-summary').textContent=`${provider?.name||p.provider_id} · ${p.name} 월 기본료입니다.`;
+    if(!p){$('mvno-fee-view').textContent='—';$('mvno-total').textContent='—';$('mvno-summary').textContent=mvnoProvider.value?'현재 확인된 요금은 매장에서 안내해 드립니다.':'통신사와 요금제를 선택하면 자동으로 반영됩니다.';return}
+    const fee=p.special_monthly_fee??p.monthly_fee,known=hasAmount(fee);
+    $('mvno-fee-view').textContent=known?won(fee):'매장 확인';$('mvno-total').textContent=known?won(fee):'매장 확인';
+    const bits=[];if(p.data)bits.push(`데이터 ${p.data}`);if(p.voice)bits.push(`통화 ${p.voice}`);if(p.sms)bits.push(`문자 ${p.sms}`);
+    $('mvno-detail').textContent=(bits.length?bits.join(' · ')+' · ':'')+'복지할인 미적용';
+    $('mvno-summary').textContent=known?`${provider?.name||p.provider_id} · ${p.name} 월 기본료입니다.`:`${provider?.name||p.provider_id} · ${p.name}의 현재 월요금은 매장에서 확인해 주세요.`;
   }
   mvnoProvider.addEventListener('change',fillMvnoPlans);mvnoPlan.addEventListener('change',syncMvno);
 
   // 선불폰
   const prepaidProvider=$('prepaid-provider'),prepaidPlan=$('prepaid-plan');
   function fillPrepaidProviders(){
-    clearSelect(prepaidProvider,'통신사를 선택하세요');(prepaidData.providers||[]).slice().sort(byOrder).forEach(p=>option(prepaidProvider,p.id,p.name));fillPrepaidPlans();
+    clearSelect(prepaidProvider,'통신사를 선택하세요');
+    const providers=(prepaidData.providers||[]).slice().sort(byOrder);
+    providers.forEach(p=>option(prepaidProvider,p.id,p.name));
+    if(!providers.length)$('prepaid-detail').textContent='확인된 선불폰 상품은 매장에서 안내해 드립니다.';
+    fillPrepaidPlans();
   }
   function fillPrepaidPlans(){
-    const pid=prepaidProvider.value,provider=(prepaidData.providers||[]).find(p=>p.id===pid);clearSelect(prepaidPlan,pid?'요금제를 선택하세요':'통신사를 먼저 선택하세요');prepaidPlan.disabled=!pid;$('prepaid-network').textContent=provider?.network||'—';
-    const plans=(prepaidData.plans||[]).filter(p=>p.provider_id===pid).sort(byOrder);plans.forEach(p=>option(prepaidPlan,p.id,`${p.name} · ${won(p.monthly_fee)}`));if(pid&&!plans.length){prepaidPlan.disabled=true;$('prepaid-detail').textContent='현재 등록된 선불 요금제 금액은 매장에서 확인해 주세요.'}syncPrepaid();
+    const pid=prepaidProvider.value,provider=(prepaidData.providers||[]).find(p=>p.id===pid);
+    clearSelect(prepaidPlan,pid?'요금제를 선택하세요':'통신사를 먼저 선택하세요');prepaidPlan.disabled=!pid;$('prepaid-network').textContent=provider?.network||'—';
+    const plans=(prepaidData.plans||[]).filter(p=>p.provider_id===pid).sort(byOrder);
+    plans.forEach(p=>option(prepaidPlan,p.id,`${p.name} · ${hasAmount(p.monthly_fee)?won(p.monthly_fee):'매장 확인'}`));
+    if(pid&&!plans.length){prepaidPlan.disabled=true;$('prepaid-detail').textContent='확인된 선불 요금은 매장에서 안내해 드립니다.'}
+    syncPrepaid();
   }
   function syncPrepaid(){
-    const p=(prepaidData.plans||[]).find(x=>x.id===prepaidPlan.value)||null,provider=(prepaidData.providers||[]).find(x=>x.id===prepaidProvider.value)||null;$('prepaid-network').textContent=p?.network||provider?.network||'—';
-    if(!p){$('prepaid-fee-view').textContent='—';$('prepaid-total').textContent='—';$('prepaid-summary').textContent=prepaidProvider.value?'요금제 금액은 매장에서 확인해 주세요.':'통신사와 요금제를 선택하면 자동으로 반영됩니다.';return}
-    const fee=Number(p.monthly_fee)||0;$('prepaid-fee-view').textContent=won(fee);$('prepaid-total').textContent=won(fee);const bits=[];if(p.data)bits.push(`데이터 ${p.data}`);if(p.voice)bits.push(`통화 ${p.voice}`);if(p.valid_days)bits.push(`${p.valid_days}일`);$('prepaid-detail').textContent=bits.join(' · ')||'선불 요금제';$('prepaid-summary').textContent=`${provider?.name||p.provider_id} · ${p.name} 월 이용료입니다.`;
+    const p=(prepaidData.plans||[]).find(x=>x.id===prepaidPlan.value)||null,provider=(prepaidData.providers||[]).find(x=>x.id===prepaidProvider.value)||null;
+    $('prepaid-network').textContent=p?.network||provider?.network||'—';
+    if(!p){$('prepaid-fee-view').textContent='—';$('prepaid-total').textContent='—';$('prepaid-summary').textContent=prepaidProvider.value?'현재 확인된 요금은 매장에서 안내해 드립니다.':'통신사와 요금제를 선택하면 자동으로 반영됩니다.';return}
+    const known=hasAmount(p.monthly_fee);
+    $('prepaid-fee-view').textContent=known?won(p.monthly_fee):'매장 확인';$('prepaid-total').textContent=known?won(p.monthly_fee):'매장 확인';
+    const bits=[];if(p.data)bits.push(`데이터 ${p.data}`);if(p.voice)bits.push(`통화 ${p.voice}`);if(p.valid_days)bits.push(`${p.valid_days}일`);
+    $('prepaid-detail').textContent=bits.join(' · ')||'선불 요금제';
+    $('prepaid-summary').textContent=known?`${provider?.name||p.provider_id} · ${p.name} 월 이용료입니다.`:`${provider?.name||p.provider_id} · ${p.name}의 현재 이용료는 매장에서 확인해 주세요.`;
   }
   prepaidProvider.addEventListener('change',fillPrepaidPlans);prepaidPlan.addEventListener('change',syncPrepaid);
 
   // 인터넷·TV
-  const internetCarrier=$('internet-carrier'),internetProduct=$('internet-product'),internetBundle=$('internet-bundle');
+  const internetCarrier=$('internet-carrier'),internetProduct=$('internet-product'),tvProduct=$('tv-product'),wiredBundle=$('wired-bundle'),mobileBundle=$('mobile-bundle');
+  function internetProducts(){return internetData.internet_products||internetData.products||[]}
+  function tvProducts(){return internetData.tv_products||[]}
+  function currentInternetProduct(){return internetProducts().find(p=>p.id===internetProduct.value)||null}
+  function currentTvProduct(){return tvProduct.value==='none'?null:(tvProducts().find(p=>p.id===tvProduct.value)||null)}
   function fillInternetProviders(){
-    clearSelect(internetCarrier,'통신사를 선택하세요');(internetData.providers||[]).slice().sort(byOrder).forEach(p=>option(internetCarrier,p.id,p.name));fillInternetProducts();
+    clearSelect(internetCarrier,'통신사를 선택하세요');
+    (internetData.providers||[]).slice().sort(byOrder).forEach(p=>option(internetCarrier,p.id,p.name));
+    fillInternetProducts();
   }
   function fillInternetProducts(){
-    const pid=internetCarrier.value;clearSelect(internetProduct,pid?'상품을 선택하세요':'통신사를 먼저 선택하세요');internetProduct.disabled=!pid;
-    (internetData.products||[]).filter(p=>p.provider_id===pid).sort(byOrder).forEach(p=>option(internetProduct,p.id,p.name));fillInternetBundles();
+    const pid=internetCarrier.value,items=internetProducts().filter(p=>p.provider_id===pid).sort(byOrder);
+    clearSelect(internetProduct,pid?'인터넷 상품을 선택하세요':'통신사를 먼저 선택하세요');
+    items.forEach(p=>option(internetProduct,p.id,p.name));
+    internetProduct.disabled=!pid||!items.length;
+
+    tvProduct.innerHTML='';
+    if(pid){
+      option(tvProduct,'none','TV 미선택');
+      tvProducts().filter(p=>p.provider_id===pid).sort(byOrder).forEach(p=>option(tvProduct,p.id,p.name));
+      tvProduct.disabled=false;
+    }else{
+      option(tvProduct,'','통신사를 먼저 선택하세요');tvProduct.disabled=true;
+    }
+    if(pid&&!items.length)$('internet-detail').textContent='현재 확인된 인터넷 상품 요금은 매장에서 안내해 드립니다.';
+    fillInternetBundles();
   }
-  function currentInternetProduct(){return (internetData.products||[]).find(p=>p.id===internetProduct.value)||null}
-  function eligibleInternetBundles(product){
+  function eligibleInternetBundles(product,kind){
     if(!product)return [];
-    return (internetData.bundle_rules||[]).filter(r=>r.provider_id===product.provider_id&&(!Array.isArray(r.product_ids)||!r.product_ids.length||r.product_ids.includes(product.id))&&(!Number(r.minimum_speed_mbps)||Number(product.speed_mbps)>=Number(r.minimum_speed_mbps))).sort(byOrder);
+    return (internetData.bundle_rules||[]).filter(r=>
+      r.provider_id===product.provider_id&&
+      r.kind===kind&&
+      (!Array.isArray(r.product_ids)||!r.product_ids.length||r.product_ids.includes(product.id))&&
+      (!Number(r.minimum_speed_mbps)||Number(product.speed_mbps)>=Number(r.minimum_speed_mbps))&&
+      (!Number(r.maximum_speed_mbps)||Number(product.speed_mbps)<=Number(r.maximum_speed_mbps))
+    ).sort(byOrder);
+  }
+  function fillBundleSelect(select,kind){
+    const p=currentInternetProduct();select.innerHTML='';option(select,'none','미적용');select.disabled=!p;
+    eligibleInternetBundles(p,kind).forEach(r=>option(select,r.id,r.name));
   }
   function fillInternetBundles(){
-    const p=currentInternetProduct();internetBundle.innerHTML='';option(internetBundle,'none','미적용');internetBundle.disabled=!p;
-    eligibleInternetBundles(p).forEach(r=>option(internetBundle,r.id,r.name));syncInternet();
+    fillBundleSelect(wiredBundle,'wired');fillBundleSelect(mobileBundle,'mobile');syncInternet();
   }
+  function selectedRule(select){return (internetData.bundle_rules||[]).find(r=>r.id===select.value)||null}
   function syncInternet(){
-    const p=currentInternetProduct();
-    if(!p){['internet-fee-view','tv-fee-view','internet-base-total','internet-bundle-discount','internet-total','internet-result-base','internet-result-discount'].forEach(id=>$(id).textContent='—');$('internet-installation').textContent='매장 확인';$('internet-summary').textContent=internetCarrier.value?'현재 등록된 상품 금액은 매장에서 확인해 주세요.':'통신사와 상품을 선택하면 자동으로 반영됩니다.';return}
-    const internetFee=Number(p.internet_fee)||0,tvFee=Number(p.tv_fee)||0,base=internetFee+tvFee,rule=(internetData.bundle_rules||[]).find(r=>r.id===internetBundle.value),discount=rule?Math.min(base,Number(rule.discount)||0):0,total=Math.max(0,base-discount);
-    $('internet-fee-view').textContent=won(internetFee);$('tv-fee-view').textContent=won(tvFee);$('internet-base-total').textContent=won(base);$('internet-bundle-discount').textContent=discount?'-'+won(discount):'미적용';$('internet-total').textContent=won(total);$('internet-result-base').textContent=won(base);$('internet-result-discount').textContent=discount?'-'+won(discount):'미적용';$('internet-installation').textContent=Number.isFinite(Number(p.installation_fee))?won(p.installation_fee):'매장 확인';
-    const bits=[];if(p.speed_mbps)bits.push(`${p.speed_mbps}Mbps`);if(rule?.kind)bits.push(rule.kind==='mobile'?'모바일 결합':'유선 결합');if(rule?.notes)bits.push(rule.notes);$('internet-detail').textContent=bits.length?bits.join(' · '):'3년 약정 기준 월요금';$('internet-summary').textContent=`${(internetData.providers||[]).find(x=>x.id===p.provider_id)?.name||p.provider_id} · ${p.name} 기준 예상 월요금입니다.`;
+    const p=currentInternetProduct(),tv=currentTvProduct(),provider=(internetData.providers||[]).find(x=>x.id===internetCarrier.value)||null;
+    if(!p){
+      ['internet-fee-view','tv-fee-view','internet-base-total','internet-bundle-discount','internet-total','internet-result-base','internet-result-wired-discount','internet-result-mobile-discount'].forEach(id=>$(id).textContent='—');
+      $('internet-installation').textContent='매장 확인';
+      $('internet-summary').textContent=internetCarrier.value?'현재 확인된 상품 요금은 매장에서 안내해 드립니다.':'통신사와 상품을 선택하면 자동으로 반영됩니다.';
+      return;
+    }
+
+    const internetKnown=hasAmount(p.monthly_fee??p.internet_fee),internetFee=internetKnown?Number(p.monthly_fee??p.internet_fee):null;
+    const tvSelected=tvProduct.value!=='none',tvKnown=!tvSelected||!!(tv&&hasAmount(tv.monthly_fee??tv.tv_fee)),tvFee=!tvSelected?0:(tvKnown?Number(tv.monthly_fee??tv.tv_fee):null);
+    const baseKnown=internetKnown&&tvKnown,base=baseKnown?internetFee+tvFee:null;
+    const wiredRule=selectedRule(wiredBundle),mobileRule=selectedRule(mobileBundle);
+    const wiredKnown=!wiredRule||hasAmount(wiredRule.discount),mobileKnown=!mobileRule||hasAmount(mobileRule.discount);
+    const wiredDiscount=wiredRule&&wiredKnown?Number(wiredRule.discount):0,mobileDiscount=mobileRule&&mobileKnown?Number(mobileRule.discount):0;
+    const totalKnown=baseKnown&&wiredKnown&&mobileKnown,totalDiscount=totalKnown?Math.min(base,wiredDiscount+mobileDiscount):null,total=totalKnown?Math.max(0,base-totalDiscount):null;
+
+    $('internet-fee-view').textContent=internetKnown?won(internetFee):'매장 확인';
+    $('tv-fee-view').textContent=!tvSelected?'미선택':(tvKnown?won(tvFee):'매장 확인');
+    $('internet-base-total').textContent=baseKnown?won(base):'매장 확인';
+    $('internet-bundle-discount').textContent=totalKnown?(totalDiscount?'-'+won(totalDiscount):'미적용'):'매장 확인';
+    $('internet-total').textContent=totalKnown?won(total):'매장 확인';
+    $('internet-result-base').textContent=baseKnown?won(base):'매장 확인';
+    $('internet-result-wired-discount').textContent=wiredRule?(wiredKnown?'-'+won(wiredDiscount):'매장 확인'):'미적용';
+    $('internet-result-mobile-discount').textContent=mobileRule?(mobileKnown?'-'+won(mobileDiscount):'매장 확인'):'미적용';
+
+    const installParts=[];
+    if(hasAmount(p.installation_fee))installParts.push(Number(p.installation_fee));else installParts.push(null);
+    if(tvSelected){if(tv&&hasAmount(tv.installation_fee))installParts.push(Number(tv.installation_fee));else installParts.push(null)}
+    $('internet-installation').textContent=installParts.every(v=>v!==null)?won(installParts.reduce((a,b)=>a+b,0)):'매장 확인';
+
+    const bits=[];if(p.speed_mbps)bits.push(`${p.speed_mbps}Mbps`);if(tvSelected&&tv?.name)bits.push(tv.name);if(wiredRule?.notes)bits.push(wiredRule.notes);if(mobileRule?.notes)bits.push(mobileRule.notes);
+    $('internet-detail').textContent=bits.length?bits.join(' · '):'3년 약정 기준 월요금';
+    $('internet-summary').textContent=totalKnown?`${provider?.name||p.provider_id} · ${p.name}${tvSelected&&tv?.name?' + '+tv.name:''} 기준 예상 월요금입니다.`:`${provider?.name||p.provider_id} · 선택 상품의 최신 금액은 매장에서 확인해 주세요.`;
   }
-  internetCarrier.addEventListener('change',fillInternetProducts);internetProduct.addEventListener('change',fillInternetBundles);internetBundle.addEventListener('change',syncInternet);
+  internetCarrier.addEventListener('change',fillInternetProducts);
+  internetProduct.addEventListener('change',fillInternetBundles);
+  tvProduct.addEventListener('change',syncInternet);
+  wiredBundle.addEventListener('change',syncInternet);
+  mobileBundle.addEventListener('change',syncInternet);
 
   Promise.all([
     fetch('data/catalog.json?v=20260915-9').then(r=>r.json()),
@@ -184,9 +264,9 @@
     fetch('data/supports.json?v=20260915-2').then(r=>r.json()),
     fetch('data/devices-extra.json?v=20260915-3').then(r=>r.json()),
     fetch('data/iphone18.json?v=20260915-1').then(r=>r.json()),
-    fetch('data/mvno-postpaid.json?v=20260915-1').then(r=>r.json()),
-    fetch('data/prepaid.json?v=20260915-1').then(r=>r.json()),
-    fetch('data/internet.json?v=20260915-1').then(r=>r.json())
+    fetch('data/mvno-postpaid.json?v=20260915-2').then(r=>r.json()),
+    fetch('data/prepaid.json?v=20260915-2').then(r=>r.json()),
+    fetch('data/internet.json?v=20260915-2').then(r=>r.json())
   ]).then(([base,plans,supports,extra,iphone18,mvno,prepaid,internet])=>{
     catalog=base;const deviceMap=new Map();[...(base?.devices||[]),...(extra?.devices||[]),...(iphone18?.devices||[])].forEach(d=>deviceMap.set(d.id,d));catalog.devices=[...deviceMap.values()];catalog.mobile_plans=plans?.mobile_plans||base?.mobile_plans||[];contractRate=Number(plans?.selection_contract_rate)||DEFAULT_CONTRACT_RATE;supportSchedules=supports?.support_schedules||[];mvnoData=mvno||mvnoData;prepaidData=prepaid||prepaidData;internetData=internet||internetData;
     const mobileDates=[base?.meta?.updated_at,plans?.meta?.updated_at,supports?.meta?.updated_at,extra?.meta?.updated_at,iphone18?.meta?.updated_at].filter(Boolean).sort();setUpdated('catalog-updated',mobileDates.at(-1));setUpdated('mvno-updated',mvnoData?.meta?.updated_at);setUpdated('prepaid-updated',prepaidData?.meta?.updated_at);setUpdated('internet-updated',internetData?.meta?.updated_at);
