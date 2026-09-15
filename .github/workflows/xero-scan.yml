@@ -8,103 +8,62 @@ on:
 jobs:
   scan:
     runs-on: ubuntu-latest
-    timeout-minutes: 8
+    timeout-minutes: 6
     steps:
-      - name: Fetch public product data
+      - name: Fetch public wired product lists
         shell: bash
         run: |
           set -euo pipefail
-          mkdir -p scan/scripts scan/mvno/main scan/mvno/able scan/wired/internet scan/wired/tv
+          mkdir -p scan/internet scan/tv scan/settop
           python3 - <<'PY'
-          import json, pathlib, re, time, urllib.parse, urllib.request
-
+          import json, pathlib, time, urllib.parse, urllib.request
           ROOT='https://www.xeronote.co.kr'
+          REFERER=ROOT+'/consult/internet.php'
           UA='Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/140 Safari/537.36'
           root=pathlib.Path('scan')
-          headers={'User-Agent':UA,'Accept':'*/*'}
-
-          def get(url, referer=None):
-              h=dict(headers)
-              if referer: h['Referer']=referer
-              req=urllib.request.Request(url,headers=h)
-              with urllib.request.urlopen(req,timeout=25) as r:
-                  return r.read()
-
-          mobile_url=ROOT+'/consult/mobile.php?consult_mode=NONE_DEVICE'
-          internet_url=ROOT+'/consult/internet.php'
-          (root/'mobile.html').write_bytes(get(mobile_url))
-          (root/'internet.html').write_bytes(get(internet_url))
-
-          # Fetch page-referenced scripts to preserve the public request definitions used by the UI.
-          urls=[]
-          for name,base in [('mobile',mobile_url),('internet',internet_url)]:
-              html=(root/f'{name}.html').read_text(errors='ignore')
-              for src in re.findall(r'<script[^>]+src=["\']([^"\']+)',html,re.I):
-                  url=urllib.parse.urljoin(base,src)
-                  if url not in urls: urls.append(url)
-          (root/'script-urls.txt').write_text('\n'.join(urls),encoding='utf-8')
-          for i,url in enumerate(urls):
-              try:
-                  (root/'scripts'/f'{i:03d}.js').write_bytes(get(url, mobile_url if 'mobile' in url else internet_url))
-              except Exception as e:
-                  (root/'scripts'/f'{i:03d}.error.txt').write_text(f'{url}\n{e}',encoding='utf-8')
-
-          # Public carrier/provider lists.
-          telecom_raw=get(ROOT+'/api/data/get_telecom_list.php',mobile_url)
-          (root/'telecom-list.json').write_bytes(telecom_raw)
-          broadband_raw=get(ROOT+'/api/data/get_broadband_list.php',internet_url)
-          (root/'broadband-list.json').write_bytes(broadband_raw)
-
-          telecom=json.loads(telecom_raw.decode('utf-8-sig'))
-          # The public NONE_DEVICE page defaults to MNP + USIM + MAIN. Also collect ABLE so all currently joinable plans can be compared.
-          ids=[]
-          def walk_ids(obj):
-              if isinstance(obj,dict):
-                  tid=obj.get('telecom_id') or obj.get('id')
-                  if isinstance(tid,str) and tid and tid not in ids: ids.append(tid)
-                  for v in obj.values(): walk_ids(v)
-              elif isinstance(obj,list):
-                  for v in obj: walk_ids(v)
-          walk_ids(telecom)
-          if not ids:
-              ids=['MOBINGSKT','MOBINGKT','MOBINGLG','SMKT','SMSKT','7MOBILE','MMOBILE','UPLUSE','SKYLIFE','HELLOSKT','HELLOKT','HELLOUPLUS','FREETSKT','FREETKT','FREETLG','IYAGISKT','IYAGIKT','IYAGILG','tossmobile']
-          ids=[x for x in ids if x not in ('SKT','KT','LGUPLUS')]
-          (root/'mvno-telecom-ids.txt').write_text('\n'.join(ids),encoding='utf-8')
-
-          for join_flag in ('MAIN','ABLE'):
-              out=root/'mvno'/join_flag.lower()
-              for tid in ids:
-                  qs=urllib.parse.urlencode({
-                      'telecom_id':tid,
-                      'device_idx':'',
-                      'plan_group':'USIM',
-                      'sort_type':'',
-                      'join_type':'MNP',
-                      'join_flag':join_flag,
-                      'plan_idx':'',
-                      'keyword':''
-                  })
-                  url=ROOT+'/api/data/get_mobile_plan_list.php?'+qs
+          def get(url):
+              req=urllib.request.Request(url,headers={'User-Agent':UA,'Accept':'*/*','Referer':REFERER})
+              with urllib.request.urlopen(req,timeout=20) as r: return r.read()
+          groups={
+            'SKB':['BASIC','WIFI','FAMILY','WINGS','SMART_SAFE'],
+            'KT':['BASIC','WIFI','FAMILY','WI','FAMILY_SAFE','TOTAL_SAFE','SAFE_INTERNET'],
+            'LGUPLUS':['PREMIUM_SAFE','PREMIUM_GUARANTEE','BASIC','SMART_GIGA'],
+            'HELLO':['BASIC','WIFI','FAMILY'],
+            'SKYLIFE':['BASIC','WIFI','FAMILY']
+          }
+          all_tv={}
+          for bid,gs in groups.items():
+              for g in gs:
+                  qs=urllib.parse.urlencode({'broadband_id':bid,'product_type':'INTERNET','product_group':g})
+                  url=ROOT+'/api/data/get_internet_product_list.php?'+qs
+                  try:(root/'internet'/f'{bid}__{g}.json').write_bytes(get(url))
+                  except Exception as e:(root/'internet'/f'{bid}__{g}.error.txt').write_text(f'{url}\n{e}',encoding='utf-8')
+                  time.sleep(.05)
+              tv_groups=['BTV','BTV_POP'] if bid=='SKB' else ['']
+              for g in tv_groups:
+                  qs=urllib.parse.urlencode({'broadband_id':bid,'product_type':'TV','product_group':g})
+                  url=ROOT+'/api/data/get_internet_product_list.php?'+qs
+                  fn=f'{bid}__{g or "ALL"}.json'
                   try:
-                      (out/f'{tid}.json').write_bytes(get(url,mobile_url))
-                  except Exception as e:
-                      (out/f'{tid}.error.txt').write_text(f'{url}\n{e}',encoding='utf-8')
-                  time.sleep(0.08)
-
-          # Requested consumer wired groups. These public popup pages are what the calculator opens for product selection.
-          wired_ids=['SKB','KT','LGUPLUS','HELLO','SKYLIFE']
-          for bid in wired_ids:
-              for kind in ('internet','tv'):
-                  url=f'{ROOT}/consult/popup/internet/popup_{kind}.php?broadband_id={urllib.parse.quote(bid)}&line=1'
-                  try:
-                      (root/'wired'/kind/f'{bid}.html').write_bytes(get(url,internet_url))
-                  except Exception as e:
-                      (root/'wired'/kind/f'{bid}.error.txt').write_text(f'{url}\n{e}',encoding='utf-8')
-                  time.sleep(0.08)
-
-          # Related public product endpoint samples are retained for inspecting exact price/bundle fields after product keys are known.
+                      raw=get(url); (root/'tv'/fn).write_bytes(raw)
+                      d=json.loads(raw.decode('utf-8-sig'))
+                      rows=d.get('data',[]) if isinstance(d,dict) else []
+                      all_tv.setdefault(bid,[]).extend(rows)
+                  except Exception as e:(root/'tv'/fn.replace('.json','.error.txt')).write_text(f'{url}\n{e}',encoding='utf-8')
+                  time.sleep(.05)
+          # Set-top options and rental/install fees for every visible TV product.
+          for bid,rows in all_tv.items():
+              seen=set()
+              for row in rows:
+                  key=str(row.get('product_key') or '')
+                  if not key or key in seen: continue
+                  seen.add(key)
+                  qs=urllib.parse.urlencode({'broadband_id':bid,'product_type':'SETTOP','product_key':key})
+                  url=ROOT+'/api/data/get_internet_sub_product_list.php?'+qs
+                  try:(root/'settop'/f'{bid}__{key}.json').write_bytes(get(url))
+                  except Exception as e:(root/'settop'/f'{bid}__{key}.error.txt').write_text(f'{url}\n{e}',encoding='utf-8')
+                  time.sleep(.03)
           PY
-          grep -RniE 'special_price|plan_name|product_key|monthly|price|fee|discount|internet_price|tv_price|sel_internet|sel_tv' scan/wired scan/mvno > scan/data-matches.txt || true
       - name: Upload scan artifact
         uses: actions/upload-artifact@v4
         with:
