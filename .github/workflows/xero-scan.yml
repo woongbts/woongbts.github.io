@@ -1,0 +1,54 @@
+name: xero-public-scan
+
+on:
+  push:
+    paths:
+      - '.github/workflows/xero-scan.yml'
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Fetch public pages and referenced scripts
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p scan/scripts
+          UA='Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/140 Safari/537.36'
+          curl -fsSL -A "$UA" 'https://www.xeronote.co.kr/consult/mobile.php?consult_mode=NONE_DEVICE' -o scan/mobile.html
+          curl -fsSL -A "$UA" 'https://www.xeronote.co.kr/consult/internet.php' -o scan/internet.html
+          python3 - <<'PY'
+          import re, pathlib, urllib.parse, urllib.request
+          ua={'User-Agent':'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/140 Safari/537.36'}
+          pages=[('mobile','https://www.xeronote.co.kr/consult/mobile.php?consult_mode=NONE_DEVICE'),('internet','https://www.xeronote.co.kr/consult/internet.php')]
+          out=pathlib.Path('scan/scripts')
+          urls=[]
+          for name,base in pages:
+              html=pathlib.Path(f'scan/{name}.html').read_text(errors='ignore')
+              for src in re.findall(r'<script[^>]+src=["\']([^"\']+)',html,re.I):
+                  url=urllib.parse.urljoin(base,src)
+                  if url not in urls: urls.append(url)
+          pathlib.Path('scan/script-urls.txt').write_text('\n'.join(urls),encoding='utf-8')
+          for i,url in enumerate(urls):
+              try:
+                  req=urllib.request.Request(url,headers=ua)
+                  data=urllib.request.urlopen(req,timeout=15).read()
+                  (out/f'{i:03d}.js').write_bytes(data)
+              except Exception as e:
+                  (out/f'{i:03d}.error.txt').write_text(f'{url}\n{e}',encoding='utf-8')
+          PY
+          grep -RniE 'get_mobile_plan|get_partner|/api/|special|policy_idx|telecom_id|internet|internet_plan|product' scan/scripts > scan/matches.txt || true
+          grep -RhoE '(/api/[A-Za-z0-9_./?=&%${}\-]+)' scan/scripts | sort -u > scan/api-paths.txt || true
+          echo '--- SCRIPT URLS ---' > scan/summary.txt
+          cat scan/script-urls.txt >> scan/summary.txt
+          echo '\n--- API PATHS ---' >> scan/summary.txt
+          cat scan/api-paths.txt >> scan/summary.txt
+          echo '\n--- MATCHES (first 250 lines) ---' >> scan/summary.txt
+          head -250 scan/matches.txt >> scan/summary.txt
+      - name: Upload scan artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: xero-public-scan
+          path: scan/
+          retention-days: 1
