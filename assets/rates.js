@@ -226,13 +226,16 @@
   Promise.all([
     fetch('data/catalog.json?v=20260915-8').then(r=>r.json()),
     fetch('data/plans.json?v=20260915-2').then(r=>r.json()),
-    fetch('data/supports.json?v=20260915-1').then(r=>r.json())
-  ]).then(([base,plans,supports])=>{
+    fetch('data/supports.json?v=20260915-1').then(r=>r.json()),
+    fetch('data/devices-extra.json?v=20260915-1').then(r=>r.json())
+  ]).then(([base,plans,supports,extra])=>{
     catalog=base;
+    const seen=new Set((base?.devices||[]).map(d=>d.id));
+    catalog.devices=[...(base?.devices||[]),...((extra?.devices||[]).filter(d=>!seen.has(d.id)))];
     catalog.mobile_plans=plans?.mobile_plans||base?.mobile_plans||[];
     contractRate=Number(plans?.selection_contract_rate)||DEFAULT_CONTRACT_RATE;
     supportSchedules=supports?.support_schedules||[];
-    const dates=[base?.meta?.updated_at,plans?.meta?.updated_at,supports?.meta?.updated_at].filter(Boolean).sort();
+    const dates=[base?.meta?.updated_at,plans?.meta?.updated_at,supports?.meta?.updated_at,extra?.meta?.updated_at].filter(Boolean).sort();
     $('catalog-updated').textContent=dates.length?`상품 데이터 ${dates[dates.length-1]} 기준`:'최신 상품 데이터 입력 준비 중';
     fillDevices();fillMvnoProviders();fillInternet();
   }).catch(()=>{$('mobile-data-note').textContent='상품 데이터를 불러오지 못했습니다. 잠시 후 다시 확인해 주세요.'});
