@@ -1,0 +1,41 @@
+{
+  "meta": {
+    "updated_at": "2026-09-15",
+    "note": "주요 일반 요금제를 우선 반영합니다. 월정액은 부가세 포함 기준이며, 선택약정은 지원금 대신 통신요금 25% 할인 코스로 계산합니다."
+  },
+  "selection_contract_rate": 0.25,
+  "mobile_plans": [
+    {"id":"SKT-LIGHT79","carrier":"SKT","name":"라이트 79","monthly_fee":79000,"data":"250GB + 최대 5Mbps","source_order":1},
+    {"id":"SKT-LIGHT69","carrier":"SKT","name":"라이트 69","monthly_fee":69000,"data":"110GB + 최대 5Mbps","source_order":2},
+    {"id":"SKT-LIGHT59","carrier":"SKT","name":"라이트 59","monthly_fee":59000,"data":"24GB + 최대 1Mbps","source_order":3},
+    {"id":"SKT-LIGHT55","carrier":"SKT","name":"라이트 55","monthly_fee":55000,"data":"15GB + 최대 1Mbps","source_order":4},
+    {"id":"SKT-LIGHT49","carrier":"SKT","name":"라이트 49","monthly_fee":49000,"data":"11GB + 최대 400Kbps","source_order":5},
+    {"id":"SKT-LIGHT45","carrier":"SKT","name":"라이트 45","monthly_fee":45000,"data":"8GB + 최대 400Kbps","source_order":6},
+    {"id":"SKT-LIGHT39","carrier":"SKT","name":"라이트 39","monthly_fee":39000,"data":"6GB + 최대 400Kbps","source_order":7},
+
+    {"id":"KT-BASIC100","carrier":"KT","name":"베이직100","monthly_fee":100000,"data":"무제한","source_order":1},
+    {"id":"KT-BASIC80","carrier":"KT","name":"베이직80","monthly_fee":80000,"data":"무제한","source_order":2},
+    {"id":"KT-BASIC110","carrier":"KT","name":"베이직110GB","monthly_fee":69000,"data":"110GB","source_order":3},
+    {"id":"KT-BASIC30","carrier":"KT","name":"베이직30GB","monthly_fee":61000,"data":"30GB","source_order":4},
+    {"id":"KT-BASIC21","carrier":"KT","name":"베이직21GB","monthly_fee":58000,"data":"21GB","source_order":5},
+    {"id":"KT-BASIC14","carrier":"KT","name":"베이직14GB","monthly_fee":55000,"data":"14GB","source_order":6},
+    {"id":"KT-BASIC10","carrier":"KT","name":"베이직10GB","monthly_fee":50000,"data":"10GB","source_order":7},
+    {"id":"KT-BASIC7","carrier":"KT","name":"베이직7GB","monthly_fee":45000,"data":"7GB","source_order":8},
+    {"id":"KT-BASIC4","carrier":"KT","name":"베이직4GB","monthly_fee":37000,"data":"4GB","source_order":9},
+    {"id":"KT-BASIC1_4","carrier":"KT","name":"베이직1.4GB","monthly_fee":33000,"data":"1.4GB","source_order":10},
+    {"id":"KT-BASIC600","carrier":"KT","name":"베이직600MB","monthly_fee":28900,"data":"600MB","source_order":11},
+
+    {"id":"LG-DATAMAX","carrier":"LGU+","name":"데이터플랜MAX","monthly_fee":85000,"data":"무제한","source_order":1},
+    {"id":"LG-DATA150","carrier":"LGU+","name":"데이터플랜150GB","monthly_fee":75000,"data":"150GB + 최대 5Mbps","source_order":2},
+    {"id":"LG-DATA125","carrier":"LGU+","name":"데이터플랜125GB","monthly_fee":70000,"data":"125GB + 최대 5Mbps","source_order":3},
+    {"id":"LG-DATA95","carrier":"LGU+","name":"데이터플랜95GB","monthly_fee":68000,"data":"95GB + 최대 3Mbps","source_order":4},
+    {"id":"LG-DATA31","carrier":"LGU+","name":"데이터플랜31GB","monthly_fee":61000,"data":"31GB + 최대 1Mbps","source_order":5},
+    {"id":"LG-DATA24","carrier":"LGU+","name":"데이터플랜24GB","monthly_fee":59000,"data":"24GB + 최대 1Mbps","source_order":6},
+    {"id":"LG-DATA14","carrier":"LGU+","name":"데이터플랜14GB","monthly_fee":55000,"data":"14GB + 최대 1Mbps","source_order":7},
+    {"id":"LG-DATA9","carrier":"LGU+","name":"데이터플랜9GB","monthly_fee":47000,"data":"9GB + 최대 400Kbps","source_order":8},
+    {"id":"LG-DATA5","carrier":"LGU+","name":"데이터플랜5GB","monthly_fee":37000,"data":"5GB + 최대 400Kbps","source_order":9},
+    {"id":"LG-DATA1_5","carrier":"LGU+","name":"데이터플랜1.5GB","monthly_fee":33000,"data":"1.5GB + 최대 400Kbps","source_order":10},
+    {"id":"LG-DATA750","carrier":"LGU+","name":"데이터플랜750MB","monthly_fee":29000,"data":"750MB + 최대 400Kbps","source_order":11},
+    {"id":"LG-DATA300","carrier":"LGU+","name":"데이터플랜300MB","monthly_fee":28000,"data":"300MB + 최대 400Kbps","source_order":12}
+  ]
+}
