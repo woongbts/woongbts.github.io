@@ -1,0 +1,184 @@
+name: xero-mobile-sync
+
+on:
+  push:
+    paths:
+      - '.github/workflows/xero-mobile-sync.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Build verified wireless calculator data
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import concurrent.futures, datetime, hashlib, json, re, time, urllib.parse, urllib.request
+          from collections import defaultdict
+          from pathlib import Path
+
+          ROOT='https://www.xeronote.co.kr'
+          REF=ROOT+'/consult/mobile.php'
+          UA='Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/140 Safari/537.36'
+          CARRIERS={'SKT':'SKT','KT':'KT','LGUPLUS':'LGU+'}
+          MIN_RELEASE='2023-01-01'
+
+          def get_json(path, params=None, retries=3):
+              url=ROOT+path
+              if params is not None:
+                  url += '?' + urllib.parse.urlencode(params)
+              last=None
+              for n in range(retries):
+                  try:
+                      req=urllib.request.Request(url,headers={'User-Agent':UA,'Accept':'application/json,text/plain,*/*','Referer':REF})
+                      with urllib.request.urlopen(req,timeout=30) as r:
+                          return json.loads(r.read().decode('utf-8-sig'))
+                  except Exception as e:
+                      last=e
+                      time.sleep(1.0+n)
+              raise last
+
+          def money(v):
+              s=str(v or '').replace(',','').strip()
+              return int(s) if re.fullmatch(r'-?\d+',s) else None
+
+          def clean(v):
+              return ' '.join(str(v or '').replace('\t',' ').split())
+
+          # 1) 공개 휴대폰 목록
+          raw_devices={}
+          devices=[]
+          for xid,carrier in CARRIERS.items():
+              payload=get_json('/api/data/get_device_list.php',{
+                  'telecom_id':xid,'manufacturer_id':'','sort_type1':'PHONE','sort_type2':'RELEASE_DT_DESC',
+                  'keyword':'','search_group':'','search_support_mnp':''
+              })
+              rows=[r for r in payload.get('data',[]) if (r.get('release_dt') or '') >= MIN_RELEASE]
+              raw_devices[xid]=rows
+              for i,r in enumerate(rows,1):
+                  did=str(r.get('device_idx'))
+                  devices.append({
+                      'id':f'X-{xid}-{did}','carrier':carrier,'name':clean(r.get('model_name')),
+                      'model':clean(r.get('device_name')),'source_order':i,'release_date':r.get('release_dt') or '',
+                      'retail_price':money(r.get('factory_price')),'installment_months':[24,30,36],
+                      'manufacturer':clean(r.get('manufacturer_name')),'announce_date':r.get('announce_dt') or '',
+                      'source_device_idx':did
+                  })
+
+          # 2) 기종별 공개 요금제/공시지원금. 한 번의 목록 응답에 신규/기변/번이 지원금이 함께 있으므로 기종당 1회 조회.
+          def fetch_device_plans(xid,row):
+              did=str(row.get('device_idx'))
+              data=get_json('/api/data/get_mobile_plan_list.php',{
+                  'telecom_id':xid,'device_idx':did,'plan_group':'','sort_type':'','join_type':'CHANGE',
+                  'join_flag':'','plan_idx':'','keyword':''
+              }).get('data',[])
+              return xid,did,data
+
+          jobs=[]
+          with concurrent.futures.ThreadPoolExecutor(max_workers=4) as ex:
+              futs=[]
+              for xid,rows in raw_devices.items():
+                  for row in rows:
+                      futs.append(ex.submit(fetch_device_plans,xid,row))
+              for n,f in enumerate(concurrent.futures.as_completed(futs),1):
+                  jobs.append(f.result())
+                  if n%25==0: print('fetched',n,'/',len(futs),flush=True)
+
+          plan_master={}
+          per_device_support={}
+          join_map=[('신규가입','support_money'),('기기변경','support_money_change'),('번호이동','support_money_mnp')]
+          for xid,did,rows in jobs:
+              carrier=CARRIERS[xid]
+              dev_id=f'X-{xid}-{did}'
+              joins={j:{} for j,_ in join_map}
+              for r in rows:
+                  # 화면에서 신규변경불가로 표시되는 폐지/비가입 요금제는 고객 계산기에서 제외
+                  if str(r.get('join_yn') or '').upper()=='N':
+                      continue
+                  pid=f'X-{xid}-{r.get("plan_idx")}'
+                  if pid not in plan_master:
+                      plan_master[pid]={
+                          'id':pid,'carrier':carrier,'name':clean(r.get('plan_name')),
+                          'monthly_fee':money(r.get('price')),'video':clean(r.get('video')),
+                          'voice':clean(r.get('voice')),'sms':clean(r.get('sms')),'data':clean(r.get('data')),
+                          'age_limit':clean(r.get('age_limit')),'join_status':clean(r.get('join_yn')),
+                          'source_plan_idx':str(r.get('plan_idx'))
+                      }
+                  for join,field in join_map:
+                      amt=money(r.get(field))
+                      if amt is not None:
+                          joins[join][pid]=amt
+              per_device_support[dev_id]=joins
+
+          # 보기 쉬운 순서: 통신사별 월정액 높은 순, 동률이면 이름순
+          plans=list(plan_master.values())
+          plans.sort(key=lambda p:(p['carrier'],-(p.get('monthly_fee') or -1),p['name']))
+          counters=defaultdict(int)
+          for p in plans:
+              counters[p['carrier']]+=1
+              p['source_order']=counters[p['carrier']]
+
+          # 3) 동일 지원금표를 가진 기종을 자동 묶어 supports.json 방식으로 압축
+          grouped=defaultdict(list)
+          plan_order={p['id']:i for i,p in enumerate(plans)}
+          for dev_id,joins in per_device_support.items():
+              for join,amounts in joins.items():
+                  packed=tuple(sorted(amounts.items(), key=lambda kv: plan_order.get(kv[0],999999)))
+                  digest=hashlib.sha1(json.dumps(packed,ensure_ascii=False,separators=(',',':')).encode()).hexdigest()
+                  grouped[(join,digest,packed)].append(dev_id)
+          schedules=[]
+          for (join,digest,packed),device_ids in grouped.items():
+              if not packed: continue
+              schedules.append({'device_ids':sorted(device_ids),'join_types':[join],'amounts':dict(packed)})
+
+          # 같은 device_ids+amounts인 3개 가입유형은 한 행으로 재압축
+          merged={}
+          for s in schedules:
+              key=(tuple(s['device_ids']),tuple(s['amounts'].items()))
+              if key not in merged:
+                  merged[key]={'device_ids':s['device_ids'],'join_types':[],'amounts':s['amounts']}
+              merged[key]['join_types'].extend(s['join_types'])
+          schedules=list(merged.values())
+          join_rank={'번호이동':0,'기기변경':1,'신규가입':2}
+          for s in schedules:
+              s['join_types']=sorted(set(s['join_types']),key=lambda x:join_rank.get(x,9))
+          schedules.sort(key=lambda s:(s['device_ids'][0],join_rank.get(s['join_types'][0],9)))
+
+          today=datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9))).date().isoformat()
+          out={
+              'meta':{
+                  'updated_at':today,'scope':'공개 무선상담의 2023년 이후 휴대폰 및 현재 가입 가능한 요금제',
+                  'unknown_behavior':'store_confirm','selection_contract_rate':0.25,
+                  'note':'출고가·요금제·공시지원금은 공개 상담 데이터에서 확인된 값만 반영한다. 추가지원금은 별도 반영하지 않는다.'
+              },
+              'devices':devices,'mobile_plans':plans,'support_schedules':schedules,
+              'stats':{
+                  'devices':len(devices),'plans':len(plans),'support_schedule_groups':len(schedules),
+                  'devices_by_carrier':{CARRIERS[xid]:len(rows) for xid,rows in raw_devices.items()},
+                  'plans_by_carrier':dict(counters)
+              }
+          }
+          Path('data/mobile-public.json').write_text(json.dumps(out,ensure_ascii=False,separators=(',',':')),encoding='utf-8')
+          print(json.dumps(out['stats'],ensure_ascii=False,indent=2))
+          PY
+      - name: Commit wireless calculator data
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'woongbts-data-sync'
+          git config user.email 'actions@users.noreply.github.com'
+          git add data/mobile-public.json
+          if git diff --cached --quiet; then
+            echo 'No mobile data changes'
+          else
+            git commit -m 'Populate wireless calculator data'
+            git push origin HEAD:main
+          fi
