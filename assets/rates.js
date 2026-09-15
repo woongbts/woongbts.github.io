@@ -122,8 +122,9 @@
   function syncMobile(){
     const d=currentDevice(),p=currentPlan(),s=currentSupport();
     const isContract=discountMethod.value==='contract';
+    const hasPrice=d&&Number.isFinite(Number(d.retail_price))&&Number(d.retail_price)>0;
 
-    $('device-price-view').textContent=d&&Number.isFinite(Number(d.retail_price))?won(d.retail_price):'—';
+    $('device-price-view').textContent=hasPrice?won(d.retail_price):'매장 확인';
     $('plan-fee-view').textContent=p&&Number.isFinite(Number(p.monthly_fee))?won(p.monthly_fee):'—';
     $('discount-amount-label').textContent=isContract?'선택약정 월 할인':'공시지원금';
     $('principal-label').textContent=isContract?'단말 할부원금':'공시지원 반영 할부원금';
@@ -142,14 +143,15 @@
 
     const note=$('mobile-data-note');
     if(!(catalog?.devices||[]).length)note.textContent='실제 상품 데이터가 아직 등록되지 않았습니다.';
+    else if(d&&!hasPrice)note.textContent='이 기종의 현재 출고가는 매장에서 최신 금액을 확인해 주세요.';
     else if(d&&!p)note.textContent='요금제를 선택하세요.';
     else if(isContract&&d&&p)note.textContent='선택약정은 단말 지원금 대신 월 통신요금 25% 할인을 반영합니다.';
     else if(d&&p&&!s)note.textContent='이 가입유형·기종·요금제의 공시지원금은 매장에서 최신 금액을 확인해 주세요.';
     else note.textContent='현재 확인된 공시지원금을 선택한 조건에 맞춰 자동 반영했습니다.';
 
-    if(!d||!p){
+    if(!d||!p||!hasPrice){
       clearResult();
-      $('calc-summary').textContent='통신사, 가입유형, 할인방식, 기종, 요금제를 선택하면 자동으로 계산됩니다.';
+      $('calc-summary').textContent=!hasPrice&&d?'출고가 확인 후 월 납부액을 계산할 수 있습니다.':'통신사, 가입유형, 할인방식, 기종, 요금제를 선택하면 자동으로 계산됩니다.';
       return;
     }
     if(!isContract&&!s){
@@ -159,7 +161,7 @@
       return;
     }
 
-    const price=Number(d.retail_price)||0;
+    const price=Number(d.retail_price);
     const support=isContract?0:(Number(s?.public_support)||0);
     const months=Number(monthsSelect.value)||24;
     const principal=Math.max(0,price-support);
@@ -227,7 +229,7 @@
     fetch('data/catalog.json?v=20260915-8').then(r=>r.json()),
     fetch('data/plans.json?v=20260915-2').then(r=>r.json()),
     fetch('data/supports.json?v=20260915-1').then(r=>r.json()),
-    fetch('data/devices-extra.json?v=20260915-1').then(r=>r.json())
+    fetch('data/devices-extra.json?v=20260915-2').then(r=>r.json())
   ]).then(([base,plans,supports,extra])=>{
     catalog=base;
     const seen=new Set((base?.devices||[]).map(d=>d.id));
