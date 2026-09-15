@@ -5,13 +5,13 @@
   const DEFAULT_CONTRACT_RATE=.25;
   let catalog=null;
   let contractRate=DEFAULT_CONTRACT_RATE;
+  let supportSchedules=[];
 
   const byNewest=(a,b)=>{
-    const ad=String(a?.release_date||''),bd=String(b?.release_date||'');
-    if(ad&&bd&&ad!==bd)return bd.localeCompare(ad);
-    if(ad&&!bd)return -1;if(!ad&&bd)return 1;
     const ao=Number(a?.source_order),bo=Number(b?.source_order);
     if(Number.isFinite(ao)&&Number.isFinite(bo)&&ao!==bo)return ao-bo;
+    const ad=String(a?.release_date||''),bd=String(b?.release_date||'');
+    if(ad&&bd&&ad!==bd)return bd.localeCompare(ad);
     return String(a?.name||'').localeCompare(String(b?.name||''),'ko');
   };
   const byOrder=(a,b)=>{
@@ -37,9 +37,19 @@
   function clearSelect(select,placeholder){select.innerHTML='';option(select,'',placeholder)}
   function currentDevice(){return (catalog?.devices||[]).find(d=>d.id===deviceSelect.value)||null}
   function currentPlan(){return (catalog?.mobile_plans||[]).find(p=>p.id===planSelect.value)||null}
+
   function currentSupport(){
-    const d=currentDevice(),p=currentPlan();if(!d||!p)return null;
-    return (catalog?.mobile_supports||[]).find(s=>s.device_id===d.id&&s.plan_id===p.id&&s.join_type===joinType.value)||null;
+    const d=currentDevice(),p=currentPlan();
+    if(!d||!p)return null;
+    const exact=(catalog?.mobile_supports||[]).find(s=>s.device_id===d.id&&s.plan_id===p.id&&s.join_type===joinType.value);
+    if(exact&&Number.isFinite(Number(exact.public_support)))return exact;
+    const rule=(supportSchedules||[]).find(r=>
+      r.carrier===carrier.value &&
+      Array.isArray(r.device_ids) && r.device_ids.includes(d.id) &&
+      Array.isArray(r.join_types) && r.join_types.includes(joinType.value) &&
+      r.amounts && Number.isFinite(Number(r.amounts[p.id]))
+    );
+    return rule?{device_id:d.id,join_type:joinType.value,plan_id:p.id,public_support:Number(rule.amounts[p.id])}:null;
   }
 
   function installment(principal,months){
@@ -75,14 +85,8 @@
   }
 
   function eligiblePlans(){
-    const d=currentDevice();
-    if(!d)return [];
-    const all=(catalog?.mobile_plans||[]).filter(p=>p.carrier===carrier.value).sort(byOrder);
-    if(discountMethod.value==='contract')return all;
-    const rows=(catalog?.mobile_supports||[]).filter(s=>s.device_id===d.id&&s.join_type===joinType.value);
-    if(!rows.length)return all;
-    const ids=new Set(rows.map(s=>s.plan_id));
-    return all.filter(p=>ids.has(p.id));
+    if(!currentDevice())return [];
+    return (catalog?.mobile_plans||[]).filter(p=>p.carrier===carrier.value).sort(byOrder);
   }
 
   function fillPlans(){
@@ -117,15 +121,14 @@
 
   function syncMobile(){
     const d=currentDevice(),p=currentPlan(),s=currentSupport();
-    const method=discountMethod.value;
-    const isContract=method==='contract';
+    const isContract=discountMethod.value==='contract';
 
     $('device-price-view').textContent=d&&Number.isFinite(Number(d.retail_price))?won(d.retail_price):'—';
     $('plan-fee-view').textContent=p&&Number.isFinite(Number(p.monthly_fee))?won(p.monthly_fee):'—';
     $('discount-amount-label').textContent=isContract?'선택약정 월 할인':'공시지원금';
     $('principal-label').textContent=isContract?'단말 할부원금':'공시지원 반영 할부원금';
     $('plan-discount-label').textContent=isContract?'선택약정 할인':'요금 할인';
-    $('extra-support-view').textContent=isContract?'해당 없음':'매장 문의';
+    $('extra-support-view').textContent='매장 문의';
 
     const planFee=Number(p?.monthly_fee)||0;
     const contractDiscount=isContract&&p?planFee*contractRate:0;
@@ -133,7 +136,7 @@
       $('discount-amount-view').textContent=p?'-'+won(contractDiscount):'—';
       $('plan-discount-view').textContent=p?'-'+won(contractDiscount):'—';
     }else{
-      $('discount-amount-view').textContent=s&&Number.isFinite(Number(s.public_support))?won(s.public_support):d&&p?'확인 필요':'—';
+      $('discount-amount-view').textContent=s&&Number.isFinite(Number(s.public_support))?won(s.public_support):d&&p?'매장 확인':'—';
       $('plan-discount-view').textContent='미적용';
     }
 
@@ -141,8 +144,8 @@
     if(!(catalog?.devices||[]).length)note.textContent='실제 상품 데이터가 아직 등록되지 않았습니다.';
     else if(d&&!p)note.textContent='요금제를 선택하세요.';
     else if(isContract&&d&&p)note.textContent='선택약정은 단말 지원금 대신 월 통신요금 25% 할인을 반영합니다.';
-    else if(d&&p&&!s)note.textContent='공시지원금은 가입유형·기종·요금제별 확인값을 순차 반영 중입니다.';
-    else note.textContent='출고가·공시지원금·월정액이 선택한 조건에 맞춰 자동 반영됩니다.';
+    else if(d&&p&&!s)note.textContent='이 가입유형·기종·요금제의 공시지원금은 매장에서 최신 금액을 확인해 주세요.';
+    else note.textContent='현재 확인된 공시지원금을 선택한 조건에 맞춰 자동 반영했습니다.';
 
     if(!d||!p){
       clearResult();
@@ -152,7 +155,7 @@
     if(!isContract&&!s){
       clearResult();
       $('plan-discount-view').textContent='미적용';
-      $('calc-summary').textContent=`${carrier.value} · ${d.name} · ${joinType.value} · ${p.name}의 공시지원금 확인이 필요합니다.`;
+      $('calc-summary').textContent=`${carrier.value} · ${d.name} · ${joinType.value} · ${p.name}의 공시지원금은 매장 확인이 필요합니다.`;
       return;
     }
 
@@ -221,13 +224,15 @@
   internetCarrier.addEventListener('change',fillInternet);internetProduct.addEventListener('change',syncInternet);
 
   Promise.all([
-    fetch('data/catalog.json?v=20260915-7').then(r=>r.json()),
-    fetch('data/plans.json?v=20260915-1').then(r=>r.json())
-  ]).then(([base,plans])=>{
+    fetch('data/catalog.json?v=20260915-8').then(r=>r.json()),
+    fetch('data/plans.json?v=20260915-2').then(r=>r.json()),
+    fetch('data/supports.json?v=20260915-1').then(r=>r.json())
+  ]).then(([base,plans,supports])=>{
     catalog=base;
     catalog.mobile_plans=plans?.mobile_plans||base?.mobile_plans||[];
     contractRate=Number(plans?.selection_contract_rate)||DEFAULT_CONTRACT_RATE;
-    const dates=[base?.meta?.updated_at,plans?.meta?.updated_at].filter(Boolean).sort();
+    supportSchedules=supports?.support_schedules||[];
+    const dates=[base?.meta?.updated_at,plans?.meta?.updated_at,supports?.meta?.updated_at].filter(Boolean).sort();
     $('catalog-updated').textContent=dates.length?`상품 데이터 ${dates[dates.length-1]} 기준`:'최신 상품 데이터 입력 준비 중';
     fillDevices();fillMvnoProviders();fillInternet();
   }).catch(()=>{$('mobile-data-note').textContent='상품 데이터를 불러오지 못했습니다. 잠시 후 다시 확인해 주세요.'});
