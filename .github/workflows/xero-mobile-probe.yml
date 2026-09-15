@@ -5,6 +5,9 @@ on:
     paths:
       - '.github/workflows/xero-mobile-probe.yml'
 
+permissions:
+  contents: write
+
 jobs:
   probe:
     runs-on: ubuntu-latest
@@ -19,7 +22,7 @@ jobs:
           set -euo pipefail
           mkdir -p probe
           python3 - <<'PY'
-          import json, urllib.parse, urllib.request, pathlib, time, hashlib, collections
+          import json, urllib.parse, urllib.request, pathlib, time, collections
           from concurrent.futures import ThreadPoolExecutor, as_completed
           from datetime import datetime
           from zoneinfo import ZoneInfo
@@ -116,7 +119,6 @@ jobs:
                               'xero_plan_idx':str(p.get('plan_idx'))
                           }
                       else:
-                          # keep the earliest ordering but fill any missing fields
                           q=all_plans[pid]
                           q['source_order']=min(int(q.get('source_order') or po),po)
                           for k,val in [('monthly_fee',price),('data',clean(p.get('data'))),('voice',clean(p.get('voice'))),('sms',clean(p.get('sms'))),('video',clean(p.get('video'))),('age_limit',clean(p.get('age_limit')))]:
@@ -139,14 +141,12 @@ jobs:
                   }
               carrier_stats[carrier]={'api_devices':len(raw),'candidates':len(candidates),'included_devices':included}
 
-          # Re-order plans per carrier by monthly fee descending, then name, while preserving all public eligible plans.
           plans=list(all_plans.values())
           for carrier in ['SKT','KT','LGU+']:
               rows=[p for p in plans if p['carrier']==carrier]
               rows.sort(key=lambda p:(-(p.get('monthly_fee') or 0),p.get('name') or ''))
               for i,p in enumerate(rows,1): p['source_order']=i
 
-          # Group devices that have exactly the same public support schedule.
           raw_rules=[]
           for carrier in ['SKT','KT','LGU+']:
               for join_type in ['기기변경','번호이동','신규가입']:
@@ -160,7 +160,6 @@ jobs:
                   for g in groups.values():
                       raw_rules.append({'carrier':carrier,'device_ids':sorted(g['devices']),'join_types':[join_type],'amounts':g['amounts']})
 
-          # Merge rules that share carrier, device set and identical amount map across join types.
           merged={}
           for r in raw_rules:
               key=(r['carrier'],tuple(r['device_ids']),json.dumps(r['amounts'],sort_keys=True,separators=(',',':'),ensure_ascii=False))
@@ -205,6 +204,50 @@ jobs:
           (OUT/'summary.json').write_text(json.dumps(summary,ensure_ascii=False,indent=2),encoding='utf-8')
           print(json.dumps(summary,ensure_ascii=False,indent=2))
           PY
+      - name: Apply data and calculator wiring
+        shell: bash
+        run: |
+          set -euo pipefail
+          cp probe/catalog-generated.json data/catalog.json
+          cp probe/plans-generated.json data/plans.json
+          cp probe/supports-generated.json data/supports.json
+          cp probe/devices-extra-generated.json data/devices-extra.json
+          cp probe/iphone18-generated.json data/iphone18.json
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+
+          js_path=Path('assets/rates.js')
+          js=js_path.read_text(encoding='utf-8')
+          old="function eligiblePlans(){return currentDevice()?(catalog?.mobile_plans||[]).filter(p=>p.carrier===carrier.value).sort(byOrder):[]}"
+          new="function eligiblePlans(){const d=currentDevice();if(!d)return[];const ids=Array.isArray(d.eligible_plan_ids)?new Set(d.eligible_plan_ids):null;return (catalog?.mobile_plans||[]).filter(p=>p.carrier===carrier.value&&(!ids||ids.has(p.id))).sort(byOrder)}"
+          if old in js:
+              js=js.replace(old,new)
+          elif new not in js:
+              raise SystemExit('eligiblePlans target not found')
+          js=re.sub(r"data/(catalog|plans|supports|devices-extra|iphone18|mvno-postpaid|prepaid|internet)\.json\?v=[^']+",r"data/\1.json?v=20260915-12",js)
+          js_path.write_text(js,encoding='utf-8')
+
+          html_path=Path('rates.html')
+          html=html_path.read_text(encoding='utf-8')
+          html=html.replace('최신 기종 위주로 표시합니다.','등록된 기종을 최신 출시순으로 표시합니다.')
+          html=html.replace('현재 등록된 주요 일반 요금제를 표시합니다.','선택한 기종에서 가입 가능한 요금제만 표시합니다.')
+          html=re.sub(r'assets/rates\.js\?v=[^"\']+', 'assets/rates.js?v=20260915-12', html)
+          html_path.write_text(html,encoding='utf-8')
+          PY
+      - name: Commit wireless calculator data
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'woongbts-data-sync'
+          git config user.email 'actions@users.noreply.github.com'
+          git add data/catalog.json data/plans.json data/supports.json data/devices-extra.json data/iphone18.json assets/rates.js rates.html
+          if git diff --cached --quiet; then
+            echo 'No data changes'
+          else
+            git commit -m 'Populate full wireless calculator data'
+            git push origin HEAD:main
+          fi
       - uses: actions/upload-artifact@v4
         with:
           name: xero-mobile-full-build
