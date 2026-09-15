@@ -30,6 +30,7 @@ jobs:
           block=src[start:end]
           lines=block.splitlines()
           block='\n'.join(line[10:] if line.startswith('          ') else line for line in lines)+'\n'
+          block=block.replace('</div>\\\\n          <div class="rate-grid">','</div>\\n          <div class="rate-grid">')
           Path('/tmp/upgrade_consulting_v2.py').write_text(block,encoding='utf-8')
           PY
           python3 /tmp/upgrade_consulting_v2.py
@@ -49,4 +50,4 @@ jobs:
           git pull --rebase origin main
           git push origin HEAD:main
 
-# trigger: 2026-09-15-v2
+# trigger: 2026-09-15-v3
