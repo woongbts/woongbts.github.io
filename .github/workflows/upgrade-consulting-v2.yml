@@ -1,0 +1,300 @@
+name: upgrade-consulting-v2
+
+on:
+  push:
+    paths:
+      - '.github/workflows/upgrade-consulting-v2.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  upgrade:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - name: Upgrade recommendation sharing and device comparison
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+
+          html_path=Path('rates.html')
+          js_path=Path('assets/rates.js')
+          css_path=Path('assets/rates.css')
+          html=html_path.read_text(encoding='utf-8')
+          js=js_path.read_text(encoding='utf-8')
+          css=css_path.read_text(encoding='utf-8')
+
+          # HTML: quick recommendation mode + direct mode container.
+          old='''          <div class="rate-panel-head"><div><span class="eyebrow">휴대폰</span><h2>공시지원 / 선택약정 비교</h2></div><span class="updated" id="catalog-updated">데이터 기준 확인 중</span></div>\n          <div class="rate-grid">'''
+          new='''          <div class="rate-panel-head"><div><span class="eyebrow">휴대폰</span><h2>공시지원 / 선택약정 비교</h2></div><span class="updated" id="catalog-updated">데이터 기준 확인 중</span></div>
+          <div class="mobile-mode-switch" role="tablist" aria-label="휴대폰 견적 방식">
+            <button type="button" class="active" data-mobile-mode="direct">직접 계산하기</button>
+            <button type="button" data-mobile-mode="quick">간편 추천받기</button>
+          </div>
+          <section class="quick-recommend" id="quick-recommend" hidden>
+            <div class="quick-title"><div><strong>조건만 고르면 추천 3개</strong><span>현재 등록된 기종·가입 가능 요금제·공시지원금을 이용해 월 납부액이 낮은 후보를 찾습니다.</span></div></div>
+            <div class="quick-fields">
+              <label>통신사<select id="quick-carrier"><option>SKT</option><option>KT</option><option>LGU+</option></select></label>
+              <label>가입유형<select id="quick-join"><option>기기변경</option><option>번호이동</option><option>신규가입</option></select></label>
+              <label>선호 브랜드<select id="quick-brand"><option value="all">상관없음</option><option value="samsung">삼성 갤럭시</option><option value="apple">애플 아이폰</option></select></label>
+              <label>데이터 사용량<select id="quick-data"><option value="5">5GB 이상</option><option value="10" selected>10GB 이상</option><option value="50">50GB 이상</option><option value="unlimited">무제한</option></select></label>
+              <label>월 예산<select id="quick-budget"><option value="0">예산 제한 없음</option><option value="50000">5만원 이하</option><option value="70000" selected>7만원 이하</option><option value="100000">10만원 이하</option><option value="150000">15만원 이하</option></select></label>
+            </div>
+            <button type="button" class="quick-find" id="quick-find">추천 3개 찾기</button>
+            <div class="quick-results" id="quick-results"><p>조건을 선택한 뒤 추천을 눌러주세요.</p></div>
+          </section>
+          <div class="rate-grid" id="direct-mobile-grid">'''
+          if old not in html:
+              raise SystemExit('mobile panel marker not found')
+          html=html.replace(old,new,1)
+
+          # HTML: device comparison section.
+          marker='''              <div class="quote-tools">'''
+          compare='''              <section class="device-compare-tool" id="device-compare-tool">
+                <div class="compare-head"><div><strong>기종 2~3개 비교</strong><span>현재 선택한 요금제를 같은 통신사 다른 기종에 적용해 월 납부액과 24개월 총비용을 비교합니다.</span></div></div>
+                <div class="device-compare-selects">
+                  <label>현재 기종<select id="device-compare-1" disabled><option value="">기종 선택 후 표시</option></select></label>
+                  <label>비교 기종 1<select id="device-compare-2"><option value="">비교 기종 선택</option></select></label>
+                  <label>비교 기종 2<select id="device-compare-3"><option value="">비교 기종 선택</option></select></label>
+                </div>
+                <div class="device-compare-results" id="device-compare-results"><p>기종과 요금제를 선택한 뒤 비교할 기종을 추가해 주세요.</p></div>
+              </section>
+              <div class="quote-tools">'''
+          if marker not in html:
+              raise SystemExit('quote tools marker not found')
+          html=html.replace(marker,compare,1)
+          html=html.replace('assets/rates.css?v=20260915-4','assets/rates.css?v=20260915-5')
+          html=html.replace('assets/rates.js?v=20260915-14','assets/rates.js?v=20260915-15')
+
+          # JS: shared helpers for arbitrary device/plan scenarios and URL sync state.
+          marker="  function setUpdated(id,date){const el=$(id);if(el)el.textContent=date?`상품 데이터 ${date} 기준`:'상품 데이터 확인 중'}\n"
+          helper=r'''  let suspendUrlSync=true;
+  function devicePlanIds(d,joinLabel){
+    if(!d)return [];
+    const byJoin=d.eligible_plan_ids_by_join_type||{};
+    const source=Array.isArray(byJoin[joinLabel])?byJoin[joinLabel]:d.eligible_plan_ids;
+    return Array.isArray(source)?source:[];
+  }
+  function planEligibleForDevice(d,p,joinLabel){
+    if(!d||!p)return false;
+    const ids=devicePlanIds(d,joinLabel);return !ids.length||ids.includes(p.id);
+  }
+  function supportForSelection(d,p,joinLabel){
+    if(!d||!p)return null;
+    const exact=(catalog?.mobile_supports||[]).find(s=>s.device_id===d.id&&s.plan_id===p.id&&s.join_type===joinLabel);
+    if(exact&&hasAmount(exact.public_support))return exact;
+    const rule=(supportSchedules||[]).find(r=>r.carrier===d.carrier&&Array.isArray(r.device_ids)&&r.device_ids.includes(d.id)&&Array.isArray(r.join_types)&&r.join_types.includes(joinLabel)&&r.amounts&&hasAmount(r.amounts[p.id]));
+    return rule?{device_id:d.id,join_type:joinLabel,plan_id:p.id,public_support:Number(rule.amounts[p.id])}:null;
+  }
+  function scenarioForSelection(d,p,joinLabel,method,months,welfareKey){
+    if(!d||!p||!planEligibleForDevice(d,p,joinLabel)||!hasAmount(d.retail_price)||Number(d.retail_price)<=0)return null;
+    const price=Number(d.retail_price),planFee=Number(p.monthly_fee)||0,term=Number(months)||24,supportRow=supportForSelection(d,p,joinLabel);
+    if(method==='support'&&!supportRow)return {known:false};
+    const support=method==='support'?Number(supportRow?.public_support||0):0,principal=Math.max(0,price-support),inst=installment(principal,term);
+    const contractDiscount=method==='contract'?planFee*contractRate:0,afterContract=Math.max(0,planFee-contractDiscount),welfare=welfareDiscount(welfareKey||'none',afterContract),service=Math.max(0,afterContract-welfare.amount);
+    return {known:true,method,price,planFee,support,contractDiscount,principal,inst,service,welfare,monthly:inst.monthly+service,total24:inst.total+service*24};
+  }
+  function planDataGb(p){
+    const s=String(p?.data||'').toLowerCase().replace(/\s+/g,'');
+    if(!s)return null;if(s.includes('무제한')||s.includes('unlimited'))return Infinity;
+    let m=s.match(/([0-9]+(?:\.[0-9]+)?)gb/);if(m)return Number(m[1]);
+    m=s.match(/([0-9]+(?:\.[0-9]+)?)mb/);if(m)return Number(m[1])/1024;
+    return null;
+  }
+  function brandMatch(d,brand){
+    if(brand==='all')return true;const s=`${d?.name||''} ${d?.manufacturer||''} ${d?.model_code||''}`.toLowerCase();
+    if(brand==='apple')return s.includes('아이폰')||s.includes('iphone')||s.includes('apple')||s.includes('애플');
+    if(brand==='samsung')return s.includes('갤럭시')||s.includes('galaxy')||s.includes('samsung')||s.includes('삼성');
+    return true;
+  }
+'''
+          if marker not in js:
+              raise SystemExit('setUpdated marker not found')
+          js=js.replace(marker,marker+'\n'+helper,1)
+
+          # Use generalized support helper.
+          old=r'''  function currentSupport(){
+    const d=currentDevice(),p=currentPlan();
+    if(!d||!p)return null;
+    const exact=(catalog?.mobile_supports||[]).find(s=>s.device_id===d.id&&s.plan_id===p.id&&s.join_type===joinType.value);
+    if(exact&&hasAmount(exact.public_support))return exact;
+    const rule=(supportSchedules||[]).find(r=>r.carrier===carrier.value&&Array.isArray(r.device_ids)&&r.device_ids.includes(d.id)&&Array.isArray(r.join_types)&&r.join_types.includes(joinType.value)&&r.amounts&&hasAmount(r.amounts[p.id]));
+    return rule?{device_id:d.id,join_type:joinType.value,plan_id:p.id,public_support:Number(rule.amounts[p.id])}:null;
+  }
+'''
+          new=r'''  function currentSupport(){return supportForSelection(currentDevice(),currentPlan(),joinType.value)}
+'''
+          if old not in js:
+              raise SystemExit('currentSupport marker not found')
+          js=js.replace(old,new,1)
+
+          # Keep comparison selectors synced whenever device list changes.
+          old="    if(q&&!rows.length)deviceSelect.options[0].textContent='검색 결과 없음';\n    fillPlans();\n"
+          new="    if(q&&!rows.length)deviceSelect.options[0].textContent='검색 결과 없음';\n    fillDeviceCompareOptions();\n    fillPlans();\n"
+          if old not in js:
+              raise SystemExit('fillDevices tail not found')
+          js=js.replace(old,new,1)
+
+          old="  function eligiblePlans(){const d=currentDevice();if(!d)return[];const byJoin=d.eligible_plan_ids_by_join_type||{};const source=Array.isArray(byJoin[joinType.value])?byJoin[joinType.value]:d.eligible_plan_ids;const ids=Array.isArray(source)?new Set(source):null;return (catalog?.mobile_plans||[]).filter(p=>p.carrier===carrier.value&&(!ids||ids.has(p.id))).sort(byOrder)}"
+          new="  function eligiblePlans(){const d=currentDevice();if(!d)return[];const raw=devicePlanIds(d,joinType.value),ids=raw.length?new Set(raw):null;return (catalog?.mobile_plans||[]).filter(p=>p.carrier===carrier.value&&(!ids||ids.has(p.id))).sort(byOrder)}"
+          if old not in js:
+              raise SystemExit('eligiblePlans marker not found')
+          js=js.replace(old,new,1)
+
+          # Reuse generalized scenario calculator.
+          pat=re.compile(r"  function mobileScenario\(method\)\{.*?\n  \}\n  function syncComparison",re.S)
+          repl="""  function mobileScenario(method){return scenarioForSelection(currentDevice(),currentPlan(),joinType.value,method,monthsSelect.value,welfareType.value)}\n  function syncComparison"""
+          js,n=pat.subn(repl,js,count=1)
+          if n!=1: raise SystemExit('mobileScenario block not replaced')
+
+          # Quote link: preserve current calculator state in URL.
+          old="    lines.push('추가지원금·재고·프로모션은 매장에서 최종 확인 부탁드립니다.');\n    return lines.join('\\n');\n"
+          new="    lines.push('추가지원금·재고·프로모션은 매장에서 최종 확인 부탁드립니다.');\n    lines.push(`견적 링크: ${buildQuoteUrl()}`);\n    return lines.join('\\n');\n"
+          if old not in js: raise SystemExit('quoteText tail not found')
+          js=js.replace(old,new,1)
+          js=js.replace("navigator.share({title:'웅비통신 간편견적',text,url:location.href})","navigator.share({title:'웅비통신 간편견적',text,url:buildQuoteUrl()})",1)
+
+          # Insert quick mode, sharable URL restore, and device comparison before syncMobile.
+          marker="  function syncMobile(){syncMobileCore();syncComparison();syncQuoteBar()}\n"
+          advanced=r'''  function buildQuoteUrl(){
+    const u=new URL(location.href),d=currentDevice(),p=currentPlan();
+    ['tab','c','j','d','p','m','mo','w'].forEach(k=>u.searchParams.delete(k));
+    if(d&&p){u.searchParams.set('tab','mobile');u.searchParams.set('c',carrier.value);u.searchParams.set('j',joinType.value);u.searchParams.set('d',d.id);u.searchParams.set('p',p.id);u.searchParams.set('m',discountMethod.value);u.searchParams.set('mo',monthsSelect.value||'24');u.searchParams.set('w',welfareType.value||'none')}
+    return u.toString();
+  }
+  function syncQuoteUrl(){if(suspendUrlSync)return;const d=currentDevice(),p=currentPlan();if(!d||!p)return;history.replaceState(null,'',buildQuoteUrl())}
+  function restoreQuoteFromUrl(){
+    const q=new URLSearchParams(location.search),did=q.get('d'),pid=q.get('p');if(!did||!pid)return false;
+    const c=q.get('c');if(['SKT','KT','LGU+'].includes(c))carrier.value=c;
+    const j=q.get('j');if(['기기변경','번호이동','신규가입'].includes(j))joinType.value=j;
+    const method=q.get('m');if(['support','contract'].includes(method))discountMethod.value=method;
+    const w=q.get('w');if([...welfareType.options].some(o=>o.value===w))welfareType.value=w;
+    const d=(catalog?.devices||[]).find(x=>x.id===did&&x.carrier===carrier.value);if(!d)return false;
+    deviceSearch.value=d.name||'';fillDevices();deviceSelect.value=did;fillPlans();
+    if([...planSelect.options].some(o=>o.value===pid))planSelect.value=pid;else return false;
+    const mo=q.get('mo');if([...monthsSelect.options].some(o=>o.value===mo))monthsSelect.value=mo;
+    deviceSearch.value='';fillDevices();deviceSelect.value=did;fillPlans();planSelect.value=pid;
+    if([...monthsSelect.options].some(o=>o.value===mo))monthsSelect.value=mo;
+    setMobileMode('direct');return true;
+  }
+  function setMobileMode(mode){
+    const quick=mode==='quick';$('quick-recommend').hidden=!quick;$('direct-mobile-grid').hidden=quick;
+    document.querySelectorAll('[data-mobile-mode]').forEach(b=>b.classList.toggle('active',b.dataset.mobileMode===mode));
+    if(quick){$('quick-carrier').value=carrier.value;$('quick-join').value=joinType.value}
+  }
+  function quickPlanMeets(p,need){const gb=planDataGb(p);if(need==='unlimited')return gb===Infinity;return gb!==null&&gb>=Number(need)}
+  function quickRecommendations(){
+    const c=$('quick-carrier').value,j=$('quick-join').value,brand=$('quick-brand').value,need=$('quick-data').value,budget=Number($('quick-budget').value)||0;
+    const devices=(catalog?.devices||[]).filter(d=>d.carrier===c&&brandMatch(d,brand)&&hasAmount(d.retail_price)&&Number(d.retail_price)>0).sort(byNewest).slice(0,140),out=[];
+    for(const d of devices){
+      const ids=devicePlanIds(d,j);if(!ids.length)continue;
+      const plans=(catalog?.mobile_plans||[]).filter(p=>p.carrier===c&&ids.includes(p.id)&&hasAmount(p.monthly_fee)&&quickPlanMeets(p,need)).sort((a,b)=>Number(a.monthly_fee)-Number(b.monthly_fee));
+      const p=plans[0];if(!p)continue;
+      const s=scenarioForSelection(d,p,j,'support',24,'none'),ct=scenarioForSelection(d,p,j,'contract',24,'none'),known=[s,ct].filter(x=>x?.known);
+      if(!known.length)continue;known.sort((a,b)=>a.total24-b.total24);const best=known[0];
+      if(budget&&best.monthly>budget)continue;
+      out.push({d,p,best,s,ct});
+    }
+    out.sort((a,b)=>a.best.monthly-b.best.monthly||String(b.d.release_date||'').localeCompare(String(a.d.release_date||'')));
+    return out.slice(0,3);
+  }
+  function renderQuickRecommendations(){
+    const box=$('quick-results'),rows=quickRecommendations();box.innerHTML='';
+    if(!rows.length){const p=document.createElement('p');p.textContent='현재 조건에 정확히 맞는 후보가 없습니다. 예산이나 데이터 조건을 한 단계 넓혀보세요.';box.appendChild(p);return}
+    rows.forEach(({d,p,best})=>{
+      const card=document.createElement('article');card.className='quick-result-card';
+      const method=best.method==='support'?'공시지원금':'선택약정 25%';
+      card.innerHTML=`<span>${d.carrier} · ${method}</span><strong>${d.name}</strong><em>${p.name}</em><b>${won(best.monthly)} / 월</b><small>24개월 총 예상비용 ${won(best.total24)}</small>`;
+      const btn=document.createElement('button');btn.type='button';btn.textContent='이 조건으로 계산하기';btn.addEventListener('click',()=>applyQuickResult(d,p,best.method));card.appendChild(btn);box.appendChild(card);
+    });
+  }
+  function applyQuickResult(d,p,method){
+    carrier.value=d.carrier;joinType.value=$('quick-join').value;discountMethod.value=method;deviceSearch.value=d.name||'';fillDevices();deviceSelect.value=d.id;fillPlans();planSelect.value=p.id;deviceSearch.value='';fillDevices();deviceSelect.value=d.id;fillPlans();planSelect.value=p.id;setMobileMode('direct');syncMobile();document.getElementById('direct-mobile-grid')?.scrollIntoView({behavior:'smooth',block:'start'});
+  }
+  function fillDeviceCompareOptions(){
+    const a=$('device-compare-1'),b=$('device-compare-2'),c=$('device-compare-3');if(!a||!b||!c)return;
+    const current=currentDevice(),keepB=b.value,keepC=c.value;let rows=(catalog?.devices||[]).filter(d=>d.carrier===carrier.value).sort(byNewest).slice(0,120);
+    if(current&&!rows.some(d=>d.id===current.id))rows=[current,...rows];
+    a.innerHTML='';if(current)option(a,current.id,current.name);else option(a,'','기종 선택 후 표시');a.disabled=true;
+    [[b,keepB],[c,keepC]].forEach(([sel,keep])=>{clearSelect(sel,'비교 기종 선택');rows.filter(d=>!current||d.id!==current.id).forEach(d=>option(sel,d.id,[d.name,d.model_code].filter(Boolean).join(' · ')));if([...sel.options].some(o=>o.value===keep))sel.value=keep});
+  }
+  function syncDeviceCompare(){
+    const box=$('device-compare-results');if(!box)return;const p=currentPlan(),base=currentDevice();
+    if(!base||!p){box.innerHTML='<p>기종과 요금제를 선택한 뒤 비교할 기종을 추가해 주세요.</p>';return}
+    const ids=[base.id,$('device-compare-2').value,$('device-compare-3').value].filter((v,i,a)=>v&&a.indexOf(v)===i);
+    if(ids.length<2){box.innerHTML='<p>비교 기종을 하나 이상 추가하면 같은 요금제로 나란히 비교합니다.</p>';return}
+    box.innerHTML='';ids.forEach((id,index)=>{
+      const d=(catalog?.devices||[]).find(x=>x.id===id);const card=document.createElement('article');card.className='device-compare-card';
+      if(!d||!planEligibleForDevice(d,p,joinType.value)){card.innerHTML=`<span>${index===0?'현재 선택':'비교 기종'}</span><strong>${d?.name||'기종'}</strong><em>선택한 요금제로 가입 불가</em>`;box.appendChild(card);return}
+      const s=scenarioForSelection(d,p,joinType.value,'support',monthsSelect.value,welfareType.value),ct=scenarioForSelection(d,p,joinType.value,'contract',monthsSelect.value,welfareType.value),known=[s,ct].filter(x=>x?.known).sort((a,b)=>a.total24-b.total24),best=known[0];
+      const supportText=s?.known?won(s.support):'매장 확인',supportMonthly=s?.known?won(s.monthly):'매장 확인',contractMonthly=ct?.known?won(ct.monthly):'—',bestText=best?(best.method==='support'?'공시지원':'선택약정'):'확인 필요';
+      card.innerHTML=`<span>${index===0?'현재 선택':'비교 기종'}</span><strong>${d.name}</strong><em>출고가 ${won(d.retail_price)}</em><div><small>공시지원금</small><b>${supportText}</b></div><div><small>공시 월납부</small><b>${supportMonthly}</b></div><div><small>선약 월납부</small><b>${contractMonthly}</b></div><i>${best?`${bestText} · 24개월 ${won(best.total24)}`:'최종 금액 확인 필요'}</i>`;box.appendChild(card);
+    });
+  }
+  function syncMobile(){syncMobileCore();syncComparison();syncQuoteBar();syncQuoteUrl();syncDeviceCompare()}
+'''
+          if marker not in js:
+              raise SystemExit('syncMobile marker not found')
+          js=js.replace(marker,advanced,1)
+
+          # Extra event handlers.
+          event_marker="  $('mobile-quote-consult')?.addEventListener('click',consultQuote);\n"
+          events=r'''  $('mobile-quote-consult')?.addEventListener('click',consultQuote);
+  document.querySelectorAll('[data-mobile-mode]').forEach(btn=>btn.addEventListener('click',()=>setMobileMode(btn.dataset.mobileMode)));
+  $('quick-find')?.addEventListener('click',renderQuickRecommendations);
+  ['quick-carrier','quick-join','quick-brand','quick-data','quick-budget'].forEach(id=>$(id)?.addEventListener('change',()=>{$('quick-results').innerHTML='<p>조건이 바뀌었습니다. 추천 3개 찾기를 눌러주세요.</p>'}));
+  ['device-compare-2','device-compare-3'].forEach(id=>$(id)?.addEventListener('change',syncDeviceCompare));
+'''
+          if event_marker not in js: raise SystemExit('event marker not found')
+          js=js.replace(event_marker,events,1)
+
+          # Restore sharable quote only after all data is loaded; then enable URL sync.
+          old="    fillDevices();fillMvnoProviders();fillPrepaidProviders();fillInternetProviders();\n"
+          new="    fillDevices();fillMvnoProviders();fillPrepaidProviders();fillInternetProviders();restoreQuoteFromUrl();suspendUrlSync=false;syncMobile();\n"
+          if old not in js: raise SystemExit('Promise init marker not found')
+          js=js.replace(old,new,1)
+          js=js.replace('data/catalog.json?v=20260915-14','data/catalog.json?v=20260915-15')
+          js=js.replace('data/plans.json?v=20260915-14','data/plans.json?v=20260915-15')
+          js=js.replace('data/supports.json?v=20260915-14','data/supports.json?v=20260915-15')
+          js=js.replace('data/devices-extra.json?v=20260915-14','data/devices-extra.json?v=20260915-15')
+          js=js.replace('data/iphone18.json?v=20260915-14','data/iphone18.json?v=20260915-15')
+          js=js.replace('data/mvno-postpaid.json?v=20260915-14','data/mvno-postpaid.json?v=20260915-15')
+          js=js.replace('data/prepaid.json?v=20260915-14','data/prepaid.json?v=20260915-15')
+          js=js.replace('data/internet.json?v=20260915-14','data/internet.json?v=20260915-15')
+
+          # CSS for the new consultation modes and comparison surfaces.
+          css += r'''
+
+/* Advanced consultation v2 */
+.mobile-mode-switch{display:flex;gap:8px;margin:0 0 16px}.mobile-mode-switch button{flex:0 1 180px;min-height:42px;border:1px solid #cddcdf;border-radius:12px;background:#fff;color:#476068;font-weight:900;cursor:pointer}.mobile-mode-switch button.active{background:var(--navy);border-color:var(--navy);color:#fff}.quick-recommend{background:#fff;border:1px solid var(--line);border-radius:20px;padding:22px;margin-bottom:16px;box-shadow:0 8px 24px rgba(16,60,82,.05)}.quick-recommend[hidden],.rate-grid[hidden]{display:none!important}.quick-title{display:flex;justify-content:space-between;gap:12px;margin-bottom:15px}.quick-title>div{display:grid;gap:4px}.quick-title strong{font-size:1rem}.quick-title span{font-size:.75rem;line-height:1.5;color:var(--muted)}.quick-fields{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}.quick-fields label,.device-compare-selects label{display:grid;gap:6px;font-size:.76rem;font-weight:850;color:#46616a}.quick-fields select,.device-compare-selects select{width:100%;min-height:44px;border:1px solid #cddcdf;border-radius:11px;background:#fff;padding:8px 10px;color:#183c48;font:inherit}.quick-find{margin-top:12px;min-height:44px;border:0;border-radius:12px;padding:0 18px;background:var(--teal);color:#fff;font-weight:900;cursor:pointer}.quick-results{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}.quick-results>p{grid-column:1/-1;margin:0;padding:13px;border-radius:12px;background:#f4f8f9;color:var(--muted);font-size:.75rem}.quick-result-card{display:grid;gap:5px;padding:14px;border:1px solid #d5e3e5;border-radius:14px;background:#f8fbfb}.quick-result-card>span{font-size:.68rem;color:var(--teal);font-weight:900}.quick-result-card>strong{font-size:1rem}.quick-result-card>em{font-style:normal;font-size:.72rem;color:var(--muted)}.quick-result-card>b{font-size:1.25rem;color:var(--teal);letter-spacing:-.035em}.quick-result-card>small{font-size:.68rem;color:#60777f}.quick-result-card button{margin-top:5px;min-height:38px;border:0;border-radius:10px;background:var(--navy);color:#fff;font-weight:900;cursor:pointer}.device-compare-tool{margin-top:16px;padding:16px;border:1px solid #d5e3e5;border-radius:16px;background:#fff}.device-compare-selects{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.device-compare-results{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}.device-compare-results>p{grid-column:1/-1;margin:0;padding:11px;border-radius:10px;background:#f4f8f9;color:var(--muted);font-size:.72rem}.device-compare-card{display:grid;gap:5px;padding:12px;border:1px solid #d5e3e5;border-radius:13px;background:#f8fbfb}.device-compare-card>span{font-size:.65rem;color:var(--teal);font-weight:900}.device-compare-card>strong{font-size:.9rem;line-height:1.35}.device-compare-card>em{font-style:normal;color:var(--muted);font-size:.68rem}.device-compare-card>div{display:flex;justify-content:space-between;gap:8px;font-size:.69rem}.device-compare-card>div small{color:var(--muted)}.device-compare-card>div b{font-size:.69rem}.device-compare-card>i{font-style:normal;margin-top:3px;padding-top:7px;border-top:1px solid var(--line);font-size:.7rem;font-weight:900;color:var(--teal)}
+@media(max-width:900px){.quick-fields{grid-template-columns:1fr 1fr 1fr}.quick-results{grid-template-columns:1fr 1fr}.device-compare-selects,.device-compare-results{grid-template-columns:1fr 1fr}}
+@media(max-width:760px){.mobile-mode-switch{display:grid;grid-template-columns:1fr 1fr}.mobile-mode-switch button{width:100%}.quick-recommend{padding:17px;border-radius:17px}.quick-fields,.quick-results,.device-compare-selects,.device-compare-results{grid-template-columns:1fr}.quick-find{width:100%}.device-compare-tool{padding:14px}.quick-result-card>b{font-size:1.15rem}}
+'''
+
+          html_path.write_text(html,encoding='utf-8')
+          js_path.write_text(js,encoding='utf-8')
+          css_path.write_text(css,encoding='utf-8')
+          PY
+          node --check assets/rates.js
+          grep -q 'id="quick-recommend"' rates.html
+          grep -q 'id="device-compare-results"' rates.html
+          grep -q 'function restoreQuoteFromUrl' assets/rates.js
+      - name: Commit consultation upgrade
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'woongbts-ui-sync'
+          git config user.email 'actions@users.noreply.github.com'
+          git add rates.html assets/rates.js assets/rates.css
+          if git diff --cached --quiet; then echo 'No changes'; exit 0; fi
+          git commit -m 'Add quick recommendations sharable quotes and device comparison'
+          git pull --rebase origin main
+          git push origin HEAD:main
