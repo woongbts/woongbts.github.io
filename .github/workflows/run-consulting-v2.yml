@@ -1,0 +1,32 @@
+name: run-consulting-v2
+
+on:
+  push:
+    paths:
+      - '.github/workflows/run-consulting-v2.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - name: Apply consultation UX v2
+        run: python3 .github/scripts/consulting_v2_patch.py
+      - name: Commit changes
+        run: |
+          git config user.name "woongbts-ui-sync"
+          git config user.email "actions@users.noreply.github.com"
+          git add rates.html assets/rates.js assets/rates.css
+          if git diff --cached --quiet; then
+            echo "No changes"
+            exit 0
+          fi
+          git commit -m "Add quick recommendations shareable quotes and device comparison"
+          git push origin main
