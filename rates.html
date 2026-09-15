@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="theme-color" content="#103c52">
   <title>요금 알아보기 | 웅비통신 덕천만덕점</title>
-  <meta name="description" content="통신사·가입유형·기종·요금제·할인방식·할부개월을 선택하면 예상 월 납부액을 확인할 수 있는 웅비통신 요금 안내 페이지입니다.">
+  <meta name="description" content="휴대폰·알뜰폰·선불폰·인터넷·TV 요금을 선택 조건에 따라 확인할 수 있는 웅비통신 요금 안내 페이지입니다.">
   <link rel="icon" type="image/svg+xml" href="assets/woongbi-mark.svg">
-  <link rel="stylesheet" href="assets/rates.css?v=20260915-2">
+  <link rel="stylesheet" href="assets/rates.css?v=20260915-3">
 </head>
 <body>
   <header class="rate-top">
@@ -22,8 +22,8 @@
       <div class="rate-wrap">
         <span class="rate-badge">요금 알아보기 · BETA</span>
         <h1>고객이 고르면,<br><em>필요한 금액만 자동으로.</em></h1>
-        <p>통신사·가입유형·기종·요금제와 할인방식을 선택하면 단말 할인 또는 요금 할인을 나눠 예상 월 납부액을 계산합니다.</p>
-        <div class="rate-hero-note">단말기는 최신 기종 위주로 표시하고, 주요 일반 요금제를 우선 반영합니다. 추가지원금과 최종 개통조건은 매장 문의로 확인합니다.</div>
+        <p>휴대폰부터 알뜰폰·선불폰·인터넷·TV까지 선택한 조건에 맞춰 확인 가능한 금액을 자동으로 계산합니다.</p>
+        <div class="rate-hero-note">추가지원금, 실시간 재고, 일부 결합·프로모션처럼 최종 확인이 필요한 항목은 매장 문의로 안내합니다.</div>
       </div>
     </section>
 
@@ -31,7 +31,8 @@
       <div class="rate-wrap">
         <div class="rate-tabs" role="tablist" aria-label="요금 계산 종류">
           <button class="rate-tab active" data-tab="mobile" type="button">휴대폰</button>
-          <button class="rate-tab" data-tab="mvno" type="button">알뜰폰</button>
+          <button class="rate-tab" data-tab="mvno" type="button">알뜰폰(후불)</button>
+          <button class="rate-tab" data-tab="prepaid" type="button">선불폰</button>
           <button class="rate-tab" data-tab="internet" type="button">인터넷·TV</button>
         </div>
 
@@ -45,7 +46,7 @@
               </div>
               <label>할인방식<select id="discount-method"><option value="support">공시지원금 · 단말 할인</option><option value="contract">선택약정 · 통신요금 25% 할인</option></select><small class="field-help">두 방식은 동시에 적용되지 않습니다.</small></label>
               <label>기종<select id="device-select"><option value="">기종을 선택하세요</option></select><small class="field-help">최신 기종 위주로 표시합니다.</small></label>
-              <label>요금제<select id="plan-select" disabled><option value="">기종을 먼저 선택하세요</option></select><small class="field-help">현재 판매 가능한 주요 일반 요금제를 우선 반영합니다.</small></label>
+              <label>요금제<select id="plan-select" disabled><option value="">기종을 먼저 선택하세요</option></select><small class="field-help">현재 등록된 주요 일반 요금제를 표시합니다.</small></label>
               <div class="field-row two">
                 <label>할부개월<select id="installment-months" disabled><option value="24">24개월</option></select></label>
                 <label>복지할인 유형<select id="welfare-type">
@@ -78,47 +79,82 @@
                 <div><span>월 통신요금</span><b id="service-monthly">—</b></div>
               </div>
               <p id="calc-summary">통신사, 가입유형, 할인방식, 기종, 요금제를 선택하면 자동으로 계산됩니다.</p>
-              <div class="rate-warning">공시지원 코스는 확인된 가입유형·기종·요금제별 지원금이 있을 때 할부원금과 월 납부액까지 계산합니다. 선택약정 코스는 단말 지원금 없이 통신요금 25% 할인을 반영합니다. 단말 할부는 연 5.9% 원리금균등 방식의 예상치이며 복지·결합·기타 할인 적용 순서에 따라 실제 청구액은 달라질 수 있습니다.</div>
+              <div class="rate-warning">공시지원 코스는 확인된 가입유형·기종·요금제별 지원금이 있을 때 할부원금과 월 납부액까지 계산합니다. 선택약정 코스는 단말 지원금 없이 통신요금 25% 할인을 반영합니다. 단말 할부는 연 5.9% 원리금균등 방식의 예상치이며 실제 청구액은 달라질 수 있습니다.</div>
               <div class="rate-actions"><a href="tel:0513437677">전화로 최종 확인</a><a class="kakao" href="http://pf.kakao.com/_nWwNT/chat" target="_blank" rel="noopener noreferrer">카카오톡 문의</a></div>
             </div>
           </div>
         </section>
 
         <section class="rate-panel" data-panel="mvno">
-          <div class="rate-panel-head"><div><span class="eyebrow">알뜰폰</span><h2>통신사와 요금제만 선택</h2></div></div>
+          <div class="rate-panel-head"><div><span class="eyebrow">알뜰폰 · 후불</span><h2>통신사와 요금제를 선택</h2></div><span class="updated" id="mvno-updated">데이터 기준 확인 중</span></div>
           <div class="rate-grid">
             <form class="rate-card rate-form" id="mvno-form" onsubmit="return false">
               <label>알뜰폰 통신사<select id="mvno-provider"><option value="">통신사를 선택하세요</option></select></label>
               <label>요금제<select id="mvno-plan" disabled><option value="">통신사를 먼저 선택하세요</option></select></label>
-              <div class="auto-grid single"><div class="auto-box"><span>현재 월요금</span><strong id="mvno-fee-view">—</strong></div></div>
+              <div class="auto-grid">
+                <div class="auto-box"><span>통신망</span><strong id="mvno-network">—</strong></div>
+                <div class="auto-box"><span>월 기본료</span><strong id="mvno-fee-view">—</strong></div>
+              </div>
               <div id="mvno-detail" class="data-note">알뜰폰은 복지할인을 적용하지 않습니다.</div>
             </form>
             <div class="rate-card rate-result">
               <span class="result-label">알뜰폰 월요금</span>
               <strong id="mvno-total">—</strong>
               <p id="mvno-summary">통신사와 요금제를 선택하면 자동으로 반영됩니다.</p>
-              <div class="rate-warning">프로모션 기간·이후 요금·유심비·개통 가능 여부는 상품별로 다를 수 있습니다. 일부 온라인 전용 요금제는 매장에서 취급하지 않습니다.</div>
+              <div class="rate-warning">표시 월요금은 현재 등록된 요금제의 기본료 기준입니다. 유심비·개통 가능 여부·프로모션 변경 여부는 매장에서 최종 확인해 주세요.</div>
+              <div class="rate-actions"><a href="tel:0513437677">전화로 확인</a><a class="kakao" href="http://pf.kakao.com/_nWwNT/chat" target="_blank" rel="noopener noreferrer">카카오톡 문의</a></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="rate-panel" data-panel="prepaid">
+          <div class="rate-panel-head"><div><span class="eyebrow">선불폰</span><h2>선불 요금제만 따로 확인</h2></div><span class="updated" id="prepaid-updated">데이터 기준 확인 중</span></div>
+          <div class="rate-grid">
+            <form class="rate-card rate-form" id="prepaid-form" onsubmit="return false">
+              <label>선불 통신사<select id="prepaid-provider"><option value="">통신사를 선택하세요</option></select></label>
+              <label>요금제<select id="prepaid-plan" disabled><option value="">통신사를 먼저 선택하세요</option></select></label>
+              <div class="auto-grid">
+                <div class="auto-box"><span>통신망</span><strong id="prepaid-network">—</strong></div>
+                <div class="auto-box"><span>월 이용료</span><strong id="prepaid-fee-view">—</strong></div>
+              </div>
+              <div id="prepaid-detail" class="data-note">선불폰 상품은 후불 알뜰폰과 별도로 표시합니다.</div>
+            </form>
+            <div class="rate-card rate-result">
+              <span class="result-label">선불폰 월 이용료</span>
+              <strong id="prepaid-total">—</strong>
+              <p id="prepaid-summary">통신사와 요금제를 선택하면 자동으로 반영됩니다.</p>
+              <div class="rate-warning">충전·유심·개통 조건과 사용기간은 상품별로 다를 수 있어 매장에서 최종 확인이 필요합니다.</div>
+              <div class="rate-actions"><a href="tel:0513437677">전화로 확인</a><a class="kakao" href="http://pf.kakao.com/_nWwNT/chat" target="_blank" rel="noopener noreferrer">카카오톡 문의</a></div>
             </div>
           </div>
         </section>
 
         <section class="rate-panel" data-panel="internet">
-          <div class="rate-panel-head"><div><span class="eyebrow">인터넷·TV</span><h2>상품 선택으로 기본 월요금 확인</h2></div></div>
+          <div class="rate-panel-head"><div><span class="eyebrow">인터넷·TV</span><h2>상품과 결합을 함께 계산</h2></div><span class="updated" id="internet-updated">데이터 기준 확인 중</span></div>
           <div class="rate-grid">
             <form class="rate-card rate-form" id="internet-form" onsubmit="return false">
-              <label>통신사<select id="internet-carrier"><option>SKT</option><option>KT</option><option>LGU+</option></select></label>
-              <label>상품<select id="internet-product"><option value="">상품을 선택하세요</option></select><small class="field-help">현재 등록된 상품 순서대로 표시합니다.</small></label>
+              <label>통신사<select id="internet-carrier"><option value="">통신사를 선택하세요</option></select></label>
+              <label>상품<select id="internet-product" disabled><option value="">통신사를 먼저 선택하세요</option></select></label>
+              <label>결합할인<select id="internet-bundle" disabled><option value="none">미적용</option></select><small class="field-help">선택 상품에서 적용 가능한 결합만 표시합니다.</small></label>
               <div class="auto-grid">
                 <div class="auto-box"><span>인터넷 월정액</span><strong id="internet-fee-view">—</strong></div>
                 <div class="auto-box"><span>TV 월정액</span><strong id="tv-fee-view">—</strong></div>
-                <div class="auto-box inquiry"><span>결합할인</span><strong>매장 문의</strong></div>
+                <div class="auto-box"><span>기본 합계</span><strong id="internet-base-total">—</strong></div>
+                <div class="auto-box"><span>결합할인</span><strong id="internet-bundle-discount">—</strong></div>
               </div>
+              <div id="internet-detail" class="data-note">상품을 선택하면 3년 약정 기준 월요금을 확인할 수 있습니다.</div>
             </form>
             <div class="rate-card rate-result">
-              <span class="result-label">기본 예상 월요금</span>
+              <span class="result-label">예상 월 납부액</span>
               <strong id="internet-total">—</strong>
-              <p id="internet-summary">상품을 선택하면 기본 월정액이 자동으로 반영됩니다.</p>
-              <div class="rate-warning">설치비·셋톱박스·공유기·결합할인·프로모션은 실제 조건에 따라 달라질 수 있습니다.</div>
+              <div class="result-breakdown">
+                <div><span>기본 월정액</span><b id="internet-result-base">—</b></div>
+                <div><span>결합할인</span><b id="internet-result-discount">—</b></div>
+                <div><span>설치비</span><b id="internet-installation">매장 확인</b></div>
+              </div>
+              <p id="internet-summary">통신사와 상품을 선택하면 자동으로 반영됩니다.</p>
+              <div class="rate-warning">표시 금액은 등록된 3년 약정 기준입니다. 설치비·셋톱박스·공유기·추가 회선·프로모션에 따라 실제 청구액은 달라질 수 있습니다.</div>
+              <div class="rate-actions"><a href="tel:0513437677">전화로 최종 확인</a><a class="kakao" href="http://pf.kakao.com/_nWwNT/chat" target="_blank" rel="noopener noreferrer">카카오톡 문의</a></div>
             </div>
           </div>
         </section>
@@ -127,6 +163,6 @@
   </main>
 
   <footer class="rate-footer"><div class="rate-wrap"><strong>웅비통신 덕천만덕점</strong><p>부산광역시 북구 만덕대로178번길 17 · 월~토 11:00~20:00 · 일요일 휴무 · 051-343-7677</p><p>표시 금액은 상담을 돕기 위한 예상치이며 실제 개통 조건과 다를 수 있습니다.</p></div></footer>
-  <script src="assets/rates.js?v=20260915-9" defer></script>
+  <script src="assets/rates.js?v=20260915-10" defer></script>
 </body>
 </html>
