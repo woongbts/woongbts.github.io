@@ -8,44 +8,103 @@ on:
 jobs:
   scan:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 8
     steps:
-      - name: Fetch public pages and referenced scripts
+      - name: Fetch public product data
         shell: bash
         run: |
           set -euo pipefail
-          mkdir -p scan/scripts
-          UA='Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/140 Safari/537.36'
-          curl -fsSL -A "$UA" 'https://www.xeronote.co.kr/consult/mobile.php?consult_mode=NONE_DEVICE' -o scan/mobile.html
-          curl -fsSL -A "$UA" 'https://www.xeronote.co.kr/consult/internet.php' -o scan/internet.html
+          mkdir -p scan/scripts scan/mvno/main scan/mvno/able scan/wired/internet scan/wired/tv
           python3 - <<'PY'
-          import re, pathlib, urllib.parse, urllib.request
-          ua={'User-Agent':'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/140 Safari/537.36'}
-          pages=[('mobile','https://www.xeronote.co.kr/consult/mobile.php?consult_mode=NONE_DEVICE'),('internet','https://www.xeronote.co.kr/consult/internet.php')]
-          out=pathlib.Path('scan/scripts')
+          import json, pathlib, re, time, urllib.parse, urllib.request
+
+          ROOT='https://www.xeronote.co.kr'
+          UA='Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/140 Safari/537.36'
+          root=pathlib.Path('scan')
+          headers={'User-Agent':UA,'Accept':'*/*'}
+
+          def get(url, referer=None):
+              h=dict(headers)
+              if referer: h['Referer']=referer
+              req=urllib.request.Request(url,headers=h)
+              with urllib.request.urlopen(req,timeout=25) as r:
+                  return r.read()
+
+          mobile_url=ROOT+'/consult/mobile.php?consult_mode=NONE_DEVICE'
+          internet_url=ROOT+'/consult/internet.php'
+          (root/'mobile.html').write_bytes(get(mobile_url))
+          (root/'internet.html').write_bytes(get(internet_url))
+
+          # Fetch page-referenced scripts to preserve the public request definitions used by the UI.
           urls=[]
-          for name,base in pages:
-              html=pathlib.Path(f'scan/{name}.html').read_text(errors='ignore')
+          for name,base in [('mobile',mobile_url),('internet',internet_url)]:
+              html=(root/f'{name}.html').read_text(errors='ignore')
               for src in re.findall(r'<script[^>]+src=["\']([^"\']+)',html,re.I):
                   url=urllib.parse.urljoin(base,src)
                   if url not in urls: urls.append(url)
-          pathlib.Path('scan/script-urls.txt').write_text('\n'.join(urls),encoding='utf-8')
+          (root/'script-urls.txt').write_text('\n'.join(urls),encoding='utf-8')
           for i,url in enumerate(urls):
               try:
-                  req=urllib.request.Request(url,headers=ua)
-                  data=urllib.request.urlopen(req,timeout=15).read()
-                  (out/f'{i:03d}.js').write_bytes(data)
+                  (root/'scripts'/f'{i:03d}.js').write_bytes(get(url, mobile_url if 'mobile' in url else internet_url))
               except Exception as e:
-                  (out/f'{i:03d}.error.txt').write_text(f'{url}\n{e}',encoding='utf-8')
+                  (root/'scripts'/f'{i:03d}.error.txt').write_text(f'{url}\n{e}',encoding='utf-8')
+
+          # Public carrier/provider lists.
+          telecom_raw=get(ROOT+'/api/data/get_telecom_list.php',mobile_url)
+          (root/'telecom-list.json').write_bytes(telecom_raw)
+          broadband_raw=get(ROOT+'/api/data/get_broadband_list.php',internet_url)
+          (root/'broadband-list.json').write_bytes(broadband_raw)
+
+          telecom=json.loads(telecom_raw.decode('utf-8-sig'))
+          # The public NONE_DEVICE page defaults to MNP + USIM + MAIN. Also collect ABLE so all currently joinable plans can be compared.
+          ids=[]
+          def walk_ids(obj):
+              if isinstance(obj,dict):
+                  tid=obj.get('telecom_id') or obj.get('id')
+                  if isinstance(tid,str) and tid and tid not in ids: ids.append(tid)
+                  for v in obj.values(): walk_ids(v)
+              elif isinstance(obj,list):
+                  for v in obj: walk_ids(v)
+          walk_ids(telecom)
+          if not ids:
+              ids=['MOBINGSKT','MOBINGKT','MOBINGLG','SMKT','SMSKT','7MOBILE','MMOBILE','UPLUSE','SKYLIFE','HELLOSKT','HELLOKT','HELLOUPLUS','FREETSKT','FREETKT','FREETLG','IYAGISKT','IYAGIKT','IYAGILG','tossmobile']
+          ids=[x for x in ids if x not in ('SKT','KT','LGUPLUS')]
+          (root/'mvno-telecom-ids.txt').write_text('\n'.join(ids),encoding='utf-8')
+
+          for join_flag in ('MAIN','ABLE'):
+              out=root/'mvno'/join_flag.lower()
+              for tid in ids:
+                  qs=urllib.parse.urlencode({
+                      'telecom_id':tid,
+                      'device_idx':'',
+                      'plan_group':'USIM',
+                      'sort_type':'',
+                      'join_type':'MNP',
+                      'join_flag':join_flag,
+                      'plan_idx':'',
+                      'keyword':''
+                  })
+                  url=ROOT+'/api/data/get_mobile_plan_list.php?'+qs
+                  try:
+                      (out/f'{tid}.json').write_bytes(get(url,mobile_url))
+                  except Exception as e:
+                      (out/f'{tid}.error.txt').write_text(f'{url}\n{e}',encoding='utf-8')
+                  time.sleep(0.08)
+
+          # Requested consumer wired groups. These public popup pages are what the calculator opens for product selection.
+          wired_ids=['SKB','KT','LGUPLUS','HELLO','SKYLIFE']
+          for bid in wired_ids:
+              for kind in ('internet','tv'):
+                  url=f'{ROOT}/consult/popup/internet/popup_{kind}.php?broadband_id={urllib.parse.quote(bid)}&line=1'
+                  try:
+                      (root/'wired'/kind/f'{bid}.html').write_bytes(get(url,internet_url))
+                  except Exception as e:
+                      (root/'wired'/kind/f'{bid}.error.txt').write_text(f'{url}\n{e}',encoding='utf-8')
+                  time.sleep(0.08)
+
+          # Related public product endpoint samples are retained for inspecting exact price/bundle fields after product keys are known.
           PY
-          grep -RniE 'get_mobile_plan|get_partner|/api/|special|policy_idx|telecom_id|internet|internet_plan|product' scan/scripts > scan/matches.txt || true
-          grep -RhoE '(/api/[A-Za-z0-9_./?=&%${}\-]+)' scan/scripts | sort -u > scan/api-paths.txt || true
-          echo '--- SCRIPT URLS ---' > scan/summary.txt
-          cat scan/script-urls.txt >> scan/summary.txt
-          echo '\n--- API PATHS ---' >> scan/summary.txt
-          cat scan/api-paths.txt >> scan/summary.txt
-          echo '\n--- MATCHES (first 250 lines) ---' >> scan/summary.txt
-          head -250 scan/matches.txt >> scan/summary.txt
+          grep -RniE 'special_price|plan_name|product_key|monthly|price|fee|discount|internet_price|tv_price|sel_internet|sel_tv' scan/wired scan/mvno > scan/data-matches.txt || true
       - name: Upload scan artifact
         uses: actions/upload-artifact@v4
         with:
