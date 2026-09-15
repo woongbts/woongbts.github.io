@@ -77,7 +77,7 @@
     (catalog?.devices||[]).filter(d=>d.carrier===carrier.value).sort(byNewest).forEach(d=>option(deviceSelect,d.id,d.model?`${d.name} · ${d.model}`:d.name));
     deviceSelect.value=[...deviceSelect.options].some(o=>o.value===keep)?keep:'';fillPlans();
   }
-  function eligiblePlans(){const d=currentDevice();if(!d)return[];const ids=Array.isArray(d.eligible_plan_ids)?new Set(d.eligible_plan_ids):null;return (catalog?.mobile_plans||[]).filter(p=>p.carrier===carrier.value&&(!ids||ids.has(p.id))).sort(byOrder)}
+  function eligiblePlans(){const d=currentDevice();if(!d)return[];const byJoin=d.eligible_plan_ids_by_join_type||{};const source=Array.isArray(byJoin[joinType.value])?byJoin[joinType.value]:d.eligible_plan_ids;const ids=Array.isArray(source)?new Set(source):null;return (catalog?.mobile_plans||[]).filter(p=>p.carrier===carrier.value&&(!ids||ids.has(p.id))).sort(byOrder)}
   function fillPlans(){
     const d=currentDevice(),keep=planSelect.value;clearSelect(planSelect,d?'요금제를 선택하세요':'기종을 먼저 선택하세요');planSelect.disabled=!d;
     if(!d){fillInstallments();syncMobile();return}
@@ -287,14 +287,14 @@
   mobileBundle.addEventListener('change',syncInternet);
 
   Promise.all([
-    fetch('data/catalog.json?v=20260915-12').then(r=>r.json()),
-    fetch('data/plans.json?v=20260915-12').then(r=>r.json()),
-    fetch('data/supports.json?v=20260915-12').then(r=>r.json()),
-    fetch('data/devices-extra.json?v=20260915-12').then(r=>r.json()),
-    fetch('data/iphone18.json?v=20260915-12').then(r=>r.json()),
-    fetch('data/mvno-postpaid.json?v=20260915-12').then(r=>r.json()),
-    fetch('data/prepaid.json?v=20260915-12').then(r=>r.json()),
-    fetch('data/internet.json?v=20260915-12').then(r=>r.json())
+    fetch('data/catalog.json?v=20260915-13').then(r=>r.json()),
+    fetch('data/plans.json?v=20260915-13').then(r=>r.json()),
+    fetch('data/supports.json?v=20260915-13').then(r=>r.json()),
+    fetch('data/devices-extra.json?v=20260915-13').then(r=>r.json()),
+    fetch('data/iphone18.json?v=20260915-13').then(r=>r.json()),
+    fetch('data/mvno-postpaid.json?v=20260915-13').then(r=>r.json()),
+    fetch('data/prepaid.json?v=20260915-13').then(r=>r.json()),
+    fetch('data/internet.json?v=20260915-13').then(r=>r.json())
   ]).then(([base,plans,supports,extra,iphone18,mvno,prepaid,internet])=>{
     catalog=base;const deviceMap=new Map();[...(base?.devices||[]),...(extra?.devices||[]),...(iphone18?.devices||[])].forEach(d=>deviceMap.set(d.id,d));catalog.devices=[...deviceMap.values()];catalog.mobile_plans=plans?.mobile_plans||base?.mobile_plans||[];contractRate=Number(plans?.selection_contract_rate)||DEFAULT_CONTRACT_RATE;supportSchedules=supports?.support_schedules||[];mvnoData=mvno||mvnoData;prepaidData=prepaid||prepaidData;internetData=internet||internetData;
     const mobileDates=[base?.meta?.updated_at,plans?.meta?.updated_at,supports?.meta?.updated_at,extra?.meta?.updated_at,iphone18?.meta?.updated_at].filter(Boolean).sort();setUpdated('catalog-updated',mobileDates.at(-1));setUpdated('mvno-updated',mvnoData?.meta?.updated_at);setUpdated('prepaid-updated',prepaidData?.meta?.updated_at);setUpdated('internet-updated',internetData?.meta?.updated_at);
