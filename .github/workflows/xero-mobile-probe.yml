@@ -1,0 +1,45 @@
+name: xero-mobile-probe
+
+on:
+  push:
+    paths:
+      - '.github/workflows/xero-mobile-probe.yml'
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Probe public mobile product APIs
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p probe
+          python3 - <<'PY'
+          import json, urllib.parse, urllib.request, pathlib
+          ROOT='https://www.xeronote.co.kr'
+          REF=ROOT+'/consult/mobile.php'
+          UA='Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/140 Safari/537.36'
+          def get(path, params):
+              u=ROOT+path+'?'+urllib.parse.urlencode(params)
+              req=urllib.request.Request(u,headers={'User-Agent':UA,'Accept':'application/json,text/plain,*/*','Referer':REF})
+              with urllib.request.urlopen(req,timeout=25) as r:
+                  return json.loads(r.read().decode('utf-8-sig'))
+          out=pathlib.Path('probe')
+          for carrier in ['SKT','KT','LGUPLUS']:
+              dev=get('/api/data/get_device_list.php',{'telecom_id':carrier,'manufacturer_id':'','sort_type1':'PHONE','sort_type2':'RELEASE_DT_DESC','keyword':'','search_group':'','search_support_mnp':''})
+              (out/f'{carrier}-devices.json').write_text(json.dumps(dev,ensure_ascii=False,indent=2),encoding='utf-8')
+              rows=dev.get('data',[])[:3]
+              for d in rows:
+                  did=str(d.get('device_idx'))
+                  for join in ['CHANGE','MNP','NEW']:
+                      plans=get('/api/data/get_mobile_plan_list.php',{'telecom_id':carrier,'device_idx':did,'plan_group':'','sort_type':'','join_type':join,'join_flag':'','plan_idx':'','keyword':''})
+                      (out/f'{carrier}-{did}-{join}-plans.json').write_text(json.dumps(plans,ensure_ascii=False,indent=2),encoding='utf-8')
+                  init=get('/api/data/get_consult_init.php',{'telecom_id':carrier,'device_idx':did,'consult_mode':'','plan_idx':''})
+                  (out/f'{carrier}-{did}-init.json').write_text(json.dumps(init,ensure_ascii=False,indent=2),encoding='utf-8')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: xero-mobile-probe
+          path: probe/
+          retention-days: 1
