@@ -157,7 +157,10 @@
     if(!isContract&&!s){
       clearResult();
       $('plan-discount-view').textContent='미적용';
-      $('calc-summary').textContent=`${carrier.value} · ${d.name} · ${joinType.value} · ${p.name}의 공시지원금은 매장 확인이 필요합니다.`;
+      const welfare=welfareDiscount(welfareType.value,planFee);
+      $('welfare-view').textContent=welfare.amount?`${welfare.label} -${won(welfare.amount)}`:'미적용';
+      $('service-monthly').textContent=won(Math.max(0,planFee-welfare.amount));
+      $('calc-summary').textContent=`${carrier.value} · ${d.name} · ${joinType.value} · ${p.name}의 공시지원금은 매장 확인이 필요합니다. 통신요금은 선택 조건 기준으로 표시합니다.`;
       return;
     }
 
@@ -226,18 +229,20 @@
   internetCarrier.addEventListener('change',fillInternet);internetProduct.addEventListener('change',syncInternet);
 
   Promise.all([
-    fetch('data/catalog.json?v=20260915-8').then(r=>r.json()),
-    fetch('data/plans.json?v=20260915-2').then(r=>r.json()),
-    fetch('data/supports.json?v=20260915-1').then(r=>r.json()),
-    fetch('data/devices-extra.json?v=20260915-2').then(r=>r.json())
-  ]).then(([base,plans,supports,extra])=>{
+    fetch('data/catalog.json?v=20260915-9').then(r=>r.json()),
+    fetch('data/plans.json?v=20260915-3').then(r=>r.json()),
+    fetch('data/supports.json?v=20260915-2').then(r=>r.json()),
+    fetch('data/devices-extra.json?v=20260915-3').then(r=>r.json()),
+    fetch('data/iphone18.json?v=20260915-1').then(r=>r.json())
+  ]).then(([base,plans,supports,extra,iphone18])=>{
     catalog=base;
-    const seen=new Set((base?.devices||[]).map(d=>d.id));
-    catalog.devices=[...(base?.devices||[]),...((extra?.devices||[]).filter(d=>!seen.has(d.id)))];
+    const deviceMap=new Map();
+    [...(base?.devices||[]),...(extra?.devices||[]),...(iphone18?.devices||[])].forEach(d=>deviceMap.set(d.id,d));
+    catalog.devices=[...deviceMap.values()];
     catalog.mobile_plans=plans?.mobile_plans||base?.mobile_plans||[];
     contractRate=Number(plans?.selection_contract_rate)||DEFAULT_CONTRACT_RATE;
     supportSchedules=supports?.support_schedules||[];
-    const dates=[base?.meta?.updated_at,plans?.meta?.updated_at,supports?.meta?.updated_at,extra?.meta?.updated_at].filter(Boolean).sort();
+    const dates=[base?.meta?.updated_at,plans?.meta?.updated_at,supports?.meta?.updated_at,extra?.meta?.updated_at,iphone18?.meta?.updated_at].filter(Boolean).sort();
     $('catalog-updated').textContent=dates.length?`상품 데이터 ${dates[dates.length-1]} 기준`:'최신 상품 데이터 입력 준비 중';
     fillDevices();fillMvnoProviders();fillInternet();
   }).catch(()=>{$('mobile-data-note').textContent='상품 데이터를 불러오지 못했습니다. 잠시 후 다시 확인해 주세요.'});
