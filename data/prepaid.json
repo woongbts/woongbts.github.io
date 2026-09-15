@@ -1,1 +1,1 @@
-{"meta":{"updated_at":"2026-09-15","unknown_price_behavior":"store_confirm","note":"선불폰 전용 데이터. 확인된 사업자와 요금제만 표시하며, 후불 요금제와 섞지 않는다. 확인되지 않은 요금은 계산하지 않는다."},"providers":[],"plans":[]}
+{"meta":{"updated_at":"2026-09-15","unknown_price_behavior":"store_confirm","note":"선불폰 전용 데이터. 공개 자료에서 확인된 사업자만 표시하고, 최신 요금제명과 이용료가 확인되지 않은 항목은 매장 확인으로 둔다. 후불 요금제와 섞지 않는다."},"providers":[{"id":"MOBING-PREPAID","name":"모빙 선불폰","network":null,"source_order":1}],"plans":[]}
