@@ -473,6 +473,7 @@
     const order=Number(row?.source_order);return Number.isFinite(order)?order:999999;
   }
   function purposeSeniorDeviceRank(d){
+    if(purposeIsKidsOnlyDevice(d))return 99;
     const name=`${d?.name||''} ${d?.model||''}`.toLowerCase().replace(/\s+/g,'');
     const model=`${d?.model_code||''}`.toLowerCase().replace(/\s+/g,'');
     if(name.includes('갤럭시a17')||name.includes('galaxya17')||/^sm-a175/.test(model))return 0;
@@ -585,6 +586,7 @@
     return rows.sort((a,b)=>Number(a.monthly_fee)-Number(b.monthly_fee)||byOrder(a,b)).slice(0,40);
   }
   function purposeCandidateForDevice(d,category,joinLabel,usePension){
+    if(category==='senior'&&purposeIsKidsOnlyDevice(d))return null;
     const welfare=category==='senior'&&usePension?'basic_pension':'none',plans=purposePlanPool(d,category,joinLabel);let best=null;
     for(const p of plans){
       const support=scenarioForSelection(d,p,joinLabel,'support',24,welfare),contract=scenarioForSelection(d,p,joinLabel,'contract',24,welfare),known=[support,contract].filter(x=>x?.known).sort((a,b)=>a.total24-b.total24);
