@@ -16,8 +16,17 @@ jobs:
         with:
           ref: main
           fetch-depth: 0
-      - name: Apply multi TV pricing support
-        run: python scripts/add-multi-tv-support.py
+      - name: Repair and apply multi TV pricing support
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('scripts/add-multi-tv-support.py')
+          s=p.read_text(encoding='utf-8')
+          s=s.replace("\nwired_quote_url')", "\n'wired quote url')")
+          p.write_text(s,encoding='utf-8')
+          PY
+          python -m py_compile scripts/add-multi-tv-support.py
+          python scripts/add-multi-tv-support.py
       - name: Validate customer page
         run: |
           node --check assets/rates.js
