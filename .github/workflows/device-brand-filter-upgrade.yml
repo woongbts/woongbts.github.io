@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - 'scripts/device-brand-filter-upgrade.py'
+      - '.github/workflows/device-brand-filter-upgrade.yml'
 
 permissions:
   contents: write
