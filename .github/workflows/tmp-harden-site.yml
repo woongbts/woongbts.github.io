@@ -65,11 +65,11 @@ jobs:
           test ! -e assets/rates.js
           test ! -e assets/site-pro.js
           test ! -e assets/ai-chat.js
-          if grep -R -n -E '제로노트|리베이트|판매점 수수료|정산금' --exclude-dir=.git --exclude='*.md' .; then
+          if grep -R -n -E '제로노트|리베이트|판매점 수수료|정산금' --exclude-dir=.git --exclude='*.md' --exclude='tmp-harden-site.yml' .; then
             echo 'Forbidden internal policy wording found in public tree'
             exit 1
           fi
-          if grep -R -n 'xeronote.co.kr' --exclude-dir=.git .; then
+          if grep -R -n 'xeronote.co.kr' --exclude-dir=.git --exclude='tmp-harden-site.yml' .; then
             echo 'Old policy source reference still present in public tree'
             exit 1
           fi
