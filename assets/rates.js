@@ -461,6 +461,14 @@
     const text=`${d?.name||''} ${d?.model||''} ${d?.model_code||''}`.toLowerCase().replace(/\s+/g,'');
     return /쿠키즈미니|쿠키즈|cookizmini|블레이드|blade/.test(text);
   }
+  function purposeIsKidsOnlyDevice(d){
+    const text=`${d?.name||''} ${d?.model||''} ${d?.model_code||''}`.toLowerCase().replace(/\s+/g,'');
+    return /무너2|무너키즈|mooner2|mooner/.test(text);
+  }
+  function purposeKidsDeviceRank(d){
+    if(purposeIsKidsOnlyDevice(d))return 0;
+    return deviceBrandKey(d)==='samsung'?1:2;
+  }
   function purposeSourceOrder(row){
     const order=Number(row?.source_order);return Number.isFinite(order)?order:999999;
   }
@@ -529,7 +537,8 @@
   }
   function purposeDevicePool(category,carrierValue){
     let rows=(catalog?.devices||[]).filter(d=>(carrierValue==='all'||d.carrier===carrierValue)&&hasAmount(d.retail_price)&&Number(d.retail_price)>0&&!purposeObsoleteDevice(d));
-    if(category==='senior'||category==='kids')rows=rows.filter(purposeIsLowCostDevice);
+    if(category==='senior')rows=rows.filter(d=>purposeIsLowCostDevice(d)&&!purposeIsKidsOnlyDevice(d));
+    else if(category==='kids')rows=rows.filter(purposeIsLowCostDevice);
     else if(category==='value')rows=rows.filter(d=>{
       const price=Number(d.retail_price)||0,rank=purposeValueDeviceRank(d);
       return rank<9&&(rank<=2||(price>=400000&&price<800000));
@@ -539,7 +548,7 @@
       return rows.sort((a,b)=>purposeSeniorDeviceRank(a)-purposeSeniorDeviceRank(b)||purposeSalesBrandRank(a,category)-purposeSalesBrandRank(b,category)||purposeSourceOrder(a)-purposeSourceOrder(b)||Number(a.retail_price)-Number(b.retail_price)).slice(0,180);
     }
     if(category==='kids'){
-      return rows.sort((a,b)=>purposeSalesBrandRank(a,category)-purposeSalesBrandRank(b,category)||byNewest(a,b)).slice(0,60);
+      return rows.sort((a,b)=>purposeKidsDeviceRank(a)-purposeKidsDeviceRank(b)||purposeSalesBrandRank(a,category)-purposeSalesBrandRank(b,category)||byNewest(a,b)).slice(0,60);
     }
     if(category==='value'){
       return rows.sort((a,b)=>purposeValueDeviceRank(a)-purposeValueDeviceRank(b)||purposeSourceOrder(a)-purposeSourceOrder(b)||Number(a.retail_price)-Number(b.retail_price)).slice(0,120);
@@ -602,7 +611,7 @@
     }else if(purposeCategory==='value'){
       rows.sort((a,b)=>purposeValueDeviceRank(a.d)-purposeValueDeviceRank(b.d)||purposeSourceOrder(a.d)-purposeSourceOrder(b.d)||Math.abs(Number(a.p.monthly_fee)-purposeValuePlanTarget(a.d.carrier))-Math.abs(Number(b.p.monthly_fee)-purposeValuePlanTarget(b.d.carrier))||a.best.total24-b.best.total24);
     }else if(purposeCategory==='kids'){
-      rows.sort((a,b)=>purposeSalesBrandRank(a.d,purposeCategory)-purposeSalesBrandRank(b.d,purposeCategory)||a.best.total24-b.best.total24||purposeSourceOrder(a.d)-purposeSourceOrder(b.d));
+      rows.sort((a,b)=>purposeKidsDeviceRank(a.d)-purposeKidsDeviceRank(b.d)||purposeSalesBrandRank(a.d,purposeCategory)-purposeSalesBrandRank(b.d,purposeCategory)||a.best.total24-b.best.total24||purposeSourceOrder(a.d)-purposeSourceOrder(b.d));
     }else if(purposeCategory==='premium'){
       rows.sort((a,b)=>purposePremiumStorageRank(a.d)-purposePremiumStorageRank(b.d)||purposeSourceOrder(a.d)-purposeSourceOrder(b.d)||Math.abs(Number(a.support.support)-450000)-Math.abs(Number(b.support.support)-450000)||Number(a.p.monthly_fee)-Number(b.p.monthly_fee));
     }else rows.sort((a,b)=>purposeSalesBrandRank(a.d,purposeCategory)-purposeSalesBrandRank(b.d,purposeCategory)||a.best.total24-b.best.total24||Number(a.d.retail_price)-Number(b.d.retail_price));
