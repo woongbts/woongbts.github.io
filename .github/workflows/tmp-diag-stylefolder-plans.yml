@@ -1,0 +1,33 @@
+name: Diagnose StyleFolder2 plans
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/tmp-diag-stylefolder-plans.yml'
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Inspect StyleFolder2 eligible plans
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          data=json.loads(Path('data/catalog.json').read_text(encoding='utf-8'))
+          plans={p.get('id'):p for p in data.get('mobile_plans',[])}
+          ds=[d for d in data.get('devices',[]) if d.get('carrier')=='SKT' and str(d.get('model_code','')).upper()=='AT-M140S']
+          print('devices',ds)
+          for d in ds:
+            by=d.get('eligible_plan_ids_by_join_type') or {}
+            print('by_join',by)
+            print('generic',d.get('eligible_plan_ids'))
+            ids=set(d.get('eligible_plan_ids') or [])
+            for arr in by.values():
+              if isinstance(arr,list): ids.update(arr)
+            rows=[plans[i] for i in ids if i in plans]
+            rows.sort(key=lambda p:(p.get('monthly_fee') or 0,p.get('name') or ''))
+            print('plans',[(p.get('id'),p.get('name'),p.get('monthly_fee')) for p in rows[:100]])
+          PY
