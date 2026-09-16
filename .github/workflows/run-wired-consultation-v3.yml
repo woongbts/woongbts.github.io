@@ -20,6 +20,7 @@ jobs:
         run: python scripts/upgrade-wired-consultation-v3.py
       - name: Validate customer page
         run: |
+          node --check assets/rates.js
           grep -q 'wired-compare-tool' rates.html
           grep -q 'restoreInternetQuoteFromUrl' assets/rates.js
           grep -q 'Wired consultation v3' assets/rates.css
