@@ -54,3 +54,4 @@ jobs:
           git add assets/rates.js rates.html
           git commit -m "Show S26 premium families with verified support fallback" || exit 0
           git push
+# retry after anchor correction
