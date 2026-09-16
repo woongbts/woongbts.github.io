@@ -1,0 +1,56 @@
+name: Relax premium support gate
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/tmp-relax-premium-support-gate.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Apply premium fallback patch
+        run: python tmp_relax_premium_support_gate.py
+      - name: Check JavaScript syntax
+        run: node --check assets/rates.js
+      - name: Verify premium fallback
+        run: |
+          grep -q "if(!support?.known)continue;" assets/rates.js
+          grep -q "rowFit=purposePremiumSupportFit(support)?0:1" assets/rates.js
+          grep -q "실제 확인 가능한 공시지원금이 큰 조합" assets/rates.js
+          grep -q "assets/rates.js?v=20260916-26" rates.html
+      - name: Validate S26 support schedules
+        run: |
+          python - <<'PY'
+          import json,re
+          from pathlib import Path
+          cat=json.loads(Path('data/catalog.json').read_text(encoding='utf-8'))
+          sup=json.loads(Path('data/supports.json').read_text(encoding='utf-8')).get('support_schedules',[])
+          devices=cat.get('devices',[])
+          families={
+            's26':lambda t: re.search(r'갤럭시\s*S26(?!\+|\s*Ultra|\s*FE)|Galaxy\s*S26(?!\+|\s*Ultra|\s*FE)',t,re.I),
+            's26plus':lambda t: re.search(r'S26\+|S26 Plus',t,re.I),
+            's26ultra':lambda t: re.search(r'S26\s*Ultra',t,re.I),
+          }
+          for fam,match in families.items():
+            ds=[d for d in devices if match(f"{d.get('name','')} {d.get('model','')} {d.get('model_code','')}") and re.search(r'256GB|512GB',f"{d.get('name','')} {d.get('model','')} {d.get('model_code','')}",re.I)]
+            assert ds, f'{fam} devices missing'
+            ids={d.get('id') for d in ds}
+            amounts=[]
+            for row in sup:
+              if ids.intersection(row.get('device_ids') or []): amounts += [v for v in (row.get('amounts') or {}).values() if isinstance(v,(int,float))]
+            print(fam,'support range',min(amounts) if amounts else None,max(amounts) if amounts else None,'40-50 count',sum(400000<=v<=500000 for v in amounts))
+            assert amounts, f'{fam} support schedule missing'
+          PY
+      - name: Commit result
+        run: |
+          git config user.name "woongbts"
+          git config user.email "swb3301@gmail.com"
+          git add assets/rates.js rates.html
+          git commit -m "Show S26 premium families with verified support fallback" || exit 0
+          git push
