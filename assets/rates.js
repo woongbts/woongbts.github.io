@@ -112,6 +112,21 @@
   function option(select,value,label){const o=document.createElement('option');o.value=value;o.textContent=label;select.appendChild(o)}
   function clearSelect(select,placeholder){select.innerHTML='';option(select,'',placeholder)}
   function setUpdated(id,date){const el=$(id);if(el)el.textContent=date?`상품 데이터 ${date} 기준`:'상품 데이터 확인 중'}
+  async function copyCustomerConsultText(text){
+    if(!text)return false;
+    try{if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(text);return true}}catch(e){}
+    try{const area=document.createElement('textarea');area.value=text;area.setAttribute('readonly','');area.style.position='fixed';area.style.opacity='0';document.body.appendChild(area);area.select();const ok=document.execCommand('copy');area.remove();return !!ok}catch(e){return false}
+  }
+  async function shareCustomerConsultText(title,text,statusId){
+    const status=$(statusId);if(!text){if(status)status.textContent='먼저 상품을 선택해 주세요.';return false}
+    if(navigator.share){try{await navigator.share({title,text,url:location.href});if(status)status.textContent='공유창을 열었습니다.';return true}catch(e){if(e?.name==='AbortError')return false}}
+    const ok=await copyCustomerConsultText(text);if(status)status.textContent=ok?'선택 내용을 복사했습니다. 원하는 곳에 붙여넣어 주세요.':'복사하지 못했습니다. 다시 시도해 주세요.';return ok;
+  }
+  async function consultWithCustomerText(text,statusId){
+    const status=$(statusId);if(!text){if(status)status.textContent='먼저 상품을 선택해 주세요.';return false}
+    const ok=await copyCustomerConsultText(text);if(!ok){if(status)status.textContent='선택 내용을 복사하지 못했습니다. 다시 시도해 주세요.';return false}
+    if(status)status.textContent='선택 내용을 복사했습니다. 카카오톡 상담창에 붙여넣어 주세요.';window.location.href='http://pf.kakao.com/_nWwNT/chat';return true;
+  }
 
   let suspendUrlSync=true;
   let currentQuoteId='';
@@ -167,6 +182,9 @@
     document.querySelectorAll('.rate-tab').forEach(x=>x.classList.toggle('active',x===tab));
     document.querySelectorAll('.rate-panel').forEach(panel=>panel.classList.toggle('active',panel.dataset.panel===tab.dataset.tab));
     if(typeof syncQuoteBar==='function')syncQuoteBar();
+  }));
+  document.querySelectorAll('[data-jump-tab]').forEach(btn=>btn.addEventListener('click',()=>{
+    const key=btn.dataset.jumpTab,tab=document.querySelector(`.rate-tab[data-tab="${key}"]`),panel=document.querySelector(`.rate-panel[data-panel="${key}"]`);if(!tab||!panel)return;tab.click();setTimeout(()=>panel.scrollIntoView({behavior:'smooth',block:'start'}),20);
   }));
 
   // 휴대폰
@@ -272,7 +290,9 @@
     if(planPickerState.sort==='data')return rows.sort((a,b)=>{const ag=planDataGb(a),bg=planDataGb(b),av=ag===null?-1:ag,bv=bg===null?-1:bg;return bv-av||((Number(a.monthly_fee)||Infinity)-(Number(b.monthly_fee)||Infinity))});
     return rows.sort(byOrder);
   }
+  function syncPlanQuickShortcuts(){const disabled=!currentDevice();document.querySelectorAll('[data-plan-quick-price],[data-plan-quick-feature]').forEach(btn=>btn.disabled=disabled)}
   function syncPlanPickerTrigger(){
+    syncPlanQuickShortcuts();
     const button=$('plan-picker-open'),title=$('plan-picker-selected'),detail=$('plan-picker-selected-detail'),d=currentDevice(),p=currentPlan();if(!button||!title||!detail)return;
     button.disabled=!d;
     if(!d){title.textContent='기종을 먼저 선택하세요';detail.textContent='기종을 선택하면 요금제를 찾을 수 있습니다.';return}
@@ -578,6 +598,8 @@
   $('plan-picker-search')?.addEventListener('input',e=>{planPickerState.query=e.target.value||'';renderPlanPicker()});
   $('plan-picker-sort')?.addEventListener('change',e=>{planPickerState.sort=e.target.value||'source';renderPlanPicker()});
   document.querySelectorAll('[data-plan-filter-group]').forEach(btn=>btn.addEventListener('click',()=>{planPickerState[btn.dataset.planFilterGroup]=btn.dataset.planFilterValue;renderPlanPicker()}));
+  document.querySelectorAll('[data-plan-quick-price]').forEach(btn=>btn.addEventListener('click',()=>{if(!currentDevice())return;planPickerState.data='all';planPickerState.feature='all';planPickerState.price=btn.dataset.planQuickPrice||'all';planPickerState.sort='source';planPickerState.query='';if($('plan-picker-search'))$('plan-picker-search').value='';openPlanPicker()}));
+  document.querySelectorAll('[data-plan-quick-feature]').forEach(btn=>btn.addEventListener('click',()=>{if(!currentDevice())return;planPickerState.data='all';planPickerState.price='all';planPickerState.feature=btn.dataset.planQuickFeature||'all';planPickerState.sort='source';planPickerState.query='';if($('plan-picker-search'))$('plan-picker-search').value='';openPlanPicker()}));
   document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('plan-picker-backdrop')?.hidden)closePlanPicker()});
   document.querySelectorAll('.compare-card').forEach(card=>card.addEventListener('click',()=>{discountMethod.value=card.dataset.method;syncMobile()}));
   $('copy-quote')?.addEventListener('click',()=>copyQuote(true));
@@ -612,6 +634,10 @@
     const service=Number(plan.monthly_fee)||0;
     return {retail,support,principal,inst,service,total:inst.monthly+service};
   }
+  function studyphoneQuoteText(){
+    const d=studyphoneData?.device,p=studyphoneCurrentPlan();if(!d||!p)return '';const scenario=studyphoneScenario(p);
+    return ['[웅비통신 공신폰 상담]',`통신사: ${d.provider||'KT M모바일'}`,`기종: ${d.name||'갤럭시 A17 공신폰'}${d.model?' ('+d.model+')':''}`,`요금제: ${p.name}`,`월 기본료: ${won(p.monthly_fee)}`,`통화: ${p.voice||'확인 필요'}`,`문자: ${p.sms||'확인 필요'}`,`데이터: ${p.data||'확인 필요'}`,`공시지원금: ${won(scenario.support)}`,`할부원금: ${won(scenario.principal)}`,`예상 월 납부액: ${won(scenario.total)}`,'※ 실제 개통 조건은 상담 시점에 최종 확인해 주세요.'].join('\n');
+  }
   function renderStudyphonePlanList(){
     const box=$('studyphone-plan-list');if(!box)return;
     const d=studyphoneData?.device,rows=studyphoneData?.plans||[];
@@ -637,6 +663,9 @@
   }
   studyphonePlan?.addEventListener('change',syncStudyphone);
   $('studyphone-plan-list')?.addEventListener('click',e=>{const b=e.target.closest('[data-studyphone-plan]');if(!b||!studyphonePlan)return;studyphonePlan.value=b.dataset.studyphonePlan;syncStudyphone();document.querySelector('[data-panel="studyphone"]')?.scrollIntoView({behavior:'smooth',block:'start'})});
+  $('copy-studyphone-quote')?.addEventListener('click',async()=>{const text=studyphoneQuoteText(),status=$('studyphone-quote-status');if(!text){if(status)status.textContent='요금제를 먼저 선택해 주세요.';return}const ok=await copyCustomerConsultText(text);if(status)status.textContent=ok?'선택 내용을 복사했습니다.':'복사하지 못했습니다. 다시 시도해 주세요.'});
+  $('share-studyphone-quote')?.addEventListener('click',()=>shareCustomerConsultText('웅비통신 공신폰 상담',studyphoneQuoteText(),'studyphone-quote-status'));
+  $('consult-studyphone-quote')?.addEventListener('click',()=>consultWithCustomerText(studyphoneQuoteText(),'studyphone-quote-status'));
 
   // 알뜰폰 후불
   const mvnoProvider=$('mvno-provider'),mvnoPlan=$('mvno-plan'),mvnoSort=$('mvno-sort');
@@ -763,10 +792,17 @@
     $('mvno-detail').textContent=(bits.length?bits.join(' · ')+' · ':'')+'복지할인 미적용';
     $('mvno-summary').textContent=known?`${provider?.name||p.provider_id} · ${p.name} 특별할인가 기준 월 기본료입니다.`:`${provider?.name||p.provider_id} · ${p.name}의 현재 월요금은 매장에서 확인해 주세요.`;
   }
+  function mvnoQuoteText(){
+    const p=(mvnoData.plans||[]).find(x=>x.id===mvnoPlan.value)||null;if(!p)return '';const provider=(mvnoData.providers||[]).find(x=>x.id===p.provider_id)||null,fee=mvnoPlanFee(p);
+    const lines=['[웅비통신 알뜰폰 상담]',`통신사: ${provider?.name||p.provider_id||'확인 필요'}`,`통신망: ${p.network||provider?.network||'확인 필요'}`,`요금제: ${p.name||'확인 필요'}`,`월 기본료: ${hasAmount(fee)?won(fee):'매장 확인'}`];if(p.data)lines.push(`데이터: ${p.data}`);if(p.voice)lines.push(`통화: ${p.voice}`);if(p.sms)lines.push(`문자: ${p.sms}`);lines.push('※ 프로모션·개통 가능 여부는 상담 시점에 최종 확인해 주세요.');return lines.join('\n');
+  }
   mvnoProvider.addEventListener('change',()=>{clearMvnoPickerQuery();fillMvnoPlans()});mvnoPlan.addEventListener('change',()=>{syncMvno();updateMvnoPickerSummary();if(mvnoPickerBackdrop&&!mvnoPickerBackdrop.hidden)renderMvnoPlanCards()});mvnoSort?.addEventListener('change',fillMvnoPlans);
   document.querySelectorAll('[data-mvno-filter-group]').forEach(btn=>btn.addEventListener('click',()=>{const group=btn.dataset.mvnoFilterGroup,value=btn.dataset.mvnoFilterValue;mvnoFilters[group]=value;if(group==='price'&&value==='unlimited')mvnoFilters.data='all';if(group==='price'&&value!=='all'&&mvnoSort)mvnoSort.value='price';clearMvnoPickerQuery();updateMvnoFilterButtons();if(!mvnoProvider.value)mvnoProvider.value='all';if(group==='network'&&mvnoProvider.value!=='all'){const pr=(mvnoData.providers||[]).find(p=>p.id===mvnoProvider.value);if(value!=='all'&&pr?.network!==value)mvnoProvider.value='all'}fillMvnoPlans()}));
   $('mvno-filter-reset')?.addEventListener('click',()=>{Object.assign(mvnoFilters,{network:'all',price:'all',data:'all',voice:'all'});if(mvnoSort)mvnoSort.value='source';clearMvnoPickerQuery();updateMvnoFilterButtons();fillMvnoPlans()});
   mvnoPickerOpen?.addEventListener('click',openMvnoPlanPicker);mvnoPickerClose?.addEventListener('click',closeMvnoPlanPicker);mvnoPickerBackdrop?.addEventListener('click',e=>{if(e.target===mvnoPickerBackdrop)closeMvnoPlanPicker()});mvnoPickerSearch?.addEventListener('input',()=>{mvnoPickerQuery=mvnoPickerSearch.value;renderMvnoPlanCards()});document.addEventListener('keydown',e=>{if(e.key==='Escape'&&mvnoPickerBackdrop&&!mvnoPickerBackdrop.hidden)closeMvnoPlanPicker()});
+  $('copy-mvno-quote')?.addEventListener('click',async()=>{const text=mvnoQuoteText(),status=$('mvno-quote-status');if(!text){if(status)status.textContent='요금제를 먼저 선택해 주세요.';return}const ok=await copyCustomerConsultText(text);if(status)status.textContent=ok?'선택 내용을 복사했습니다.':'복사하지 못했습니다. 다시 시도해 주세요.'});
+  $('share-mvno-quote')?.addEventListener('click',()=>shareCustomerConsultText('웅비통신 알뜰폰 상담',mvnoQuoteText(),'mvno-quote-status'));
+  $('consult-mvno-quote')?.addEventListener('click',()=>consultWithCustomerText(mvnoQuoteText(),'mvno-quote-status'));
 
   // 선불폰
   const prepaidProvider=$('prepaid-provider'),prepaidPlan=$('prepaid-plan');
@@ -795,7 +831,14 @@
     $('prepaid-detail').textContent=bits.join(' · ')||'선불 요금제';
     $('prepaid-summary').textContent=known?`${provider?.name||p.provider_id} · ${p.name} 월 이용료입니다.`:`${provider?.name||p.provider_id} · ${p.name}의 현재 이용료는 매장에서 확인해 주세요.`;
   }
+  function prepaidQuoteText(){
+    const p=(prepaidData.plans||[]).find(x=>x.id===prepaidPlan.value)||null;if(!p)return '';const provider=(prepaidData.providers||[]).find(x=>x.id===p.provider_id)||null;
+    const lines=['[웅비통신 선불폰 상담]',`통신사: ${provider?.name||p.provider_id||'확인 필요'}`,`통신망: ${p.network||provider?.network||'확인 필요'}`,`요금제: ${p.name||'확인 필요'}`,`월 이용료: ${hasAmount(p.monthly_fee)?won(p.monthly_fee):'매장 확인'}`];if(p.data)lines.push(`데이터: ${p.data}`);if(p.voice)lines.push(`통화: ${p.voice}`);if(p.valid_days)lines.push(`사용기간: ${p.valid_days}일`);lines.push('※ 충전·유심·개통 조건은 상담 시점에 최종 확인해 주세요.');return lines.join('\n');
+  }
   prepaidProvider.addEventListener('change',fillPrepaidPlans);prepaidPlan.addEventListener('change',syncPrepaid);
+  $('copy-prepaid-quote')?.addEventListener('click',async()=>{const text=prepaidQuoteText(),status=$('prepaid-quote-status');if(!text){if(status)status.textContent='요금제를 먼저 선택해 주세요.';return}const ok=await copyCustomerConsultText(text);if(status)status.textContent=ok?'선택 내용을 복사했습니다.':'복사하지 못했습니다. 다시 시도해 주세요.'});
+  $('share-prepaid-quote')?.addEventListener('click',()=>shareCustomerConsultText('웅비통신 선불폰 상담',prepaidQuoteText(),'prepaid-quote-status'));
+  $('consult-prepaid-quote')?.addEventListener('click',()=>consultWithCustomerText(prepaidQuoteText(),'prepaid-quote-status'));
 
   // 인터넷·TV
   const internetCarrier=$('internet-carrier'),internetProduct=$('internet-product'),tvProduct=$('tv-product'),tvCount=$('tv-count'),wiredBundle=$('wired-bundle'),mobileBundle=$('mobile-bundle');
@@ -907,10 +950,11 @@
     return {known:true,base,total,internetDiscount,tvDiscount,settopFee,additionalTv:extra.amount,tvCount:tvSelected?Math.max(1,Number(count||1)):0,gift:customerGiftMax(p,tv)};
   }
   function escapeWiredHtml(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+  function syncWiredLifePresetButtons(){const withTv=$('wired-compare-tv')?.value==='basic',count=withTv?Math.max(1,Number($('wired-compare-count')?.value||1)):0,key=!withTv?'internet':count===1?'tv1':count===2?'tv2':'';document.querySelectorAll('[data-wired-life-preset]').forEach(btn=>btn.classList.toggle('active',btn.dataset.wiredLifePreset===key))}
   function renderWiredComparison(){
     const box=$('wired-compare-results');if(!box)return;
     const speed=Number($('wired-compare-speed')?.value||500),withTv=$('wired-compare-tv')?.value==='basic',count=withTv?Math.max(1,Number($('wired-compare-count')?.value||1)):0;
-    const countSel=$('wired-compare-count');if(countSel)countSel.disabled=!withTv;
+    const countSel=$('wired-compare-count');if(countSel)countSel.disabled=!withTv;syncWiredLifePresetButtons();
     const providers=(internetData.providers||[]).slice().sort(byOrder),cards=[];
     providers.forEach(provider=>{
       const p=pickCompareInternet(provider.id,speed);if(!p)return;
@@ -1102,6 +1146,7 @@
   $('wired-compare-speed')?.addEventListener('change',renderWiredComparison);
   $('wired-compare-tv')?.addEventListener('change',renderWiredComparison);
   $('wired-compare-count')?.addEventListener('change',renderWiredComparison);
+  document.querySelectorAll('[data-wired-life-preset]').forEach(btn=>btn.addEventListener('click',()=>{const tv=$('wired-compare-tv'),count=$('wired-compare-count');if(!tv||!count)return;const preset=btn.dataset.wiredLifePreset;if(preset==='internet')tv.value='none';else{tv.value='basic';count.value=preset==='tv2'?'2':'1'}renderWiredComparison()}));
   $('wired-compare-results')?.addEventListener('click',e=>{
     const b=e.target.closest('[data-wired-provider]');if(!b)return;
     internetCarrier.value=b.dataset.wiredProvider;fillInternetProducts();internetProduct.value=b.dataset.wiredProduct;tvProduct.value=b.dataset.wiredTv||'none';syncTvCountControl();if(tvCount&&currentTvProduct())tvCount.value=String(Math.max(1,Math.min(3,Number(b.dataset.wiredCount||1))));fillInternetBundles();$('internet-form')?.scrollIntoView({behavior:'smooth',block:'start'});
