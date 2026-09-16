@@ -518,7 +518,7 @@
     if(category==='senior'||category==='kids')rows=rows.filter(purposeIsLowCostDevice);
     else if(category==='value')rows=rows.filter(d=>{
       const price=Number(d.retail_price)||0,rank=purposeValueDeviceRank(d);
-      return rank<9&&(rank<=2||(price>=400000&&price<=730000));
+      return rank<9&&(rank<=2||(price>=400000&&price<800000));
     });
     else if(category==='premium')rows=rows.filter(purposeIsPremiumDevice);
     if(category==='senior'){
@@ -552,7 +552,7 @@
     }else if(category==='kids'){
       rows=rows.filter(p=>planFeatureMatch(p,'kids'));
     }else if(category==='value'){
-      rows=rows.filter(p=>Number(p.monthly_fee)>=59000&&Number(p.monthly_fee)<=69000);
+      rows=rows.filter(p=>Number(p.monthly_fee)>=60000&&Number(p.monthly_fee)<=69000);
       const target=purposeValuePlanTarget(d.carrier);
       return rows.sort((a,b)=>Math.abs(Number(a.monthly_fee)-target)-Math.abs(Number(b.monthly_fee)-target)||purposeSourceOrder(a)-purposeSourceOrder(b)||byOrder(a,b)).slice(0,40);
     }else if(category==='premium'){
