@@ -445,7 +445,7 @@
     senior:'매장에서 자주 안내하는 A17·Wide8·Buddy5 등 삼성폰을 우선 살펴보고, 사용량과 월 부담의 균형이 좋은 휴대폰 요금제로 24개월 총 예상비용을 비교합니다. 복지 할인은 실제 자격 확인 시 적용됩니다.',
     kids:'현재 추천하는 키즈폰은 SKT ZEM폰 포켓피스·LGU+ 춘식이2·KT 폼폼푸린 키즈폰 3종입니다. 키즈·청소년용 요금제에서 공시지원금과 선택약정의 24개월 총 부담을 비교합니다.',
     value:'KT 갤럭시 Jump5와 SKT 갤럭시 퀀텀 시리즈 등 40~70만원대 삼성폰을 우선 보고, 통신사별로 부담과 혜택의 균형이 좋은 요금제를 비교합니다. KT Jump5는 61,000원 구간을 우선 안내합니다.',
-    premium:'아이폰18 시리즈·갤럭시 S26 / S26+ / S26 Ultra·Z Fold8 / Z Flip8을 중심으로 256GB를 우선 추천하고 512GB까지만 보여드립니다. 실제 공시지원금이 40~50만원으로 확인되는 조합은 기기값 할인 중심으로 안내합니다.'
+    premium:'아이폰18 시리즈·갤럭시 S26 / S26+ / S26 Ultra·Z Fold8 / Z Flip8을 중심으로 256GB를 우선 추천하고 512GB까지만 보여드립니다. 실제 확인 가능한 공시지원금이 큰 조합을 우선해 기기값 할인 중심으로 안내합니다.'
   };
   function purposeIsLowCostDevice(d){
     const price=Number(d?.retail_price)||0,name=`${d?.name||''} ${d?.model||''} ${d?.model_code||''}`.toLowerCase();
@@ -629,10 +629,12 @@
         const target=purposeValuePlanTarget(d.carrier),rowDiff=Math.abs(Number(p.monthly_fee)-target),bestDiff=best?Math.abs(Number(best.p.monthly_fee)-target):Infinity;
         if(!best||rowDiff<bestDiff||(rowDiff===bestDiff&&row.best.total24<best.best.total24))best=row;
       }else if(category==='premium'){
-        if(!purposePremiumSupportFit(support))continue;
+        if(!support?.known)continue;
         row.best=support;
-        const rowSupportDiff=Math.abs(Number(support.support)-450000),bestSupportDiff=best?Math.abs(Number(best.support.support)-450000):Infinity;
-        if(!best||rowSupportDiff<bestSupportDiff||(rowSupportDiff===bestSupportDiff&&Number(p.monthly_fee)<Number(best.p.monthly_fee))||(rowSupportDiff===bestSupportDiff&&Number(p.monthly_fee)===Number(best.p.monthly_fee)&&support.total24<best.support.total24))best=row;
+        const rowFit=purposePremiumSupportFit(support)?0:1,bestFit=best?(purposePremiumSupportFit(best.support)?0:1):99;
+        const rowSupport=Number(support.support)||0,bestSupport=best?(Number(best.support.support)||0):-1;
+        const rowSupportDiff=Math.abs(rowSupport-450000),bestSupportDiff=best?Math.abs(bestSupport-450000):Infinity;
+        if(!best||rowFit<bestFit||(rowFit===bestFit&&rowFit===0&&rowSupportDiff<bestSupportDiff)||(rowFit===bestFit&&rowFit===1&&rowSupport>bestSupport)||(rowFit===bestFit&&rowSupport===bestSupport&&Number(p.monthly_fee)<Number(best.p.monthly_fee))||(rowFit===bestFit&&rowSupport===bestSupport&&Number(p.monthly_fee)===Number(best.p.monthly_fee)&&support.total24<best.support.total24))best=row;
       }else if(!best||row.best.total24<best.best.total24)best=row;
     }
     return best;
