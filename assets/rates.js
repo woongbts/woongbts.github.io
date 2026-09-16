@@ -203,11 +203,69 @@
     fillPlans();
   }
   function eligiblePlans(){const d=currentDevice();if(!d)return[];const raw=devicePlanIds(d,joinType.value),ids=raw.length?new Set(raw):null;return (catalog?.mobile_plans||[]).filter(p=>p.carrier===carrier.value&&(!ids||ids.has(p.id))).sort(byOrder)}
+  const planPickerState={data:'all',price:'all',sort:'source',query:''};
+  function planPickerTags(p){
+    const text=`${p?.name||''} ${p?.data||''}`.toLowerCase(),tags=[];
+    [['65+','65+'],['복지','복지'],['이월','이월'],['y덤','Y덤'],['청년','청년'],['키즈','키즈']].forEach(([needle,label])=>{if(text.includes(needle)&&!tags.includes(label))tags.push(label)});
+    return tags.slice(0,4);
+  }
+  function planPickerMatches(p){
+    const query=String(planPickerState.query||'').trim().toLowerCase();
+    if(query&&!`${p?.name||''} ${p?.data||''} ${p?.monthly_fee??''}`.toLowerCase().includes(query))return false;
+    const fee=Number(p?.monthly_fee),gb=planDataGb(p);
+    if(planPickerState.price==='under40'&&!(Number.isFinite(fee)&&fee<40000))return false;
+    if(planPickerState.price==='40s'&&!(Number.isFinite(fee)&&fee>=40000&&fee<50000))return false;
+    if(planPickerState.price==='50plus'&&!(Number.isFinite(fee)&&fee>=50000))return false;
+    if(planPickerState.data==='light'&&!(gb!==null&&gb!==Infinity&&gb<=5))return false;
+    if(planPickerState.data==='normal'&&!(gb!==null&&gb!==Infinity&&gb>5&&gb<=20))return false;
+    if(planPickerState.data==='heavy'&&!(gb!==null&&gb!==Infinity&&gb>20))return false;
+    if(planPickerState.data==='unlimited'&&gb!==Infinity)return false;
+    return true;
+  }
+  function planPickerRows(){
+    const rows=eligiblePlans().filter(planPickerMatches);
+    if(planPickerState.sort==='price')return rows.sort((a,b)=>(Number(a.monthly_fee)||Infinity)-(Number(b.monthly_fee)||Infinity)||byOrder(a,b));
+    if(planPickerState.sort==='data')return rows.sort((a,b)=>{const ag=planDataGb(a),bg=planDataGb(b),av=ag===null?-1:ag,bv=bg===null?-1:bg;return bv-av||((Number(a.monthly_fee)||Infinity)-(Number(b.monthly_fee)||Infinity))});
+    return rows.sort(byOrder);
+  }
+  function syncPlanPickerTrigger(){
+    const button=$('plan-picker-open'),title=$('plan-picker-selected'),detail=$('plan-picker-selected-detail'),d=currentDevice(),p=currentPlan();if(!button||!title||!detail)return;
+    button.disabled=!d;
+    if(!d){title.textContent='기종을 먼저 선택하세요';detail.textContent='기종을 선택하면 요금제를 찾을 수 있습니다.';return}
+    if(!p){title.textContent='요금제를 선택해 주세요';detail.textContent=`가입 가능한 요금제 ${eligiblePlans().length.toLocaleString('ko-KR')}개에서 찾아보세요.`;return}
+    title.textContent=p.name;detail.textContent=`월 ${won(p.monthly_fee)}${p.data?` · 데이터 ${p.data}`:''}`;
+  }
+  function updatePlanPickerControls(){
+    document.querySelectorAll('[data-plan-filter-group]').forEach(btn=>btn.classList.toggle('active',planPickerState[btn.dataset.planFilterGroup]===btn.dataset.planFilterValue));
+    const sort=$('plan-picker-sort');if(sort)sort.value=planPickerState.sort;
+  }
+  function renderPlanPicker(){
+    const list=$('plan-picker-list'),count=$('plan-picker-count');if(!list||!count)return;updatePlanPickerControls();list.innerHTML='';
+    const rows=planPickerRows();count.textContent=`현재 조건에 맞는 요금제 ${rows.length.toLocaleString('ko-KR')}개`;
+    if(!rows.length){const empty=document.createElement('p');empty.className='plan-picker-empty';empty.textContent='조건에 맞는 요금제가 없습니다. 검색어나 필터를 조금 넓혀보세요.';list.appendChild(empty);return}
+    rows.forEach(p=>{
+      const card=document.createElement('button');card.type='button';card.className='plan-option-card';if(p.id===planSelect.value)card.classList.add('selected');
+      const top=document.createElement('span');top.className='plan-option-top';
+      const name=document.createElement('strong');name.textContent=p.name;
+      const price=document.createElement('b');price.textContent=hasAmount(p.monthly_fee)?won(p.monthly_fee):'매장 확인';
+      top.append(name,price);card.appendChild(top);
+      const data=document.createElement('small');data.textContent=p.data?`데이터 ${p.data}`:'데이터 제공량은 상담 시 확인';card.appendChild(data);
+      const tags=planPickerTags(p);if(tags.length){const tagBox=document.createElement('span');tagBox.className='plan-option-tags';tags.forEach(tag=>{const chip=document.createElement('i');chip.textContent=tag;tagBox.appendChild(chip)});card.appendChild(tagBox)}
+      const choose=document.createElement('em');choose.textContent=p.id===planSelect.value?'현재 선택한 요금제':'이 요금제 선택';card.appendChild(choose);
+      card.addEventListener('click',()=>{planSelect.value=p.id;closePlanPicker();syncMobile()});list.appendChild(card);
+    });
+  }
+  function openPlanPicker(){
+    if(!currentDevice())return;renderPlanPicker();const backdrop=$('plan-picker-backdrop');if(!backdrop)return;backdrop.hidden=false;document.body.classList.add('plan-picker-opened');setTimeout(()=>{const search=$('plan-picker-search');if(search)search.focus({preventScroll:true})},60);
+  }
+  function closePlanPicker(refocus=true){
+    const backdrop=$('plan-picker-backdrop');if(backdrop)backdrop.hidden=true;document.body.classList.remove('plan-picker-opened');if(refocus)$('plan-picker-open')?.focus({preventScroll:true});
+  }
   function fillPlans(){
     const d=currentDevice(),keep=planSelect.value;clearSelect(planSelect,d?'요금제를 선택하세요':'기종을 먼저 선택하세요');planSelect.disabled=!d;
-    if(!d){fillInstallments();syncMobile();return}
-    eligiblePlans().forEach(p=>option(planSelect,p.id,`${p.name} · ${won(p.monthly_fee)}${p.data?' · '+p.data:''}`));
-    planSelect.value=[...planSelect.options].some(o=>o.value===keep)?keep:'';fillInstallments();syncMobile();
+    if(!d){closePlanPicker(false);fillInstallments();syncPlanPickerTrigger();syncMobile();return}
+    eligiblePlans().forEach(p=>option(planSelect,p.id,p.name));
+    planSelect.value=[...planSelect.options].some(o=>o.value===keep)?keep:'';fillInstallments();syncPlanPickerTrigger();syncMobile();
   }
   function fillInstallments(){
     const d=currentDevice(),values=Array.isArray(d?.installment_months)&&d.installment_months.length?d.installment_months:[24,30,36],keep=monthsSelect.value;
@@ -422,11 +480,18 @@
     $('explain-total24').textContent=won(scenario.total24);
     $('explain-note').textContent=`월 단말금 ${won(scenario.inst.monthly)} + 월 통신요금 ${won(scenario.service)} = 예상 월 납부액 ${won(scenario.monthly)}입니다. 추가지원금·실시간 프로모션은 포함하지 않습니다.`;
   }
-  function syncMobile(){syncMobileCore();syncComparison();syncQuoteBar();syncCalcExplanation();syncQuoteMemory();syncQuoteUrl();syncDeviceCompare()}
+  function syncMobile(){syncPlanPickerTrigger();syncMobileCore();syncComparison();syncQuoteBar();syncCalcExplanation();syncQuoteMemory();syncQuoteUrl();syncDeviceCompare()}
 
 
   [carrier,joinType].forEach(el=>el.addEventListener('change',fillDevices));discountMethod.addEventListener('change',fillPlans);deviceSelect.addEventListener('change',fillPlans);planSelect.addEventListener('change',syncMobile);monthsSelect.addEventListener('change',syncMobile);welfareType.addEventListener('change',syncMobile);
   deviceSearch?.addEventListener('input',fillDevices);
+  $('plan-picker-open')?.addEventListener('click',openPlanPicker);
+  $('plan-picker-close')?.addEventListener('click',()=>closePlanPicker());
+  $('plan-picker-backdrop')?.addEventListener('click',e=>{if(e.target===$('plan-picker-backdrop'))closePlanPicker()});
+  $('plan-picker-search')?.addEventListener('input',e=>{planPickerState.query=e.target.value||'';renderPlanPicker()});
+  $('plan-picker-sort')?.addEventListener('change',e=>{planPickerState.sort=e.target.value||'source';renderPlanPicker()});
+  document.querySelectorAll('[data-plan-filter-group]').forEach(btn=>btn.addEventListener('click',()=>{planPickerState[btn.dataset.planFilterGroup]=btn.dataset.planFilterValue;renderPlanPicker()}));
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('plan-picker-backdrop')?.hidden)closePlanPicker()});
   document.querySelectorAll('.compare-card').forEach(card=>card.addEventListener('click',()=>{discountMethod.value=card.dataset.method;syncMobile()}));
   $('copy-quote')?.addEventListener('click',()=>copyQuote(true));
   $('share-quote')?.addEventListener('click',shareQuote);

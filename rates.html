@@ -7,7 +7,7 @@
   <title>요금 알아보기 | 웅비통신 덕천만덕점</title>
   <meta name="description" content="휴대폰·알뜰폰·선불폰·인터넷·TV 요금을 선택 조건에 따라 확인할 수 있는 웅비통신 요금 안내 페이지입니다.">
   <link rel="icon" type="image/svg+xml" href="assets/woongbi-mark.svg">
-  <link rel="stylesheet" href="assets/rates.css?v=20260916-5">
+  <link rel="stylesheet" href="assets/rates.css?v=20260916-6">
 </head>
 <body>
   <header class="rate-top">
@@ -63,7 +63,48 @@
               <label>상세 계산 기준<select id="discount-method"><option value="support">공시지원금 · 단말 할인</option><option value="contract">선택약정 · 통신요금 25% 할인</option></select><small class="field-help">아래 비교표에서는 공시지원금과 선택약정을 동시에 계산합니다.</small></label>
               <label>기종 검색<input id="device-search" type="search" autocomplete="off" placeholder="예: 아이폰18, S26, Wide9, SM-M176S"><small class="field-help">기종명이나 모델명으로 검색하세요. 검색 전에는 최신 기종 30개를 표시합니다.</small></label>
               <label>기종<select id="device-select"><option value="">기종을 선택하세요</option></select><small class="field-help">검색 결과에서 원하는 기종을 선택하세요.</small></label>
-              <label>요금제<select id="plan-select" disabled><option value="">기종을 먼저 선택하세요</option></select><small class="field-help">선택한 가입유형·기종에서 가입 가능한 요금제만 표시합니다.</small></label>
+              <div class="mobile-plan-picker">
+                <div class="plan-picker-label"><span>요금제</span><small>선택한 가입유형·기종에서 가입 가능한 요금제만 보여드립니다.</small></div>
+                <button type="button" class="plan-picker-open" id="plan-picker-open" disabled>
+                  <span class="plan-picker-main"><strong id="plan-picker-selected">기종을 먼저 선택하세요</strong><small id="plan-picker-selected-detail">기종을 선택하면 요금제를 찾을 수 있습니다.</small></span>
+                  <b>요금제 찾기</b>
+                </button>
+                <select id="plan-select" class="plan-select-native" disabled tabindex="-1" aria-hidden="true"><option value="">기종을 먼저 선택하세요</option></select>
+                <div class="plan-picker-backdrop" id="plan-picker-backdrop" hidden>
+                  <section class="plan-picker-sheet" role="dialog" aria-modal="true" aria-labelledby="plan-picker-title">
+                    <div class="plan-picker-head">
+                      <div><span>요금제 선택</span><strong id="plan-picker-title">필요한 조건으로 빠르게 찾기</strong></div>
+                      <button type="button" id="plan-picker-close" aria-label="요금제 선택창 닫기">닫기</button>
+                    </div>
+                    <label class="plan-picker-search">요금제 검색<input id="plan-picker-search" type="search" autocomplete="off" placeholder="요금제명, 데이터 용량으로 검색"></label>
+                    <div class="plan-filter-group">
+                      <span>데이터</span>
+                      <div>
+                        <button type="button" class="active" data-plan-filter-group="data" data-plan-filter-value="all">전체</button>
+                        <button type="button" data-plan-filter-group="data" data-plan-filter-value="light">5GB 이하</button>
+                        <button type="button" data-plan-filter-group="data" data-plan-filter-value="normal">5~20GB</button>
+                        <button type="button" data-plan-filter-group="data" data-plan-filter-value="heavy">20GB+</button>
+                        <button type="button" data-plan-filter-group="data" data-plan-filter-value="unlimited">무제한 표기</button>
+                      </div>
+                    </div>
+                    <div class="plan-filter-group">
+                      <span>월 기본료</span>
+                      <div>
+                        <button type="button" class="active" data-plan-filter-group="price" data-plan-filter-value="all">전체</button>
+                        <button type="button" data-plan-filter-group="price" data-plan-filter-value="under40">4만원 미만</button>
+                        <button type="button" data-plan-filter-group="price" data-plan-filter-value="40s">4만원대</button>
+                        <button type="button" data-plan-filter-group="price" data-plan-filter-value="50plus">5만원 이상</button>
+                      </div>
+                    </div>
+                    <div class="plan-picker-toolbar">
+                      <strong id="plan-picker-count">요금제를 불러오는 중입니다.</strong>
+                      <label>정렬<select id="plan-picker-sort"><option value="source">기본 순서</option><option value="price">요금 낮은 순</option><option value="data">데이터 많은 순</option></select></label>
+                    </div>
+                    <div class="plan-picker-list" id="plan-picker-list"></div>
+                    <small class="plan-picker-note">표시 내용은 현재 등록된 요금제 정보 기준이며 세부 제공 조건은 최종 상담 시 확인해 주세요.</small>
+                  </section>
+                </div>
+              </div>
               <div class="field-row two">
                 <label>할부개월<select id="installment-months" disabled><option value="24">24개월</option></select></label>
                 <label>복지할인 유형<select id="welfare-type">
@@ -280,7 +321,7 @@
   </main>
 
   <footer class="rate-footer"><div class="rate-wrap"><strong>웅비통신 덕천만덕점</strong><p>부산광역시 북구 만덕대로178번길 17 · 월~토 11:00~20:00 · 일요일 휴무 · 051-343-7677</p><p>표시 금액은 상담을 돕기 위한 예상치이며 실제 개통 조건과 다를 수 있습니다.</p></div></footer>
-  <script src="assets/rates.js?v=20260916-8" defer></script>
+  <script src="assets/rates.js?v=20260916-9" defer></script>
 
   <div class="mobile-quote-bar" id="mobile-quote-bar" hidden>
     <div class="mobile-quote-bar-value"><span>현재 예상 월 납부액</span><strong id="mobile-quote-bar-total">—</strong></div>
