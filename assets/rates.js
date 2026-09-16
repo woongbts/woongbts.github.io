@@ -14,13 +14,15 @@
   const WIRED_COMBO_DEFAULTS={
     SKB:{settopNames:['스마트3'],fallbackSettopFee:4400,internetDiscount:5500,tvDiscount:2200},
     SKTNET:{settopNames:['스마트3'],fallbackSettopFee:4400,internetDiscountBySpeed:{100:2200,500:6600,1000:6600},tvDiscount:1100},
-    KT:{settopNames:['기가지니3'],fallbackSettopFee:4400,internetDiscount:5500,tvDiscount:2640},
-    'LGU+':{settopNames:['4K UHD4','UHD4'],fallbackSettopFee:4400,internetDiscount:5500,tvDiscount:2200}
+    KT:{settopNames:['기가지니4'],fallbackSettopFee:6600,internetDiscount:5500,tvDiscount:2640},
+    'LGU+':{settopNames:['4K UHD4','UHD4'],fallbackSettopFee:4400,internetDiscount:5500,tvDiscount:2200},
+    LGHELLO:{settopNames:['HD 셋톱','UHD 셋톱'],fallbackSettopFee:6600,internetDiscount:0,tvDiscount:0},
+    SKYLIFE:{settopNames:['지니TV STB A'],fallbackSettopFee:3300,internetDiscount:0,tvDiscount:0}
   };
 
   const CUSTOMER_GIFT_MAX={
     SKB:{
-      groups:['BASIC','WIFI','WINGS'],
+      groups:['WIFI'],
       none:{100:10,500:17,1000:17},
       tv:{
         TV_BASIC_NEW:{100:29,500:37,1000:37},
@@ -39,7 +41,7 @@
       }
     },
     KT:{
-      groups:['BASIC','WIFI','WI'],
+      groups:['WIFI'],
       none:{100:9,500:14,1000:14},
       tv:{
         TV_OTV_BASIC:{100:37,500:45,1000:45},
@@ -84,7 +86,12 @@
       none:{100:10,200:12,500:14,1000:15},
       tv:{
         TV_IPIT_BASIC:{100:35,200:36,500:42,1000:48},
-        TV_IPIT_PLUS:{100:35,200:36,500:42,1000:48}
+        TV_IPIT_PLUS:{100:35,200:36,500:42,1000:48},
+        TV_IPIT_CHOICE:{100:35,200:36,500:42,1000:48}
+      },
+      bundle30:{
+        none:{100:10,200:12},
+        tv:{}
       }
     }
   };
@@ -553,6 +560,7 @@
     const speed=Number(p.speed_mbps),group=String(p.product_group||'').toUpperCase();
     let scope=cfg;
     if(p.provider_id==='KT'&&group==='FAMILY')scope=cfg.family||null;
+    else if(p.provider_id==='SKYLIFE'&&group==='BUNDLE30')scope=cfg.bundle30||null;
     else if(Array.isArray(cfg.groups)&&!cfg.groups.includes(group))return null;
     if(!scope)return null;
     if(!tv)return hasAmount(scope.none?.[speed])?Number(scope.none[speed]):null;
@@ -685,7 +693,7 @@
     fetch('data/iphone18.json?v=20260916-1').then(r=>r.json()),
     fetch('data/mvno-postpaid.json?v=20260916-1').then(r=>r.json()),
     fetch('data/prepaid.json?v=20260916-1').then(r=>r.json()),
-    fetch('data/internet.json?v=20260916-1').then(r=>r.json())
+    fetch('data/internet.json?v=20260916-2').then(r=>r.json())
   ]).then(([base,plans,supports,extra,iphone18,mvno,prepaid,internet])=>{
     catalog=base;const deviceMap=new Map();[...(base?.devices||[]),...(extra?.devices||[]),...(iphone18?.devices||[])].forEach(d=>deviceMap.set(d.id,d));catalog.devices=[...deviceMap.values()];catalog.mobile_plans=plans?.mobile_plans||base?.mobile_plans||[];contractRate=Number(plans?.selection_contract_rate)||DEFAULT_CONTRACT_RATE;supportSchedules=supports?.support_schedules||[];mvnoData=mvno||mvnoData;prepaidData=prepaid||prepaidData;internetData=internet||internetData;
     const mobileDates=[base?.meta?.updated_at,plans?.meta?.updated_at,supports?.meta?.updated_at,extra?.meta?.updated_at,iphone18?.meta?.updated_at].filter(Boolean).sort();setUpdated('catalog-updated',mobileDates.at(-1));setUpdated('mvno-updated',mvnoData?.meta?.updated_at);setUpdated('prepaid-updated',prepaidData?.meta?.updated_at);setUpdated('internet-updated',internetData?.meta?.updated_at);
