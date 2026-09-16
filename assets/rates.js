@@ -442,7 +442,7 @@
   }
   let purposeCategory='senior';
   const PURPOSE_COPY={
-    senior:'출고가가 낮은 기종과 시니어 요금제를 우선 살펴보고, 기초연금 수급자 할인을 적용해 공시지원금과 선택약정 중 24개월 총 부담이 낮은 조건을 보여드립니다.',
+    senior:'A17·Wide8·Buddy5와 현재 등록된 최근 기종을 우선 살펴보고, 월 33,000원 이상 구간의 현재 요금제에서 24개월 총 예상비용을 비교합니다. 복지 할인은 실제 자격 확인 시 적용됩니다.',
     kids:'출고가가 낮은 기종과 실제 키즈·청소년 요금제를 조합해 공시지원금과 선택약정 중 24개월 총 부담이 낮은 조건을 보여드립니다.',
     value:'출고가와 월 통신요금을 함께 보고, 중저가 기종에서 24개월 총 예상비용이 부담 적은 조합을 보여드립니다.',
     premium:'프리미엄 기종에서 가입 가능한 요금제를 조합해 공시지원금과 선택약정의 24개월 총 예상비용을 비교합니다.'
@@ -455,18 +455,60 @@
     const price=Number(d?.retail_price)||0,name=`${d?.name||''} ${d?.model||''} ${d?.model_code||''}`.toLowerCase();
     return price>=900000||/아이폰|iphone|울트라|ultra|폴드|fold|플립|flip|\bpro\b|프로|max|갤럭시\s*s\d|galaxy\s*s\d/.test(name);
   }
+  function purposeObsoleteDevice(d){
+    const text=`${d?.name||''} ${d?.model||''} ${d?.model_code||''}`.toLowerCase().replace(/\s+/g,'');
+    return /쿠키즈미니|쿠키즈|cookizmini|블레이드|blade/.test(text);
+  }
+  function purposeSourceOrder(row){
+    const order=Number(row?.source_order);return Number.isFinite(order)?order:999999;
+  }
+  function purposeSeniorDeviceRank(d){
+    const name=`${d?.name||''} ${d?.model||''}`.toLowerCase().replace(/\s+/g,'');
+    const model=`${d?.model_code||''}`.toLowerCase().replace(/\s+/g,'');
+    if(name.includes('갤럭시a17')||name.includes('galaxya17')||/^sm-a175/.test(model))return 0;
+    if(name.includes('wide8')||name.includes('와이드8'))return 1;
+    if(name.includes('buddy5')||name.includes('버디5'))return 2;
+    return 9;
+  }
+  function purposeSeniorDeviceFamily(d){
+    const rank=purposeSeniorDeviceRank(d);if(rank===0)return'a17';if(rank===1)return'wide8';if(rank===2)return'buddy5';
+    return `${d?.name||''}`.toLowerCase().replace(/\s+/g,'');
+  }
+  function purposeSeniorPlanTarget(carrierName){
+    return carrierName==='SKT'?33000:carrierName==='KT'?37000:carrierName==='LGU+'?47000:33000;
+  }
+  function purposeSeniorPlanRank(p,carrierName){
+    const name=`${p?.name||''}`.toLowerCase().replace(/\s+/g,'');
+    if(carrierName==='SKT'&&name.includes('t플랜세이브'))return 0;
+    if(carrierName==='KT'&&name.includes('베이직')&&name.includes('4gb')&&name.includes('65'))return 0;
+    if(carrierName==='LGU+'&&name.includes('데이터플랜')&&name.includes('9gb')&&name.includes('시니어'))return 0;
+    if(planFeatureMatch(p,'senior'))return 1;
+    return 2;
+  }
   function purposeDevicePool(category,carrierValue){
-    let rows=(catalog?.devices||[]).filter(d=>(carrierValue==='all'||d.carrier===carrierValue)&&hasAmount(d.retail_price)&&Number(d.retail_price)>0);
+    let rows=(catalog?.devices||[]).filter(d=>(carrierValue==='all'||d.carrier===carrierValue)&&hasAmount(d.retail_price)&&Number(d.retail_price)>0&&!purposeObsoleteDevice(d));
     if(category==='senior'||category==='kids')rows=rows.filter(purposeIsLowCostDevice);
     else if(category==='value')rows=rows.filter(d=>Number(d.retail_price)<=1000000&&!purposeIsPremiumDevice(d));
     else if(category==='premium')rows=rows.filter(purposeIsPremiumDevice);
+    if(category==='senior'){
+      return rows.sort((a,b)=>purposeSeniorDeviceRank(a)-purposeSeniorDeviceRank(b)||purposeSourceOrder(a)-purposeSourceOrder(b)||Number(a.retail_price)-Number(b.retail_price)).slice(0,180);
+    }
     return rows.sort((a,b)=>Number(a.retail_price)-Number(b.retail_price)||byNewest(a,b)).slice(0,180);
   }
   function purposePlanPool(d,category,joinLabel){
     const ids=devicePlanIds(d,joinLabel);if(!ids.length)return[];
     let rows=(catalog?.mobile_plans||[]).filter(p=>p.carrier===d.carrier&&ids.includes(p.id)&&hasAmount(p.monthly_fee));
     if(category==='senior'){
-      const senior=rows.filter(p=>planFeatureMatch(p,'senior'));rows=senior.length?senior:rows.filter(p=>Number(p.monthly_fee)<=55000);
+      rows=rows.filter(p=>Number(p.monthly_fee)>=33000&&Number(p.monthly_fee)<=55000);
+      if(!rows.length)return[];
+      const preferred=rows.filter(p=>purposeSeniorPlanRank(p,d.carrier)===0);
+      if(preferred.length)rows=preferred;
+      else{
+        const senior=rows.filter(p=>purposeSeniorPlanRank(p,d.carrier)===1);
+        if(senior.length)rows=senior;
+      }
+      const target=purposeSeniorPlanTarget(d.carrier);
+      return rows.sort((a,b)=>purposeSeniorPlanRank(a,d.carrier)-purposeSeniorPlanRank(b,d.carrier)||Math.abs(Number(a.monthly_fee)-target)-Math.abs(Number(b.monthly_fee)-target)||purposeSourceOrder(a)-purposeSourceOrder(b)||byOrder(a,b)).slice(0,40);
     }else if(category==='kids'){
       rows=rows.filter(p=>planFeatureMatch(p,'kids'));
     }else if(category==='value'){
@@ -481,15 +523,22 @@
     for(const p of plans){
       const support=scenarioForSelection(d,p,joinLabel,'support',24,welfare),contract=scenarioForSelection(d,p,joinLabel,'contract',24,welfare),known=[support,contract].filter(x=>x?.known).sort((a,b)=>a.total24-b.total24);
       if(!known.length)continue;const selected=known[0],row={d,p,best:selected,support,contract,welfare};
-      if(!best||row.best.total24<best.best.total24)best=row;
+      if(category==='senior'){
+        if(!best||purposeSeniorPlanRank(p,d.carrier)<purposeSeniorPlanRank(best.p,d.carrier)||(purposeSeniorPlanRank(p,d.carrier)===purposeSeniorPlanRank(best.p,d.carrier)&&row.best.total24<best.best.total24))best=row;
+      }else if(!best||row.best.total24<best.best.total24)best=row;
     }
     return best;
   }
   function purposeRecommendations(){
     const carrierValue=$('purpose-carrier')?.value||'all',joinLabel=$('purpose-join')?.value||'기기변경',usePension=!!$('purpose-pension')?.checked,rows=[];
     purposeDevicePool(purposeCategory,carrierValue).forEach(d=>{const row=purposeCandidateForDevice(d,purposeCategory,joinLabel,usePension);if(row)rows.push(row)});
-    rows.sort((a,b)=>a.best.total24-b.best.total24||Number(a.d.retail_price)-Number(b.d.retail_price));
-    const unique=[],seen=new Set();for(const row of rows){const key=`${row.d.carrier}|${row.d.name}`;if(seen.has(key))continue;seen.add(key);unique.push(row);if(unique.length>=6)break}
+    if(purposeCategory==='senior'){
+      rows.sort((a,b)=>purposeSeniorDeviceRank(a.d)-purposeSeniorDeviceRank(b.d)||purposeSourceOrder(a.d)-purposeSourceOrder(b.d)||purposeSeniorPlanRank(a.p,a.d.carrier)-purposeSeniorPlanRank(b.p,b.d.carrier)||a.best.total24-b.best.total24);
+    }else rows.sort((a,b)=>a.best.total24-b.best.total24||Number(a.d.retail_price)-Number(b.d.retail_price));
+    const unique=[],seen=new Set();for(const row of rows){
+      const key=purposeCategory==='senior'?purposeSeniorDeviceFamily(row.d):`${row.d.carrier}|${row.d.name}`;
+      if(seen.has(key))continue;seen.add(key);unique.push(row);if(unique.length>=6)break;
+    }
     return unique;
   }
   function purposeCardLine(label,value,cls=''){
