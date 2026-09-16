@@ -443,7 +443,7 @@
   let purposeCategory='senior';
   const PURPOSE_COPY={
     senior:'매장에서 자주 안내하는 A17·Wide8·Buddy5를 우선 살펴보고, 스마트폰 사용이 익숙하지 않은 분께는 스타일폴더2도 함께 안내합니다. 사용량과 월 부담을 함께 살펴보며, 복지 할인은 실제 자격 확인 시 적용됩니다.',
-    kids:'현재 추천하는 키즈폰은 SKT ZEM폰 포켓피스·LGU+ 춘식이2·KT 폼폼푸린 키즈폰 3종입니다. 키즈·청소년용 요금제에서 공시지원금과 선택약정의 24개월 총 부담을 비교합니다.',
+    kids:'신규가입 한정 키즈폰 특가 3종입니다. SKT ZEM폰 포켓피스·KT 폼폼푸린 키즈폰·LGU+ 갤럭시 A17 키즈폰 무너2를 기기값 0원 행사 조건으로 안내합니다. 재고와 행사 조건은 상담 시점에 최종 확인됩니다.',
     value:'매장에서 실제로 자주 안내하는 갤럭시 Jump5·A37·퀀텀7의 기기변경 견적을 한눈에 비교합니다. 확인된 매장 견적을 기준으로 월 기기값과 통신요금을 함께 보여드립니다.',
     premium:'아이폰18 시리즈·갤럭시 S26 / S26+ / S26 Ultra·Z Fold8 / Z Flip8을 중심으로 256GB를 우선 추천하고 512GB까지만 보여드립니다. 실제 확인 가능한 공시지원금이 큰 조합을 우선해 기기값 할인 중심으로 안내합니다.'
   };
@@ -453,6 +453,20 @@
     a37:{category:'value',carrier:'KT',deviceId:'KT-XD-2893',name:'갤럭시 A37 5G',modelCode:'SM-A376NK',price:598400,planName:'베이직 4GB',planFee:37000,deviceMonthly:26490,installmentFee:37360,contractDiscount:9250,welfareAmount:0},
     quantum7:{category:'value',carrier:'SKT',deviceId:'SKT-XD-2944',name:'갤럭시 퀀텀7',modelCode:'SM-A576S',price:717200,planName:'라이트 39',planFee:39000,deviceMonthly:31750,installmentFee:44800,contractDiscount:9750,welfareAmount:0}
   };
+  const PURPOSE_KIDS_PROMOS={
+    pocketpiece:{carrier:'SKT',name:'ZEM폰 포켓피스',modelCode:'SM-A175N_ZEM',price:349800,planName:'ZEM플랜 스마트',planFee:19800,monthly:14850,promoLabel:'SALE',promoText:'기기값 0원 특가'},
+    pompompurin:{carrier:'KT',name:'폼폼푸린 키즈폰',modelCode:'SM-A175NK-KP',price:349800,planName:'키즈24',planFee:24000,monthly:24000,promoLabel:'특가',promoText:'기기값 0원 행사'},
+    mooner2:{carrier:'LGU+',name:'갤럭시 A17 키즈폰 무너2',modelCode:'SM-A175N-M2',price:369500,planName:'데이터플랜300MB(키즈)+0.7GB',planFee:28000,monthly:28000,promoLabel:'SALE',promoText:'기기값 0원 행사'}
+  };
+  function purposeKidsPromoRow(key){
+    const q=PURPOSE_KIDS_PROMOS[key];if(!q)return null;
+    const best={known:true,method:'promo',price:Number(q.price),planFee:Number(q.planFee),support:0,contractDiscount:Math.max(0,Number(q.planFee)-Number(q.monthly)),principal:0,inst:{monthly:0,total:0},service:Number(q.monthly),welfare:{amount:0},monthly:Number(q.monthly),total24:Number(q.monthly)*24};
+    return {curated:true,kidsPromo:true,promoLabel:q.promoLabel,promoText:q.promoText,joinLabel:'신규가입',d:{id:`kids-promo-${key}`,carrier:q.carrier,name:q.name,model_code:q.modelCode,retail_price:q.price},p:{id:`kids-promo-plan-${key}`,carrier:q.carrier,name:q.planName,monthly_fee:q.planFee},best,support:{known:false},contract:{known:false},welfare:'none'};
+  }
+  function purposeCuratedKidsRows(carrierValue,joinLabel){
+    if(joinLabel!=='신규가입')return [];
+    return ['pocketpiece','pompompurin','mooner2'].map(purposeKidsPromoRow).filter(row=>row&&(carrierValue==='all'||row.d.carrier===carrierValue));
+  }
   function purposeCuratedRow(key,usePension=false){
     const q=PURPOSE_CURATED_QUOTES[key];if(!q)return null;
     const welfareAmount=key==='stylefolder2'&&usePension?Number(q.welfareAmount||0):0;
@@ -660,6 +674,7 @@
   function purposeRecommendations(){
     const carrierValue=$('purpose-carrier')?.value||'all',joinLabel=$('purpose-join')?.value||'기기변경',usePension=!!$('purpose-pension')?.checked,rows=[];
     if(purposeCategory==='value')return purposeCuratedValueRows(carrierValue,joinLabel);
+    if(purposeCategory==='kids')return purposeCuratedKidsRows(carrierValue,joinLabel);
     purposeDevicePool(purposeCategory,carrierValue).forEach(d=>{const row=purposeCandidateForDevice(d,purposeCategory,joinLabel,usePension);if(row)rows.push(row)});
     if(purposeCategory==='senior'){
       rows.sort((a,b)=>purposeSeniorDeviceRank(a.d)-purposeSeniorDeviceRank(b.d)||purposeSalesBrandRank(a.d,purposeCategory)-purposeSalesBrandRank(b.d,purposeCategory)||purposeSourceOrder(a.d)-purposeSourceOrder(b.d)||purposeSeniorPlanRank(a.p,a.d.carrier)-purposeSeniorPlanRank(b.p,b.d.carrier)||a.best.total24-b.best.total24);
@@ -690,7 +705,7 @@
     const line=document.createElement('div');if(cls)line.className=cls;const a=document.createElement('span'),b=document.createElement('b');a.textContent=label;b.textContent=value;line.append(a,b);return line;
   }
   function purposeQuoteText(row){
-    if(!row)return '';const method=row.best.method==='support'?'공시지원금':'선택약정 25%',joinLabel=$('purpose-join')?.value||'기기변경',lines=['[웅비통신 용도별 추천 상담]',`용도: ${{senior:'효도폰',kids:'키즈폰',value:'가성비폰',premium:'프리미엄폰'}[purposeCategory]||'휴대폰'}`,`통신사: ${row.d.carrier}`,`가입유형: ${joinLabel}`,`기종: ${row.d.name}`,`요금제: ${row.p.name} / ${won(row.p.monthly_fee)}`,`추천 할인방식: ${method}`,`예상 월 납부액: ${won(row.best.monthly)}`,`24개월 총 예상비용: ${won(row.best.total24)}`];
+    if(!row)return '';const method=row.kidsPromo?'신규가입 특가':row.best.method==='support'?'공시지원금':'선택약정 25%',joinLabel=row.joinLabel||$('purpose-join')?.value||'기기변경',lines=['[웅비통신 용도별 추천 상담]',`용도: ${{senior:'효도폰',kids:'키즈폰',value:'가성비폰',premium:'프리미엄폰'}[purposeCategory]||'휴대폰'}`,`통신사: ${row.d.carrier}`,`가입유형: ${joinLabel}`,`기종: ${row.d.name}`,`요금제: ${row.p.name} / ${won(row.p.monthly_fee)}`,`추천 조건: ${method}`,`예상 월 납부액: ${won(row.best.monthly)}`,`24개월 총 예상비용: ${won(row.best.total24)}`];if(row.kidsPromo)lines.push('기기값: 0원 행사','※ 신규가입 한정 · 해당 요금제 및 행사 조건 기준');
     if(row.welfare==='basic_pension')lines.push(`기초연금 수급자 할인: -${won(row.best.welfare?.amount||0)}`);
     if(purposeCategory==='premium'&&row.support?.known)lines.push(`공시지원금: -${won(row.support.support)}`,`지원 후 기기값: ${won(row.support.principal)}`);
     lines.push('※ 실제 가입 가능 여부·자격·지원금·프로모션은 상담 시점에 최종 확인합니다.');return lines.join('\n');
@@ -698,19 +713,21 @@
   function renderPurposeRecommendations(){
     const box=$('purpose-results'),note=$('purpose-category-note'),pensionWrap=$('purpose-pension-wrap');if(!box)return;if(note)note.textContent=PURPOSE_COPY[purposeCategory]||'';if(pensionWrap)pensionWrap.hidden=purposeCategory!=='senior';
     document.querySelectorAll('[data-purpose-category]').forEach(btn=>btn.classList.toggle('active',btn.dataset.purposeCategory===purposeCategory));
+    if(purposeCategory==='kids'&&$('purpose-join')&&$('purpose-join').value!=='신규가입')$('purpose-join').value='신규가입';
     const rows=purposeRecommendations();box.innerHTML='';
     if(!catalog){box.innerHTML='<p>추천 조건을 불러오는 중입니다.</p>';return}
     if(!rows.length){box.innerHTML='<p>현재 등록된 데이터에서 이 조건에 맞는 조합을 찾지 못했습니다. 통신사나 가입유형을 바꾸거나 직접 계산을 이용해 주세요.</p>';return}
     rows.forEach((row,index)=>{
-      const card=document.createElement('article');card.className='purpose-card';
-      const top=document.createElement('div');top.className='purpose-card-top';const badge=document.createElement('span'),rank=document.createElement('small');badge.textContent=`${row.d.carrier} · ${row.joinLabel||$('purpose-join')?.value||'기기변경'}`;rank.textContent=row.curated?'실제 매장 견적':purposeCategory==='senior'?(index===0?'매장 추천 조합':'추천 조합'):purposeCategory==='value'?(index===0?'가성비 추천':'추천 조합'):purposeCategory==='premium'?(index===0?'공시지원 중심':'기기값 할인 조합'):(index===0?'현재 조건 낮은 부담':'추천 조합');top.append(badge,rank);
+      const card=document.createElement('article');card.className=row.kidsPromo?'purpose-card kids-sale-card':'purpose-card';
+      const top=document.createElement('div');top.className='purpose-card-top';const badge=document.createElement('span'),rank=document.createElement('small');badge.textContent=`${row.d.carrier} · ${row.joinLabel||$('purpose-join')?.value||'기기변경'}`;rank.textContent=row.kidsPromo?(row.promoLabel||'SALE'):row.curated?'실제 매장 견적':purposeCategory==='senior'?(index===0?'매장 추천 조합':'추천 조합'):purposeCategory==='value'?(index===0?'가성비 추천':'추천 조합'):purposeCategory==='premium'?(index===0?'공시지원 중심':'기기값 할인 조합'):(index===0?'현재 조건 낮은 부담':'추천 조합');top.append(badge,rank);
       const name=document.createElement('strong');name.textContent=row.d.name;const lineup=document.createElement('span');lineup.className='purpose-lineup';lineup.textContent=purposeCategory==='premium'?purposePremiumLineupLabel(row.d):'';const plan=document.createElement('em');plan.textContent=row.p.name;
       const total=document.createElement('div');total.className='purpose-card-total';const totalLabel=document.createElement('span'),totalValue=document.createElement('b');totalLabel.textContent='예상 월 납부액';totalValue.textContent=won(row.best.monthly);total.append(totalLabel,totalValue);
-      const detail=document.createElement('div');detail.className='purpose-card-detail';if(purposeCategory==='premium'&&row.support?.known)detail.append(purposeCardLine('공시지원금','-'+won(row.support.support)),purposeCardLine('지원 후 기기값',won(row.support.principal)));detail.append(purposeCardLine('월 기기값 · 이자 포함',won(row.best.inst.monthly)),purposeCardLine('할인 후 통신요금',won(row.best.service)));if(row.welfare==='basic_pension')detail.append(purposeCardLine('기초연금 수급자 할인','-'+won(row.best.welfare?.amount||0),'welfare-line'));
-      const compare=document.createElement('div');compare.className='purpose-method-compare';const sText=row.support?.known?won(row.support.monthly):'매장 확인',cText=row.contract?.known?won(row.contract.monthly):'매장 확인';compare.append(purposeCardLine('공시지원 월',sText),purposeCardLine('선택약정 월',cText));
-      const best=document.createElement('div');best.className='purpose-best';best.textContent=purposeCategory==='premium'&&row.support?.known?`기기값 할인 중심 · 공시지원금 ${won(row.support.support)} · 지원 후 기기값 ${won(row.support.principal)}`:`${row.best.method==='support'?'공시지원금':'선택약정 25%'} 기준 · 24개월 총 예상비용 ${won(row.best.total24)}`;
-      const actions=document.createElement('div');actions.className='purpose-card-actions';const detailBtn=document.createElement('button'),consultBtn=document.createElement('button');detailBtn.type='button';consultBtn.type='button';detailBtn.textContent='자세히 계산';consultBtn.textContent='이 조건 상담';consultBtn.className='primary';detailBtn.addEventListener('click',()=>applyPurposeResult(row));consultBtn.addEventListener('click',async()=>{const ok=await copyCustomerConsultText(purposeQuoteText(row));if(ok)window.location.href='http://pf.kakao.com/_nWwNT/chat'});if(row.curated){consultBtn.style.gridColumn='1 / -1';actions.append(consultBtn)}else actions.append(detailBtn,consultBtn);
-      card.append(top,name);if(purposeCategory==='premium'&&lineup.textContent)card.append(lineup);card.append(plan,total,detail,compare,best,actions);box.appendChild(card);
+      const promo=document.createElement('div');if(row.kidsPromo){promo.className='kids-zero-deal';promo.innerHTML=`<span>${row.promoLabel||'SALE'}</span><strong>${row.promoText||'기기값 0원 행사'}</strong><small>신규가입 한정 · 해당 요금제 기준</small>`}
+      const detail=document.createElement('div');detail.className='purpose-card-detail';if(purposeCategory==='premium'&&row.support?.known)detail.append(purposeCardLine('공시지원금','-'+won(row.support.support)),purposeCardLine('지원 후 기기값',won(row.support.principal)));if(row.kidsPromo)detail.append(purposeCardLine('기기값','0원'),purposeCardLine('월 통신요금',won(row.best.service)));else detail.append(purposeCardLine('월 기기값 · 이자 포함',won(row.best.inst.monthly)),purposeCardLine('할인 후 통신요금',won(row.best.service)));if(row.welfare==='basic_pension')detail.append(purposeCardLine('기초연금 수급자 할인','-'+won(row.best.welfare?.amount||0),'welfare-line'));
+      const compare=document.createElement('div');compare.className='purpose-method-compare';if(row.kidsPromo){compare.classList.add('kids-sale-condition');compare.textContent='신규가입 한정 특가 · 재고 및 행사 조건은 상담 시 최종 확인'}else{const sText=row.support?.known?won(row.support.monthly):'매장 확인',cText=row.contract?.known?won(row.contract.monthly):'매장 확인';compare.append(purposeCardLine('공시지원 월',sText),purposeCardLine('선택약정 월',cText))}
+      const best=document.createElement('div');best.className='purpose-best';best.textContent=row.kidsPromo?`기기값 0원 행사 · ${row.p.name} 기준 월 ${won(row.best.monthly)}`:purposeCategory==='premium'&&row.support?.known?`기기값 할인 중심 · 공시지원금 ${won(row.support.support)} · 지원 후 기기값 ${won(row.support.principal)}`:`${row.best.method==='support'?'공시지원금':'선택약정 25%'} 기준 · 24개월 총 예상비용 ${won(row.best.total24)}`;
+      const actions=document.createElement('div');actions.className='purpose-card-actions';const detailBtn=document.createElement('button'),consultBtn=document.createElement('button');detailBtn.type='button';consultBtn.type='button';detailBtn.textContent='자세히 계산';consultBtn.textContent=row.kidsPromo?'이 특가 상담':'이 조건 상담';consultBtn.className='primary';detailBtn.addEventListener('click',()=>applyPurposeResult(row));consultBtn.addEventListener('click',async()=>{const ok=await copyCustomerConsultText(purposeQuoteText(row));if(ok)window.location.href='http://pf.kakao.com/_nWwNT/chat'});if(row.curated){consultBtn.style.gridColumn='1 / -1';actions.append(consultBtn)}else actions.append(detailBtn,consultBtn);
+      card.append(top,name);if(purposeCategory==='premium'&&lineup.textContent)card.append(lineup);card.append(plan);if(row.kidsPromo)card.append(promo);card.append(total,detail,compare,best,actions);box.appendChild(card);
     });
   }
   function applyPurposeResult(row){

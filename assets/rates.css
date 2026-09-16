@@ -88,3 +88,15 @@
 
 /* Premium lineup label 2026-09-16 */
 .purpose-lineup{display:block;margin-top:-2px;font-size:.7rem;font-weight:900;color:var(--teal);line-height:1.45}
+
+
+/* Kids phone sale cards 2026-09-16 */
+.purpose-card.kids-sale-card{position:relative;overflow:hidden;border:2px solid #ffc2ad;background:linear-gradient(180deg,#fff 0%,#fffaf7 100%);box-shadow:0 12px 28px rgba(216,72,28,.09)}
+.purpose-card.kids-sale-card .purpose-card-top small{background:#ff5a36;color:#fff;border-radius:999px;padding:5px 9px;font-weight:950;letter-spacing:.02em}
+.kids-zero-deal{margin:10px 0 12px;padding:14px 15px;border-radius:16px;background:linear-gradient(135deg,#fff0ea,#ffe2d6);border:1px solid #ffc4b2}
+.kids-zero-deal span{display:inline-flex;padding:3px 7px;border-radius:999px;background:#ff5a36;color:#fff;font-size:.68rem;font-weight:950;margin-bottom:6px}
+.kids-zero-deal strong{display:block;color:#d84418;font-size:1.32rem;font-weight:950;letter-spacing:-.035em}
+.kids-zero-deal small{display:block;margin-top:5px;color:#865343;font-size:.72rem;font-weight:750;line-height:1.4}
+.kids-sale-card .purpose-card-total{background:#fff5ef;border-color:#ffd2c1}
+.kids-sale-card .purpose-card-total b{color:#d84418}
+.purpose-method-compare.kids-sale-condition{display:block;padding:10px 12px;border-radius:12px;background:#fff8e8;color:#725c28;font-size:.74rem;font-weight:800;line-height:1.45}
