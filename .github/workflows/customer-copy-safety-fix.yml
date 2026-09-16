@@ -1,0 +1,53 @@
+name: Customer copy safety fix
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/customer-copy-safety-fix.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - name: Remove internal wording from customer page
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p = Path('rates.html')
+          s = p.read_text(encoding='utf-8')
+          old = '공시지원금만 단말대금에서 차감해 계산합니다. 판매점 수수료·리베이트는 고객 계산과 화면에 반영하지 않습니다.'
+          new = '공시지원금만 단말대금에서 차감해 계산하며, 화면에 표시된 확인 가능 금액만 반영합니다.'
+          if old not in s:
+              raise SystemExit('target wording not found; refusing to guess')
+          s = s.replace(old, new, 1)
+          p.write_text(s, encoding='utf-8')
+          PY
+      - name: Safety checks
+        shell: bash
+        run: |
+          node --check assets/rates.js
+          if grep -Eq '판매점 수수료|리베이트|제로노트|정책표' rates.html; then
+            echo 'Internal-facing wording remains in rates.html'
+            exit 1
+          fi
+      - name: Commit patch
+        shell: bash
+        run: |
+          if git diff --quiet; then
+            echo 'No changes to commit'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add rates.html
+          git commit -m 'Remove internal wording from study phone customer UI'
+          git push origin main
