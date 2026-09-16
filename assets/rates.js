@@ -540,7 +540,6 @@
     const p=currentInternetProduct(),tv=currentTvProduct(),provider=(internetData.providers||[]).find(x=>x.id===internetCarrier.value)||null;
     if(!p){
       ['internet-fee-view','tv-fee-view','internet-base-total','internet-bundle-discount','internet-total','internet-result-base','internet-result-wired-discount','internet-result-mobile-discount'].forEach(id=>$(id).textContent='—');
-      $('internet-installation').textContent='매장 확인';
       $('internet-summary').textContent=internetCarrier.value?'현재 확인된 상품 요금은 매장에서 안내해 드립니다.':'통신사와 상품을 선택하면 자동으로 반영됩니다.';
       return;
     }
@@ -571,15 +570,6 @@
     $('internet-result-base').textContent=baseKnown?won(base):'매장 확인';
     $('internet-result-wired-discount').textContent=tvSelected&&combo?(wiredDiscount?'-'+won(wiredDiscount):'미적용'):(wiredRule?(wiredKnown?'-'+won(extraWiredDiscount):'매장 확인'):'미적용');
     $('internet-result-mobile-discount').textContent=mobileRule?(mobileKnown?(mobileDiscount?'-'+won(mobileDiscount):'미적용'):'매장 확인'):'미적용';
-
-    const installParts=[];
-    if(hasAmount(p.installation_fee))installParts.push(Number(p.installation_fee));else installParts.push(null);
-    if(tvSelected){
-      if(stb&&hasAmount(stb.installation_fee))installParts.push(Number(stb.installation_fee));
-      else if(tv&&hasAmount(tv.installation_fee)&&Number(tv.installation_fee)>0)installParts.push(Number(tv.installation_fee));
-      else installParts.push(null);
-    }
-    $('internet-installation').textContent=installParts.every(v=>v!==null)?won(installParts.reduce((a,b)=>a+b,0)):'매장 확인';
 
     const bits=[],speedLabel=internetSpeedLabel(p);if(speedLabel)bits.push(`인터넷 속도 ${speedLabel}`);if(internetHasWifi(p))bits.push('와이파이 포함');if(tvSelected&&tv?.name)bits.push(tv.name);if(tvSelected&&combo)bits.push('인터넷+TV 결합할인 자동 반영');if(wiredRule?.notes)bits.push(wiredRule.notes);if(mobileRule?.notes)bits.push(mobileRule.notes);
     $('internet-detail').textContent=bits.length?bits.join(' · '):'3년 약정 기준 월요금';
