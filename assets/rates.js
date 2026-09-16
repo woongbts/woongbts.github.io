@@ -142,11 +142,15 @@
     const contractDiscount=method==='contract'?planFee*contractRate:0,afterContract=Math.max(0,planFee-contractDiscount),welfare=welfareDiscount(welfareKey||'none',afterContract),service=Math.max(0,afterContract-welfare.amount);
     return {known:true,method,price,planFee,support,contractDiscount,principal,inst,service,welfare,monthly:inst.monthly+service,total24:inst.total+service*24};
   }
+  function planDataText(p){return String(p?.data||'').toLowerCase().replace(/\s+/g,'')}
+  function planHasUnlimited(p){
+    const s=planDataText(p);return !!s&&(s.includes('무제한')||s.includes('unlimited'));
+  }
   function planDataGb(p){
-    const s=String(p?.data||'').toLowerCase().replace(/\s+/g,'');
-    if(!s)return null;if(s.includes('무제한')||s.includes('unlimited'))return Infinity;
+    const s=planDataText(p);if(!s)return null;
     let m=s.match(/([0-9]+(?:\.[0-9]+)?)gb/);if(m)return Number(m[1]);
     m=s.match(/([0-9]+(?:\.[0-9]+)?)mb/);if(m)return Number(m[1])/1024;
+    if(planHasUnlimited(p))return Infinity;
     return null;
   }
   function deviceBrandKey(d){
@@ -226,7 +230,7 @@
     if(planPickerState.data==='light'&&!(gb!==null&&gb!==Infinity&&gb<=5))return false;
     if(planPickerState.data==='normal'&&!(gb!==null&&gb!==Infinity&&gb>5&&gb<=20))return false;
     if(planPickerState.data==='heavy'&&!(gb!==null&&gb!==Infinity&&gb>20))return false;
-    if(planPickerState.data==='unlimited'&&gb!==Infinity)return false;
+    if(planPickerState.data==='unlimited'&&!planHasUnlimited(p))return false;
     return true;
   }
   function planPickerRows(){
@@ -388,7 +392,7 @@
     document.querySelectorAll('[data-mobile-mode]').forEach(b=>b.classList.toggle('active',b.dataset.mobileMode===mode));
     if(quick){$('quick-carrier').value=carrier.value;$('quick-join').value=joinType.value}
   }
-  function quickPlanMeets(p,need){const gb=planDataGb(p);if(need==='unlimited')return gb===Infinity;return gb!==null&&gb>=Number(need)}
+  function quickPlanMeets(p,need){const gb=planDataGb(p);if(need==='unlimited')return planHasUnlimited(p);return gb!==null&&gb>=Number(need)}
   function quickRecommendations(){
     const c=$('quick-carrier').value,j=$('quick-join').value,brand=$('quick-brand').value,need=$('quick-data').value,budget=Number($('quick-budget').value)||0;
     const devices=(catalog?.devices||[]).filter(d=>d.carrier===c&&brandMatch(d,brand)&&hasAmount(d.retail_price)&&Number(d.retail_price)>0).sort(byNewest).slice(0,140),out=[];
