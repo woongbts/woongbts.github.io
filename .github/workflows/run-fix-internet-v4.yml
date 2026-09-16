@@ -1,0 +1,35 @@
+name: run-fix-internet-v4
+
+on:
+  push:
+    paths:
+      - '.github/workflows/run-fix-internet-v4.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - name: Apply Internet data fixes
+        run: python3 scripts/fix-internet-v4.py
+      - name: Commit changes
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'woongbts-ui-sync'
+          git config user.email 'actions@users.noreply.github.com'
+          git add data/internet.json
+          if git diff --cached --quiet; then
+            echo 'No changes to commit'
+            exit 0
+          fi
+          git commit -m 'Correct Internet speeds and TV descriptions'
+          git pull --rebase origin main
+          git push origin HEAD:main
