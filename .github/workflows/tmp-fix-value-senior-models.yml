@@ -1,0 +1,60 @@
+name: Fix value and senior model recommendations
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/tmp-fix-value-senior-models.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Apply patch
+        run: python tmp_fix_value_senior_models.py
+      - name: Check JavaScript syntax
+        run: node --check assets/rates.js
+      - name: Verify recommendation rules
+        run: |
+          grep -q "quantum7:0,jump5:1,a27:2,a37:3" assets/rates.js
+          grep -q "model==='at-m140s'" assets/rates.js
+          grep -q "return'stylefolder2'" assets/rates.js
+          grep -q "현재 등록된 판매 조건 확인 중" assets/rates.js
+          grep -q "확인되지 않은 금액은 임의로 계산하지 않습니다" assets/rates.js
+          grep -q "assets/rates.js?v=20260916-27" rates.html
+      - name: Validate catalog targets and StyleFolder2 plans
+        run: |
+          python - <<'PY'
+          import json,re
+          from pathlib import Path
+          data=json.loads(Path('data/catalog.json').read_text(encoding='utf-8'))
+          devices=data.get('devices',[]); plans={p.get('id'):p for p in data.get('mobile_plans',[])}
+          def txt(d): return ' '.join(str(d.get(k,'')) for k in ('name','model','model_code'))
+          targets={
+            'quantum7':[d for d in devices if d.get('carrier')=='SKT' and re.search(r'퀀텀\s*7|quantum\s*7',txt(d),re.I)],
+            'jump5':[d for d in devices if d.get('carrier')=='KT' and re.search(r'jump\s*5|점프\s*5',txt(d),re.I)],
+            'a37':[d for d in devices if re.search(r'갤럭시\s*A37|galaxy\s*A37|\bA37\b',txt(d),re.I)],
+            'stylefolder2':[d for d in devices if d.get('carrier')=='SKT' and str(d.get('model_code','')).upper()=='AT-M140S'],
+          }
+          for key,rows in targets.items():
+            print(key,[(d.get('carrier'),d.get('name'),d.get('model_code')) for d in rows])
+            assert rows, f'{key} missing'
+          d=targets['stylefolder2'][0]
+          ids=(d.get('eligible_plan_ids_by_join_type') or {}).get('기기변경') or d.get('eligible_plan_ids') or []
+          eligible=[plans[i] for i in ids if i in plans and 33000 <= (plans[i].get('monthly_fee') or 0) <= 55000]
+          print('stylefolder2 eligible plans',[(p.get('name'),p.get('monthly_fee')) for p in eligible[:20]])
+          assert eligible, 'StyleFolder2 has no 33k-55k eligible plans for senior recommendations'
+          a27=[d for d in devices if re.search(r'갤럭시\s*A27|galaxy\s*A27|\bA27\b',txt(d),re.I)]
+          print('A27 catalog count',len(a27),'placeholder expected when zero')
+          PY
+      - name: Commit result
+        run: |
+          git config user.name "woongbts"
+          git config user.email "swb3301@gmail.com"
+          git add assets/rates.js rates.html
+          git commit -m "Refine value lineup and add StyleFolder2 for seniors" || exit 0
+          git push
