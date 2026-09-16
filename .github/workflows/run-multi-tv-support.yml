@@ -1,0 +1,41 @@
+name: run-multi-tv-support
+
+on:
+  push:
+    paths:
+      - '.github/workflows/run-multi-tv-support.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  upgrade:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - name: Apply multi TV pricing support
+        run: python scripts/add-multi-tv-support.py
+      - name: Validate customer page
+        run: |
+          node --check assets/rates.js
+          grep -q 'id="tv-count"' rates.html
+          grep -q 'id="extra-tv-fee-view"' rates.html
+          grep -q 'ADDITIONAL_TV_RULES' assets/rates.js
+          grep -q 'TV 3대 · 추가 2대' rates.html
+          ! grep -q '경품가이드' rates.html
+          ! grep -q '수수료(부가세별도)' rates.html
+          ! grep -q '제로노트' rates.html
+      - name: Commit upgrade
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add rates.html assets/rates.js assets/rates.css
+          if git diff --cached --quiet; then
+            echo 'No changes'
+          else
+            git commit -m 'Add additional TV terminal pricing'
+            git push origin HEAD:main
+          fi
