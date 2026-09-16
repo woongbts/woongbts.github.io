@@ -453,10 +453,32 @@
     (internetData.providers||[]).slice().sort(byOrder).forEach(p=>option(internetCarrier,p.id,p.name));
     fillInternetProducts();
   }
+  function internetSpeedLabel(p){
+    const mbps=Number(p?.speed_mbps);
+    if(!Number.isFinite(mbps)||mbps<=0)return '';
+    if(mbps>=1000){
+      const gbps=mbps/1000;
+      return `${Number.isInteger(gbps)?gbps:gbps.toFixed(1)}G`;
+    }
+    return `${mbps}M`;
+  }
+  function internetHasWifi(p){
+    const name=String(p?.name||'').toLowerCase(),group=String(p?.product_group||'').toUpperCase();
+    return group==='WIFI'||group==='WINGS'||name.includes('와이파이')||name.includes('wifi')||name.includes('wi-fi')||name.includes('윙즈');
+  }
+  function internetProductLabel(p){
+    const name=String(p?.name||''),speed=internetSpeedLabel(p),wifi=internetHasWifi(p);
+    const normalizedName=name.replace(/\s+/g,'').toUpperCase();
+    const normalizedSpeed=String(speed).replace(/\s+/g,'').toUpperCase();
+    const parts=[];
+    if(speed&&!normalizedName.includes(normalizedSpeed))parts.push(speed);
+    if(wifi)parts.push('와이파이 포함');
+    return parts.length?`${name} (${parts.join(', ')})`:name;
+  }
   function fillInternetProducts(){
     const pid=internetCarrier.value,items=internetProducts().filter(p=>p.provider_id===pid).sort(byOrder);
     clearSelect(internetProduct,pid?'인터넷 상품을 선택하세요':'통신사를 먼저 선택하세요');
-    items.forEach(p=>option(internetProduct,p.id,p.name));
+    items.forEach(p=>option(internetProduct,p.id,internetProductLabel(p)));
     internetProduct.disabled=!pid||!items.length;
 
     tvProduct.innerHTML='';
@@ -559,7 +581,7 @@
     }
     $('internet-installation').textContent=installParts.every(v=>v!==null)?won(installParts.reduce((a,b)=>a+b,0)):'매장 확인';
 
-    const bits=[];if(p.speed_mbps)bits.push(`${p.speed_mbps}Mbps`);if(tvSelected&&tv?.name)bits.push(tv.name);if(tvSelected&&combo)bits.push('인터넷+TV 결합할인 자동 반영');if(wiredRule?.notes)bits.push(wiredRule.notes);if(mobileRule?.notes)bits.push(mobileRule.notes);
+    const bits=[],speedLabel=internetSpeedLabel(p);if(speedLabel)bits.push(`인터넷 속도 ${speedLabel}`);if(internetHasWifi(p))bits.push('와이파이 포함');if(tvSelected&&tv?.name)bits.push(tv.name);if(tvSelected&&combo)bits.push('인터넷+TV 결합할인 자동 반영');if(wiredRule?.notes)bits.push(wiredRule.notes);if(mobileRule?.notes)bits.push(mobileRule.notes);
     $('internet-detail').textContent=bits.length?bits.join(' · '):'3년 약정 기준 월요금';
     $('internet-summary').textContent=totalKnown?`${provider?.name||p.provider_id} · ${p.name}${tvSelected&&tv?.name?' + '+tv.name:''} 기준 예상 월요금입니다.`:`${provider?.name||p.provider_id} · 선택 상품의 최신 금액은 매장에서 확인해 주세요.`;
   }
