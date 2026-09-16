@@ -231,7 +231,26 @@
                 <div class="mvno-filter-count" id="mvno-filter-count">통신사 또는 필터를 선택해 주세요.</div>
               </div>
               <label>알뜰폰 통신사<select id="mvno-provider"><option value="">통신사를 선택하세요</option></select></label>
-              <label>요금제<select id="mvno-plan" disabled><option value="">통신사를 먼저 선택하세요</option></select></label>
+              <div class="mobile-plan-picker mvno-plan-picker">
+                <div class="plan-picker-label"><span>요금제</span><small>위 빠른 필터에 맞는 요금제를 카드로 비교해 선택할 수 있습니다.</small></div>
+                <button type="button" class="plan-picker-open" id="mvno-plan-picker-open" disabled>
+                  <span class="plan-picker-main"><strong id="mvno-plan-picker-selected">통신사 또는 필터를 선택하세요</strong><small id="mvno-plan-picker-selected-detail">조건을 고르면 요금제를 카드로 비교할 수 있습니다.</small></span>
+                  <b>요금제 보기</b>
+                </button>
+                <select id="mvno-plan" class="plan-select-native" disabled tabindex="-1" aria-hidden="true"><option value="">통신사를 먼저 선택하세요</option></select>
+                <div class="plan-picker-backdrop" id="mvno-plan-picker-backdrop" hidden>
+                  <section class="plan-picker-sheet" role="dialog" aria-modal="true" aria-labelledby="mvno-plan-picker-title">
+                    <div class="plan-picker-head">
+                      <div><span>알뜰폰 요금제</span><strong id="mvno-plan-picker-title">월요금·데이터·통화를 한눈에 비교</strong></div>
+                      <button type="button" id="mvno-plan-picker-close" aria-label="알뜰폰 요금제 선택창 닫기">닫기</button>
+                    </div>
+                    <label class="plan-picker-search">요금제 검색<input id="mvno-plan-picker-search" type="search" autocomplete="off" placeholder="통신사, 요금제명, 데이터·통화로 검색"></label>
+                    <div class="plan-picker-toolbar"><strong id="mvno-plan-picker-count">요금제를 불러오는 중입니다.</strong><small>위 빠른 필터와 정렬이 그대로 적용됩니다.</small></div>
+                    <div class="plan-picker-list" id="mvno-plan-picker-list"></div>
+                    <small class="plan-picker-note">월요금은 현재 등록된 특별할인가 기준입니다. 유심비·개통 가능 여부·프로모션 변경 여부는 최종 상담 시 확인해 주세요.</small>
+                  </section>
+                </div>
+              </div>
               <div class="auto-grid">
                 <div class="auto-box"><span>통신망</span><strong id="mvno-network">—</strong></div>
                 <div class="auto-box"><span>월 기본료</span><strong id="mvno-fee-view">—</strong></div>
@@ -343,7 +362,7 @@
   </main>
 
   <footer class="rate-footer"><div class="rate-wrap"><strong>웅비통신 덕천만덕점</strong><p>부산광역시 북구 만덕대로178번길 17 · 월~토 11:00~20:00 · 일요일 휴무 · 051-343-7677</p><p>표시 금액은 상담을 돕기 위한 예상치이며 실제 개통 조건과 다를 수 있습니다.</p></div></footer>
-  <script src="assets/rates.js?v=20260916-14" defer></script>
+  <script src="assets/rates.js?v=20260916-15" defer></script>
 
   <div class="mobile-quote-bar" id="mobile-quote-bar" hidden>
     <div class="mobile-quote-bar-value"><span>현재 예상 월 납부액</span><strong id="mobile-quote-bar-total">—</strong></div>
