@@ -1,0 +1,53 @@
+name: Update kids lifecycle and premium lineup
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/tmp-update-kids-premium-lineup.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Apply patch
+        run: python tmp_update_kids_premium_lineup.py
+      - name: Check JavaScript syntax
+        run: node --check assets/rates.js
+      - name: Verify code changes
+        run: |
+          grep -q "purposeIsDeprecatedKidsDevice" assets/rates.js
+          grep -q "폼폼푸린" assets/rates.js
+          grep -q "갤럭시 S26 시리즈 · S26+" assets/rates.js
+          grep -q "갤럭시 S26 / S26+ / S26 Ultra" assets/rates.js
+          grep -q "assets/rates.js?v=20260916-24" rates.html
+          grep -q "assets/rates.css?v=20260916-16" rates.html
+      - name: Validate current catalog models
+        run: |
+          python - <<'PY'
+          import json,re
+          from pathlib import Path
+          data=json.loads(Path('data/catalog.json').read_text(encoding='utf-8'))
+          devices=data.get('devices',[])
+          def text(d): return f"{d.get('carrier','')} {d.get('name','')} {d.get('model','')} {d.get('model_code','')}"
+          shinbi=[d for d in devices if re.search(r'신비', text(d), re.I)]
+          pompom=[d for d in devices if d.get('carrier')=='KT' and re.search(r'폼폼푸린|pompompurin', text(d), re.I)]
+          s26=[d for d in devices if re.search(r'갤럭시\s*S26|Galaxy\s*S26|S26\+|S26 Ultra', text(d), re.I)]
+          print('deprecated shinbi:', [d.get('name') for d in shinbi[:10]])
+          print('KT pompompurin:', [d.get('name') for d in pompom[:10]])
+          print('S26 lineup sample:', [d.get('name') for d in s26[:20]])
+          assert shinbi, 'Shinbi kids device not found in current catalog'
+          assert pompom, 'KT Pompompurin kids device not found in current catalog'
+          assert s26, 'Galaxy S26 lineup not found in current catalog'
+          PY
+      - name: Commit result
+        run: |
+          git config user.name "woongbts"
+          git config user.email "swb3301@gmail.com"
+          git add assets/rates.js assets/rates.css rates.html
+          git commit -m "Refresh kids phone recommendations and premium lineup labels" || exit 0
+          git push
