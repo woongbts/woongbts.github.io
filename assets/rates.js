@@ -442,8 +442,8 @@
   }
   let purposeCategory='senior';
   const PURPOSE_COPY={
-    senior:'A17·Wide8·Buddy5와 현재 등록된 최근 기종을 우선 살펴보고, 월 33,000원 이상 구간의 현재 요금제에서 24개월 총 예상비용을 비교합니다. 복지 할인은 실제 자격 확인 시 적용됩니다.',
-    kids:'출고가가 낮은 기종과 실제 키즈·청소년 요금제를 조합해 공시지원금과 선택약정 중 24개월 총 부담이 낮은 조건을 보여드립니다.',
+    senior:'매장에서 자주 안내하는 A17·Wide8·Buddy5와 최근 출시 기종을 우선 살펴보고, 3만~4만원대 중심의 현재 요금제에서 24개월 총 예상비용을 비교합니다. 복지 할인은 실제 자격 확인 시 적용됩니다.',
+    kids:'현재 등록된 최근 출시 저가형 기종과 실제 키즈·청소년 요금제를 조합해 공시지원금과 선택약정 중 24개월 총 부담이 낮은 조건을 보여드립니다.',
     value:'출고가와 월 통신요금을 함께 보고, 중저가 기종에서 24개월 총 예상비용이 부담 적은 조합을 보여드립니다.',
     premium:'프리미엄 기종에서 가입 가능한 요금제를 조합해 공시지원금과 선택약정의 24개월 총 예상비용을 비교합니다.'
   };
@@ -492,6 +492,9 @@
     else if(category==='premium')rows=rows.filter(purposeIsPremiumDevice);
     if(category==='senior'){
       return rows.sort((a,b)=>purposeSeniorDeviceRank(a)-purposeSeniorDeviceRank(b)||purposeSourceOrder(a)-purposeSourceOrder(b)||Number(a.retail_price)-Number(b.retail_price)).slice(0,180);
+    }
+    if(category==='kids'){
+      return rows.sort(byNewest).slice(0,60);
     }
     return rows.sort((a,b)=>Number(a.retail_price)-Number(b.retail_price)||byNewest(a,b)).slice(0,180);
   }
@@ -557,7 +560,7 @@
     if(!rows.length){box.innerHTML='<p>현재 등록된 데이터에서 이 조건에 맞는 조합을 찾지 못했습니다. 통신사나 가입유형을 바꾸거나 직접 계산을 이용해 주세요.</p>';return}
     rows.forEach((row,index)=>{
       const card=document.createElement('article');card.className='purpose-card';
-      const top=document.createElement('div');top.className='purpose-card-top';const badge=document.createElement('span'),rank=document.createElement('small');badge.textContent=`${row.d.carrier} · ${$('purpose-join')?.value||'기기변경'}`;rank.textContent=index===0?'현재 조건 낮은 부담':'추천 조합';top.append(badge,rank);
+      const top=document.createElement('div');top.className='purpose-card-top';const badge=document.createElement('span'),rank=document.createElement('small');badge.textContent=`${row.d.carrier} · ${$('purpose-join')?.value||'기기변경'}`;rank.textContent=purposeCategory==='senior'?(index===0?'매장 추천 조합':'추천 조합'):(index===0?'현재 조건 낮은 부담':'추천 조합');top.append(badge,rank);
       const name=document.createElement('strong');name.textContent=row.d.name;const plan=document.createElement('em');plan.textContent=row.p.name;
       const total=document.createElement('div');total.className='purpose-card-total';const totalLabel=document.createElement('span'),totalValue=document.createElement('b');totalLabel.textContent='예상 월 납부액';totalValue.textContent=won(row.best.monthly);total.append(totalLabel,totalValue);
       const detail=document.createElement('div');detail.className='purpose-card-detail';detail.append(purposeCardLine('월 기기값 · 이자 포함',won(row.best.inst.monthly)),purposeCardLine('할인 후 통신요금',won(row.best.service)));if(row.welfare==='basic_pension')detail.append(purposeCardLine('기초연금 수급자 할인','-'+won(row.best.welfare?.amount||0),'welfare-line'));
