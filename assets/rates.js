@@ -442,11 +442,29 @@
   }
   let purposeCategory='senior';
   const PURPOSE_COPY={
-    senior:'매장에서 자주 안내하는 A17·Wide8·Buddy5 등 삼성폰을 우선 살펴보고, 사용량과 월 부담의 균형이 좋은 휴대폰 요금제로 24개월 총 예상비용을 비교합니다. 복지 할인은 실제 자격 확인 시 적용됩니다.',
+    senior:'매장에서 자주 안내하는 A17·Wide8·Buddy5를 우선 살펴보고, 스마트폰 사용이 익숙하지 않은 분께는 스타일폴더2도 함께 안내합니다. 사용량과 월 부담을 함께 살펴보며, 복지 할인은 실제 자격 확인 시 적용됩니다.',
     kids:'현재 추천하는 키즈폰은 SKT ZEM폰 포켓피스·LGU+ 춘식이2·KT 폼폼푸린 키즈폰 3종입니다. 키즈·청소년용 요금제에서 공시지원금과 선택약정의 24개월 총 부담을 비교합니다.',
-    value:'KT 갤럭시 Jump5와 SKT 갤럭시 퀀텀 시리즈 등 40~70만원대 삼성폰을 우선 보고, 통신사별로 부담과 혜택의 균형이 좋은 요금제를 비교합니다. KT Jump5는 61,000원 구간을 우선 안내합니다.',
+    value:'매장에서 실제로 자주 안내하는 갤럭시 Jump5·A37·퀀텀7의 기기변경 견적을 한눈에 비교합니다. 확인된 매장 견적을 기준으로 월 기기값과 통신요금을 함께 보여드립니다.',
     premium:'아이폰18 시리즈·갤럭시 S26 / S26+ / S26 Ultra·Z Fold8 / Z Flip8을 중심으로 256GB를 우선 추천하고 512GB까지만 보여드립니다. 실제 확인 가능한 공시지원금이 큰 조합을 우선해 기기값 할인 중심으로 안내합니다.'
   };
+  const PURPOSE_CURATED_QUOTES={
+    stylefolder2:{category:'senior',carrier:'SKT',deviceId:'SKT-XD-2636',name:'스타일폴더2',modelCode:'AT-M140S',price:237600,planName:'T플랜 세이브',planFee:33000,deviceMonthly:10520,installmentFee:14880,contractDiscount:8250,welfareAmount:12100},
+    jump5:{category:'value',carrier:'KT',deviceId:'KT-XD-2895',name:'갤럭시 Jump5 5G',modelCode:'SM-A276K',price:545600,planName:'베이직 4GB',planFee:37000,deviceMonthly:24160,installmentFee:34240,contractDiscount:9250,welfareAmount:0},
+    a37:{category:'value',carrier:'KT',deviceId:'KT-XD-2893',name:'갤럭시 A37 5G',modelCode:'SM-A376NK',price:598400,planName:'베이직 4GB',planFee:37000,deviceMonthly:26490,installmentFee:37360,contractDiscount:9250,welfareAmount:0},
+    quantum7:{category:'value',carrier:'SKT',deviceId:'SKT-XD-2944',name:'갤럭시 퀀텀7',modelCode:'SM-A576S',price:717200,planName:'라이트 39',planFee:39000,deviceMonthly:31750,installmentFee:44800,contractDiscount:9750,welfareAmount:0}
+  };
+  function purposeCuratedRow(key,usePension=false){
+    const q=PURPOSE_CURATED_QUOTES[key];if(!q)return null;
+    const welfareAmount=key==='stylefolder2'&&usePension?Number(q.welfareAmount||0):0;
+    const service=Math.max(0,Number(q.planFee)-Number(q.contractDiscount)-welfareAmount),monthly=Number(q.deviceMonthly)+service;
+    const welfare=welfareAmount>0?'basic_pension':'none';
+    const best={known:true,method:'contract',price:Number(q.price),planFee:Number(q.planFee),support:0,contractDiscount:Number(q.contractDiscount),principal:Number(q.price),inst:{monthly:Number(q.deviceMonthly),total:Number(q.price)+Number(q.installmentFee)},service,welfare:{amount:welfareAmount},monthly,total24:monthly*24};
+    return {curated:true,joinLabel:'기기변경',d:{id:q.deviceId,carrier:q.carrier,name:q.name,model_code:q.modelCode,retail_price:q.price},p:{id:`curated-${key}`,carrier:q.carrier,name:q.planName,monthly_fee:q.planFee},best,support:{known:false},contract:best,welfare};
+  }
+  function purposeCuratedValueRows(carrierValue,joinLabel){
+    if(joinLabel!=='기기변경')return [];
+    return ['jump5','a37','quantum7'].map(key=>purposeCuratedRow(key,false)).filter(row=>row&&(carrierValue==='all'||row.d.carrier===carrierValue));
+  }
   function purposeIsLowCostDevice(d){
     const price=Number(d?.retail_price)||0,name=`${d?.name||''} ${d?.model||''} ${d?.model_code||''}`.toLowerCase();
     return price>0&&(price<=650000||/갤럭시\s*a\d|galaxy\s*a\d|wide|와이드|버디|buddy/.test(name));
@@ -641,6 +659,7 @@
   }
   function purposeRecommendations(){
     const carrierValue=$('purpose-carrier')?.value||'all',joinLabel=$('purpose-join')?.value||'기기변경',usePension=!!$('purpose-pension')?.checked,rows=[];
+    if(purposeCategory==='value')return purposeCuratedValueRows(carrierValue,joinLabel);
     purposeDevicePool(purposeCategory,carrierValue).forEach(d=>{const row=purposeCandidateForDevice(d,purposeCategory,joinLabel,usePension);if(row)rows.push(row)});
     if(purposeCategory==='senior'){
       rows.sort((a,b)=>purposeSeniorDeviceRank(a.d)-purposeSeniorDeviceRank(b.d)||purposeSalesBrandRank(a.d,purposeCategory)-purposeSalesBrandRank(b.d,purposeCategory)||purposeSourceOrder(a.d)-purposeSourceOrder(b.d)||purposeSeniorPlanRank(a.p,a.d.carrier)-purposeSeniorPlanRank(b.p,b.d.carrier)||a.best.total24-b.best.total24);
@@ -661,6 +680,10 @@
       const key=purposeCategory==='senior'?purposeSeniorDeviceFamily(row.d):`${row.d.carrier}|${row.d.name}`;
       if(seen.has(key))continue;seen.add(key);unique.push(row);if(unique.length>=6)break;
     }
+    if(purposeCategory==='senior'&&joinLabel==='기기변경'&&(carrierValue==='all'||carrierValue==='SKT')){
+      const filtered=unique.filter(row=>String(row?.d?.model_code||'').toUpperCase()!=='AT-M140S'&&!String(row?.d?.name||'').replace(/\s+/g,'').includes('스타일폴더2'));
+      const style=purposeCuratedRow('stylefolder2',usePension);if(style)filtered.splice(Math.min(3,filtered.length),0,style);return filtered.slice(0,6);
+    }
     return unique;
   }
   function purposeCardLine(label,value,cls=''){
@@ -680,13 +703,13 @@
     if(!rows.length){box.innerHTML='<p>현재 등록된 데이터에서 이 조건에 맞는 조합을 찾지 못했습니다. 통신사나 가입유형을 바꾸거나 직접 계산을 이용해 주세요.</p>';return}
     rows.forEach((row,index)=>{
       const card=document.createElement('article');card.className='purpose-card';
-      const top=document.createElement('div');top.className='purpose-card-top';const badge=document.createElement('span'),rank=document.createElement('small');badge.textContent=`${row.d.carrier} · ${$('purpose-join')?.value||'기기변경'}`;rank.textContent=purposeCategory==='senior'?(index===0?'매장 추천 조합':'추천 조합'):purposeCategory==='value'?(index===0?'가성비 추천':'추천 조합'):purposeCategory==='premium'?(index===0?'공시지원 중심':'기기값 할인 조합'):(index===0?'현재 조건 낮은 부담':'추천 조합');top.append(badge,rank);
+      const top=document.createElement('div');top.className='purpose-card-top';const badge=document.createElement('span'),rank=document.createElement('small');badge.textContent=`${row.d.carrier} · ${row.joinLabel||$('purpose-join')?.value||'기기변경'}`;rank.textContent=row.curated?'실제 매장 견적':purposeCategory==='senior'?(index===0?'매장 추천 조합':'추천 조합'):purposeCategory==='value'?(index===0?'가성비 추천':'추천 조합'):purposeCategory==='premium'?(index===0?'공시지원 중심':'기기값 할인 조합'):(index===0?'현재 조건 낮은 부담':'추천 조합');top.append(badge,rank);
       const name=document.createElement('strong');name.textContent=row.d.name;const lineup=document.createElement('span');lineup.className='purpose-lineup';lineup.textContent=purposeCategory==='premium'?purposePremiumLineupLabel(row.d):'';const plan=document.createElement('em');plan.textContent=row.p.name;
       const total=document.createElement('div');total.className='purpose-card-total';const totalLabel=document.createElement('span'),totalValue=document.createElement('b');totalLabel.textContent='예상 월 납부액';totalValue.textContent=won(row.best.monthly);total.append(totalLabel,totalValue);
       const detail=document.createElement('div');detail.className='purpose-card-detail';if(purposeCategory==='premium'&&row.support?.known)detail.append(purposeCardLine('공시지원금','-'+won(row.support.support)),purposeCardLine('지원 후 기기값',won(row.support.principal)));detail.append(purposeCardLine('월 기기값 · 이자 포함',won(row.best.inst.monthly)),purposeCardLine('할인 후 통신요금',won(row.best.service)));if(row.welfare==='basic_pension')detail.append(purposeCardLine('기초연금 수급자 할인','-'+won(row.best.welfare?.amount||0),'welfare-line'));
       const compare=document.createElement('div');compare.className='purpose-method-compare';const sText=row.support?.known?won(row.support.monthly):'매장 확인',cText=row.contract?.known?won(row.contract.monthly):'매장 확인';compare.append(purposeCardLine('공시지원 월',sText),purposeCardLine('선택약정 월',cText));
       const best=document.createElement('div');best.className='purpose-best';best.textContent=purposeCategory==='premium'&&row.support?.known?`기기값 할인 중심 · 공시지원금 ${won(row.support.support)} · 지원 후 기기값 ${won(row.support.principal)}`:`${row.best.method==='support'?'공시지원금':'선택약정 25%'} 기준 · 24개월 총 예상비용 ${won(row.best.total24)}`;
-      const actions=document.createElement('div');actions.className='purpose-card-actions';const detailBtn=document.createElement('button'),consultBtn=document.createElement('button');detailBtn.type='button';consultBtn.type='button';detailBtn.textContent='자세히 계산';consultBtn.textContent='이 조건 상담';consultBtn.className='primary';detailBtn.addEventListener('click',()=>applyPurposeResult(row));consultBtn.addEventListener('click',async()=>{const ok=await copyCustomerConsultText(purposeQuoteText(row));if(ok)window.location.href='http://pf.kakao.com/_nWwNT/chat'});actions.append(detailBtn,consultBtn);
+      const actions=document.createElement('div');actions.className='purpose-card-actions';const detailBtn=document.createElement('button'),consultBtn=document.createElement('button');detailBtn.type='button';consultBtn.type='button';detailBtn.textContent='자세히 계산';consultBtn.textContent='이 조건 상담';consultBtn.className='primary';detailBtn.addEventListener('click',()=>applyPurposeResult(row));consultBtn.addEventListener('click',async()=>{const ok=await copyCustomerConsultText(purposeQuoteText(row));if(ok)window.location.href='http://pf.kakao.com/_nWwNT/chat'});if(row.curated){consultBtn.style.gridColumn='1 / -1';actions.append(consultBtn)}else actions.append(detailBtn,consultBtn);
       card.append(top,name);if(purposeCategory==='premium'&&lineup.textContent)card.append(lineup);card.append(plan,total,detail,compare,best,actions);box.appendChild(card);
     });
   }
