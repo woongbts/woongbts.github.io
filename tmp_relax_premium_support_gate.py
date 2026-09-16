@@ -6,7 +6,7 @@ html_path=Path('rates.html')
 js=js_path.read_text(encoding='utf-8')
 html=html_path.read_text(encoding='utf-8')
 
-old="""    premium:'아이폰18 시리즈·갤럭시 S26 / S26+ / S26 Ultra·Z Fold8 / Z Flip8을 중심으로 256GB를 우선 추천하고 512GB까지만 보여드립니다. 실제 공시지원금이 40~50만원으로 확인되는 고요금제 조합은 기기값 할인 중심으로 안내합니다.'
+old="""    premium:'아이폰18 시리즈·갤럭시 S26 / S26+ / S26 Ultra·Z Fold8 / Z Flip8을 중심으로 256GB를 우선 추천하고 512GB까지만 보여드립니다. 실제 공시지원금이 40~50만원으로 확인되는 조합은 기기값 할인 중심으로 안내합니다.'
 """
 new="""    premium:'아이폰18 시리즈·갤럭시 S26 / S26+ / S26 Ultra·Z Fold8 / Z Flip8을 중심으로 256GB를 우선 추천하고 512GB까지만 보여드립니다. 실제 확인 가능한 공시지원금이 큰 조합을 우선해 기기값 할인 중심으로 안내합니다.'
 """
