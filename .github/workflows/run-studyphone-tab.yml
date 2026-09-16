@@ -1,0 +1,39 @@
+name: run-studyphone-tab
+
+on:
+  push:
+    paths:
+      - '.github/workflows/run-studyphone-tab.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  upgrade:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - name: Apply study phone tab
+        run: python scripts/add-studyphone-tab.py
+      - name: Validate page
+        run: |
+          grep -q 'data-tab="studyphone"' rates.html
+          grep -q 'data-panel="studyphone"' rates.html
+          grep -q 'SM-A175' rates.html
+          grep -q 'KT M모바일' rates.html
+          grep -q 'Dedicated study phone tab' assets/rates.css
+          node --check assets/rates.js
+      - name: Commit upgrade
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add rates.html assets/rates.css
+          if git diff --cached --quiet; then
+            echo 'No changes'
+          else
+            git commit -m 'Add dedicated KT M mobile study phone tab'
+            git push origin HEAD:main
+          fi
