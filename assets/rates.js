@@ -414,8 +414,8 @@
     window.location.href='http://pf.kakao.com/_nWwNT/chat';
   }
   function syncQuoteBar(){
-    const bar=$('mobile-quote-bar'),scenario=mobileScenario(discountMethod.value),mobileActive=document.querySelector('[data-panel="mobile"]')?.classList.contains('active');
-    if(!bar)return;const show=!!(mobileActive&&scenario?.known);bar.hidden=!show;document.body.classList.toggle('has-mobile-quote-bar',show);
+    const bar=$('mobile-quote-bar'),scenario=mobileScenario(discountMethod.value),mobileActive=document.querySelector('[data-panel="mobile"]')?.classList.contains('active'),directVisible=!$('direct-mobile-grid')?.hidden;
+    if(!bar)return;const show=!!(mobileActive&&directVisible&&scenario?.known);bar.hidden=!show;document.body.classList.toggle('has-mobile-quote-bar',show);
     if(show)$('mobile-quote-bar-total').textContent=won(scenario.monthly);
   }
   function buildQuoteUrl(){
@@ -440,10 +440,91 @@
     if([...monthsSelect.options].some(o=>o.value===mo))monthsSelect.value=mo;
     setMobileMode('direct');if(qid){currentQuoteId=qid;currentQuoteFingerprint=quoteFingerprint()}syncQuoteMemory();return true;
   }
+  let purposeCategory='senior';
+  const PURPOSE_COPY={
+    senior:'출고가가 낮은 기종과 시니어 요금제를 우선 살펴보고, 기초연금 수급자 할인을 적용해 공시지원금과 선택약정 중 24개월 총 부담이 낮은 조건을 보여드립니다.',
+    kids:'출고가가 낮은 기종과 실제 키즈·청소년 요금제를 조합해 공시지원금과 선택약정 중 24개월 총 부담이 낮은 조건을 보여드립니다.',
+    value:'출고가와 월 통신요금을 함께 보고, 중저가 기종에서 24개월 총 예상비용이 부담 적은 조합을 보여드립니다.',
+    premium:'프리미엄 기종에서 가입 가능한 요금제를 조합해 공시지원금과 선택약정의 24개월 총 예상비용을 비교합니다.'
+  };
+  function purposeIsLowCostDevice(d){
+    const price=Number(d?.retail_price)||0,name=`${d?.name||''} ${d?.model||''} ${d?.model_code||''}`.toLowerCase();
+    return price>0&&(price<=650000||/갤럭시\s*a\d|galaxy\s*a\d|wide|와이드|버디|buddy/.test(name));
+  }
+  function purposeIsPremiumDevice(d){
+    const price=Number(d?.retail_price)||0,name=`${d?.name||''} ${d?.model||''} ${d?.model_code||''}`.toLowerCase();
+    return price>=900000||/아이폰|iphone|울트라|ultra|폴드|fold|플립|flip|\bpro\b|프로|max|갤럭시\s*s\d|galaxy\s*s\d/.test(name);
+  }
+  function purposeDevicePool(category,carrierValue){
+    let rows=(catalog?.devices||[]).filter(d=>(carrierValue==='all'||d.carrier===carrierValue)&&hasAmount(d.retail_price)&&Number(d.retail_price)>0);
+    if(category==='senior'||category==='kids')rows=rows.filter(purposeIsLowCostDevice);
+    else if(category==='value')rows=rows.filter(d=>Number(d.retail_price)<=1000000&&!purposeIsPremiumDevice(d));
+    else if(category==='premium')rows=rows.filter(purposeIsPremiumDevice);
+    return rows.sort((a,b)=>Number(a.retail_price)-Number(b.retail_price)||byNewest(a,b)).slice(0,180);
+  }
+  function purposePlanPool(d,category,joinLabel){
+    const ids=devicePlanIds(d,joinLabel);if(!ids.length)return[];
+    let rows=(catalog?.mobile_plans||[]).filter(p=>p.carrier===d.carrier&&ids.includes(p.id)&&hasAmount(p.monthly_fee));
+    if(category==='senior'){
+      const senior=rows.filter(p=>planFeatureMatch(p,'senior'));rows=senior.length?senior:rows.filter(p=>Number(p.monthly_fee)<=55000);
+    }else if(category==='kids'){
+      rows=rows.filter(p=>planFeatureMatch(p,'kids'));
+    }else if(category==='value'){
+      const value=rows.filter(p=>Number(p.monthly_fee)<=69000);if(value.length)rows=value;
+    }else if(category==='premium'){
+      const premium=rows.filter(p=>Number(p.monthly_fee)>=50000);if(premium.length)rows=premium;
+    }
+    return rows.sort((a,b)=>Number(a.monthly_fee)-Number(b.monthly_fee)||byOrder(a,b)).slice(0,40);
+  }
+  function purposeCandidateForDevice(d,category,joinLabel,usePension){
+    const welfare=category==='senior'&&usePension?'basic_pension':'none',plans=purposePlanPool(d,category,joinLabel);let best=null;
+    for(const p of plans){
+      const support=scenarioForSelection(d,p,joinLabel,'support',24,welfare),contract=scenarioForSelection(d,p,joinLabel,'contract',24,welfare),known=[support,contract].filter(x=>x?.known).sort((a,b)=>a.total24-b.total24);
+      if(!known.length)continue;const selected=known[0],row={d,p,best:selected,support,contract,welfare};
+      if(!best||row.best.total24<best.best.total24)best=row;
+    }
+    return best;
+  }
+  function purposeRecommendations(){
+    const carrierValue=$('purpose-carrier')?.value||'all',joinLabel=$('purpose-join')?.value||'기기변경',usePension=!!$('purpose-pension')?.checked,rows=[];
+    purposeDevicePool(purposeCategory,carrierValue).forEach(d=>{const row=purposeCandidateForDevice(d,purposeCategory,joinLabel,usePension);if(row)rows.push(row)});
+    rows.sort((a,b)=>a.best.total24-b.best.total24||Number(a.d.retail_price)-Number(b.d.retail_price));
+    const unique=[],seen=new Set();for(const row of rows){const key=`${row.d.carrier}|${row.d.name}`;if(seen.has(key))continue;seen.add(key);unique.push(row);if(unique.length>=6)break}
+    return unique;
+  }
+  function purposeCardLine(label,value,cls=''){
+    const line=document.createElement('div');if(cls)line.className=cls;const a=document.createElement('span'),b=document.createElement('b');a.textContent=label;b.textContent=value;line.append(a,b);return line;
+  }
+  function purposeQuoteText(row){
+    if(!row)return '';const method=row.best.method==='support'?'공시지원금':'선택약정 25%',joinLabel=$('purpose-join')?.value||'기기변경',lines=['[웅비통신 용도별 추천 상담]',`용도: ${{senior:'효도폰',kids:'키즈폰',value:'가성비폰',premium:'프리미엄폰'}[purposeCategory]||'휴대폰'}`,`통신사: ${row.d.carrier}`,`가입유형: ${joinLabel}`,`기종: ${row.d.name}`,`요금제: ${row.p.name} / ${won(row.p.monthly_fee)}`,`추천 할인방식: ${method}`,`예상 월 납부액: ${won(row.best.monthly)}`,`24개월 총 예상비용: ${won(row.best.total24)}`];
+    if(row.welfare==='basic_pension')lines.push(`기초연금 수급자 할인: -${won(row.best.welfare?.amount||0)}`);
+    lines.push('※ 실제 가입 가능 여부·자격·지원금·프로모션은 상담 시점에 최종 확인합니다.');return lines.join('\n');
+  }
+  function renderPurposeRecommendations(){
+    const box=$('purpose-results'),note=$('purpose-category-note'),pensionWrap=$('purpose-pension-wrap');if(!box)return;if(note)note.textContent=PURPOSE_COPY[purposeCategory]||'';if(pensionWrap)pensionWrap.hidden=purposeCategory!=='senior';
+    document.querySelectorAll('[data-purpose-category]').forEach(btn=>btn.classList.toggle('active',btn.dataset.purposeCategory===purposeCategory));
+    const rows=purposeRecommendations();box.innerHTML='';
+    if(!catalog){box.innerHTML='<p>추천 조건을 불러오는 중입니다.</p>';return}
+    if(!rows.length){box.innerHTML='<p>현재 등록된 데이터에서 이 조건에 맞는 조합을 찾지 못했습니다. 통신사나 가입유형을 바꾸거나 직접 계산을 이용해 주세요.</p>';return}
+    rows.forEach((row,index)=>{
+      const card=document.createElement('article');card.className='purpose-card';
+      const top=document.createElement('div');top.className='purpose-card-top';const badge=document.createElement('span'),rank=document.createElement('small');badge.textContent=`${row.d.carrier} · ${$('purpose-join')?.value||'기기변경'}`;rank.textContent=index===0?'현재 조건 낮은 부담':'추천 조합';top.append(badge,rank);
+      const name=document.createElement('strong');name.textContent=row.d.name;const plan=document.createElement('em');plan.textContent=row.p.name;
+      const total=document.createElement('div');total.className='purpose-card-total';const totalLabel=document.createElement('span'),totalValue=document.createElement('b');totalLabel.textContent='예상 월 납부액';totalValue.textContent=won(row.best.monthly);total.append(totalLabel,totalValue);
+      const detail=document.createElement('div');detail.className='purpose-card-detail';detail.append(purposeCardLine('월 기기값 · 이자 포함',won(row.best.inst.monthly)),purposeCardLine('할인 후 통신요금',won(row.best.service)));if(row.welfare==='basic_pension')detail.append(purposeCardLine('기초연금 수급자 할인','-'+won(row.best.welfare?.amount||0),'welfare-line'));
+      const compare=document.createElement('div');compare.className='purpose-method-compare';const sText=row.support?.known?won(row.support.monthly):'매장 확인',cText=row.contract?.known?won(row.contract.monthly):'매장 확인';compare.append(purposeCardLine('공시지원 월',sText),purposeCardLine('선택약정 월',cText));
+      const best=document.createElement('div');best.className='purpose-best';best.textContent=`${row.best.method==='support'?'공시지원금':'선택약정 25%'} 기준 · 24개월 총 예상비용 ${won(row.best.total24)}`;
+      const actions=document.createElement('div');actions.className='purpose-card-actions';const detailBtn=document.createElement('button'),consultBtn=document.createElement('button');detailBtn.type='button';consultBtn.type='button';detailBtn.textContent='자세히 계산';consultBtn.textContent='이 조건 상담';consultBtn.className='primary';detailBtn.addEventListener('click',()=>applyPurposeResult(row));consultBtn.addEventListener('click',async()=>{const ok=await copyCustomerConsultText(purposeQuoteText(row));if(ok)window.location.href='http://pf.kakao.com/_nWwNT/chat'});actions.append(detailBtn,consultBtn);
+      card.append(top,name,plan,total,detail,compare,best,actions);box.appendChild(card);
+    });
+  }
+  function applyPurposeResult(row){
+    if(!row)return;deviceBrandFilter=deviceBrandKey(row.d);updateDeviceBrandButtons();carrier.value=row.d.carrier;joinType.value=$('purpose-join')?.value||'기기변경';discountMethod.value=row.best.method;welfareType.value=row.welfare||'none';deviceSearch.value=row.d.name||'';fillDevices();deviceSelect.value=row.d.id;fillPlans();planSelect.value=row.p.id;deviceSearch.value='';fillDevices();deviceSelect.value=row.d.id;fillPlans();planSelect.value=row.p.id;setMobileMode('direct');syncMobile();$('direct-mobile-grid')?.scrollIntoView({behavior:'smooth',block:'start'});
+  }
   function setMobileMode(mode){
-    const quick=mode==='quick';$('quick-recommend').hidden=!quick;$('direct-mobile-grid').hidden=quick;
+    const purpose=mode==='purpose',quick=mode==='quick';$('purpose-recommend').hidden=!purpose;$('quick-recommend').hidden=!quick;$('direct-mobile-grid').hidden=purpose||quick;
     document.querySelectorAll('[data-mobile-mode]').forEach(b=>b.classList.toggle('active',b.dataset.mobileMode===mode));
-    if(quick){$('quick-carrier').value=carrier.value;$('quick-join').value=joinType.value}
+    if(purpose)renderPurposeRecommendations();if(quick){$('quick-carrier').value=carrier.value;$('quick-join').value=joinType.value}syncQuoteBar();
   }
   function quickPlanMeets(p,need){const gb=planDataGb(p);if(need==='unlimited')return planHasUnlimited(p);return gb!==null&&gb>=Number(need)}
   function quickRecommendations(){
@@ -612,6 +693,8 @@
   $('compare-saved-quotes')?.addEventListener('click',renderSavedQuoteComparison);
   $('close-saved-quote-compare')?.addEventListener('click',()=>{const panel=$('saved-quote-compare');if(panel)panel.hidden=true});
   document.querySelectorAll('[data-mobile-mode]').forEach(btn=>btn.addEventListener('click',()=>setMobileMode(btn.dataset.mobileMode)));
+  document.querySelectorAll('[data-purpose-category]').forEach(btn=>btn.addEventListener('click',()=>{purposeCategory=btn.dataset.purposeCategory||'senior';renderPurposeRecommendations()}));
+  ['purpose-carrier','purpose-join','purpose-pension'].forEach(id=>$(id)?.addEventListener('change',renderPurposeRecommendations));
   $('quick-find')?.addEventListener('click',renderQuickRecommendations);
   ['quick-carrier','quick-join','quick-brand','quick-data','quick-budget'].forEach(id=>$(id)?.addEventListener('change',()=>{$('quick-results').innerHTML='<p>조건이 바뀌었습니다. 추천 3개 찾기를 눌러주세요.</p>'}));
   ['device-compare-2','device-compare-3'].forEach(id=>$(id)?.addEventListener('change',syncDeviceCompare));
@@ -1176,6 +1259,6 @@
   ]).then(([base,plans,supports,extra,iphone18,mvno,prepaid,internet])=>{
     catalog=base;const deviceMap=new Map();[...(base?.devices||[]),...(extra?.devices||[]),...(iphone18?.devices||[])].forEach(d=>deviceMap.set(d.id,d));catalog.devices=[...deviceMap.values()];catalog.mobile_plans=plans?.mobile_plans||base?.mobile_plans||[];contractRate=Number(plans?.selection_contract_rate)||DEFAULT_CONTRACT_RATE;supportSchedules=supports?.support_schedules||[];mvnoData=mvno||mvnoData;prepaidData=prepaid||prepaidData;internetData=internet||internetData;
     const mobileDates=[base?.meta?.updated_at,plans?.meta?.updated_at,supports?.meta?.updated_at,extra?.meta?.updated_at,iphone18?.meta?.updated_at].filter(Boolean).sort();setUpdated('catalog-updated',mobileDates.at(-1));setUpdated('mvno-updated',mvnoData?.meta?.updated_at);setUpdated('prepaid-updated',prepaidData?.meta?.updated_at);setUpdated('internet-updated',internetData?.meta?.updated_at);
-    fillDevices();fillMvnoProviders();fillPrepaidProviders();fillInternetProviders();renderWiredComparison();renderWiredRecentQuotes();const restoredWired=restoreInternetQuoteFromUrl();renderRecentQuotes();if(!restoredWired)restoreQuoteFromUrl();suspendUrlSync=false;syncMobile();
+    fillDevices();fillMvnoProviders();fillPrepaidProviders();fillInternetProviders();renderWiredComparison();renderWiredRecentQuotes();renderPurposeRecommendations();const restoredWired=restoreInternetQuoteFromUrl();renderRecentQuotes();const restoredMobile=!restoredWired&&restoreQuoteFromUrl();if(!restoredWired&&!restoredMobile)setMobileMode('purpose');suspendUrlSync=false;syncMobile();
   }).catch(()=>{$('mobile-data-note').textContent='상품 데이터를 불러오지 못했습니다. 잠시 후 다시 확인해 주세요.'});
 })();

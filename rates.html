@@ -7,7 +7,7 @@
   <title>요금 알아보기 | 웅비통신 덕천만덕점</title>
   <meta name="description" content="휴대폰·알뜰폰·선불폰·인터넷·TV 요금을 선택 조건에 따라 확인할 수 있는 웅비통신 요금 안내 페이지입니다.">
   <link rel="icon" type="image/svg+xml" href="assets/woongbi-mark.svg">
-  <link rel="stylesheet" href="assets/rates.css?v=20260916-13">
+  <link rel="stylesheet" href="assets/rates.css?v=20260916-14">
 </head>
 <body>
   <header class="rate-top">
@@ -50,9 +50,29 @@
         <section class="rate-panel active" data-panel="mobile">
           <div class="rate-panel-head"><div><span class="eyebrow">휴대폰</span><h2>공시지원 / 선택약정 비교</h2></div><span class="updated" id="catalog-updated">데이터 기준 확인 중</span></div>
 <div class="mobile-mode-switch" role="tablist" aria-label="휴대폰 견적 방식">
-  <button type="button" class="active" data-mobile-mode="direct">직접 계산하기</button>
-  <button type="button" data-mobile-mode="quick">간편 추천받기</button>
+  <button type="button" class="active" data-mobile-mode="purpose">용도별 추천</button>
+  <button type="button" data-mobile-mode="direct">직접 계산</button>
+  <button type="button" data-mobile-mode="quick">간편 추천</button>
 </div>
+<section class="purpose-recommend" id="purpose-recommend">
+  <div class="purpose-head">
+    <div><span class="eyebrow">웅비통신 추천관</span><h3>누구를 위한 휴대폰인가요?</h3><p>등록된 출고가·요금제·공시지원금을 이용해 24개월 총 예상비용을 비교합니다. 확인되지 않은 금액은 임의로 계산하지 않습니다.</p></div>
+  </div>
+  <div class="purpose-tabs" role="tablist" aria-label="휴대폰 용도 선택">
+    <button type="button" class="active" data-purpose-category="senior"><strong>효도폰</strong><small>부모님께 부담 적게</small></button>
+    <button type="button" data-purpose-category="kids"><strong>키즈폰</strong><small>아이 첫 휴대폰</small></button>
+    <button type="button" data-purpose-category="value"><strong>가성비폰</strong><small>가격·성능 균형</small></button>
+    <button type="button" data-purpose-category="premium"><strong>프리미엄폰</strong><small>최신·고성능</small></button>
+  </div>
+  <div class="purpose-controls">
+    <label>통신사<select id="purpose-carrier"><option value="all">전체 통신사</option><option>SKT</option><option>KT</option><option>LGU+</option></select></label>
+    <label>가입유형<select id="purpose-join"><option>기기변경</option><option>번호이동</option><option>신규가입</option></select></label>
+    <label class="purpose-pension" id="purpose-pension-wrap"><input type="checkbox" id="purpose-pension" checked><span><strong>기초연금 수급자 할인 적용</strong><small>실제 기초연금 수급자에게만 적용되는 예시입니다.</small></span></label>
+  </div>
+  <div class="purpose-category-note" id="purpose-category-note">출고가가 낮은 기종과 시니어 요금제를 우선 살펴보고, 기초연금 수급자 할인을 적용해 공시지원금과 선택약정 중 24개월 총 부담이 낮은 조건을 보여드립니다.</div>
+  <div class="purpose-results" id="purpose-results"><p>추천 조건을 불러오는 중입니다.</p></div>
+  <div class="purpose-footnote">※ 실제 가입 가능 여부, 연령·복지 자격, 공시지원금 및 프로모션은 개통 시점에 최종 확인됩니다.</div>
+</section>
 <section class="quick-recommend" id="quick-recommend" hidden>
   <div class="quick-title"><div><strong>조건만 고르면 추천 3개</strong><span>현재 등록된 기종·가입 가능 요금제·공시지원금을 이용해 월 납부액이 낮은 후보를 찾습니다.</span></div></div>
   <div class="quick-fields">
@@ -65,7 +85,7 @@
   <button type="button" class="quick-find" id="quick-find">추천 3개 찾기</button>
   <div class="quick-results" id="quick-results"><p>조건을 선택한 뒤 추천을 눌러주세요.</p></div>
 </section>
-<div class="rate-grid" id="direct-mobile-grid">
+<div class="rate-grid" id="direct-mobile-grid" hidden>
             <form class="rate-card rate-form" id="mobile-form" onsubmit="return false">
               <div class="field-row two">
                 <label>통신사<select id="carrier"><option>SKT</option><option>KT</option><option>LGU+</option></select></label>
@@ -466,7 +486,7 @@
   </main>
 
   <footer class="rate-footer"><div class="rate-wrap"><strong>웅비통신 덕천만덕점</strong><p>부산광역시 북구 만덕대로178번길 17 · 월~토 11:00~20:00 · 일요일 휴무 · 051-343-7677</p><p>표시 금액은 상담을 돕기 위한 예상치이며 실제 개통 조건과 다를 수 있습니다.</p></div></footer>
-  <script src="assets/rates.js?v=20260916-18" defer></script>
+  <script src="assets/rates.js?v=20260916-19" defer></script>
 
   <div class="mobile-quote-bar" id="mobile-quote-bar" hidden>
     <div class="mobile-quote-bar-value"><span>현재 예상 월 납부액</span><strong id="mobile-quote-bar-total">—</strong></div>
