@@ -15,7 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Apply patch
-        run: python tmp_fix_value_senior_models.py
+        run: python tmp_run_value_senior_patch.py
       - name: Check JavaScript syntax
         run: node --check assets/rates.js
       - name: Verify recommendation rules
