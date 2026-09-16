@@ -214,11 +214,41 @@
     fillPlans();
   }
   function eligiblePlans(){const d=currentDevice();if(!d)return[];const raw=devicePlanIds(d,joinType.value),ids=raw.length?new Set(raw):null;return (catalog?.mobile_plans||[]).filter(p=>p.carrier===carrier.value&&(!ids||ids.has(p.id))).sort(byOrder)}
-  const planPickerState={data:'all',price:'all',sort:'source',query:''};
+  const planPickerState={data:'all',price:'all',feature:'all',sort:'source',query:''};
+  function planBenefitLabels(p){
+    const name=String(p?.name||'').toLowerCase(),labels=[];
+    const add=label=>{if(label&&!labels.includes(label))labels.push(label)};
+    if(name.includes('넷플릭스'))add('넷플릭스');
+    if(name.includes('유튜브 프리미엄'))add('유튜브 프리미엄');
+    if(name.includes('디즈니+')||name.includes('디즈니 플러스'))add('디즈니+');
+    if(name.includes('티빙&웨이브'))add('티빙·웨이브');
+    else if(name.includes('티빙/지니/밀리'))add('티빙·지니·밀리');
+    else if(name.includes('티빙'))add('티빙');
+    if(name.includes('t 우주')||name.includes('t우주'))add('T우주');
+    if(name.includes('google ai')||name.includes('구글 ai'))add('Google AI');
+    if(name.includes('구글원+보상패스'))add('구글원·보상패스');
+    if(name.includes('위버스'))add('위버스');
+    if(name.includes('가전구독'))add('가전구독');
+    if(name.includes('폰케어'))add('폰케어');
+    if(name.includes('삼성디바이스')||(p?.carrier==='KT'&&name.includes('초이스')&&name.includes('삼성')))add('삼성 혜택');
+    if(name.includes('애플디바이스'))add('애플 혜택');
+    if(name.includes('마니아디바이스')||(p?.carrier==='KT'&&name.includes('초이스')&&name.includes('디바이스'))||(p?.carrier==='SKT'&&name.includes('베스트')&&name.includes('스마트기기')))add('디바이스 혜택');
+    return labels;
+  }
+  function planFeatureMatch(p,feature){
+    if(feature==='all')return true;
+    const name=String(p?.name||'').toLowerCase(),age=String(p?.age_limit||'').toUpperCase();
+    if(feature==='benefit')return planBenefitLabels(p).length>0;
+    if(feature==='senior')return age.includes('65')||age.includes('75')||name.includes('시니어')||name.includes('65+')||name.includes('75+');
+    if(feature==='youth')return age==='B_19_34'||name.includes('청년')||name.includes('y덤')||name.includes('유쓰')||name.includes('uth');
+    if(feature==='kids')return age==='U_12'||age==='U_18'||name.includes('키즈')||name.includes('청소년')||name.includes('스쿨덤')||name.includes('zem');
+    return true;
+  }
   function planPickerTags(p){
     const text=`${p?.name||''} ${p?.data||''}`.toLowerCase(),tags=[];
-    [['65+','65+'],['복지','복지'],['이월','이월'],['y덤','Y덤'],['청년','청년'],['키즈','키즈']].forEach(([needle,label])=>{if(text.includes(needle)&&!tags.includes(label))tags.push(label)});
-    return tags.slice(0,4);
+    const benefits=planBenefitLabels(p);if(benefits.length)tags.push('혜택형',...benefits.slice(0,2));
+    [['65+','65+'],['75+','75+'],['복지','복지'],['이월','이월'],['y덤','Y덤'],['청년','청년'],['유쓰','청년'],['키즈','키즈'],['청소년','청소년']].forEach(([needle,label])=>{if(text.includes(needle)&&!tags.includes(label))tags.push(label)});
+    return tags.slice(0,5);
   }
   function planPickerMatches(p){
     const query=String(planPickerState.query||'').trim().toLowerCase();
@@ -231,6 +261,7 @@
     if(planPickerState.data==='normal'&&!(gb!==null&&gb!==Infinity&&gb>5&&gb<=20))return false;
     if(planPickerState.data==='heavy'&&!(gb!==null&&gb!==Infinity&&gb>20))return false;
     if(planPickerState.data==='unlimited'&&!planHasUnlimited(p))return false;
+    if(!planFeatureMatch(p,planPickerState.feature))return false;
     return true;
   }
   function planPickerRows(){
@@ -255,13 +286,13 @@
     const rows=planPickerRows();count.textContent=`현재 조건에 맞는 요금제 ${rows.length.toLocaleString('ko-KR')}개`;
     if(!rows.length){const empty=document.createElement('p');empty.className='plan-picker-empty';empty.textContent='조건에 맞는 요금제가 없습니다. 검색어나 필터를 조금 넓혀보세요.';list.appendChild(empty);return}
     rows.forEach(p=>{
-      const card=document.createElement('button');card.type='button';card.className='plan-option-card';if(p.id===planSelect.value)card.classList.add('selected');
+      const card=document.createElement('button');card.type='button';card.className='plan-option-card';if(planBenefitLabels(p).length)card.classList.add('benefit-plan');if(p.id===planSelect.value)card.classList.add('selected');
       const top=document.createElement('span');top.className='plan-option-top';
       const name=document.createElement('strong');name.textContent=p.name;
       const price=document.createElement('b');price.textContent=hasAmount(p.monthly_fee)?won(p.monthly_fee):'매장 확인';
       top.append(name,price);card.appendChild(top);
       const data=document.createElement('small');data.textContent=p.data?`데이터 ${p.data}`:'데이터 제공량은 상담 시 확인';card.appendChild(data);
-      const tags=planPickerTags(p);if(tags.length){const tagBox=document.createElement('span');tagBox.className='plan-option-tags';tags.forEach(tag=>{const chip=document.createElement('i');chip.textContent=tag;tagBox.appendChild(chip)});card.appendChild(tagBox)}
+      const tags=planPickerTags(p);if(tags.length){const tagBox=document.createElement('span');tagBox.className='plan-option-tags';tags.forEach(tag=>{const chip=document.createElement('i');chip.textContent=tag;if(tag==='혜택형')chip.classList.add('benefit-chip');tagBox.appendChild(chip)});card.appendChild(tagBox)}
       const choose=document.createElement('em');choose.textContent=p.id===planSelect.value?'현재 선택한 요금제':'이 요금제 선택';card.appendChild(choose);
       card.addEventListener('click',()=>{planSelect.value=p.id;closePlanPicker();syncMobile()});list.appendChild(card);
     });
