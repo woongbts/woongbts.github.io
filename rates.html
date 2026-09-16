@@ -56,7 +56,7 @@
 </div>
 <section class="purpose-recommend" id="purpose-recommend">
   <div class="purpose-head">
-    <div><span class="eyebrow">웅비통신 추천관</span><h3>누구를 위한 휴대폰인가요?</h3><p>등록된 출고가·요금제·공시지원금을 이용해 24개월 총 예상비용을 비교합니다. 확인되지 않은 금액은 임의로 계산하지 않습니다.</p></div>
+    <div><span class="eyebrow">웅비통신 추천관</span><h3>누구를 위한 휴대폰인가요?</h3><p>등록된 출고가·요금제·공시지원금을 이용해 월 예상 납부액과 할인방식을 비교합니다. 확인되지 않은 금액은 임의로 계산하지 않습니다.</p></div>
   </div>
   <div class="purpose-tabs" role="tablist" aria-label="휴대폰 용도 선택">
     <button type="button" class="active" data-purpose-category="senior"><strong>효도폰</strong><small>부모님께 부담 적게</small></button>
@@ -210,7 +210,7 @@
                   <div><span>복지할인</span><b id="explain-welfare">—</b></div>
                   <div><span>월 통신요금</span><b id="explain-service">—</b></div>
                   <div class="total"><span>예상 월 납부액</span><b id="explain-monthly-total">—</b></div>
-                  <div class="total"><span>24개월 총 예상비용</span><b id="explain-total24">—</b></div>
+                  
                 </div>
                 <p id="explain-note">기종과 요금제를 선택하면 계산 과정을 항목별로 보여드립니다.</p>
               </details>
@@ -232,19 +232,19 @@
                 </div>
               </section>
               <section class="mobile-compare" id="mobile-compare" aria-live="polite">
-                <div class="compare-head"><div><strong>공시지원금 vs 선택약정</strong><span>24개월 약정 총비용 · 단말 총 할부액 포함</span></div><b id="compare-best">조건을 선택해 주세요</b></div>
+                <div class="compare-head"><div><strong>공시지원금 vs 선택약정</strong><span>월 예상 납부액과 할인방식을 비교합니다.</span></div><b id="compare-best">조건을 선택해 주세요</b></div>
                 <div class="compare-grid">
                   <button type="button" class="compare-card" id="compare-support-card" data-method="support">
-                    <span>공시지원금</span><strong id="compare-support-monthly">—</strong><small>예상 월 납부액</small><em id="compare-support-total">24개월 총비용 —</em><i id="compare-support-benefit">지원금 —</i>
+                    <span>공시지원금</span><strong id="compare-support-monthly">—</strong><small>예상 월 납부액</small><i id="compare-support-benefit">지원금 —</i>
                   </button>
                   <button type="button" class="compare-card" id="compare-contract-card" data-method="contract">
-                    <span>선택약정 25%</span><strong id="compare-contract-monthly">—</strong><small>예상 월 납부액</small><em id="compare-contract-total">24개월 총비용 —</em><i id="compare-contract-benefit">월 할인 —</i>
+                    <span>선택약정 25%</span><strong id="compare-contract-monthly">—</strong><small>예상 월 납부액</small><i id="compare-contract-benefit">월 할인 —</i>
                   </button>
                 </div>
                 <div class="compare-diff" id="compare-diff">기종과 요금제를 선택하면 두 방식의 차이를 한눈에 비교합니다.</div>
               </section>
               <section class="device-compare-tool" id="device-compare-tool">
-      <div class="compare-head"><div><strong>기종 2~3개 비교</strong><span>현재 선택한 요금제를 같은 통신사 다른 기종에 적용해 월 납부액과 24개월 총비용을 비교합니다.</span></div></div>
+      <div class="compare-head"><div><strong>기종 2~3개 비교</strong><span>현재 선택한 요금제를 같은 통신사 다른 기종에 적용해 월 납부액과 할인방식을 비교합니다.</span></div></div>
       <div class="device-compare-selects">
         <label>현재 기종<select id="device-compare-1" disabled><option value="">기종 선택 후 표시</option></select></label>
         <label>비교 기종 1<select id="device-compare-2"><option value="">비교 기종 선택</option></select></label>
@@ -486,7 +486,7 @@
   </main>
 
   <footer class="rate-footer"><div class="rate-wrap"><strong>웅비통신 덕천만덕점</strong><p>부산광역시 북구 만덕대로178번길 17 · 월~토 11:00~20:00 · 일요일 휴무 · 051-343-7677</p><p>표시 금액은 상담을 돕기 위한 예상치이며 실제 개통 조건과 다를 수 있습니다.</p></div></footer>
-  <script src="assets/rates.js?v=20260916-29" defer></script>
+  <script src="assets/rates.js?v=20260916-30" defer></script>
 
   <div class="mobile-quote-bar" id="mobile-quote-bar" hidden>
     <div class="mobile-quote-bar-value"><span>현재 예상 월 납부액</span><strong id="mobile-quote-bar-total">—</strong></div>

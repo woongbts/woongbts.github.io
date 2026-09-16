@@ -19,7 +19,7 @@
     const services=document.getElementById('services');
     if(services){
       const section=document.createElement('section');section.id='wb-rate-entry';section.className='wb-rate-entry';
-      section.innerHTML='<div class="wrap"><div class="wb-rate-entry-card"><div class="wb-rate-entry-copy"><small>새 기능 · BETA</small><strong>내 월요금, 먼저 계산해보세요.</strong><p>휴대폰·알뜰폰·인터넷·TV와 공시지원금·선택약정·결합·복지할인의 구조를 한 화면에서 확인할 수 있습니다.</p></div><a class="wb-rate-entry-link" href="/rates.html">요금 알아보기 →</a></div></div>';
+      section.innerHTML='<div class="wrap"><div class="wb-rate-entry-card"><div class="wb-rate-entry-copy"><strong>내 월요금, 먼저 계산해보세요.</strong><p>휴대폰·알뜰폰·인터넷·TV와 공시지원금·선택약정·결합·복지할인의 구조를 한 화면에서 확인할 수 있습니다.</p></div><a class="wb-rate-entry-link" href="/rates.html">요금 알아보기 →</a></div></div>';
       services.insertAdjacentElement('afterend',section);
     }
   }

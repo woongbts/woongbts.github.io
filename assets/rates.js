@@ -372,16 +372,14 @@
     const support=mobileScenario('support'),contract=mobileScenario('contract');
     const supportKnown=support?.known===true,contractKnown=contract?.known===true;
     $('compare-support-monthly').textContent=supportKnown?won(support.monthly):(support&&support.known===false?'매장 확인':'—');
-    $('compare-support-total').textContent=supportKnown?`24개월 총비용 ${won(support.total24)}`:'24개월 총비용 —';
     $('compare-support-benefit').textContent=supportKnown?`공시지원금 ${won(support.support)}`:'지원금 —';
     $('compare-contract-monthly').textContent=contractKnown?won(contract.monthly):'—';
-    $('compare-contract-total').textContent=contractKnown?`24개월 총비용 ${won(contract.total24)}`:'24개월 총비용 —';
     $('compare-contract-benefit').textContent=contractKnown?`월 선택약정 할인 ${won(contract.contractDiscount)}`:'월 할인 —';
     document.querySelectorAll('.compare-card').forEach(card=>card.classList.toggle('active',card.dataset.method===discountMethod.value));
     if(supportKnown&&contractKnown){
       const diff=Math.abs(support.total24-contract.total24),best=support.total24<=contract.total24?'공시지원금':'선택약정';
       $('compare-best').textContent=diff<500?`두 방식이 비슷해요`:`${best} 쪽이 유리`;
-      $('compare-diff').textContent=diff<500?'현재 조건에서는 두 방식의 24개월 총비용 차이가 크지 않습니다.':`${best} 이용 시 24개월 총 예상비용이 약 ${won(diff)} 낮습니다.`;
+      $('compare-diff').textContent=diff<500?'현재 조건에서는 두 방식의 전체 부담 차이가 크지 않습니다.':`${best} 쪽이 전체 부담 기준으로 더 유리합니다.`;
     }else if(contractKnown&&support&&support.known===false){
       $('compare-best').textContent='공시지원금 확인 필요';$('compare-diff').textContent='선택약정은 계산됐고, 공시지원금은 매장에서 최신 금액을 확인해 비교해 드립니다.';
     }else{$('compare-best').textContent='조건을 선택해 주세요';$('compare-diff').textContent='기종과 요금제를 선택하면 두 방식의 차이를 한눈에 비교합니다.'}
@@ -705,7 +703,7 @@
     const line=document.createElement('div');if(cls)line.className=cls;const a=document.createElement('span'),b=document.createElement('b');a.textContent=label;b.textContent=value;line.append(a,b);return line;
   }
   function purposeQuoteText(row){
-    if(!row)return '';const method=row.kidsPromo?'신규가입 특가':row.best.method==='support'?'공시지원금':'선택약정 25%',joinLabel=row.joinLabel||$('purpose-join')?.value||'기기변경',lines=['[웅비통신 용도별 추천 상담]',`용도: ${{senior:'효도폰',kids:'키즈폰',value:'가성비폰',premium:'프리미엄폰'}[purposeCategory]||'휴대폰'}`,`통신사: ${row.d.carrier}`,`가입유형: ${joinLabel}`,`기종: ${row.d.name}`,`요금제: ${row.p.name} / ${won(row.p.monthly_fee)}`,`추천 조건: ${method}`,`예상 월 납부액: ${won(row.best.monthly)}`,`24개월 총 예상비용: ${won(row.best.total24)}`];if(row.kidsPromo)lines.push('기기값: 0원 행사','※ 신규가입 한정 · 해당 요금제 및 행사 조건 기준');
+    if(!row)return '';const method=row.kidsPromo?'신규가입 특가':row.best.method==='support'?'공시지원금':'선택약정 25%',joinLabel=row.joinLabel||$('purpose-join')?.value||'기기변경',lines=['[웅비통신 용도별 추천 상담]',`용도: ${{senior:'효도폰',kids:'키즈폰',value:'가성비폰',premium:'프리미엄폰'}[purposeCategory]||'휴대폰'}`,`통신사: ${row.d.carrier}`,`가입유형: ${joinLabel}`,`기종: ${row.d.name}`,`요금제: ${row.p.name} / ${won(row.p.monthly_fee)}`,`추천 조건: ${method}`,`예상 월 납부액: ${won(row.best.monthly)}`];if(row.kidsPromo)lines.push('기기값: 0원 행사','※ 신규가입 한정 · 해당 요금제 및 행사 조건 기준');
     if(row.welfare==='basic_pension')lines.push(`기초연금 수급자 할인: -${won(row.best.welfare?.amount||0)}`);
     if(purposeCategory==='premium'&&row.support?.known)lines.push(`공시지원금: -${won(row.support.support)}`,`지원 후 기기값: ${won(row.support.principal)}`);
     lines.push('※ 실제 가입 가능 여부·자격·지원금·프로모션은 상담 시점에 최종 확인합니다.');return lines.join('\n');
@@ -725,7 +723,7 @@
       const promo=document.createElement('div');if(row.kidsPromo){promo.className='kids-zero-deal';promo.innerHTML=`<span>${row.promoLabel||'SALE'}</span><strong>${row.promoText||'기기값 0원 행사'}</strong><small>신규가입 한정 · 해당 요금제 기준</small>`}
       const detail=document.createElement('div');detail.className='purpose-card-detail';if(purposeCategory==='premium'&&row.support?.known)detail.append(purposeCardLine('공시지원금','-'+won(row.support.support)),purposeCardLine('지원 후 기기값',won(row.support.principal)));if(row.kidsPromo)detail.append(purposeCardLine('기기값','0원'),purposeCardLine('월 통신요금',won(row.best.service)));else detail.append(purposeCardLine('월 기기값 · 이자 포함',won(row.best.inst.monthly)),purposeCardLine('할인 후 통신요금',won(row.best.service)));if(row.welfare==='basic_pension')detail.append(purposeCardLine('기초연금 수급자 할인','-'+won(row.best.welfare?.amount||0),'welfare-line'));
       const compare=document.createElement('div');compare.className='purpose-method-compare';if(row.kidsPromo){compare.classList.add('kids-sale-condition');compare.textContent='신규가입 한정 특가 · 재고 및 행사 조건은 상담 시 최종 확인'}else{const sText=row.support?.known?won(row.support.monthly):'매장 확인',cText=row.contract?.known?won(row.contract.monthly):'매장 확인';compare.append(purposeCardLine('공시지원 월',sText),purposeCardLine('선택약정 월',cText))}
-      const best=document.createElement('div');best.className='purpose-best';best.textContent=row.kidsPromo?`기기값 0원 행사 · ${row.p.name} 기준 월 ${won(row.best.monthly)}`:purposeCategory==='premium'&&row.support?.known?`기기값 할인 중심 · 공시지원금 ${won(row.support.support)} · 지원 후 기기값 ${won(row.support.principal)}`:`${row.best.method==='support'?'공시지원금':'선택약정 25%'} 기준 · 24개월 총 예상비용 ${won(row.best.total24)}`;
+      const best=document.createElement('div');best.className='purpose-best';best.textContent=row.kidsPromo?`기기값 0원 행사 · ${row.p.name} 기준 월 ${won(row.best.monthly)}`:purposeCategory==='premium'&&row.support?.known?`기기값 할인 중심 · 공시지원금 ${won(row.support.support)} · 지원 후 기기값 ${won(row.support.principal)}`:`${row.best.method==='support'?'공시지원금':'선택약정 25%'} 기준으로 계산한 월 예상금액입니다.`;
       const actions=document.createElement('div');actions.className='purpose-card-actions';const detailBtn=document.createElement('button'),consultBtn=document.createElement('button');detailBtn.type='button';consultBtn.type='button';detailBtn.textContent='자세히 계산';consultBtn.textContent=row.kidsPromo?'이 특가 상담':'이 조건 상담';consultBtn.className='primary';detailBtn.addEventListener('click',()=>applyPurposeResult(row));consultBtn.addEventListener('click',async()=>{const ok=await copyCustomerConsultText(purposeQuoteText(row));if(ok)window.location.href='http://pf.kakao.com/_nWwNT/chat'});if(row.curated){consultBtn.style.gridColumn='1 / -1';actions.append(consultBtn)}else actions.append(detailBtn,consultBtn);
       card.append(top,name);if(purposeCategory==='premium'&&lineup.textContent)card.append(lineup);card.append(plan);if(row.kidsPromo)card.append(promo);card.append(total,detail,compare,best,actions);box.appendChild(card);
     });
@@ -760,7 +758,7 @@
     rows.forEach(({d,p,best})=>{
       const card=document.createElement('article');card.className='quick-result-card';
       const method=best.method==='support'?'공시지원금':'선택약정 25%';
-      card.innerHTML=`<span>${d.carrier} · ${method}</span><strong>${d.name}</strong><em>${p.name}</em><b>${won(best.monthly)} / 월</b><small>24개월 총 예상비용 ${won(best.total24)}</small>`;
+      card.innerHTML=`<span>${d.carrier} · ${method}</span><strong>${d.name}</strong><em>${p.name}</em><b>${won(best.monthly)} / 월</b>`;
       const btn=document.createElement('button');btn.type='button';btn.textContent='이 조건으로 계산하기';btn.addEventListener('click',()=>applyQuickResult(d,p,best.method));card.appendChild(btn);box.appendChild(card);
     });
   }
@@ -784,7 +782,7 @@
       if(!d||!planEligibleForDevice(d,p,joinType.value)){card.innerHTML=`<span>${index===0?'현재 선택':'비교 기종'}</span><strong>${d?.name||'기종'}</strong><em>선택한 요금제로 가입 불가</em>`;box.appendChild(card);return}
       const s=scenarioForSelection(d,p,joinType.value,'support',monthsSelect.value,welfareType.value),ct=scenarioForSelection(d,p,joinType.value,'contract',monthsSelect.value,welfareType.value),known=[s,ct].filter(x=>x?.known).sort((a,b)=>a.total24-b.total24),best=known[0];
       const supportText=s?.known?won(s.support):'매장 확인',supportMonthly=s?.known?won(s.monthly):'매장 확인',contractMonthly=ct?.known?won(ct.monthly):'—',bestText=best?(best.method==='support'?'공시지원':'선택약정'):'확인 필요';
-      card.innerHTML=`<span>${index===0?'현재 선택':'비교 기종'}</span><strong>${d.name}</strong><em>출고가 ${won(d.retail_price)}</em><div><small>공시지원금</small><b>${supportText}</b></div><div><small>공시 월납부</small><b>${supportMonthly}</b></div><div><small>선약 월납부</small><b>${contractMonthly}</b></div><i>${best?`${bestText} · 24개월 ${won(best.total24)}`:'최종 금액 확인 필요'}</i>`;box.appendChild(card);
+      card.innerHTML=`<span>${index===0?'현재 선택':'비교 기종'}</span><strong>${d.name}</strong><em>출고가 ${won(d.retail_price)}</em><div><small>공시지원금</small><b>${supportText}</b></div><div><small>공시 월납부</small><b>${supportMonthly}</b></div><div><small>선약 월납부</small><b>${contractMonthly}</b></div><i>${best?`${bestText} 추천`:'최종 금액 확인 필요'}</i>`;box.appendChild(card);
     });
   }
   function quoteFingerprint(){
@@ -846,8 +844,8 @@
     const addCell=(text,cls='')=>{const el=document.createElement('div');el.className=`saved-quote-compare-cell ${cls}`.trim();el.textContent=text;table.appendChild(el)};
     addCell('항목','compare-label compare-header');addCell(left.id,'compare-value compare-header');addCell(right.id,'compare-value compare-header');
     const addRow=(label,a,b,highlight=false)=>{addCell(label,'compare-label');addCell(a,'compare-value'+(highlight?' compare-highlight':''));addCell(b,'compare-value'+(highlight?' compare-highlight':''))};
-    addRow('기종',left.device,right.device);addRow('통신사 · 가입',`${left.carrier} · ${left.join}`,`${right.carrier} · ${right.join}`);addRow('요금제',left.plan,right.plan);addRow('할인 방식',left.method,right.method);addRow('월 단말금',hasAmount(left.deviceMonthly)?won(left.deviceMonthly):'확인 필요',hasAmount(right.deviceMonthly)?won(right.deviceMonthly):'확인 필요');addRow('월 통신요금',hasAmount(left.serviceMonthly)?won(left.serviceMonthly):'확인 필요',hasAmount(right.serviceMonthly)?won(right.serviceMonthly):'확인 필요');addRow('예상 월 납부액',hasAmount(left.monthly)?won(left.monthly):'확인 필요',hasAmount(right.monthly)?won(right.monthly):'확인 필요',true);addRow('24개월 총비용',hasAmount(left.total24)?won(left.total24):'확인 필요',hasAmount(right.total24)?won(right.total24):'확인 필요',true);
-    const notes=[];if(hasAmount(left.monthly)&&hasAmount(right.monthly))notes.push(`월 납부액 차이 ${won(Math.abs(left.monthly-right.monthly))}`);if(hasAmount(left.total24)&&hasAmount(right.total24))notes.push(`24개월 총비용 차이 ${won(Math.abs(left.total24-right.total24))}`);if(diff)diff.textContent=notes.length?notes.join(' · '):'저장 시점의 조건을 기준으로 비교합니다.';
+    addRow('기종',left.device,right.device);addRow('통신사 · 가입',`${left.carrier} · ${left.join}`,`${right.carrier} · ${right.join}`);addRow('요금제',left.plan,right.plan);addRow('할인 방식',left.method,right.method);addRow('월 단말금',hasAmount(left.deviceMonthly)?won(left.deviceMonthly):'확인 필요',hasAmount(right.deviceMonthly)?won(right.deviceMonthly):'확인 필요');addRow('월 통신요금',hasAmount(left.serviceMonthly)?won(left.serviceMonthly):'확인 필요',hasAmount(right.serviceMonthly)?won(right.serviceMonthly):'확인 필요');addRow('예상 월 납부액',hasAmount(left.monthly)?won(left.monthly):'확인 필요',hasAmount(right.monthly)?won(right.monthly):'확인 필요',true);
+    const notes=[];if(hasAmount(left.monthly)&&hasAmount(right.monthly))notes.push(`월 납부액 차이 ${won(Math.abs(left.monthly-right.monthly))}`);if(diff)diff.textContent=notes.length?notes.join(' · '):'저장 시점의 조건을 기준으로 비교합니다.';
     panel.hidden=false;panel.scrollIntoView({behavior:'smooth',block:'nearest'});
   }
   function deleteRecentQuote(id){
@@ -862,7 +860,7 @@
   }
   function syncCalcExplanation(){
     const d=currentDevice(),p=currentPlan(),scenario=mobileScenario(discountMethod.value),isContract=discountMethod.value==='contract';
-    const ids=['explain-price','explain-device-discount','explain-principal','explain-interest','explain-device-monthly','explain-plan-fee','explain-contract-discount','explain-welfare','explain-service','explain-monthly-total','explain-total24'];
+    const ids=['explain-price','explain-device-discount','explain-principal','explain-interest','explain-device-monthly','explain-plan-fee','explain-contract-discount','explain-welfare','explain-service','explain-monthly-total'];
     if(!d||!p||!scenario?.known){ids.forEach(id=>{if($(id))$(id).textContent='—'});if($('explain-note'))$('explain-note').textContent=d&&p&&!isContract?'공시지원금 확인이 필요한 조건입니다. 확인된 금액만 계산에 반영합니다.':'기종과 요금제를 선택하면 계산 과정을 항목별로 보여드립니다.';return}
     $('explain-price').textContent=won(scenario.price);
     $('explain-device-discount').textContent=isContract?'미적용':(scenario.support?'-'+won(scenario.support):'0원');
@@ -874,7 +872,6 @@
     $('explain-welfare').textContent=scenario.welfare?.amount?'-'+won(scenario.welfare.amount):'미적용';
     $('explain-service').textContent=won(scenario.service);
     $('explain-monthly-total').textContent=won(scenario.monthly);
-    $('explain-total24').textContent=won(scenario.total24);
     $('explain-note').textContent=`월 단말금 ${won(scenario.inst.monthly)} + 월 통신요금 ${won(scenario.service)} = 예상 월 납부액 ${won(scenario.monthly)}입니다. 추가지원금·실시간 프로모션은 포함하지 않습니다.`;
   }
   function syncMobile(){syncPlanPickerTrigger();syncMobileCore();syncComparison();syncQuoteBar();syncCalcExplanation();syncQuoteMemory();syncQuoteUrl();syncDeviceCompare()}
