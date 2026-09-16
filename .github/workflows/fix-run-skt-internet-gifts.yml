@@ -1,0 +1,50 @@
+name: fix-run-skt-internet-gifts
+
+on:
+  push:
+    paths:
+      - '.github/workflows/fix-run-skt-internet-gifts.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - name: Fix cache-buster update in upgrade script
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('scripts/add-skt-and-internet-gifts.py')
+          lines=p.read_text(encoding='utf-8').splitlines()
+          start=next((i for i,l in enumerate(lines) if l.startswith('html, count = re.subn(')), None)
+          if start is None:
+              raise SystemExit('cache-buster block not found')
+          end=start+3
+          replacement=[
+              "old_cache = 'assets/rates.js?v=20260916-5'",
+              "if old_cache not in html:",
+              "    raise SystemExit('rates.js cache-buster anchor not found')",
+              "html = html.replace(old_cache, 'assets/rates.js?v=20260916-6', 1)",
+          ]
+          lines[start:end]=replacement
+          p.write_text('\n'.join(lines)+'\n',encoding='utf-8')
+          PY
+      - name: Apply SKT provider and customer gift policy
+        run: python scripts/add-skt-and-internet-gifts.py
+      - name: Commit changes
+        run: |
+          git config user.name 'woongbts-ui-sync'
+          git config user.email 'actions@users.noreply.github.com'
+          git add scripts/add-skt-and-internet-gifts.py data/internet.json assets/rates.js rates.html
+          if git diff --cached --quiet; then
+            echo 'No changes to commit'
+            exit 0
+          fi
+          git commit -m 'Add SKT wired plans and customer gift maxima'
+          git push origin main
