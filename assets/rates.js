@@ -442,8 +442,8 @@
   }
   let purposeCategory='senior';
   const PURPOSE_COPY={
-    senior:'매장에서 자주 안내하는 A17·Wide8·Buddy5 등 삼성폰을 우선 살펴보고, 휴대폰용 월 33,000원 이상 요금제에서 24개월 총 예상비용을 비교합니다. 복지 할인은 실제 자격 확인 시 적용됩니다.',
-    kids:'최근 출시 삼성 보급형을 우선 살펴보고, 휴대폰용 월 33,000원 이상 키즈·청소년 요금제에서 공시지원금과 선택약정의 24개월 총 부담을 비교합니다.',
+    senior:'매장에서 자주 안내하는 A17·Wide8·Buddy5 등 삼성폰을 우선 살펴보고, 사용량과 월 부담의 균형이 좋은 휴대폰 요금제로 24개월 총 예상비용을 비교합니다. 복지 할인은 실제 자격 확인 시 적용됩니다.',
+    kids:'ZEM폰·키즈폰 등 아이에게 맞는 최신 삼성 단말을 우선 살펴보고, 키즈·청소년용 요금제에서 공시지원금과 선택약정의 24개월 총 부담을 비교합니다.',
     value:'KT 갤럭시 Jump5와 SKT 갤럭시 퀀텀 시리즈 등 40~70만원대 삼성폰을 우선 보고, 통신사별로 부담과 혜택의 균형이 좋은 요금제를 비교합니다. KT Jump5는 61,000원 구간을 우선 안내합니다.',
     premium:'아이폰18·갤럭시 S26 시리즈·폴드8/플립8을 중심으로 256GB를 우선 추천하고 512GB까지만 보여드립니다. 실제 공시지원금이 40~50만원으로 확인되는 고요금제 조합은 기기값 할인 중심으로 안내합니다.'
   };
@@ -463,7 +463,7 @@
   }
   function purposeIsKidsOnlyDevice(d){
     const text=`${d?.name||''} ${d?.model||''} ${d?.model_code||''}`.toLowerCase().replace(/\s+/g,'');
-    return /무너2|무너키즈|mooner2|mooner/.test(text);
+    return /무너2|무너키즈|mooner2|mooner|zem폰|zemphone|포켓피스|pocketpiece|키즈폰|폼폼푸린/.test(text);
   }
   function purposeKidsDeviceRank(d){
     if(purposeIsKidsOnlyDevice(d))return 0;
