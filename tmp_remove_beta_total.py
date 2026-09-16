@@ -52,6 +52,12 @@ rates_html = replace_once(
     '',
     'explanation total row',
 )
+rates_html = replace_once(
+    rates_html,
+    '현재 선택한 요금제를 같은 통신사 다른 기종에 적용해 월 납부액과 24개월 총비용을 비교합니다.',
+    '현재 선택한 요금제를 같은 통신사 다른 기종에 적용해 월 납부액과 할인방식을 비교합니다.',
+    'device compare description',
+)
 
 # Comparison cards: retain total24 internally for choosing the better method, but stop exposing it.
 rates_js = replace_once(
@@ -151,4 +157,4 @@ ai_path.write_text(ai, encoding='utf-8')
 index_path.write_text(index, encoding='utf-8')
 print('cleanup patch applied')
 
-# trigger workflow
+# trigger workflow retry
