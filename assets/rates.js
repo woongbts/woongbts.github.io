@@ -9,6 +9,7 @@
   let contractRate=DEFAULT_CONTRACT_RATE;
   let supportSchedules=[];
   let mvnoData={providers:[],plans:[]};
+  let studyphoneData={meta:{},device:null,plans:[]};
   let prepaidData={providers:[],plans:[]};
   let internetData={providers:[],internet_products:[],tv_products:[],settop_products:[],bundle_rules:[]};
   const WIRED_COMBO_DEFAULTS={
@@ -593,6 +594,50 @@
   ['quick-carrier','quick-join','quick-brand','quick-data','quick-budget'].forEach(id=>$(id)?.addEventListener('change',()=>{$('quick-results').innerHTML='<p>조건이 바뀌었습니다. 추천 3개 찾기를 눌러주세요.</p>'}));
   ['device-compare-2','device-compare-3'].forEach(id=>$(id)?.addEventListener('change',syncDeviceCompare));
 
+
+  // 공신폰 · KT M모바일 갤럭시 A17
+  const studyphonePlan=$('studyphone-plan');
+  function studyphoneCurrentPlan(){return (studyphoneData?.plans||[]).find(p=>p.id===studyphonePlan?.value)||null}
+  function studyphoneInstallment(principal,months,apr){
+    principal=Math.max(0,Number(principal)||0);months=Math.max(1,Number(months)||24);apr=Number(apr)||0;
+    if(!principal)return {monthly:0,total:0,fee:0};
+    if(!apr){const monthly=principal/months;return {monthly,total:principal,fee:0}}
+    const r=apr/12,factor=Math.pow(1+r,months),monthly=principal*r*factor/(factor-1),total=monthly*months;
+    return {monthly,total,fee:Math.max(0,total-principal)};
+  }
+  function studyphoneScenario(plan){
+    const d=studyphoneData?.device;if(!d||!plan)return null;
+    const retail=Number(d.retail_price)||0,support=Math.max(0,Math.min(retail,Number(plan.public_support)||0)),principal=Math.max(0,retail-support);
+    const inst=studyphoneInstallment(principal,Number(d.installment_months)||24,Number(d.installment_apr)||0);
+    const service=Number(plan.monthly_fee)||0;
+    return {retail,support,principal,inst,service,total:inst.monthly+service};
+  }
+  function renderStudyphonePlanList(){
+    const box=$('studyphone-plan-list');if(!box)return;
+    const d=studyphoneData?.device,rows=studyphoneData?.plans||[];
+    if(!d||!rows.length){box.innerHTML='<p>요금제 데이터를 불러오지 못했습니다.</p>';return}
+    box.innerHTML=rows.map(p=>{const s=studyphoneScenario(p);return `<button type="button" class="studyphone-plan-card${studyphonePlan?.value===p.id?' active':''}" data-studyphone-plan="${p.id}"><span>${p.name}</span><strong>${won(p.monthly_fee)}</strong><small>통화 ${p.voice} · 문자 ${p.sms} · 데이터 ${p.data}</small><div><em>공시지원금</em><b>${won(p.public_support)}</b></div><div><em>할부원금</em><b>${won(s.principal)}</b></div><div class="studyphone-card-total"><em>월 예상 납부액</em><b>${won(s.total)}</b></div></button>`}).join('');
+  }
+  function syncStudyphone(){
+    const d=studyphoneData?.device,p=studyphoneCurrentPlan();
+    if(!d){return}
+    $('studyphone-retail-view').textContent=won(d.retail_price);$('studyphone-retail').textContent=won(d.retail_price);
+    if(!p){
+      ['studyphone-voice','studyphone-sms','studyphone-data','studyphone-plan-fee','studyphone-total','studyphone-support','studyphone-principal','studyphone-device-monthly','studyphone-interest','studyphone-service-fee'].forEach(id=>{const el=$(id);if(el)el.textContent='—'});
+      $('studyphone-summary').textContent='요금제를 선택하면 공시지원금, 할부원금과 월 예상 납부액을 계산합니다.';renderStudyphonePlanList();return;
+    }
+    const s=studyphoneScenario(p),months=Number(d.installment_months)||24;
+    $('studyphone-voice').textContent=p.voice||'—';$('studyphone-sms').textContent=p.sms||'—';$('studyphone-data').textContent=p.data||'—';$('studyphone-plan-fee').textContent=won(p.monthly_fee);
+    $('studyphone-total').textContent=won(s.total);$('studyphone-support').textContent=won(s.support);$('studyphone-principal').textContent=won(s.principal);$('studyphone-device-monthly').textContent=won(s.inst.monthly);$('studyphone-interest').textContent=won(s.inst.fee);$('studyphone-service-fee').textContent=won(s.service);
+    $('studyphone-summary').textContent=`${p.name} · 할부원금 ${won(s.principal)} · 월 단말금 ${won(s.inst.monthly)} + 요금제 ${won(s.service)} = 월 예상 ${won(s.total)} (${months}개월 기준)`;
+    renderStudyphonePlanList();
+  }
+  function fillStudyphone(){
+    if(!studyphonePlan)return;studyphonePlan.innerHTML='';option(studyphonePlan,'','요금제를 선택하세요');(studyphoneData?.plans||[]).forEach(p=>option(studyphonePlan,p.id,`${p.name} · ${won(p.monthly_fee)}`));syncStudyphone();renderStudyphonePlanList();
+  }
+  studyphonePlan?.addEventListener('change',syncStudyphone);
+  $('studyphone-plan-list')?.addEventListener('click',e=>{const b=e.target.closest('[data-studyphone-plan]');if(!b||!studyphonePlan)return;studyphonePlan.value=b.dataset.studyphonePlan;syncStudyphone();document.querySelector('[data-panel="studyphone"]')?.scrollIntoView({behavior:'smooth',block:'start'})});
+
   // 알뜰폰 후불
   const mvnoProvider=$('mvno-provider'),mvnoPlan=$('mvno-plan'),mvnoSort=$('mvno-sort');
   const mvnoPickerOpen=$('mvno-plan-picker-open'),mvnoPickerBackdrop=$('mvno-plan-picker-backdrop'),mvnoPickerClose=$('mvno-plan-picker-close'),mvnoPickerSearch=$('mvno-plan-picker-search'),mvnoPickerList=$('mvno-plan-picker-list'),mvnoPickerCount=$('mvno-plan-picker-count');
@@ -1071,6 +1116,8 @@
     document.querySelectorAll('.rate-tab').forEach(x=>x.classList.toggle('active',x.dataset.tab==='mobile'));document.querySelectorAll('.rate-panel').forEach(x=>x.classList.toggle('active',x.dataset.panel==='mobile'));
     if(target){carrier.value=target;fillDevices()}document.querySelector('[data-panel="mobile"]')?.scrollIntoView({behavior:'smooth',block:'start'});
   });
+
+  fetch('data/studyphone.json?v=20260916-1').then(r=>r.json()).then(data=>{studyphoneData=data||studyphoneData;setUpdated('studyphone-updated',studyphoneData?.meta?.updated_at);fillStudyphone()}).catch(()=>{const box=$('studyphone-plan-list');if(box)box.innerHTML='<p>공신폰 요금제 데이터를 불러오지 못했습니다. 잠시 후 다시 확인해 주세요.</p>'});
 
   Promise.all([
     fetch('data/catalog.json?v=20260916-1').then(r=>r.json()),
