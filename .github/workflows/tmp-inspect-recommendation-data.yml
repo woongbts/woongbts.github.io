@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Inspect recommendation data
+      - name: Validate recommendation candidates
         run: python tmp_inspect_recommendation_data.py
       - name: Complete inspection
-        run: echo done
+        run: echo validation-complete
