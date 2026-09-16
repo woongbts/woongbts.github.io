@@ -51,3 +51,4 @@ jobs:
           git add assets/rates.js assets/rates.css rates.html
           git commit -m "Refresh kids phone recommendations and premium lineup labels" || exit 0
           git push
+# retry after cache-regex fix
