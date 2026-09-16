@@ -149,12 +149,13 @@
     m=s.match(/([0-9]+(?:\.[0-9]+)?)mb/);if(m)return Number(m[1])/1024;
     return null;
   }
-  function brandMatch(d,brand){
-    if(brand==='all')return true;const s=`${d?.name||''} ${d?.manufacturer||''} ${d?.model_code||''}`.toLowerCase();
-    if(brand==='apple')return s.includes('아이폰')||s.includes('iphone')||s.includes('apple')||s.includes('애플');
-    if(brand==='samsung')return s.includes('갤럭시')||s.includes('galaxy')||s.includes('samsung')||s.includes('삼성');
-    return true;
+  function deviceBrandKey(d){
+    const s=`${d?.name||''} ${d?.manufacturer||''} ${d?.model||''} ${d?.model_code||''}`.toLowerCase();
+    if(s.includes('아이폰')||s.includes('iphone')||s.includes('apple')||s.includes('애플'))return 'apple';
+    if(s.includes('갤럭시')||s.includes('galaxy')||s.includes('samsung')||s.includes('삼성'))return 'samsung';
+    return 'other';
   }
+  function brandMatch(d,brand){return brand==='all'||deviceBrandKey(d)===brand}
 
   document.querySelectorAll('.rate-tab').forEach(tab=>tab.addEventListener('click',()=>{
     document.querySelectorAll('.rate-tab').forEach(x=>x.classList.toggle('active',x===tab));
@@ -165,6 +166,7 @@
   // 휴대폰
   const carrier=$('carrier'),joinType=$('join-type'),discountMethod=$('discount-method');
   const deviceSelect=$('device-select'),deviceSearch=$('device-search'),planSelect=$('plan-select'),monthsSelect=$('installment-months'),welfareType=$('welfare-type');
+  let deviceBrandFilter='all';
   function currentDevice(){return (catalog?.devices||[]).find(d=>d.id===deviceSelect.value)||null}
   function currentPlan(){return (catalog?.mobile_plans||[]).find(p=>p.id===planSelect.value)||null}
   function currentSupport(){return supportForSelection(currentDevice(),currentPlan(),joinType.value)}
@@ -189,16 +191,21 @@
     ['principal','device-monthly','installment-fee','plan-discount-view','service-monthly','monthly-total'].forEach(id=>$(id).textContent='—');
     $('welfare-view').textContent=welfareType.value==='none'?'미적용':'선택됨';
   }
+  function updateDeviceBrandButtons(){
+    document.querySelectorAll('[data-device-brand]').forEach(btn=>btn.classList.toggle('active',btn.dataset.deviceBrand===deviceBrandFilter));
+  }
   function fillDevices(){
     const keep=deviceSelect.value,q=String(deviceSearch?.value||'').trim().toLowerCase();clearSelect(deviceSelect,q?'검색 결과를 선택하세요':'기종을 선택하세요');
-    let rows=(catalog?.devices||[]).filter(d=>d.carrier===carrier.value).sort(byNewest);
-    if(q) rows=rows.filter(d=>`${d.name||''} ${d.model||''} ${d.model_code||''}`.toLowerCase().includes(q)).slice(0,100);
+    let rows=(catalog?.devices||[]).filter(d=>d.carrier===carrier.value&&brandMatch(d,deviceBrandFilter)).sort(byNewest);
+    if(q) rows=rows.filter(d=>`${d.name||''} ${d.manufacturer||''} ${d.model||''} ${d.model_code||''}`.toLowerCase().includes(q)).slice(0,100);
     else rows=rows.slice(0,30);
-    const selected=(catalog?.devices||[]).find(d=>d.id===keep&&d.carrier===carrier.value);
+    const selected=(catalog?.devices||[]).find(d=>d.id===keep&&d.carrier===carrier.value&&brandMatch(d,deviceBrandFilter));
     if(selected&&!rows.some(d=>d.id===selected.id))rows=[selected,...rows];
     rows.forEach(d=>option(deviceSelect,d.id,[d.name,d.model_code||d.model].filter(Boolean).join(' · ')));
     deviceSelect.value=[...deviceSelect.options].some(o=>o.value===keep)?keep:'';
     if(q&&!rows.length)deviceSelect.options[0].textContent='검색 결과 없음';
+    else if(!q&&!rows.length)deviceSelect.options[0].textContent='선택한 브랜드에 등록된 기종 없음';
+    updateDeviceBrandButtons();
     fillDeviceCompareOptions();
     fillPlans();
   }
@@ -369,7 +376,7 @@
     const method=q.get('m');if(['support','contract'].includes(method))discountMethod.value=method;
     const w=q.get('w');if([...welfareType.options].some(o=>o.value===w))welfareType.value=w;
     const d=(catalog?.devices||[]).find(x=>x.id===did&&x.carrier===carrier.value);if(!d)return false;
-    deviceSearch.value=d.name||'';fillDevices();deviceSelect.value=did;fillPlans();
+    deviceBrandFilter=deviceBrandKey(d);updateDeviceBrandButtons();deviceSearch.value=d.name||'';fillDevices();deviceSelect.value=did;fillPlans();
     if([...planSelect.options].some(o=>o.value===pid))planSelect.value=pid;else return false;
     const mo=q.get('mo');if([...monthsSelect.options].some(o=>o.value===mo))monthsSelect.value=mo;
     deviceSearch.value='';fillDevices();deviceSelect.value=did;fillPlans();planSelect.value=pid;
@@ -408,7 +415,7 @@
     });
   }
   function applyQuickResult(d,p,method){
-    carrier.value=d.carrier;joinType.value=$('quick-join').value;discountMethod.value=method;deviceSearch.value=d.name||'';fillDevices();deviceSelect.value=d.id;fillPlans();planSelect.value=p.id;deviceSearch.value='';fillDevices();deviceSelect.value=d.id;fillPlans();planSelect.value=p.id;setMobileMode('direct');syncMobile();document.getElementById('direct-mobile-grid')?.scrollIntoView({behavior:'smooth',block:'start'});
+    deviceBrandFilter=deviceBrandKey(d);updateDeviceBrandButtons();carrier.value=d.carrier;joinType.value=$('quick-join').value;discountMethod.value=method;deviceSearch.value=d.name||'';fillDevices();deviceSelect.value=d.id;fillPlans();planSelect.value=p.id;deviceSearch.value='';fillDevices();deviceSelect.value=d.id;fillPlans();planSelect.value=p.id;setMobileMode('direct');syncMobile();document.getElementById('direct-mobile-grid')?.scrollIntoView({behavior:'smooth',block:'start'});
   }
   function fillDeviceCompareOptions(){
     const a=$('device-compare-1'),b=$('device-compare-2'),c=$('device-compare-3');if(!a||!b||!c)return;
@@ -485,6 +492,9 @@
 
   [carrier,joinType].forEach(el=>el.addEventListener('change',fillDevices));discountMethod.addEventListener('change',fillPlans);deviceSelect.addEventListener('change',fillPlans);planSelect.addEventListener('change',syncMobile);monthsSelect.addEventListener('change',syncMobile);welfareType.addEventListener('change',syncMobile);
   deviceSearch?.addEventListener('input',fillDevices);
+  document.querySelectorAll('[data-device-brand]').forEach(btn=>btn.addEventListener('click',()=>{
+    deviceBrandFilter=btn.dataset.deviceBrand||'all';if(deviceSearch)deviceSearch.value='';deviceSelect.value='';updateDeviceBrandButtons();fillDevices();
+  }));
   $('plan-picker-open')?.addEventListener('click',openPlanPicker);
   $('plan-picker-close')?.addEventListener('click',()=>closePlanPicker());
   $('plan-picker-backdrop')?.addEventListener('click',e=>{if(e.target===$('plan-picker-backdrop'))closePlanPicker()});
