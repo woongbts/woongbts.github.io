@@ -963,6 +963,51 @@
   const mvnoProvider=$('mvno-provider'),mvnoPlan=$('mvno-plan'),mvnoSort=$('mvno-sort');
   const mvnoPickerOpen=$('mvno-plan-picker-open'),mvnoPickerBackdrop=$('mvno-plan-picker-backdrop'),mvnoPickerClose=$('mvno-plan-picker-close'),mvnoPickerSearch=$('mvno-plan-picker-search'),mvnoPickerList=$('mvno-plan-picker-list'),mvnoPickerCount=$('mvno-plan-picker-count');
   let mvnoPickerQuery='';
+  let mvnoMode='recommend';
+  const MVNO_RECOMMENDED_PLANS=[
+    {id:'MMOBILE-2148',badge:'대표 추천',reason:'7GB + 1Mbps · 통화 넉넉하게',description:'월 2만원 안쪽에서 데이터와 통화를 균형 있게 쓰기 좋은 KT망 요금제'},
+    {id:'UPLUSE-1623',badge:'LGU+망 추천',reason:'7GB + 1Mbps · 통화·문자 넉넉하게',description:'7GB 소진 뒤에도 1Mbps로 이어서 쓸 수 있어 일상용으로 설명하기 쉬운 구성'},
+    {id:'7MOBILE-1684',badge:'SKT망 추천',reason:'7GB + 1Mbps · 통화·문자 넉넉하게',description:'SKT망을 선호하면서 월 2만원 안팎의 7GB 요금제를 찾는 고객에게 적합'},
+    {id:'SKYLIFE-2069',badge:'1만원대 추천',reason:'7GB + 1Mbps · 통화 넉넉하게',description:'7GB급을 1만원대에서 찾는 고객에게 먼저 비교해 보기 좋은 KT망 요금제'},
+    {id:'MMOBILE-2149',badge:'데이터 더 필요하면',reason:'10GB + 1Mbps · 통화 넉넉하게',description:'7GB가 조금 부족한 고객에게 큰 가격 차이 없이 한 단계 올려 제안하기 좋은 구성'},
+    {id:'HELLOUPLUS-2240',badge:'5GB 실속',reason:'5GB + 1Mbps · 통화 넉넉하게',description:'데이터 사용량이 많지 않은 고객에게 월 부담을 낮춰 제안하기 좋은 LGU+망 요금제'}
+  ];
+  function setMvnoMode(mode){
+    mvnoMode=mode==='all'?'all':'recommend';
+    document.querySelectorAll('[data-mvno-mode]').forEach(btn=>btn.classList.toggle('active',btn.dataset.mvnoMode===mvnoMode));
+    const recommend=$('mvno-recommend'),all=$('mvno-all-grid');
+    if(recommend)recommend.hidden=mvnoMode!=='recommend';
+    if(all)all.hidden=mvnoMode!=='all';
+  }
+  function renderMvnoRecommendations(){
+    const box=$('mvno-recommend-list');if(!box)return;
+    const providerMap=new Map((mvnoData.providers||[]).map(p=>[p.id,p]));
+    const planMap=new Map((mvnoData.plans||[]).map(p=>[p.id,p]));
+    box.innerHTML='';let shown=0;
+    MVNO_RECOMMENDED_PLANS.forEach(item=>{
+      const p=planMap.get(item.id);if(!p)return;shown+=1;
+      const provider=providerMap.get(p.provider_id),fee=mvnoPlanFee(p),card=document.createElement('article');card.className='mvno-recommend-card';
+      const head=document.createElement('div');head.className='mvno-recommend-card-head';
+      const badge=document.createElement('span');badge.textContent=item.badge;
+      const network=document.createElement('small');network.textContent=[provider?.name||p.provider_id,p.network?`${p.network}망`:null].filter(Boolean).join(' · ');head.append(badge,network);
+      const name=document.createElement('h4');name.textContent=p.name||'추천 요금제';
+      const price=document.createElement('div');price.className='mvno-recommend-price';price.innerHTML=`<span>월 기본료</span><strong>${hasAmount(fee)?won(fee):'매장 확인'}</strong>`;
+      const reason=document.createElement('b');reason.className='mvno-recommend-reason';reason.textContent=item.reason;
+      const desc=document.createElement('p');desc.textContent=item.description;
+      const tags=document.createElement('div');tags.className='mvno-recommend-tags';
+      [[p.data,'데이터'],[p.voice,'통화'],[p.sms,'문자']].forEach(([value,label])=>{if(!value)return;const chip=document.createElement('span');chip.textContent=`${label} ${value}`;tags.appendChild(chip)});
+      const actions=document.createElement('div');actions.className='mvno-recommend-actions';
+      const detail=document.createElement('button');detail.type='button';detail.dataset.mvnoRecommendDetail=p.id;detail.textContent='자세히 보기';
+      const consult=document.createElement('button');consult.type='button';consult.className='primary';consult.dataset.mvnoRecommendConsult=p.id;consult.textContent='이 요금제 상담';actions.append(detail,consult);
+      card.append(head,name,price,reason,desc,tags,actions);box.appendChild(card);
+    });
+    if(!shown)box.innerHTML='<p>추천 요금제를 불러오지 못했습니다. 전체 요금제에서 확인해 주세요.</p>';
+  }
+  function applyMvnoRecommendedPlan(planId){
+    const p=(mvnoData.plans||[]).find(x=>x.id===planId);if(!p)return false;
+    Object.assign(mvnoFilters,{network:'all',price:'all',data:'all',voice:'all'});if(mvnoSort)mvnoSort.value='source';clearMvnoPickerQuery();updateMvnoFilterButtons();
+    mvnoProvider.value=p.provider_id;fillMvnoPlans();mvnoPlan.value=p.id;syncMvno();updateMvnoPickerSummary();return true;
+  }
   function mvnoPlanFee(p){return p?.special_monthly_fee??p?.monthly_fee}
   function mvnoPriceBandLabel(value){
     return {under10:'1만원 미만','10to20':'1만원 이상 · 2만원 미만','20to30':'2만원 이상 · 3만원 미만',unlimited:'데이터 무제한'}[value]||'';
@@ -1095,6 +1140,14 @@
   $('copy-mvno-quote')?.addEventListener('click',async()=>{const text=mvnoQuoteText(),status=$('mvno-quote-status');if(!text){if(status)status.textContent='요금제를 먼저 선택해 주세요.';return}const ok=await copyCustomerConsultText(text);if(status)status.textContent=ok?'선택 내용을 복사했습니다.':'복사하지 못했습니다. 다시 시도해 주세요.'});
   $('share-mvno-quote')?.addEventListener('click',()=>shareCustomerConsultText('웅비통신 알뜰폰 상담',mvnoQuoteText(),'mvno-quote-status'));
   $('consult-mvno-quote')?.addEventListener('click',()=>consultWithCustomerText(mvnoQuoteText(),'mvno-quote-status'));
+  document.querySelectorAll('[data-mvno-mode]').forEach(btn=>btn.addEventListener('click',()=>setMvnoMode(btn.dataset.mvnoMode)));
+  $('mvno-recommend-list')?.addEventListener('click',e=>{
+    const detail=e.target.closest('[data-mvno-recommend-detail]'),consult=e.target.closest('[data-mvno-recommend-consult]');
+    const planId=detail?.dataset.mvnoRecommendDetail||consult?.dataset.mvnoRecommendConsult;if(!planId)return;
+    if(!applyMvnoRecommendedPlan(planId))return;
+    if(detail){setMvnoMode('all');setTimeout(()=>$('mvno-all-grid')?.scrollIntoView({behavior:'smooth',block:'start'}),20);return}
+    consultWithCustomerText(mvnoQuoteText(),'mvno-recommend-status');
+  });
 
   // 선불폰
   const prepaidProvider=$('prepaid-provider'),prepaidPlan=$('prepaid-plan');
@@ -1468,6 +1521,6 @@
   ]).then(([base,plans,supports,extra,iphone18,mvno,prepaid,internet])=>{
     catalog=base;const deviceMap=new Map();[...(base?.devices||[]),...(extra?.devices||[]),...(iphone18?.devices||[])].forEach(d=>deviceMap.set(d.id,d));catalog.devices=[...deviceMap.values()];catalog.mobile_plans=plans?.mobile_plans||base?.mobile_plans||[];contractRate=Number(plans?.selection_contract_rate)||DEFAULT_CONTRACT_RATE;supportSchedules=supports?.support_schedules||[];mvnoData=mvno||mvnoData;prepaidData=prepaid||prepaidData;internetData=internet||internetData;
     const mobileDates=[base?.meta?.updated_at,plans?.meta?.updated_at,supports?.meta?.updated_at,extra?.meta?.updated_at,iphone18?.meta?.updated_at].filter(Boolean).sort();setUpdated('catalog-updated',mobileDates.at(-1));setUpdated('mvno-updated',mvnoData?.meta?.updated_at);setUpdated('prepaid-updated',prepaidData?.meta?.updated_at);setUpdated('internet-updated',internetData?.meta?.updated_at);
-    fillDevices();fillMvnoProviders();fillPrepaidProviders();fillInternetProviders();renderWiredComparison();renderWiredRecentQuotes();renderPurposeRecommendations();const restoredWired=restoreInternetQuoteFromUrl();renderRecentQuotes();const restoredMobile=!restoredWired&&restoreQuoteFromUrl();if(!restoredWired&&!restoredMobile)setMobileMode('purpose');suspendUrlSync=false;syncMobile();
+    fillDevices();fillMvnoProviders();renderMvnoRecommendations();setMvnoMode('recommend');fillPrepaidProviders();fillInternetProviders();renderWiredComparison();renderWiredRecentQuotes();renderPurposeRecommendations();const restoredWired=restoreInternetQuoteFromUrl();renderRecentQuotes();const restoredMobile=!restoredWired&&restoreQuoteFromUrl();if(!restoredWired&&!restoredMobile)setMobileMode('purpose');suspendUrlSync=false;syncMobile();
   }).catch(()=>{$('mobile-data-note').textContent='상품 데이터를 불러오지 못했습니다. 잠시 후 다시 확인해 주세요.'});
 })();
