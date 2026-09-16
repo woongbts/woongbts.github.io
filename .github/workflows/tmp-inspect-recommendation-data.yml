@@ -13,3 +13,5 @@ jobs:
       - uses: actions/checkout@v4
       - name: Inspect recommendation data
         run: python tmp_inspect_recommendation_data.py
+      - name: Complete inspection
+        run: echo done
