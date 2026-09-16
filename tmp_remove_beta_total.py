@@ -150,3 +150,5 @@ rates_js_path.write_text(rates_js, encoding='utf-8')
 ai_path.write_text(ai, encoding='utf-8')
 index_path.write_text(index, encoding='utf-8')
 print('cleanup patch applied')
+
+# trigger workflow
