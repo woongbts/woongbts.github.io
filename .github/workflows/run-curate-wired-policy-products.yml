@@ -1,0 +1,38 @@
+name: run-curate-wired-policy-products
+
+on:
+  push:
+    paths:
+      - '.github/workflows/run-curate-wired-policy-products.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  curate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - name: Curate wired products and customer gifts
+        run: python scripts/curate-wired-policy-products.py
+      - name: Validate JSON and customer-facing internals
+        run: |
+          python -m json.tool data/internet.json >/dev/null
+          grep -q 'SK텔레콤' data/internet.json
+          grep -q 'TV_IPIT_CHOICE' assets/rates.js
+          ! grep -q '경품가이드' rates.html
+          ! grep -q '수수료(부가세별도)' rates.html
+      - name: Commit generated changes
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/internet.json assets/rates.js rates.html
+          if git diff --cached --quiet; then
+            echo 'No generated changes'
+          else
+            git commit -m 'Curate wired products to current policy tables'
+            git push origin HEAD:main
+          fi
