@@ -1,0 +1,35 @@
+name: run-internet-tv-mobile-v4
+
+on:
+  push:
+    paths:
+      - '.github/workflows/run-internet-tv-mobile-v4.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - name: Apply Internet TV and mobile bundle upgrade
+        run: python3 scripts/upgrade-internet-tv-mobile-v4.py
+      - name: Commit changes
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'woongbts-ui-sync'
+          git config user.email 'actions@users.noreply.github.com'
+          git add rates.html assets/rates.js assets/rates.css data/internet.json
+          if git diff --cached --quiet; then
+            echo 'No changes to commit'
+            exit 0
+          fi
+          git commit -m 'Add TV channel details and mobile bundle discounts'
+          git pull --rebase origin main
+          git push origin HEAD:main
