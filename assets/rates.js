@@ -494,10 +494,18 @@
     const box=$('recent-quote-list');if(!box)return;const rows=readRecentQuotes();box.innerHTML='';
     if(!rows.length){box.innerHTML='<p>아직 저장된 견적이 없습니다.</p>';return}
     rows.forEach(row=>{
-      const item=document.createElement('button');item.type='button';item.className='recent-quote-item';item.dataset.url=row.url||'';
+      const item=document.createElement('div');item.className='recent-quote-item';
+      const open=document.createElement('button');open.type='button';open.className='recent-quote-open';open.dataset.url=row.url||'';
       const when=row.savedAt?new Date(row.savedAt).toLocaleString('ko-KR',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'}):'';
-      item.innerHTML=`<span><b>${row.id||'저장 견적'}</b><small>${when}</small></span><strong>${row.device||''}</strong><em>${row.plan||''}${row.monthly?` · ${won(row.monthly)}`:''}</em>`;box.appendChild(item);
+      const meta=document.createElement('span'),id=document.createElement('b'),time=document.createElement('small'),device=document.createElement('strong'),detail=document.createElement('em');
+      id.textContent=row.id||'저장 견적';time.textContent=when;meta.append(id,time);device.textContent=row.device||'';detail.textContent=`${row.plan||''}${row.monthly?` · ${won(row.monthly)}`:''}`;open.append(meta,device,detail);
+      const remove=document.createElement('button');remove.type='button';remove.className='recent-quote-delete';remove.dataset.quoteId=row.id||'';remove.setAttribute('aria-label',`${row.id||'저장 견적'} 삭제`);remove.title='저장 견적 삭제';remove.textContent='×';
+      item.append(open,remove);box.appendChild(item);
     });
+  }
+  function deleteRecentQuote(id){
+    if(!id)return;const rows=readRecentQuotes(),next=rows.filter(row=>row.id!==id);if(next.length===rows.length)return;
+    writeRecentQuotes(next);renderRecentQuotes();const status=$('quote-action-status');if(status)status.textContent=`${id} 저장 견적을 삭제했습니다.`;
   }
   function syncQuoteMemory(){ensureQuoteId();renderRecentQuotes()}
   function saveCurrentQuote(){
@@ -544,7 +552,7 @@
   $('mobile-quote-detail')?.addEventListener('click',()=>document.getElementById('mobile-result')?.scrollIntoView({behavior:'smooth',block:'start'}));
   $('mobile-quote-consult')?.addEventListener('click',consultQuote);
   $('save-quote')?.addEventListener('click',saveCurrentQuote);
-  $('recent-quote-list')?.addEventListener('click',e=>{const btn=e.target.closest('.recent-quote-item');if(btn?.dataset.url)location.href=btn.dataset.url});
+  $('recent-quote-list')?.addEventListener('click',e=>{const remove=e.target.closest('.recent-quote-delete');if(remove){e.preventDefault();e.stopPropagation();deleteRecentQuote(remove.dataset.quoteId);return}const open=e.target.closest('.recent-quote-open');if(open?.dataset.url)location.href=open.dataset.url});
   document.querySelectorAll('[data-mobile-mode]').forEach(btn=>btn.addEventListener('click',()=>setMobileMode(btn.dataset.mobileMode)));
   $('quick-find')?.addEventListener('click',renderQuickRecommendations);
   ['quick-carrier','quick-join','quick-brand','quick-data','quick-budget'].forEach(id=>$(id)?.addEventListener('change',()=>{$('quick-results').innerHTML='<p>조건이 바뀌었습니다. 추천 3개 찾기를 눌러주세요.</p>'}));
