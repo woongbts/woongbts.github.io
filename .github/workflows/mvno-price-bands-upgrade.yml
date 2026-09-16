@@ -1,0 +1,32 @@
+name: MVNO price band filter update
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/mvno-price-bands-upgrade.py'
+      - '.github/workflows/mvno-price-bands-upgrade.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Apply MVNO price band update
+        run: python scripts/mvno-price-bands-upgrade.py
+      - name: Commit updated calculator
+        run: |
+          if git diff --quiet -- rates.html assets/rates.js; then
+            echo "No calculator changes"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add rates.html assets/rates.js
+          git commit -m "Refine MVNO price band filters"
+          git push
