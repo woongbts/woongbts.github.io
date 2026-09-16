@@ -1,0 +1,38 @@
+name: Diagnose value and senior models
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/tmp-diag-value-senior-models.yml'
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Inspect target devices and recommendation code
+        run: |
+          python - <<'PY'
+          import json,re
+          from pathlib import Path
+          data=json.loads(Path('data/catalog.json').read_text(encoding='utf-8'))
+          devices=data.get('devices',[])
+          pats={
+            'quantum7':r'퀀텀\s*7|quantum\s*7',
+            'jump5':r'jump\s*5|점프\s*5',
+            'a27':r'갤럭시\s*A27|galaxy\s*A27|\bA27\b',
+            'a37':r'갤럭시\s*A37|galaxy\s*A37|\bA37\b',
+            'stylefolder2':r'스타일\s*폴더\s*2|AT-?M140S',
+          }
+          for key,pat in pats.items():
+            rows=[]
+            for d in devices:
+              text=' '.join(str(d.get(k,'')) for k in ('name','model','model_code','manufacturer'))
+              if re.search(pat,text,re.I):
+                rows.append({k:d.get(k) for k in ('id','carrier','name','model','model_code','retail_price','release_date','source_order')})
+            print('\nTARGET',key,'COUNT',len(rows))
+            for r in rows[:30]: print(r)
+          PY
+          echo '--- recommendation code anchors ---'
+          grep -n -E "purpose(Value|Senior|DevicePool|Recommendations|SalesBrandRank|IsLowCostDevice)|category==='value'|category==='senior'|value:'|senior:'" assets/rates.js | head -120
