@@ -116,6 +116,7 @@
   let currentQuoteId='';
   let currentQuoteFingerprint='';
   const RECENT_QUOTE_KEY='woongbi-recent-quotes-v1';
+  const recentQuoteCompareSelection=new Set();
   const mvnoFilters={network:'all',price:'all',data:'all',voice:'all'};
   function devicePlanIds(d,joinLabel){
     if(!d)return [];
@@ -491,26 +492,58 @@
   }
   function writeRecentQuotes(rows){try{localStorage.setItem(RECENT_QUOTE_KEY,JSON.stringify(rows.slice(0,5)))}catch(e){}}
   function renderRecentQuotes(){
-    const box=$('recent-quote-list');if(!box)return;const rows=readRecentQuotes();box.innerHTML='';
-    if(!rows.length){box.innerHTML='<p>아직 저장된 견적이 없습니다.</p>';return}
+    const box=$('recent-quote-list');if(!box)return;const rows=readRecentQuotes(),validIds=new Set(rows.map(row=>row.id).filter(Boolean));
+    [...recentQuoteCompareSelection].forEach(id=>{if(!validIds.has(id))recentQuoteCompareSelection.delete(id)});box.innerHTML='';
+    if(!rows.length){box.innerHTML='<p>아직 저장된 견적이 없습니다.</p>';syncSavedQuoteCompareControls();return}
     rows.forEach(row=>{
-      const item=document.createElement('div');item.className='recent-quote-item';
+      const item=document.createElement('div');item.className='recent-quote-item';if(recentQuoteCompareSelection.has(row.id))item.classList.add('compare-selected');
       const open=document.createElement('button');open.type='button';open.className='recent-quote-open';open.dataset.url=row.url||'';
       const when=row.savedAt?new Date(row.savedAt).toLocaleString('ko-KR',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'}):'';
       const meta=document.createElement('span'),id=document.createElement('b'),time=document.createElement('small'),device=document.createElement('strong'),detail=document.createElement('em');
       id.textContent=row.id||'저장 견적';time.textContent=when;meta.append(id,time);device.textContent=row.device||'';detail.textContent=`${row.plan||''}${row.monthly?` · ${won(row.monthly)}`:''}`;open.append(meta,device,detail);
+      const compare=document.createElement('button');compare.type='button';compare.className='recent-quote-compare-toggle';compare.dataset.quoteId=row.id||'';compare.setAttribute('aria-pressed',recentQuoteCompareSelection.has(row.id)?'true':'false');compare.textContent=recentQuoteCompareSelection.has(row.id)?'선택됨':'비교';
       const remove=document.createElement('button');remove.type='button';remove.className='recent-quote-delete';remove.dataset.quoteId=row.id||'';remove.setAttribute('aria-label',`${row.id||'저장 견적'} 삭제`);remove.title='저장 견적 삭제';remove.textContent='×';
-      item.append(open,remove);box.appendChild(item);
+      item.append(open,compare,remove);box.appendChild(item);
     });
+    syncSavedQuoteCompareControls();
+  }
+  function savedQuoteCompareData(row){
+    if(!row)return null;let params=null;try{params=new URL(row.url||'',location.href).searchParams}catch(e){}
+    const deviceId=row.deviceId||params?.get('d')||'',planId=row.planId||params?.get('p')||'';
+    const d=(catalog?.devices||[]).find(x=>x.id===deviceId)||null,p=(catalog?.mobile_plans||[]).find(x=>x.id===planId)||null;
+    const carrierValue=row.carrier||params?.get('c')||d?.carrier||'',joinValue=row.join||params?.get('j')||'',method=row.method||params?.get('m')||'support',months=row.months||params?.get('mo')||'24',welfare=row.welfare||params?.get('w')||'none';
+    const scenario=d&&p?scenarioForSelection(d,p,joinValue,method,months,welfare):null;
+    return {id:row.id||'저장 견적',device:row.device||d?.name||'—',carrier:carrierValue||'—',join:joinValue||'—',plan:row.plan||p?.name||'—',method:method==='contract'?'선택약정':'공시지원금',monthly:hasAmount(row.monthly)?Number(row.monthly):(scenario?.known?scenario.monthly:null),total24:hasAmount(row.total24)?Number(row.total24):(scenario?.known?scenario.total24:null),deviceMonthly:hasAmount(row.deviceMonthly)?Number(row.deviceMonthly):(scenario?.known?scenario.inst?.monthly:null),serviceMonthly:hasAmount(row.serviceMonthly)?Number(row.serviceMonthly):(scenario?.known?scenario.service:null)};
+  }
+  function syncSavedQuoteCompareControls(){
+    const button=$('compare-saved-quotes'),status=$('quote-compare-status'),panel=$('saved-quote-compare'),count=recentQuoteCompareSelection.size;
+    if(button)button.disabled=count!==2;if(status)status.textContent=count?`${count}/2 선택됨 · ${count===2?'비교할 준비가 됐어요.':'견적을 하나 더 선택하세요.'}`:'비교할 견적 2개를 선택하세요.';
+    if(panel&&count!==2)panel.hidden=true;
+  }
+  function toggleSavedQuoteCompare(id){
+    if(!id)return;if(recentQuoteCompareSelection.has(id))recentQuoteCompareSelection.delete(id);else{if(recentQuoteCompareSelection.size>=2){const status=$('quote-action-status');if(status)status.textContent='저장 견적 비교는 2개까지 선택할 수 있습니다.';return}recentQuoteCompareSelection.add(id)}
+    renderRecentQuotes();
+  }
+  function renderSavedQuoteComparison(){
+    const panel=$('saved-quote-compare'),table=$('saved-quote-compare-table'),diff=$('saved-quote-compare-diff');if(!panel||!table)return;
+    const ids=[...recentQuoteCompareSelection];if(ids.length!==2){syncSavedQuoteCompareControls();return}
+    const rows=readRecentQuotes(),left=savedQuoteCompareData(rows.find(row=>row.id===ids[0])),right=savedQuoteCompareData(rows.find(row=>row.id===ids[1]));if(!left||!right)return;
+    table.innerHTML='';
+    const addCell=(text,cls='')=>{const el=document.createElement('div');el.className=`saved-quote-compare-cell ${cls}`.trim();el.textContent=text;table.appendChild(el)};
+    addCell('항목','compare-label compare-header');addCell(left.id,'compare-value compare-header');addCell(right.id,'compare-value compare-header');
+    const addRow=(label,a,b,highlight=false)=>{addCell(label,'compare-label');addCell(a,'compare-value'+(highlight?' compare-highlight':''));addCell(b,'compare-value'+(highlight?' compare-highlight':''))};
+    addRow('기종',left.device,right.device);addRow('통신사 · 가입',`${left.carrier} · ${left.join}`,`${right.carrier} · ${right.join}`);addRow('요금제',left.plan,right.plan);addRow('할인 방식',left.method,right.method);addRow('월 단말금',hasAmount(left.deviceMonthly)?won(left.deviceMonthly):'확인 필요',hasAmount(right.deviceMonthly)?won(right.deviceMonthly):'확인 필요');addRow('월 통신요금',hasAmount(left.serviceMonthly)?won(left.serviceMonthly):'확인 필요',hasAmount(right.serviceMonthly)?won(right.serviceMonthly):'확인 필요');addRow('예상 월 납부액',hasAmount(left.monthly)?won(left.monthly):'확인 필요',hasAmount(right.monthly)?won(right.monthly):'확인 필요',true);addRow('24개월 총비용',hasAmount(left.total24)?won(left.total24):'확인 필요',hasAmount(right.total24)?won(right.total24):'확인 필요',true);
+    const notes=[];if(hasAmount(left.monthly)&&hasAmount(right.monthly))notes.push(`월 납부액 차이 ${won(Math.abs(left.monthly-right.monthly))}`);if(hasAmount(left.total24)&&hasAmount(right.total24))notes.push(`24개월 총비용 차이 ${won(Math.abs(left.total24-right.total24))}`);if(diff)diff.textContent=notes.length?notes.join(' · '):'저장 시점의 조건을 기준으로 비교합니다.';
+    panel.hidden=false;panel.scrollIntoView({behavior:'smooth',block:'nearest'});
   }
   function deleteRecentQuote(id){
     if(!id)return;const rows=readRecentQuotes(),next=rows.filter(row=>row.id!==id);if(next.length===rows.length)return;
-    writeRecentQuotes(next);renderRecentQuotes();const status=$('quote-action-status');if(status)status.textContent=`${id} 저장 견적을 삭제했습니다.`;
+    recentQuoteCompareSelection.delete(id);writeRecentQuotes(next);renderRecentQuotes();const status=$('quote-action-status');if(status)status.textContent=`${id} 저장 견적을 삭제했습니다.`;
   }
   function syncQuoteMemory(){ensureQuoteId();renderRecentQuotes()}
   function saveCurrentQuote(){
     const d=currentDevice(),p=currentPlan();if(!d||!p){$('quote-action-status').textContent='기종과 요금제를 먼저 선택해 주세요.';return}
-    ensureQuoteId();const scenario=mobileScenario(discountMethod.value),row={id:currentQuoteId,fingerprint:currentQuoteFingerprint,url:buildQuoteUrl(),carrier:carrier.value,join:joinType.value,device:d.name,deviceId:d.id,plan:p.name,planId:p.id,method:discountMethod.value,months:monthsSelect.value||'24',welfare:welfareType.value||'none',monthly:scenario?.known?scenario.monthly:null,savedAt:Date.now()};
+    ensureQuoteId();const scenario=mobileScenario(discountMethod.value),row={id:currentQuoteId,fingerprint:currentQuoteFingerprint,url:buildQuoteUrl(),carrier:carrier.value,join:joinType.value,device:d.name,deviceId:d.id,plan:p.name,planId:p.id,method:discountMethod.value,months:monthsSelect.value||'24',welfare:welfareType.value||'none',monthly:scenario?.known?scenario.monthly:null,total24:scenario?.known?scenario.total24:null,deviceMonthly:scenario?.known?scenario.inst?.monthly:null,serviceMonthly:scenario?.known?scenario.service:null,planFee:scenario?.known?scenario.planFee:null,savedAt:Date.now()};
     const rows=readRecentQuotes().filter(x=>x.id!==row.id&&x.fingerprint!==row.fingerprint);rows.unshift(row);writeRecentQuotes(rows);renderRecentQuotes();$('quote-action-status').textContent=`${currentQuoteId} 견적을 이 기기에 저장했습니다.`;
   }
   function syncCalcExplanation(){
@@ -552,7 +585,9 @@
   $('mobile-quote-detail')?.addEventListener('click',()=>document.getElementById('mobile-result')?.scrollIntoView({behavior:'smooth',block:'start'}));
   $('mobile-quote-consult')?.addEventListener('click',consultQuote);
   $('save-quote')?.addEventListener('click',saveCurrentQuote);
-  $('recent-quote-list')?.addEventListener('click',e=>{const remove=e.target.closest('.recent-quote-delete');if(remove){e.preventDefault();e.stopPropagation();deleteRecentQuote(remove.dataset.quoteId);return}const open=e.target.closest('.recent-quote-open');if(open?.dataset.url)location.href=open.dataset.url});
+  $('recent-quote-list')?.addEventListener('click',e=>{const compare=e.target.closest('.recent-quote-compare-toggle');if(compare){e.preventDefault();e.stopPropagation();toggleSavedQuoteCompare(compare.dataset.quoteId);return}const remove=e.target.closest('.recent-quote-delete');if(remove){e.preventDefault();e.stopPropagation();deleteRecentQuote(remove.dataset.quoteId);return}const open=e.target.closest('.recent-quote-open');if(open?.dataset.url)location.href=open.dataset.url});
+  $('compare-saved-quotes')?.addEventListener('click',renderSavedQuoteComparison);
+  $('close-saved-quote-compare')?.addEventListener('click',()=>{const panel=$('saved-quote-compare');if(panel)panel.hidden=true});
   document.querySelectorAll('[data-mobile-mode]').forEach(btn=>btn.addEventListener('click',()=>setMobileMode(btn.dataset.mobileMode)));
   $('quick-find')?.addEventListener('click',renderQuickRecommendations);
   ['quick-carrier','quick-join','quick-brand','quick-data','quick-budget'].forEach(id=>$(id)?.addEventListener('change',()=>{$('quick-results').innerHTML='<p>조건이 바뀌었습니다. 추천 3개 찾기를 눌러주세요.</p>'}));

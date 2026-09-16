@@ -7,7 +7,7 @@
   <title>요금 알아보기 | 웅비통신 덕천만덕점</title>
   <meta name="description" content="휴대폰·알뜰폰·선불폰·인터넷·TV 요금을 선택 조건에 따라 확인할 수 있는 웅비통신 요금 안내 페이지입니다.">
   <link rel="icon" type="image/svg+xml" href="assets/woongbi-mark.svg">
-  <link rel="stylesheet" href="assets/rates.css?v=20260916-9">
+  <link rel="stylesheet" href="assets/rates.css?v=20260916-10">
 </head>
 <body>
   <header class="rate-top">
@@ -183,6 +183,15 @@
                 </div>
                 <div class="recent-quote-title">최근 견적</div>
                 <div class="recent-quote-list" id="recent-quote-list"><p>아직 저장된 견적이 없습니다.</p></div>
+                <div class="quote-compare-tools" id="quote-compare-tools">
+                  <span id="quote-compare-status">비교할 견적 2개를 선택하세요.</span>
+                  <button type="button" id="compare-saved-quotes" disabled>선택한 견적 비교</button>
+                </div>
+                <div class="saved-quote-compare" id="saved-quote-compare" hidden>
+                  <div class="saved-quote-compare-head"><div><span>저장 견적 비교</span><strong>두 견적을 한눈에 확인</strong></div><button type="button" id="close-saved-quote-compare">닫기</button></div>
+                  <div class="saved-quote-compare-scroll"><div class="saved-quote-compare-table" id="saved-quote-compare-table"></div></div>
+                  <p id="saved-quote-compare-diff"></p>
+                </div>
               </section>
               <section class="mobile-compare" id="mobile-compare" aria-live="polite">
                 <div class="compare-head"><div><strong>공시지원금 vs 선택약정</strong><span>24개월 약정 총비용 · 단말 총 할부액 포함</span></div><b id="compare-best">조건을 선택해 주세요</b></div>
@@ -362,7 +371,7 @@
   </main>
 
   <footer class="rate-footer"><div class="rate-wrap"><strong>웅비통신 덕천만덕점</strong><p>부산광역시 북구 만덕대로178번길 17 · 월~토 11:00~20:00 · 일요일 휴무 · 051-343-7677</p><p>표시 금액은 상담을 돕기 위한 예상치이며 실제 개통 조건과 다를 수 있습니다.</p></div></footer>
-  <script src="assets/rates.js?v=20260916-15" defer></script>
+  <script src="assets/rates.js?v=20260916-16" defer></script>
 
   <div class="mobile-quote-bar" id="mobile-quote-bar" hidden>
     <div class="mobile-quote-bar-value"><span>현재 예상 월 납부액</span><strong id="mobile-quote-bar-total">—</strong></div>
