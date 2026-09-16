@@ -522,14 +522,46 @@
   prepaidProvider.addEventListener('change',fillPrepaidPlans);prepaidPlan.addEventListener('change',syncPrepaid);
 
   // 인터넷·TV
-  const internetCarrier=$('internet-carrier'),internetProduct=$('internet-product'),tvProduct=$('tv-product'),wiredBundle=$('wired-bundle'),mobileBundle=$('mobile-bundle');
+  const internetCarrier=$('internet-carrier'),internetProduct=$('internet-product'),tvProduct=$('tv-product'),tvCount=$('tv-count'),wiredBundle=$('wired-bundle'),mobileBundle=$('mobile-bundle');
   const WIRED_RECENT_QUOTE_KEY='woongbi-wired-quotes-v1';
   let currentWiredQuoteId='',currentWiredQuoteFingerprint='';
   const BASIC_COMPARE_TV={SKB:'TV-SKB-TV_BASIC_NEW',SKTNET:'TV-SKTNET-ECO',KT:'TV-KT-TV_OTV_BASIC','LGU+':'TV-LGU+-TV_ECONOMY_PACK',LGHELLO:'TV-LGHELLO-TV_UHD_NEW_BASIC',SKYLIFE:'TV-SKYLIFE-TV_IPIT_BASIC'};
+  const ADDITIONAL_TV_RULES={
+    SKB:{kind:'half_base_plus_settop',settop:4400,keys:['TV_BASIC_NEW','TV_SMART_PLUS','TV_ALL']},
+    SKTNET:{kind:'half_base_plus_settop',settop:4400,keys:['SKTNET_TV_ECO','SKTNET_TV_STD','SKTNET_TV_ALL']},
+    KT:{kind:'fixed_service_plus_settop',settop:6600,fees:{TV_OTV_BASIC:7370,TV_OTV12:7920,TV_OTV15:8800,TV_OTV_ALLG:21340}},
+    SKYLIFE:{kind:'fixed_total',fees:{TV_IPIT_BASIC:7700,TV_IPIT_PLUS:8250}}
+  };
   function internetProducts(){return internetData.internet_products||internetData.products||[]}
   function tvProducts(){return internetData.tv_products||[]}
   function currentInternetProduct(){return internetProducts().find(p=>p.id===internetProduct.value)||null}
   function currentTvProduct(){return tvProduct.value==='none'?null:(tvProducts().find(p=>p.id===tvProduct.value)||null)}
+  function selectedTvCount(){return currentTvProduct()?Math.max(1,Math.min(3,Number(tvCount?.value||1))):0}
+  function additionalTvUnit(tv){
+    if(!tv)return {known:true,amount:0};
+    const rule=ADDITIONAL_TV_RULES[tv.provider_id],key=String(tv.product_key||'');
+    if(!rule)return {known:false,amount:0};
+    if(rule.kind==='half_base_plus_settop'){
+      if(!rule.keys.includes(key)||!hasAmount(tv.monthly_fee??tv.tv_fee))return {known:false,amount:0};
+      return {known:true,amount:Number(tv.monthly_fee??tv.tv_fee)*.5+Number(rule.settop||0)};
+    }
+    if(rule.kind==='fixed_service_plus_settop'){
+      if(!hasAmount(rule.fees?.[key]))return {known:false,amount:0};
+      return {known:true,amount:Number(rule.fees[key])+Number(rule.settop||0)};
+    }
+    if(rule.kind==='fixed_total'){
+      if(!hasAmount(rule.fees?.[key]))return {known:false,amount:0};
+      return {known:true,amount:Number(rule.fees[key])};
+    }
+    return {known:false,amount:0};
+  }
+  function additionalTvCalc(tv,count){
+    const extra=Math.max(0,Number(count||0)-1);if(!extra)return {known:true,amount:0,unit:0,extra:0};
+    const unit=additionalTvUnit(tv);return {known:unit.known,amount:unit.known?unit.amount*extra:0,unit:unit.amount,extra};
+  }
+  function syncTvCountControl(){
+    if(!tvCount)return;const hasTv=!!currentTvProduct();tvCount.disabled=!hasTv;if(!hasTv)tvCount.value='1';
+  }
   function fillInternetProviders(){
     clearSelect(internetCarrier,'통신사를 선택하세요');
     (internetData.providers||[]).slice().sort(byOrder).forEach(p=>option(internetCarrier,p.id,p.name));
@@ -583,35 +615,38 @@
   function basicCompareTv(providerId){
     const id=BASIC_COMPARE_TV[providerId];return tvProducts().find(t=>t.id===id)||tvProducts().filter(t=>t.provider_id===providerId).sort(byOrder)[0]||null;
   }
-  function wiredScenario(p,tv){
+  function wiredScenario(p,tv,count=1){
     if(!p||!hasAmount(p.monthly_fee??p.internet_fee))return {known:false};
     const internetFee=Number(p.monthly_fee??p.internet_fee),tvSelected=!!tv;
-    const tvKnown=!tvSelected||hasAmount(tv.monthly_fee??tv.tv_fee);if(!tvKnown)return {known:false};
+    const tvKnown=!tvSelected||hasAmount(tv.monthly_fee??tv.tv_fee);if(!tvKnown)return {known:false,gift:customerGiftMax(p,tv)};
     const tvFee=tvSelected?Number(tv.monthly_fee??tv.tv_fee):0,combo=tvSelected?WIRED_COMBO_DEFAULTS[p.provider_id]:null;
     const stb=tvSelected?defaultSettop(p.provider_id,tv):null;
-    const settopKnown=!tvSelected||!!combo;if(!settopKnown)return {known:false};
+    const settopKnown=!tvSelected||!!combo;if(!settopKnown)return {known:false,gift:customerGiftMax(p,tv)};
     const settopFee=!tvSelected?0:(stb&&hasAmount(stb.monthly_fee)?Number(stb.monthly_fee):Number(combo?.fallbackSettopFee||0));
     const internetDiscount=combo?Math.min(internetFee,comboInternetDiscount(combo,p)):0;
     const tvDiscount=combo?Math.min(tvFee,Number(combo.tvDiscount)||0):0;
-    const base=internetFee+tvFee+settopFee,total=Math.max(0,base-internetDiscount-tvDiscount);
-    return {known:true,base,total,internetDiscount,tvDiscount,settopFee,gift:customerGiftMax(p,tv)};
+    const extra=tvSelected?additionalTvCalc(tv,Math.max(1,Number(count||1))):{known:true,amount:0,extra:0};
+    if(!extra.known)return {known:false,gift:customerGiftMax(p,tv),additionalUnknown:true};
+    const base=internetFee+tvFee+settopFee+extra.amount,total=Math.max(0,base-internetDiscount-tvDiscount);
+    return {known:true,base,total,internetDiscount,tvDiscount,settopFee,additionalTv:extra.amount,tvCount:tvSelected?Math.max(1,Number(count||1)):0,gift:customerGiftMax(p,tv)};
   }
   function escapeWiredHtml(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
   function renderWiredComparison(){
     const box=$('wired-compare-results');if(!box)return;
-    const speed=Number($('wired-compare-speed')?.value||500),withTv=$('wired-compare-tv')?.value==='basic';
+    const speed=Number($('wired-compare-speed')?.value||500),withTv=$('wired-compare-tv')?.value==='basic',count=withTv?Math.max(1,Number($('wired-compare-count')?.value||1)):0;
+    const countSel=$('wired-compare-count');if(countSel)countSel.disabled=!withTv;
     const providers=(internetData.providers||[]).slice().sort(byOrder),cards=[];
     providers.forEach(provider=>{
       const p=pickCompareInternet(provider.id,speed);if(!p)return;
       const tv=withTv?basicCompareTv(provider.id):null;if(withTv&&!tv)return;
-      const s=wiredScenario(p,tv);if(!s.known)return;
-      const gift=customerGiftText(s.gift),channel=tv?.channel_label?` · ${tv.channel_label} 채널`:'';
-      cards.push(`<article class="wired-compare-card"><span>${escapeWiredHtml(provider.name)}</span><strong>${won(s.total)}</strong><small>월 예상요금</small><p>${escapeWiredHtml(internetProductLabel(p))}${tv?`<br>${escapeWiredHtml(tv.name+channel)}`:''}</p><div><em>고객사은품</em><b>${escapeWiredHtml(gift)}</b></div><button type="button" data-wired-provider="${escapeWiredHtml(provider.id)}" data-wired-product="${escapeWiredHtml(p.id)}" data-wired-tv="${escapeWiredHtml(tv?.id||'none')}">이 조건으로 자세히 보기</button></article>`);
+      const s=wiredScenario(p,tv,count),gift=customerGiftText(s.gift),channel=tv?.channel_label?` · ${tv.channel_label} 채널`:'';
+      const total=s.known?won(s.total):'매장 확인',extraText=withTv&&count>1?(s.known?`<small class="wired-extra-line">추가 TV ${count-1}대 포함</small>`:'<small class="wired-extra-line">추가 TV 요금 상담 확인</small>'):'';
+      cards.push(`<article class="wired-compare-card"><span>${escapeWiredHtml(provider.name)}</span><strong>${total}</strong><small>월 예상요금</small>${extraText}<p>${escapeWiredHtml(internetProductLabel(p))}${tv?`<br>${escapeWiredHtml(tv.name+channel)} · TV ${count}대`:''}</p><div><em>고객사은품</em><b>${escapeWiredHtml(gift)}</b></div><button type="button" data-wired-provider="${escapeWiredHtml(provider.id)}" data-wired-product="${escapeWiredHtml(p.id)}" data-wired-tv="${escapeWiredHtml(tv?.id||'none')}" data-wired-count="${count||1}">이 조건으로 자세히 보기</button></article>`);
     });
     box.innerHTML=cards.length?cards.join(''):'<p>선택한 속도로 비교 가능한 상품이 없습니다.</p>';
   }
   function makeWiredQuoteId(){const d=new Date(),pad=n=>String(n).padStart(2,'0');return `WBI-${String(d.getFullYear()).slice(-2)}${pad(d.getMonth()+1)}${pad(d.getDate())}-${pad(d.getHours())}${pad(d.getMinutes())}${pad(d.getSeconds())}`}
-  function wiredQuoteFingerprint(){return [internetCarrier.value,internetProduct.value,tvProduct.value,wiredBundle.value,mobileBundle.value].join('|')}
+  function wiredQuoteFingerprint(){return [internetCarrier.value,internetProduct.value,tvProduct.value,selectedTvCount()||0,wiredBundle.value,mobileBundle.value].join('|')}
   function syncWiredQuoteId(){
     const p=currentInternetProduct(),el=$('wired-quote-number');if(!el)return;
     if(!p){currentWiredQuoteId='';currentWiredQuoteFingerprint='';el.textContent='견적 생성 전';return}
@@ -621,10 +656,11 @@
     const p=currentInternetProduct(),tv=currentTvProduct(),provider=(internetData.providers||[]).find(x=>x.id===internetCarrier.value);if(!p)return '';
     const wiredName=selectedRule(wiredBundle)?.name||((tv&&WIRED_COMBO_DEFAULTS[p.provider_id])?'인터넷+TV 결합 자동적용':'미적용');
     const mobileName=selectedRule(mobileBundle)?.name||'미적용';
-    return [`[웅비통신 유선견적 ${currentWiredQuoteId||''}]`,`${provider?.name||p.provider_id} / ${internetProductLabel(p)}`,`TV: ${tv?.name||'미가입'}`,`유선결합: ${wiredName}`,`모바일결합: ${mobileName}`,`예상 월요금: ${$('internet-total')?.textContent||'매장 확인'}`,`고객사은품: ${$('internet-customer-gift')?.textContent||'매장 확인'}`,'※ 실제 가입 조건은 최종 상담 시 확인됩니다.'].join('\n');
+    const count=selectedTvCount(),extraText=count>1?$('internet-result-extra-tv')?.textContent||'매장 확인':'미적용';
+    return [`[웅비통신 유선견적 ${currentWiredQuoteId||''}]`,`${provider?.name||p.provider_id} / ${internetProductLabel(p)}`,`TV: ${tv?.name||'미가입'}${tv?` / 총 ${count}대`:''}`,`추가 TV 월요금: ${extraText}`,`유선결합: ${wiredName}`,`모바일결합: ${mobileName}`,`예상 월요금: ${$('internet-total')?.textContent||'매장 확인'}`,`고객사은품: ${$('internet-customer-gift')?.textContent||'매장 확인'}`,'※ 실제 가입 조건은 최종 상담 시 확인됩니다.'].join('\n');
   }
   function buildWiredQuoteUrl(){
-    const u=new URL(location.href);u.search='';u.searchParams.set('tab','internet');u.searchParams.set('ic',internetCarrier.value);u.searchParams.set('ip',internetProduct.value);u.searchParams.set('itv',tvProduct.value||'none');u.searchParams.set('iwb',wiredBundle.value||'none');u.searchParams.set('imb',mobileBundle.value||'none');if(currentWiredQuoteId)u.searchParams.set('iq',currentWiredQuoteId);return u.toString();
+    const u=new URL(location.href);u.search='';u.searchParams.set('tab','internet');u.searchParams.set('ic',internetCarrier.value);u.searchParams.set('ip',internetProduct.value);u.searchParams.set('itv',tvProduct.value||'none');u.searchParams.set('itvc',String(selectedTvCount()||1));u.searchParams.set('iwb',wiredBundle.value||'none');u.searchParams.set('imb',mobileBundle.value||'none');if(currentWiredQuoteId)u.searchParams.set('iq',currentWiredQuoteId);return u.toString();
   }
   function readWiredQuotes(){try{return JSON.parse(localStorage.getItem(WIRED_RECENT_QUOTE_KEY)||'[]')}catch{return []}}
   function renderWiredRecentQuotes(){
@@ -634,16 +670,17 @@
   }
   function saveWiredQuote(){
     const p=currentInternetProduct();if(!p)return false;syncWiredQuoteId();const provider=(internetData.providers||[]).find(x=>x.id===internetCarrier.value),tv=currentTvProduct();
-    const row={id:currentWiredQuoteId,label:`${provider?.name||p.provider_id} · ${internetSpeedLabel(p)}${tv?' + TV':''}`,total:$('internet-total')?.textContent||'',carrier:internetCarrier.value,product:internetProduct.value,tv:tvProduct.value||'none',wired:wiredBundle.value||'none',mobile:mobileBundle.value||'none',saved_at:Date.now()};
+    const count=selectedTvCount();
+    const row={id:currentWiredQuoteId,label:`${provider?.name||p.provider_id} · ${internetSpeedLabel(p)}${tv?` + TV ${count}대`:''}`,total:$('internet-total')?.textContent||'',carrier:internetCarrier.value,product:internetProduct.value,tv:tvProduct.value||'none',count:count||1,wired:wiredBundle.value||'none',mobile:mobileBundle.value||'none',saved_at:Date.now()};
     const rows=readWiredQuotes().filter(x=>x.id!==row.id);rows.unshift(row);localStorage.setItem(WIRED_RECENT_QUOTE_KEY,JSON.stringify(rows.slice(0,5)));renderWiredRecentQuotes();return true;
   }
   function applyWiredQuote(q){
-    if(!q)return;internetCarrier.value=q.carrier||'';fillInternetProducts();internetProduct.value=q.product||'';tvProduct.value=q.tv||'none';fillInternetBundles();if([...wiredBundle.options].some(o=>o.value===(q.wired||'none')))wiredBundle.value=q.wired||'none';if([...mobileBundle.options].some(o=>o.value===(q.mobile||'none')))mobileBundle.value=q.mobile||'none';if(q.id){currentWiredQuoteId=q.id;currentWiredQuoteFingerprint=wiredQuoteFingerprint()}syncInternet();
+    if(!q)return;internetCarrier.value=q.carrier||'';fillInternetProducts();internetProduct.value=q.product||'';tvProduct.value=q.tv||'none';syncTvCountControl();if(tvCount&&currentTvProduct())tvCount.value=String(Math.max(1,Math.min(3,Number(q.count||1))));fillInternetBundles();if([...wiredBundle.options].some(o=>o.value===(q.wired||'none')))wiredBundle.value=q.wired||'none';if([...mobileBundle.options].some(o=>o.value===(q.mobile||'none')))mobileBundle.value=q.mobile||'none';if(q.id){currentWiredQuoteId=q.id;currentWiredQuoteFingerprint=wiredQuoteFingerprint()}syncInternet();
   }
   function restoreInternetQuoteFromUrl(){
     const sp=new URLSearchParams(location.search);if(sp.get('tab')!=='internet'||!sp.get('ic')||!sp.get('ip'))return false;
     document.querySelectorAll('.rate-tab').forEach(x=>x.classList.toggle('active',x.dataset.tab==='internet'));document.querySelectorAll('.rate-panel').forEach(x=>x.classList.toggle('active',x.dataset.panel==='internet'));
-    applyWiredQuote({id:sp.get('iq')||'',carrier:sp.get('ic'),product:sp.get('ip'),tv:sp.get('itv')||'none',wired:sp.get('iwb')||'none',mobile:sp.get('imb')||'none'});return true;
+    applyWiredQuote({id:sp.get('iq')||'',carrier:sp.get('ic'),product:sp.get('ip'),tv:sp.get('itv')||'none',count:sp.get('itvc')||'1',wired:sp.get('iwb')||'none',mobile:sp.get('imb')||'none'});return true;
   }
 
   function customerGiftMax(p,tv){
@@ -682,6 +719,7 @@
     }else{
       option(tvProduct,'','통신사를 먼저 선택하세요');tvProduct.disabled=true;
     }
+    syncTvCountControl();
     if(pid&&!items.length)$('internet-detail').textContent='현재 확인된 인터넷 상품 요금은 매장에서 안내해 드립니다.';
     fillInternetBundles();
   }
@@ -729,10 +767,11 @@
     return list.find(x=>cfg.settopNames.some(n=>String(x.name||'').includes(n)))||list.find(x=>hasAmount(x.monthly_fee))||null;
   }
   function syncInternet(){
-    syncTvProductInfo();updateInternetSpeedGuide();updateInternetAvailabilityNote();
+    syncTvCountControl();syncTvProductInfo();updateInternetSpeedGuide();updateInternetAvailabilityNote();
     const p=currentInternetProduct(),tv=currentTvProduct(),provider=(internetData.providers||[]).find(x=>x.id===internetCarrier.value)||null;
     if(!p){
       ['internet-fee-view','tv-fee-view','internet-base-total','internet-bundle-discount','internet-total','internet-result-base','internet-result-wired-discount','internet-result-mobile-discount'].forEach(id=>$(id).textContent='—');
+      if($('extra-tv-fee-view'))$('extra-tv-fee-view').textContent='미적용';if($('internet-result-extra-tv'))$('internet-result-extra-tv').textContent='미적용';
       $('internet-customer-gift').textContent='—';
       $('internet-summary').textContent=internetCarrier.value?'현재 확인된 상품 요금은 매장에서 안내해 드립니다.':'통신사와 상품을 선택하면 자동으로 반영됩니다.';
       syncWiredQuoteId();
@@ -748,7 +787,9 @@
     const autoInternetDiscount=combo&&internetKnown?Math.min(internetFee,comboInternetDiscount(combo,p)):0;
     const autoTvDiscount=combo&&tvKnown?Math.min(tvBaseFee,Number(combo.tvDiscount)||0):0;
     const autoWiredDiscount=autoInternetDiscount+autoTvDiscount;
-    const baseKnown=internetKnown&&tvKnown&&settopKnown,base=baseKnown?internetFee+tvBaseFee+settopFee:null;
+    const count=tvSelected?selectedTvCount():0,additionalCalc=tvSelected?additionalTvCalc(tv,count):{known:true,amount:0,extra:0};
+    const additionalKnown=additionalCalc.known,additionalTotal=additionalCalc.amount;
+    const baseKnown=internetKnown&&tvKnown&&settopKnown&&additionalKnown,base=baseKnown?internetFee+tvBaseFee+settopFee+additionalTotal:null;
 
     const wiredRule=selectedRule(wiredBundle),mobileRule=selectedRule(mobileBundle);
     const wiredCalc=ruleDiscount(wiredRule,tv),mobileCalc=ruleDiscount(mobileRule,tv);
@@ -758,7 +799,10 @@
     const totalKnown=baseKnown&&wiredKnown&&mobileKnown,totalDiscount=totalKnown?Math.min(base,wiredDiscount+mobileDiscount):null,total=totalKnown?Math.max(0,base-totalDiscount):null;
 
     $('internet-fee-view').textContent=internetKnown?won(Math.max(0,internetFee-autoInternetDiscount)):'매장 확인';
-    $('tv-fee-view').textContent=!tvSelected?'미선택':(tvKnown&&settopKnown?won(Math.max(0,tvBaseFee-autoTvDiscount)+settopFee):'매장 확인');
+    const primaryTvMonthly=tvSelected&&tvKnown&&settopKnown?Math.max(0,tvBaseFee-autoTvDiscount)+settopFee:null;
+    $('tv-fee-view').textContent=!tvSelected?'미선택':(primaryTvMonthly!==null&&additionalKnown?won(primaryTvMonthly+additionalTotal):'매장 확인');
+    if($('extra-tv-fee-view'))$('extra-tv-fee-view').textContent=!tvSelected||count<=1?'미적용':(additionalKnown?won(additionalTotal):'매장 확인');
+    if($('internet-result-extra-tv'))$('internet-result-extra-tv').textContent=!tvSelected||count<=1?'미적용':(additionalKnown?`+${won(additionalTotal)}`:'매장 확인');
     $('internet-base-total').textContent=baseKnown?won(base):'매장 확인';
     $('internet-bundle-discount').textContent=totalKnown?(totalDiscount?'-'+won(totalDiscount):'미적용'):'매장 확인';
     $('internet-total').textContent=totalKnown?won(total):'매장 확인';
@@ -768,21 +812,23 @@
     const giftMax=customerGiftMax(p,tvSelected?tv:null);
     $('internet-customer-gift').textContent=customerGiftText(giftMax);
 
-    const bits=[],speedLabel=internetSpeedLabel(p);if(speedLabel)bits.push(`인터넷 속도 ${speedLabel}`);if(internetHasWifi(p))bits.push('와이파이 포함');if(tvSelected&&tv?.name)bits.push(tv.name);if(tvSelected&&combo)bits.push('인터넷+TV 결합할인 자동 반영');if(wiredRule?.notes)bits.push(wiredRule.notes);if(mobileRule?.notes)bits.push(mobileRule.notes);
+    const bits=[],speedLabel=internetSpeedLabel(p);if(speedLabel)bits.push(`인터넷 속도 ${speedLabel}`);if(internetHasWifi(p))bits.push('와이파이 포함');if(tvSelected&&tv?.name)bits.push(`${tv.name} · TV ${count}대`);if(tvSelected&&count>1)bits.push(additionalKnown?`추가 TV ${count-1}대 ${won(additionalTotal)}`:'추가 TV 요금 매장 확인');if(tvSelected&&combo)bits.push('인터넷+TV 결합할인 자동 반영');if(wiredRule?.notes)bits.push(wiredRule.notes);if(mobileRule?.notes)bits.push(mobileRule.notes);
     $('internet-detail').textContent=bits.length?bits.join(' · '):'3년 약정 기준 월요금';
-    $('internet-summary').textContent=totalKnown?`${provider?.name||p.provider_id} · ${p.name}${tvSelected&&tv?.name?' + '+tv.name:''} 기준 예상 월요금입니다.`:`${provider?.name||p.provider_id} · 선택 상품의 최신 금액은 매장에서 확인해 주세요.`;
+    $('internet-summary').textContent=totalKnown?`${provider?.name||p.provider_id} · ${p.name}${tvSelected&&tv?.name?' + '+tv.name+` · TV ${count}대`:''} 기준 예상 월요금입니다.`:`${provider?.name||p.provider_id} · 선택 상품의 최신 금액은 매장에서 확인해 주세요.`;
     syncWiredQuoteId();
   }
   internetCarrier.addEventListener('change',fillInternetProducts);
   internetProduct.addEventListener('change',fillInternetBundles);
-  tvProduct.addEventListener('change',fillInternetBundles);
+  tvProduct.addEventListener('change',()=>{syncTvCountControl();fillInternetBundles()});
+  tvCount?.addEventListener('change',syncInternet);
   wiredBundle.addEventListener('change',syncInternet);
   mobileBundle.addEventListener('change',syncInternet);
   $('wired-compare-speed')?.addEventListener('change',renderWiredComparison);
   $('wired-compare-tv')?.addEventListener('change',renderWiredComparison);
+  $('wired-compare-count')?.addEventListener('change',renderWiredComparison);
   $('wired-compare-results')?.addEventListener('click',e=>{
     const b=e.target.closest('[data-wired-provider]');if(!b)return;
-    internetCarrier.value=b.dataset.wiredProvider;fillInternetProducts();internetProduct.value=b.dataset.wiredProduct;tvProduct.value=b.dataset.wiredTv||'none';fillInternetBundles();$('internet-form')?.scrollIntoView({behavior:'smooth',block:'start'});
+    internetCarrier.value=b.dataset.wiredProvider;fillInternetProducts();internetProduct.value=b.dataset.wiredProduct;tvProduct.value=b.dataset.wiredTv||'none';syncTvCountControl();if(tvCount&&currentTvProduct())tvCount.value=String(Math.max(1,Math.min(3,Number(b.dataset.wiredCount||1))));fillInternetBundles();$('internet-form')?.scrollIntoView({behavior:'smooth',block:'start'});
   });
   $('save-wired-quote')?.addEventListener('click',()=>{const ok=saveWiredQuote(),s=$('wired-quote-status');if(s)s.textContent=ok?'이 기기에 견적을 저장했습니다.':'상품을 먼저 선택해 주세요.'});
   $('copy-wired-quote')?.addEventListener('click',async()=>{const t=buildWiredQuoteText(),s=$('wired-quote-status');if(!t){if(s)s.textContent='상품을 먼저 선택해 주세요.';return}try{await navigator.clipboard.writeText(t);if(s)s.textContent='견적 내용을 복사했습니다.'}catch{if(s)s.textContent='복사하지 못했습니다. 공유 버튼을 이용해 주세요.'}});
