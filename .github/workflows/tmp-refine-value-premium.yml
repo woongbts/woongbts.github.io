@@ -14,8 +14,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Apply recommendation refinements
-        run: python tmp_refine_value_premium_recommendations.py
+      - name: Adjust value recommendation bands
+        run: python tmp_adjust_value_band.py
       - name: Check JavaScript syntax
         run: node --check assets/rates.js
       - name: Verify recommendation rules
@@ -23,12 +23,13 @@ jobs:
           grep -q "purposeValueDeviceRank" assets/rates.js
           grep -q "purposePremiumSupportFit" assets/rates.js
           grep -q "Number(p.monthly_fee)>=80000" assets/rates.js
-          grep -q "Number(p.monthly_fee)>=59000" assets/rates.js
+          grep -q "Number(p.monthly_fee)>=60000" assets/rates.js
+          grep -q "price>=400000&&price<800000" assets/rates.js
           grep -q "공시지원 중심" assets/rates.js
       - name: Commit result
         run: |
           git config user.name "woongbts"
           git config user.email "swb3301@gmail.com"
           git add assets/rates.js
-          git commit -m "Tune value and premium phone recommendations" || exit 0
+          git commit -m "Tighten value phone price and plan bands" || exit 0
           git push
