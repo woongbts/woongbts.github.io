@@ -553,9 +553,16 @@
   // 알뜰폰 후불
   const mvnoProvider=$('mvno-provider'),mvnoPlan=$('mvno-plan'),mvnoSort=$('mvno-sort');
   function mvnoPlanFee(p){return p?.special_monthly_fee??p?.monthly_fee}
+  function mvnoPriceBandLabel(value){
+    return {under10:'1만원 미만','10to20':'1만원 이상 · 2만원 미만','20to30':'2만원 이상 · 3만원 미만',unlimited:'데이터 무제한'}[value]||'';
+  }
   function mvnoMatchesFilters(p){
     if(mvnoFilters.network!=='all'&&p.network!==mvnoFilters.network)return false;
-    if(mvnoFilters.price!=='all'&&(!hasAmount(mvnoPlanFee(p))||Number(mvnoPlanFee(p))>Number(mvnoFilters.price)))return false;
+    const fee=Number(mvnoPlanFee(p));
+    if(mvnoFilters.price==='under10'&&!(hasAmount(mvnoPlanFee(p))&&fee<10000))return false;
+    if(mvnoFilters.price==='10to20'&&!(hasAmount(mvnoPlanFee(p))&&fee>=10000&&fee<20000))return false;
+    if(mvnoFilters.price==='20to30'&&!(hasAmount(mvnoPlanFee(p))&&fee>=20000&&fee<30000))return false;
+    if(mvnoFilters.price==='unlimited'&&!planHasUnlimited(p))return false;
     const data=String(p.data||''),gb=planDataGb(p);
     if(mvnoFilters.data==='unlimited'&&!data.includes('무제한'))return false;
     if(['5','10'].includes(mvnoFilters.data)&&!(gb!==null&&gb>=Number(mvnoFilters.data)))return false;
@@ -584,7 +591,7 @@
     mvnoPlan.disabled=!pid||!plans.length;
     if(pid==='all')$('mvno-network').textContent=mvnoFilters.network==='all'?'전체':mvnoFilters.network;
     else $('mvno-network').textContent=provider?.network||'—';
-    $('mvno-filter-count').textContent=pid?`${plans.length.toLocaleString('ko-KR')}개 요금제가 현재 조건에 맞습니다.`:'통신사 또는 필터를 선택해 주세요.';
+    const bandLabel=mvnoPriceBandLabel(mvnoFilters.price);$('mvno-filter-count').textContent=pid?`${bandLabel?bandLabel+' · ':''}${plans.length.toLocaleString('ko-KR')}개 요금제가 현재 조건에 맞습니다.`:'통신사 또는 필터를 선택해 주세요.';
     if(pid&&!plans.length)$('mvno-detail').textContent='현재 필터 조건에 맞는 요금제가 없습니다.';
     syncMvno();
   }
@@ -599,7 +606,7 @@
     $('mvno-summary').textContent=known?`${provider?.name||p.provider_id} · ${p.name} 특별할인가 기준 월 기본료입니다.`:`${provider?.name||p.provider_id} · ${p.name}의 현재 월요금은 매장에서 확인해 주세요.`;
   }
   mvnoProvider.addEventListener('change',fillMvnoPlans);mvnoPlan.addEventListener('change',syncMvno);mvnoSort?.addEventListener('change',fillMvnoPlans);
-  document.querySelectorAll('[data-mvno-filter-group]').forEach(btn=>btn.addEventListener('click',()=>{const group=btn.dataset.mvnoFilterGroup,value=btn.dataset.mvnoFilterValue;mvnoFilters[group]=value;updateMvnoFilterButtons();if(!mvnoProvider.value)mvnoProvider.value='all';if(group==='network'&&mvnoProvider.value!=='all'){const pr=(mvnoData.providers||[]).find(p=>p.id===mvnoProvider.value);if(value!=='all'&&pr?.network!==value)mvnoProvider.value='all'}fillMvnoPlans()}));
+  document.querySelectorAll('[data-mvno-filter-group]').forEach(btn=>btn.addEventListener('click',()=>{const group=btn.dataset.mvnoFilterGroup,value=btn.dataset.mvnoFilterValue;mvnoFilters[group]=value;if(group==='price'&&value==='unlimited')mvnoFilters.data='all';if(group==='price'&&value!=='all'&&mvnoSort)mvnoSort.value='price';updateMvnoFilterButtons();if(!mvnoProvider.value)mvnoProvider.value='all';if(group==='network'&&mvnoProvider.value!=='all'){const pr=(mvnoData.providers||[]).find(p=>p.id===mvnoProvider.value);if(value!=='all'&&pr?.network!==value)mvnoProvider.value='all'}fillMvnoPlans()}));
   $('mvno-filter-reset')?.addEventListener('click',()=>{Object.assign(mvnoFilters,{network:'all',price:'all',data:'all',voice:'all'});if(mvnoSort)mvnoSort.value='source';updateMvnoFilterButtons();fillMvnoPlans()});
 
   // 선불폰
