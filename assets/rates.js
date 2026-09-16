@@ -462,7 +462,7 @@
     tvProduct.innerHTML='';
     if(pid){
       option(tvProduct,'none','TV 미선택');
-      tvProducts().filter(p=>p.provider_id===pid).sort(byOrder).forEach(p=>option(tvProduct,p.id,p.name));
+      tvProducts().filter(p=>p.provider_id===pid).sort(byOrder).forEach(p=>option(tvProduct,p.id,p.channel_label?`${p.name} · ${p.channel_label}`:p.name));
       tvProduct.disabled=false;
     }else{
       option(tvProduct,'','통신사를 먼저 선택하세요');tvProduct.disabled=true;
@@ -477,7 +477,9 @@
       r.kind===kind&&
       (!Array.isArray(r.product_ids)||!r.product_ids.length||r.product_ids.includes(product.id))&&
       (!Number(r.minimum_speed_mbps)||Number(product.speed_mbps)>=Number(r.minimum_speed_mbps))&&
-      (!Number(r.maximum_speed_mbps)||Number(product.speed_mbps)<=Number(r.maximum_speed_mbps))
+      (!Number(r.maximum_speed_mbps)||Number(product.speed_mbps)<=Number(r.maximum_speed_mbps))&&
+      (!r.requires_tv||!!currentTvProduct())&&
+      (!Array.isArray(r.tv_product_ids)||!r.tv_product_ids.length||r.tv_product_ids.includes(currentTvProduct()?.id))
     ).sort(byOrder);
   }
   function fillBundleSelect(select,kind){
@@ -493,12 +495,26 @@
     fillBundleSelect(wiredBundle,'wired');fillBundleSelect(mobileBundle,'mobile');syncInternet();
   }
   function selectedRule(select){return (internetData.bundle_rules||[]).find(r=>r.id===select.value)||null}
+  function ruleDiscount(rule,tv){
+    if(!rule)return {known:true,amount:0};
+    if(!hasAmount(rule.discount))return {known:false,amount:0};
+    let amount=Number(rule.discount)||0;
+    if(tv&&hasAmount(rule.tv_extra_discount))amount+=Number(rule.tv_extra_discount)||0;
+    return {known:true,amount};
+  }
+  function syncTvProductInfo(){
+    const box=$('tv-product-info'),tv=currentTvProduct();if(!box)return;
+    if(!tv){box.innerHTML='TV 상품을 선택하면 채널수와 기본 특징을 보여드립니다.';return}
+    const channel=tv.channel_label?`<b>${tv.channel_label} 채널</b>`:'<b>채널수 상담 확인</b>';
+    box.innerHTML=`<span>${channel}<strong>${tv.name}</strong></span><p>${tv.description||'상품별 채널 구성과 혜택은 상담 시 확인해 주세요.'}</p><small>${tv.channel_note||'채널 편성은 시점에 따라 변경될 수 있습니다.'}</small>`;
+  }
   function defaultSettop(providerId,tv){
     const cfg=WIRED_COMBO_DEFAULTS[providerId];if(!cfg||!tv)return null;
     const list=(internetData.settop_products||[]).filter(x=>x.provider_id===providerId&&(!x.tv_product_id||x.tv_product_id===tv.id));
     return list.find(x=>cfg.settopNames.some(n=>String(x.name||'').includes(n)))||list.find(x=>hasAmount(x.monthly_fee))||null;
   }
   function syncInternet(){
+    syncTvProductInfo();
     const p=currentInternetProduct(),tv=currentTvProduct(),provider=(internetData.providers||[]).find(x=>x.id===internetCarrier.value)||null;
     if(!p){
       ['internet-fee-view','tv-fee-view','internet-base-total','internet-bundle-discount','internet-total','internet-result-base','internet-result-wired-discount','internet-result-mobile-discount'].forEach(id=>$(id).textContent='—');
@@ -519,8 +535,9 @@
     const baseKnown=internetKnown&&tvKnown&&settopKnown,base=baseKnown?internetFee+tvBaseFee+settopFee:null;
 
     const wiredRule=selectedRule(wiredBundle),mobileRule=selectedRule(mobileBundle);
-    const wiredKnown=!wiredRule||hasAmount(wiredRule.discount),mobileKnown=!mobileRule||hasAmount(mobileRule.discount);
-    const extraWiredDiscount=wiredRule&&wiredKnown?Number(wiredRule.discount):0,mobileDiscount=mobileRule&&mobileKnown?Number(mobileRule.discount):0;
+    const wiredCalc=ruleDiscount(wiredRule,tv),mobileCalc=ruleDiscount(mobileRule,tv);
+    const wiredKnown=wiredCalc.known,mobileKnown=mobileCalc.known;
+    const extraWiredDiscount=wiredCalc.amount,mobileDiscount=mobileCalc.amount;
     const wiredDiscount=autoWiredDiscount+extraWiredDiscount;
     const totalKnown=baseKnown&&wiredKnown&&mobileKnown,totalDiscount=totalKnown?Math.min(base,wiredDiscount+mobileDiscount):null,total=totalKnown?Math.max(0,base-totalDiscount):null;
 
@@ -531,7 +548,7 @@
     $('internet-total').textContent=totalKnown?won(total):'매장 확인';
     $('internet-result-base').textContent=baseKnown?won(base):'매장 확인';
     $('internet-result-wired-discount').textContent=tvSelected&&combo?(wiredDiscount?'-'+won(wiredDiscount):'미적용'):(wiredRule?(wiredKnown?'-'+won(extraWiredDiscount):'매장 확인'):'미적용');
-    $('internet-result-mobile-discount').textContent=mobileRule?(mobileKnown?'-'+won(mobileDiscount):'매장 확인'):'미적용';
+    $('internet-result-mobile-discount').textContent=mobileRule?(mobileKnown?(mobileDiscount?'-'+won(mobileDiscount):'미적용'):'매장 확인'):'미적용';
 
     const installParts=[];
     if(hasAmount(p.installation_fee))installParts.push(Number(p.installation_fee));else installParts.push(null);
@@ -553,14 +570,14 @@
   mobileBundle.addEventListener('change',syncInternet);
 
   Promise.all([
-    fetch('data/catalog.json?v=20260915-15').then(r=>r.json()),
-    fetch('data/plans.json?v=20260915-15').then(r=>r.json()),
-    fetch('data/supports.json?v=20260915-15').then(r=>r.json()),
-    fetch('data/devices-extra.json?v=20260915-15').then(r=>r.json()),
-    fetch('data/iphone18.json?v=20260915-15').then(r=>r.json()),
-    fetch('data/mvno-postpaid.json?v=20260915-15').then(r=>r.json()),
-    fetch('data/prepaid.json?v=20260915-15').then(r=>r.json()),
-    fetch('data/internet.json?v=20260915-15').then(r=>r.json())
+    fetch('data/catalog.json?v=20260916-1').then(r=>r.json()),
+    fetch('data/plans.json?v=20260916-1').then(r=>r.json()),
+    fetch('data/supports.json?v=20260916-1').then(r=>r.json()),
+    fetch('data/devices-extra.json?v=20260916-1').then(r=>r.json()),
+    fetch('data/iphone18.json?v=20260916-1').then(r=>r.json()),
+    fetch('data/mvno-postpaid.json?v=20260916-1').then(r=>r.json()),
+    fetch('data/prepaid.json?v=20260916-1').then(r=>r.json()),
+    fetch('data/internet.json?v=20260916-1').then(r=>r.json())
   ]).then(([base,plans,supports,extra,iphone18,mvno,prepaid,internet])=>{
     catalog=base;const deviceMap=new Map();[...(base?.devices||[]),...(extra?.devices||[]),...(iphone18?.devices||[])].forEach(d=>deviceMap.set(d.id,d));catalog.devices=[...deviceMap.values()];catalog.mobile_plans=plans?.mobile_plans||base?.mobile_plans||[];contractRate=Number(plans?.selection_contract_rate)||DEFAULT_CONTRACT_RATE;supportSchedules=supports?.support_schedules||[];mvnoData=mvno||mvnoData;prepaidData=prepaid||prepaidData;internetData=internet||internetData;
     const mobileDates=[base?.meta?.updated_at,plans?.meta?.updated_at,supports?.meta?.updated_at,extra?.meta?.updated_at,iphone18?.meta?.updated_at].filter(Boolean).sort();setUpdated('catalog-updated',mobileDates.at(-1));setUpdated('mvno-updated',mvnoData?.meta?.updated_at);setUpdated('prepaid-updated',prepaidData?.meta?.updated_at);setUpdated('internet-updated',internetData?.meta?.updated_at);

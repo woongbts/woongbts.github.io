@@ -7,7 +7,7 @@
   <title>요금 알아보기 | 웅비통신 덕천만덕점</title>
   <meta name="description" content="휴대폰·알뜰폰·선불폰·인터넷·TV 요금을 선택 조건에 따라 확인할 수 있는 웅비통신 요금 안내 페이지입니다.">
   <link rel="icon" type="image/svg+xml" href="assets/woongbi-mark.svg">
-  <link rel="stylesheet" href="assets/rates.css?v=20260916-2">
+  <link rel="stylesheet" href="assets/rates.css?v=20260916-3">
 </head>
 <body>
   <header class="rate-top">
@@ -214,11 +214,12 @@
               <label>통신사<select id="internet-carrier"><option value="">통신사를 선택하세요</option></select></label>
               <label>인터넷 속도·상품<select id="internet-product" disabled><option value="">통신사를 먼저 선택하세요</option></select></label>
               <label>TV 상품<select id="tv-product" disabled><option value="">통신사를 먼저 선택하세요</option></select></label>
+              <div id="tv-product-info" class="tv-product-info">TV 상품을 선택하면 채널수와 기본 특징을 보여드립니다.</div>
               <div class="field-row two">
                 <label>유선결합 할인<select id="wired-bundle" disabled><option value="none">미적용</option></select></label>
                 <label>모바일 결합 할인<select id="mobile-bundle" disabled><option value="none">미적용</option></select></label>
               </div>
-              <small class="field-help">선택한 인터넷 상품에서 적용 가능한 결합만 표시합니다.</small>
+              <small class="field-help">선택한 인터넷·TV 조건에서 적용 가능한 결합만 표시합니다. 모바일 결합은 인터넷/TV 청구 할인만 월 납부액에 반영하며 휴대폰 요금 할인은 별도입니다.</small>
               <div class="auto-grid">
                 <div class="auto-box"><span>인터넷 월정액</span><strong id="internet-fee-view">—</strong></div>
                 <div class="auto-box"><span>TV 월정액</span><strong id="tv-fee-view">—</strong></div>
@@ -247,7 +248,7 @@
   </main>
 
   <footer class="rate-footer"><div class="rate-wrap"><strong>웅비통신 덕천만덕점</strong><p>부산광역시 북구 만덕대로178번길 17 · 월~토 11:00~20:00 · 일요일 휴무 · 051-343-7677</p><p>표시 금액은 상담을 돕기 위한 예상치이며 실제 개통 조건과 다를 수 있습니다.</p></div></footer>
-  <script src="assets/rates.js?v=20260916-2" defer></script>
+  <script src="assets/rates.js?v=20260916-3" defer></script>
 
   <div class="mobile-quote-bar" id="mobile-quote-bar" hidden>
     <div class="mobile-quote-bar-value"><span>현재 예상 월 납부액</span><strong id="mobile-quote-bar-total">—</strong></div>
