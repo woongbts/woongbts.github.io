@@ -105,10 +105,10 @@ marker='/* Premium lineup label 2026-09-16 */'
 if marker not in css:
     css += "\n\n/* Premium lineup label 2026-09-16 */\n.purpose-lineup{display:block;margin-top:-2px;font-size:.7rem;font-weight:900;color:var(--teal);line-height:1.45}\n"
 
-html,n=re.subn(r'assets/rates\\.js\\?v=[^\"]+', 'assets/rates.js?v=20260916-24', html, count=1)
+html,n=re.subn(r'assets/rates\.js\?v=[^"]+', 'assets/rates.js?v=20260916-24', html, count=1)
 if n!=1:
     raise SystemExit('js cache bust failed')
-html,n=re.subn(r'assets/rates\\.css\\?v=[^\"]+', 'assets/rates.css?v=20260916-16', html, count=1)
+html,n=re.subn(r'assets/rates\.css\?v=[^"]+', 'assets/rates.css?v=20260916-16', html, count=1)
 if n!=1:
     raise SystemExit('css cache bust failed')
 
