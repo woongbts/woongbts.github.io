@@ -523,6 +523,9 @@
 
   // 인터넷·TV
   const internetCarrier=$('internet-carrier'),internetProduct=$('internet-product'),tvProduct=$('tv-product'),wiredBundle=$('wired-bundle'),mobileBundle=$('mobile-bundle');
+  const WIRED_RECENT_QUOTE_KEY='woongbi-wired-quotes-v1';
+  let currentWiredQuoteId='',currentWiredQuoteFingerprint='';
+  const BASIC_COMPARE_TV={SKB:'TV-SKB-TV_BASIC_NEW',SKTNET:'TV-SKTNET-ECO',KT:'TV-KT-TV_OTV_BASIC','LGU+':'TV-LGU+-TV_ECONOMY_PACK',LGHELLO:'TV-LGHELLO-TV_UHD_NEW_BASIC',SKYLIFE:'TV-SKYLIFE-TV_IPIT_BASIC'};
   function internetProducts(){return internetData.internet_products||internetData.products||[]}
   function tvProducts(){return internetData.tv_products||[]}
   function currentInternetProduct(){return internetProducts().find(p=>p.id===internetProduct.value)||null}
@@ -554,6 +557,95 @@
     if(wifi)parts.push('와이파이 포함');
     return parts.length?`${name} (${parts.join(', ')})`:name;
   }
+  function internetUsageGuide(p){
+    const speed=Number(p?.speed_mbps);
+    if(!Number.isFinite(speed)||speed<=0)return '속도를 선택하면 일반적인 사용 예시를 안내해 드립니다.';
+    if(speed<=200)return `${internetSpeedLabel(p)} · 웹서핑·영상 시청 중심, 1~2인 가구에서 많이 선택하는 속도입니다.`;
+    if(speed<1000)return `${internetSpeedLabel(p)} · 여러 기기 동시 사용·OTT·온라인게임을 함께 쓰는 가정에 여유로운 속도입니다.`;
+    return `${internetSpeedLabel(p)} · 대용량 다운로드·고화질 스트리밍·여러 기기 동시 사용이 많은 환경에 적합한 상위 속도입니다.`;
+  }
+  function updateInternetSpeedGuide(){
+    const el=$('internet-speed-guide');if(el)el.textContent=internetUsageGuide(currentInternetProduct());
+  }
+  function updateInternetAvailabilityNote(){
+    const el=$('internet-availability-note');if(!el)return;
+    const pid=internetCarrier.value;
+    const messages={LGHELLO:'헬로비전은 지역에 따라 설치 가능 상품과 망이 달라질 수 있어 주소 확인이 필요합니다.',SKYLIFE:'스카이라이프 인터넷·TV는 설치 주소와 제공 망에 따라 가입 가능 여부를 확인해야 합니다.'};
+    if(messages[pid]){el.hidden=false;el.textContent=messages[pid]}else{el.hidden=true;el.textContent=''}
+  }
+  function pickCompareInternet(providerId,speed){
+    const rows=internetProducts().filter(p=>p.provider_id===providerId&&Number(p.speed_mbps)===Number(speed));
+    if(!rows.length)return null;
+    if(providerId==='KT')return rows.find(p=>String(p.product_group||'').toUpperCase()==='WIFI')||rows[0];
+    if(providerId==='SKYLIFE')return rows.find(p=>String(p.product_group||'').toUpperCase()==='BASIC')||rows[0];
+    return rows.slice().sort(byOrder)[0];
+  }
+  function basicCompareTv(providerId){
+    const id=BASIC_COMPARE_TV[providerId];return tvProducts().find(t=>t.id===id)||tvProducts().filter(t=>t.provider_id===providerId).sort(byOrder)[0]||null;
+  }
+  function wiredScenario(p,tv){
+    if(!p||!hasAmount(p.monthly_fee??p.internet_fee))return {known:false};
+    const internetFee=Number(p.monthly_fee??p.internet_fee),tvSelected=!!tv;
+    const tvKnown=!tvSelected||hasAmount(tv.monthly_fee??tv.tv_fee);if(!tvKnown)return {known:false};
+    const tvFee=tvSelected?Number(tv.monthly_fee??tv.tv_fee):0,combo=tvSelected?WIRED_COMBO_DEFAULTS[p.provider_id]:null;
+    const stb=tvSelected?defaultSettop(p.provider_id,tv):null;
+    const settopKnown=!tvSelected||!!combo;if(!settopKnown)return {known:false};
+    const settopFee=!tvSelected?0:(stb&&hasAmount(stb.monthly_fee)?Number(stb.monthly_fee):Number(combo?.fallbackSettopFee||0));
+    const internetDiscount=combo?Math.min(internetFee,comboInternetDiscount(combo,p)):0;
+    const tvDiscount=combo?Math.min(tvFee,Number(combo.tvDiscount)||0):0;
+    const base=internetFee+tvFee+settopFee,total=Math.max(0,base-internetDiscount-tvDiscount);
+    return {known:true,base,total,internetDiscount,tvDiscount,settopFee,gift:customerGiftMax(p,tv)};
+  }
+  function escapeWiredHtml(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+  function renderWiredComparison(){
+    const box=$('wired-compare-results');if(!box)return;
+    const speed=Number($('wired-compare-speed')?.value||500),withTv=$('wired-compare-tv')?.value==='basic';
+    const providers=(internetData.providers||[]).slice().sort(byOrder),cards=[];
+    providers.forEach(provider=>{
+      const p=pickCompareInternet(provider.id,speed);if(!p)return;
+      const tv=withTv?basicCompareTv(provider.id):null;if(withTv&&!tv)return;
+      const s=wiredScenario(p,tv);if(!s.known)return;
+      const gift=customerGiftText(s.gift),channel=tv?.channel_label?` · ${tv.channel_label} 채널`:'';
+      cards.push(`<article class="wired-compare-card"><span>${escapeWiredHtml(provider.name)}</span><strong>${won(s.total)}</strong><small>월 예상요금</small><p>${escapeWiredHtml(internetProductLabel(p))}${tv?`<br>${escapeWiredHtml(tv.name+channel)}`:''}</p><div><em>고객사은품</em><b>${escapeWiredHtml(gift)}</b></div><button type="button" data-wired-provider="${escapeWiredHtml(provider.id)}" data-wired-product="${escapeWiredHtml(p.id)}" data-wired-tv="${escapeWiredHtml(tv?.id||'none')}">이 조건으로 자세히 보기</button></article>`);
+    });
+    box.innerHTML=cards.length?cards.join(''):'<p>선택한 속도로 비교 가능한 상품이 없습니다.</p>';
+  }
+  function makeWiredQuoteId(){const d=new Date(),pad=n=>String(n).padStart(2,'0');return `WBI-${String(d.getFullYear()).slice(-2)}${pad(d.getMonth()+1)}${pad(d.getDate())}-${pad(d.getHours())}${pad(d.getMinutes())}${pad(d.getSeconds())}`}
+  function wiredQuoteFingerprint(){return [internetCarrier.value,internetProduct.value,tvProduct.value,wiredBundle.value,mobileBundle.value].join('|')}
+  function syncWiredQuoteId(){
+    const p=currentInternetProduct(),el=$('wired-quote-number');if(!el)return;
+    if(!p){currentWiredQuoteId='';currentWiredQuoteFingerprint='';el.textContent='견적 생성 전';return}
+    const fp=wiredQuoteFingerprint();if(!currentWiredQuoteId||fp!==currentWiredQuoteFingerprint){currentWiredQuoteId=makeWiredQuoteId();currentWiredQuoteFingerprint=fp}el.textContent=currentWiredQuoteId;
+  }
+  function buildWiredQuoteText(){
+    const p=currentInternetProduct(),tv=currentTvProduct(),provider=(internetData.providers||[]).find(x=>x.id===internetCarrier.value);if(!p)return '';
+    const wiredName=selectedRule(wiredBundle)?.name||((tv&&WIRED_COMBO_DEFAULTS[p.provider_id])?'인터넷+TV 결합 자동적용':'미적용');
+    const mobileName=selectedRule(mobileBundle)?.name||'미적용';
+    return [`[웅비통신 유선견적 ${currentWiredQuoteId||''}]`,`${provider?.name||p.provider_id} / ${internetProductLabel(p)}`,`TV: ${tv?.name||'미가입'}`,`유선결합: ${wiredName}`,`모바일결합: ${mobileName}`,`예상 월요금: ${$('internet-total')?.textContent||'매장 확인'}`,`고객사은품: ${$('internet-customer-gift')?.textContent||'매장 확인'}`,'※ 실제 가입 조건은 최종 상담 시 확인됩니다.'].join('\n');
+  }
+  function buildWiredQuoteUrl(){
+    const u=new URL(location.href);u.search='';u.searchParams.set('tab','internet');u.searchParams.set('ic',internetCarrier.value);u.searchParams.set('ip',internetProduct.value);u.searchParams.set('itv',tvProduct.value||'none');u.searchParams.set('iwb',wiredBundle.value||'none');u.searchParams.set('imb',mobileBundle.value||'none');if(currentWiredQuoteId)u.searchParams.set('iq',currentWiredQuoteId);return u.toString();
+  }
+  function readWiredQuotes(){try{return JSON.parse(localStorage.getItem(WIRED_RECENT_QUOTE_KEY)||'[]')}catch{return []}}
+  function renderWiredRecentQuotes(){
+    const box=$('wired-recent-list');if(!box)return;const rows=readWiredQuotes();
+    if(!rows.length){box.innerHTML='<p>아직 저장된 유선 견적이 없습니다.</p>';return}
+    box.innerHTML=rows.map((q,i)=>`<button type="button" data-wired-recent="${i}"><span>${escapeWiredHtml(q.id)}</span><strong>${escapeWiredHtml(q.label)}</strong><small>${escapeWiredHtml(q.total||'')}</small></button>`).join('');
+  }
+  function saveWiredQuote(){
+    const p=currentInternetProduct();if(!p)return false;syncWiredQuoteId();const provider=(internetData.providers||[]).find(x=>x.id===internetCarrier.value),tv=currentTvProduct();
+    const row={id:currentWiredQuoteId,label:`${provider?.name||p.provider_id} · ${internetSpeedLabel(p)}${tv?' + TV':''}`,total:$('internet-total')?.textContent||'',carrier:internetCarrier.value,product:internetProduct.value,tv:tvProduct.value||'none',wired:wiredBundle.value||'none',mobile:mobileBundle.value||'none',saved_at:Date.now()};
+    const rows=readWiredQuotes().filter(x=>x.id!==row.id);rows.unshift(row);localStorage.setItem(WIRED_RECENT_QUOTE_KEY,JSON.stringify(rows.slice(0,5)));renderWiredRecentQuotes();return true;
+  }
+  function applyWiredQuote(q){
+    if(!q)return;internetCarrier.value=q.carrier||'';fillInternetProducts();internetProduct.value=q.product||'';tvProduct.value=q.tv||'none';fillInternetBundles();if([...wiredBundle.options].some(o=>o.value===(q.wired||'none')))wiredBundle.value=q.wired||'none';if([...mobileBundle.options].some(o=>o.value===(q.mobile||'none')))mobileBundle.value=q.mobile||'none';if(q.id){currentWiredQuoteId=q.id;currentWiredQuoteFingerprint=wiredQuoteFingerprint()}syncInternet();
+  }
+  function restoreInternetQuoteFromUrl(){
+    const sp=new URLSearchParams(location.search);if(sp.get('tab')!=='internet'||!sp.get('ic')||!sp.get('ip'))return false;
+    document.querySelectorAll('.rate-tab').forEach(x=>x.classList.toggle('active',x.dataset.tab==='internet'));document.querySelectorAll('.rate-panel').forEach(x=>x.classList.toggle('active',x.dataset.panel==='internet'));
+    applyWiredQuote({id:sp.get('iq')||'',carrier:sp.get('ic'),product:sp.get('ip'),tv:sp.get('itv')||'none',wired:sp.get('iwb')||'none',mobile:sp.get('imb')||'none'});return true;
+  }
+
   function customerGiftMax(p,tv){
     if(!p)return null;
     const cfg=CUSTOMER_GIFT_MAX[p.provider_id];if(!cfg)return null;
@@ -637,12 +729,13 @@
     return list.find(x=>cfg.settopNames.some(n=>String(x.name||'').includes(n)))||list.find(x=>hasAmount(x.monthly_fee))||null;
   }
   function syncInternet(){
-    syncTvProductInfo();
+    syncTvProductInfo();updateInternetSpeedGuide();updateInternetAvailabilityNote();
     const p=currentInternetProduct(),tv=currentTvProduct(),provider=(internetData.providers||[]).find(x=>x.id===internetCarrier.value)||null;
     if(!p){
       ['internet-fee-view','tv-fee-view','internet-base-total','internet-bundle-discount','internet-total','internet-result-base','internet-result-wired-discount','internet-result-mobile-discount'].forEach(id=>$(id).textContent='—');
       $('internet-customer-gift').textContent='—';
       $('internet-summary').textContent=internetCarrier.value?'현재 확인된 상품 요금은 매장에서 안내해 드립니다.':'통신사와 상품을 선택하면 자동으로 반영됩니다.';
+      syncWiredQuoteId();
       return;
     }
 
@@ -678,12 +771,29 @@
     const bits=[],speedLabel=internetSpeedLabel(p);if(speedLabel)bits.push(`인터넷 속도 ${speedLabel}`);if(internetHasWifi(p))bits.push('와이파이 포함');if(tvSelected&&tv?.name)bits.push(tv.name);if(tvSelected&&combo)bits.push('인터넷+TV 결합할인 자동 반영');if(wiredRule?.notes)bits.push(wiredRule.notes);if(mobileRule?.notes)bits.push(mobileRule.notes);
     $('internet-detail').textContent=bits.length?bits.join(' · '):'3년 약정 기준 월요금';
     $('internet-summary').textContent=totalKnown?`${provider?.name||p.provider_id} · ${p.name}${tvSelected&&tv?.name?' + '+tv.name:''} 기준 예상 월요금입니다.`:`${provider?.name||p.provider_id} · 선택 상품의 최신 금액은 매장에서 확인해 주세요.`;
+    syncWiredQuoteId();
   }
   internetCarrier.addEventListener('change',fillInternetProducts);
   internetProduct.addEventListener('change',fillInternetBundles);
   tvProduct.addEventListener('change',fillInternetBundles);
   wiredBundle.addEventListener('change',syncInternet);
   mobileBundle.addEventListener('change',syncInternet);
+  $('wired-compare-speed')?.addEventListener('change',renderWiredComparison);
+  $('wired-compare-tv')?.addEventListener('change',renderWiredComparison);
+  $('wired-compare-results')?.addEventListener('click',e=>{
+    const b=e.target.closest('[data-wired-provider]');if(!b)return;
+    internetCarrier.value=b.dataset.wiredProvider;fillInternetProducts();internetProduct.value=b.dataset.wiredProduct;tvProduct.value=b.dataset.wiredTv||'none';fillInternetBundles();$('internet-form')?.scrollIntoView({behavior:'smooth',block:'start'});
+  });
+  $('save-wired-quote')?.addEventListener('click',()=>{const ok=saveWiredQuote(),s=$('wired-quote-status');if(s)s.textContent=ok?'이 기기에 견적을 저장했습니다.':'상품을 먼저 선택해 주세요.'});
+  $('copy-wired-quote')?.addEventListener('click',async()=>{const t=buildWiredQuoteText(),s=$('wired-quote-status');if(!t){if(s)s.textContent='상품을 먼저 선택해 주세요.';return}try{await navigator.clipboard.writeText(t);if(s)s.textContent='견적 내용을 복사했습니다.'}catch{if(s)s.textContent='복사하지 못했습니다. 공유 버튼을 이용해 주세요.'}});
+  $('share-wired-quote')?.addEventListener('click',async()=>{const t=buildWiredQuoteText(),u=buildWiredQuoteUrl(),s=$('wired-quote-status');if(!t){if(s)s.textContent='상품을 먼저 선택해 주세요.';return}try{if(navigator.share)await navigator.share({title:'웅비통신 인터넷·TV 견적',text:t,url:u});else{await navigator.clipboard.writeText(u);if(s)s.textContent='같은 견적을 다시 여는 링크를 복사했습니다.'}}catch(e){if(e?.name!=='AbortError'&&s)s.textContent='공유하지 못했습니다.'}});
+  $('consult-wired-quote')?.addEventListener('click',async()=>{const t=buildWiredQuoteText(),s=$('wired-quote-status');if(!t){if(s)s.textContent='상품을 먼저 선택해 주세요.';return}try{await navigator.clipboard.writeText(t)}catch{}window.open('http://pf.kakao.com/_nWwNT/chat','_blank','noopener');if(s)s.textContent='견적 내용을 복사했습니다. 상담창에 붙여넣어 주세요.'});
+  $('wired-recent-list')?.addEventListener('click',e=>{const b=e.target.closest('[data-wired-recent]');if(!b)return;applyWiredQuote(readWiredQuotes()[Number(b.dataset.wiredRecent)])});
+  $('add-mobile-to-wired')?.addEventListener('click',()=>{
+    const map={SKB:'SKT',SKTNET:'SKT',KT:'KT','LGU+':'LGU+'},target=map[internetCarrier.value];
+    document.querySelectorAll('.rate-tab').forEach(x=>x.classList.toggle('active',x.dataset.tab==='mobile'));document.querySelectorAll('.rate-panel').forEach(x=>x.classList.toggle('active',x.dataset.panel==='mobile'));
+    if(target){carrier.value=target;fillDevices()}document.querySelector('[data-panel="mobile"]')?.scrollIntoView({behavior:'smooth',block:'start'});
+  });
 
   Promise.all([
     fetch('data/catalog.json?v=20260916-1').then(r=>r.json()),
@@ -697,6 +807,6 @@
   ]).then(([base,plans,supports,extra,iphone18,mvno,prepaid,internet])=>{
     catalog=base;const deviceMap=new Map();[...(base?.devices||[]),...(extra?.devices||[]),...(iphone18?.devices||[])].forEach(d=>deviceMap.set(d.id,d));catalog.devices=[...deviceMap.values()];catalog.mobile_plans=plans?.mobile_plans||base?.mobile_plans||[];contractRate=Number(plans?.selection_contract_rate)||DEFAULT_CONTRACT_RATE;supportSchedules=supports?.support_schedules||[];mvnoData=mvno||mvnoData;prepaidData=prepaid||prepaidData;internetData=internet||internetData;
     const mobileDates=[base?.meta?.updated_at,plans?.meta?.updated_at,supports?.meta?.updated_at,extra?.meta?.updated_at,iphone18?.meta?.updated_at].filter(Boolean).sort();setUpdated('catalog-updated',mobileDates.at(-1));setUpdated('mvno-updated',mvnoData?.meta?.updated_at);setUpdated('prepaid-updated',prepaidData?.meta?.updated_at);setUpdated('internet-updated',internetData?.meta?.updated_at);
-    fillDevices();fillMvnoProviders();fillPrepaidProviders();fillInternetProviders();renderRecentQuotes();restoreQuoteFromUrl();suspendUrlSync=false;syncMobile();
+    fillDevices();fillMvnoProviders();fillPrepaidProviders();fillInternetProviders();renderWiredComparison();renderWiredRecentQuotes();const restoredWired=restoreInternetQuoteFromUrl();renderRecentQuotes();if(!restoredWired)restoreQuoteFromUrl();suspendUrlSync=false;syncMobile();
   }).catch(()=>{$('mobile-data-note').textContent='상품 데이터를 불러오지 못했습니다. 잠시 후 다시 확인해 주세요.'});
 })();

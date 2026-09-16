@@ -7,7 +7,7 @@
   <title>요금 알아보기 | 웅비통신 덕천만덕점</title>
   <meta name="description" content="휴대폰·알뜰폰·선불폰·인터넷·TV 요금을 선택 조건에 따라 확인할 수 있는 웅비통신 요금 안내 페이지입니다.">
   <link rel="icon" type="image/svg+xml" href="assets/woongbi-mark.svg">
-  <link rel="stylesheet" href="assets/rates.css?v=20260916-3">
+  <link rel="stylesheet" href="assets/rates.css?v=20260916-4">
 </head>
 <body>
   <header class="rate-top">
@@ -209,12 +209,25 @@
 
         <section class="rate-panel" data-panel="internet">
           <div class="rate-panel-head"><div><span class="eyebrow">인터넷·TV</span><h2>상품과 결합을 함께 계산</h2></div><span class="updated" id="internet-updated">데이터 기준 확인 중</span></div>
+          <section class="wired-compare-tool" id="wired-compare-tool">
+            <div class="wired-compare-head">
+              <div><span class="eyebrow">한눈에 비교</span><h3>같은 조건으로 통신사 비교</h3><p>속도와 TV 가입 여부를 고르면 각 통신사의 월 예상요금과 고객사은품 최대 금액을 나란히 보여드립니다.</p></div>
+              <div class="wired-compare-controls">
+                <label>인터넷 속도<select id="wired-compare-speed"><option value="100">100M급</option><option value="500" selected>500M</option><option value="1000">1G</option></select></label>
+                <label>TV 가입<select id="wired-compare-tv"><option value="none">인터넷만</option><option value="basic" selected>TV 기본형 포함</option></select></label>
+              </div>
+            </div>
+            <div class="wired-compare-results" id="wired-compare-results"><p>상품 데이터를 불러오고 있습니다.</p></div>
+            <small class="wired-compare-note">TV 기본형 비교는 각 통신사의 대표 기본 TV 상품을 적용합니다. 결합 조건·설치 주소에 따라 실제 요금은 달라질 수 있습니다.</small>
+          </section>
           <div class="rate-grid">
             <form class="rate-card rate-form" id="internet-form" onsubmit="return false">
               <label>통신사<select id="internet-carrier"><option value="">통신사를 선택하세요</option></select></label>
               <label>인터넷 속도·상품<select id="internet-product" disabled><option value="">통신사를 먼저 선택하세요</option></select></label>
+              <div id="internet-speed-guide" class="internet-speed-guide">속도를 선택하면 일반적인 사용 예시를 안내해 드립니다.</div>
               <label>TV 상품<select id="tv-product" disabled><option value="">통신사를 먼저 선택하세요</option></select></label>
               <div id="tv-product-info" class="tv-product-info">TV 상품을 선택하면 채널수와 기본 특징을 보여드립니다.</div>
+              <div id="internet-availability-note" class="internet-availability-note" hidden></div>
               <div class="field-row two">
                 <label>유선결합 할인<select id="wired-bundle" disabled><option value="none">미적용</option></select></label>
                 <label>모바일 결합 할인<select id="mobile-bundle" disabled><option value="none">미적용</option></select></label>
@@ -238,6 +251,18 @@
                 <div><span>고객 사은품 (현금+상품권)</span><b id="internet-customer-gift">—</b></div>
               </div>
               <p id="internet-summary">통신사와 상품을 선택하면 자동으로 반영됩니다.</p>
+              <section class="wired-quote-memory" id="wired-quote-memory">
+                <div class="wired-quote-head"><div><span>유선 견적번호</span><strong id="wired-quote-number">견적 생성 전</strong></div><button type="button" id="save-wired-quote">이 견적 저장</button></div>
+                <div class="wired-recent-title">최근 유선 견적</div>
+                <div class="wired-recent-list" id="wired-recent-list"><p>아직 저장된 유선 견적이 없습니다.</p></div>
+              </section>
+              <div class="wired-quote-tools">
+                <button type="button" id="copy-wired-quote">견적 복사</button>
+                <button type="button" id="share-wired-quote">견적 공유</button>
+                <button type="button" class="primary" id="consult-wired-quote">이 조건으로 상담하기</button>
+                <button type="button" id="add-mobile-to-wired">휴대폰도 같이 계산</button>
+                <small id="wired-quote-status" aria-live="polite"></small>
+              </div>
               <div class="data-note">고객사은품은 선택한 상품 기준 최대 금액이며 지역·상품·설치 및 가입 조건에 따라 실제 지급액은 달라질 수 있어 최종 상담 시 확인됩니다.</div>
               <div class="rate-warning">표시 금액은 등록된 3년 약정 기준입니다. 셋톱박스·공유기·추가 회선·프로모션 등 최종 가입 조건에 따라 실제 청구액은 달라질 수 있습니다.</div>
               <div class="rate-actions"><a href="tel:0513437677">전화로 최종 확인</a><a class="kakao" href="http://pf.kakao.com/_nWwNT/chat" target="_blank" rel="noopener noreferrer">카카오톡 문의</a></div>
