@@ -443,7 +443,7 @@
   let purposeCategory='senior';
   const PURPOSE_COPY={
     senior:'매장에서 자주 안내하는 A17·Wide8·Buddy5 등 삼성폰을 우선 살펴보고, 사용량과 월 부담의 균형이 좋은 휴대폰 요금제로 24개월 총 예상비용을 비교합니다. 복지 할인은 실제 자격 확인 시 적용됩니다.',
-    kids:'ZEM폰·키즈폰 등 아이에게 맞는 최신 삼성 단말을 우선 살펴보고, 키즈·청소년용 요금제에서 공시지원금과 선택약정의 24개월 총 부담을 비교합니다.',
+    kids:'현재 추천하는 키즈폰은 SKT ZEM폰 포켓피스·LGU+ 춘식이2·KT 폼폼푸린 키즈폰 3종입니다. 키즈·청소년용 요금제에서 공시지원금과 선택약정의 24개월 총 부담을 비교합니다.',
     value:'KT 갤럭시 Jump5와 SKT 갤럭시 퀀텀 시리즈 등 40~70만원대 삼성폰을 우선 보고, 통신사별로 부담과 혜택의 균형이 좋은 요금제를 비교합니다. KT Jump5는 61,000원 구간을 우선 안내합니다.',
     premium:'아이폰18 시리즈·갤럭시 S26 / S26+ / S26 Ultra·Z Fold8 / Z Flip8을 중심으로 256GB를 우선 추천하고 512GB까지만 보여드립니다. 실제 공시지원금이 40~50만원으로 확인되는 조합은 기기값 할인 중심으로 안내합니다.'
   };
@@ -472,9 +472,10 @@
   function purposeKidsDeviceRank(d){
     if(purposeIsDeprecatedKidsDevice(d))return 99;
     const text=`${d?.name||''} ${d?.model||''} ${d?.model_code||''}`.toLowerCase().replace(/\s+/g,'');
-    if(d?.carrier==='KT'&&/폼폼푸린|pompompurin/.test(text))return 0;
-    if(purposeIsKidsOnlyDevice(d))return 1;
-    return deviceBrandKey(d)==='samsung'?2:3;
+    if(d?.carrier==='SKT'&&/포켓피스|pocketpiece/.test(text))return 0;
+    if(d?.carrier==='LGU+'&&/춘식이2|춘식이키즈2|choonsik2/.test(text))return 1;
+    if(d?.carrier==='KT'&&/폼폼푸린|pompompurin/.test(text))return 2;
+    return 99;
   }
   function purposeSourceOrder(row){
     const order=Number(row?.source_order);return Number.isFinite(order)?order:999999;
@@ -540,6 +541,20 @@
     const name=String(d?.name||'').toLowerCase().replace(/\b(128gb|256gb|512gb|1tb|2tb)\b/gi,'').replace(/\s+/g,' ').trim();
     return `${d?.carrier||''}|${name}`;
   }
+  function purposePremiumFamilyKey(d){
+    const text=`${d?.name||''} ${d?.model||''} ${d?.model_code||''}`.toLowerCase().replace(/\s+/g,'');
+    if(/s26ultra/.test(text))return 's26ultra';
+    if(/s26\+|s26plus/.test(text))return 's26plus';
+    if(/갤럭시s26|galaxys26/.test(text))return 's26';
+    if(/폴드8|fold8/.test(text))return 'fold8';
+    if(/플립8|flip8/.test(text))return 'flip8';
+    if(/아이폰18|iphone18/.test(text))return 'iphone18';
+    return 'other';
+  }
+  function purposePremiumFamilyRank(d){
+    const order={s26:0,s26plus:1,s26ultra:2,fold8:3,flip8:4,iphone18:5};
+    const key=purposePremiumFamilyKey(d);return Object.prototype.hasOwnProperty.call(order,key)?order[key]:99;
+  }
   function purposePremiumLineupLabel(d){
     const text=`${d?.name||''} ${d?.model||''} ${d?.model_code||''}`.toLowerCase().replace(/\s+/g,'');
     if(/s26ultra/.test(text))return '갤럭시 S26 시리즈 · Ultra';
@@ -556,7 +571,7 @@
   function purposeDevicePool(category,carrierValue){
     let rows=(catalog?.devices||[]).filter(d=>(carrierValue==='all'||d.carrier===carrierValue)&&hasAmount(d.retail_price)&&Number(d.retail_price)>0&&!purposeObsoleteDevice(d)&&!purposeIsDeprecatedKidsDevice(d));
     if(category==='senior')rows=rows.filter(d=>purposeIsLowCostDevice(d)&&!purposeIsKidsOnlyDevice(d));
-    else if(category==='kids')rows=rows.filter(d=>purposeIsLowCostDevice(d)||purposeIsKidsOnlyDevice(d));
+    else if(category==='kids')rows=rows.filter(d=>purposeKidsDeviceRank(d)<99);
     else if(category==='value')rows=rows.filter(d=>{
       const price=Number(d.retail_price)||0,rank=purposeValueDeviceRank(d);
       return rank<9&&(rank<=2||(price>=400000&&price<800000));
@@ -572,7 +587,7 @@
       return rows.sort((a,b)=>purposeValueDeviceRank(a)-purposeValueDeviceRank(b)||purposeSourceOrder(a)-purposeSourceOrder(b)||Number(a.retail_price)-Number(b.retail_price)).slice(0,120);
     }
     if(category==='premium'){
-      return rows.sort((a,b)=>purposePremiumStorageRank(a)-purposePremiumStorageRank(b)||purposeSourceOrder(a)-purposeSourceOrder(b)||purposeSalesBrandRank(a,category)-purposeSalesBrandRank(b,category)||Number(a.retail_price)-Number(b.retail_price)).slice(0,180);
+      return rows.sort((a,b)=>purposePremiumFamilyRank(a)-purposePremiumFamilyRank(b)||purposePremiumStorageRank(a)-purposePremiumStorageRank(b)||purposeSourceOrder(a)-purposeSourceOrder(b)||Number(a.retail_price)-Number(b.retail_price)).slice(0,180);
     }
     return rows.sort((a,b)=>purposeSalesBrandRank(a,category)-purposeSalesBrandRank(b,category)||Number(a.retail_price)-Number(b.retail_price)||byNewest(a,b)).slice(0,180);
   }
@@ -632,10 +647,16 @@
     }else if(purposeCategory==='kids'){
       rows.sort((a,b)=>purposeKidsDeviceRank(a.d)-purposeKidsDeviceRank(b.d)||purposeSalesBrandRank(a.d,purposeCategory)-purposeSalesBrandRank(b.d,purposeCategory)||a.best.total24-b.best.total24||purposeSourceOrder(a.d)-purposeSourceOrder(b.d));
     }else if(purposeCategory==='premium'){
-      rows.sort((a,b)=>purposePremiumStorageRank(a.d)-purposePremiumStorageRank(b.d)||purposeSourceOrder(a.d)-purposeSourceOrder(b.d)||Math.abs(Number(a.support.support)-450000)-Math.abs(Number(b.support.support)-450000)||Number(a.p.monthly_fee)-Number(b.p.monthly_fee));
+      rows.sort((a,b)=>purposePremiumFamilyRank(a.d)-purposePremiumFamilyRank(b.d)||purposePremiumStorageRank(a.d)-purposePremiumStorageRank(b.d)||Math.abs(Number(a.support.support)-450000)-Math.abs(Number(b.support.support)-450000)||Number(a.p.monthly_fee)-Number(b.p.monthly_fee)||purposeSourceOrder(a.d)-purposeSourceOrder(b.d));
     }else rows.sort((a,b)=>purposeSalesBrandRank(a.d,purposeCategory)-purposeSalesBrandRank(b.d,purposeCategory)||a.best.total24-b.best.total24||Number(a.d.retail_price)-Number(b.d.retail_price));
+    if(purposeCategory==='premium'){
+      const unique=[],seenFamilies=new Set();
+      for(const row of rows){const family=purposePremiumFamilyKey(row.d);if(family==='other'||seenFamilies.has(family))continue;seenFamilies.add(family);unique.push(row);if(unique.length>=6)break}
+      if(unique.length<6){for(const row of rows){if(unique.includes(row))continue;unique.push(row);if(unique.length>=6)break}}
+      return unique;
+    }
     const unique=[],seen=new Set();for(const row of rows){
-      const key=purposeCategory==='senior'?purposeSeniorDeviceFamily(row.d):purposeCategory==='premium'?purposePremiumDeviceFamily(row.d):`${row.d.carrier}|${row.d.name}`;
+      const key=purposeCategory==='senior'?purposeSeniorDeviceFamily(row.d):`${row.d.carrier}|${row.d.name}`;
       if(seen.has(key))continue;seen.add(key);unique.push(row);if(unique.length>=6)break;
     }
     return unique;
