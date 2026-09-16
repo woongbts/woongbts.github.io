@@ -1,0 +1,47 @@
+name: Diagnose S26 support schedules
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/tmp-diag-s26-support.yml'
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Inspect S26 support data
+        run: |
+          python - <<'PY'
+          import json,re
+          from pathlib import Path
+          cat=json.loads(Path('data/catalog.json').read_text(encoding='utf-8'))
+          sup=json.loads(Path('data/supports.json').read_text(encoding='utf-8'))
+          devices=cat.get('devices',[]); plans={p.get('id'):p for p in cat.get('mobile_plans',[])}
+          s26=[d for d in devices if re.search(r'갤럭시\s*S26(?!\s*FE)|Galaxy\s*S26(?!\s*FE)', f"{d.get('name','')} {d.get('model','')} {d.get('model_code','')}", re.I) and re.search(r'256GB|512GB', f"{d.get('name','')} {d.get('model','')} {d.get('model_code','')}", re.I)]
+          ids={d.get('id') for d in s26}
+          print('S26 device ids/names:')
+          for d in s26: print(d.get('id'), d.get('carrier'), d.get('name'))
+          print('supports top type/keys',type(sup).__name__, list(sup.keys()) if isinstance(sup,dict) else 'list')
+          hits=[]
+          def walk(x,path='root'):
+            if isinstance(x,dict):
+              devs=x.get('device_ids')
+              if isinstance(devs,list) and ids.intersection(devs):
+                hits.append((path,x))
+              for k,v in x.items(): walk(v,f'{path}.{k}')
+            elif isinstance(x,list):
+              for i,v in enumerate(x): walk(v,f'{path}[{i}]')
+          walk(sup)
+          print('schedule hits',len(hits))
+          for path,row in hits[:50]:
+            print('PATH',path)
+            print('carrier',row.get('carrier'),'join_types',row.get('join_types'),'device_ids',[x for x in row.get('device_ids',[]) if x in ids])
+            amounts=row.get('amounts') or {}
+            vals=[]
+            for pid,amt in amounts.items():
+              p=plans.get(pid)
+              vals.append((pid,p.get('name') if p else None,p.get('monthly_fee') if p else None,amt))
+            print('amounts',vals[:40])
+          PY
