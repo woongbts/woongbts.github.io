@@ -1,0 +1,82 @@
+name: Temporary recent device catalog refresh
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/temp-apply-recent-device-policy.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - name: Apply persistent recent-device policy
+        run: python3 .github/scripts/temp_apply_recent_device_policy.py
+      - name: Refresh current verified wireless catalog
+        run: python3 .github/scripts/daily_wireless_sync.py
+      - name: Validate refreshed catalog and UI logic
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --check assets/rates.min.js
+          python3 - <<'PY'
+          import json
+          from collections import Counter
+          from datetime import datetime, timedelta
+          from zoneinfo import ZoneInfo
+          from pathlib import Path
+          catalog=json.loads(Path('data/catalog.json').read_text(encoding='utf-8'))
+          plans=json.loads(Path('data/plans.json').read_text(encoding='utf-8'))
+          supports=json.loads(Path('data/supports.json').read_text(encoding='utf-8'))
+          devices=catalog.get('devices') or []
+          cutoff=(datetime.now(ZoneInfo('Asia/Seoul')).date()-timedelta(days=365)).isoformat()
+          assert devices and plans.get('mobile_plans') and supports.get('support_schedules')
+          stale=[d for d in devices if str(d.get('release_date') or '') < cutoff]
+          assert not stale, [(d.get('carrier'),d.get('name'),d.get('release_date')) for d in stale[:5]]
+          names='\n'.join(str(d.get('name') or '') for d in devices).lower()
+          for old in ('시나모롤','redmi 14c','클래식 폴더','스타일폴더2'):
+              assert old.lower() not in names, old
+          counts=Counter(d.get('carrier') for d in devices)
+          assert all(counts[c] >= 15 for c in ('SKT','KT','LGU+')), counts
+          print('cutoff',cutoff,'counts',dict(counts),'total',len(devices))
+          for carrier in ('SKT','KT','LGU+'):
+              rows=sorted([d for d in devices if d.get('carrier')==carrier], key=lambda d:(d.get('source_order',999999),d.get('name','')))
+              print('\n',carrier,'latest 12')
+              for d in rows[:12]: print(d.get('source_order'),d.get('release_date'),d.get('name'))
+              print('oldest kept', rows[-1].get('release_date'), rows[-1].get('name'))
+          PY
+          grep -q '최근 출시된 Wide9·Buddy5·A37·A17' assets/rates.min.js
+          ! grep -q '스타일폴더2' assets/rates.min.js
+          grep -q '!xe(t)&&!Ce(t)&&!/폴더|folder/i' assets/rates.min.js
+          grep -q 'data/catalog.json?v=20260918-2' assets/rates.min.js
+          grep -q 'assets/rates.min.js?v=20260918-2' rates.html
+      - name: Remove temporary files and commit verified changes
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f \
+            .github/workflows/temp-apply-recent-device-policy.yml \
+            .github/scripts/temp_apply_recent_device_policy.py \
+            .github/workflows/temp-list-current-devices.yml \
+            .github/scripts/temp_list_current_devices.py
+          git config user.name 'woongbts-site-bot'
+          git config user.email 'actions@users.noreply.github.com'
+          git add \
+            .github/scripts/daily_wireless_sync.py \
+            assets/rates.min.js rates.html \
+            data/catalog.json data/plans.json data/supports.json \
+            .github/workflows/temp-apply-recent-device-policy.yml \
+            .github/scripts/temp_apply_recent_device_policy.py \
+            .github/workflows/temp-list-current-devices.yml \
+            .github/scripts/temp_list_current_devices.py
+          git commit -m 'Keep wireless catalog focused on recent devices'
+          git pull --rebase origin main
+          git push origin HEAD:main
