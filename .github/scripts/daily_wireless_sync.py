@@ -7,7 +7,7 @@ import time
 import urllib.parse
 import urllib.request
 from concurrent.futures import ThreadPoolExecutor, as_completed
-from datetime import datetime
+from datetime import datetime, timedelta
 from zoneinfo import ZoneInfo
 
 ROOT = os.environ.get("WIRELESS_SOURCE_BASE_URL", "").strip().rstrip("/")
@@ -26,7 +26,10 @@ JOIN_QUERIES = [
     ("신규가입", "NEW", "support_money"),
 ]
 BASE = pathlib.Path("data")
-TODAY = datetime.now(ZoneInfo("Asia/Seoul")).date().isoformat()
+TODAY_DATE = datetime.now(ZoneInfo("Asia/Seoul")).date()
+TODAY = TODAY_DATE.isoformat()
+RECENT_DEVICE_DAYS = 365
+RECENT_DEVICE_CUTOFF = (TODAY_DATE - timedelta(days=RECENT_DEVICE_DAYS)).isoformat()
 
 
 def get_json(path, params=None, attempts=4):
@@ -118,8 +121,8 @@ def validate_dataset(old_catalog, old_plans, old_supports, catalog, plan_data, s
         "plans": len(plans),
         "supports": len(schedules),
     }
-    floors = {"devices": 0.65, "plans": 0.65, "supports": 0.50}
-    minimums = {"devices": 25, "plans": 20, "supports": 20}
+    floors = {"devices": 0.10, "plans": 0.65, "supports": 0.05}
+    minimums = {"devices": 30, "plans": 20, "supports": 20}
     for key in new_counts:
         old = old_counts[key]
         required = max(minimums[key], int(old * floors[key])) if old else minimums[key]
@@ -130,8 +133,11 @@ def validate_dataset(old_catalog, old_plans, old_supports, catalog, plan_data, s
 
     new_carriers = count_by_carrier(devices)
     for carrier in ("SKT", "KT", "LGU+"):
-        if new_carriers.get(carrier, 0) < 5:
-            raise RuntimeError(f"too few {carrier} devices: {new_carriers.get(carrier, 0)}")
+        if new_carriers.get(carrier, 0) < 15:
+            raise RuntimeError(f"too few {carrier} recent devices: {new_carriers.get(carrier, 0)}")
+    stale = [device.get("id") for device in devices if str(device.get("release_date") or "") < RECENT_DEVICE_CUTOFF]
+    if stale:
+        raise RuntimeError(f"stale devices leaked into public catalog: {stale[:5]}")
 
     plan_ids = set()
     for plan in plans:
@@ -220,6 +226,10 @@ def main():
             price = money(device.get("factory_price"))
             release = clean(device.get("release_dt"))
             if price is None or price <= 0 or release in ("", "0000-00-00"):
+                continue
+            # Source order is RELEASE_DT_DESC. Keep recent devices only so legacy stock
+            # cannot leak back into customer calculators or recommendations.
+            if release < RECENT_DEVICE_CUTOFF:
                 continue
             candidates.append((order, device))
 
