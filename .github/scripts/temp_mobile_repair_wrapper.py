@@ -21,4 +21,15 @@ for i, url in enumerate(urls, 1):
 if old not in src:
     raise SystemExit('homepage sequence block not found in repair script')
 src=src.replace(old,new,1)
+
+# site-pro already has a responsive .deal-device-icon style; keep that existing rule.
+start=src.find("home = replace_once(\n    home,\n    '.deal-media img{width:100%;")
+end_marker='    "device icon style",\n)\n'
+if start < 0:
+    raise SystemExit('device icon patch block not found')
+end=src.find(end_marker,start)
+if end < 0:
+    raise SystemExit('device icon patch block end not found')
+src=src[:start]+src[end+len(end_marker):]
+
 exec(compile(src,str(path),'exec'),{'__name__':'__main__'})
