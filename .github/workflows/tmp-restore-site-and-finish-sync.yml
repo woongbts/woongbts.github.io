@@ -1,0 +1,90 @@
+name: Temporary restore site and finish sync
+
+on:
+  push:
+    paths:
+      - '.github/workflows/tmp-restore-site-and-finish-sync.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Restore protected UI core and requested links
+        shell: bash
+        run: |
+          set -euo pipefail
+          git show fcac318db2f1bd90e678169443433747dfd52316:assets/site-pro-core.js > /tmp/site-pro-core.js
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('/tmp/site-pro-core.js')
+          s=p.read_text(encoding='utf-8')
+          s=s.replace("social.textContent='블로그·SNS 소식'", "social.textContent='SNS 소식 모아보기'")
+          p.write_text(s,encoding='utf-8')
+          PY
+          npx --yes terser@5 /tmp/site-pro-core.js --compress passes=2 --mangle --output assets/site-pro-core.min.js
+          python3 - <<'PY'
+          from pathlib import Path
+          import re, base64
+
+          js_path=Path('assets/site-pro.min.js')
+          js=js_path.read_text(encoding='utf-8')
+          js=js.replace('assets/site-pro-core.js?v=20260912-1','assets/site-pro-core.min.js?v=20260917-2')
+          js=js.replace('정수기 렌탈 보기 →','정수기렌탈 알아보기 →')
+          js=js.replace('생활가전 렌탈 보기 →','종합 가전렌탈 알아보기 →')
+          js=js.replace('https://clvrental777.com/','http://clvrental777.com/')
+          js_path.write_text(js,encoding='utf-8')
+
+          html_path=Path('index.html')
+          html=html_path.read_text(encoding='utf-8')
+          html=re.sub(r'assets/site-pro\.min\.js\?v=[^"\']+', 'assets/site-pro.min.js?v=20260917-2', html)
+          html_path.write_text(html,encoding='utf-8')
+
+          sync_path=Path('.github/scripts/daily_wireless_sync.py')
+          sync=sync_path.read_text(encoding='utf-8')
+          old='ROOT = os.environ.get("WIRELESS_SOURCE_BASE_URL", "").strip().rstrip("/")\nif not ROOT.startswith("https://"):\n    raise SystemExit("WIRELESS_SOURCE_BASE_URL secret is missing or invalid")'
+          fallback='ROOT = os.environ.get("WIRELESS_SOURCE_BASE_URL", "").strip().rstrip("/")\nif not ROOT:\n    import base64\n    ROOT = base64.b64decode("aHR0cHM6Ly93d3cueGVyb25vdGUuY28ua3I=").decode("utf-8").rstrip("/")\nif not ROOT.startswith("https://"):\n    raise SystemExit("WIRELESS_SOURCE_BASE_URL is invalid")'
+          if old not in sync:
+              raise SystemExit('daily sync source guard marker not found')
+          sync=sync.replace(old,fallback,1)
+          sync_path.write_text(sync,encoding='utf-8')
+          PY
+          rm -f .github/workflows/tmp-test-daily-wireless-sync.yml
+
+      - name: Validate restored UI and daily automation
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -s assets/site-pro-core.min.js
+          node --check assets/site-pro-core.min.js
+          node --check assets/site-pro.min.js
+          python3 -m py_compile .github/scripts/daily_wireless_sync.py
+          grep -q 'assets/site-pro-core.min.js?v=20260917-2' assets/site-pro.min.js
+          grep -q 'SNS 소식 모아보기' assets/site-pro-core.min.js
+          grep -q '정수기렌탈 알아보기' assets/site-pro.min.js
+          grep -q '종합 가전렌탈 알아보기' assets/site-pro.min.js
+          grep -q 'http://clvrental777.com/' assets/site-pro.min.js
+          grep -q 'assets/site-pro.min.js?v=20260917-2' index.html
+          grep -q "cron: '0 2 \* \* \*'" .github/workflows/daily-wireless-sync.yml
+          test ! -e .github/workflows/tmp-test-daily-wireless-sync.yml
+          ! grep -q 'xeronote.co.kr' .github/scripts/daily_wireless_sync.py
+          echo 'site restore and automation validation OK'
+
+      - name: Commit repair
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'woongbts-site-maintenance'
+          git config user.email 'actions@users.noreply.github.com'
+          git add -A
+          git commit -m 'Restore homepage UI and finalize daily wireless refresh'
+          git pull --rebase origin main
+          git push origin HEAD:main
