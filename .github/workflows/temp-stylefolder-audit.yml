@@ -11,23 +11,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Inspect current catalog structure
+      - name: Inspect target devices
         shell: bash
         run: |
           python3 - <<'PY'
           import json
           from pathlib import Path
           c=json.loads(Path('data/catalog.json').read_text(encoding='utf-8'))
-          print('meta',c.get('meta'))
-          print('keys',list(c.keys()))
-          print('device_count',len(c.get('devices',[])))
           for carrier in ('SKT','LGU+'):
-              print('\nCARRIER',carrier)
-              devs=[d for d in c.get('devices',[]) if d.get('carrier')==carrier]
-              print('count',len(devs))
-              for d in devs[:3]:
-                  print(json.dumps(d,ensure_ascii=False))
-              for d in devs:
-                  if any(k in (d.get('name') or '').lower() for k in ['wide9','a17','폴더','folder']):
-                      print('MATCH',json.dumps(d,ensure_ascii=False))
+              print('CARRIER',carrier)
+              for d in c.get('devices',[]):
+                  name=d.get('name','')
+                  if any(x in name for x in ('A17 LTE','Wide9','A17 키즈폰')):
+                      out={k:d.get(k) for k in ('id','carrier','name','model','model_code','manufacturer','release_date','retail_price','factory_price_date','announce_date','network_type','source_order','installment_months','eligible_plan_ids','eligible_plan_ids_by_join_type')}
+                      print(json.dumps(out,ensure_ascii=False))
           PY
