@@ -1,0 +1,58 @@
+name: Daily wireless data refresh
+
+on:
+  schedule:
+    - cron: '0 2 * * *' # 11:00 Asia/Seoul
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: daily-wireless-data-refresh
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    env:
+      WIRELESS_SOURCE_BASE_URL: ${{ secrets.WIRELESS_SOURCE_BASE_URL }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Refresh verified public wireless data
+        run: python3 .github/scripts/daily_wireless_sync.py
+
+      - name: Validate website data and JavaScript
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          for path in ('data/catalog.json','data/plans.json','data/supports.json'):
+              data=json.loads(Path(path).read_text(encoding='utf-8'))
+              if not isinstance(data,dict):
+                  raise SystemExit(f'invalid json root: {path}')
+          print('JSON validation OK')
+          PY
+          node --check assets/rates.min.js
+
+      - name: Commit only verified changes
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add data/catalog.json data/plans.json data/supports.json
+          if git diff --cached --quiet; then
+            echo 'No verified wireless data changes'
+            exit 0
+          fi
+          git config user.name 'woongbts-data-sync'
+          git config user.email 'actions@users.noreply.github.com'
+          git commit -m "Daily wireless data refresh $(TZ=Asia/Seoul date +%F)"
+          git pull --rebase origin main
+          git push origin HEAD:main
