@@ -1,0 +1,33 @@
+name: Temporary stylefolder audit
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/temp-stylefolder-audit.yml'
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Inspect current catalog structure
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          c=json.loads(Path('data/catalog.json').read_text(encoding='utf-8'))
+          print('meta',c.get('meta'))
+          print('keys',list(c.keys()))
+          print('device_count',len(c.get('devices',[])))
+          for carrier in ('SKT','LGU+'):
+              print('\nCARRIER',carrier)
+              devs=[d for d in c.get('devices',[]) if d.get('carrier')==carrier]
+              print('count',len(devs))
+              for d in devs[:3]:
+                  print(json.dumps(d,ensure_ascii=False))
+              for d in devs:
+                  if any(k in (d.get('name') or '').lower() for k in ['wide9','a17','폴더','folder']):
+                      print('MATCH',json.dumps(d,ensure_ascii=False))
+          PY
