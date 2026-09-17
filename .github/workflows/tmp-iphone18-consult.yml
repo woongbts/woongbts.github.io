@@ -1,0 +1,41 @@
+name: Convert iPhone 18 promo to consultation
+
+on:
+  push:
+    paths:
+      - 'tmp_convert_iphone18_consult.py'
+      - '.github/workflows/tmp-iphone18-consult.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - name: Apply iPhone 18 consultation banner
+        run: |
+          python tmp_convert_iphone18_consult.py
+          node --check assets/site-pro.min.js
+          python - <<'PY'
+          from pathlib import Path
+          s=Path('assets/site-pro.min.js').read_text(encoding='utf-8')
+          assert '상시 상담 · iPhone 18' in s
+          assert 'iPhone 18 상담하세요' in s
+          assert '기기변경 · 번호이동 · 요금제 상담' in s
+          assert '▶ iPhone 18 영상 보기' in s
+          assert '기간 한정 · 사전예약' not in s
+          assert '9월 12일 오후 9시 ~ 9월 17일' not in s
+          assert '2026-09-18T00:00:00+09:00' not in s
+          print('iphone18 consultation validation ok')
+          PY
+      - name: Commit update and cleanup
+        run: |
+          git config user.name "woongbts"
+          git config user.email "swb3301@gmail.com"
+          git rm -f tmp_convert_iphone18_consult.py .github/workflows/tmp-iphone18-consult.yml
+          git add assets/site-pro.min.js
+          git commit -m "Convert iPhone 18 promo to consultation"
+          git push
