@@ -32,4 +32,7 @@ if end < 0:
     raise SystemExit('device icon patch block end not found')
 src=src[:start]+src[end+len(end_marker):]
 
+# rates.html currently carries an older stylesheet cache token than the repair script expected.
+src=src.replace("'assets/rates.css?v=20260917-13'", "'assets/rates.css?v=20260916-18'", 1)
+
 exec(compile(src,str(path),'exec'),{'__name__':'__main__'})
