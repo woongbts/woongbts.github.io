@@ -1,0 +1,60 @@
+name: Temporary prepaid plan probe
+
+on:
+  push:
+    paths:
+      - '.github/workflows/tmp-prepaid-plan-probe.yml'
+  workflow_dispatch:
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Fetch Mobing and FreeT prepaid plans
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p probe
+          python3 - <<'PY'
+          import base64, json, urllib.parse, urllib.request
+          from pathlib import Path
+          ROOT=base64.b64decode('aHR0cHM6Ly93d3cueGVyb25vdGUuY28ua3I=').decode()
+          REF=ROOT+'/consult/mobile.php?consult_mode=NONE_DEVICE'
+          UA='Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/140 Safari/537.36'
+          def get(path,params):
+              u=ROOT+path
+              if params:
+                  u += '?' + urllib.parse.urlencode(params)
+              req=urllib.request.Request(u,headers={'User-Agent':UA,'Accept':'application/json,text/plain,*/*','Referer':REF})
+              with urllib.request.urlopen(req,timeout=30) as r:
+                  return json.loads(r.read().decode('utf-8-sig'))
+          telecom=get('/api/data/get_telecom_list.php',{}).get('data',[]) or []
+          selected=[]
+          for t in telecom:
+              blob=json.dumps(t,ensure_ascii=False).lower()
+              if any(k in blob for k in ['모빙','mobing','프리티','freet','free t','free티']):
+                  selected.append(t)
+          out={'selected_telecoms':selected,'plans':[]}
+          for t in selected:
+              tid=str(t.get('telecom_id') or '')
+              name=str(t.get('telecom_nm') or t.get('telecom_name') or t.get('name') or tid)
+              for group in ['PREPAY','USIM']:
+                  rows=get('/api/data/get_mobile_plan_list.php',{
+                      'telecom_id':tid,'device_idx':'','plan_group':group,'sort_type':'',
+                      'join_type':'MNP','join_flag':'ABLE','plan_idx':'','keyword':''
+                  }).get('data',[]) or []
+                  if rows:
+                      out['plans'].append({'telecom_id':tid,'telecom_name':name,'plan_group':group,'count':len(rows),'rows':rows})
+          Path('probe/prepaid-current.json').write_text(json.dumps(out,ensure_ascii=False,indent=2),encoding='utf-8')
+          print('selected telecoms:', len(selected))
+          for t in selected:
+              print(json.dumps(t,ensure_ascii=False))
+          for p in out['plans']:
+              print(p['telecom_id'],p['plan_group'],p['count'])
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: prepaid-current
+          path: probe/prepaid-current.json
+          retention-days: 1
