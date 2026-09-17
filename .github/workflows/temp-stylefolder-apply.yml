@@ -127,7 +127,8 @@ jobs:
           index_path.write_text(idx,encoding='utf-8')
 
           # Integrity checks.
-          plans_data=json.loads(Path('data/plans.json').read_text(encoding='utf-8'))\n          plans={p.get('id') for p in (plans_data.get('mobile_plans') or [])}
+          plans_data=json.loads(Path('data/plans.json').read_text(encoding='utf-8'))
+          plans={p.get('id') for p in (plans_data.get('mobile_plans') or [])}
           assert len([d for d in devices if d.get('name')=='스타일폴더2'])==2
           assert {d['carrier'] for d in added}=={'SKT','LGU+'}
           assert not any(d.get('carrier')=='KT' and d.get('name')=='스타일폴더2' for d in devices)
