@@ -30,6 +30,59 @@ TODAY_DATE = datetime.now(ZoneInfo("Asia/Seoul")).date()
 TODAY = TODAY_DATE.isoformat()
 RECENT_DEVICE_DAYS = 365
 RECENT_DEVICE_CUTOFF = (TODAY_DATE - timedelta(days=RECENT_DEVICE_DAYS)).isoformat()
+# Explicit current-sale exception supplied and verified for the store.
+# These models remain in the customer catalog even when older than the general recency window.
+PINNED_MODEL_CODES = {"AT-M140S", "AT-M140L"}
+PINNED_DEVICE_META = {
+    "AT-M140S": {
+        "form_factor": "폴더",
+        "colors": ["인디고블랙", "펄화이트"],
+        "specs": {
+            "cpu": "MT6765X / 2.2GHz + 1.6GHz Quad Core",
+            "display": "IPS LCD (WVGA)",
+            "main_screen": "4.3인치",
+            "front_camera": "500만 화소",
+            "rear_camera": "800만 화소",
+            "ram": "3GB",
+            "storage": "32GB",
+            "dimensions": "127.8 x 65.3 x 16.9mm",
+            "weight": "195g",
+            "battery": "2,100mAh",
+            "charging": "USB Type-C",
+            "os": "Android 14 Go Edition",
+            "easy_payment": "미지원",
+            "water_resistance": "미지원",
+            "fingerprint": "미지원",
+            "wireless_charging": "미지원",
+            "film_attached": "미부착",
+            "external_memory": "미지원",
+        },
+    },
+    "AT-M140L": {
+        "form_factor": "폴더",
+        "colors": ["인디고블랙", "펄화이트"],
+        "specs": {
+            "cpu": "MT6765X / 2.2GHz + 1.6GHz Quad Core",
+            "display": "IPS LCD (WVGA)",
+            "main_screen": "4.3인치",
+            "front_camera": "500만 화소",
+            "rear_camera": "800만 화소",
+            "ram": "3GB",
+            "storage": "32GB",
+            "dimensions": "127.8 x 65.3 x 16.9mm",
+            "weight": "195g",
+            "battery": "2,100mAh",
+            "charging": "USB Type-C",
+            "os": "Android 14 Go Edition",
+            "easy_payment": "미지원",
+            "water_resistance": "미지원",
+            "fingerprint": "미지원",
+            "wireless_charging": "미지원",
+            "film_attached": "미부착",
+            "external_memory": "미지원",
+        },
+    },
+}
 
 
 def get_json(path, params=None, attempts=4):
@@ -95,6 +148,9 @@ def handset_plan_rows(rows):
         "ipad",
         "세컨드디바이스",
         "2nddevice",
+        "wearable",
+        "웨어러블",
+        "데이터나눠쓰기",
     )
     result = []
     for row in eligible_rows(rows):
@@ -161,7 +217,12 @@ def validate_dataset(old_catalog, old_plans, old_supports, catalog, plan_data, s
     for carrier in ("SKT", "KT", "LGU+"):
         if new_carriers.get(carrier, 0) < 15:
             raise RuntimeError(f"too few {carrier} recent devices: {new_carriers.get(carrier, 0)}")
-    stale = [device.get("id") for device in devices if str(device.get("release_date") or "") < RECENT_DEVICE_CUTOFF]
+    stale = [
+        device.get("id")
+        for device in devices
+        if str(device.get("release_date") or "") < RECENT_DEVICE_CUTOFF
+        and clean(device.get("model_code")) not in PINNED_MODEL_CODES
+    ]
     if stale:
         raise RuntimeError(f"stale devices leaked into public catalog: {stale[:5]}")
 
@@ -178,7 +239,7 @@ def validate_dataset(old_catalog, old_plans, old_supports, catalog, plan_data, s
         blocked_plan_tokens = (
             "아웃도어", "tab", "태블릿", "watch", "워치", "포켓파이",
             "스마트기기", "데이터함께쓰기", "데이터쉐어링", "데이터셰어링",
-            "아이패드", "ipad", "세컨드디바이스", "2nddevice",
+            "아이패드", "ipad", "세컨드디바이스", "2nddevice", "wearable", "웨어러블", "데이터나눠쓰기",
         )
         if any(token in normalized_name for token in blocked_plan_tokens):
             raise RuntimeError(f"non-handset plan leaked into public catalog: {pid} {plan.get('name')}")
@@ -263,7 +324,8 @@ def main():
                 continue
             # Source order is RELEASE_DT_DESC. Keep recent devices only so legacy stock
             # cannot leak back into customer calculators or recommendations.
-            if release < RECENT_DEVICE_CUTOFF:
+            model_code = clean(device.get("device_name"))
+            if release < RECENT_DEVICE_CUTOFF and model_code not in PINNED_MODEL_CODES:
                 continue
             candidates.append((order, device))
 
@@ -393,6 +455,9 @@ def main():
                     "eligible_plan_ids_by_join_type": eligible_by_join,
                 }
             )
+            model_code = clean(device.get("device_name"))
+            if model_code in PINNED_DEVICE_META:
+                all_devices[-1].update(copy.deepcopy(PINNED_DEVICE_META[model_code]))
             per_device_support[(carrier, device_id)] = support_by_join
 
     carrier_order = {"SKT": 0, "KT": 1, "LGU+": 2}
