@@ -1,0 +1,39 @@
+name: Temporary daily wireless sync test
+
+on:
+  push:
+    paths:
+      - '.github/workflows/tmp-test-daily-wireless-sync.yml'
+      - '.github/scripts/daily_wireless_sync.py'
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - name: Run guarded refresh without committing
+        shell: bash
+        run: |
+          set -euo pipefail
+          export WIRELESS_SOURCE_BASE_URL="$(printf '%s' 'aHR0cHM6Ly93d3cueGVyb25vdGUuY28ua3I=' | base64 -d)"
+          python3 .github/scripts/daily_wireless_sync.py
+      - name: Validate generated files
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          for p in ('data/catalog.json','data/plans.json','data/supports.json'):
+              data=json.loads(Path(p).read_text(encoding='utf-8'))
+              print(p, 'OK', len(json.dumps(data,ensure_ascii=False)))
+          PY
+          node --check assets/rates.min.js
+          git diff --stat -- data/catalog.json data/plans.json data/supports.json
