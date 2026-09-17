@@ -41,4 +41,4 @@ jobs:
           git commit -m 'Repair mobile recommendations filters and calculator links'
           git push origin HEAD:main
 
-# retry after homepage style validation adjustment
+# retry with verified current cache tokens
