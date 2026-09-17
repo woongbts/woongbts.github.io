@@ -56,10 +56,12 @@ new_func='function Ee(e){const t=$e(e);return 0===t?"wide9":1===t?"buddy5":2===t
 j=j[:start]+new_func+j[end:]
 
 # Remove the legacy StyleFolder2 forced insertion after normal senior recommendations.
-old='if("senior"===ve&&"기기변경"===r&&("all"===e||"SKT"===e)){const e=l.filter(e=>"AT-M140S"!==String(e?.d?.model_code||"").toUpperCase()&&!String(e?.d?.name||"").replace(/\\s+/g,"").includes("스타일폴더2")),t=ye("stylefolder2",a);return t&&e.splice(Math.min(3,e.length),0,t),e.slice(0,6)}return l}'
-new='return l}'
-assert j.count(old)==1, j.count(old)
-j=j.replace(old,new,1)
+marker='if("senior"===ve&&"기기변경"===r&&("all"===e||"SKT"===e)){'
+a=j.find(marker)
+assert a>=0, a
+b=j.find('return l}',a)
+assert b>=0, b
+j=j[:a]+'return l}'+j[b+len('return l}'):]
 
 # Generic quick recommendations should not surface kids/folder specialty devices.
 old='const c=(o?.devices||[]).filter(t=>t.carrier===e&&V(t,a)&&n(t.retail_price)&&Number(t.retail_price)>0).sort(m).slice(0,140),s=[];'
