@@ -1,0 +1,16 @@
+name: Temporary current device diagnostic
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/temp-list-current-devices.yml'
+      - '.github/scripts/temp_list_current_devices.py'
+
+jobs:
+  diag:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Print current wireless device order
+        run: python3 .github/scripts/temp_list_current_devices.py
