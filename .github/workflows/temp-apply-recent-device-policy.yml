@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - '.github/workflows/temp-apply-recent-device-policy.yml'
+      - '.github/scripts/temp_apply_recent_device_policy.py'
 
 permissions:
   contents: write
