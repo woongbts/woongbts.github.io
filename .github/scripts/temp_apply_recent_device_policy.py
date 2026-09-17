@@ -20,7 +20,7 @@ assert s.count(old)==1, s.count(old)
 s=s.replace(old,new,1)
 
 old='floors = {"devices": 0.65, "plans": 0.65, "supports": 0.50}\n    minimums = {"devices": 25, "plans": 20, "supports": 20}\n'
-new='floors = {"devices": 0.10, "plans": 0.65, "supports": 0.20}\n    minimums = {"devices": 30, "plans": 20, "supports": 20}\n'
+new='floors = {"devices": 0.10, "plans": 0.65, "supports": 0.05}\n    minimums = {"devices": 30, "plans": 20, "supports": 20}\n'
 assert s.count(old)==1, s.count(old)
 s=s.replace(old,new,1)
 
@@ -55,13 +55,10 @@ j=j[:start]+new_func+j[end:]
 marker='if("senior"===ve&&"기기변경"===r&&("all"===e||"SKT"===e)){'
 a=j.find(marker)
 assert a>=0, a
-# The forced insertion is immediately before the final `return l}` of Ke().
 b=j.find('return l}',a)
 assert b>=0, b
 j=j[:a]+'return l}'+j[b+len('return l}'):]
 
-# Generic quick recommendations: current mainstream phones only. Kids/folder specialty
-# products remain available in their dedicated sections/direct calculator when recent.
 needle='filter(t=>t.carrier===e&&V(t,a)&&n(t.retail_price)&&Number(t.retail_price)>0)'
 replacement='filter(t=>t.carrier===e&&V(t,a)&&n(t.retail_price)&&Number(t.retail_price)>0&&!xe(t)&&!Ce(t)&&!/폴더|folder/i.test(`${t.name||""} ${t.model||""} ${t.model_code||""}`))'
 count=j.count(needle)
