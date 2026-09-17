@@ -15,42 +15,24 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
-      - name: Audit merged mobile mappings
+      - name: Audit senior handset candidates
         shell: bash
         run: |
           python3 - <<'PY'
           import json,re
           from pathlib import Path
-          def load(path): return json.loads(Path(path).read_text(encoding='utf-8'))
-          c=load('data/catalog.json'); p=load('data/plans.json')
-          extra=load('data/devices-extra.json'); iph=load('data/iphone18.json')
-          devices=[]; seen={}
-          for d in (c.get('devices') or [])+(extra.get('devices') or [])+(iph.get('devices') or []):
-              seen[d.get('id')]=d
-          devices=list(seen.values())
-          plans=p.get('mobile_plans') or []
-          planmap={x['id']:x for x in plans}
-          print('MERGED DEVICES',len(devices),'PLANS',len(plans))
-          print('\nCURATED IDS')
-          for did in ['X-SKT-2892','X-SKT-2944','X-KT-2895','SKT-XD-2824','KT-XD-2893','LG-XD-2957']:
-              d=seen.get(did)
-              print(did, json.dumps(d,ensure_ascii=False) if d else 'MISSING')
-          print('\nNAME SEARCH')
-          patterns=['스타일폴더2','스타일 폴더2','퀀텀7','Quantum7','Jump5','점프5','A37','A17 LTE']
-          for pat in patterns:
-              print('\n',pat)
-              npat=re.sub(r'\s+','',pat).lower()
-              for d in devices:
-                  txt=' '.join(str(d.get(k) or '') for k in ('name','manufacturer','model','model_code'))
-                  if npat in re.sub(r'\s+','',txt).lower():
-                      print(d.get('id'),d.get('carrier'),d.get('name'),d.get('manufacturer'),d.get('model_code'),d.get('release_date'))
-          print('\nLGU+ MOTOROLA')
+          c=json.loads(Path('data/catalog.json').read_text(encoding='utf-8'))
+          p=json.loads(Path('data/plans.json').read_text(encoding='utf-8'))
+          devices=c.get('devices') or []
+          plans={x['id']:x for x in (p.get('mobile_plans') or [])}
+          wanted=[]
           for d in devices:
               txt=' '.join(str(d.get(k) or '') for k in ('name','manufacturer','model','model_code')).lower()
-              if d.get('carrier')=='LGU+' and any(x in txt for x in ('motorola','모토로라','moto ')):
-                  print(d.get('id'),d.get('name'),d.get('manufacturer'),d.get('model_code'))
-          print('\nHOME PLAN EXACT')
-          for carrier,name in [('SKT','T플랜 세이브'),('KT','베이직 4GB'),('SKT','라이트 39')]:
-              rows=[x for x in plans if x.get('carrier')==carrier and str(x.get('name') or '').strip()==name]
-              print(carrier,name,[(x.get('id'),x.get('monthly_fee'),x.get('source_order')) for x in rows])
+              if d.get('carrier')=='SKT' and any(x in txt for x in ('wide9','와이드9','buddy5','버디5','folder','폴더')):
+                  wanted.append(d)
+          for d in wanted:
+              ids=(d.get('eligible_plan_ids_by_join_type') or {}).get('기기변경') or []
+              tplan=[plans[i] for i in ids if i in plans and str(plans[i].get('name') or '').strip()=='T플랜 세이브']
+              print(json.dumps({k:d.get(k) for k in ('id','carrier','name','model_code','manufacturer','release_date','retail_price','source_order')},ensure_ascii=False))
+              print(' TPLAN',[(x.get('id'),x.get('monthly_fee')) for x in tplan])
           PY
