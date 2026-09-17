@@ -1,4 +1,4 @@
-name: Temporary mobile audit
+name: Temporary mobile repair
 
 on:
   push:
@@ -7,32 +7,221 @@ on:
       - '.github/workflows/temp-mobile-audit.yml'
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
-  audit:
+  repair:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
-      - name: Audit senior handset candidates
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Apply mobile UX and filter repairs
         shell: bash
         run: |
           python3 - <<'PY'
-          import json,re
           from pathlib import Path
-          c=json.loads(Path('data/catalog.json').read_text(encoding='utf-8'))
-          p=json.loads(Path('data/plans.json').read_text(encoding='utf-8'))
-          devices=c.get('devices') or []
-          plans={x['id']:x for x in (p.get('mobile_plans') or [])}
-          wanted=[]
-          for d in devices:
-              txt=' '.join(str(d.get(k) or '') for k in ('name','manufacturer','model','model_code')).lower()
-              if d.get('carrier')=='SKT' and any(x in txt for x in ('wide9','와이드9','buddy5','버디5','folder','폴더')):
-                  wanted.append(d)
-          for d in wanted:
-              ids=(d.get('eligible_plan_ids_by_join_type') or {}).get('기기변경') or []
-              tplan=[plans[i] for i in ids if i in plans and str(plans[i].get('name') or '').strip()=='T플랜 세이브']
-              print(json.dumps({k:d.get(k) for k in ('id','carrier','name','model_code','manufacturer','release_date','retail_price','source_order')},ensure_ascii=False))
-              print(' TPLAN',[(x.get('id'),x.get('monthly_fee')) for x in tplan])
+          import re
+
+          def replace_once(text, old, new, label):
+              count=text.count(old)
+              if count != 1:
+                  raise SystemExit(f'{label}: expected 1 occurrence, found {count}')
+              return text.replace(old,new,1)
+
+          # 1) Repair calculator/recommendation logic.
+          js_path=Path('assets/rates.min.js')
+          js=js_path.read_text(encoding='utf-8')
+
+          marker='function V(e,t){return"all"===t||A(e)===t}'
+          insert='function V(e,t){return"all"===t||A(e)===t}function wbVisibleDevice(e){const t=`${e?.name||""} ${e?.manufacturer||""} ${e?.model||""} ${e?.model_code||""}`.toLowerCase();return!("LGU+"===e?.carrier&&(t.includes("모토로라")||t.includes("motorola")||t.includes("moto ")))}function wbHandsetPlan(e){const t=`${e?.name||""}`.toLowerCase().replace(/\\s+/g,"");return!/아웃도어|tab|태블릿|watch|워치|포켓파이|데이터함께쓰기|데이터쉐어링|데이터셰어링|아이패드|ipad|세컨드디바이스|2nddevice/.test(t)}'
+          js=replace_once(js,marker,insert,'insert customer visibility guards')
+
+          replacements=[
+              ('filter(e=>e.carrier===I.value&&V(e,U)).sort(m)','filter(e=>e.carrier===I.value&&V(e,U)&&wbVisibleDevice(e)).sort(m)','direct device filter'),
+              ('filter(e=>e.carrier===I.value).sort(m).slice(0,120)','filter(e=>e.carrier===I.value&&wbVisibleDevice(e)).sort(m).slice(0,120)','compare device filter'),
+              ('filter(e=>e.carrier===I.value&&(!n||n.has(e.id))).sort(p)','filter(e=>e.carrier===I.value&&wbHandsetPlan(e)&&(!n||n.has(e.id))).sort(p)','direct plan filter'),
+              ('filter(e=>("all"===t||e.carrier===t)&&n(e.retail_price)','filter(e=>("all"===t||e.carrier===t)&&wbVisibleDevice(e)&&n(e.retail_price)','purpose device filter'),
+              ('filter(t=>t.carrier===e.carrier&&a.includes(t.id)&&n(t.monthly_fee)&&Number(t.monthly_fee)>=33e3&&!function','filter(t=>t.carrier===e.carrier&&a.includes(t.id)&&wbHandsetPlan(t)&&n(t.monthly_fee)&&Number(t.monthly_fee)>=33e3&&!function','purpose plan filter'),
+              ('filter(t=>t.carrier===e&&V(t,a)&&n(t.retail_price)','filter(t=>t.carrier===e&&V(t,a)&&wbVisibleDevice(t)&&n(t.retail_price)','quick device filter'),
+              ('filter(t=>t.carrier===e&&a.includes(t.id)&&n(t.monthly_fee)&&Pe(t,i))','filter(t=>t.carrier===e&&a.includes(t.id)&&wbHandsetPlan(t)&&n(t.monthly_fee)&&Pe(t,i))','quick plan filter'),
+              ('find(e=>e.id===t&&e.carrier===I.value);if(!s)return!1','find(e=>e.id===t&&e.carrier===I.value&&wbVisibleDevice(e));if(!s)return!1','deep-link device guard'),
+              ('o.curated?(C.style.gridColumn="1 / -1",g.append(C)):g.append(x,C)','o.kidsPromo?(C.style.gridColumn="1 / -1",g.append(C)):g.append(x,C)','curated detail action'),
+          ]
+          for old,new,label in replacements:
+              js=replace_once(js,old,new,label)
+
+          id_replacements={
+              'X-KT-2895':'KT-XD-2895',
+              'X-KT-2605':'KT-XP-2605',
+              'X-SKT-2892':'SKT-XD-2892',
+              'X-SKT-2944':'SKT-XD-2944',
+              'X-SKT-2945':'SKT-XP-2945',
+          }
+          for old,new in id_replacements.items():
+              if old not in js:
+                  raise SystemExit(f'stale curated id not found: {old}')
+              js=js.replace(old,new)
+
+          # Remove the old iOS workaround that scrolls the page behind the modal.
+          touch_marker=';;(()=>{let e=null;const t=e=>e&&e.closest?e.closest(".plan-picker-sheet"):null;'
+          if touch_marker not in js:
+              raise SystemExit('legacy modal touch workaround marker not found')
+          js=js.split(touch_marker,1)[0]+';'
+          js_path.write_text(js,encoding='utf-8')
+
+          # 2) Make plan picker a real independently scrolling mobile sheet.
+          css_path=Path('assets/rates.css')
+          css=css_path.read_text(encoding='utf-8')
+          css=replace_once(css,
+              'body.plan-picker-opened{overflow:auto}.plan-picker-backdrop{pointer-events:none}',
+              'body.plan-picker-opened{overflow:hidden;touch-action:none}.plan-picker-backdrop{pointer-events:auto;overflow:hidden;touch-action:none}',
+              'modal body lock')
+          css=re.sub(r'(\\.plan-picker-sheet\\{pointer-events:auto;[^}]*?)overflow:hidden\\}',
+                     r'\\1overflow:hidden;min-height:0;overscroll-behavior:contain;touch-action:auto}',css,count=1)
+          if 'min-height:0;overscroll-behavior:contain;touch-action:auto' not in css:
+              raise SystemExit('sheet flex fix failed')
+          old_list='.plan-picker-list{display:grid;gap:8px;overflow:auto;min-height:140px;padding:1px 3px 3px 1px;overscroll-behavior:contain}'
+          new_list='.plan-picker-list{display:grid;gap:8px;flex:1 1 0;overflow-y:auto;overflow-x:hidden;min-height:0;padding:1px 3px 3px 1px;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;touch-action:pan-y}'
+          css=replace_once(css,old_list,new_list,'modal list scroll')
+          css=replace_once(css,
+              '.plan-picker-sheet{width:100%;max-height:88dvh;border-radius:22px 22px 0 0;',
+              '.plan-picker-sheet{width:100%;height:min(88dvh,760px);max-height:88dvh;border-radius:22px 22px 0 0;',
+              'mobile sheet height')
+          css_path.write_text(css,encoding='utf-8')
+
+          # 3) Wire the four homepage cards to verified current calculator combinations.
+          home_path=Path('assets/site-pro.min.js')
+          home=home_path.read_text(encoding='utf-8')
+          urls=[
+              '/rates.html?tab=mobile&amp;c=SKT&amp;j=%EA%B8%B0%EA%B8%B0%EB%B3%80%EA%B2%BD&amp;d=SKT-XD-2896&amp;p=SKT-XP-969&amp;m=contract&amp;mo=24&amp;w=basic_pension',
+              '/rates.html?tab=mobile&amp;c=SKT&amp;j=%EA%B8%B0%EA%B8%B0%EB%B3%80%EA%B2%BD&amp;d=SKT-XD-2824&amp;p=SKT-XP-969&amp;m=contract&amp;mo=24&amp;w=none',
+              '/rates.html?tab=mobile&amp;c=KT&amp;j=%EA%B8%B0%EA%B8%B0%EB%B3%80%EA%B2%BD&amp;d=KT-XD-2893&amp;p=KT-XP-2605&amp;m=contract&amp;mo=24&amp;w=none',
+              '/rates.html?tab=mobile&amp;c=SKT&amp;j=%EA%B8%B0%EA%B8%B0%EB%B3%80%EA%B2%BD&amp;d=SKT-XD-2944&amp;p=SKT-XP-2945&amp;m=contract&amp;mo=24&amp;w=none',
+          ]
+          for idx,url in enumerate(urls,1):
+              home=replace_once(home,'<article class="deal-card">',f'<article class="deal-card" data-calculator-url="{url}">',f'homepage card {idx} url')
+          for idx,url in enumerate(urls,1):
+              home=replace_once(home,'<a class="deal-link" href="/rates.html">내 조건으로 다시 계산 →</a>',f'<a class="deal-link" href="{url}">내 조건으로 다시 계산 →</a>',f'homepage link {idx}')
+
+          home=replace_once(home,
+              '<div class="deal-media"><span class="deal-tag">부모님용</span><img loading="lazy" src="/IMG_2450.webp?v=20260917-1" alt="스타일폴더2"></div>',
+              '<div class="deal-media"><span class="deal-tag">부모님용</span><span class="deal-device-icon" aria-hidden="true">📱</span></div>',
+              'replace stale stylefolder media')
+          home=replace_once(home,
+              '<span class="deal-carrier">SKT</span><h3>스타일폴더2</h3><p class="deal-plan">T플랜 세이브 33,000원 · 선택약정 예시</p><div class="deal-price"><small>기초연금 + 복지할인 적용 예시</small><strong>23,170원<span>/월</span></strong></div><p class="deal-fit">전화·문자 중심, 익숙한 폴더형을 원하는 분께</p>',
+              '<span class="deal-carrier">SKT</span><h3>갤럭시 Wide9</h3><p class="deal-plan">T플랜 세이브 33,000원 · 선택약정 24개월</p><div class="deal-price"><small>기초연금 수급자 할인 적용 예시</small><strong>33,446원<span>/월</span></strong></div><p class="deal-fit">큰 화면과 익숙한 갤럭시 사용성을 원하는 부모님께</p>',
+              'replace stale stylefolder card')
+          home=home.replace('38,870원<span>/월</span>','38,874원<span>/월</span>',1)
+          home=home.replace('54,240원<span>/월</span>','54,244원<span>/월</span>',1)
+          home=home.replace('61,000원<span>/월</span>','61,004원<span>/월</span>',1)
+          home=home.replace('라이트39 39,000원 · 선택약정 예시','라이트 39 39,000원 · 선택약정 24개월',1)
+          home=home.replace('베이직 4GB 37,000원 · 선택약정 예시','베이직 4GB 37,000원 · 선택약정 24개월',1)
+
+          home=replace_once(home,
+              '.deal-card{display:flex;flex-direction:column;min-width:0;overflow:hidden;border:1px solid #d7e1e5;border-radius:20px;background:#fff;box-shadow:0 10px 28px rgba(16,60,82,.06);transition:transform .18s ease,box-shadow .18s ease}',
+              '.deal-card{display:flex;flex-direction:column;min-width:0;overflow:hidden;border:1px solid #d7e1e5;border-radius:20px;background:#fff;box-shadow:0 10px 28px rgba(16,60,82,.06);transition:transform .18s ease,box-shadow .18s ease;cursor:pointer}',
+              'homepage card pointer')
+          home=replace_once(home,
+              '.deal-card:hover{transform:translateY(-3px);box-shadow:0 16px 34px rgba(16,60,82,.11)}',
+              '.deal-card:hover{transform:translateY(-3px);box-shadow:0 16px 34px rgba(16,60,82,.11)}\n      .deal-card:focus-visible{outline:3px solid rgba(15,118,110,.28);outline-offset:3px}',
+              'homepage keyboard focus')
+          home=replace_once(home,
+              "    const hero=document.querySelector('.hero');\n    if(hero) hero.insertAdjacentElement('afterend',section);\n",
+              "    const hero=document.querySelector('.hero');\n    if(hero) hero.insertAdjacentElement('afterend',section);\n    section.querySelectorAll('.deal-card[data-calculator-url]').forEach(card=>{\n      card.tabIndex=0; card.setAttribute('role','link');\n      const openCalculator=()=>{ window.location.href=card.dataset.calculatorUrl; };\n      card.addEventListener('click',event=>{ if(event.target.closest('a,button')) return; openCalculator(); });\n      card.addEventListener('keydown',event=>{ if(event.key==='Enter'||event.key===' '){ event.preventDefault(); openCalculator(); } });\n    });\n",
+              'homepage card click behavior')
+          home_path.write_text(home,encoding='utf-8')
+
+          # 4) Cache-bust edited production assets.
+          rates_path=Path('rates.html')
+          rates=rates_path.read_text(encoding='utf-8')
+          rates=rates.replace('assets/rates.css?v=20260917-13','assets/rates.css?v=20260918-4')
+          rates=rates.replace('assets/rates.min.js?v=20260918-3','assets/rates.min.js?v=20260918-4')
+          rates_path.write_text(rates,encoding='utf-8')
+
+          index_path=Path('index.html')
+          index=index_path.read_text(encoding='utf-8')
+          index=index.replace('assets/site-pro.min.js?v=20260917-8','assets/site-pro.min.js?v=20260918-1')
+          index_path.write_text(index,encoding='utf-8')
+
+          print('mobile repairs applied')
           PY
+
+      - name: Validate filters links and syntax
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --check assets/rates.min.js
+          node --check assets/site-pro.min.js
+          python3 - <<'PY'
+          import json, re, html
+          from pathlib import Path
+          from urllib.parse import urlparse, parse_qs
+
+          catalog=json.loads(Path('data/catalog.json').read_text(encoding='utf-8'))
+          plans=json.loads(Path('data/plans.json').read_text(encoding='utf-8')).get('mobile_plans') or []
+          devices={d['id']:d for d in (catalog.get('devices') or [])}
+          pmap={p['id']:p for p in plans}
+          combos=[
+              ('SKT-XD-2896','SKT-XP-969','기기변경'),
+              ('SKT-XD-2824','SKT-XP-969','기기변경'),
+              ('KT-XD-2893','KT-XP-2605','기기변경'),
+              ('SKT-XD-2944','SKT-XP-2945','기기변경'),
+          ]
+          for did,pid,join in combos:
+              assert did in devices,(did,'missing')
+              assert pid in pmap,(pid,'missing')
+              assert pmap[pid]['carrier']==devices[did]['carrier']
+              eligible=(devices[did].get('eligible_plan_ids_by_join_type') or {}).get(join) or []
+              assert pid in eligible,(did,pid,'not eligible')
+
+          js=Path('assets/rates.min.js').read_text(encoding='utf-8')
+          css=Path('assets/rates.css').read_text(encoding='utf-8')
+          home=Path('assets/site-pro.min.js').read_text(encoding='utf-8')
+          rates=Path('rates.html').read_text(encoding='utf-8')
+          index=Path('index.html').read_text(encoding='utf-8')
+          for stale in ('X-KT-2895','X-KT-2605','X-SKT-2892','X-SKT-2944','X-SKT-2945'):
+              assert stale not in js,stale
+          assert 'wbVisibleDevice' in js and 'wbHandsetPlan' in js
+          assert 'LGU+' in js and '모토로라' in js
+          assert 'touch-action:pan-y' in css and 'body.plan-picker-opened{overflow:hidden' in css
+          assert 'pointer-events:none' not in css[css.index('/* Mobile plan finder */'):css.index('/* Device brand filter */')]
+          assert '20260918-4' in rates
+          assert 'site-pro.min.js?v=20260918-1' in index
+          assert '스타일폴더2' not in home
+          assert '갤럭시 Wide9' in home
+
+          urls=[html.unescape(u) for u in re.findall(r'data-calculator-url="([^"]+)"',home)]
+          assert len(urls)==4,urls
+          expected={(d,p) for d,p,_ in combos}
+          actual=set()
+          for u in urls:
+              q=parse_qs(urlparse(u).query)
+              assert q.get('tab')==['mobile']
+              assert q.get('j')==['기기변경']
+              assert q.get('m')==['contract']
+              assert q.get('mo')==['24']
+              did=q['d'][0]; pid=q['p'][0]
+              actual.add((did,pid))
+          assert actual==expected,(actual,expected)
+          print('validated home links',urls)
+          print('validated live combinations',combos)
+          PY
+          grep -q 'assets/rates.css?v=20260918-4' rates.html
+          grep -q 'assets/rates.min.js?v=20260918-4' rates.html
+
+      - name: Remove temporary workflow and publish repairs
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f .github/workflows/temp-mobile-audit.yml
+          git config user.name 'woongbts-site-bot'
+          git config user.email 'actions@users.noreply.github.com'
+          git add -u
+          git add assets/rates.min.js assets/rates.css assets/site-pro.min.js rates.html index.html
+          git status --short
+          git commit -m 'Repair mobile recommendations filters and calculator links'
+          git push origin HEAD:main
