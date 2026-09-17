@@ -1,0 +1,48 @@
+name: Diagnose prepaid source modes
+
+on:
+  push:
+    paths:
+      - '.github/workflows/tmp-prepaid-diagnostic.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Probe Xeronote prepaid API variants
+        run: |
+          python - <<'PY'
+          import json, urllib.parse, urllib.request, itertools
+          ROOT='https://www.xeronote.co.kr'
+          REF=ROOT+'/consult/mobile.php?consult_mode=NONE_DEVICE'
+          UA='Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/140 Safari/537.36'
+          providers=['MOBINGSKT','MOBINGKT','MOBINGLG','FREETSKT','FREETKT','FREETLG']
+          join_types=['','MNP','NEW','CHANGE','010','DEVICE_CHANGE']
+          join_flags=['','ABLE','MAIN','ALL']
+          def fetch(pid,jt,jf):
+              params={'telecom_id':pid,'device_idx':'','plan_group':'USIM','sort_type':'','join_type':jt,'join_flag':jf,'plan_idx':'','keyword':''}
+              url=ROOT+'/api/data/get_mobile_plan_list.php?'+urllib.parse.urlencode(params)
+              req=urllib.request.Request(url,headers={'User-Agent':UA,'Accept':'application/json,text/plain,*/*','Referer':REF})
+              with urllib.request.urlopen(req,timeout=25) as r:
+                  obj=json.loads(r.read().decode('utf-8-sig'))
+              rows=obj.get('data') or []
+              pre=[str(x.get('plan_idx')) for x in rows if str(x.get('prepay_yn') or '').upper()=='Y']
+              return sorted(set(pre))
+          for pid in providers:
+              seen={}
+              for jt,jf in itertools.product(join_types,join_flags):
+                  try: ids=fetch(pid,jt,jf)
+                  except Exception as e:
+                      print('ERR',pid,jt or '<empty>',jf or '<empty>',type(e).__name__,str(e)[:90]); continue
+                  if ids:
+                      key=tuple(ids)
+                      seen.setdefault(key,[]).append((jt,jf))
+              print('\nPROVIDER',pid,'variants',len(seen))
+              for ids,modes in sorted(seen.items(), key=lambda kv:(-len(kv[0]),kv[0])):
+                  print('COUNT',len(ids),'MODES',modes,'IDS',list(ids))
+          PY
