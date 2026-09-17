@@ -79,6 +79,32 @@ def eligible_rows(rows):
     ]
 
 
+def handset_plan_rows(rows):
+    blocked = (
+        "아웃도어",
+        "tab",
+        "태블릿",
+        "watch",
+        "워치",
+        "포켓파이",
+        "스마트기기",
+        "데이터함께쓰기",
+        "데이터쉐어링",
+        "데이터셰어링",
+        "아이패드",
+        "ipad",
+        "세컨드디바이스",
+        "2nddevice",
+    )
+    result = []
+    for row in eligible_rows(rows):
+        name = clean(row.get("plan_name")).lower().replace(" ", "")
+        if any(token in name for token in blocked):
+            continue
+        result.append(row)
+    return result
+
+
 def load(path):
     return json.loads(pathlib.Path(path).read_text(encoding="utf-8"))
 
@@ -148,6 +174,14 @@ def validate_dataset(old_catalog, old_plans, old_supports, catalog, plan_data, s
         fee = plan.get("monthly_fee")
         if fee is not None and not (0 <= int(fee) <= 300000):
             raise RuntimeError(f"invalid monthly fee: {pid}={fee}")
+        normalized_name = clean(plan.get("name")).lower().replace(" ", "")
+        blocked_plan_tokens = (
+            "아웃도어", "tab", "태블릿", "watch", "워치", "포켓파이",
+            "스마트기기", "데이터함께쓰기", "데이터쉐어링", "데이터셰어링",
+            "아이패드", "ipad", "세컨드디바이스", "2nddevice",
+        )
+        if any(token in normalized_name for token in blocked_plan_tokens):
+            raise RuntimeError(f"non-handset plan leaked into public catalog: {pid} {plan.get('name')}")
 
     device_ids = set()
     for device in devices:
@@ -254,7 +288,7 @@ def main():
                     "telecom_id": api_carrier,
                     "device_idx": source_id,
                     "plan_group": "",
-                    "sort_type": "",
+                    "sort_type": "NONE",
                     "join_type": join_code,
                     "join_flag": "ABLE",
                     "plan_idx": "",
@@ -263,7 +297,7 @@ def main():
                 if network and network != "ALL":
                     params["network_type"] = network
                 rows = get_json("/api/data/get_mobile_plan_list.php", params).get("data") or []
-                by_join[join_label] = eligible_rows(rows)
+                by_join[join_label] = handset_plan_rows(rows)
             return order, device, init, by_join
 
         results = []
@@ -361,12 +395,15 @@ def main():
             )
             per_device_support[(carrier, device_id)] = support_by_join
 
-    plans = list(all_plans.values())
-    for carrier in ("SKT", "KT", "LGU+"):
-        rows = [plan for plan in plans if plan.get("carrier") == carrier]
-        rows.sort(key=lambda plan: (-(plan.get("monthly_fee") or 0), plan.get("name") or ""))
-        for index, plan in enumerate(rows, 1):
-            plan["source_order"] = index
+    carrier_order = {"SKT": 0, "KT": 1, "LGU+": 2}
+    plans = sorted(
+        all_plans.values(),
+        key=lambda plan: (
+            carrier_order.get(plan.get("carrier"), 9),
+            int(plan.get("source_order") or 999999),
+            plan.get("name") or "",
+        ),
+    )
 
     raw_rules = []
     for carrier in ("SKT", "KT", "LGU+"):
