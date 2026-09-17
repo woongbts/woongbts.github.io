@@ -1,0 +1,48 @@
+name: Replace iPhone 18 banner image
+
+on:
+  push:
+    paths:
+      - 'tmp_patch_iphone18_image.py'
+      - '.github/workflows/tmp-iphone18-image.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Apply patch
+        run: python tmp_patch_iphone18_image.py
+      - name: Check JavaScript syntax
+        run: node --check assets/site-pro.min.js
+      - name: Validate banner
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          js = Path('assets/site-pro.min.js').read_text(encoding='utf-8')
+          html = Path('index.html').read_text(encoding='utf-8')
+          assert Path('아이폰18.jpg').exists(), 'uploaded iPhone image missing'
+          assert '/%EC%95%84%EC%9D%B4%ED%8F%B018.jpg?v=20260917-1' in js
+          assert '<strong>iPhone 18</strong>' not in js
+          assert 'object-fit:contain' in js
+          assert 'assets/site-pro.min.js?v=20260917-6' in html
+          assert 'iphone18-video-modal' not in js
+          print('validated')
+          PY
+      - name: Commit banner update
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add assets/site-pro.min.js index.html
+          git commit -m 'Use uploaded iPhone 18 image in homepage banner'
+      - name: Remove temporary patch files
+        run: |
+          git rm tmp_patch_iphone18_image.py .github/workflows/tmp-iphone18-image.yml
+          git commit -m 'Remove temporary iPhone 18 image patch workflow'
+      - name: Push
+        run: git push origin HEAD:main
