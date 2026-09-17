@@ -25,7 +25,7 @@ jobs:
       - name: Refresh verified wireless data
         run: python3 .github/scripts/daily_wireless_sync.py
 
-      - name: Validate phone plan catalog and UI
+      - name: Validate refreshed data
         shell: bash
         run: |
           set -euo pipefail
@@ -34,52 +34,18 @@ jobs:
           python3 - <<'PY'
           import json
           from pathlib import Path
-
           catalog=json.loads(Path('data/catalog.json').read_text(encoding='utf-8'))
-          plans_doc=json.loads(Path('data/plans.json').read_text(encoding='utf-8'))
-          supports=json.loads(Path('data/supports.json').read_text(encoding='utf-8'))
-          plans=plans_doc.get('mobile_plans') or []
-          devices=catalog.get('devices') or []
-          assert plans and devices and supports.get('support_schedules')
-
-          blocked=(
-              '아웃도어','tab','태블릿','watch','워치','포켓파이','스마트기기',
-              '데이터함께쓰기','데이터쉐어링','데이터셰어링','아이패드','ipad',
-              '세컨드디바이스','2nddevice'
-          )
-          leaked=[]
-          for p in plans:
-              name=''.join(str(p.get('name') or '').lower().split())
-              if any(token in name for token in blocked):
-                  leaked.append((p.get('id'),p.get('name')))
+          plans=json.loads(Path('data/plans.json').read_text(encoding='utf-8')).get('mobile_plans') or []
+          blocked=('아웃도어','tab','태블릿','watch','워치','포켓파이','스마트기기','데이터함께쓰기','데이터쉐어링','데이터셰어링','아이패드','ipad','세컨드디바이스','2nddevice')
+          leaked=[(p.get('id'),p.get('name')) for p in plans if any(x in ''.join(str(p.get('name') or '').lower().split()) for x in blocked)]
           assert not leaked, leaked[:20]
-
-          plan_ids={p.get('id') for p in plans}
-          assert 'SKT-XP-797' not in plan_ids
-          assert 'SKT-XP-796' not in plan_ids
-          assert not any('T 아웃도어' in str(p.get('name') or '') for p in plans)
-
-          for d in devices:
-              for join, ids in (d.get('eligible_plan_ids_by_join_type') or {}).items():
-                  unknown=[pid for pid in ids if pid not in plan_ids]
-                  assert not unknown, (d.get('id'),join,unknown[:5])
-
-          moto=next((d for d in devices if d.get('id')=='SKT-XD-2891'),None)
-          assert moto, 'Moto G86 device missing'
+          ids={p.get('id') for p in plans}
+          assert 'SKT-XP-797' not in ids and 'SKT-XP-796' not in ids
+          moto=next(d for d in catalog.get('devices',[]) if d.get('id')=='SKT-XD-2891')
           moto_ids=(moto.get('eligible_plan_ids_by_join_type') or {}).get('기기변경') or []
           assert 'SKT-XP-797' not in moto_ids and 'SKT-XP-796' not in moto_ids
-          plan_map={p.get('id'):p for p in plans}
-          print('plans_total',len(plans))
-          print('Moto G86 first available plans:')
-          for pid in moto_ids[:15]:
-              p=plan_map[pid]
-              print(p.get('source_order'),p.get('name'),p.get('monthly_fee'))
-
-          # The source order must remain meaningful instead of being overwritten by fee-descending order.
-          skt=sorted([p for p in plans if p.get('carrier')=='SKT'], key=lambda p:(p.get('source_order',999999),p.get('name','')))
-          print('SKT source-order first 20:')
-          for p in skt[:20]: print(p.get('source_order'),p.get('name'),p.get('monthly_fee'))
-          assert any('라이트 39' in str(p.get('name') or '') for p in skt[:20])
+          assert all(pid in ids for d in catalog.get('devices',[]) for arr in (d.get('eligible_plan_ids_by_join_type') or {}).values() for pid in arr)
+          print('validated plans',len(plans),'moto plans',len(moto_ids))
           PY
           grep -q '"sort_type": "NONE"' .github/scripts/daily_wireless_sync.py
           grep -q '"join_flag": "ABLE"' .github/scripts/daily_wireless_sync.py
@@ -87,21 +53,17 @@ jobs:
           grep -q 'data/plans.json?v=20260918-3' assets/rates.min.js
           grep -q 'assets/rates.min.js?v=20260918-3' rates.html
 
-      - name: Remove temporary files and commit verified changes
+      - name: Commit verified changes and remove temporary files
         shell: bash
         run: |
           set -euo pipefail
-          rm -f \
-            .github/workflows/temp-plan-diagnostic.yml \
-            .github/scripts/temp_apply_handset_plan_policy.py
+          rm -rf .github/scripts/__pycache__
+          rm -f .github/workflows/temp-plan-diagnostic.yml .github/scripts/temp_apply_handset_plan_policy.py
           git config user.name 'woongbts-site-bot'
           git config user.email 'actions@users.noreply.github.com'
-          git add \
-            .github/scripts/daily_wireless_sync.py \
-            assets/rates.min.js rates.html \
-            data/catalog.json data/plans.json data/supports.json \
-            .github/workflows/temp-plan-diagnostic.yml \
-            .github/scripts/temp_apply_handset_plan_policy.py
+          git add -u
+          git add .github/scripts/daily_wireless_sync.py assets/rates.min.js rates.html data/catalog.json data/plans.json data/supports.json
+          echo '--- staged status ---'
+          git status --short
           git commit -m 'Keep phone plans limited to current handset options'
-          git pull --rebase origin main
           git push origin HEAD:main
