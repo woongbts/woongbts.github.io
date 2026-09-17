@@ -1,0 +1,53 @@
+name: Temporary senior Style Folder priority
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/temp-stylefolder-senior-priority.yml'
+permissions:
+  contents: write
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - name: Prioritize SKT Style Folder 2 in senior recommendations
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          p=Path('assets/rates.min.js')
+          s=p.read_text(encoding='utf-8')
+          old1='"senior"===e?r.sort((t,n)=>$e(t)-$e(n)||Ne(t,e)-Ne(n,e)||ke(t)-ke(n)'
+          new1='"senior"===e?r.sort((t,n)=>$e(t)-$e(n)||(("스타일폴더2"===t.name&&"SKT"===t.carrier?0:"스타일폴더2"===t.name&&"LGU+"===t.carrier?1:2)-("스타일폴더2"===n.name&&"SKT"===n.carrier?0:"스타일폴더2"===n.name&&"LGU+"===n.carrier?1:2))||Ne(t,e)-Ne(n,e)||ke(t)-ke(n)'
+          old2='"senior"===ve?i.sort((e,t)=>$e(e.d)-$e(t.d)||Ne(e.d,ve)-Ne(t.d,ve)||ke(e.d)-ke(t.d)'
+          new2='"senior"===ve?i.sort((e,t)=>$e(e.d)-$e(t.d)||(("스타일폴더2"===e.d.name&&"SKT"===e.d.carrier?0:"스타일폴더2"===e.d.name&&"LGU+"===e.d.carrier?1:2)-("스타일폴더2"===t.d.name&&"SKT"===t.d.carrier?0:"스타일폴더2"===t.d.name&&"LGU+"===t.d.carrier?1:2))||Ne(e.d,ve)-Ne(t.d,ve)||ke(e.d)-ke(t.d)'
+          if old1 not in s or old2 not in s:
+              raise SystemExit('senior sort marker missing')
+          s=s.replace(old1,new1,1).replace(old2,new2,1)
+          p.write_text(s,encoding='utf-8')
+          rh=Path('rates.html')
+          h=rh.read_text(encoding='utf-8')
+          h=re.sub(r'assets/rates\.min\.js\?v=[^"]+','assets/rates.min.js?v=20260918-8',h,count=1)
+          rh.write_text(h,encoding='utf-8')
+          assert 'SKT"===e.d.carrier?0' in s
+          assert 'assets/rates.min.js?v=20260918-8' in h
+          PY
+          node --check assets/rates.min.js
+      - name: Commit and remove temporary workflow
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f .github/workflows/temp-stylefolder-senior-priority.yml
+          git config user.name 'woongbts-site-bot'
+          git config user.email 'actions@users.noreply.github.com'
+          git add -u
+          git add assets/rates.min.js rates.html
+          git commit -m 'Prioritize SKT Style Folder 2 for senior quotes'
+          git push origin HEAD:main
