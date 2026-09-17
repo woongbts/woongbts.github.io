@@ -1,0 +1,94 @@
+name: Temporary Style Folder 2 UI patch
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/temp-stylefolder-ui.yml'
+permissions:
+  contents: write
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - name: Patch image and senior recommendations
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          import re, json
+
+          # 1) Restore Style Folder 2 image on homepage card.
+          sp=Path('assets/site-pro.min.js')
+          s=sp.read_text(encoding='utf-8')
+          old='<div class="deal-media"><span class="deal-tag">부모님용</span><span class="deal-device-icon" aria-hidden="true">📱</span></div>'
+          new='<div class="deal-media"><span class="deal-tag">부모님용</span><img loading="lazy" src="/IMG_2450.webp?v=20260918-1" alt="스타일폴더2"></div>'
+          if old not in s:
+              raise SystemExit('Style Folder 2 homepage icon markup not found')
+          s=s.replace(old,new,1)
+          sp.write_text(s,encoding='utf-8')
+
+          # 2) Make Style Folder 2 a first-class senior recommendation.
+          rp=Path('assets/rates.min.js')
+          r=rp.read_text(encoding='utf-8')
+          old_note='senior:"최근 출시된 Wide9·Buddy5·A37·A17 같은 보급형 기종을 우선 살펴봅니다. 사용량과 월 부담을 함께 살펴보며, 복지 할인은 실제 자격 확인 시 적용됩니다."'
+          new_note='senior:"스타일폴더2와 Wide9·Buddy5·A37·A17 같은 부모님용·실속형 기종을 우선 살펴봅니다. 사용량과 월 부담을 함께 살펴보며, 복지 할인은 실제 자격 확인 시 적용됩니다."'
+          if old_note not in r:
+              raise SystemExit('senior description marker not found')
+          r=r.replace(old_note,new_note,1)
+
+          old_rank='function $e(e){if(xe(e))return 99;const t=`${e?.name||""} ${e?.model||""}`.toLowerCase().replace(/\\s+/g,""),n=`${e?.model_code||""}`.toLowerCase().replace(/\\s+/g,"");return t.includes("wide9")||t.includes("와이드9")?0:t.includes("buddy5")||t.includes("버디5")?1:t.includes("갤럭시a37")||t.includes("galaxya37")||/^sm-a376/.test(n)?2:t.includes("갤럭시a17")||t.includes("galaxya17")||/^sm-a175/.test(n)?3:9}function Ee(e){const t=$e(e);return 0===t?"wide9":1===t?"buddy5":2===t?"a37":3===t?"a17":`${e?.name||""}`.toLowerCase().replace(/\\s+/g,"")}'
+          new_rank='function $e(e){if(xe(e))return 99;const t=`${e?.name||""} ${e?.model||""}`.toLowerCase().replace(/\\s+/g,""),n=`${e?.model_code||""}`.toLowerCase().replace(/\\s+/g,"");return t.includes("스타일폴더2")||t.includes("stylefolder2")||/^at-m140/.test(n)?0:t.includes("wide9")||t.includes("와이드9")?1:t.includes("buddy5")||t.includes("버디5")?2:t.includes("갤럭시a37")||t.includes("galaxya37")||/^sm-a376/.test(n)?3:t.includes("갤럭시a17")||t.includes("galaxya17")||/^sm-a175/.test(n)?4:9}function Ee(e){const t=$e(e);return 0===t?"stylefolder2":1===t?"wide9":2===t?"buddy5":3===t?"a37":4===t?"a17":`${e?.name||""}`.toLowerCase().replace(/\\s+/g,"")}'
+          if old_rank not in r:
+              raise SystemExit('senior ranking marker not found')
+          r=r.replace(old_rank,new_rank,1)
+          rp.write_text(r,encoding='utf-8')
+
+          # 3) Cache bust edited scripts.
+          ip=Path('index.html')
+          idx=ip.read_text(encoding='utf-8')
+          idx=re.sub(r'assets/site-pro\.min\.js\?v=[^"]+','assets/site-pro.min.js?v=20260918-3',idx,count=1)
+          ip.write_text(idx,encoding='utf-8')
+
+          rhp=Path('rates.html')
+          rh=rhp.read_text(encoding='utf-8')
+          rh=re.sub(r'assets/rates\.min\.js\?v=[^"]+','assets/rates.min.js?v=20260918-6',rh,count=1)
+          rhp.write_text(rh,encoding='utf-8')
+
+          # 4) Data integrity: Style Folder 2 only SKT/LGU+, not KT.
+          c=json.loads(Path('data/catalog.json').read_text(encoding='utf-8'))
+          sf=[d for d in c.get('devices',[]) if d.get('name')=='스타일폴더2']
+          assert len(sf)==2, sf
+          assert {d.get('carrier') for d in sf}=={'SKT','LGU+'}, sf
+          assert {d.get('model_code') for d in sf}=={'AT-M140S','AT-M140L'}, sf
+          assert not any(d.get('carrier')=='KT' and d.get('name')=='스타일폴더2' for d in c.get('devices',[]))
+
+          # 5) UI/source checks.
+          assert '/IMG_2450.webp?v=20260918-1' in s
+          assert 'stylefolder2' in r
+          assert '스타일폴더2와 Wide9' in r
+          assert 'assets/site-pro.min.js?v=20260918-3' in idx
+          assert 'assets/rates.min.js?v=20260918-6' in rh
+          print('Style Folder 2 homepage image and senior priority validated')
+          PY
+          node --check assets/site-pro.min.js
+          node --check assets/rates.min.js
+          test -f IMG_2450.webp
+
+      - name: Commit patch and remove temporary workflow
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f .github/workflows/temp-stylefolder-ui.yml
+          git config user.name 'woongbts-site-bot'
+          git config user.email 'actions@users.noreply.github.com'
+          git add -u
+          git add assets/site-pro.min.js assets/rates.min.js index.html rates.html
+          git status --short
+          git commit -m 'Restore Style Folder 2 image and senior recommendation'
+          git push origin HEAD:main
