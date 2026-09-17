@@ -1,0 +1,93 @@
+name: Temporary Style Folder 2 support audit
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/temp-stylefolder-support-audit.yml'
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Query public wireless source for Style Folder 2
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import base64,json,urllib.parse,urllib.request,time
+          ROOT=base64.b64decode("aHR0cHM6Ly93d3cueGVyb25vdGUuY28ua3I=").decode().rstrip("/")
+          REF=ROOT+"/consult/mobile.php"
+          UA="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/140 Safari/537.36"
+          def get_json(path,params=None):
+              url=ROOT+path
+              if params:url+="?"+urllib.parse.urlencode(params)
+              req=urllib.request.Request(url,headers={"User-Agent":UA,"Accept":"application/json,text/plain,*/*","Referer":REF})
+              with urllib.request.urlopen(req,timeout=35) as resp:
+                  return json.loads(resp.read().decode("utf-8-sig"))
+          def money(v):
+              if v is None:return None
+              s=str(v).replace(",","").replace("원","").strip()
+              return int(s) if s.lstrip("-").isdigit() else None
+          def clean(v): return " ".join(str(v or "").replace("\t"," ").split())
+          blocked=("아웃도어","tab","태블릿","watch","워치","포켓파이","스마트기기","데이터함께쓰기","데이터쉐어링","데이터셰어링","아이패드","ipad","세컨드디바이스","2nddevice")
+          carriers=[("SKT","SKT"),("LGUPLUS","LG")]
+          joins=[("기기변경","CHANGE","support_money_change"),("번호이동","MNP","support_money_mnp"),("신규가입","NEW","support_money")]
+          for api_carrier,prefix in carriers:
+              payload=get_json("/api/data/get_device_list.php",{
+                  "telecom_id":api_carrier,"manufacturer_id":"","sort_type1":"PHONE","sort_type2":"RELEASE_DT_DESC",
+                  "keyword":"스타일폴더2","search_group":"","search_support_mnp":""
+              })
+              rows=payload.get("data") or []
+              print("\n### DEVICE SEARCH",api_carrier,"count",len(rows))
+              for d in rows:
+                  print("DEVICE",json.dumps(d,ensure_ascii=False))
+              target=None
+              for d in rows:
+                  text=(clean(d.get("model_name"))+" "+clean(d.get("device_name"))).lower()
+                  if "스타일폴더2" in text or "at-m140" in text:
+                      target=d;break
+              if not target:
+                  # retry by model code
+                  for kw in ("AT-M140S","AT-M140L","M140"):
+                      payload=get_json("/api/data/get_device_list.php",{
+                          "telecom_id":api_carrier,"manufacturer_id":"","sort_type1":"PHONE","sort_type2":"RELEASE_DT_DESC",
+                          "keyword":kw,"search_group":"","search_support_mnp":""
+                      })
+                      for d in payload.get("data") or []:
+                          text=(clean(d.get("model_name"))+" "+clean(d.get("device_name"))).lower()
+                          if "스타일폴더2" in text or "at-m140" in text:
+                              target=d;break
+                      if target:break
+              if not target:
+                  print("TARGET_NOT_FOUND",api_carrier);continue
+              did=str(target.get("device_idx"))
+              init=(get_json("/api/data/get_consult_init.php",{
+                  "telecom_id":api_carrier,"device_idx":did,"consult_mode":"","plan_idx":""
+              }).get("data") or {})
+              network=clean(init.get("network_type"))
+              print("TARGET",api_carrier,"device_idx",did,"model",clean(target.get("model_name")),"code",clean(target.get("device_name")),"price",money(target.get("factory_price")),"network",network)
+              for join_label,join_code,support_field in joins:
+                  params={"telecom_id":api_carrier,"device_idx":did,"plan_group":"","sort_type":"NONE","join_type":join_code,"join_flag":"ABLE","plan_idx":"","keyword":""}
+                  if network and network!="ALL":params["network_type"]=network
+                  data=(get_json("/api/data/get_mobile_plan_list.php",params).get("data") or [])
+                  kept=[]
+                  for p in data:
+                      if str(p.get("join_yn","")).upper()=="N" or str(p.get("except_yn","")).upper()=="Y": continue
+                      name=clean(p.get("plan_name"))
+                      if any(tok in name.lower().replace(" ","") for tok in blocked): continue
+                      kept.append({
+                          "plan_idx":str(p.get("plan_idx") or ""),
+                          "name":name,
+                          "fee":money(p.get("price")),
+                          "support":money(p.get(support_field)),
+                          "all_support_fields":{
+                            "new":money(p.get("support_money")),
+                            "mnp":money(p.get("support_money_mnp")),
+                            "change":money(p.get("support_money_change"))
+                          }
+                      })
+                  print("JOIN",api_carrier,join_label,"COUNT",len(kept))
+                  print(json.dumps(kept,ensure_ascii=False))
+          PY
