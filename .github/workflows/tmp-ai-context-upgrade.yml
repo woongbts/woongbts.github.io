@@ -1,0 +1,48 @@
+name: Upgrade contextual AI
+
+on:
+  push:
+    paths:
+      - 'tmp_ai_context_upgrade.py'
+      - '.github/workflows/tmp-ai-context-upgrade.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  upgrade:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - name: Audit prepaid plans and patch AI
+        run: python tmp_ai_context_upgrade.py
+      - name: Check JavaScript
+        run: |
+          node --check worker.js
+          node --check assets/ai-chat.min.js
+      - name: Validate customer AI integration
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          w=Path('worker.js').read_text(encoding='utf-8')
+          a=Path('assets/ai-chat.min.js').read_text(encoding='utf-8')
+          i=Path('index.html').read_text(encoding='utf-8')
+          r=Path('rates.html').read_text(encoding='utf-8')
+          assert 'answerCurrentCondition' in w
+          assert 'answerFromPublicCatalog' in w
+          assert 'history:h.slice(-8),context:f()' in a
+          assert '이 요금제 괜찮나요?' in a
+          assert 'assets/ai-chat.min.js?v=20260917-2' in i
+          assert 'assets/ai-chat.min.js?v=20260917-2' in r
+          assert 'assets/ai-chat.js?v=20260915-1' not in i
+          print('context AI validation ok')
+          PY
+      - name: Commit upgrade and cleanup
+        run: |
+          git config user.name "woongbts"
+          git config user.email "swb3301@gmail.com"
+          git rm tmp_ai_context_upgrade.py .github/workflows/tmp-ai-context-upgrade.yml
+          git add worker.js assets/ai-chat.min.js index.html rates.html
+          git commit -m "Improve contextual customer AI guidance"
+          git push
