@@ -41,6 +41,9 @@ jobs:
           print('JSON validation OK')
           PY
           node --check assets/rates.min.js
+          node --check assets/site-pro.min.js
+          python3 .github/scripts/build_rates_asset.py --check
+          python3 .github/scripts/validate_site.py
 
       - name: Commit only verified changes
         shell: bash
