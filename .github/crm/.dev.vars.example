@@ -1,0 +1,5 @@
+# NEVER COMMIT REAL VALUES. Copy to .dev.vars only on a trusted local machine.
+CRM_DATA_KEY_B64=REPLACE_WITH_32_BYTE_BASE64_KEY
+CRM_HMAC_KEY_B64=REPLACE_WITH_DIFFERENT_32_BYTE_BASE64_KEY
+# Optional for local-only development. Never enable in production.
+DEV_AUTH_BYPASS=0
