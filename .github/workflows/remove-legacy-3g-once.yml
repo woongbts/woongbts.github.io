@@ -1,0 +1,203 @@
+name: One-time remove legacy 3G plans
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/remove-legacy-3g-once.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Remove legacy 3G plans and add guards
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          import pathlib
+          import re
+
+          legacy_re = re.compile(r'(^|[^A-Za-z0-9])3G([^A-Za-z0-9]|$)', re.IGNORECASE)
+
+          def is_legacy_3g_name(value):
+              return bool(legacy_re.search(str(value or '')))
+
+          def load(path):
+              return json.loads(path.read_text(encoding='utf-8'))
+
+          def dump(path, obj):
+              path.write_text(json.dumps(obj, ensure_ascii=False, separators=(',', ':')), encoding='utf-8')
+
+          plans_path = pathlib.Path('data/plans.json')
+          catalog_path = pathlib.Path('data/catalog.json')
+          supports_path = pathlib.Path('data/supports.json')
+
+          plans = load(plans_path)
+          mobile_plans = plans.get('mobile_plans') or []
+          removed = {
+              plan.get('id')
+              for plan in mobile_plans
+              if plan.get('id') and is_legacy_3g_name(plan.get('name'))
+          }
+          if not removed:
+              raise SystemExit('No legacy 3G plans found; refusing unexpected no-op')
+
+          plans['mobile_plans'] = [
+              plan for plan in mobile_plans
+              if plan.get('id') not in removed
+          ]
+          dump(plans_path, plans)
+
+          catalog = load(catalog_path)
+          for device in catalog.get('devices') or []:
+              ids = device.get('eligible_plan_ids')
+              if isinstance(ids, list):
+                  device['eligible_plan_ids'] = [pid for pid in ids if pid not in removed]
+              mapping = device.get('eligible_plan_ids_by_join_type')
+              if isinstance(mapping, dict):
+                  for join_type, join_ids in list(mapping.items()):
+                      if isinstance(join_ids, list):
+                          mapping[join_type] = [pid for pid in join_ids if pid not in removed]
+          supports_inline = catalog.get('mobile_supports')
+          if isinstance(supports_inline, list):
+              catalog['mobile_supports'] = [
+                  row for row in supports_inline
+                  if row.get('plan_id') not in removed
+              ]
+          dump(catalog_path, catalog)
+
+          supports = load(supports_path)
+          for schedule in supports.get('support_schedules') or []:
+              amounts = schedule.get('amounts')
+              if isinstance(amounts, dict):
+                  schedule['amounts'] = {pid: amount for pid, amount in amounts.items() if pid not in removed}
+          dump(supports_path, supports)
+
+          # Future daily refresh: reject legacy 3G plan names at source and validation time.
+          sync_path = pathlib.Path('.github/scripts/daily_wireless_sync.py')
+          sync = sync_path.read_text(encoding='utf-8')
+          if 'import re\n' not in sync:
+              sync = sync.replace('import pathlib\nimport time\n', 'import pathlib\nimport re\nimport time\n', 1)
+
+          old = '''        name = clean(row.get("plan_name")).lower().replace(" ", "")
+          if any(token in name for token in blocked):'''
+          new = '''        name = clean(row.get("plan_name")).lower().replace(" ", "")
+          if re.search(r"(^|[^a-z0-9])3g([^a-z0-9]|$)", name, re.IGNORECASE):
+              continue
+          if any(token in name for token in blocked):'''
+          if old in sync:
+              sync = sync.replace(old, new, 1)
+          elif new not in sync:
+              raise SystemExit('daily sync handset-plan patch target not found')
+
+          old = '''        normalized_name = clean(plan.get("name")).lower().replace(" ", "")
+          blocked_plan_tokens = ('''
+          new = '''        normalized_name = clean(plan.get("name")).lower().replace(" ", "")
+          if re.search(r"(^|[^a-z0-9])3g([^a-z0-9]|$)", normalized_name, re.IGNORECASE):
+              raise RuntimeError(f"legacy 3G plan leaked into public catalog: {pid} {plan.get('name')}")
+          blocked_plan_tokens = ('''
+          if old in sync:
+              sync = sync.replace(old, new, 1)
+          elif new not in sync:
+              raise SystemExit('daily sync validation patch target not found')
+          sync_path.write_text(sync, encoding='utf-8')
+
+          # Direct/quick calculator guard. Keep canonical and production JS byte-identical.
+          old_func = '''function wbHandsetPlan(e){const t=`${e?.name||""}`.toLowerCase().replace(/\\s+/g,"");return!/아웃도어|tab|태블릿|watch|워치|포켓파이|데이터함께쓰기|데이터쉐어링|데이터셰어링|아이패드|ipad|세컨드디바이스|2nddevice|wearable|웨어러블|데이터나눠쓰기/.test(t)}'''
+          new_func = '''function wbHandsetPlan(e){const t=`${e?.name||""}`.toLowerCase().replace(/\\s+/g,"");return!/(^|[^a-z0-9])3g([^a-z0-9]|$)/i.test(t)&&!/아웃도어|tab|태블릿|watch|워치|포켓파이|데이터함께쓰기|데이터쉐어링|데이터셰어링|아이패드|ipad|세컨드디바이스|2nddevice|wearable|웨어러블|데이터나눠쓰기/.test(t)}'''
+          for path_string in ('src/rates.js', 'assets/rates.min.js'):
+              path = pathlib.Path(path_string)
+              text = path.read_text(encoding='utf-8')
+              if old_func in text:
+                  text = text.replace(old_func, new_func, 1)
+              elif new_func not in text:
+                  raise SystemExit(f'calculator 3G guard patch target not found: {path}')
+              text = text.replace('data/plans.json?v=20260918-4', 'data/plans.json?v=20260919-1')
+              path.write_text(text, encoding='utf-8')
+
+          # Purpose recommendation v2 guard.
+          rec_path = pathlib.Path('assets/recommendation-engine-v2.js')
+          rec = rec_path.read_text(encoding='utf-8')
+          old_rec = '''  function handsetPlan(p){const s=clean(`${p?.name} ${p?.description}`);return !/아웃도어|tab|태블릿|watch|워치|포켓파이|데이터함께쓰기|데이터쉐어링|데이터셰어링|아이패드|ipad|세컨드디바이스|2nddevice|wearable|웨어러블|데이터나눠쓰기/.test(s)}'''
+          new_rec = '''  function handsetPlan(p){const s=clean(`${p?.name} ${p?.description}`);return !/(^|[^a-z0-9])3g([^a-z0-9]|$)/i.test(s)&&!/아웃도어|tab|태블릿|watch|워치|포켓파이|데이터함께쓰기|데이터쉐어링|데이터셰어링|아이패드|ipad|세컨드디바이스|2nddevice|wearable|웨어러블|데이터나눠쓰기/.test(s)}'''
+          if old_rec in rec:
+              rec = rec.replace(old_rec, new_rec, 1)
+          elif new_rec not in rec:
+              raise SystemExit('recommendation v2 3G guard patch target not found')
+          rec = rec.replace('data/plans.json?v=20260918-5', 'data/plans.json?v=20260919-1')
+          rec_path.write_text(rec, encoding='utf-8')
+
+          # Regression guard: legacy 3G plan names must never return to the public database.
+          validator_path = pathlib.Path('.github/scripts/validate_site.py')
+          validator = validator_path.read_text(encoding='utf-8')
+          marker = '''for plan in mobile_plans:
+              normalized = str(plan.get("name") or "").lower().replace(" ", "")'''
+          guarded = '''legacy_3g_plans = [
+              p for p in mobile_plans
+              if re.search(r"(^|[^a-z0-9])3g([^a-z0-9]|$)", str(p.get("name") or "").lower().replace(" ", ""), re.IGNORECASE)
+          ]
+          check(not legacy_3g_plans, f"legacy 3G plans leaked: {[p.get('name') for p in legacy_3g_plans[:5]]}")
+
+          for plan in mobile_plans:
+              normalized = str(plan.get("name") or "").lower().replace(" ", "")'''
+          if marker in validator:
+              validator = validator.replace(marker, guarded, 1)
+          elif 'legacy_3g_plans = [' not in validator:
+              raise SystemExit('site validator 3G guard patch target not found')
+          validator_path.write_text(validator, encoding='utf-8')
+
+          # Force the browser to request the updated calculator bundle.
+          rates_html_path = pathlib.Path('rates.html')
+          rates_html = rates_html_path.read_text(encoding='utf-8')
+          rates_html = rates_html.replace('assets/rates.min.js?v=20260918-9', 'assets/rates.min.js?v=20260919-1')
+          rates_html = re.sub(r'(recommendation-engine-v2\.js\?v=)[^"\']+', r'\g<1>20260919-1', rates_html)
+          rates_html_path.write_text(rates_html, encoding='utf-8')
+
+          print('Removed legacy 3G plan IDs:')
+          for pid in sorted(removed):
+              print(' -', pid)
+          print('removed_count=', len(removed))
+          PY
+
+      - name: Validate cleanup
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json, re
+          from pathlib import Path
+          plans=json.loads(Path('data/plans.json').read_text(encoding='utf-8'))
+          legacy=[p for p in plans.get('mobile_plans',[]) if re.search(r'(^|[^a-z0-9])3g([^a-z0-9]|$)', str(p.get('name') or '').lower().replace(' ',''), re.I)]
+          if legacy:
+              raise SystemExit(f'legacy 3G plans remain: {[p.get("name") for p in legacy]}')
+          print('No legacy 3G plans remain')
+          PY
+          node --check assets/rates.min.js
+          node --check assets/recommendation-engine-v2.js
+          python3 .github/scripts/build_rates_asset.py --check
+          python3 .github/scripts/validate_site.py
+
+      - name: Commit cleanup
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add data/plans.json data/catalog.json data/supports.json src/rates.js assets/rates.min.js assets/recommendation-engine-v2.js rates.html .github/scripts/daily_wireless_sync.py .github/scripts/validate_site.py
+          if git diff --cached --quiet; then
+            echo 'No changes to commit'
+            exit 0
+          fi
+          git config user.name 'woongbts-maintenance'
+          git config user.email 'actions@users.noreply.github.com'
+          git commit -m 'Remove legacy 3G plans from customer calculators'
+          git pull --rebase origin main
+          git push origin HEAD:main
