@@ -127,6 +127,8 @@ PRECON_URL = "https://ictmarket.or.kr:8443/precon/pop_CertIcon.do?PRECON_REQ_ID=
 check('class="precon-badge"' in index, "top pre-approval badge missing")
 check('사전승낙 판매점' in index and 'KAIT 승낙정보 확인' in index, "pre-approval badge copy missing")
 check(index.count(PRECON_URL) >= 2, "official pre-approval lookup must remain in both header and footer")
+check('대표자 : 신웅비' in index, "representative name missing for Naver business verification")
+check('"founder":{"@type":"Person","name":"신웅비"}' in index, "representative structured data missing")
 
 # Quick recommendation v3 contract.
 check('id="quick-data"' not in rates_html, "legacy quick data selector returned")
@@ -134,7 +136,6 @@ check('월 부담 가볍게 · 3~4만원대' in rates_html, "quick monthly burde
 check('내 조건으로 3가지 비교' in rates_html, "quick recommendation title missing")
 check('월 부담 우선' in rates and '기기 균형' in rates and '데이터 여유' in rates, "smart quick recommendation lanes missing")
 check('quick-plan-specs' in rates, "quick plan allowance display missing")
-
 
 # PWA, local image and measurement hooks.
 for path in ("manifest.webmanifest","sw.js","offline.html","404.html","assets/pwa.min.js","assets/analytics-config.js","assets/conversion-tracker.min.js"):
@@ -145,7 +146,6 @@ check("pwa.min.js" in index and "pwa.min.js" in rates_html, "PWA registration wi
 check("/IMG_2451.webp?v=20260918-1" in site, "A37 local image missing")
 check("images.samsung.com" not in site, "A37 still depends on external image host")
 check("https://woongbts.github.io/rates.html" in Path("sitemap.xml").read_text(encoding="utf-8"), "rates page missing from sitemap")
-
 
 # Public customer assets must not expose internal commercial/source terms.
 forbidden = ("리베이트", "판매점 수수료", "정산금액", "제로노트", "dealer_fee", "commission")
