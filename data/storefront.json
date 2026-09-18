@@ -1,0 +1,48 @@
+{
+  "meta": {
+    "version": 1,
+    "description": "메인 추천카드 4개의 승인된 기준. 실제 렌더링과 계산기 링크가 달라지면 회귀검사가 실패합니다."
+  },
+  "cards": [
+    {
+      "slot": 1,
+      "name": "스타일폴더2",
+      "carrier": "SKT",
+      "tag": "부모님용",
+      "plan_text": "T플랜 세이브 33,000원 · 선택약정 24개월",
+      "monthly_text": "23,170원",
+      "image": "/IMG_2450.webp?v=20260918-1",
+      "calculator_url": "/rates.html?tab=mobile&c=SKT&j=%EA%B8%B0%EA%B8%B0%EB%B3%80%EA%B2%BD&d=SKT-XD-2636&p=SKT-XP-969&m=contract&mo=24&w=basic_pension"
+    },
+    {
+      "slot": 2,
+      "name": "Galaxy A17 LTE",
+      "carrier": "SKT",
+      "tag": "부담 적은 스마트폰",
+      "plan_text": "T플랜 세이브 33,000원 · 선택약정 24개월",
+      "monthly_text": "38,874원",
+      "image": "/IMG_2453.webp?v=20260917-1",
+      "calculator_url": "/rates.html?tab=mobile&c=SKT&j=%EA%B8%B0%EA%B8%B0%EB%B3%80%EA%B2%BD&d=SKT-XD-2824&p=SKT-XP-969&m=contract&mo=24&w=none"
+    },
+    {
+      "slot": 3,
+      "name": "Galaxy A37 5G",
+      "carrier": "KT",
+      "tag": "가격·성능 균형",
+      "plan_text": "베이직 4GB 37,000원 · 선택약정 24개월",
+      "monthly_text": "54,244원",
+      "image": "https://images.samsung.com/kdp/goods/2026/06/05/caa73e0f-e684-4466-81e6-d9fddfc3c87b.png?$Q90_1920_1280_F_JPG$=",
+      "calculator_url": "/rates.html?tab=mobile&c=KT&j=%EA%B8%B0%EA%B8%B0%EB%B3%80%EA%B2%BD&d=KT-XD-2893&p=KT-XP-2605&m=contract&mo=24&w=none"
+    },
+    {
+      "slot": 4,
+      "name": "Galaxy 퀀텀7",
+      "carrier": "SKT",
+      "tag": "기능을 더 챙긴 선택",
+      "plan_text": "라이트 39 39,000원 · 선택약정 24개월",
+      "monthly_text": "61,004원",
+      "image": "/IMG_2452.webp?v=20260917-1",
+      "calculator_url": "/rates.html?tab=mobile&c=SKT&j=%EA%B8%B0%EA%B8%B0%EB%B3%80%EA%B2%BD&d=SKT-XD-2944&p=SKT-XP-2945&m=contract&mo=24&w=none"
+    }
+  ]
+}
