@@ -122,6 +122,13 @@ for label in ("휴대폰", "공신폰", "알뜰폰(후불)", "선불폰", "인�
 check("assets/ai-chat.js" not in index, "dead ai-chat.js reference returned")
 check("assets/rates.min.js?v=" in rates_html, "rates production script missing")
 check("assets/site-pro.min.js?v=" in index, "site production script missing")
+# Quick recommendation v3 contract.
+check('id="quick-data"' not in rates_html, "legacy quick data selector returned")
+check('월 부담 가볍게 · 3~4만원대' in rates_html, "quick monthly burden band missing")
+check('내 조건으로 3가지 비교' in rates_html, "quick recommendation title missing")
+check('월 부담 우선' in rates and '기기 균형' in rates and '데이터 여유' in rates, "smart quick recommendation lanes missing")
+check('quick-plan-specs' in rates, "quick plan allowance display missing")
+
 
 # PWA, local image and measurement hooks.
 for path in ("manifest.webmanifest","sw.js","offline.html","404.html","assets/pwa.min.js","assets/analytics-config.js","assets/conversion-tracker.min.js"):
