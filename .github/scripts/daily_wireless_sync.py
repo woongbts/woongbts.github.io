@@ -3,6 +3,7 @@ import copy
 import json
 import os
 import pathlib
+import re
 import time
 import urllib.parse
 import urllib.request
@@ -109,6 +110,8 @@ def handset_plan_rows(rows):
     result = []
     for row in eligible_rows(rows):
         name = clean(row.get("plan_name")).lower().replace(" ", "")
+        if re.search(r"(^|[^a-z0-9])3g([^a-z0-9]|$)", name, re.IGNORECASE):
+            continue
         if any(token in name for token in blocked):
             continue
         result.append(row)
@@ -190,6 +193,8 @@ def validate_dataset(old_catalog, old_plans, old_supports, catalog, plan_data, s
         if fee is not None and not (0 <= int(fee) <= 300000):
             raise RuntimeError(f"invalid monthly fee: {pid}={fee}")
         normalized_name = clean(plan.get("name")).lower().replace(" ", "")
+        if re.search(r"(^|[^a-z0-9])3g([^a-z0-9]|$)", normalized_name, re.IGNORECASE):
+            raise RuntimeError(f"legacy 3G plan leaked into public catalog: {pid} {plan.get('name')}")
         blocked_plan_tokens = (
             "아웃도어", "tab", "태블릿", "watch", "워치", "포켓파이",
             "스마트기기", "데이터함께쓰기", "데이터쉐어링", "데이터셰어링",

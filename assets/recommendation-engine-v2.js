@@ -14,7 +14,7 @@
 
   function brand(d){const s=clean(`${d?.name} ${d?.manufacturer} ${d?.model} ${d?.model_code}`);return /아이폰|iphone|apple|애플/.test(s)?'apple':/갤럭시|galaxy|samsung|삼성/.test(s)?'samsung':'other'}
   function visible(d){const s=clean(`${d?.name} ${d?.manufacturer} ${d?.model} ${d?.model_code}`);const custom=state.overrides?.recommendation_policy?.excluded_devices_by_carrier?.[d?.carrier]?.name_tokens||[];if(custom.some(x=>s.includes(clean(x))))return false;return !(d?.carrier==='LGU+'&&(/모토로라|motorola|moto/.test(s)))}
-  function handsetPlan(p){const s=clean(`${p?.name} ${p?.description}`);return !/아웃도어|tab|태블릿|watch|워치|포켓파이|데이터함께쓰기|데이터쉐어링|데이터셰어링|아이패드|ipad|세컨드디바이스|2nddevice|wearable|웨어러블|데이터나눠쓰기/.test(s)}
+  function handsetPlan(p){const s=clean(`${p?.name} ${p?.description}`);return !/(^|[^a-z0-9])3g([^a-z0-9]|$)/i.test(s)&&!/아웃도어|tab|태블릿|watch|워치|포켓파이|데이터함께쓰기|데이터쉐어링|데이터셰어링|아이패드|ipad|세컨드디바이스|2nddevice|wearable|웨어러블|데이터나눠쓰기/.test(s)}
   function kidsDevice(d){return /무너|zem폰|포켓피스|키즈폰|폼폼푸린|pompompurin|춘식이키즈|신비키즈|신비아파트/.test(clean(`${d?.name} ${d?.model} ${d?.model_code}`))}
   function folderDevice(d){return /스타일폴더|폴더폰|folder/.test(clean(`${d?.name} ${d?.model} ${d?.model_code}`))}
   function premiumFamily(d){const s=clean(`${d?.name} ${d?.model} ${d?.model_code}`);if(/s26ultra/.test(s))return's26ultra';if(/s26\+|s26plus/.test(s))return's26plus';if(/갤럭시s26|galaxys26/.test(s))return's26';if(/폴드8|fold8/.test(s))return'fold8';if(/플립8|flip8/.test(s))return'flip8';if(/아이폰18|iphone18/.test(s))return'iphone18';return''}
@@ -84,7 +84,7 @@
   const modeButton=qs('[data-mobile-mode="purpose"]');let modeJoin='기기변경';modeButton?.addEventListener('click',()=>{modeJoin=qs('#purpose-join')?.value||'기기변경'},true);modeButton?.addEventListener('click',()=>{if(currentCategory()!=='kids'&&qs('#purpose-join'))qs('#purpose-join').value=modeJoin;setTimeout(render,10)});
   const results=qs('#purpose-results');if(results){new MutationObserver(()=>{if(state.ready&&currentCategory()!=='kids'&&!results.querySelector('.wb-v2-card')&&!state.rendering)setTimeout(render,0)}).observe(results,{childList:true})}
   async function load(){try{const [catalog,plans,supports,extra,iphone,overrides]=await Promise.all([
-      fetch('data/catalog.json?v=20260918-6').then(r=>r.json()),fetch('data/plans.json?v=20260918-5').then(r=>r.json()),fetch('data/supports.json?v=20260918-5').then(r=>r.json()),fetch('data/devices-extra.json?v=20260916-1').then(r=>r.json()),fetch('data/iphone18.json?v=20260916-1').then(r=>r.json()),fetch('data/store-overrides.json?v=20260918-1').then(r=>r.json())]);
+      fetch('data/catalog.json?v=20260918-6').then(r=>r.json()),fetch('data/plans.json?v=20260919-1').then(r=>r.json()),fetch('data/supports.json?v=20260918-5').then(r=>r.json()),fetch('data/devices-extra.json?v=20260916-1').then(r=>r.json()),fetch('data/iphone18.json?v=20260916-1').then(r=>r.json()),fetch('data/store-overrides.json?v=20260918-1').then(r=>r.json())]);
     const map=new Map;[...(catalog?.devices||[]),...(extra?.devices||[]),...(iphone?.devices||[])].forEach(d=>map.set(d.id,d));catalog.devices=[...map.values()];state.catalog=catalog;state.plans=plans;state.supports=supports;state.overrides=overrides;state.ready=true;render();setTimeout(render,1200)}catch(err){console.warn('Recommendation engine v2 unavailable',err)}}
   window.WoongbiRecommendationV2={render,status:()=>({ready:state.ready,category:state.category})};load();
 })();
