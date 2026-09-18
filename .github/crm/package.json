@@ -1,0 +1,16 @@
+{
+  "name": "woongbi-crm",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "check": "node --check src/worker.js && node --check web/app.js && node --check build.mjs",
+    "build": "node build.mjs"
+  },
+  "dependencies": {
+    "xlsx": "0.18.5"
+  },
+  "devDependencies": {
+    "esbuild": "0.25.9",
+    "wrangler": "4.31.0"
+  }
+}
