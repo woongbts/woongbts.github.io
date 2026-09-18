@@ -1,0 +1,47 @@
+name: CRM safety check
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/crm/**'
+      - '.github/workflows/crm-safety-check.yml'
+  pull_request:
+    paths:
+      - '.github/crm/**'
+      - '.github/workflows/crm-safety-check.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install CRM build dependencies
+        working-directory: .github/crm
+        run: npm install --ignore-scripts
+      - name: Syntax and production build check
+        working-directory: .github/crm
+        run: npm run check && npm run build
+      - name: Runtime dependency vulnerability check
+        working-directory: .github/crm
+        run: npm audit --omit=dev --audit-level=high
+      - name: Block committed customer files and obvious secrets
+        shell: bash
+        run: |
+          set -euo pipefail
+          if find .github/crm \( -path '*/node_modules' -o -path '*/dist' \) -prune -o -type f \( -iname '*.xlsx' -o -iname '*.xls' -o -iname '*.csv' -o -iname '*.sqlite' -o -iname '*.db' \) -print | grep -q .; then
+            echo 'Customer data/database files must never be committed.' >&2
+            exit 1
+          fi
+          if grep -RInE --exclude-dir=node_modules --exclude-dir=dist --exclude='*.md' --exclude='*.example' '(010[- ]?[0-9]{3,4}[- ]?[0-9]{4}|CRM_DATA_KEY_B64=[A-Za-z0-9+/]{20,}|CRM_HMAC_KEY_B64=[A-Za-z0-9+/]{20,})' .github/crm; then
+            echo 'Possible customer phone number or secret detected in committed CRM source.' >&2
+            exit 1
+          fi
+      - name: Confirm production SMS stays locked by default
+        run: grep -q 'SMS_MODE = "dry_run"' .github/crm/wrangler.toml.example

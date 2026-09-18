@@ -1,0 +1,17 @@
+name = "woongbi-crm"
+main = "src/worker.js"
+compatibility_date = "2026-09-01"
+
+[assets]
+directory = "./dist"
+binding = "ASSETS"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "woongbi-crm"
+database_id = "REPLACE_WITH_D1_DATABASE_ID"
+
+[vars]
+SMS_MODE = "dry_run"
+ALLOWED_ADMIN_EMAILS = "REPLACE_WITH_ADMIN_EMAIL"
+DEV_AUTH_BYPASS = "0"

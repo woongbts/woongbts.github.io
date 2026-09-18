@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <title>웅비통신 관리자 CRM</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div><strong>웅비통신</strong><span>관리자 CRM</span></div>
+    <button id="refresh" class="ghost">새로고침</button>
+  </header>
+  <main class="wrap">
+    <section id="security" class="notice">Cloudflare Access 인증 · 암호화 DB · 실문자 발송 잠금 상태를 확인 중입니다.</section>
+
+    <section class="stats" aria-label="고객 현황">
+      <article><small>전체 고객</small><b id="stat-total">-</b></article>
+      <article><small>개통 22~30개월</small><b id="stat-due">-</b></article>
+      <article><small>문자수신 동의</small><b id="stat-consent">-</b></article>
+      <article><small>동의 미확인/거부</small><b id="stat-blocked">-</b></article>
+    </section>
+
+    <nav class="tabs" aria-label="CRM 메뉴">
+      <button class="active" data-tab="customers">고객관리</button>
+      <button data-tab="import">엑셀 가져오기</button>
+      <button data-tab="campaign">문자 대상</button>
+    </nav>
+
+    <section class="panel active" id="panel-customers">
+      <div class="toolbar">
+        <select id="filter-carrier"><option value="">전체 통신사</option><option>SKT</option><option>KT</option><option>LGU+</option><option>알뜰폰</option></select>
+        <select id="filter-consent"><option value="">동의 전체</option><option value="granted">수신동의</option><option value="unknown">미확인</option><option value="revoked">수신거부</option></select>
+        <label class="check"><input id="filter-due" type="checkbox"> 22~30개월</label>
+        <input id="filter-phone" inputmode="numeric" placeholder="전화번호 정확검색">
+        <button id="search-customers">조회</button>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>고객</th><th>연락처</th><th>통신사</th><th>기종</th><th>개통일</th><th>경과</th><th>문자동의</th><th></th></tr></thead>
+          <tbody id="customer-body"><tr><td colspan="8" class="muted">불러오는 중...</td></tr></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="panel" id="panel-import">
+      <h2>고객 엑셀 가져오기</h2>
+      <p class="sub">원본 Excel(.xlsx)/CSV 파일 자체는 서버에 저장하지 않습니다. 브라우저에서 읽은 필요한 열만 암호화 DB로 전송합니다.</p>
+      <div class="upload-box">
+        <input id="excel-file" type="file" accept=".xlsx,.csv">
+        <button id="read-file">파일 읽기</button>
+      </div>
+      <div id="import-summary" class="summary hidden"></div>
+      <div id="preview-wrap" class="table-wrap hidden">
+        <table><thead><tr><th>이름</th><th>전화번호</th><th>통신사</th><th>기종</th><th>개통일</th><th>약정</th><th>문자동의</th></tr></thead><tbody id="preview-body"></tbody></table>
+      </div>
+      <button id="run-import" class="primary hidden">암호화 DB에 가져오기</button>
+    </section>
+
+    <section class="panel" id="panel-campaign">
+      <h2>약정만료 고객 문자 대상</h2>
+      <p class="sub">광고성 문자 수신동의가 확인된 고객만 발송 가능 대상으로 계산합니다. 현재 실발송은 기본 잠금입니다.</p>
+      <div class="campaign-grid">
+        <label>경과 개월 최소<input id="camp-min" type="number" min="0" max="120" value="22"></label>
+        <label>경과 개월 최대<input id="camp-max" type="number" min="0" max="120" value="30"></label>
+        <label>통신사<select id="camp-carrier"><option value="">전체</option><option>SKT</option><option>KT</option><option>LGU+</option><option>알뜰폰</option></select></label>
+      </div>
+      <button id="preview-campaign">대상 계산</button>
+      <div id="campaign-result" class="summary hidden"></div>
+      <label class="message-label">문자 내용<textarea id="campaign-body" rows="6" placeholder="(광고) 웅비통신 덕천만덕점 ..."></textarea></label>
+      <button id="send-campaign" class="danger" disabled>실문자 발송 잠금</button>
+    </section>
+  </main>
+
+  <dialog id="customer-dialog">
+    <form method="dialog" class="dialog-card">
+      <div class="dialog-head"><strong id="detail-name">고객</strong><button value="cancel" class="ghost">닫기</button></div>
+      <dl id="detail-list"></dl>
+      <h3>광고성 문자 수신동의 기록</h3>
+      <div class="consent-grid">
+        <select id="consent-status"><option value="granted">동의</option><option value="revoked">수신거부</option><option value="unknown">미확인</option></select>
+        <select id="consent-method"><option value="paper">서면</option><option value="qr">QR</option><option value="web">웹</option><option value="phone">전화</option><option value="other">기타</option></select>
+        <input id="consent-at" type="datetime-local">
+      </div>
+      <textarea id="consent-evidence" rows="3" placeholder="동의서/QR/전화 확인 등 증빙 기록"></textarea>
+      <button id="save-consent" type="button" class="primary">동의 기록 저장</button>
+    </form>
+  </dialog>
+  <script type="module" src="/app.js"></script>
+</body>
+</html>
