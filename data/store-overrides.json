@@ -1,0 +1,84 @@
+{
+  "meta": {
+    "version": 1,
+    "description": "웅비통신 고객상담 플랫폼의 매장 예외·추천 정책. 자동수집 데이터와 분리해 관리합니다."
+  },
+  "pinned_devices": {
+    "AT-M140S": {
+      "carrier": "SKT",
+      "name": "스타일폴더2",
+      "form_factor": "폴더",
+      "colors": [
+        "인디고블랙",
+        "펄화이트"
+      ],
+      "specs": {
+        "cpu": "MT6765X / 2.2GHz + 1.6GHz Quad Core",
+        "display": "IPS LCD (WVGA)",
+        "main_screen": "4.3인치",
+        "front_camera": "500만 화소",
+        "rear_camera": "800만 화소",
+        "ram": "3GB",
+        "storage": "32GB",
+        "dimensions": "127.8 x 65.3 x 16.9mm",
+        "weight": "195g",
+        "battery": "2,100mAh",
+        "charging": "USB Type-C",
+        "os": "Android 14 Go Edition",
+        "easy_payment": "미지원",
+        "water_resistance": "미지원",
+        "fingerprint": "미지원",
+        "wireless_charging": "미지원",
+        "film_attached": "미부착",
+        "external_memory": "미지원"
+      }
+    },
+    "AT-M140L": {
+      "carrier": "LGU+",
+      "name": "스타일폴더2",
+      "form_factor": "폴더",
+      "colors": [
+        "인디고블랙",
+        "펄화이트"
+      ],
+      "specs": {
+        "cpu": "MT6765X / 2.2GHz + 1.6GHz Quad Core",
+        "display": "IPS LCD (WVGA)",
+        "main_screen": "4.3인치",
+        "front_camera": "500만 화소",
+        "rear_camera": "800만 화소",
+        "ram": "3GB",
+        "storage": "32GB",
+        "dimensions": "127.8 x 65.3 x 16.9mm",
+        "weight": "195g",
+        "battery": "2,100mAh",
+        "charging": "USB Type-C",
+        "os": "Android 14 Go Edition",
+        "easy_payment": "미지원",
+        "water_resistance": "미지원",
+        "fingerprint": "미지원",
+        "wireless_charging": "미지원",
+        "film_attached": "미부착",
+        "external_memory": "미지원"
+      }
+    }
+  },
+  "recommendation_policy": {
+    "senior_priority": [
+      "스타일폴더2",
+      "Wide9",
+      "Buddy5",
+      "A37",
+      "A17"
+    ],
+    "excluded_devices_by_carrier": {
+      "LGU+": {
+        "name_tokens": [
+          "motorola",
+          "moto"
+        ],
+        "reason": "일반 고객 추천 및 직접 계산 노출 제외"
+      }
+    }
+  }
+}
