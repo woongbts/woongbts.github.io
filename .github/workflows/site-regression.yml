@@ -32,6 +32,11 @@ jobs:
           node --check assets/conversion-tracker.min.js
           node --check assets/analytics-config.js
           node --check sw.js
+          grep -q 'recommendation-engine-v2.js' assets/pwa.min.js
+          grep -q 'WoongbiRecommendationV2' assets/recommendation-engine-v2.js
+          grep -q '24개월 총부담 우선' assets/recommendation-engine-v2.js
+          grep -q '사용 편의 우선' assets/recommendation-engine-v2.js
+          grep -q '공시지원 우선' assets/recommendation-engine-v2.js
       - name: Validate Python safety scripts
         run: python3 -m py_compile .github/scripts/daily_wireless_sync.py .github/scripts/build_rates_asset.py .github/scripts/validate_site.py
       - name: Verify canonical calculator source
