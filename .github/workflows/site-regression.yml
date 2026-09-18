@@ -1,0 +1,33 @@
+name: Site regression guard
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'index.html'
+      - 'rates.html'
+      - 'assets/**'
+      - 'src/**'
+      - 'data/**'
+      - '.github/scripts/**'
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate JavaScript
+        run: |
+          node --check assets/rates.min.js
+          node --check assets/site-pro.min.js
+          node --check assets/ai-chat.min.js
+      - name: Verify canonical calculator source
+        run: python3 .github/scripts/build_rates_asset.py --check
+      - name: Run site regression checks
+        run: python3 .github/scripts/validate_site.py
