@@ -22,9 +22,15 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Syntax check
+      - name: Install CRM build dependencies
         working-directory: .github/crm
-        run: npm run check
+        run: npm install --ignore-scripts
+      - name: Syntax and production build check
+        working-directory: .github/crm
+        run: npm run check && npm run build
+      - name: Dependency vulnerability check
+        working-directory: .github/crm
+        run: npm audit --omit=dev --audit-level=high
       - name: Block customer files and obvious secrets
         shell: bash
         run: |
