@@ -122,6 +122,12 @@ for label in ("휴대폰", "공신폰", "알뜰폰(후불)", "선불폰", "인�
 check("assets/ai-chat.js" not in index, "dead ai-chat.js reference returned")
 check("assets/rates.min.js?v=" in rates_html, "rates production script missing")
 check("assets/site-pro.min.js?v=" in index, "site production script missing")
+# Naver business-channel telecom pre-approval visibility contract.
+PRECON_URL = "https://ictmarket.or.kr:8443/precon/pop_CertIcon.do?PRECON_REQ_ID=PRE0000119098&amp;YN=1"
+check('class="precon-badge"' in index, "top pre-approval badge missing")
+check('사전승낙 판매점' in index and 'KAIT 승낙정보 확인' in index, "pre-approval badge copy missing")
+check(index.count(PRECON_URL) >= 2, "official pre-approval lookup must remain in both header and footer")
+
 # Quick recommendation v3 contract.
 check('id="quick-data"' not in rates_html, "legacy quick data selector returned")
 check('월 부담 가볍게 · 3~4만원대' in rates_html, "quick monthly burden band missing")
