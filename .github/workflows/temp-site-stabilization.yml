@@ -1,4 +1,5 @@
 name: Temporary site stabilization
+# trigger after workflow registration
 on:
   push:
     branches: [main]
