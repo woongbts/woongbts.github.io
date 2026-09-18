@@ -58,12 +58,12 @@ for d in style:
         check(bool(matched), f"missing public support: {d.get('id')} {join}")
 
 # Non-handset plans must never leak into the phone calculator.
-# Legacy 3G plans are retired and must never return to customer-facing data.
-legacy_3g_plans = [
+# Legacy 2G/3G plans are retired and must never return to customer-facing data.
+legacy_2g_3g_plans = [
     p for p in mobile_plans
-    if re.search(r"(^|[^a-z0-9])3g([^a-z0-9]|$)", str(p.get("name") or "").lower().replace(" ", ""), re.IGNORECASE)
+    if re.search(r"(^|[^a-z0-9])[23]g([^a-z0-9]|$)", str(p.get("name") or "").lower().replace(" ", ""), re.IGNORECASE)
 ]
-check(not legacy_3g_plans, f"legacy 3G plans leaked: {[p.get('name') for p in legacy_3g_plans[:5]]}")
+check(not legacy_2g_3g_plans, f"legacy 2G/3G plans leaked: {[p.get('name') for p in legacy_2g_3g_plans[:5]]}")
 
 blocked = (
     "아웃도어", "tab", "태블릿", "watch", "워치", "포켓파이", "스마트기기",
