@@ -30,59 +30,13 @@ TODAY_DATE = datetime.now(ZoneInfo("Asia/Seoul")).date()
 TODAY = TODAY_DATE.isoformat()
 RECENT_DEVICE_DAYS = 365
 RECENT_DEVICE_CUTOFF = (TODAY_DATE - timedelta(days=RECENT_DEVICE_DAYS)).isoformat()
-# Explicit current-sale exception supplied and verified for the store.
-# These models remain in the customer catalog even when older than the general recency window.
-PINNED_MODEL_CODES = {"AT-M140S", "AT-M140L"}
-PINNED_DEVICE_META = {
-    "AT-M140S": {
-        "form_factor": "폴더",
-        "colors": ["인디고블랙", "펄화이트"],
-        "specs": {
-            "cpu": "MT6765X / 2.2GHz + 1.6GHz Quad Core",
-            "display": "IPS LCD (WVGA)",
-            "main_screen": "4.3인치",
-            "front_camera": "500만 화소",
-            "rear_camera": "800만 화소",
-            "ram": "3GB",
-            "storage": "32GB",
-            "dimensions": "127.8 x 65.3 x 16.9mm",
-            "weight": "195g",
-            "battery": "2,100mAh",
-            "charging": "USB Type-C",
-            "os": "Android 14 Go Edition",
-            "easy_payment": "미지원",
-            "water_resistance": "미지원",
-            "fingerprint": "미지원",
-            "wireless_charging": "미지원",
-            "film_attached": "미부착",
-            "external_memory": "미지원",
-        },
-    },
-    "AT-M140L": {
-        "form_factor": "폴더",
-        "colors": ["인디고블랙", "펄화이트"],
-        "specs": {
-            "cpu": "MT6765X / 2.2GHz + 1.6GHz Quad Core",
-            "display": "IPS LCD (WVGA)",
-            "main_screen": "4.3인치",
-            "front_camera": "500만 화소",
-            "rear_camera": "800만 화소",
-            "ram": "3GB",
-            "storage": "32GB",
-            "dimensions": "127.8 x 65.3 x 16.9mm",
-            "weight": "195g",
-            "battery": "2,100mAh",
-            "charging": "USB Type-C",
-            "os": "Android 14 Go Edition",
-            "easy_payment": "미지원",
-            "water_resistance": "미지원",
-            "fingerprint": "미지원",
-            "wireless_charging": "미지원",
-            "film_attached": "미부착",
-            "external_memory": "미지원",
-        },
-    },
-}
+# Store-specific exceptions are separated from public-source data.
+STORE_OVERRIDES_PATH = pathlib.Path("data/store-overrides.json")
+if not STORE_OVERRIDES_PATH.exists():
+    raise SystemExit("data/store-overrides.json missing")
+_store_overrides = json.loads(STORE_OVERRIDES_PATH.read_text(encoding="utf-8"))
+PINNED_DEVICE_META = copy.deepcopy(_store_overrides.get("pinned_devices") or {})
+PINNED_MODEL_CODES = set(PINNED_DEVICE_META)
 
 
 def get_json(path, params=None, attempts=4):
