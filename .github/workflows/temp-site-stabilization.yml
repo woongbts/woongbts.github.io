@@ -1,0 +1,332 @@
+name: Temporary site stabilization
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/temp-site-stabilization.yml'
+permissions:
+  contents: write
+jobs:
+  stabilize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Add safety configuration and regression checks
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          import json, re, html
+
+          root=Path('.')
+          (root/'src').mkdir(exist_ok=True)
+          (root/'.github/scripts').mkdir(parents=True,exist_ok=True)
+
+          # 1) Store-specific exceptions live outside the public-source sync logic.
+          overrides={
+            "meta":{
+              "version":1,
+              "description":"웅비통신 고객상담 플랫폼의 매장 예외/추천 정책. 자동수집 원본과 분리해 관리합니다."
+            },
+            "pinned_devices":{
+              "AT-M140S":{
+                "carrier":"SKT","name":"스타일폴더2","form_factor":"폴더",
+                "colors":["인디고블랙","펄화이트"],
+                "specs":{
+                  "cpu":"MT6765X / 2.2GHz + 1.6GHz Quad Core",
+                  "display":"IPS LCD (WVGA)","main_screen":"4.3인치",
+                  "front_camera":"500만 화소","rear_camera":"800만 화소",
+                  "ram":"3GB","storage":"32GB","dimensions":"127.8 x 65.3 x 16.9mm",
+                  "weight":"195g","battery":"2,100mAh","charging":"USB Type-C",
+                  "os":"Android 14 Go Edition","easy_payment":"미지원",
+                  "water_resistance":"미지원","fingerprint":"미지원",
+                  "wireless_charging":"미지원","film_attached":"미부착",
+                  "external_memory":"미지원"
+                }
+              },
+              "AT-M140L":{
+                "carrier":"LGU+","name":"스타일폴더2","form_factor":"폴더",
+                "colors":["인디고블랙","펄화이트"],
+                "specs":{
+                  "cpu":"MT6765X / 2.2GHz + 1.6GHz Quad Core",
+                  "display":"IPS LCD (WVGA)","main_screen":"4.3인치",
+                  "front_camera":"500만 화소","rear_camera":"800만 화소",
+                  "ram":"3GB","storage":"32GB","dimensions":"127.8 x 65.3 x 16.9mm",
+                  "weight":"195g","battery":"2,100mAh","charging":"USB Type-C",
+                  "os":"Android 14 Go Edition","easy_payment":"미지원",
+                  "water_resistance":"미지원","fingerprint":"미지원",
+                  "wireless_charging":"미지원","film_attached":"미부착",
+                  "external_memory":"미지원"
+                }
+              }
+            },
+            "recommendation_policy":{
+              "senior_priority":["스타일폴더2","Wide9","Buddy5","A37","A17"],
+              "excluded_devices_by_carrier":{
+                "LGU+":{"name_tokens":["motorola","moto"],"reason":"일반 고객 추천/직접계산 노출 제외"}
+              }
+            }
+          }
+          Path('data/store-overrides.json').write_text(json.dumps(overrides,ensure_ascii=False,indent=2)+"\n",encoding='utf-8')
+
+          # 2) Capture the currently approved four homepage cards as a stable contract.
+          site=Path('assets/site-pro.min.js').read_text(encoding='utf-8')
+          card_pat=re.compile(r'<article class="deal-card" data-calculator-url="([^"]+)">([\s\S]*?)</article>')
+          cards=[]
+          for m in card_pat.finditer(site):
+              body=m.group(2)
+              def pick(pattern,default=""):
+                x=re.search(pattern,body,re.S)
+                return html.unescape(x.group(1).strip()) if x else default
+              cards.append({
+                "name":pick(r'<h3>([^<]+)</h3>'),
+                "carrier":pick(r'deal-carrier">([^<]+)<'),
+                "tag":pick(r'deal-tag">([^<]+)<'),
+                "plan_text":pick(r'deal-plan">([^<]+)<'),
+                "monthly_text":pick(r'<strong>([\d,]+원)<span>/월'),
+                "image":pick(r'<img[^>]+src="([^"]+)"'),
+                "calculator_url":html.unescape(m.group(1))
+              })
+          if len(cards)!=4:
+              raise SystemExit(f'expected 4 homepage cards, got {len(cards)}')
+          Path('data/storefront.json').write_text(json.dumps({
+            "meta":{
+              "version":1,
+              "description":"메인 추천카드 4개의 승인된 기준. 실제 렌더링과 계산기 링크가 이 기준에서 벗어나면 회귀검사가 실패합니다."
+            },
+            "cards":cards
+          },ensure_ascii=False,indent=2)+"\n",encoding='utf-8')
+
+          # 3) Canonical source for the current calculator script.
+          current=Path('assets/rates.min.js').read_text(encoding='utf-8')
+          Path('src/rates.js').write_text(current if current.endswith("\n") else current+"\n",encoding='utf-8')
+
+          build_script=r'''#!/usr/bin/env python3
+          from pathlib import Path
+          import argparse, sys
+
+          parser=argparse.ArgumentParser()
+          parser.add_argument("--check",action="store_true")
+          args=parser.parse_args()
+          src=Path("src/rates.js")
+          out=Path("assets/rates.min.js")
+          if not src.exists():
+              raise SystemExit("src/rates.js missing")
+          source=src.read_text(encoding="utf-8")
+          production=out.read_text(encoding="utf-8") if out.exists() else ""
+          normalized=lambda s:s.rstrip()+"\n"
+          if args.check:
+              if normalized(source)!=normalized(production):
+                  raise SystemExit("assets/rates.min.js differs from src/rates.js; edit src/rates.js first and rebuild")
+              print("rates source/production parity OK")
+          else:
+              out.write_text(normalized(source),encoding="utf-8")
+              print("assets/rates.min.js rebuilt from src/rates.js")
+          '''
+          build_script="\n".join(line[10:] if line.startswith("          ") else line for line in build_script.splitlines())+"\n"
+          Path('.github/scripts/build_rates_asset.py').write_text(build_script,encoding='utf-8')
+
+          validator=r'''#!/usr/bin/env python3
+          from pathlib import Path
+          from urllib.parse import urlparse, parse_qs
+          import json, re, html, sys
+
+          def load_json(path):
+              data=json.loads(Path(path).read_text(encoding="utf-8"))
+              if not isinstance(data,dict):
+                  raise SystemExit(f"invalid JSON root: {path}")
+              return data
+
+          catalog=load_json("data/catalog.json")
+          plans=load_json("data/plans.json")
+          supports=load_json("data/supports.json")
+          overrides=load_json("data/store-overrides.json")
+          storefront=load_json("data/storefront.json")
+          site=Path("assets/site-pro.min.js").read_text(encoding="utf-8")
+          rates=Path("assets/rates.min.js").read_text(encoding="utf-8")
+          index=Path("index.html").read_text(encoding="utf-8")
+          rates_html=Path("rates.html").read_text(encoding="utf-8")
+
+          devices=catalog.get("devices") or []
+          mobile_plans=plans.get("mobile_plans") or []
+          schedules=supports.get("support_schedules") or []
+          device_by_id={d.get("id"):d for d in devices if d.get("id")}
+          plan_by_id={p.get("id"):p for p in mobile_plans if p.get("id")}
+
+          errors=[]
+          def check(cond,msg):
+              if not cond: errors.append(msg)
+
+          # Core data sanity.
+          for carrier in ("SKT","KT","LGU+"):
+              check(any(d.get("carrier")==carrier for d in devices),f"no devices for {carrier}")
+              check(any(p.get("carrier")==carrier for p in mobile_plans),f"no plans for {carrier}")
+
+          # Store-specific pinned device contract.
+          style=[d for d in devices if d.get("name")=="스타일폴더2"]
+          check(len(style)==2,f"Style Folder 2 count must be 2, got {len(style)}")
+          check({d.get("carrier") for d in style}=={"SKT","LGU+"},"Style Folder 2 must exist only on SKT/LGU+")
+          check({d.get("model_code") for d in style}=={"AT-M140S","AT-M140L"},"Style Folder 2 model codes changed")
+          check(not any(d.get("carrier")=="KT" and d.get("name")=="스타일폴더2" for d in devices),"Style Folder 2 leaked into KT")
+          pinned=set((overrides.get("pinned_devices") or {}).keys())
+          check({"AT-M140S","AT-M140L"}.issubset(pinned),"store overrides missing Style Folder 2")
+
+          # Both Style Folder 2 variants need verified support data for all join types.
+          for d in style:
+              for join in ("기기변경","번호이동","신규가입"):
+                  matched=[s for s in schedules if d.get("id") in (s.get("device_ids") or []) and join in (s.get("join_types") or []) and (s.get("amounts") or {})]
+                  check(bool(matched),f"missing public support: {d.get('id')} {join}")
+
+          # Block non-handset plans from customer calculator.
+          blocked=("아웃도어","tab","태블릿","watch","워치","포켓파이","스마트기기","데이터함께쓰기","데이터쉐어링","데이터셰어링","아이패드","ipad","세컨드디바이스","2nddevice","wearable","웨어러블","데이터나눠쓰기")
+          for p in mobile_plans:
+              n=str(p.get("name") or "").lower().replace(" ","")
+              if any(tok in n for tok in blocked):
+                  errors.append(f"non-handset plan leaked: {p.get('id')} {p.get('name')}")
+                  break
+
+          # Homepage storefront contract and calculator deep links.
+          cards=storefront.get("cards") or []
+          check(len(cards)==4,f"storefront card count must be 4, got {len(cards)}")
+          rendered=len(re.findall(r'<article class="deal-card" data-calculator-url="',site))
+          check(rendered==4,f"rendered homepage deal-card count must be 4, got {rendered}")
+          for card in cards:
+              name=card.get("name") or ""
+              url=card.get("calculator_url") or ""
+              check(name and name in site,f"homepage card missing: {name}")
+              check(url and html.escape(url,quote=True) in site or url in html.unescape(site),f"homepage card link changed: {name}")
+              q=parse_qs(urlparse(url).query)
+              did=(q.get("d") or [""])[0]; pid=(q.get("p") or [""])[0]
+              carrier=(q.get("c") or [""])[0]; join=(q.get("j") or [""])[0]
+              check(did in device_by_id,f"storefront unknown device: {name} {did}")
+              check(pid in plan_by_id,f"storefront unknown plan: {name} {pid}")
+              if did in device_by_id:
+                  check(device_by_id[did].get("carrier")==carrier,f"storefront device/carrier mismatch: {name}")
+              if pid in plan_by_id:
+                  check(plan_by_id[pid].get("carrier")==carrier,f"storefront plan/carrier mismatch: {name}")
+              check(join in ("기기변경","번호이동","신규가입"),f"storefront invalid join type: {name}")
+
+          # Important recommendation/quote regression markers.
+          for marker in ("갤럭시 Jump5 5G","갤럭시 A37 5G","갤럭시 퀀텀7","51910","55740","62340"):
+              check(marker in rates,f"value-phone regression marker missing: {marker}")
+          check("스타일폴더2" in rates,"senior Style Folder 2 recommendation missing")
+          check("motorola" in rates.lower() or "moto" in rates.lower(),"LGU+ Motorola exclusion guard missing")
+          check("wbVisibleDevice" in rates,"device visibility guard missing")
+
+          # Deep-link capable calculator and current production wiring.
+          for marker in ('searchParams.set("d"', 'searchParams.set("p"', 'searchParams.set("m"'):
+              check(marker in rates,f"calculator deep-link support missing: {marker}")
+          check("assets/ai-chat.js" not in index,"dead ai-chat.js reference returned")
+          check("assets/rates.min.js?v=" in rates_html,"rates production script missing")
+          check("assets/site-pro.min.js?v=" in index,"site production script missing")
+
+          # Do not leak internal commercial data into public customer files.
+          forbidden=("리베이트","판매점 수수료","정산금액","제로노트","dealer_fee","commission")
+          public_text="\n".join([
+              json.dumps(catalog,ensure_ascii=False),
+              json.dumps(plans,ensure_ascii=False),
+              json.dumps(supports,ensure_ascii=False),
+              rates, site
+          ]).lower()
+          for word in forbidden:
+              check(word.lower() not in public_text,f"forbidden internal/customer-facing token leaked: {word}")
+
+          # Canonical rates source must match production.
+          src=Path("src/rates.js").read_text(encoding="utf-8").rstrip()
+          prod=Path("assets/rates.min.js").read_text(encoding="utf-8").rstrip()
+          check(src==prod,"src/rates.js and assets/rates.min.js differ")
+
+          if errors:
+              print("SITE REGRESSION CHECK FAILED")
+              for e in errors: print(" -",e)
+              raise SystemExit(1)
+          print("SITE REGRESSION CHECK OK")
+          print(f"devices={len(devices)} plans={len(mobile_plans)} supports={len(schedules)} cards={len(cards)}")
+          '''
+          validator="\n".join(line[10:] if line.startswith("          ") else line for line in validator.splitlines())+"\n"
+          Path('.github/scripts/validate_site.py').write_text(validator,encoding='utf-8')
+
+          # 4) Move pinned-device metadata out of the sync code into store-overrides.json.
+          sync_path=Path('.github/scripts/daily_wireless_sync.py')
+          sync=sync_path.read_text(encoding='utf-8')
+          start=sync.find('# Explicit current-sale exception supplied and verified for the store.')
+          end=sync.find('\n\ndef get_json',start)
+          if start<0 or end<0:
+              raise SystemExit('pinned-device block not found in sync script')
+          loader='''# Store-specific exceptions are deliberately separated from public-source data.\nSTORE_OVERRIDES = load_path = pathlib.Path("data/store-overrides.json")\nif not STORE_OVERRIDES.exists():\n    raise SystemExit("data/store-overrides.json missing")\n_store_overrides = json.loads(STORE_OVERRIDES.read_text(encoding="utf-8"))\nPINNED_DEVICE_META = copy.deepcopy(_store_overrides.get("pinned_devices") or {})\nPINNED_MODEL_CODES = set(PINNED_DEVICE_META)\n'''
+          sync=sync[:start]+loader+sync[end:]
+          sync_path.write_text(sync,encoding='utf-8')
+
+          # 5) Extend daily sync validation with the same regression checks.
+          wf_path=Path('.github/workflows/daily-wireless-sync.yml')
+          wf=wf_path.read_text(encoding='utf-8')
+          old='''          node --check assets/rates.min.js\n'''
+          new='''          node --check assets/rates.min.js\n          node --check assets/site-pro.min.js\n          python3 .github/scripts/build_rates_asset.py --check\n          python3 .github/scripts/validate_site.py\n'''
+          if old not in wf:
+              raise SystemExit('daily workflow validation marker missing')
+          wf=wf.replace(old,new,1)
+          wf_path.write_text(wf,encoding='utf-8')
+
+          # 6) Add a read-only regression workflow for every relevant main change.
+          regression='''name: Site regression guard
+
+          on:
+            push:
+              branches: [main]
+              paths:
+                - 'index.html'
+                - 'rates.html'
+                - 'assets/**'
+                - 'src/**'
+                - 'data/**'
+                - '.github/scripts/**'
+            pull_request:
+              branches: [main]
+
+          permissions:
+            contents: read
+
+          jobs:
+            validate:
+              runs-on: ubuntu-latest
+              timeout-minutes: 10
+              steps:
+                - uses: actions/checkout@v4
+                - name: Validate JavaScript
+                  run: |
+                    node --check assets/rates.min.js
+                    node --check assets/site-pro.min.js
+                    node --check assets/ai-chat.min.js
+                - name: Verify canonical calculator source
+                  run: python3 .github/scripts/build_rates_asset.py --check
+                - name: Run site regression checks
+                  run: python3 .github/scripts/validate_site.py
+          '''
+          regression="\n".join(line[10:] if line.startswith("          ") else line for line in regression.splitlines())+"\n"
+          Path('.github/workflows/site-regression.yml').write_text(regression,encoding='utf-8')
+          PY
+
+          node --check assets/rates.min.js
+          node --check assets/site-pro.min.js
+          python3 .github/scripts/build_rates_asset.py --check
+          python3 .github/scripts/validate_site.py
+          python3 -m py_compile .github/scripts/daily_wireless_sync.py .github/scripts/build_rates_asset.py .github/scripts/validate_site.py
+
+      - name: Commit stabilization and remove temporary workflow
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f .github/workflows/temp-site-stabilization.yml
+          git config user.name 'woongbts-site-bot'
+          git config user.email 'actions@users.noreply.github.com'
+          git add -u
+          git add data/store-overrides.json data/storefront.json src/rates.js .github/scripts/build_rates_asset.py .github/scripts/validate_site.py .github/scripts/daily_wireless_sync.py .github/workflows/daily-wireless-sync.yml .github/workflows/site-regression.yml
+          git status --short
+          git commit -m 'Add regression guardrails and store data overrides'
+          git push origin HEAD:main
