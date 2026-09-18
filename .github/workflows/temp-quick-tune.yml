@@ -1,0 +1,37 @@
+name: Temporary quick recommendation tune
+
+on:
+  push:
+    branches: [quick-smart-v3]
+    paths:
+      - '.github/workflows/temp-quick-tune.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  tune:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: quick-smart-v3
+          fetch-depth: 0
+      - name: Tune data allowance ranking
+        run: python3 .github/scripts/temp_quick_tune.py
+      - name: Validate
+        run: |
+          node --check src/rates.js
+          node --check assets/rates.min.js
+          python3 .github/scripts/build_rates_asset.py --check
+          python3 .github/scripts/validate_site.py
+      - name: Commit and clean
+        run: |
+          rm -f .github/workflows/temp-quick-tune.yml .github/scripts/temp_quick_tune.py
+          git config user.name 'woongbts-site-bot'
+          git config user.email 'actions@users.noreply.github.com'
+          git add -u
+          git add src/rates.js assets/rates.min.js
+          git commit -m 'Refine data allowance scoring in quick recommendations'
+          git push origin HEAD:quick-smart-v3
