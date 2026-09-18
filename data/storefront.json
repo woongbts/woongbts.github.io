@@ -2,7 +2,7 @@
   "meta": {
     "version": 1,
     "description": "메인 추천카드 4개의 승인된 기준. 실제 렌더링과 계산기 링크가 달라지면 회귀검사가 실패합니다.",
-    "guard_version": 2
+    "guard_version": 3
   },
   "cards": [
     {
