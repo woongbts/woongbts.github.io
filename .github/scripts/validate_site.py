@@ -123,6 +123,17 @@ check("assets/ai-chat.js" not in index, "dead ai-chat.js reference returned")
 check("assets/rates.min.js?v=" in rates_html, "rates production script missing")
 check("assets/site-pro.min.js?v=" in index, "site production script missing")
 
+# PWA, local image and measurement hooks.
+for path in ("manifest.webmanifest","sw.js","offline.html","404.html","assets/pwa.min.js","assets/analytics-config.js","assets/conversion-tracker.min.js"):
+    check(Path(path).exists(), f"missing production support file: {path}")
+check('rel="manifest"' in index and 'rel="manifest"' in rates_html, "PWA manifest link missing")
+check("conversion-tracker.min.js" in index and "conversion-tracker.min.js" in rates_html, "conversion tracker wiring missing")
+check("pwa.min.js" in index and "pwa.min.js" in rates_html, "PWA registration wiring missing")
+check("/IMG_2451.webp?v=20260918-1" in site, "A37 local image missing")
+check("images.samsung.com" not in site, "A37 still depends on external image host")
+check("https://woongbts.github.io/rates.html" in Path("sitemap.xml").read_text(encoding="utf-8"), "rates page missing from sitemap")
+
+
 # Public customer assets must not expose internal commercial/source terms.
 forbidden = ("리베이트", "판매점 수수료", "정산금액", "제로노트", "dealer_fee", "commission")
 public_text = "\n".join([
