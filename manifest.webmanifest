@@ -1,0 +1,37 @@
+{
+  "name": "웅비통신 덕천만덕점",
+  "short_name": "웅비통신",
+  "description": "휴대폰·알뜰폰·선불폰·인터넷·TV 요금 비교와 상담",
+  "lang": "ko-KR",
+  "start_url": "/?source=pwa",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#103c52",
+  "icons": [
+    {
+      "src": "/assets/woongbi-mark.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/woongbi-mark.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "요금 계산",
+      "short_name": "요금 계산",
+      "url": "/rates.html?source=pwa"
+    },
+    {
+      "name": "매장 위치",
+      "short_name": "오시는 길",
+      "url": "/#location"
+    }
+  ]
+}
