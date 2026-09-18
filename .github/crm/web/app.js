@@ -1,4 +1,4 @@
-import * as XLSX from 'xlsx';
+import { readSheet } from 'read-excel-file/browser';
 
 const $ = id => document.getElementById(id);
 let importRows = [];
@@ -93,17 +93,48 @@ async function saveConsent() {
 
 async function readExcel() {
   const file = $('excel-file').files[0];
-  if (!file) { alert('Excel 또는 CSV 파일을 선택해 주세요.'); return; }
+  if (!file) { alert('Excel(.xlsx) 또는 CSV 파일을 선택해 주세요.'); return; }
   try {
-    const workbook = XLSX.read(await file.arrayBuffer(), { type:'array', cellDates:true });
-    const sheet = workbook.Sheets[workbook.SheetNames[0]];
-    const raw = XLSX.utils.sheet_to_json(sheet, { defval:'' });
+    const lower = file.name.toLowerCase();
+    let raw;
+    if (lower.endsWith('.xlsx')) {
+      const rows = await readSheet(file);
+      raw = rowsToObjects(rows);
+    } else if (lower.endsWith('.csv')) {
+      raw = rowsToObjects(parseCsv(await file.text()));
+    } else {
+      throw new Error('지원 형식은 .xlsx 또는 .csv 입니다.');
+    }
     importRows = raw.map(normalizeExcelRow).filter(r => r.name || r.phone);
     $('import-summary').classList.remove('hidden');
     $('import-summary').textContent = `${file.name} · ${importRows.length.toLocaleString('ko-KR')}행 확인. 이름/연락처가 없는 행은 가져오기에서 제외됩니다.`;
     $('preview-wrap').classList.remove('hidden'); $('run-import').classList.remove('hidden');
     $('preview-body').innerHTML = importRows.slice(0,10).map(r => `<tr><td>${esc(r.name)}</td><td>${esc(formatPhone(r.phone))}</td><td>${esc(r.carrier||'-')}</td><td>${esc(r.device_model||'-')}</td><td>${esc(r.opened_on||'-')}</td><td>${esc(String(r.contract_months||24))}개월</td><td>${esc(String(r.ad_sms_consent||'미확인'))}</td></tr>`).join('');
   } catch (error) { showError(new Error(`파일을 읽지 못했습니다: ${error.message}`)); }
+}
+
+function rowsToObjects(rows) {
+  if (!Array.isArray(rows) || rows.length < 2) return [];
+  const names = rows[0].map(v => String(v ?? '').trim());
+  return rows.slice(1).map(values => Object.fromEntries(names.map((name, i) => [name, values[i] ?? ''])));
+}
+
+function parseCsv(text) {
+  const rows=[]; let row=[], cell='', quoted=false;
+  const input=String(text||'').replace(/^\uFEFF/, '');
+  for (let i=0;i<input.length;i++) {
+    const ch=input[i];
+    if (quoted) {
+      if (ch==='"' && input[i+1]==='"') { cell+='"'; i++; }
+      else if (ch==='"') quoted=false;
+      else cell+=ch;
+    } else if (ch==='"') quoted=true;
+    else if (ch===',') { row.push(cell); cell=''; }
+    else if (ch==='\n') { row.push(cell.replace(/\r$/, '')); rows.push(row); row=[]; cell=''; }
+    else cell+=ch;
+  }
+  if (cell.length || row.length) { row.push(cell.replace(/\r$/, '')); rows.push(row); }
+  return rows;
 }
 
 function normalizeExcelRow(row) {
