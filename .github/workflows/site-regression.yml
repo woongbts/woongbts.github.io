@@ -27,6 +27,10 @@ jobs:
           node --check assets/rates.min.js
           node --check assets/site-pro.min.js
           node --check assets/ai-chat.min.js
+          node --check assets/pwa.min.js
+          node --check assets/conversion-tracker.min.js
+          node --check assets/analytics-config.js
+          node --check sw.js
       - name: Validate Python safety scripts
         run: python3 -m py_compile .github/scripts/daily_wireless_sync.py .github/scripts/build_rates_asset.py .github/scripts/validate_site.py
       - name: Verify canonical calculator source
