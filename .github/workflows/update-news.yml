@@ -45,7 +45,7 @@ jobs:
 
           req = urllib.request.Request(
               RSS_URL,
-              headers={'User-Agent': 'Mozilla/5.0 WoongbiNewsBot/1.1'}
+              headers={'User-Agent': 'Mozilla/5.0 WoongbiNewsBot/1.2'}
           )
           with urllib.request.urlopen(req, timeout=30) as r:
               raw = r.read()
@@ -103,14 +103,15 @@ jobs:
               json.dump(payload, f, ensure_ascii=False, indent=2)
               f.write('\n')
 
+          # Safety only: older versions of this workflow injected a removed legacy script.
+          # Never add or rewrite site scripts from the news updater.
           with open('index.html', 'r', encoding='utf-8') as f:
               index = f.read()
-          index = re.sub(r'assets/site-pro\.js\?v=[^"\']+', 'assets/site-pro.js?v=20260915-ai1', index)
-          ai_script = '<script src="assets/ai-chat.js?v=20260915-1" defer></script>'
-          if re.search(r'<script src="assets/ai-chat\.js\?v=[^"]+" defer></script>', index):
-              index = re.sub(r'<script src="assets/ai-chat\.js\?v=[^"]+" defer></script>', ai_script, index)
-          elif 'assets/ai-chat.js' not in index:
-              index = index.replace('</body>', ai_script + '</body>')
+          index = re.sub(
+              r'<script src="assets/ai-chat\.js\?v=[^"]+" defer></script>',
+              '',
+              index,
+          )
           with open('index.html', 'w', encoding='utf-8') as f:
               f.write(index)
           PY
