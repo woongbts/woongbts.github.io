@@ -10,3 +10,10 @@ body.plan-picker-opened{overflow:hidden;touch-action:auto}
 
 /* Customer-first plan picker */
 .plan-picker-modes{display:grid;grid-template-columns:1fr 1fr;gap:8px}.plan-picker-modes button{min-height:42px;border:1px solid #cddcdf;border-radius:12px;background:#fff;color:#526b73;font:inherit;font-size:.78rem;font-weight:900;cursor:pointer}.plan-picker-modes button.active{background:var(--navy);border-color:var(--navy);color:#fff;box-shadow:0 3px 10px rgba(16,60,82,.12)}.plan-picker-mode-note{margin:-3px 0 1px;padding:10px 12px;border-radius:11px;background:#f2f7f7;color:#60777f;font-size:.69rem;line-height:1.5}.plan-picker-sheet[data-mode="recommend"] .plan-picker-search,.plan-picker-sheet[data-mode="recommend"] .plan-filter-group{display:none}.plan-picker-sheet[data-mode="recommend"] .plan-picker-toolbar label{display:none!important}.plan-recommend-reason{display:flex;align-items:flex-start;gap:8px;padding:9px 10px;border-radius:10px;background:#eef7f5;color:#315f5b}.plan-recommend-reason span{flex:0 0 auto;padding:3px 6px;border-radius:999px;background:#d8eee9;color:#0f665f;font-size:.61rem;font-weight:900}.plan-recommend-reason strong{font-size:.67rem;line-height:1.45}.plan-picker-sheet[data-mode="recommend"] .plan-picker-list{gap:10px}@media(max-width:760px){.plan-picker-modes{position:sticky;top:0;z-index:2;background:#fff;padding-top:1px}.plan-picker-mode-note{font-size:.66rem}}
+
+/* Device images in recommendation cards */
+.device-card-image{height:150px;margin:8px 0 12px;padding:8px;border-radius:14px;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#f8fbfb}
+.device-card-image img{display:block;width:100%;height:100%;object-fit:contain}
+.quick-result-card .quick-device-image{height:150px}
+.purpose-card .purpose-device-image{height:145px}
+@media(max-width:760px){.device-card-image,.quick-result-card .quick-device-image,.purpose-card .purpose-device-image{height:132px;margin:6px 0 10px}}
