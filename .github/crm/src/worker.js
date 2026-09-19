@@ -1,11 +1,13 @@
 const encoder = new TextEncoder();
 const decoder = new TextDecoder();
 let jwksCache = { at: 0, keys: [] };
+let schemaReadyPromise = null;
 
 export default {
   async fetch(request, env) {
     try {
       const user = await authenticate(request, env);
+      await ensureSchema(env);
       const url = new URL(request.url);
       if (url.pathname.startsWith('/api/')) {
         return await handleApi(request, env, user, url);
@@ -108,6 +110,25 @@ async function getAccessJwks(teamDomain) {
   const data = await response.json();
   jwksCache = { at: Date.now(), keys: data.keys || [] };
   return jwksCache.keys;
+}
+
+async function ensureSchema(env) {
+  if (schemaReadyPromise) return schemaReadyPromise;
+  schemaReadyPromise = (async () => {
+    const info = await env.DB.prepare('PRAGMA table_info(customers)').all();
+    const columns = new Set((info.results || []).map(row => String(row.name)));
+    if (!columns.has('birth_date_enc')) {
+      await env.DB.exec('ALTER TABLE customers ADD COLUMN birth_date_enc TEXT');
+    }
+    if (!columns.has('installment_months')) {
+      await env.DB.exec('ALTER TABLE customers ADD COLUMN installment_months INTEGER CHECK (installment_months IS NULL OR installment_months BETWEEN 0 AND 60)');
+    }
+    await env.DB.exec('CREATE INDEX IF NOT EXISTS idx_customers_installment_months ON customers(installment_months)');
+  })().catch(error => {
+    schemaReadyPromise = null;
+    throw error;
+  });
+  return schemaReadyPromise;
 }
 
 async function dashboard(env) {
