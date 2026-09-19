@@ -1,0 +1,60 @@
+name: Temporary number port default patch
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/temp-number-port-default.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Prefer number porting in mobile recommendations
+        shell: python
+        run: |
+          from pathlib import Path
+
+          html_path = Path('rates.html')
+          html = html_path.read_text(encoding='utf-8')
+          replacements = {
+            '<label>가입유형<select id="purpose-join"><option>기기변경</option><option>번호이동</option><option>신규가입</option></select></label>':
+            '<label>가입유형<select id="purpose-join"><option>번호이동</option><option>기기변경</option><option>신규가입</option></select><small class="field-help">추천은 번호이동 조건을 먼저 보여드리며, 기기변경·신규가입도 직접 선택할 수 있습니다.</small></label>',
+            '<label>가입유형<select id="quick-join"><option>기기변경</option><option>번호이동</option><option>신규가입</option></select></label>':
+            '<label>가입유형<select id="quick-join"><option>번호이동</option><option>기기변경</option><option>신규가입</option></select></label>',
+            '<label>가입유형<select id="join-type"><option>기기변경</option><option>번호이동</option><option>신규가입</option></select></label>':
+            '<label>가입유형<select id="join-type"><option>번호이동</option><option>기기변경</option><option>신규가입</option></select></label>',
+          }
+          for old, new in replacements.items():
+              assert old in html, f'marker not found: {old[:80]}'
+              html = html.replace(old, new, 1)
+          html = html.replace('assets/rates.min.js?v=20260919-7', 'assets/rates.min.js?v=20260919-8', 1)
+          html_path.write_text(html, encoding='utf-8')
+
+          engine_path = Path('assets/recommendation-engine-v2.js')
+          engine = engine_path.read_text(encoding='utf-8')
+          engine = engine.replace("join=qs('#purpose-join')?.value||'기기변경'", "join=qs('#purpose-join')?.value||'번호이동'", 1)
+          engine = engine.replace("let beforeJoin='기기변경'", "let beforeJoin='번호이동'", 1)
+          engine = engine.replace("qs('#purpose-join')?.value||'기기변경'", "qs('#purpose-join')?.value||'번호이동'", 2)
+          engine = engine.replace("let modeJoin='기기변경'", "let modeJoin='번호이동'", 1)
+          engine_path.write_text(engine, encoding='utf-8')
+
+          assert '<select id="purpose-join"><option>번호이동</option><option>기기변경</option>' in html
+          assert '<select id="quick-join"><option>번호이동</option><option>기기변경</option>' in html
+          assert '<select id="join-type"><option>번호이동</option><option>기기변경</option>' in html
+          assert "join=qs('#purpose-join')?.value||'번호이동'" in engine
+      - name: JavaScript syntax check
+        run: node --check assets/recommendation-engine-v2.js && node --check assets/rates.min.js
+      - name: Commit patch
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add rates.html assets/recommendation-engine-v2.js
+          git commit -m 'Prefer number porting in mobile recommendations'
+          git push origin HEAD:main
