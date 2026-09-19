@@ -1,0 +1,105 @@
+name: Temporary homepage polish
+on:
+  push:
+    paths:
+      - '.github/workflows/temp-homepage-polish.yml'
+permissions:
+  contents: write
+jobs:
+  polish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Refine homepage and rate entry flow
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          def replace_once(text, old, new, label):
+              if old not in text:
+                  raise SystemExit(f'missing expected block: {label}')
+              return text.replace(old, new, 1)
+
+          index = Path('index.html')
+          s = index.read_text(encoding='utf-8')
+
+          s = replace_once(
+              s,
+              '<style id="persona-grid-static">.persona-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}.persona-card{min-width:0}@media(max-width:640px){.persona-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important}.persona-card{padding:14px!important}.persona-card h3{font-size:.95rem!important;line-height:1.4!important}.persona-card p{font-size:.8rem!important;line-height:1.5!important}.persona-icon{width:38px!important;height:38px!important;font-size:1.1rem!important;margin-bottom:8px!important}}</style>',
+              '',
+              'persona mobile override'
+          )
+          s = replace_once(
+              s,
+              '<nav class="menu" aria-label="주요 메뉴"><a href="#services">상담 안내</a>',
+              '<nav class="menu" aria-label="주요 메뉴"><a href="/rates.html">요금 알아보기</a><a href="#services">상담 안내</a>',
+              'desktop rate menu'
+          )
+          s = replace_once(
+              s,
+              '<p class="eyebrow">부산 북구 만덕동 · 우리 동네 통신매장</p><h1>휴대폰부터 인터넷까지,<br><em>편하게 물어보세요.</em></h1><p class="intro">복잡한 통신상품을 이해하기 쉽게. 휴대폰부터 렌탈까지 필요한 상담을 한 곳에서 받아보세요.</p>',
+              '<p class="eyebrow">싸면서 깔끔하게 · 부산 북구 만덕동 우리 동네 통신매장</p><h1>휴대폰 요금부터 인터넷까지,<br><em>먼저 직접 비교해 보세요.</em></h1><p class="intro">기종과 요금제를 직접 비교해 보고, 어려운 부분은 매장에서 이해하기 쉽게 확인해 드립니다. 확인되지 않은 조건은 과장해서 보여드리지 않습니다.</p>',
+              'hero copy'
+          )
+          s = replace_once(
+              s,
+              '<div class="actions"><a class="btn" href="tel:0513437677">전화 상담·예약</a><a class="btn outline" href="#location">오시는 길</a></div><a class="hero-phone" href="tel:0513437677">문의전화 051-343-7677</a>',
+              '<div class="actions"><a class="btn yellow" href="/rates.html">내 휴대폰 요금 알아보기</a><a class="btn" href="tel:0513437677">전화 상담</a><a class="btn outline" href="#location">오시는 길</a></div><a class="hero-phone" href="tel:0513437677">계산이 어렵다면 바로 문의하세요 · 051-343-7677</a>',
+              'hero actions'
+          )
+          index.write_text(s, encoding='utf-8')
+
+          rates = Path('rates.html')
+          r = rates.read_text(encoding='utf-8')
+          r = replace_once(r, 'assets/rates.css?v=20260919-1', 'assets/rates.css?v=20260919-2', 'rates css cache')
+          r = replace_once(
+              r,
+              '<div class="mobile-mode-switch" role="tablist" aria-label="휴대폰 견적 방식">\n  <button type="button" class="active" data-mobile-mode="purpose">용도별 추천</button>\n  <button type="button" data-mobile-mode="direct">직접 계산</button>\n  <button type="button" data-mobile-mode="quick">간편 추천</button>\n</div>',
+              '<div class="mobile-mode-switch" role="tablist" aria-label="휴대폰 견적 방식">\n  <button type="button" class="active" data-mobile-mode="purpose">처음이라면 · 쉬운 추천</button>\n  <button type="button" data-mobile-mode="direct">상세 계산</button>\n  <button type="button" data-mobile-mode="quick">월 예산으로 추천</button>\n</div>\n<div class="mobile-mode-guide"><strong>처음 오셨다면 ‘쉬운 추천’부터 보세요.</strong><span>대상만 고르면 추천을 먼저 보여드리고, 더 자세히 보고 싶을 때 상세 계산으로 들어가면 됩니다.</span></div>',
+              'mobile mode labels'
+          )
+          rates.write_text(r, encoding='utf-8')
+
+          css = Path('assets/rates.css')
+          c = css.read_text(encoding='utf-8')
+          marker = '/* Entry mode guide */'
+          if marker not in c:
+              c += '\n\n/* Entry mode guide */\n.mobile-mode-guide{display:flex;align-items:center;gap:10px;margin:10px 0 18px;padding:11px 13px;border:1px solid #d9e6e7;border-radius:12px;background:#f7fbfb;color:#587078;font-size:.78rem;line-height:1.5}.mobile-mode-guide strong{flex:0 0 auto;color:#103c52}.mobile-mode-guide span{min-width:0}@media(max-width:760px){.mobile-mode-guide{display:block;font-size:.75rem}.mobile-mode-guide strong,.mobile-mode-guide span{display:block}.mobile-mode-guide span{margin-top:3px}}\n'
+          css.write_text(c, encoding='utf-8')
+
+          # Regression assertions: preserve core public functionality and confirm new entry points.
+          out = index.read_text(encoding='utf-8')
+          rr = rates.read_text(encoding='utf-8')
+          checks = [
+              ('/rates.html', out),
+              ('전화 상담', out),
+              ('고객 리뷰', out),
+              ('개인정보 처리방침', out),
+              ('처음이라면 · 쉬운 추천', rr),
+              ('data-mobile-mode="direct"', rr),
+              ('data-mobile-mode="quick"', rr),
+              ('번호이동', rr),
+              ('공신폰', rr),
+              ('알뜰폰(후불)', rr),
+              ('인터넷·TV', rr),
+          ]
+          for needle, haystack in checks:
+              if needle not in haystack:
+                  raise SystemExit(f'regression check failed: {needle}')
+          print('homepage polish checks passed')
+          PY
+      - name: Commit polished homepage
+        shell: bash
+        run: |
+          if git diff --quiet; then
+            echo 'No changes needed.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add index.html rates.html assets/rates.css
+          git commit -m 'Improve homepage rate discovery and mobile readability'
+          git push
