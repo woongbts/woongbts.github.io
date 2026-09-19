@@ -1,8 +1,8 @@
-name: Temporary remove duplicate rate CTA
+name: Temp remove duplicate rate CTA
 on:
   push:
     paths:
-      - '.github/workflows/temp-remove-duplicate-rate-cta.yml'
+      - .github/workflows/temp-remove-duplicate-rate-cta.yml
 permissions:
   contents: write
 jobs:
@@ -12,49 +12,16 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Remove duplicate injected rate CTA
-        shell: bash
+      - name: Patch files
         run: |
-          python3 - <<'PY'
-          from pathlib import Path
-
-          js_path = Path('assets/site-pro.min.js')
-          js = js_path.read_text(encoding='utf-8')
-          old = """    const heroActions=document.querySelector('.hero .actions');
-    if(heroActions && !heroActions.querySelector('.rate-calculator-cta')){
-      const calc=document.createElement('a');
-      calc.className='btn yellow rate-calculator-cta';
-      calc.href='/rates.html';
-      calc.textContent='내 휴대폰 요금 계산 →';
-      heroActions.insertBefore(calc,heroActions.firstChild);
-    }
-
-"""
-          if old not in js:
-              raise SystemExit('duplicate rate CTA injection block not found')
-          js = js.replace(old, '', 1)
-          if "내 휴대폰 요금 계산 →" in js:
-              raise SystemExit('old duplicate CTA text still present')
-          js_path.write_text(js, encoding='utf-8')
-
-          index_path = Path('index.html')
-          index = index_path.read_text(encoding='utf-8')
-          old_ver = 'assets/site-pro.min.js?v=20260918-5'
-          new_ver = 'assets/site-pro.min.js?v=20260919-1'
-          if old_ver not in index:
-              raise SystemExit('site-pro cache version marker not found')
-          index = index.replace(old_ver, new_ver, 1)
-          if index.count('href="/rates.html">내 휴대폰 요금 알아보기</a>') != 1:
-              raise SystemExit('expected exactly one primary rate CTA in HTML')
-          index_path.write_text(index, encoding='utf-8')
-          print('duplicate CTA removal checks passed')
-          PY
+          python3 -c "from pathlib import Path; p=Path('assets/site-pro.min.js'); s=p.read_text(encoding='utf-8'); a=s.index('    const heroActions=document.querySelector'); b=s.index('    const style=document.createElement', a); p.write_text(s[:a]+s[b:], encoding='utf-8')"
+          python3 -c "from pathlib import Path; p=Path('index.html'); s=p.read_text(encoding='utf-8'); old='assets/site-pro.min.js?v=20260918-5'; assert old in s; s=s.replace(old,'assets/site-pro.min.js?v=20260919-1',1); assert s.count('href=\"/rates.html\">내 휴대폰 요금 알아보기</a>') == 1; p.write_text(s,encoding='utf-8')"
+          ! grep -q '내 휴대폰 요금 계산 →' assets/site-pro.min.js
           node --check assets/site-pro.min.js
       - name: Commit fix
-        shell: bash
         run: |
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
           git add index.html assets/site-pro.min.js
           git commit -m 'Remove duplicate homepage rate CTA'
           git push
