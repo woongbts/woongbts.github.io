@@ -139,8 +139,10 @@ async function readExcel() {
     reviewRows.push(...deduped.conflicts);
     totalDuplicates += deduped.duplicates;
 
+    const serverPreview = importRows.length ? await previewImportRows(importRows) : {new_count:0,update_count:0,unchanged_count:0,conflicts:0};
+    const totalReview = reviewRows.length + Number(serverPreview.conflicts || 0);
     $('import-summary').classList.remove('hidden');
-    $('import-summary').innerHTML = `<b>자동 분석 완료</b><br>등록/갱신 대상 <b>${importRows.length.toLocaleString('ko-KR')}명</b> · 확인 필요 <b>${reviewRows.length.toLocaleString('ko-KR')}건</b> · 같은 번호 최신정보 정리 <b>${totalDuplicates.toLocaleString('ko-KR')}건</b> · 빈칸/합계 제외 <b>${totalIgnored.toLocaleString('ko-KR')}행</b><details><summary>파일별 분석 보기</summary>${summaries.map(esc).join('<br>')}</details>`;
+    $('import-summary').innerHTML = `<b>자동 분석 완료</b><br>신규 <b>${serverPreview.new_count.toLocaleString('ko-KR')}명</b> · 기존 갱신 <b>${serverPreview.update_count.toLocaleString('ko-KR')}명</b> · 기존 최신정보 유지 <b>${serverPreview.unchanged_count.toLocaleString('ko-KR')}명</b> · 확인 필요 <b>${totalReview.toLocaleString('ko-KR')}건</b><br>같은 번호 최신정보 정리 <b>${totalDuplicates.toLocaleString('ko-KR')}건</b> · 빈칸/합계 제외 <b>${totalIgnored.toLocaleString('ko-KR')}행</b><details><summary>파일별 분석 보기</summary>${summaries.map(esc).join('<br>')}</details>`;
 
     renderImportPreview();
     $('preview-wrap').classList.toggle('hidden', !importRows.length);
@@ -150,6 +152,19 @@ async function readExcel() {
     resetImportUi();
     showError(new Error(`파일을 읽지 못했습니다: ${error.message}`));
   }
+}
+
+async function previewImportRows(rows) {
+  const total = {new_count:0, update_count:0, unchanged_count:0, conflicts:0};
+  for (let i=0; i<rows.length; i+=500) {
+    const cleanRows = rows.slice(i,i+500).map(({_file_name,_reasons,_source_row,...row}) => row);
+    const result = await api('/api/import/preview', { method:'POST', body:JSON.stringify({rows:cleanRows}) });
+    total.new_count += Number(result.new_count || 0);
+    total.update_count += Number(result.update_count || 0);
+    total.unchanged_count += Number(result.unchanged_count || 0);
+    total.conflicts += Number(result.conflicts || 0);
+  }
+  return total;
 }
 
 async function analyzeFile(file) {

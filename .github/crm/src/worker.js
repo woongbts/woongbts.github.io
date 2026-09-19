@@ -33,6 +33,9 @@ async function handleApi(request, env, user, url) {
   if (method === 'GET' && url.pathname === '/api/customers') {
     return listCustomers(env, url);
   }
+  if (method === 'POST' && url.pathname === '/api/import/preview') {
+    return previewImport(request, env);
+  }
   if (method === 'POST' && url.pathname === '/api/import') {
     return importCustomers(request, env, user);
   }
@@ -274,6 +277,85 @@ async function getCustomer(env, id) {
     created_at: row.created_at,
     updated_at: row.updated_at
   }});
+}
+
+async function previewImport(request, env) {
+  const body = await readJson(request);
+  const rows = Array.isArray(body.rows) ? body.rows : [];
+  if (!rows.length) throw httpError(400, '미리 확인할 고객 행이 없습니다.');
+  if (rows.length > 5000) throw httpError(400, '한 번에 최대 5,000명까지 미리 확인할 수 있습니다.');
+
+  const preparedByHash = new Map();
+  const conflictedHashes = new Set();
+  let invalid = 0;
+  let duplicate = 0;
+  let conflicts = 0;
+
+  for (const raw of rows) {
+    const name = String(raw.name || '').trim().slice(0, 80);
+    const phone = normalizePhone(raw.phone || '');
+    if (!name || phone.length < 10 || phone.length > 11) { invalid++; continue; }
+    const phoneHash = await phoneHmac(phone, env);
+    if (conflictedHashes.has(phoneHash)) { invalid++; continue; }
+    const row = {
+      name,
+      phone_hash: phoneHash,
+      birth_date: normalizeBirthDate(raw.birth_date),
+      opened_on: normalizeDate(raw.opened_on)
+    };
+    const previous = preparedByHash.get(phoneHash);
+    if (previous) {
+      duplicate++;
+      if (previous.birth_date && row.birth_date && previous.birth_date !== row.birth_date) {
+        preparedByHash.delete(phoneHash);
+        conflictedHashes.add(phoneHash);
+        conflicts++;
+        continue;
+      }
+      if ((row.opened_on || '') >= (previous.opened_on || '')) preparedByHash.set(phoneHash, row);
+    } else {
+      preparedByHash.set(phoneHash, row);
+    }
+  }
+
+  const prepared = [...preparedByHash.values()];
+  const hashes = prepared.map(row => row.phone_hash);
+  const existing = new Map();
+  for (let i = 0; i < hashes.length; i += 80) {
+    const chunk = hashes.slice(i, i + 80);
+    if (!chunk.length) continue;
+    const placeholders = chunk.map(() => '?').join(',');
+    const found = await env.DB.prepare(`SELECT id, phone_hmac, birth_date_enc, opened_on FROM customers WHERE phone_hmac IN (${placeholders})`).bind(...chunk).all();
+    for (const item of found.results || []) existing.set(item.phone_hmac, item);
+  }
+
+  let newCount = 0;
+  let updateCount = 0;
+  let unchangedCount = 0;
+  for (const row of prepared) {
+    const current = existing.get(row.phone_hash);
+    if (!current) { newCount++; continue; }
+    const existingBirth = current.birth_date_enc ? await decryptText(current.birth_date_enc, env) : '';
+    if (existingBirth && row.birth_date && existingBirth !== row.birth_date) {
+      conflicts++;
+      continue;
+    }
+    if (current.opened_on && row.opened_on && row.opened_on < current.opened_on) {
+      unchangedCount++;
+      continue;
+    }
+    updateCount++;
+  }
+
+  return json({
+    ok: true,
+    new_count: newCount,
+    update_count: updateCount,
+    unchanged_count: unchangedCount,
+    invalid_count: invalid,
+    duplicate_count: duplicate,
+    conflicts
+  });
 }
 
 async function importCustomers(request, env, user) {
