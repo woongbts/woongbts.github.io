@@ -1,0 +1,40 @@
+name: Apply plan picker simplification
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/scripts/apply_plan_picker_simplify.py'
+      - '.github/workflows/apply-plan-picker-simplify.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Apply customer-first plan picker update
+        run: python .github/scripts/apply_plan_picker_simplify.py
+      - name: Validate JavaScript
+        run: |
+          node --check src/rates.js
+          node --check assets/rates.min.js
+          cmp -s src/rates.js assets/rates.min.js
+      - name: Run site regression checks
+        run: python .github/scripts/validate_site.py
+      - name: Commit changes
+        run: |
+          if git diff --quiet; then
+            echo 'No changes to commit.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add rates.html assets/rates.css src/rates.js assets/rates.min.js
+          git commit -m 'Simplify plan selection around recommendations'
+          git push origin main
