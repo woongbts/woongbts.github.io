@@ -18,7 +18,7 @@ jobs:
         run: python .github/crm/scripts/temp_patch_import_preview.py
       - name: CRM checks
         working-directory: .github/crm
-        run: npm ci --ignore-scripts && npm run check && npm run build
+        run: npm install --ignore-scripts --no-audit --no-fund && npm run check && npm run build
       - name: Prevent customer data in commit
         shell: bash
         run: |
