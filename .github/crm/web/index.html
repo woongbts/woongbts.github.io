@@ -16,7 +16,7 @@
     <section id="security" class="notice">Cloudflare Access 인증 · 암호화 DB · 실문자 발송 잠금 상태를 확인 중입니다.</section>
 
     <section class="stats" aria-label="고객 현황">
-      <article><small>전체 고객</small><b id="stat-total">-</b></article>
+      <article><small>등록 회선</small><b id="stat-total">-</b></article>
       <article><small>개통 22~30개월</small><b id="stat-due">-</b></article>
       <article><small>문자수신 동의</small><b id="stat-consent">-</b></article>
       <article><small>동의 미확인/거부</small><b id="stat-blocked">-</b></article>
@@ -29,14 +29,28 @@
     </nav>
 
     <section class="panel active" id="panel-customers">
-      <div class="toolbar">
-        <select id="filter-carrier"><option value="">전체 통신사</option><option>SKT</option><option>KT</option><option>LGU+</option><option>알뜰폰</option></select>
-        <select id="filter-installment"><option value="">할부 전체</option><option value="0">일시불</option><option value="12">12개월</option><option value="24">24개월</option><option value="30">30개월</option><option value="36">36개월</option></select>
-        <select id="filter-consent"><option value="">동의 전체</option><option value="granted">수신동의</option><option value="unknown">미확인</option><option value="revoked">수신거부</option></select>
-        <label class="check"><input id="filter-due" type="checkbox"> 개통 22~30개월</label>
-        <input id="filter-phone" inputmode="numeric" placeholder="전화번호 정확검색">
-        <button id="search-customers">조회</button>
+      <div class="quick-search">
+        <div>
+          <strong>고객 빠른검색</strong>
+          <small>이름 또는 전화번호를 입력하세요.</small>
+        </div>
+        <div class="quick-search-row">
+          <input id="filter-query" autocomplete="off" placeholder="예: 홍길동 / 1234 / 010-..." aria-label="이름 또는 전화번호 검색">
+          <button id="search-customers" class="primary-search">검색</button>
+        </div>
+        <p id="search-result-note" class="search-result-note" aria-live="polite"></p>
       </div>
+
+      <details class="advanced-filters">
+        <summary>상세 필터</summary>
+        <div class="toolbar">
+          <select id="filter-carrier"><option value="">전체 통신사</option><option>SKT</option><option>KT</option><option>LGU+</option><option>알뜰폰</option></select>
+          <select id="filter-installment"><option value="">할부 전체</option><option value="0">일시불</option><option value="12">12개월</option><option value="24">24개월</option><option value="30">30개월</option><option value="36">36개월</option></select>
+          <select id="filter-consent"><option value="">동의 전체</option><option value="granted">수신동의</option><option value="unknown">미확인</option><option value="revoked">수신거부</option></select>
+          <label class="check"><input id="filter-due" type="checkbox"> 개통 22~30개월</label>
+        </div>
+      </details>
+
       <div class="table-wrap">
         <table class="customer-table">
           <thead><tr><th>개통일</th><th>이름</th><th>연락처</th><th>생년월일</th><th>통신사</th><th>단말기</th><th>할부</th><th>문자동의</th><th></th></tr></thead>
@@ -52,7 +66,7 @@
         <input id="excel-file" type="file" accept=".xls,.xlsx,.csv" multiple>
         <button id="read-file">자동 분석</button>
       </div>
-      <div class="mapping-note">자동 인식: <b>개통일 · 이름 · 연락처 · 생년월일 · 통신사 · 단말기 · 할부개월수</b><br>웅비통신 판매일보의 무선 시트와 실제 헤더 행을 자동으로 찾아 빈 행·합계행을 제외합니다.</div>
+      <div class="mapping-note">자동 인식: <b>개통일 · 이름 · 연락처 · 생년월일 · 통신사 · 단말기 · 할부개월수</b><br>같은 전화번호는 가장 최근 개통정보로 갱신하고, 이름이 같아도 전화번호가 다르면 별도 회선으로 유지합니다.</div>
       <div id="import-summary" class="summary hidden"></div>
 
       <div id="preview-wrap" class="table-wrap hidden">
@@ -94,6 +108,15 @@
     <form method="dialog" class="dialog-card">
       <div class="dialog-head"><strong id="detail-name">고객</strong><button value="cancel" class="ghost">닫기</button></div>
       <dl id="detail-list"></dl>
+
+      <section id="related-lines-wrap" class="related-lines-wrap hidden">
+        <div class="related-lines-head">
+          <h3>동일 명의 다른 회선 <span id="related-lines-count"></span></h3>
+          <small>이름과 생년월일이 모두 같은 경우에만 자동으로 연결합니다.</small>
+        </div>
+        <div id="related-lines"></div>
+      </section>
+
       <h3>광고성 문자 수신동의 기록</h3>
       <div class="consent-grid">
         <select id="consent-status"><option value="granted">동의</option><option value="revoked">수신거부</option><option value="unknown">미확인</option></select>
