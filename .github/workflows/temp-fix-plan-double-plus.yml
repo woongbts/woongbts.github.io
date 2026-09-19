@@ -1,0 +1,56 @@
+name: Temporary fix plan double plus
+on:
+  push:
+    paths:
+      - '.github/workflows/temp-fix-plan-double-plus.yml'
+permissions:
+  contents: write
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Fix duplicated plus in plan data
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import json
+
+          old = '1.5GB++400Kbps 무제한'
+          new = '1.5GB+400Kbps 무제한'
+          changed = []
+          for path in sorted(Path('data').glob('*.json')):
+              text = path.read_text(encoding='utf-8')
+              if old in text:
+                  text = text.replace(old, new)
+                  path.write_text(text, encoding='utf-8')
+                  changed.append(str(path))
+          if not changed:
+              raise SystemExit('target duplicated plus text not found in data JSON files')
+          for path in Path('data').glob('*.json'):
+              json.loads(path.read_text(encoding='utf-8'))
+          plans = json.loads(Path('data/plans.json').read_text(encoding='utf-8'))
+          target = next((p for p in plans.get('mobile_plans', []) if p.get('id') == 'SKT-XP-969'), None)
+          if not target:
+              raise SystemExit('SKT-XP-969 not found')
+          if target.get('data') != new:
+              raise SystemExit(f"unexpected SKT-XP-969 data: {target.get('data')!r}")
+          print('changed files:')
+          for p in changed:
+              print(' -', p)
+          print('verified:', target['name'], '=>', target['data'])
+          PY
+      - name: Validate rate calculator JS
+        run: node --check assets/rates.min.js
+      - name: Commit fix
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/*.json
+          git commit -m 'Fix duplicated plus in SKT data allowance'
+          git pull --rebase origin main
+          git push
