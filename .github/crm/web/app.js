@@ -12,6 +12,7 @@ let selectedCustomerId = null;
 for (const button of document.querySelectorAll('.tabs button')) button.addEventListener('click', () => openTab(button.dataset.tab));
 $('refresh').addEventListener('click', boot);
 $('search-customers').addEventListener('click', loadCustomers);
+$('filter-query').addEventListener('keydown', event => { if (event.key === 'Enter') loadCustomers(); });
 $('read-file').addEventListener('click', readExcel);
 $('run-import').addEventListener('click', runImport);
 $('preview-campaign').addEventListener('click', previewCampaign);
@@ -48,22 +49,28 @@ function openTab(tab) {
 
 async function loadCustomers() {
   const params = new URLSearchParams({ limit:'150' });
+  const query = $('filter-query').value.trim();
+  if (query) params.set('q', query);
   if ($('filter-carrier').value) params.set('carrier',$('filter-carrier').value);
   if ($('filter-consent').value) params.set('consent',$('filter-consent').value);
   if ($('filter-installment').value) params.set('installment_months',$('filter-installment').value);
   if ($('filter-due').checked) { params.set('months_min','22'); params.set('months_max','30'); }
-  if ($('filter-phone').value.trim()) params.set('phone',$('filter-phone').value.trim());
   $('customer-body').innerHTML = '<tr><td colspan="9" class="muted">불러오는 중...</td></tr>';
   try {
     const data = await api(`/api/customers?${params}`);
+    $('search-result-note').textContent = query ? `“${query}” 검색 결과 ${data.customers.length}건` : '';
     if (!data.customers.length) { $('customer-body').innerHTML='<tr><td colspan="9" class="muted">조건에 맞는 고객이 없습니다.</td></tr>'; return; }
     $('customer-body').innerHTML = data.customers.map(c => `<tr>
       <td>${esc(c.opened_on||'-')}</td><td>${esc(c.name)}</td><td>${esc(c.phone_masked)}</td><td>${esc(c.birth_date||'-')}</td>
       <td>${esc(c.carrier||'-')}</td><td>${esc(c.device_model||'-')}</td><td>${esc(formatInstallment(c.installment_months))}</td>
       <td><span class="badge ${c.ad_sms_status}">${consentLabel(c.ad_sms_status)}</span></td>
       <td><button data-detail="${c.id}">상세</button></td></tr>`).join('');
-    document.querySelectorAll('[data-detail]').forEach(b => b.addEventListener('click', () => showCustomer(b.dataset.detail)));
+    bindDetailButtons();
   } catch (error) { showError(error); }
+}
+
+function bindDetailButtons() {
+  document.querySelectorAll('[data-detail]').forEach(b => b.addEventListener('click', () => showCustomer(b.dataset.detail)));
 }
 
 async function showCustomer(id) {
@@ -72,9 +79,27 @@ async function showCustomer(id) {
     selectedCustomerId = id;
     $('detail-name').textContent = c.name;
     $('detail-list').innerHTML = `<dt>개통일</dt><dd>${esc(c.opened_on||'-')}</dd><dt>연락처</dt><dd>${esc(formatPhone(c.phone))}</dd><dt>생년월일</dt><dd>${esc(c.birth_date||'-')}</dd><dt>통신사</dt><dd>${esc(c.carrier||'-')}</dd><dt>단말기</dt><dd>${esc(c.device_model||'-')}</dd><dt>할부개월</dt><dd>${esc(formatInstallment(c.installment_months))}</dd><dt>개통 후 경과</dt><dd>${c.months_since_open==null?'-':`${c.months_since_open}개월`}</dd><dt>문자동의</dt><dd>${consentLabel(c.ad_sms_status)}</dd>`;
+    renderRelatedLines(c.related_lines || []);
     const now = new Date(); now.setMinutes(now.getMinutes()-now.getTimezoneOffset()); $('consent-at').value = now.toISOString().slice(0,16);
     $('customer-dialog').showModal();
   } catch (error) { showError(error); }
+}
+
+function renderRelatedLines(lines) {
+  const wrap = $('related-lines-wrap');
+  if (!lines.length) {
+    wrap.classList.add('hidden');
+    $('related-lines').innerHTML = '';
+    return;
+  }
+  wrap.classList.remove('hidden');
+  $('related-lines-count').textContent = `${lines.length}개`;
+  $('related-lines').innerHTML = lines.map(line => `<article class="related-line">
+    <div><b>${esc(formatPhone(line.phone))}</b><span>${esc(line.carrier||'-')}</span></div>
+    <p>${esc(line.opened_on||'-')} · ${esc(line.device_model||'-')} · ${esc(formatInstallment(line.installment_months))}</p>
+    <button type="button" data-detail="${line.id}">이 회선 보기</button>
+  </article>`).join('');
+  bindDetailButtons();
 }
 
 async function saveConsent() {
@@ -115,7 +140,7 @@ async function readExcel() {
     totalDuplicates += deduped.duplicates;
 
     $('import-summary').classList.remove('hidden');
-    $('import-summary').innerHTML = `<b>자동 분석 완료</b><br>등록/갱신 대상 <b>${importRows.length.toLocaleString('ko-KR')}명</b> · 확인 필요 <b>${reviewRows.length.toLocaleString('ko-KR')}건</b> · 중복 정리 <b>${totalDuplicates.toLocaleString('ko-KR')}건</b> · 빈칸/합계 제외 <b>${totalIgnored.toLocaleString('ko-KR')}행</b><details><summary>파일별 분석 보기</summary>${summaries.map(esc).join('<br>')}</details>`;
+    $('import-summary').innerHTML = `<b>자동 분석 완료</b><br>등록/갱신 대상 <b>${importRows.length.toLocaleString('ko-KR')}명</b> · 확인 필요 <b>${reviewRows.length.toLocaleString('ko-KR')}건</b> · 같은 번호 최신정보 정리 <b>${totalDuplicates.toLocaleString('ko-KR')}건</b> · 빈칸/합계 제외 <b>${totalIgnored.toLocaleString('ko-KR')}행</b><details><summary>파일별 분석 보기</summary>${summaries.map(esc).join('<br>')}</details>`;
 
     renderImportPreview();
     $('preview-wrap').classList.toggle('hidden', !importRows.length);
@@ -180,7 +205,7 @@ async function runImport() {
   const files = [...$('excel-file').files];
   if (!files.length || !importRows.length) return;
   const reviewText = reviewRows.length ? `\n확인 필요 ${reviewRows.length}건은 자동 등록에서 제외됩니다.` : '';
-  if (!confirm(`${importRows.length.toLocaleString('ko-KR')}명을 암호화 DB로 가져올까요? 원본 파일은 서버에 저장하지 않습니다.${reviewText}`)) return;
+  if (!confirm(`${importRows.length.toLocaleString('ko-KR')}개 회선을 암호화 DB로 가져올까요? 같은 전화번호는 가장 최근 개통정보로 갱신하고, 다른 전화번호는 별도 회선으로 유지합니다. 원본 파일은 서버에 저장하지 않습니다.${reviewText}`)) return;
 
   $('run-import').disabled=true; $('run-import').textContent='가져오는 중...';
   try {
@@ -191,7 +216,7 @@ async function runImport() {
       const result=await api('/api/import',{method:'POST',body:JSON.stringify({filename:sourceLabel,rows:cleanRows})});
       total.inserted+=result.inserted; total.updated+=result.updated; total.skipped+=result.skipped; total.conflicts+=result.conflicts||0;
     }
-    alert(`완료\n신규 ${total.inserted}명 · 갱신 ${total.updated}명 · 제외 ${total.skipped}행${total.conflicts?` · 충돌 ${total.conflicts}건`:''}`);
+    alert(`완료\n신규 ${total.inserted}개 회선 · 갱신 ${total.updated}개 회선 · 제외 ${total.skipped}행${total.conflicts?` · 충돌 ${total.conflicts}건`:''}`);
     resetImportUi();
     await boot(); openTab('customers');
   } catch(error){showError(error)} finally {$('run-import').disabled=false;$('run-import').textContent='암호화 DB에 가져오기'}
