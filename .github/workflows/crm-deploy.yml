@@ -2,6 +2,11 @@ name: Deploy private CRM
 
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/crm/**'
+      - '.github/workflows/crm-deploy.yml'
 
 permissions:
   contents: read
