@@ -11,3 +11,13 @@
 @media(max-width:980px){.nav{gap:12px}.precon-badge-copy small{display:none}.precon-badge{padding:7px 9px}.precon-badge-copy strong{font-size:.72rem}}
 @media(max-width:640px){.nav{gap:7px}.precon-badge{gap:5px;padding:6px 7px;border-radius:10px}.precon-badge-icon{width:23px;height:23px;font-size:.78rem}.precon-badge-copy strong{font-size:.66rem}.nav>.btn{padding-left:9px;padding-right:9px;font-size:.84rem}}
 @media(max-width:390px){.precon-badge-copy{display:none}.precon-badge{padding:6px}.nav{gap:6px}}
+
+
+/* Homepage CTA hierarchy 20260920 */
+.hero .actions>.btn.yellow{box-shadow:0 9px 22px rgba(242,197,0,.22)}
+@media(max-width:640px){
+  .hero .actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+  .hero .actions>.btn.yellow{grid-column:1/-1;width:100%;min-height:56px;font-size:1rem}
+  .hero .actions>.btn:not(.yellow){min-height:44px;padding:8px 10px;font-size:.82rem}
+  .hero .actions>a:nth-child(n+4){grid-column:1/-1}
+}
