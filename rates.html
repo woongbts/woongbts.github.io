@@ -84,7 +84,7 @@
   </div>
   <div class="purpose-controls">
     <label>통신사<select id="purpose-carrier"><option value="all">전체 통신사</option><option>SKT</option><option>KT</option><option>LGU+</option></select></label>
-    <label>가입유형<select id="purpose-join"><option>기기변경</option><option>번호이동</option><option>신규가입</option></select></label>
+    <label>가입유형<select id="purpose-join"><option>번호이동</option><option>기기변경</option><option>신규가입</option></select><small class="field-help">추천은 번호이동 조건을 먼저 보여드리며, 기기변경·신규가입도 직접 선택할 수 있습니다.</small></label>
     <label class="purpose-pension" id="purpose-pension-wrap"><input type="checkbox" id="purpose-pension" checked><span><strong>기초연금 수급자 할인 적용</strong><small>실제 기초연금 수급자에게만 적용되는 예시입니다.</small></span></label>
   </div>
   <div class="purpose-category-note" id="purpose-category-note">출고가가 낮은 기종과 시니어 요금제를 우선 살펴보고, 기초연금 수급자 할인을 적용해 공시지원금과 선택약정 중 24개월 총 부담이 낮은 조건을 보여드립니다.</div>
@@ -95,7 +95,7 @@
   <div class="quick-title"><div><strong>내 조건으로 3가지 비교</strong><span>통신사·가입유형·브랜드와 원하는 월 부담만 고르면, 가능한 기종·요금제·공시지원/선택약정을 함께 계산해 성격이 다른 3개 조합을 보여드립니다.</span></div></div>
   <div class="quick-fields">
     <label>통신사<select id="quick-carrier"><option>SKT</option><option>KT</option><option>LGU+</option></select></label>
-    <label>가입유형<select id="quick-join"><option>기기변경</option><option>번호이동</option><option>신규가입</option></select></label>
+    <label>가입유형<select id="quick-join"><option>번호이동</option><option>기기변경</option><option>신규가입</option></select></label>
     <label>선호 브랜드<select id="quick-brand"><option value="all">상관없음</option><option value="samsung">삼성 갤럭시</option><option value="apple">애플 아이폰</option><option value="other">기타 제조사</option></select></label>
     <label>원하는 월 부담<select id="quick-budget"><option value="light" selected>월 부담 가볍게 · 3~4만원대</option><option value="practical">실속 있게 · 5~6만원대</option><option value="balanced">기기·요금 균형 · 7~9만원대</option><option value="premium">좋은 기종 우선 · 10만원 안팎</option><option value="any">가격 상관없이 비교</option></select></label>
   </div>
@@ -107,7 +107,7 @@
             <form class="rate-card rate-form" id="mobile-form" onsubmit="return false">
               <div class="field-row two">
                 <label>통신사<select id="carrier"><option>SKT</option><option>KT</option><option>LGU+</option></select></label>
-                <label>가입유형<select id="join-type"><option>기기변경</option><option>번호이동</option><option>신규가입</option></select></label>
+                <label>가입유형<select id="join-type"><option>번호이동</option><option>기기변경</option><option>신규가입</option></select></label>
               </div>
               <label>상세 계산 기준<select id="discount-method"><option value="support">공시지원금 · 단말 할인</option><option value="contract">선택약정 · 통신요금 25% 할인</option></select><small class="field-help">아래 비교표에서는 공시지원금과 선택약정을 동시에 계산합니다.</small></label>
               <div class="device-brand-filter" aria-label="기종 브랜드 선택">
@@ -522,7 +522,7 @@
   </main>
 
   <footer class="rate-footer"><div class="rate-wrap"><strong>웅비통신 덕천만덕점</strong><p>부산광역시 북구 만덕대로178번길 17 · 월~토 11:00~20:00 · 일요일 휴무 · 051-343-7677</p><p>표시 금액은 상담을 돕기 위한 예상치이며 실제 개통 조건과 다를 수 있습니다.</p><p class="copyright-notice">© 2026 웅비통신 덕천만덕점 · 페이지 구성·콘텐츠·상담 로직의 무단 복제 및 상업적 이용을 금합니다.</p></div></footer>
-  <script src="assets/rates.min.js?v=20260919-7" defer></script>
+  <script src="assets/rates.min.js?v=20260919-8" defer></script>
   <script src="assets/ai-chat.min.js?v=20260917-2" defer></script>
 
   <div class="mobile-quote-bar" id="mobile-quote-bar" hidden>
