@@ -1,0 +1,56 @@
+name: Apply Quantum7 shared image
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/apply-quantum7-image.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Map Quantum7 to existing Quantum8 image
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          src = Path('src/rates.js')
+          text = src.read_text(encoding='utf-8')
+          old = 'else if(/quantum8|퀀텀8/.test(t))n="갤럭시퀀텀8.png";'
+          new = 'else if(/quantum7|퀀텀7|quantum8|퀀텀8/.test(t))n="갤럭시퀀텀8.png";'
+          if text.count(old) != 1:
+              raise SystemExit(f'expected exactly one Quantum8 image mapping, found {text.count(old)}')
+          src.write_text(text.replace(old, new, 1), encoding='utf-8')
+
+          html = Path('rates.html')
+          html_text = html.read_text(encoding='utf-8')
+          old_ver = 'assets/rates.min.js?v=20260919-6'
+          new_ver = 'assets/rates.min.js?v=20260919-7'
+          if html_text.count(old_ver) != 1:
+              raise SystemExit(f'expected exactly one rates asset version marker, found {html_text.count(old_ver)}')
+          html.write_text(html_text.replace(old_ver, new_ver, 1), encoding='utf-8')
+          PY
+      - name: Rebuild production calculator asset
+        run: python3 .github/scripts/build_rates_asset.py
+      - name: Validate JavaScript and regression
+        run: |
+          node --check src/rates.js
+          node --check assets/rates.min.js
+          python3 .github/scripts/build_rates_asset.py --check
+          python3 .github/scripts/validate_site.py
+      - name: Remove temporary workflow and commit
+        run: |
+          rm -f .github/workflows/apply-quantum7-image.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/rates.js assets/rates.min.js rates.html .github/workflows/apply-quantum7-image.yml
+          git commit -m "Map Quantum7 to shared Quantum8 device image"
+          git push origin HEAD:main
