@@ -159,19 +159,35 @@ async function dashboard(env) {
   });
 }
 
+function normalizePersonName(value) {
+  return String(value || '').trim().replace(/\s+/g, '').toLowerCase();
+}
+
+function matchesCustomerQuery(query, name, phone) {
+  const raw = String(query || '').trim();
+  if (!raw) return true;
+  const digits = raw.replace(/\D/g, '');
+  if (digits.length >= 3) return String(phone || '').replace(/\D/g, '').includes(digits);
+  return normalizePersonName(name).includes(normalizePersonName(raw));
+}
+
 async function listCustomers(env, url) {
   const clauses = ["c.customer_status='active'"];
   const binds = [];
   const carrier = url.searchParams.get('carrier');
   const consent = url.searchParams.get('consent');
-  const phone = normalizePhone(url.searchParams.get('phone') || '');
+  const exactPhone = normalizePhone(url.searchParams.get('phone') || '');
+  const query = String(url.searchParams.get('q') || '').trim().slice(0, 80);
+  const queryDigits = query.replace(/\D/g, '');
+  const queryPhone = queryDigits.length >= 10 && queryDigits.length <= 11 ? normalizePhone(query) : '';
   const installmentMonths = boundedInt(url.searchParams.get('installment_months'), 0, 60, null);
   const minMonths = boundedInt(url.searchParams.get('months_min'), 0, 120, null);
   const maxMonths = boundedInt(url.searchParams.get('months_max'), 0, 120, null);
   const limit = boundedInt(url.searchParams.get('limit'), 1, 200, 100);
 
   if (carrier) { clauses.push('c.carrier=?'); binds.push(normalizeCarrier(carrier)); }
-  if (phone) { clauses.push('c.phone_hmac=?'); binds.push(await phoneHmac(phone, env)); }
+  if (exactPhone) { clauses.push('c.phone_hmac=?'); binds.push(await phoneHmac(exactPhone, env)); }
+  else if (queryPhone) { clauses.push('c.phone_hmac=?'); binds.push(await phoneHmac(queryPhone, env)); }
   if (installmentMonths !== null) { clauses.push('c.installment_months=?'); binds.push(installmentMonths); }
   if (minMonths !== null) { clauses.push('c.opened_on<=?'); binds.push(isoMonthsAgo(new Date(), minMonths)); }
   if (maxMonths !== null) { clauses.push('c.opened_on>=?'); binds.push(isoMonthsAgo(new Date(), maxMonths)); }
@@ -180,18 +196,22 @@ async function listCustomers(env, url) {
     binds.push(consent);
   }
 
+  const scanLimit = query && !queryPhone && !exactPhone ? 5000 : limit;
   const sql = `SELECT c.*,
     COALESCE((SELECT status FROM consents x WHERE x.customer_id=c.id AND x.purpose='ad_sms' ORDER BY captured_at DESC, created_at DESC LIMIT 1),'unknown') ad_sms_status
     FROM customers c WHERE ${clauses.join(' AND ')}
     ORDER BY COALESCE(c.opened_on,'0000-00-00') DESC, c.created_at DESC LIMIT ?`;
-  binds.push(limit);
+  binds.push(scanLimit);
   const result = await env.DB.prepare(sql).bind(...binds).all();
   const rows = [];
   for (const row of result.results || []) {
+    const name = await decryptText(row.name_enc, env);
+    const phoneValue = await decryptText(row.phone_enc, env);
+    if (query && !queryPhone && !exactPhone && !matchesCustomerQuery(query, name, phoneValue)) continue;
     rows.push({
       id: row.id,
-      name: await decryptText(row.name_enc, env),
-      phone_masked: maskPhone(await decryptText(row.phone_enc, env)),
+      name,
+      phone_masked: maskPhone(phoneValue),
       birth_date: row.birth_date_enc ? await decryptText(row.birth_date_enc, env) : '',
       carrier: row.carrier,
       device_model: row.device_model_enc ? await decryptText(row.device_model_enc, env) : '',
@@ -201,8 +221,9 @@ async function listCustomers(env, url) {
       ad_sms_status: row.ad_sms_status,
       updated_at: row.updated_at
     });
+    if (rows.length >= limit) break;
   }
-  return json({ ok: true, customers: rows });
+  return json({ ok: true, customers: rows, search_mode: queryPhone || exactPhone ? 'exact_phone' : query ? 'name_or_partial_phone' : 'list' });
 }
 
 async function getCustomer(env, id) {
@@ -210,17 +231,46 @@ async function getCustomer(env, id) {
     COALESCE((SELECT status FROM consents x WHERE x.customer_id=c.id AND x.purpose='ad_sms' ORDER BY captured_at DESC, created_at DESC LIMIT 1),'unknown') ad_sms_status
     FROM customers c WHERE c.id=? LIMIT 1`).bind(id).first();
   if (!row) throw httpError(404, '고객을 찾을 수 없습니다.');
+
+  const name = await decryptText(row.name_enc, env);
+  const phone = await decryptText(row.phone_enc, env);
+  const birthDate = row.birth_date_enc ? await decryptText(row.birth_date_enc, env) : '';
+  const relatedLines = [];
+
+  if (name && birthDate) {
+    const peers = await env.DB.prepare(`SELECT id, name_enc, phone_enc, birth_date_enc, carrier, device_model_enc, opened_on, installment_months
+      FROM customers WHERE customer_status='active' AND id<>?
+      ORDER BY COALESCE(opened_on,'0000-00-00') DESC, created_at DESC LIMIT 5000`).bind(id).all();
+    const personName = normalizePersonName(name);
+    for (const peer of peers.results || []) {
+      if (!peer.birth_date_enc) continue;
+      const peerBirth = await decryptText(peer.birth_date_enc, env);
+      if (peerBirth !== birthDate) continue;
+      const peerName = await decryptText(peer.name_enc, env);
+      if (normalizePersonName(peerName) !== personName) continue;
+      relatedLines.push({
+        id: peer.id,
+        phone: await decryptText(peer.phone_enc, env),
+        carrier: peer.carrier,
+        device_model: peer.device_model_enc ? await decryptText(peer.device_model_enc, env) : '',
+        opened_on: peer.opened_on,
+        installment_months: peer.installment_months
+      });
+    }
+  }
+
   return json({ ok: true, customer: {
     id: row.id,
-    name: await decryptText(row.name_enc, env),
-    phone: await decryptText(row.phone_enc, env),
-    birth_date: row.birth_date_enc ? await decryptText(row.birth_date_enc, env) : '',
+    name,
+    phone,
+    birth_date: birthDate,
     carrier: row.carrier,
     device_model: row.device_model_enc ? await decryptText(row.device_model_enc, env) : '',
     opened_on: row.opened_on,
     installment_months: row.installment_months,
     months_since_open: monthsBetween(row.opened_on, new Date()),
     ad_sms_status: row.ad_sms_status,
+    related_lines: relatedLines,
     created_at: row.created_at,
     updated_at: row.updated_at
   }});
