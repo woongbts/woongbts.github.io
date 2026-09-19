@@ -14,32 +14,29 @@ jobs:
         working-directory: .github/crm
     env:
       CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-      CRM_D1_DATABASE_ID: ${{ secrets.CRM_D1_DATABASE_ID }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Require deployment secrets
+      - name: Require deployment token
         shell: bash
         run: |
           set -euo pipefail
-          for name in CLOUDFLARE_API_TOKEN CLOUDFLARE_ACCOUNT_ID CRM_D1_DATABASE_ID; do
-            if [ -z "${!name:-}" ]; then
-              echo "Missing required GitHub Actions secret: $name" >&2
-              exit 1
-            fi
-          done
+          if [ -z "${CLOUDFLARE_API_TOKEN:-}" ]; then
+            echo 'Missing required GitHub Actions secret: CLOUDFLARE_API_TOKEN' >&2
+            exit 1
+          fi
       - name: Install and build
         run: npm install --ignore-scripts && npm run check && npm run build
       - name: Create deployment config
         shell: bash
         run: |
-          cat > wrangler.toml <<EOF
+          cat > wrangler.toml <<'EOF'
           name = "woongbi-crm"
           main = "src/worker.js"
           compatibility_date = "2026-09-01"
+          account_id = "79442ff839ce3fbee6caebe3285c1013"
           keep_vars = true
 
           [assets]
@@ -49,12 +46,7 @@ jobs:
           [[d1_databases]]
           binding = "DB"
           database_name = "woongbi-crm"
-          database_id = "${CRM_D1_DATABASE_ID}"
-
-          [secrets]
-          required = ["CRM_DATA_KEY_B64", "CRM_HMAC_KEY_B64"]
+          database_id = "bc27cc13-1a30-44f0-831e-dffdad6a68f6"
           EOF
-      - name: Apply database schema
-        run: npx wrangler d1 execute woongbi-crm --remote --file=migrations/0001_init.sql
-      - name: Deploy CRM Worker and preserve dashboard vars
+      - name: Deploy CRM Worker and preserve dashboard vars/secrets
         run: npx wrangler deploy --keep-vars
