@@ -96,7 +96,7 @@ if append_old in js:
 elif append_new not in js:
     raise SystemExit("purpose append marker not found")
 
-for required in ["function wbDeviceImage(e)", "quick-device-image", "purpose-device-image", "loading=\"lazy\""]:
+for required in ["function wbDeviceImage(e)", "quick-device-image", "purpose-device-image", 'img.loading="lazy"']:
     if required not in js:
         raise SystemExit(f"device image integration missing: {required}")
 
