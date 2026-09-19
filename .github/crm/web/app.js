@@ -1,19 +1,22 @@
 import { read, utils } from 'xlsx';
 import {
   classifyImportRows, dedupeImportRows, detectBestTable, formatInstallment, formatPhone,
-  rowsToObjects
+  rowsToObjects, selectSalesFilesByRange
 } from './import-utils.js';
 
 const $ = id => document.getElementById(id);
 let importRows = [];
 let reviewRows = [];
+let selectedImportFiles = [];
+let importSelectionNote = '';
 let selectedCustomerId = null;
 
 for (const button of document.querySelectorAll('.tabs button')) button.addEventListener('click', () => openTab(button.dataset.tab));
 $('refresh').addEventListener('click', boot);
 $('search-customers').addEventListener('click', loadCustomers);
 $('filter-query').addEventListener('keydown', event => { if (event.key === 'Enter') loadCustomers(); });
-$('read-file').addEventListener('click', readExcel);
+$('read-file').addEventListener('click', () => readExcel('files'));
+$('read-folder').addEventListener('click', () => readExcel('folder'));
 $('run-import').addEventListener('click', runImport);
 $('preview-campaign').addEventListener('click', previewCampaign);
 $('save-consent').addEventListener('click', saveConsent);
@@ -115,23 +118,63 @@ async function saveConsent() {
   } catch (error) { showError(error); }
 }
 
-async function readExcel() {
-  const files = [...$('excel-file').files];
-  if (!files.length) { alert('Excel(.xls/.xlsx) 또는 CSV 파일을 선택해 주세요.'); return; }
+function nextPaint() {
+  return new Promise(resolve => requestAnimationFrame(() => resolve()));
+}
 
+async function readExcel(mode='files') {
+  let files = [];
+  importSelectionNote = '';
+
+  if (mode === 'folder') {
+    const rawFiles = [...$('excel-folder').files];
+    if (!rawFiles.length) { alert('PC의 OneDrive 동기화 폴더에서 “웅비통신 판매일보” 폴더를 선택해 주세요.'); return; }
+    try {
+      const selection = selectSalesFilesByRange(rawFiles, $('folder-start').value, $('folder-end').value);
+      files = selection.files;
+      if (!files.length) { alert('선택한 기간에 해당하는 판매일보 파일을 찾지 못했습니다.'); return; }
+      const missing = selection.missingMonths.length
+        ? `<br><b>⚠ 누락 월:</b> ${esc(selection.missingMonths.join(', '))}`
+        : '<br><b>월별 파일:</b> 기간 내 모든 월 확인';
+      importSelectionNote = `<br><b>폴더 범위:</b> ${esc(selection.start)} ~ ${esc(selection.end)} · 대상 <b>${files.length}개 파일</b> / 예상 ${selection.expectedCount}개월 · 중복 사본 ${selection.duplicates.length}개 제외 · 범위 밖 ${selection.outOfRange.length}개 제외 · 기타 파일 ${selection.unmatched.length}개 제외${missing}`;
+    } catch (error) {
+      showError(error);
+      return;
+    }
+  } else {
+    files = [...$('excel-file').files];
+    if (!files.length) { alert('Excel(.xls/.xlsx) 또는 CSV 파일을 선택해 주세요.'); return; }
+    importSelectionNote = `<br><b>직접 선택:</b> ${files.length}개 파일`;
+  }
+
+  selectedImportFiles = files;
   try {
     importRows = [];
     reviewRows = [];
     const summaries = [];
+    const fileErrors = [];
     let totalIgnored = 0;
     let totalDuplicates = 0;
 
-    for (const file of files) {
-      const result = await analyzeFile(file);
-      importRows.push(...result.valid);
-      reviewRows.push(...result.review);
-      totalIgnored += result.ignored;
-      summaries.push(`${file.name}: ${result.valid.length}명 / 확인 ${result.review.length}건 · ${result.sheetName} 시트`);
+    $('import-progress').classList.remove('hidden');
+    $('import-progress').textContent = `분석 준비 중 · ${files.length}개 파일`;
+    $('run-import').classList.add('hidden');
+    await nextPaint();
+
+    for (let index = 0; index < files.length; index++) {
+      const file = files[index];
+      $('import-progress').textContent = `판매일보 분석 중 ${index + 1}/${files.length} · ${file.name}`;
+      await nextPaint();
+      try {
+        const result = await analyzeFile(file);
+        importRows.push(...result.valid);
+        reviewRows.push(...result.review);
+        totalIgnored += result.ignored;
+        summaries.push(`${file.name}: ${result.valid.length}명 / 확인 ${result.review.length}건 · ${result.sheetName} 시트`);
+      } catch (error) {
+        fileErrors.push(`${file.name}: ${error.message}`);
+        summaries.push(`${file.name}: 파일 분석 실패`);
+      }
     }
 
     const deduped = dedupeImportRows(importRows);
@@ -139,11 +182,18 @@ async function readExcel() {
     reviewRows.push(...deduped.conflicts);
     totalDuplicates += deduped.duplicates;
 
+    $('import-progress').textContent = `D1 기존 고객과 비교 중 · ${importRows.length.toLocaleString('ko-KR')}개 회선`;
+    await nextPaint();
     const serverPreview = importRows.length ? await previewImportRows(importRows) : {new_count:0,update_count:0,unchanged_count:0,conflicts:0};
     const totalReview = reviewRows.length + Number(serverPreview.conflicts || 0);
-    $('import-summary').classList.remove('hidden');
-    $('import-summary').innerHTML = `<b>자동 분석 완료</b><br>신규 <b>${serverPreview.new_count.toLocaleString('ko-KR')}명</b> · 기존 갱신 <b>${serverPreview.update_count.toLocaleString('ko-KR')}명</b> · 기존 최신정보 유지 <b>${serverPreview.unchanged_count.toLocaleString('ko-KR')}명</b> · 확인 필요 <b>${totalReview.toLocaleString('ko-KR')}건</b><br>같은 번호 최신정보 정리 <b>${totalDuplicates.toLocaleString('ko-KR')}건</b> · 빈칸/합계 제외 <b>${totalIgnored.toLocaleString('ko-KR')}행</b><details><summary>파일별 분석 보기</summary>${summaries.map(esc).join('<br>')}</details>`;
+    const errorNote = fileErrors.length
+      ? `<br><b>⚠ 파일 분석 실패 ${fileErrors.length}개</b><details><summary>실패 파일 보기</summary>${fileErrors.map(esc).join('<br>')}</details>`
+      : '';
 
+    $('import-summary').classList.remove('hidden');
+    $('import-summary').innerHTML = `<b>자동 분석 완료</b><br>신규 <b>${serverPreview.new_count.toLocaleString('ko-KR')}명</b> · 기존 갱신 <b>${serverPreview.update_count.toLocaleString('ko-KR')}명</b> · 기존 최신정보 유지 <b>${serverPreview.unchanged_count.toLocaleString('ko-KR')}명</b> · 확인 필요 <b>${totalReview.toLocaleString('ko-KR')}건</b><br>같은 번호 최신정보 정리 <b>${totalDuplicates.toLocaleString('ko-KR')}건</b> · 빈칸/합계 제외 <b>${totalIgnored.toLocaleString('ko-KR')}행</b>${importSelectionNote}${errorNote}<details><summary>파일별 분석 보기</summary>${summaries.map(esc).join('<br>')}</details>`;
+
+    $('import-progress').textContent = `분석 완료 · ${files.length}개 파일 · 등록 후보 ${importRows.length.toLocaleString('ko-KR')}개 회선`;
     renderImportPreview();
     $('preview-wrap').classList.toggle('hidden', !importRows.length);
     $('review-wrap').classList.toggle('hidden', !reviewRows.length);
@@ -217,20 +267,24 @@ function parseCsv(text) {
 }
 
 async function runImport() {
-  const files = [...$('excel-file').files];
+  const files = selectedImportFiles;
   if (!files.length || !importRows.length) return;
   const reviewText = reviewRows.length ? `\n확인 필요 ${reviewRows.length}건은 자동 등록에서 제외됩니다.` : '';
   if (!confirm(`${importRows.length.toLocaleString('ko-KR')}개 회선을 암호화 DB로 가져올까요? 같은 전화번호는 가장 최근 개통정보로 갱신하고, 다른 전화번호는 별도 회선으로 유지합니다. 원본 파일은 서버에 저장하지 않습니다.${reviewText}`)) return;
 
   $('run-import').disabled=true; $('run-import').textContent='가져오는 중...';
+  $('import-progress').classList.remove('hidden');
   try {
     const sourceLabel = files.length === 1 ? files[0].name : `판매일보 ${files.length}개 파일`;
     let total={inserted:0,updated:0,skipped:0,conflicts:0};
     for (let i=0;i<importRows.length;i+=500) {
+      $('import-progress').textContent = `암호화 DB 저장 중 · ${Math.min(i + 500, importRows.length).toLocaleString('ko-KR')}/${importRows.length.toLocaleString('ko-KR')} 회선`;
+      await nextPaint();
       const cleanRows = importRows.slice(i,i+500).map(({_file_name,_reasons,_source_row,...row}) => row);
       const result=await api('/api/import',{method:'POST',body:JSON.stringify({filename:sourceLabel,rows:cleanRows})});
       total.inserted+=result.inserted; total.updated+=result.updated; total.skipped+=result.skipped; total.conflicts+=result.conflicts||0;
     }
+    $('import-progress').textContent = `등록 완료 · 신규 ${total.inserted} · 갱신 ${total.updated}`;
     alert(`완료\n신규 ${total.inserted}개 회선 · 갱신 ${total.updated}개 회선 · 제외 ${total.skipped}행${total.conflicts?` · 충돌 ${total.conflicts}건`:''}`);
     resetImportUi();
     await boot(); openTab('customers');
@@ -238,7 +292,9 @@ async function runImport() {
 }
 
 function resetImportUi() {
-  importRows=[]; reviewRows=[]; $('excel-file').value='';
+  importRows=[]; reviewRows=[]; selectedImportFiles=[]; importSelectionNote='';
+  $('excel-file').value=''; $('excel-folder').value='';
+  $('import-progress').classList.add('hidden'); $('import-progress').textContent='';
   $('import-summary').classList.add('hidden'); $('preview-wrap').classList.add('hidden'); $('review-wrap').classList.add('hidden'); $('run-import').classList.add('hidden');
   $('preview-body').innerHTML=''; $('review-body').innerHTML='';
 }
