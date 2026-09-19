@@ -53,5 +53,11 @@ jobs:
           database_name = "woongbi-crm"
           database_id = "bc27cc13-1a30-44f0-831e-dffdad6a68f6"
           EOF
+      - name: Verify deployment target
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -F 'name = "woongbi-crm"' wrangler.toml
+          grep -F 'database_name = "woongbi-crm"' wrangler.toml
       - name: Deploy CRM Worker and preserve dashboard vars/secrets
-        run: npx wrangler deploy --keep-vars
+        run: npx wrangler deploy --config wrangler.toml --name woongbi-crm --keep-vars
