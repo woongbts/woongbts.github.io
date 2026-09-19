@@ -168,12 +168,23 @@ export function normalizeImportRow(row) {
   };
 }
 
+function isSummaryBoundary(object) {
+  return Object.values(object || {}).some(value => {
+    const text = String(value ?? '').replace(/\s+/g,'').trim();
+    return text === '총계' || text === '합계';
+  });
+}
+
 export function classifyImportRows(objects, fileName = '') {
   const valid = [];
   const review = [];
   let ignored = 0;
+  let summaryReached = false;
 
   for (const object of objects || []) {
+    if (summaryReached) { ignored++; continue; }
+    if (isSummaryBoundary(object)) { summaryReached = true; ignored++; continue; }
+
     const row = normalizeImportRow(object);
     const rawValues = Object.values(row._raw || {}).map(v => String(v ?? '').trim()).filter(Boolean);
     if (!rawValues.length) { ignored++; continue; }
