@@ -1,16 +1,13 @@
-import { readSheet } from 'read-excel-file/browser';
 import { read, utils } from 'xlsx';
+import {
+  classifyImportRows, dedupeImportRows, detectBestTable, formatInstallment, formatPhone,
+  rowsToObjects
+} from './import-utils.js';
 
 const $ = id => document.getElementById(id);
 let importRows = [];
+let reviewRows = [];
 let selectedCustomerId = null;
-
-const headers = {
-  name:['이름','고객명','성명','name'], phone:['연락처','휴대폰','전화번호','핸드폰','mobile','phone'],
-  carrier:['통신사','carrier'], device_model:['기종','사용기종','단말기','모델','device','device_model'],
-  opened_on:['개통일','가입일','개통날짜','opened_on'], contract_months:['약정개월','약정기간','contract_months'],
-  ad_sms_consent:['광고수신동의','문자수신동의','광고문자동의','sms동의','ad_sms_consent'], consent_at:['동의일','수신동의일','consent_at']
-};
 
 for (const button of document.querySelectorAll('.tabs button')) button.addEventListener('click', () => openTab(button.dataset.tab));
 $('refresh').addEventListener('click', boot);
@@ -53,15 +50,16 @@ async function loadCustomers() {
   const params = new URLSearchParams({ limit:'150' });
   if ($('filter-carrier').value) params.set('carrier',$('filter-carrier').value);
   if ($('filter-consent').value) params.set('consent',$('filter-consent').value);
+  if ($('filter-installment').value) params.set('installment_months',$('filter-installment').value);
   if ($('filter-due').checked) { params.set('months_min','22'); params.set('months_max','30'); }
   if ($('filter-phone').value.trim()) params.set('phone',$('filter-phone').value.trim());
-  $('customer-body').innerHTML = '<tr><td colspan="8" class="muted">불러오는 중...</td></tr>';
+  $('customer-body').innerHTML = '<tr><td colspan="9" class="muted">불러오는 중...</td></tr>';
   try {
     const data = await api(`/api/customers?${params}`);
-    if (!data.customers.length) { $('customer-body').innerHTML='<tr><td colspan="8" class="muted">조건에 맞는 고객이 없습니다.</td></tr>'; return; }
+    if (!data.customers.length) { $('customer-body').innerHTML='<tr><td colspan="9" class="muted">조건에 맞는 고객이 없습니다.</td></tr>'; return; }
     $('customer-body').innerHTML = data.customers.map(c => `<tr>
-      <td>${esc(c.name)}</td><td>${esc(c.phone_masked)}</td><td>${esc(c.carrier||'-')}</td><td>${esc(c.device_model||'-')}</td>
-      <td>${esc(c.opened_on||'-')}</td><td>${c.months_since_open==null?'-':`${c.months_since_open}개월`}</td>
+      <td>${esc(c.opened_on||'-')}</td><td>${esc(c.name)}</td><td>${esc(c.phone_masked)}</td><td>${esc(c.birth_date||'-')}</td>
+      <td>${esc(c.carrier||'-')}</td><td>${esc(c.device_model||'-')}</td><td>${esc(formatInstallment(c.installment_months))}</td>
       <td><span class="badge ${c.ad_sms_status}">${consentLabel(c.ad_sms_status)}</span></td>
       <td><button data-detail="${c.id}">상세</button></td></tr>`).join('');
     document.querySelectorAll('[data-detail]').forEach(b => b.addEventListener('click', () => showCustomer(b.dataset.detail)));
@@ -73,7 +71,7 @@ async function showCustomer(id) {
     const {customer:c} = await api(`/api/customers/${id}`);
     selectedCustomerId = id;
     $('detail-name').textContent = c.name;
-    $('detail-list').innerHTML = `<dt>연락처</dt><dd>${esc(formatPhone(c.phone))}</dd><dt>통신사</dt><dd>${esc(c.carrier||'-')}</dd><dt>기종</dt><dd>${esc(c.device_model||'-')}</dd><dt>개통일</dt><dd>${esc(c.opened_on||'-')}</dd><dt>약정</dt><dd>${c.contract_months}개월</dd><dt>문자동의</dt><dd>${consentLabel(c.ad_sms_status)}</dd>`;
+    $('detail-list').innerHTML = `<dt>개통일</dt><dd>${esc(c.opened_on||'-')}</dd><dt>연락처</dt><dd>${esc(formatPhone(c.phone))}</dd><dt>생년월일</dt><dd>${esc(c.birth_date||'-')}</dd><dt>통신사</dt><dd>${esc(c.carrier||'-')}</dd><dt>단말기</dt><dd>${esc(c.device_model||'-')}</dd><dt>할부개월</dt><dd>${esc(formatInstallment(c.installment_months))}</dd><dt>개통 후 경과</dt><dd>${c.months_since_open==null?'-':`${c.months_since_open}개월`}</dd><dt>문자동의</dt><dd>${consentLabel(c.ad_sms_status)}</dd>`;
     const now = new Date(); now.setMinutes(now.getMinutes()-now.getTimezoneOffset()); $('consent-at').value = now.toISOString().slice(0,16);
     $('customer-dialog').showModal();
   } catch (error) { showError(error); }
@@ -93,40 +91,71 @@ async function saveConsent() {
 }
 
 async function readExcel() {
-  const file = $('excel-file').files[0];
-  if (!file) { alert('Excel(.xls/.xlsx) 또는 CSV 파일을 선택해 주세요.'); return; }
+  const files = [...$('excel-file').files];
+  if (!files.length) { alert('Excel(.xls/.xlsx) 또는 CSV 파일을 선택해 주세요.'); return; }
+
   try {
-    const lower = file.name.toLowerCase();
-    let raw;
-    if (lower.endsWith('.xlsx')) {
-      const rows = await readSheet(file);
-      raw = rowsToObjects(rows);
-    } else if (lower.endsWith('.xls')) {
-      raw = rowsToObjects(await readLegacyExcel(file));
-    } else if (lower.endsWith('.csv')) {
-      raw = rowsToObjects(parseCsv(await file.text()));
-    } else {
-      throw new Error('지원 형식은 .xls, .xlsx 또는 .csv 입니다.');
+    importRows = [];
+    reviewRows = [];
+    const summaries = [];
+    let totalIgnored = 0;
+    let totalDuplicates = 0;
+
+    for (const file of files) {
+      const result = await analyzeFile(file);
+      importRows.push(...result.valid);
+      reviewRows.push(...result.review);
+      totalIgnored += result.ignored;
+      summaries.push(`${file.name}: ${result.valid.length}명 / 확인 ${result.review.length}건 · ${result.sheetName} 시트`);
     }
-    importRows = raw.map(normalizeExcelRow).filter(r => r.name || r.phone);
+
+    const deduped = dedupeImportRows(importRows);
+    importRows = deduped.rows;
+    reviewRows.push(...deduped.conflicts);
+    totalDuplicates += deduped.duplicates;
+
     $('import-summary').classList.remove('hidden');
-    $('import-summary').textContent = `${file.name} · ${importRows.length.toLocaleString('ko-KR')}행 확인. 이름/연락처가 없는 행은 가져오기에서 제외됩니다.`;
-    $('preview-wrap').classList.remove('hidden'); $('run-import').classList.remove('hidden');
-    $('preview-body').innerHTML = importRows.slice(0,10).map(r => `<tr><td>${esc(r.name)}</td><td>${esc(formatPhone(r.phone))}</td><td>${esc(r.carrier||'-')}</td><td>${esc(r.device_model||'-')}</td><td>${esc(r.opened_on||'-')}</td><td>${esc(String(r.contract_months||24))}개월</td><td>${esc(String(r.ad_sms_consent||'미확인'))}</td></tr>`).join('');
-  } catch (error) { showError(new Error(`파일을 읽지 못했습니다: ${error.message}`)); }
+    $('import-summary').innerHTML = `<b>자동 분석 완료</b><br>등록/갱신 대상 <b>${importRows.length.toLocaleString('ko-KR')}명</b> · 확인 필요 <b>${reviewRows.length.toLocaleString('ko-KR')}건</b> · 중복 정리 <b>${totalDuplicates.toLocaleString('ko-KR')}건</b> · 빈칸/합계 제외 <b>${totalIgnored.toLocaleString('ko-KR')}행</b><details><summary>파일별 분석 보기</summary>${summaries.map(esc).join('<br>')}</details>`;
+
+    renderImportPreview();
+    $('preview-wrap').classList.toggle('hidden', !importRows.length);
+    $('review-wrap').classList.toggle('hidden', !reviewRows.length);
+    $('run-import').classList.toggle('hidden', !importRows.length);
+  } catch (error) {
+    resetImportUi();
+    showError(new Error(`파일을 읽지 못했습니다: ${error.message}`));
+  }
 }
 
-async function readLegacyExcel(file) {
-  const workbook = read(await file.arrayBuffer(), { type:'array', cellDates:true });
-  const sheetName = workbook.SheetNames?.[0];
-  if (!sheetName || !workbook.Sheets?.[sheetName]) throw new Error('첫 번째 시트를 찾을 수 없습니다.');
-  return utils.sheet_to_json(workbook.Sheets[sheetName], { header:1, raw:true, defval:'' });
+async function analyzeFile(file) {
+  const lower = file.name.toLowerCase();
+  let sheets;
+  if (lower.endsWith('.xlsx') || lower.endsWith('.xls')) {
+    const workbook = read(await file.arrayBuffer(), { type:'array', cellDates:true });
+    sheets = workbook.SheetNames.map(name => ({
+      name,
+      rows: utils.sheet_to_json(workbook.Sheets[name], { header:1, raw:true, defval:'' })
+    }));
+  } else if (lower.endsWith('.csv')) {
+    sheets = [{ name:'CSV', rows:parseCsv(await file.text()) }];
+  } else {
+    throw new Error(`${file.name}: 지원 형식은 .xls, .xlsx 또는 .csv 입니다.`);
+  }
+
+  const detected = detectBestTable(sheets);
+  const objects = rowsToObjects(detected.rows, detected.headerIndex);
+  const classified = classifyImportRows(objects, file.name);
+  return { ...classified, sheetName:detected.sheetName };
 }
 
-function rowsToObjects(rows) {
-  if (!Array.isArray(rows) || rows.length < 2) return [];
-  const names = rows[0].map(v => String(v ?? '').trim());
-  return rows.slice(1).map(values => Object.fromEntries(names.map((name, i) => [name, values[i] ?? ''])));
+function renderImportPreview() {
+  $('preview-body').innerHTML = importRows.slice(0,12).map(r => `<tr>
+    <td>${esc(r.opened_on||'-')}</td><td>${esc(r.name)}</td><td>${esc(formatPhone(r.phone))}</td><td>${esc(r.birth_date||'-')}</td>
+    <td>${esc(r.carrier||'-')}</td><td>${esc(r.device_model||'-')}</td><td>${esc(formatInstallment(r.installment_months))}</td></tr>`).join('');
+
+  $('review-body').innerHTML = reviewRows.slice(0,30).map(r => `<tr>
+    <td>${esc(r._file_name||'-')}</td><td>${esc(String(r._source_row||'-'))}</td><td>${esc(r.name||'-')}</td><td>${esc(formatPhone(r.phone)||'-')}</td>
+    <td>${esc((r._reasons||[]).join(', '))}</td></tr>`).join('');
 }
 
 function parseCsv(text) {
@@ -147,33 +176,31 @@ function parseCsv(text) {
   return rows;
 }
 
-function normalizeExcelRow(row) {
-  const normalized = {};
-  const map = new Map(Object.entries(row).map(([k,v]) => [cleanHeader(k), v]));
-  for (const [key, aliases] of Object.entries(headers)) {
-    for (const alias of aliases) { const v = map.get(cleanHeader(alias)); if (v!==undefined) { normalized[key]=cellValue(v); break; } }
-  }
-  normalized.phone = String(normalized.phone||'').replace(/\D/g,'');
-  normalized.opened_on = excelDate(normalized.opened_on);
-  normalized.consent_at = excelDate(normalized.consent_at);
-  normalized.contract_months = Number.parseInt(normalized.contract_months,10) || 24;
-  return normalized;
-}
-
 async function runImport() {
-  const file = $('excel-file').files[0];
-  if (!file || !importRows.length) return;
-  if (!confirm(`${importRows.length.toLocaleString('ko-KR')}행을 암호화 DB로 가져올까요? 원본 파일은 서버에 저장하지 않습니다.`)) return;
+  const files = [...$('excel-file').files];
+  if (!files.length || !importRows.length) return;
+  const reviewText = reviewRows.length ? `\n확인 필요 ${reviewRows.length}건은 자동 등록에서 제외됩니다.` : '';
+  if (!confirm(`${importRows.length.toLocaleString('ko-KR')}명을 암호화 DB로 가져올까요? 원본 파일은 서버에 저장하지 않습니다.${reviewText}`)) return;
+
   $('run-import').disabled=true; $('run-import').textContent='가져오는 중...';
   try {
-    let total={inserted:0,updated:0,skipped:0};
+    const sourceLabel = files.length === 1 ? files[0].name : `판매일보 ${files.length}개 파일`;
+    let total={inserted:0,updated:0,skipped:0,conflicts:0};
     for (let i=0;i<importRows.length;i+=500) {
-      const result=await api('/api/import',{method:'POST',body:JSON.stringify({filename:file.name,rows:importRows.slice(i,i+500)})});
-      total.inserted+=result.inserted; total.updated+=result.updated; total.skipped+=result.skipped;
+      const cleanRows = importRows.slice(i,i+500).map(({_file_name,_reasons,_source_row,...row}) => row);
+      const result=await api('/api/import',{method:'POST',body:JSON.stringify({filename:sourceLabel,rows:cleanRows})});
+      total.inserted+=result.inserted; total.updated+=result.updated; total.skipped+=result.skipped; total.conflicts+=result.conflicts||0;
     }
-    alert(`완료\n신규 ${total.inserted}명 · 갱신 ${total.updated}명 · 제외 ${total.skipped}행`);
-    importRows=[]; $('excel-file').value=''; $('preview-wrap').classList.add('hidden'); $('run-import').classList.add('hidden'); await boot(); openTab('customers');
+    alert(`완료\n신규 ${total.inserted}명 · 갱신 ${total.updated}명 · 제외 ${total.skipped}행${total.conflicts?` · 충돌 ${total.conflicts}건`:''}`);
+    resetImportUi();
+    await boot(); openTab('customers');
   } catch(error){showError(error)} finally {$('run-import').disabled=false;$('run-import').textContent='암호화 DB에 가져오기'}
+}
+
+function resetImportUi() {
+  importRows=[]; reviewRows=[]; $('excel-file').value='';
+  $('import-summary').classList.add('hidden'); $('preview-wrap').classList.add('hidden'); $('review-wrap').classList.add('hidden'); $('run-import').classList.add('hidden');
+  $('preview-body').innerHTML=''; $('review-body').innerHTML='';
 }
 
 async function previewCampaign() {
@@ -184,11 +211,7 @@ async function previewCampaign() {
   } catch(error){showError(error)}
 }
 
-function cleanHeader(v){return String(v||'').toLowerCase().replace(/[\s_()\-]/g,'')}
-function cellValue(v){return v instanceof Date?v.toISOString().slice(0,10):String(v??'').trim()}
-function excelDate(v){if(!v)return'';if(v instanceof Date)return v.toISOString().slice(0,10);const s=String(v).trim().replace(/[./]/g,'-');const m=s.match(/^(\d{4})-(\d{1,2})-(\d{1,2})/);return m?`${m[1]}-${m[2].padStart(2,'0')}-${m[3].padStart(2,'0')}`:s}
 function consentLabel(v){return v==='granted'?'동의':v==='revoked'?'수신거부':'미확인'}
-function formatPhone(v){const s=String(v||'').replace(/\D/g,'');return s.length===11?`${s.slice(0,3)}-${s.slice(3,7)}-${s.slice(7)}`:s}
 function esc(v){return String(v??'').replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]))}
 function showError(error){console.error(error);alert(error.message||'오류가 발생했습니다.')}
 

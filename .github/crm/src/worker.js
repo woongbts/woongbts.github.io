@@ -144,12 +144,14 @@ async function listCustomers(env, url) {
   const carrier = url.searchParams.get('carrier');
   const consent = url.searchParams.get('consent');
   const phone = normalizePhone(url.searchParams.get('phone') || '');
+  const installmentMonths = boundedInt(url.searchParams.get('installment_months'), 0, 60, null);
   const minMonths = boundedInt(url.searchParams.get('months_min'), 0, 120, null);
   const maxMonths = boundedInt(url.searchParams.get('months_max'), 0, 120, null);
   const limit = boundedInt(url.searchParams.get('limit'), 1, 200, 100);
 
   if (carrier) { clauses.push('c.carrier=?'); binds.push(normalizeCarrier(carrier)); }
   if (phone) { clauses.push('c.phone_hmac=?'); binds.push(await phoneHmac(phone, env)); }
+  if (installmentMonths !== null) { clauses.push('c.installment_months=?'); binds.push(installmentMonths); }
   if (minMonths !== null) { clauses.push('c.opened_on<=?'); binds.push(isoMonthsAgo(new Date(), minMonths)); }
   if (maxMonths !== null) { clauses.push('c.opened_on>=?'); binds.push(isoMonthsAgo(new Date(), maxMonths)); }
   if (consent && ['granted','revoked','unknown'].includes(consent)) {
@@ -169,10 +171,11 @@ async function listCustomers(env, url) {
       id: row.id,
       name: await decryptText(row.name_enc, env),
       phone_masked: maskPhone(await decryptText(row.phone_enc, env)),
+      birth_date: row.birth_date_enc ? await decryptText(row.birth_date_enc, env) : '',
       carrier: row.carrier,
       device_model: row.device_model_enc ? await decryptText(row.device_model_enc, env) : '',
       opened_on: row.opened_on,
-      contract_months: row.contract_months,
+      installment_months: row.installment_months,
       months_since_open: monthsBetween(row.opened_on, new Date()),
       ad_sms_status: row.ad_sms_status,
       updated_at: row.updated_at
@@ -190,10 +193,12 @@ async function getCustomer(env, id) {
     id: row.id,
     name: await decryptText(row.name_enc, env),
     phone: await decryptText(row.phone_enc, env),
+    birth_date: row.birth_date_enc ? await decryptText(row.birth_date_enc, env) : '',
     carrier: row.carrier,
     device_model: row.device_model_enc ? await decryptText(row.device_model_enc, env) : '',
     opened_on: row.opened_on,
-    contract_months: row.contract_months,
+    installment_months: row.installment_months,
+    months_since_open: monthsBetween(row.opened_on, new Date()),
     ad_sms_status: row.ad_sms_status,
     created_at: row.created_at,
     updated_at: row.updated_at
@@ -206,33 +211,58 @@ async function importCustomers(request, env, user) {
   if (!rows.length) throw httpError(400, '가져올 고객 행이 없습니다.');
   if (rows.length > 5000) throw httpError(400, '한 번에 최대 5,000명까지 가져올 수 있습니다.');
 
-  const prepared = [];
-  const hashes = [];
+  const preparedByHash = new Map();
+  const conflictedHashes = new Set();
   let skipped = 0;
+  let conflicts = 0;
+
   for (const raw of rows) {
     const name = String(raw.name || '').trim().slice(0, 80);
     const phone = normalizePhone(raw.phone || '');
-    if (!name || phone.length < 8 || phone.length > 15) { skipped++; continue; }
-    const phone_hash = await phoneHmac(phone, env);
-    hashes.push(phone_hash);
-    prepared.push({
-      name, phone, phone_hash,
+    if (!name || phone.length < 10 || phone.length > 11) { skipped++; continue; }
+
+    const phoneHash = await phoneHmac(phone, env);
+    if (conflictedHashes.has(phoneHash)) { skipped++; continue; }
+
+    const row = {
+      name,
+      phone,
+      phone_hash: phoneHash,
+      birth_date: normalizeBirthDate(raw.birth_date),
       carrier: normalizeCarrier(raw.carrier),
       device_model: String(raw.device_model || '').trim().slice(0, 120),
       opened_on: normalizeDate(raw.opened_on),
-      contract_months: boundedInt(raw.contract_months, 0, 120, 24),
+      installment_months: normalizeInstallmentMonths(raw.installment_months),
       consent: normalizeConsent(raw.ad_sms_consent),
       consent_at: normalizeDateTime(raw.consent_at)
-    });
+    };
+
+    const previous = preparedByHash.get(phoneHash);
+    if (previous) {
+      if (previous.birth_date && row.birth_date && previous.birth_date !== row.birth_date) {
+        preparedByHash.delete(phoneHash);
+        conflictedHashes.add(phoneHash);
+        conflicts++;
+        skipped += 2;
+        continue;
+      }
+      if ((row.opened_on || '') >= (previous.opened_on || '')) preparedByHash.set(phoneHash, row);
+      skipped++;
+    } else {
+      preparedByHash.set(phoneHash, row);
+    }
   }
+
+  const prepared = [...preparedByHash.values()];
   if (!prepared.length) throw httpError(400, '유효한 이름/연락처 행이 없습니다.');
 
+  const hashes = prepared.map(row => row.phone_hash);
   const existing = new Map();
   for (let i = 0; i < hashes.length; i += 80) {
     const chunk = hashes.slice(i, i + 80);
     const placeholders = chunk.map(() => '?').join(',');
-    const found = await env.DB.prepare(`SELECT id, phone_hmac FROM customers WHERE phone_hmac IN (${placeholders})`).bind(...chunk).all();
-    for (const item of found.results || []) existing.set(item.phone_hmac, item.id);
+    const found = await env.DB.prepare(`SELECT id, phone_hmac, name_enc, birth_date_enc, opened_on FROM customers WHERE phone_hmac IN (${placeholders})`).bind(...chunk).all();
+    for (const item of found.results || []) existing.set(item.phone_hmac, item);
   }
 
   const now = new Date().toISOString();
@@ -242,23 +272,46 @@ async function importCustomers(request, env, user) {
   let inserted = 0, updated = 0;
 
   for (const row of prepared) {
-    const currentId = existing.get(row.phone_hash);
-    const id = currentId || crypto.randomUUID();
+    const current = existing.get(row.phone_hash);
+    const id = current?.id || crypto.randomUUID();
+
+    if (current) {
+      const existingBirth = current.birth_date_enc ? await decryptText(current.birth_date_enc, env) : '';
+      if (existingBirth && row.birth_date && existingBirth !== row.birth_date) {
+        conflicts++; skipped++; continue;
+      }
+      if (current.opened_on && row.opened_on && row.opened_on < current.opened_on) {
+        skipped++; continue;
+      }
+    }
+
     const nameEnc = await encryptText(row.name, env);
     const phoneEnc = await encryptText(row.phone, env);
+    const birthEnc = row.birth_date ? await encryptText(row.birth_date, env) : null;
     const deviceEnc = row.device_model ? await encryptText(row.device_model, env) : null;
-    if (currentId) {
+
+    if (current) {
       updated++;
-      statements.push(env.DB.prepare(`UPDATE customers SET name_enc=?, phone_enc=?, carrier=?, device_model_enc=?, opened_on=COALESCE(?,opened_on), contract_months=?, source_type='excel', source_ref=?, updated_at=? WHERE id=?`)
-        .bind(nameEnc, phoneEnc, row.carrier, deviceEnc, row.opened_on, row.contract_months, batchId, now, id));
+      statements.push(env.DB.prepare(`UPDATE customers SET
+        name_enc=?, phone_enc=?, birth_date_enc=COALESCE(?,birth_date_enc), carrier=COALESCE(?,carrier),
+        device_model_enc=COALESCE(?,device_model_enc), opened_on=COALESCE(?,opened_on),
+        installment_months=COALESCE(?,installment_months), source_type='excel', source_ref=?, updated_at=?
+        WHERE id=?`)
+        .bind(nameEnc, phoneEnc, birthEnc, row.carrier, deviceEnc, row.opened_on, row.installment_months, batchId, now, id));
     } else {
       inserted++;
-      statements.push(env.DB.prepare(`INSERT INTO customers (id,phone_hmac,name_enc,phone_enc,carrier,device_model_enc,opened_on,contract_months,source_type,source_ref,created_at,updated_at) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)`)
-        .bind(id, row.phone_hash, nameEnc, phoneEnc, row.carrier, deviceEnc, row.opened_on, row.contract_months, 'excel', batchId, now, now));
+      statements.push(env.DB.prepare(`INSERT INTO customers
+        (id,phone_hmac,name_enc,phone_enc,birth_date_enc,carrier,device_model_enc,opened_on,installment_months,source_type,source_ref,created_at,updated_at)
+        VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)`)
+        .bind(id, row.phone_hash, nameEnc, phoneEnc, birthEnc, row.carrier, deviceEnc, row.opened_on, row.installment_months, 'excel', batchId, now, now));
     }
+
     if (row.consent === 'granted' && row.consent_at) {
       consentStatements.push(env.DB.prepare(`INSERT INTO consents (id,customer_id,purpose,status,captured_at,capture_method,evidence_enc,created_at) VALUES (?,?,?,?,?,?,?,?)`)
         .bind(crypto.randomUUID(), id, 'ad_sms', 'granted', row.consent_at, 'imported_record', await encryptText('기존 동의기록이 있는 Excel 행에서 가져옴', env), now));
+    } else if (row.consent === 'revoked') {
+      consentStatements.push(env.DB.prepare(`INSERT INTO consents (id,customer_id,purpose,status,captured_at,capture_method,evidence_enc,revoked_at,created_at) VALUES (?,?,?,?,?,?,?,?,?)`)
+        .bind(crypto.randomUUID(), id, 'ad_sms', 'revoked', row.consent_at || now, 'imported_record', await encryptText(row.consent_at ? '기존 수신거부 기록을 Excel에서 가져옴' : 'Excel에 수신거부로 표시됨(원 거부일 미기재)', env), row.consent_at || now, now));
     }
   }
 
@@ -268,9 +321,9 @@ async function importCustomers(request, env, user) {
   const filenameEnc = body.filename ? await encryptText(String(body.filename).slice(0, 200), env) : null;
   await env.DB.prepare(`INSERT INTO import_batches (id,original_filename_enc,row_count,inserted_count,updated_count,skipped_count,created_at,created_by) VALUES (?,?,?,?,?,?,?,?)`)
     .bind(batchId, filenameEnc, rows.length, inserted, updated, skipped, now, user.email).run();
-  await audit(env, user.email, 'customer_import', 'import_batch', batchId, { rows: rows.length, inserted, updated, skipped });
+  await audit(env, user.email, 'customer_import', 'import_batch', batchId, { rows: rows.length, inserted, updated, skipped, conflicts });
 
-  return json({ ok: true, batch_id: batchId, inserted, updated, skipped });
+  return json({ ok: true, batch_id: batchId, inserted, updated, skipped, conflicts });
 }
 
 async function recordConsent(request, env, user, customerId) {
@@ -353,30 +406,78 @@ async function phoneHmac(phone, env) {
   return [...new Uint8Array(signed)].map(v => v.toString(16).padStart(2,'0')).join('');
 }
 
-function normalizePhone(value) { return String(value || '').replace(/\D/g, ''); }
-function normalizeCarrier(value) {
-  const s = String(value || '').toUpperCase().replace(/\s+/g, '');
-  if (s.includes('SK')) return 'SKT';
-  if (s === 'KT' || s.includes('케이티')) return 'KT';
-  if (s.includes('LG') || s.includes('유플')) return 'LGU+';
-  if (s.includes('알뜰') || s.includes('MVNO')) return '알뜰폰';
-  return s ? '기타' : null;
+function normalizePhone(value) {
+  let digits = String(value || '').replace(/\D/g, '');
+  if (digits.length === 10 && digits.startsWith('10')) digits = `0${digits}`;
+  return digits;
 }
+
+function normalizeCarrier(value) {
+  const text = String(value || '').trim();
+  const s = text.toUpperCase().replace(/\s+/g, '');
+  if (!s) return null;
+  if (s.includes('알뜰') || s.includes('MVNO') || /모바일|프리텔|스노우맨|스카이라이프|모빙|머천드/.test(text)) return '알뜰폰';
+  if (s.startsWith('SK') || s.includes('SKT')) return 'SKT';
+  if (s.startsWith('KT') || s.includes('케이티')) return 'KT';
+  if (s.startsWith('LG') || s.includes('유플')) return 'LGU+';
+  return '기타';
+}
+
 function normalizeConsent(value) {
   const s = String(value ?? '').trim().toLowerCase();
   if (['y','yes','true','1','동의','수신동의','허용'].includes(s)) return 'granted';
   if (['n','no','false','0','거부','미동의','수신거부'].includes(s)) return 'revoked';
   return 'unknown';
 }
+
 function normalizeDate(value) {
   if (!value) return null;
+  if (value instanceof Date && !Number.isNaN(value.getTime())) return value.toISOString().slice(0,10);
   const s = String(value).trim().replace(/[./]/g, '-');
   const m = s.match(/^(\d{4})-(\d{1,2})-(\d{1,2})/);
   if (!m) return null;
-  const d = new Date(Date.UTC(Number(m[1]), Number(m[2]) - 1, Number(m[3])));
-  if (Number.isNaN(d.getTime())) return null;
+  const year = Number(m[1]), month = Number(m[2]), day = Number(m[3]);
+  const d = new Date(Date.UTC(year, month - 1, day));
+  if (Number.isNaN(d.getTime()) || d.getUTCFullYear() !== year || d.getUTCMonth() !== month - 1 || d.getUTCDate() !== day) return null;
   return d.toISOString().slice(0, 10);
 }
+
+function normalizeBirthDate(value) {
+  if (!value) return null;
+  if (value instanceof Date && !Number.isNaN(value.getTime())) return value.toISOString().slice(0,10);
+  let compact = String(value).trim().replace(/\D/g, '');
+  if (/^\d{5}$/.test(compact)) compact = compact.padStart(6, '0');
+  let year, month, day;
+  const now = new Date();
+  if (/^\d{6}$/.test(compact)) {
+    const yy = Number(compact.slice(0,2));
+    const pivot = now.getUTCFullYear() % 100;
+    year = yy <= pivot ? 2000 + yy : 1900 + yy;
+    month = Number(compact.slice(2,4));
+    day = Number(compact.slice(4,6));
+  } else if (/^\d{8}$/.test(compact)) {
+    year = Number(compact.slice(0,4));
+    month = Number(compact.slice(4,6));
+    day = Number(compact.slice(6,8));
+  } else {
+    return null;
+  }
+  const d = new Date(Date.UTC(year, month - 1, day));
+  if (Number.isNaN(d.getTime()) || d.getUTCFullYear() !== year || d.getUTCMonth() !== month - 1 || d.getUTCDate() !== day) return null;
+  if (year > now.getUTCFullYear() || year < now.getUTCFullYear() - 120) return null;
+  return d.toISOString().slice(0,10);
+}
+
+function normalizeInstallmentMonths(value) {
+  const text = String(value ?? '').trim();
+  if (!text) return null;
+  if (/^(현금개통|일시불|완납|현금)$/i.test(text.replace(/\s+/g,''))) return 0;
+  const match = text.match(/(\d{1,3})/);
+  if (!match) return null;
+  const months = Number.parseInt(match[1], 10);
+  return Number.isFinite(months) && months >= 0 && months <= 60 ? months : null;
+}
+
 function normalizeDateTime(value) {
   if (!value) return null;
   const d = new Date(value);
@@ -386,10 +487,12 @@ function normalizeDateTime(value) {
   }
   return d.toISOString();
 }
+
 function isoMonthsAgo(date, months) {
   const d = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth() - Number(months), date.getUTCDate()));
   return d.toISOString().slice(0, 10);
 }
+
 function monthsBetween(dateString, end) {
   if (!dateString) return null;
   const start = new Date(`${dateString}T00:00:00Z`);
@@ -398,23 +501,28 @@ function monthsBetween(dateString, end) {
   if (end.getUTCDate() < start.getUTCDate()) months--;
   return Math.max(0, months);
 }
+
 function maskPhone(phone) {
   const s = normalizePhone(phone);
   if (s.length < 7) return '***';
   return `${s.slice(0,3)}-****-${s.slice(-4)}`;
 }
+
 function boundedInt(value, min, max, fallback) {
   if (value === null || value === undefined || value === '') return fallback;
   const n = Number.parseInt(value, 10);
   if (!Number.isFinite(n)) return fallback;
   return Math.min(max, Math.max(min, n));
 }
+
 async function readJson(request) {
   const type = request.headers.get('content-type') || '';
   if (!type.includes('application/json')) throw httpError(415, 'JSON 요청만 허용됩니다.');
   try { return await request.json(); } catch { throw httpError(400, '요청 내용을 읽을 수 없습니다.'); }
 }
+
 function httpError(status, message) { const error = new Error(message); error.status = status; return error; }
+
 function json(data, status = 200) {
   return new Response(JSON.stringify(data), { status, headers: {
     'content-type': 'application/json; charset=utf-8',
@@ -424,6 +532,7 @@ function json(data, status = 200) {
     'x-frame-options': 'DENY'
   }});
 }
+
 function securityHeaders(response) {
   const headers = new Headers(response.headers);
   headers.set('cache-control', 'no-store');
@@ -433,11 +542,13 @@ function securityHeaders(response) {
   headers.set('content-security-policy', "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'none'; form-action 'self'");
   return new Response(response.body, { status: response.status, statusText: response.statusText, headers });
 }
+
 function base64UrlBytes(value) {
   let s = value.replace(/-/g, '+').replace(/_/g, '/');
   while (s.length % 4) s += '=';
   return base64Bytes(s);
 }
+
 function base64Bytes(value) {
   if (!value) return new Uint8Array();
   const binary = atob(value);
@@ -445,6 +556,7 @@ function base64Bytes(value) {
   for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
   return bytes;
 }
+
 function bytesBase64(bytes) {
   let binary = '';
   for (const b of bytes) binary += String.fromCharCode(b);
