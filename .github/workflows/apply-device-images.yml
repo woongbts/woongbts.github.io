@@ -1,0 +1,40 @@
+name: Apply device images to recommendations
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/apply-device-images.yml'
+      - '.github/scripts/apply_device_images.py'
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Apply device image mapping and card UI
+        run: python3 .github/scripts/apply_device_images.py
+      - name: Validate JavaScript
+        run: |
+          node --check src/rates.js
+          node --check assets/rates.min.js
+          cmp -s src/rates.js assets/rates.min.js
+      - name: Verify canonical calculator source
+        run: python3 .github/scripts/build_rates_asset.py --check
+      - name: Run site regression checks
+        run: python3 .github/scripts/validate_site.py
+      - name: Commit changes
+        run: |
+          if git diff --quiet; then
+            echo "No production changes needed"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/rates.js assets/rates.min.js assets/rates.css rates.html
+          git commit -m "Show device images in phone recommendation cards"
+          git push
