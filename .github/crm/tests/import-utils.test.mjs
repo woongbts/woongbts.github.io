@@ -1,7 +1,8 @@
 import assert from 'node:assert/strict';
 import {
   classifyImportRows, dedupeImportRows, detectBestTable, normalizeBirthDate,
-  normalizeCarrier, normalizeInstallmentMonths, normalizePhone, rowsToObjects
+  normalizeCarrier, normalizeInstallmentMonths, normalizePhone, parseSalesMonthFromFileName,
+  rowsToObjects, selectSalesFilesByRange
 } from '../web/import-utils.js';
 
 const mobilePrefix = ['0','10'].join('');
@@ -60,5 +61,26 @@ const sameNameDifferentLines = dedupeImportRows([
 ]);
 assert.equal(sameNameDifferentLines.rows.length, 2);
 assert.equal(sameNameDifferentLines.duplicates, 0);
+
+assert.deepEqual(parseSalesMonthFromFileName('웅비통신_19년_7월_판매일보.xlsx'), {year:2019,month:7,key:24234,label:'2019.07'});
+assert.deepEqual(parseSalesMonthFromFileName('웅비통신_26년_8월_판매일보.xlsx'), {year:2026,month:8,key:24319,label:'2026.08'});
+assert.equal(parseSalesMonthFromFileName('웅비통신_26년_9월_요금표.xlsx'), null);
+
+const folderFiles = [
+  {name:'웅비통신_19년_7월_판매일보.xlsx', lastModified:1},
+  {name:'웅비통신_19년_8월_판매일보.xlsx', lastModified:1},
+  {name:'웅비통신_19년_8월_판매일보.xlsx', lastModified:2},
+  {name:'웅비통신_26년_8월_판매일보.xlsx', lastModified:1},
+  {name:'웅비통신_26년_9월_판매일보.xlsx', lastModified:1},
+  {name:'메모.xlsx', lastModified:1}
+];
+const folderSelection = selectSalesFilesByRange(folderFiles, '2019-07', '2026-08');
+assert.equal(folderSelection.expectedCount, 86);
+assert.equal(folderSelection.files.length, 3);
+assert.equal(folderSelection.duplicates.length, 1);
+assert.equal(folderSelection.outOfRange.length, 1);
+assert.equal(folderSelection.unmatched.length, 1);
+assert.equal(folderSelection.missingMonths.length, 83);
+assert.equal(folderSelection.files[1].lastModified, 2);
 
 console.log('import-utils tests passed');
