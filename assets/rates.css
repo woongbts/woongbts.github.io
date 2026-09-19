@@ -17,3 +17,7 @@ body.plan-picker-opened{overflow:hidden;touch-action:auto}
 .quick-result-card .quick-device-image{height:150px}
 .purpose-card .purpose-device-image{height:145px}
 @media(max-width:760px){.device-card-image,.quick-result-card .quick-device-image,.purpose-card .purpose-device-image{height:132px;margin:6px 0 10px}}
+
+
+/* Entry mode guide */
+.mobile-mode-guide{display:flex;align-items:center;gap:10px;margin:10px 0 18px;padding:11px 13px;border:1px solid #d9e6e7;border-radius:12px;background:#f7fbfb;color:#587078;font-size:.78rem;line-height:1.5}.mobile-mode-guide strong{flex:0 0 auto;color:#103c52}.mobile-mode-guide span{min-width:0}@media(max-width:760px){.mobile-mode-guide{display:block;font-size:.75rem}.mobile-mode-guide strong,.mobile-mode-guide span{display:block}.mobile-mode-guide span{margin-top:3px}}
