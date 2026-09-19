@@ -59,7 +59,5 @@ jobs:
           set -euo pipefail
           grep -F 'name = "woongbi-crm"' wrangler.toml
           grep -F 'database_name = "woongbi-crm"' wrangler.toml
-      - name: Apply CRM database migrations
-        run: npx wrangler d1 migrations apply woongbi-crm --remote --config wrangler.toml
       - name: Deploy CRM Worker and preserve dashboard vars/secrets
         run: npx wrangler deploy --config wrangler.toml --name woongbi-crm --keep-vars
