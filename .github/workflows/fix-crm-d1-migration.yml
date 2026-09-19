@@ -1,0 +1,83 @@
+name: One-time CRM D1 migration fix
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/fix-crm-d1-migration.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Patch CRM schema bootstrap and deploy workflow
+        shell: python
+        run: |
+          from pathlib import Path
+
+          worker_path = Path('.github/crm/src/worker.js')
+          worker = worker_path.read_text()
+          old = "let jwksCache = { at: 0, keys: [] };\n"
+          new = old + "let schemaReadyPromise = null;\n"
+          if old not in worker or 'schemaReadyPromise' in worker:
+              raise SystemExit('Unexpected worker schema bootstrap state')
+          worker = worker.replace(old, new, 1)
+
+          old = "      const user = await authenticate(request, env);\n      const url = new URL(request.url);"
+          new = "      const user = await authenticate(request, env);\n      await ensureSchema(env);\n      const url = new URL(request.url);"
+          if old not in worker:
+              raise SystemExit('Worker fetch insertion point not found')
+          worker = worker.replace(old, new, 1)
+
+          marker = "async function dashboard(env) {"
+          ensure = r'''async function ensureSchema(env) {
+            if (schemaReadyPromise) return schemaReadyPromise;
+            schemaReadyPromise = (async () => {
+              const info = await env.DB.prepare('PRAGMA table_info(customers)').all();
+              const columns = new Set((info.results || []).map(row => String(row.name)));
+              if (!columns.has('birth_date_enc')) {
+                await env.DB.exec('ALTER TABLE customers ADD COLUMN birth_date_enc TEXT');
+              }
+              if (!columns.has('installment_months')) {
+                await env.DB.exec('ALTER TABLE customers ADD COLUMN installment_months INTEGER CHECK (installment_months IS NULL OR installment_months BETWEEN 0 AND 60)');
+              }
+              await env.DB.exec('CREATE INDEX IF NOT EXISTS idx_customers_installment_months ON customers(installment_months)');
+            })().catch(error => {
+              schemaReadyPromise = null;
+              throw error;
+            });
+            return schemaReadyPromise;
+          }
+
+          '''
+          if marker not in worker:
+              raise SystemExit('Worker dashboard insertion point not found')
+          worker = worker.replace(marker, ensure + marker, 1)
+          worker_path.write_text(worker)
+
+          deploy_path = Path('.github/workflows/crm-deploy.yml')
+          deploy = deploy_path.read_text()
+          block = "      - name: Apply CRM database migrations\n        run: npx wrangler d1 migrations apply woongbi-crm --remote --config wrangler.toml\n"
+          if block not in deploy:
+              raise SystemExit('Migration deploy block not found')
+          deploy_path.write_text(deploy.replace(block, '', 1))
+      - name: Validate CRM build
+        working-directory: .github/crm
+        run: npm install --ignore-scripts && npm run check && npm run build
+      - name: Remove one-time workflow and commit
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm .github/workflows/fix-crm-d1-migration.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add .github/crm/src/worker.js .github/workflows/crm-deploy.yml .github/workflows/fix-crm-d1-migration.yml
+          git commit -m 'Bootstrap CRM profile schema in Worker'
+          git push origin HEAD:main
