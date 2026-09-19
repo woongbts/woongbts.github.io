@@ -16,11 +16,6 @@ jobs:
       CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
       CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
       CRM_D1_DATABASE_ID: ${{ secrets.CRM_D1_DATABASE_ID }}
-      CRM_ADMIN_EMAIL: ${{ secrets.CRM_ADMIN_EMAIL }}
-      CRM_ACCESS_TEAM_DOMAIN: ${{ secrets.CRM_ACCESS_TEAM_DOMAIN }}
-      CRM_ACCESS_AUD: ${{ secrets.CRM_ACCESS_AUD }}
-      CRM_DATA_KEY_B64: ${{ secrets.CRM_DATA_KEY_B64 }}
-      CRM_HMAC_KEY_B64: ${{ secrets.CRM_HMAC_KEY_B64 }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -30,7 +25,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          for name in CLOUDFLARE_API_TOKEN CLOUDFLARE_ACCOUNT_ID CRM_D1_DATABASE_ID CRM_ADMIN_EMAIL CRM_ACCESS_TEAM_DOMAIN CRM_ACCESS_AUD CRM_DATA_KEY_B64 CRM_HMAC_KEY_B64; do
+          for name in CLOUDFLARE_API_TOKEN CLOUDFLARE_ACCOUNT_ID CRM_D1_DATABASE_ID; do
             if [ -z "${!name:-}" ]; then
               echo "Missing required GitHub Actions secret: $name" >&2
               exit 1
@@ -45,6 +40,7 @@ jobs:
           name = "woongbi-crm"
           main = "src/worker.js"
           compatibility_date = "2026-09-01"
+          keep_vars = true
 
           [assets]
           directory = "./dist"
@@ -55,19 +51,10 @@ jobs:
           database_name = "woongbi-crm"
           database_id = "${CRM_D1_DATABASE_ID}"
 
-          [vars]
-          SMS_MODE = "dry_run"
-          ALLOWED_ADMIN_EMAILS = "${CRM_ADMIN_EMAIL}"
-          CF_ACCESS_TEAM_DOMAIN = "${CRM_ACCESS_TEAM_DOMAIN}"
-          CF_ACCESS_AUD = "${CRM_ACCESS_AUD}"
-          DEV_AUTH_BYPASS = "0"
+          [secrets]
+          required = ["CRM_DATA_KEY_B64", "CRM_HMAC_KEY_B64"]
           EOF
       - name: Apply database schema
         run: npx wrangler d1 execute woongbi-crm --remote --file=migrations/0001_init.sql
-      - name: Set encryption secrets
-        shell: bash
-        run: |
-          printf '%s' "$CRM_DATA_KEY_B64" | npx wrangler secret put CRM_DATA_KEY_B64
-          printf '%s' "$CRM_HMAC_KEY_B64" | npx wrangler secret put CRM_HMAC_KEY_B64
-      - name: Deploy CRM Worker
-        run: npx wrangler deploy
+      - name: Deploy CRM Worker and preserve dashboard vars
+        run: npx wrangler deploy --keep-vars
