@@ -10,6 +10,7 @@ const formattedPhone = [mobilePrefix,'-6759-','0318'].join('');
 const normalizedFormattedPhone = [mobilePrefix,'6759','0318'].join('');
 const sheetPhone = [mobilePrefix,'9311','5987'].join('');
 const duplicatePhone = [mobilePrefix,'1111','2222'].join('');
+const otherLinePhone = [mobilePrefix,'3333','4444'].join('');
 
 assert.equal(normalizePhone('1045806637'), restoredPhone);
 assert.equal(normalizePhone(formattedPhone), normalizedFormattedPhone);
@@ -45,5 +46,12 @@ const d = dedupeImportRows([
 assert.equal(d.rows.length, 1);
 assert.equal(d.rows[0].opened_on, '2025-01-01');
 assert.equal(d.duplicates, 1);
+
+const sameNameDifferentLines = dedupeImportRows([
+  {name:'동일명의',phone:duplicatePhone,birth_date:'1980-01-01',opened_on:'2025-01-01'},
+  {name:'동일명의',phone:otherLinePhone,birth_date:'1980-01-01',opened_on:'2025-02-01'}
+]);
+assert.equal(sameNameDifferentLines.rows.length, 2);
+assert.equal(sameNameDifferentLines.duplicates, 0);
 
 console.log('import-utils tests passed');
