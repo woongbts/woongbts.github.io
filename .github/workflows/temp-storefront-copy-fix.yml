@@ -1,0 +1,37 @@
+name: Temporary storefront copy fix
+on:
+  push:
+    paths:
+      - '.github/workflows/temp-storefront-copy-fix.yml'
+permissions:
+  contents: write
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Align storefront copy
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('assets/site-pro.min.js')
+          s=p.read_text(encoding='utf-8')
+          s=s.replace('어떤 휴대폰이 맞을지,<br>월 예상금액부터 비교해 보세요.','어떤 휴대폰이 맞을지,<br>추천 기종부터 살펴보세요.',1)
+          s=s.replace('<strong>꼭 확인해 주세요.</strong> 위 금액은 확인된 상담 조건의 예시입니다. 실제 개통 시 가입유형, 할인 자격, 공시지원금·추가지원금, 재고 및 프로모션에 따라 달라질 수 있으며 최종 금액은 매장에서 다시 확인합니다.','<strong>꼭 확인해 주세요.</strong> 추천 기종은 상담을 시작하기 위한 예시입니다. 실제 월 예상금액은 가입유형, 요금제, 할인 자격, 지원금, 재고 및 프로모션에 따라 달라져 계산기와 매장에서 최종 확인합니다.',1)
+          if '위 금액은 확인된 상담 조건의 예시입니다.' in s:
+              raise SystemExit('stale storefront note remains')
+          p.write_text(s,encoding='utf-8')
+          PY
+          node --check assets/site-pro.min.js
+      - name: Commit fix
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add assets/site-pro.min.js
+          git commit -m 'Align storefront copy with number-porting recommendations'
+          git pull --rebase origin main
+          git push
