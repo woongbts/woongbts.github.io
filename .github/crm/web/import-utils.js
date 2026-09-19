@@ -233,6 +233,87 @@ export function dedupeImportRows(rows) {
   return { rows:[...byPhone.values()], conflicts, duplicates };
 }
 
+function monthKey(year, month) {
+  return year * 12 + (month - 1);
+}
+
+function parseRangeMonth(value) {
+  const match = String(value || '').match(/^(\d{4})-(\d{1,2})$/);
+  if (!match) return null;
+  const year = Number(match[1]);
+  const month = Number(match[2]);
+  if (month < 1 || month > 12) return null;
+  return { year, month, key: monthKey(year, month), label: `${year}.${String(month).padStart(2,'0')}` };
+}
+
+export function parseSalesMonthFromFileName(value) {
+  const text = String(value || '');
+  const base = text.split(/[\\/]/).pop() || text;
+  if (!/판매일보/i.test(base)) return null;
+  const match = base.match(/(?:^|[_\s-])(\d{2}|\d{4})년[_\s-]*(\d{1,2})월(?:[_\s.-]|판매일보|$)/i);
+  if (!match) return null;
+  let year = Number(match[1]);
+  if (match[1].length === 2) year += 2000;
+  const month = Number(match[2]);
+  if (month < 1 || month > 12) return null;
+  return { year, month, key: monthKey(year, month), label: `${year}.${String(month).padStart(2,'0')}` };
+}
+
+export function selectSalesFilesByRange(files, startValue='2019-07', endValue='2026-08') {
+  const start = parseRangeMonth(startValue);
+  const end = parseRangeMonth(endValue);
+  if (!start || !end || start.key > end.key) throw new Error('가져오기 기간을 확인해 주세요.');
+
+  const selectedByMonth = new Map();
+  const duplicates = [];
+  const outOfRange = [];
+  const unmatched = [];
+
+  for (const file of files || []) {
+    const name = file?.name || String(file || '');
+    if (!/\.(xlsx|xls|csv)$/i.test(name)) { unmatched.push(file); continue; }
+    const parsed = parseSalesMonthFromFileName(name);
+    if (!parsed) { unmatched.push(file); continue; }
+    if (parsed.key < start.key || parsed.key > end.key) { outOfRange.push(file); continue; }
+
+    const previous = selectedByMonth.get(parsed.key);
+    if (!previous) {
+      selectedByMonth.set(parsed.key, { file, parsed });
+      continue;
+    }
+
+    const prevModified = Number(previous.file?.lastModified || 0);
+    const nextModified = Number(file?.lastModified || 0);
+    if (nextModified >= prevModified) {
+      duplicates.push(previous.file);
+      selectedByMonth.set(parsed.key, { file, parsed });
+    } else {
+      duplicates.push(file);
+    }
+  }
+
+  const selectedEntries = [...selectedByMonth.values()].sort((a,b) => a.parsed.key - b.parsed.key);
+  const missingMonths = [];
+  for (let key = start.key; key <= end.key; key++) {
+    if (selectedByMonth.has(key)) continue;
+    const year = Math.floor(key / 12);
+    const month = (key % 12) + 1;
+    missingMonths.push(`${year}.${String(month).padStart(2,'0')}`);
+  }
+
+  return {
+    files: selectedEntries.map(entry => entry.file),
+    months: selectedEntries.map(entry => entry.parsed.label),
+    start: start.label,
+    end: end.label,
+    expectedCount: end.key - start.key + 1,
+    duplicates,
+    outOfRange,
+    unmatched,
+    missingMonths
+  };
+}
+
 export function formatPhone(value) {
   const digits = normalizePhone(value);
   return digits.length === 11 ? `${digits.slice(0,3)}-${digits.slice(3,7)}-${digits.slice(7)}` : digits;
