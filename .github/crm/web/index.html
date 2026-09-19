@@ -13,7 +13,7 @@
     <button id="refresh" class="ghost">새로고침</button>
   </header>
   <main class="wrap">
-    <section id="security" class="notice">Cloudflare Access 인증 · 암호화 DB · 실문자 발송 잠금 상태를 확인 중입니다.</section>
+    <section id="security" class="notice">Cloudflare Access 인증 · D1 암호화 저장 · 원본파일 미보관 · 실문자 발송 잠금 상태를 확인 중입니다.</section>
 
     <section class="stats" aria-label="고객 현황">
       <article><small>등록 회선</small><b id="stat-total">-</b></article>
@@ -61,7 +61,7 @@
 
     <section class="panel" id="panel-import">
       <h2>고객 판매일보 가져오기</h2>
-      <p class="sub">Excel(.xls/.xlsx)/CSV 파일을 여러 개 선택할 수 있습니다. 원본 파일은 서버에 저장하지 않고, 필요한 고객정보만 브라우저에서 추출해 암호화 DB로 전송합니다.</p>
+      <p class="sub">Excel(.xls/.xlsx)/CSV 파일을 여러 개 선택할 수 있습니다. 원본 파일은 서버에 저장하지 않고, 필요한 고객정보만 브라우저에서 추출해 Cloudflare D1의 암호화 고객 DB로 전송합니다. 이름·연락처·생년월일·단말기는 암호화 저장하고 전화번호 검색·중복확인은 HMAC을 사용합니다.</p>
       <div class="upload-box">
         <input id="excel-file" type="file" accept=".xls,.xlsx,.csv" multiple>
         <button id="read-file">자동 분석</button>

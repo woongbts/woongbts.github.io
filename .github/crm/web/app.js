@@ -31,8 +31,8 @@ async function boot() {
   try {
     const [health, dash] = await Promise.all([api('/api/health'), api('/api/dashboard')]);
     $('security').textContent = health.sms_mode === 'enabled'
-      ? 'Cloudflare Access 인증 · 암호화 DB · 문자 실발송 활성 상태'
-      : 'Cloudflare Access 인증 · 암호화 DB · 문자 실발송은 안전을 위해 잠금 상태';
+      ? 'Cloudflare Access 인증 · D1 + AES-GCM 암호화 저장 · 원본파일 미보관 · 문자 실발송 활성 상태'
+      : 'Cloudflare Access 인증 · D1 + AES-GCM 암호화 저장 · 원본파일 미보관 · 문자 실발송은 안전을 위해 잠금 상태';
     $('security').classList.toggle('warn', health.sms_mode !== 'enabled');
     $('stat-total').textContent = dash.total.toLocaleString('ko-KR');
     $('stat-due').textContent = dash.maturity_22_30.toLocaleString('ko-KR');

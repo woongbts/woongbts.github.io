@@ -25,7 +25,7 @@ export default {
 async function handleApi(request, env, user, url) {
   const method = request.method.toUpperCase();
   if (method === 'GET' && url.pathname === '/api/health') {
-    return json({ ok: true, service: 'woongbi-crm', sms_mode: env.SMS_MODE || 'dry_run' });
+    return json({ ok: true, service: 'woongbi-crm', storage: 'Cloudflare D1', pii_encryption: 'AES-GCM', phone_lookup: 'HMAC-SHA-256', raw_file_storage: false, sms_mode: env.SMS_MODE || 'dry_run' });
   }
   if (method === 'GET' && url.pathname === '/api/dashboard') {
     return dashboard(env);
