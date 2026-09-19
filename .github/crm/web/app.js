@@ -1,4 +1,5 @@
 import { readSheet } from 'read-excel-file/browser';
+import { read, utils } from 'xlsx';
 
 const $ = id => document.getElementById(id);
 let importRows = [];
@@ -93,17 +94,19 @@ async function saveConsent() {
 
 async function readExcel() {
   const file = $('excel-file').files[0];
-  if (!file) { alert('Excel(.xlsx) 또는 CSV 파일을 선택해 주세요.'); return; }
+  if (!file) { alert('Excel(.xls/.xlsx) 또는 CSV 파일을 선택해 주세요.'); return; }
   try {
     const lower = file.name.toLowerCase();
     let raw;
     if (lower.endsWith('.xlsx')) {
       const rows = await readSheet(file);
       raw = rowsToObjects(rows);
+    } else if (lower.endsWith('.xls')) {
+      raw = rowsToObjects(await readLegacyExcel(file));
     } else if (lower.endsWith('.csv')) {
       raw = rowsToObjects(parseCsv(await file.text()));
     } else {
-      throw new Error('지원 형식은 .xlsx 또는 .csv 입니다.');
+      throw new Error('지원 형식은 .xls, .xlsx 또는 .csv 입니다.');
     }
     importRows = raw.map(normalizeExcelRow).filter(r => r.name || r.phone);
     $('import-summary').classList.remove('hidden');
@@ -111,6 +114,13 @@ async function readExcel() {
     $('preview-wrap').classList.remove('hidden'); $('run-import').classList.remove('hidden');
     $('preview-body').innerHTML = importRows.slice(0,10).map(r => `<tr><td>${esc(r.name)}</td><td>${esc(formatPhone(r.phone))}</td><td>${esc(r.carrier||'-')}</td><td>${esc(r.device_model||'-')}</td><td>${esc(r.opened_on||'-')}</td><td>${esc(String(r.contract_months||24))}개월</td><td>${esc(String(r.ad_sms_consent||'미확인'))}</td></tr>`).join('');
   } catch (error) { showError(new Error(`파일을 읽지 못했습니다: ${error.message}`)); }
+}
+
+async function readLegacyExcel(file) {
+  const workbook = read(await file.arrayBuffer(), { type:'array', cellDates:true });
+  const sheetName = workbook.SheetNames?.[0];
+  if (!sheetName || !workbook.Sheets?.[sheetName]) throw new Error('첫 번째 시트를 찾을 수 없습니다.');
+  return utils.sheet_to_json(workbook.Sheets[sheetName], { header:1, raw:true, defval:'' });
 }
 
 function rowsToObjects(rows) {
