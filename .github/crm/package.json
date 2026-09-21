@@ -3,10 +3,11 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "check": "node --check src/worker.js && node --check web/app.js && node --check web/import-utils.js && node --check build.mjs && node tests/import-utils.test.mjs",
+    "check": "node --check src/worker.js && node --check web/app.js && node --check web/import-utils.js && node --check web/onedrive.js && node --check build.mjs && node tests/import-utils.test.mjs",
     "build": "node build.mjs"
   },
   "dependencies": {
+    "@azure/msal-browser": "5.22.0",
     "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.3/xlsx-0.20.3.tgz"
   },
   "devDependencies": {
