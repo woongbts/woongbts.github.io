@@ -1,0 +1,96 @@
+name: Temporary finalize UI and CRM rate plans
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/temp-finalize-ui-crm.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  finalize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Apply CRM rate plan patch
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import subprocess, textwrap
+
+          workflow = Path('.github/workflows/temp-rate-plan-upgrade.yml').read_text(encoding='utf-8')
+          marker = "          python3 - <<'PY'\n"
+          start = workflow.index(marker) + len(marker)
+          end = workflow.index("\n          PY", start)
+          patch = textwrap.dedent(workflow[start:end])
+          crm_start = patch.index('# 2) Import parser:')
+          crm_patch = patch[crm_start:]
+          Path('/tmp/crm_rate_plan_patch.py').write_text(crm_patch, encoding='utf-8')
+          subprocess.run(['python3', '/tmp/crm_rate_plan_patch.py'], check=True)
+          PY
+
+      - name: Compact storefront header and fix mobile plan picker scrolling
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+
+          css_path = Path('assets/readability-20260921.css')
+          css = css_path.read_text(encoding='utf-8')
+          marker = '/* 2026-09-21 final header + mobile plan picker fix */'
+          if marker not in css:
+              css += '''\n\n/* 2026-09-21 final header + mobile plan picker fix */\n@media (min-width:821px){\n  body:not(.rate-page) .nav{gap:7px}\n  body:not(.rate-page) .brand-copy{font-size:1.16rem}\n  body:not(.rate-page) .brand-copy small{font-size:.57rem}\n  body:not(.rate-page) .menu{gap:7px}\n  body:not(.rate-page) .menu a{font-size:.75rem!important;letter-spacing:-.015em;white-space:nowrap}\n  body:not(.rate-page) .precon-badge{padding:4px 6px;gap:4px}\n  body:not(.rate-page) .precon-badge-copy strong{font-size:.67rem}\n  body:not(.rate-page) .precon-badge-copy small{display:none}\n  body:not(.rate-page) .nav>.btn{font-size:.80rem;padding-left:10px;padding-right:10px}\n}\nbody.plan-picker-opened{overflow:hidden!important;touch-action:auto!important}\n@media (max-width:760px){\n  .rate-page .plan-picker-backdrop{overflow:hidden!important;touch-action:auto!important}\n  .rate-page .plan-picker-sheet{overflow-y:auto!important;overflow-x:hidden!important;-webkit-overflow-scrolling:touch;touch-action:pan-y!important;overscroll-behavior:contain}\n  .rate-page .plan-picker-sheet>.plan-picker-list{flex:none!important;overflow:visible!important;max-height:none!important;min-height:auto!important;touch-action:auto!important}\n}\n'''
+          css_path.write_text(css, encoding='utf-8')
+
+          for name in ['index.html','rates.html']:
+              p = Path(name)
+              s = p.read_text(encoding='utf-8')
+              s2 = re.sub(r'assets/readability-20260921\.css\?v=[^"\']+', 'assets/readability-20260921.css?v=5', s, count=1)
+              if s2 == s:
+                  raise SystemExit(f'readability cache link not found in {name}')
+              p.write_text(s2, encoding='utf-8')
+          PY
+
+      - name: Verify CRM
+        working-directory: .github/crm
+        run: |
+          npm install --ignore-scripts
+          npm run check
+          npm run build
+
+      - name: Verify public site
+        run: |
+          node --check assets/rates.min.js
+          node --check assets/site-pro.min.js
+          node --check assets/recommendation-engine-v2.js
+          python3 .github/scripts/build_rates_asset.py --check
+          python3 .github/scripts/validate_site.py
+
+      - name: Commit and push final changes
+        run: |
+          rm -f .github/workflows/temp-rate-plan-upgrade.yml \
+                .github/workflows/temp-rate-plan-retry.yml \
+                .github/workflows/temp-finalize-ui-crm.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A assets/readability-20260921.css index.html rates.html privacy.html .github/crm .github/workflows
+          git commit -m 'Finalize compact header and encrypted CRM rate plans'
+          for attempt in 1 2 3; do
+            git fetch origin main
+            if git rebase origin/main; then
+              if git push origin HEAD:main; then
+                exit 0
+              fi
+            else
+              git rebase --abort || true
+            fi
+            sleep 5
+          done
+          echo 'Unable to push after retries' >&2
+          exit 1
