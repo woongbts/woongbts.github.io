@@ -1,0 +1,55 @@
+name: Temporary storefront readability patch
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/temp-readability-patch.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Patch storefront stylesheets
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          index = Path('index.html')
+          text = index.read_text(encoding='utf-8')
+          marker = '<link rel="stylesheet" href="assets/site-pro.css?v=20260920-1">'
+          addition = marker + '<link rel="stylesheet" href="assets/readability-20260921.css?v=1">'
+          if 'readability-20260921.css' not in text:
+              if marker not in text:
+                  raise SystemExit('index stylesheet marker not found')
+              text = text.replace(marker, addition, 1)
+          index.write_text(text, encoding='utf-8')
+
+          rates = Path('rates.html')
+          text = rates.read_text(encoding='utf-8')
+          marker = '<link rel="stylesheet" href="assets/rates.css?v=20260919-2">'
+          addition = marker + '\n  <link rel="stylesheet" href="assets/readability-20260921.css?v=1">'
+          if 'readability-20260921.css' not in text:
+              if marker not in text:
+                  raise SystemExit('rates stylesheet marker not found')
+              text = text.replace(marker, addition, 1)
+          text = text.replace('<body>', '<body class="rate-page">', 1)
+          rates.write_text(text, encoding='utf-8')
+          PY
+      - name: Basic verification
+        run: |
+          grep -q 'readability-20260921.css' index.html
+          grep -q 'readability-20260921.css' rates.html
+          grep -q '<body class="rate-page">' rates.html
+      - name: Commit patch
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add index.html rates.html
+          git commit -m 'Apply storefront readability improvements'
+          git push
