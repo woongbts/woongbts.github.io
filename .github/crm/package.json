@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "check": "node --check src/worker.js && node --check web/app.js && node --check web/import-utils.js && node --check web/onedrive.js && node --check build.mjs && node tests/import-utils.test.mjs && node tests/worker-schema.test.mjs",
+    "check": "node --check src/worker.js && node --check web/app.js && node --check web/import-utils.js && node --check web/onedrive.js && node --check web/auth-redirect.js && node --check build.mjs && node tests/import-utils.test.mjs && node tests/worker-schema.test.mjs",
     "build": "node build.mjs"
   },
   "dependencies": {
