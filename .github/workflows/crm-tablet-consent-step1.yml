@@ -11,6 +11,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
@@ -28,4 +30,6 @@ jobs:
           rm -f .github/workflows/crm-tablet-consent-step1.yml .github/scripts/crm_tablet_consent_step1.py
           git add -A
           git commit -m "Add CRM tablet consent capture"
+          git fetch origin main
+          git rebase origin/main
           git push origin HEAD:main
