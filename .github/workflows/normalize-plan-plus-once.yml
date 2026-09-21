@@ -1,1 +1,128 @@
-placeholder
+name: Normalize mobile plan plus signs once
+on:
+  push:
+    branches: [main]
+permissions:
+  contents: write
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Normalize repeated plus signs in mobile plan text
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import json
+          import re
+          from pathlib import Path
+
+          def normalize_plan_fields(node):
+              changed = 0
+              if isinstance(node, dict):
+                  for key, value in list(node.items()):
+                      if key in {'data','voice','sms','video'} and isinstance(value, str):
+                          new = re.sub(r'\+{2,}', '+', value)
+                          if new != value:
+                              node[key] = new
+                              changed += 1
+                      elif isinstance(value, (dict, list)):
+                          changed += normalize_plan_fields(value)
+              elif isinstance(node, list):
+                  for item in node:
+                      changed += normalize_plan_fields(item)
+              return changed
+
+          total = 0
+          for rel in ['data/plans.json','data/mobile-public.json','data/mobile-public-expanded.json']:
+              path = Path(rel)
+              if not path.exists():
+                  continue
+              data = json.loads(path.read_text(encoding='utf-8'))
+              count = normalize_plan_fields(data)
+              total += count
+              if count:
+                  path.write_text(json.dumps(data, ensure_ascii=False, separators=(',', ':')), encoding='utf-8')
+              print(rel, 'normalized fields:', count)
+
+          sync = Path('.github/scripts/daily_wireless_sync.py')
+          text = sync.read_text(encoding='utf-8')
+          old = 'def clean(value):\n    return " ".join(str(value or "").replace("\\t", " ").split())\n'
+          new = 'def clean(value):\n    return " ".join(str(value or "").replace("\\t", " ").split())\n\n\ndef clean_plan_text(value):\n    # Public plan feeds can repeat separators as ++/+++. Show one +.\n    return re.sub(r"\\+{2,}", "+", clean(value))\n'
+          assert old in text, 'clean helper block not found'
+          text = text.replace(old, new, 1)
+          for field in ('data','voice','sms','video'):
+              old_field = f'"{field}": clean(plan.get("{field}"))'
+              new_field = f'"{field}": clean_plan_text(plan.get("{field}"))'
+              assert old_field in text, f'{field} mapping not found'
+              text = text.replace(old_field, new_field, 1)
+          sync.write_text(text, encoding='utf-8')
+
+          src = Path('src/rates.js')
+          text = src.read_text(encoding='utf-8')
+          assert 'fetch("data/plans.json?v=20260919-2")' in text
+          text = text.replace('fetch("data/plans.json?v=20260919-2")', 'fetch("data/plans.json?v=20260922-1")', 1)
+          old_assign = 'o.mobile_plans=u?.mobile_plans||l?.mobile_plans||[]'
+          new_assign = 'o.mobile_plans=(u?.mobile_plans||l?.mobile_plans||[]).map(e=>({...e,data:String(e?.data||"").replace(/\\+{2,}/g,"+"),voice:String(e?.voice||"").replace(/\\+{2,}/g,"+"),sms:String(e?.sms||"").replace(/\\+{2,}/g,"+"),video:String(e?.video||"").replace(/\\+{2,}/g,"+")}))'
+          assert old_assign in text, 'mobile plan assignment not found'
+          text = text.replace(old_assign, new_assign, 1)
+          src.write_text(text, encoding='utf-8')
+
+          rec = Path('assets/recommendation-engine-v2.js')
+          text = rec.read_text(encoding='utf-8')
+          assert "fetch('data/plans.json?v=20260919-2').then(r=>r.json())" in text
+          text = text.replace("fetch('data/plans.json?v=20260919-2').then(r=>r.json())", "fetch('data/plans.json?v=20260922-1').then(r=>r.json())", 1)
+          old_state = 'state.catalog=catalog;state.plans=plans;state.supports=supports;'
+          new_state = "state.catalog=catalog;state.plans={...(plans||{}),mobile_plans:(plans?.mobile_plans||[]).map(p=>({...p,data:String(p?.data||'').replace(/\\+{2,}/g,'+'),voice:String(p?.voice||'').replace(/\\+{2,}/g,'+'),sms:String(p?.sms||'').replace(/\\+{2,}/g,'+'),video:String(p?.video||'').replace(/\\+{2,}/g,'+')}))};state.supports=supports;"
+          assert old_state in text, 'recommendation state assignment not found'
+          text = text.replace(old_state, new_state, 1)
+          rec.write_text(text, encoding='utf-8')
+
+          pwa = Path('assets/pwa.min.js')
+          text = pwa.read_text(encoding='utf-8')
+          assert 'recommendation-engine-v2.js?v=20260919-2' in text
+          text = text.replace('recommendation-engine-v2.js?v=20260919-2', 'recommendation-engine-v2.js?v=20260922-1', 1)
+          pwa.write_text(text, encoding='utf-8')
+
+          html = Path('rates.html')
+          text = html.read_text(encoding='utf-8')
+          assert 'assets/rates.min.js?v=20260921-8' in text
+          text = text.replace('assets/rates.min.js?v=20260921-8', 'assets/rates.min.js?v=20260922-1', 1)
+          assert '/assets/pwa.min.js?v=20260919-2' in text
+          text = text.replace('/assets/pwa.min.js?v=20260919-2', '/assets/pwa.min.js?v=20260922-1', 1)
+          html.write_text(text, encoding='utf-8')
+          print('total current fields normalized:', total)
+          PY
+      - name: Rebuild and validate
+        shell: bash
+        run: |
+          python3 .github/scripts/build_rates_asset.py
+          node --check src/rates.js
+          node --check assets/rates.min.js
+          node --check assets/recommendation-engine-v2.js
+          node --check assets/pwa.min.js
+          python3 -m py_compile .github/scripts/daily_wireless_sync.py
+          python3 .github/scripts/build_rates_asset.py --check
+          python3 - <<'PY'
+          import json, re
+          from pathlib import Path
+          plans=json.loads(Path('data/plans.json').read_text(encoding='utf-8'))
+          bad=[]
+          for p in plans.get('mobile_plans',[]):
+              for key in ('data','voice','sms','video'):
+                  value=p.get(key)
+                  if isinstance(value,str) and re.search(r'\+{2,}',value): bad.append((p.get('id'),key,value))
+          assert not bad, bad[:10]
+          assert 'clean_plan_text(plan.get("data"))' in Path('.github/scripts/daily_wireless_sync.py').read_text(encoding='utf-8')
+          print('repeated plus validation OK')
+          PY
+          python3 .github/scripts/validate_site.py
+      - name: Commit normalized data and remove workflow
+        shell: bash
+        run: |
+          git config user.name "woongbts"
+          git config user.email "swb3301@gmail.com"
+          rm -f .github/workflows/normalize-plan-plus-once.yml
+          git add -A
+          git commit -m "Normalize repeated mobile plan plus signs"
+          git push origin HEAD:main
