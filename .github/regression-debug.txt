@@ -1,5 +1,0 @@
-SITE REGRESSION CHECK FAILED
- - homepage card link changed: 스타일폴더2
- - homepage card link changed: Galaxy A17 LTE
- - homepage card link changed: Galaxy A37 5G
- - homepage card link changed: Galaxy 퀀텀7
