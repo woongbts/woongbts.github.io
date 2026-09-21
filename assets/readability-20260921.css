@@ -115,34 +115,3 @@
     font-size:.76rem;
   }
 }
-
-/* Storefront shortcut labels: keep only the four primary customer paths. */
-body:not(.rate-page) .service-tags li:nth-child(3),
-body:not(.rate-page) .service-tags li:nth-child(6){
-  display:none!important;
-}
-
-body:not(.rate-page) .service-tags li:nth-child(5){
-  font-size:0!important;
-}
-
-body:not(.rate-page) .service-tags li:nth-child(5)::after{
-  content:"💧 정수기렌탈";
-  font-size:1rem;
-  font-weight:800;
-  line-height:1.2;
-  letter-spacing:-.04em;
-  white-space:nowrap;
-}
-
-@media(max-width:640px){
-  body:not(.rate-page) .service-tags li:nth-child(5)::after{
-    font-size:clamp(.76rem,3.1vw,.86rem);
-  }
-}
-
-@media(max-width:380px){
-  body:not(.rate-page) .service-tags li:nth-child(5)::after{
-    font-size:.76rem;
-  }
-}
