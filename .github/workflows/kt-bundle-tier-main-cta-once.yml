@@ -1,0 +1,157 @@
+name: KT bundle tiers and main CTA once
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/kt-bundle-tier-main-cta-once.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Apply KT bundle tier labels and main CTA
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json
+          import re
+
+          internet_path = Path('data/internet.json')
+          data = json.loads(internet_path.read_text(encoding='utf-8'))
+          bundle_rules = data.setdefault('bundle_rules', [])
+          rules = {rule['id']: rule for rule in bundle_rules}
+
+          expected = {
+              'KT-TOTAL-100-L1': {
+                  'provider_id': 'KT', 'kind': 'mobile',
+                  'name': '총액결합 · 22,000원 미만 · 100M 1,650원 할인',
+                  'minimum_speed_mbps': 1, 'maximum_speed_mbps': 100,
+                  'discount': 1650, 'source_order': 20,
+                  'notes': '모바일 월정액 합계 22,000원 미만 기준 · 인터넷 청구 1,650원 할인 · 휴대폰 청구 할인은 별도',
+              },
+              'KT-TOTAL-100-L2': {
+                  'provider_id': 'KT', 'kind': 'mobile',
+                  'name': '총액결합 · 22,000~64,899원 · 100M 3,300원 할인',
+                  'minimum_speed_mbps': 1, 'maximum_speed_mbps': 100,
+                  'discount': 3300, 'source_order': 21,
+                  'notes': '모바일 월정액 합계 22,000원 이상 64,900원 미만 기준 · 인터넷 청구 3,300원 할인 · 휴대폰 청구 할인은 별도',
+              },
+              'KT-TOTAL-100-L3': {
+                  'provider_id': 'KT', 'kind': 'mobile',
+                  'name': '총액결합 · 64,900원 이상 · 100M 5,500원 할인',
+                  'minimum_speed_mbps': 1, 'maximum_speed_mbps': 100,
+                  'discount': 5500, 'source_order': 22,
+                  'notes': '모바일 월정액 합계 64,900원 이상 기준 · 인터넷 청구 5,500원 할인 · 휴대폰 청구 할인은 별도',
+              },
+              'KT-TOTAL-500-L1': {
+                  'provider_id': 'KT', 'kind': 'mobile',
+                  'name': '총액결합 · 22,000원 미만 · 500M~1G 2,200원 할인',
+                  'minimum_speed_mbps': 500, 'maximum_speed_mbps': 1000,
+                  'discount': 2200, 'source_order': 23,
+                  'notes': '모바일 월정액 합계 22,000원 미만 기준 · 인터넷 청구 2,200원 할인 · 휴대폰 청구 할인은 별도',
+              },
+              'KT-TOTAL-500-L2': {
+                  'provider_id': 'KT', 'kind': 'mobile',
+                  'name': '총액결합 · 22,000~64,899원 · 500M~1G 5,500원 할인',
+                  'minimum_speed_mbps': 500, 'maximum_speed_mbps': 1000,
+                  'discount': 5500, 'source_order': 24,
+                  'notes': '모바일 월정액 합계 22,000원 이상 64,900원 미만 기준 · 인터넷 청구 5,500원 할인 · 휴대폰 청구 할인은 별도',
+              },
+              'KT-TOTAL-500-L3': {
+                  'provider_id': 'KT', 'kind': 'mobile',
+                  'name': '총액결합 · 64,900원 이상 · 500M~1G 5,500원 할인',
+                  'minimum_speed_mbps': 500, 'maximum_speed_mbps': 1000,
+                  'discount': 5500, 'source_order': 25,
+                  'notes': '모바일 월정액 합계 64,900원 이상 기준 · 인터넷 청구 5,500원 할인 · 휴대폰 청구 할인은 별도',
+              },
+          }
+
+          for rule_id, values in expected.items():
+              if rule_id in rules:
+                  rules[rule_id].update(values)
+              else:
+                  new_rule = {'id': rule_id, **values}
+                  bundle_rules.append(new_rule)
+                  rules[rule_id] = new_rule
+
+          data.setdefault('meta', {})['updated_at'] = '2026-09-21'
+          data['meta']['mobile_bundle_note'] = (
+              '인터넷/TV 청구서에 직접 적용되는 확인 가능한 할인만 자동 계산하며 휴대폰 청구 할인은 별도 안내한다. '
+              'KT 총액결합은 모바일 월정액 합계 기준으로 22,000원 미만 / 22,000~64,899원 / 64,900원 이상을 각각 표시하며, '
+              '100M은 1,650/3,300/5,500원, 500M~1G는 2,200/5,500/5,500원 할인으로 구분한다.'
+          )
+          internet_path.write_text(json.dumps(data, ensure_ascii=False, separators=(',', ':')) + '\n', encoding='utf-8')
+
+          src_path = Path('src/rates.js')
+          src = src_path.read_text(encoding='utf-8')
+          src, count = re.subn(r'data/internet\.json\?v=\d{8}-\d+', 'data/internet.json?v=20260921-2', src, count=1)
+          if count != 1:
+              raise SystemExit('internet data cache key marker not found or duplicated in src/rates.js')
+          src_path.write_text(src, encoding='utf-8')
+
+          rates_path = Path('rates.html')
+          rates_html = rates_path.read_text(encoding='utf-8')
+          rates_html, count = re.subn(r'assets/rates\.min\.js\?v=\d{8}-\d+', 'assets/rates.min.js?v=20260921-2', rates_html, count=1)
+          if count != 1:
+              raise SystemExit('rates script cache key marker not found or duplicated in rates.html')
+          rates_path.write_text(rates_html, encoding='utf-8')
+
+          index_path = Path('index.html')
+          index_html = index_path.read_text(encoding='utf-8')
+          old_cta = '>내 휴대폰 요금 알아보기</a>'
+          new_cta = '>내 요금 알아보기</a>'
+          if index_html.count(old_cta) != 1:
+              raise SystemExit(f'main CTA marker count unexpected: {index_html.count(old_cta)}')
+          index_path.write_text(index_html.replace(old_cta, new_cta, 1), encoding='utf-8')
+
+          assert rules['KT-TOTAL-100-L1']['discount'] == 1650
+          assert rules['KT-TOTAL-100-L2']['discount'] == 3300
+          assert rules['KT-TOTAL-100-L3']['discount'] == 5500
+          assert rules['KT-TOTAL-500-L1']['discount'] == 2200
+          assert rules['KT-TOTAL-500-L2']['discount'] == 5500
+          assert rules['KT-TOTAL-500-L3']['discount'] == 5500
+          assert 23100 - 1650 == 21450
+          assert 34100 - 2200 == 31900
+          assert 34100 - 5500 == 28600
+          PY
+
+      - name: Rebuild production rates asset
+        run: python .github/scripts/build_rates_asset.py
+
+      - name: Validate site
+        run: |
+          python -m json.tool data/internet.json >/dev/null
+          node --check src/rates.js
+          node --check assets/rates.min.js
+          python .github/scripts/build_rates_asset.py --check
+          python .github/scripts/validate_site.py
+          python - <<'PY'
+          from pathlib import Path
+          import json
+          data=json.loads(Path('data/internet.json').read_text(encoding='utf-8'))
+          rules={r['id']:r for r in data['bundle_rules']}
+          assert rules['KT-TOTAL-500-L3']['name'] == '총액결합 · 64,900원 이상 · 500M~1G 5,500원 할인'
+          index=Path('index.html').read_text(encoding='utf-8')
+          assert '>내 요금 알아보기</a>' in index
+          assert '>내 휴대폰 요금 알아보기</a>' not in index
+          print('KT tier + main CTA checks OK')
+          PY
+
+      - name: Commit update and remove one-shot workflow
+        shell: bash
+        run: |
+          rm .github/workflows/kt-bundle-tier-main-cta-once.yml
+          git config user.name 'woongbts'
+          git config user.email 'swb3301@gmail.com'
+          git add -A
+          git commit -m 'Match KT bundle tiers and simplify main CTA'
+          git push origin HEAD:main
