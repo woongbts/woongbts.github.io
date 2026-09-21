@@ -29,8 +29,9 @@ jobs:
           start = workflow.index(marker) + len(marker)
           end = workflow.index("\n          PY", start)
           patch = textwrap.dedent(workflow[start:end])
+          helper_end = patch.index('# 1) Storefront header:')
           crm_start = patch.index('# 2) Import parser:')
-          crm_patch = patch[crm_start:]
+          crm_patch = patch[:helper_end] + patch[crm_start:]
           Path('/tmp/crm_rate_plan_patch.py').write_text(crm_patch, encoding='utf-8')
           subprocess.run(['python3', '/tmp/crm_rate_plan_patch.py'], check=True)
           PY
