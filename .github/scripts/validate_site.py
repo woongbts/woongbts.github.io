@@ -132,7 +132,9 @@ check("assets/site-pro.min.js?v=" in index, "site production script missing")
 # Naver business-channel telecom pre-approval visibility contract.
 PRECON_URL = "https://ictmarket.or.kr:8443/precon/pop_CertIcon.do?PRECON_REQ_ID=PRE0000119098&amp;YN=1"
 check('class="precon-badge"' in index, "top pre-approval badge missing")
-check('사전승낙 판매점' in index and 'KAIT 승낙정보 확인' in index, "pre-approval badge copy missing")
+check('class="precon-official-mark"' in index and 'src="assets/kait-preconsent-mark.png"' in index, "official pre-approval mark missing")
+check(Path("assets/kait-preconsent-mark.png").is_file(), "official pre-approval image asset missing")
+check('alt="KAIT 사전승낙 오프라인판매점 마크 · 웅비통신 승낙서 조회"' in index, "pre-approval mark accessible description missing")
 check(index.count(PRECON_URL) >= 2, "official pre-approval lookup must remain in both header and footer")
 check('대표자 : 신웅비' in index, "representative name missing for Naver business verification")
 check('"founder":{"@type":"Person","name":"신웅비"}' in index, "representative structured data missing")
