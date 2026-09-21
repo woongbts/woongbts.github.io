@@ -1,11 +1,13 @@
-import { PublicClientApplication } from '@azure/msal-browser';
+import { InteractionRequiredAuthError, PublicClientApplication } from '@azure/msal-browser';
 
 const CLIENT_ID_KEY = 'woongbi.crm.microsoftClientId';
 const GRAPH_BASE = 'https://graph.microsoft.com/v1.0';
 const SCOPES = ['Files.Read'];
 const SALES_FOLDER = ['웅비통신', '웅비통신 판매일보'];
+const AUTH_REDIRECT_PATH = '/auth-redirect.html';
 let msalInstance = null;
 let msalClientId = '';
+let interactiveRequestPromise = null;
 
 export function getStoredOneDriveClientId() {
   return localStorage.getItem(CLIENT_ID_KEY) || '';
@@ -18,10 +20,15 @@ export function setStoredOneDriveClientId(value) {
   else localStorage.removeItem(CLIENT_ID_KEY);
   msalInstance = null;
   msalClientId = '';
+  interactiveRequestPromise = null;
   return clientId;
 }
 
 function redirectUri() {
+  return `${location.origin}${AUTH_REDIRECT_PATH}`;
+}
+
+function appUri() {
   return `${location.origin}/`;
 }
 
@@ -35,7 +42,7 @@ async function getMsal() {
       clientId,
       authority: 'https://login.microsoftonline.com/consumers',
       redirectUri: redirectUri(),
-      postLogoutRedirectUri: redirectUri()
+      postLogoutRedirectUri: appUri()
     },
     cache: {
       cacheLocation: 'sessionStorage',
@@ -48,6 +55,14 @@ async function getMsal() {
   msalInstance = instance;
   msalClientId = clientId;
   return instance;
+}
+
+async function runInteractive(operation) {
+  if (interactiveRequestPromise) return interactiveRequestPromise;
+  interactiveRequestPromise = Promise.resolve()
+    .then(operation)
+    .finally(() => { interactiveRequestPromise = null; });
+  return interactiveRequestPromise;
 }
 
 export async function getOneDriveStatus() {
@@ -64,17 +79,25 @@ export async function getOneDriveStatus() {
 
 export async function connectOneDrive() {
   const instance = await getMsal();
-  const result = await instance.loginPopup({ scopes: SCOPES, prompt: 'select_account' });
-  if (!result?.account) throw new Error('Microsoft 계정 연결을 완료하지 못했습니다.');
-  instance.setActiveAccount(result.account);
-  return { account: result.account.username || result.account.name || 'Microsoft 계정' };
+  return runInteractive(async () => {
+    const existing = instance.getActiveAccount() || instance.getAllAccounts()[0] || null;
+    if (existing) return { account: existing.username || existing.name || 'Microsoft 계정' };
+    const result = await instance.loginPopup({
+      scopes: SCOPES,
+      prompt: 'select_account',
+      redirectUri: redirectUri()
+    });
+    if (!result?.account) throw new Error('Microsoft 계정 연결을 완료하지 못했습니다.');
+    instance.setActiveAccount(result.account);
+    return { account: result.account.username || result.account.name || 'Microsoft 계정' };
+  });
 }
 
 export async function disconnectOneDrive() {
   const instance = await getMsal();
   const account = instance.getActiveAccount() || instance.getAllAccounts()[0] || null;
   if (!account) return;
-  await instance.logoutPopup({ account, postLogoutRedirectUri: redirectUri() });
+  await runInteractive(() => instance.logoutPopup({ account, postLogoutRedirectUri: appUri() }));
 }
 
 async function accessToken() {
@@ -86,11 +109,22 @@ async function accessToken() {
     if (!account) throw new Error(`${connected.account} 연결 정보를 확인하지 못했습니다.`);
   }
   try {
-    const result = await instance.acquireTokenSilent({ scopes: SCOPES, account });
+    const result = await instance.acquireTokenSilent({
+      scopes: SCOPES,
+      account,
+      redirectUri: redirectUri()
+    });
     return result.accessToken;
-  } catch {
-    const result = await instance.acquireTokenPopup({ scopes: SCOPES, account });
-    return result.accessToken;
+  } catch (error) {
+    if (!(error instanceof InteractionRequiredAuthError)) throw error;
+    return runInteractive(async () => {
+      const result = await instance.acquireTokenPopup({
+        scopes: SCOPES,
+        account,
+        redirectUri: redirectUri()
+      });
+      return result.accessToken;
+    });
   }
 }
 
