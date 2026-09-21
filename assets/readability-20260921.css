@@ -154,16 +154,27 @@ body:not(.rate-page) .copyright{font-size:.88rem}
   .rate-page .mobile-quote-bar-value strong{font-size:1.15rem}
 }
 
-/* ---------- Targeted desktop balance after readability pass ---------- */
-@media (max-width:1280px) and (min-width:821px){
+/* ---------- Desktop header balance: keep every menu item visible ---------- */
+@media (max-width:1280px) and (min-width:1051px){
   body:not(.rate-page) .brand,
   body:not(.rate-page) .precon-badge,
   body:not(.rate-page) .nav>.btn{flex:0 0 auto}
-  body:not(.rate-page) .nav{gap:10px}
-  body:not(.rate-page) .menu{gap:11px;font-size:.88rem}
-  body:not(.rate-page) .menu a[href="#about"],
-  body:not(.rate-page) .menu a[href="#principles"],
-  body:not(.rate-page) .menu a[href="#faq"]{display:none}
+  body:not(.rate-page) .nav{gap:8px}
+  body:not(.rate-page) .brand-copy{font-size:1.28rem}
+  body:not(.rate-page) .menu{gap:8px;font-size:.80rem}
+  body:not(.rate-page) .precon-badge{padding:5px 7px;gap:5px}
+  body:not(.rate-page) .precon-badge-copy strong{font-size:.72rem}
+  body:not(.rate-page) .nav>.btn{padding-left:12px;padding-right:12px;font-size:.88rem}
+}
+@media (max-width:1050px) and (min-width:821px){
+  body:not(.rate-page) .nav{gap:6px}
+  body:not(.rate-page) .brand-copy{font-size:1.12rem}
+  body:not(.rate-page) .brand-copy small{font-size:.58rem}
+  body:not(.rate-page) .menu{gap:5px;font-size:.72rem}
+  body:not(.rate-page) .precon-badge{padding:4px 6px;gap:4px}
+  body:not(.rate-page) .precon-badge-icon{width:25px;height:25px;font-size:.8rem}
+  body:not(.rate-page) .precon-badge-copy strong{font-size:.66rem}
+  body:not(.rate-page) .nav>.btn{padding-left:9px;padding-right:9px;font-size:.78rem}
 }
 
 /* Purpose recommendation: give long data labels room without shrinking the text. */
