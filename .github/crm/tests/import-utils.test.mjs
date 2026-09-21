@@ -47,13 +47,26 @@ assert.equal(classified.valid[0].installment_months, 24);
 assert.equal(classified.review.length, 0);
 assert.equal(classified.ignored, 2);
 
-const d = dedupeImportRows([
-  {name:'A',phone:duplicatePhone,birth_date:'1980-01-01',opened_on:'2024-01-01'},
-  {name:'A',phone:duplicatePhone,birth_date:'1980-01-01',opened_on:'2025-01-01'}
+const historyRows = dedupeImportRows([
+  {name:'A',phone:duplicatePhone,birth_date:'1980-01-01',opened_on:'2024-01-01',carrier:'SKT',device_model:'MODEL-A',installment_months:24},
+  {name:'A',phone:duplicatePhone,birth_date:'1980-01-01',opened_on:'2025-01-01',carrier:'KT',device_model:'MODEL-B',installment_months:24}
 ]);
-assert.equal(d.rows.length, 1);
-assert.equal(d.rows[0].opened_on, '2025-01-01');
-assert.equal(d.duplicates, 1);
+assert.equal(historyRows.rows.length, 2);
+assert.equal(historyRows.duplicates, 0);
+
+const exactDuplicate = dedupeImportRows([
+  {name:'A',phone:duplicatePhone,birth_date:'1980-01-01',opened_on:'2025-01-01',carrier:'KT',device_model:'MODEL-B',installment_months:24},
+  {name:'A',phone:duplicatePhone,birth_date:'1980-01-01',opened_on:'2025-01-01',carrier:'KT',device_model:'MODEL-B',installment_months:24}
+]);
+assert.equal(exactDuplicate.rows.length, 1);
+assert.equal(exactDuplicate.duplicates, 1);
+
+const holderConflict = dedupeImportRows([
+  {name:'A',phone:duplicatePhone,birth_date:'1980-01-01',opened_on:'2025-01-01'},
+  {name:'B',phone:duplicatePhone,birth_date:'1981-01-01',opened_on:'2026-01-01'}
+]);
+assert.equal(holderConflict.rows.length, 0);
+assert.equal(holderConflict.conflicts.length, 2);
 
 const sameNameDifferentLines = dedupeImportRows([
   {name:'동일명의',phone:duplicatePhone,birth_date:'1980-01-01',opened_on:'2025-01-01'},

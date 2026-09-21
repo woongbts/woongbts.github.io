@@ -211,26 +211,49 @@ export function classifyImportRows(objects, fileName = '') {
 }
 
 export function dedupeImportRows(rows) {
-  const byPhone = new Map();
-  const conflicts = [];
+  const identityByPhone = new Map();
+  const conflictPhones = new Set();
+  const byContract = new Map();
+  const allRowsByPhone = new Map();
   let duplicates = 0;
 
-  for (const row of rows || []) {
-    const previous = byPhone.get(row.phone);
-    if (!previous) { byPhone.set(row.phone, row); continue; }
+  const nameKey = value => String(value || '').trim().replace(/\s+/g, '').toLowerCase();
+  const deviceKey = value => String(value || '').trim().replace(/\s+/g, '').toLowerCase();
 
-    if (previous.birth_date && row.birth_date && previous.birth_date !== row.birth_date) {
-      conflicts.push({ ...row, _reasons:['같은 전화번호에 다른 생년월일'] });
-      byPhone.delete(row.phone);
-      duplicates++;
-      continue;
+  for (const row of rows || []) {
+    const phone = String(row.phone || '');
+    const identity = identityByPhone.get(phone);
+    const nextIdentity = { name: nameKey(row.name), birth: String(row.birth_date || '') };
+    if (identity) {
+      if ((identity.name && nextIdentity.name && identity.name !== nextIdentity.name) ||
+          (identity.birth && nextIdentity.birth && identity.birth !== nextIdentity.birth)) {
+        conflictPhones.add(phone);
+      }
+    } else {
+      identityByPhone.set(phone, nextIdentity);
     }
-    const prevDate = previous.opened_on || '';
-    const nextDate = row.opened_on || '';
-    if (nextDate >= prevDate) byPhone.set(row.phone, row);
-    duplicates++;
+    if (!allRowsByPhone.has(phone)) allRowsByPhone.set(phone, []);
+    allRowsByPhone.get(phone).push(row);
+
+    const contractKey = [
+      phone,
+      row.opened_on || '',
+      row.carrier || '',
+      deviceKey(row.device_model),
+      row.installment_months ?? ''
+    ].join('|');
+    if (byContract.has(contractKey)) duplicates++;
+    else byContract.set(contractKey, row);
   }
-  return { rows:[...byPhone.values()], conflicts, duplicates };
+
+  const conflicts = [];
+  for (const phone of conflictPhones) {
+    for (const row of allRowsByPhone.get(phone) || []) {
+      conflicts.push({ ...row, _reasons:['같은 전화번호의 명의자 정보 충돌'] });
+    }
+  }
+  const kept = [...byContract.values()].filter(row => !conflictPhones.has(String(row.phone || '')));
+  return { rows: kept, conflicts, duplicates };
 }
 
 function monthKey(year, month) {

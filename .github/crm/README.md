@@ -17,7 +17,8 @@
 
 - Excel(.xls/.xlsx)/CSV 가져오기 및 헤더 자동 매핑
 - 이름/전화번호 암호화 저장
-- 통신사, 개통일, 약정개월, 기기명 관리
+- 통신사, 개통일, 할부개월수, 기기명 관리
+- 같은 전화번호의 과거 개통을 `customer_contracts` 계약 이력으로 보존
 - 광고성 문자 수신동의 상태 및 증빙 기록
 - 22~30개월 경과 고객 자동 필터
 - 수신동의 고객만 캠페인 대상 산정
@@ -55,8 +56,22 @@ openssl rand -base64 32
 - 통신사
 - 기종 / 사용기종 / 단말기
 - 개통일 / 가입일
-- 약정개월 / 약정기간
+- 할부개월수 / 할부개월 / 할부기간
 - 광고수신동의 / 문자수신동의
 - 동의일
 
 주민등록번호, 신분증 이미지, 계좌번호, 카드번호는 이 CRM에 넣지 않는다.
+
+
+## OneDrive 직접 가져오기 설정
+
+CRM은 Microsoft Graph의 최소 위임 권한 `Files.Read`만 사용해 개인 OneDrive의 `웅비통신/웅비통신 판매일보` 폴더를 브라우저에서 직접 읽는다. 원본 Excel과 Microsoft 액세스 토큰은 Worker/D1/GitHub로 전송하지 않는다.
+
+1. Microsoft Entra 관리센터에서 새 앱 등록
+2. 지원 계정 유형에 개인 Microsoft 계정을 포함
+3. Authentication > Single-page application(SPA)에 `https://woongbi-crm.woongbts.workers.dev/` 등록
+4. Microsoft Graph Delegated permission `Files.Read`만 추가 (`Files.ReadWrite` 불필요)
+5. Application (client) ID를 CRM의 최초 1회 설정에 입력
+6. CRM에서 Microsoft 계정 연결 후 기간을 선택하고 판매일보를 분석
+
+Client ID는 공개 식별자라 브라우저 localStorage에 저장할 수 있지만, 액세스 토큰은 MSAL의 sessionStorage에만 두고 장기 저장하지 않는다.

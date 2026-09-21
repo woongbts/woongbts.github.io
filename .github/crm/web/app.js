@@ -3,6 +3,7 @@ import {
   classifyImportRows, dedupeImportRows, detectBestTable, formatInstallment, formatPhone,
   rowsToObjects, selectSalesFilesByRange
 } from './import-utils.js';
+import { connectOneDrive, disconnectOneDrive, discoverOneDriveSalesFiles, downloadOneDriveFiles, getOneDriveStatus, getStoredOneDriveClientId, setStoredOneDriveClientId } from './onedrive.js';
 
 const $ = id => document.getElementById(id);
 let importRows = [];
@@ -17,6 +18,10 @@ $('search-customers').addEventListener('click', loadCustomers);
 $('filter-query').addEventListener('keydown', event => { if (event.key === 'Enter') loadCustomers(); });
 $('read-file').addEventListener('click', () => readExcel('files'));
 $('read-folder').addEventListener('click', () => readExcel('folder'));
+$('od-save-client').addEventListener('click', saveOneDriveClientId);
+$('od-connect').addEventListener('click', connectOneDriveUi);
+$('od-import').addEventListener('click', readOneDrive);
+$('od-disconnect').addEventListener('click', disconnectOneDriveUi);
 $('run-import').addEventListener('click', runImport);
 $('preview-campaign').addEventListener('click', previewCampaign);
 $('save-consent').addEventListener('click', saveConsent);
@@ -32,6 +37,7 @@ async function api(path, options={}) {
 
 async function boot() {
   try {
+    await refreshOneDriveStatus();
     const [health, dash] = await Promise.all([api('/api/health'), api('/api/dashboard')]);
     $('security').textContent = health.sms_mode === 'enabled'
       ? 'Cloudflare Access 인증 · D1 + AES-GCM 암호화 저장 · 원본파일 미보관 · 문자 실발송 활성 상태'
@@ -83,6 +89,7 @@ async function showCustomer(id) {
     $('detail-name').textContent = c.name;
     $('detail-list').innerHTML = `<dt>개통일</dt><dd>${esc(c.opened_on||'-')}</dd><dt>연락처</dt><dd>${esc(formatPhone(c.phone))}</dd><dt>생년월일</dt><dd>${esc(c.birth_date||'-')}</dd><dt>통신사</dt><dd>${esc(c.carrier||'-')}</dd><dt>단말기</dt><dd>${esc(c.device_model||'-')}</dd><dt>할부개월</dt><dd>${esc(formatInstallment(c.installment_months))}</dd><dt>개통 후 경과</dt><dd>${c.months_since_open==null?'-':`${c.months_since_open}개월`}</dd><dt>문자동의</dt><dd>${consentLabel(c.ad_sms_status)}</dd>`;
     renderRelatedLines(c.related_lines || []);
+    renderContractHistory(c.contracts || []);
     const now = new Date(); now.setMinutes(now.getMinutes()-now.getTimezoneOffset()); $('consent-at').value = now.toISOString().slice(0,16);
     $('customer-dialog').showModal();
   } catch (error) { showError(error); }
@@ -103,6 +110,87 @@ function renderRelatedLines(lines) {
     <button type="button" data-detail="${line.id}">이 회선 보기</button>
   </article>`).join('');
   bindDetailButtons();
+}
+
+function renderContractHistory(contracts) {
+  const wrap = $('contract-history-wrap');
+  if (!contracts.length) {
+    wrap.classList.add('hidden');
+    $('contract-history').innerHTML = '';
+    return;
+  }
+  wrap.classList.remove('hidden');
+  $('contract-history-count').textContent = `${contracts.length}건`;
+  $('contract-history').innerHTML = contracts.map(contract => `<article class="contract-history-item">
+    <div><b>${esc(contract.opened_on || '-')}</b><span>${esc(contract.carrier || '-')}</span></div>
+    <p>${esc(contract.device_model || '-')} · ${esc(formatInstallment(contract.installment_months))}${contract.current_snapshot ? ' · 기존 현재정보' : ''}</p>
+  </article>`).join('');
+}
+
+async function refreshOneDriveStatus() {
+  const clientId = getStoredOneDriveClientId();
+  if ($('od-client-id') && !$('od-client-id').value) $('od-client-id').value = clientId;
+  const status = await getOneDriveStatus();
+  const label = $('od-status');
+  if (!status.configured) {
+    label.textContent = '설정 필요';
+    label.className = 'connection-state pending';
+    return;
+  }
+  if (status.connected) {
+    label.textContent = `연결됨 · ${status.account || 'Microsoft 계정'}`;
+    label.className = 'connection-state connected';
+  } else {
+    label.textContent = 'Client ID 저장됨 · 계정 연결 필요';
+    label.className = 'connection-state pending';
+  }
+}
+
+async function saveOneDriveClientId() {
+  try {
+    setStoredOneDriveClientId($('od-client-id').value);
+    await refreshOneDriveStatus();
+    alert('Microsoft Client ID를 이 브라우저에 저장했습니다. Client ID는 비밀키가 아닙니다.');
+  } catch (error) { showError(error); }
+}
+
+async function connectOneDriveUi() {
+  try {
+    const typed = $('od-client-id').value.trim();
+    if (typed && typed !== getStoredOneDriveClientId()) setStoredOneDriveClientId(typed);
+    $('od-status').textContent = 'Microsoft 로그인 중...';
+    await connectOneDrive();
+    await refreshOneDriveStatus();
+  } catch (error) { showError(error); await refreshOneDriveStatus(); }
+}
+
+async function disconnectOneDriveUi() {
+  try {
+    await disconnectOneDrive();
+    await refreshOneDriveStatus();
+  } catch (error) { showError(error); }
+}
+
+async function readOneDrive() {
+  try {
+    if (!getStoredOneDriveClientId()) {
+      $('onedrive-setup').open = true;
+      throw new Error('Microsoft Client ID를 먼저 저장한 뒤 OneDrive를 연결해 주세요.');
+    }
+    $('import-progress').classList.remove('hidden');
+    const progress = message => { $('import-progress').textContent = message; };
+    const allFiles = await discoverOneDriveSalesFiles(progress);
+    const selection = selectSalesFilesByRange(allFiles, $('od-start').value, $('od-end').value);
+    if (!selection.files.length) throw new Error('선택한 기간의 OneDrive 판매일보를 찾지 못했습니다.');
+    const missing = selection.missingMonths.length
+      ? `<br><b>⚠ 누락 월:</b> ${esc(selection.missingMonths.join(', '))}`
+      : '<br><b>월별 파일:</b> 기간 내 모든 월 확인';
+    const note = `<br><b>OneDrive 직접 연결:</b> ${esc(selection.start)} ~ ${esc(selection.end)} · 대상 <b>${selection.files.length}개 파일</b> / 예상 ${selection.expectedCount}개월 · 중복 사본 ${selection.duplicates.length}개 제외 · 범위 밖 ${selection.outOfRange.length}개 제외 · 기타 파일 ${selection.unmatched.length}개 제외${missing}`;
+    const files = await downloadOneDriveFiles(selection.files, progress);
+    await analyzeSelectedFiles(files, note);
+  } catch (error) {
+    showError(error);
+  }
 }
 
 async function saveConsent() {
@@ -147,8 +235,13 @@ async function readExcel(mode='files') {
     importSelectionNote = `<br><b>직접 선택:</b> ${files.length}개 파일`;
   }
 
+  return analyzeSelectedFiles(files, importSelectionNote);
+}
+
+async function analyzeSelectedFiles(files, selectionNote='') {
   selectedImportFiles = files;
-  try {
+  importSelectionNote = selectionNote;
+try {
     importRows = [];
     reviewRows = [];
     const summaries = [];
@@ -182,18 +275,18 @@ async function readExcel(mode='files') {
     reviewRows.push(...deduped.conflicts);
     totalDuplicates += deduped.duplicates;
 
-    $('import-progress').textContent = `D1 기존 고객과 비교 중 · ${importRows.length.toLocaleString('ko-KR')}개 회선`;
+    $('import-progress').textContent = `D1 기존 고객·계약 이력과 비교 중 · ${importRows.length.toLocaleString('ko-KR')}개 계약`;
     await nextPaint();
-    const serverPreview = importRows.length ? await previewImportRows(importRows) : {new_count:0,update_count:0,unchanged_count:0,conflicts:0};
+    const serverPreview = importRows.length ? await previewImportRows(importRows) : {new_customer_count:0,new_contract_count:0,existing_contract_count:0,conflicts:0};
     const totalReview = reviewRows.length + Number(serverPreview.conflicts || 0);
     const errorNote = fileErrors.length
       ? `<br><b>⚠ 파일 분석 실패 ${fileErrors.length}개</b><details><summary>실패 파일 보기</summary>${fileErrors.map(esc).join('<br>')}</details>`
       : '';
 
     $('import-summary').classList.remove('hidden');
-    $('import-summary').innerHTML = `<b>자동 분석 완료</b><br>신규 <b>${serverPreview.new_count.toLocaleString('ko-KR')}명</b> · 기존 갱신 <b>${serverPreview.update_count.toLocaleString('ko-KR')}명</b> · 기존 최신정보 유지 <b>${serverPreview.unchanged_count.toLocaleString('ko-KR')}명</b> · 확인 필요 <b>${totalReview.toLocaleString('ko-KR')}건</b><br>같은 번호 최신정보 정리 <b>${totalDuplicates.toLocaleString('ko-KR')}건</b> · 빈칸/합계 제외 <b>${totalIgnored.toLocaleString('ko-KR')}행</b>${importSelectionNote}${errorNote}<details><summary>파일별 분석 보기</summary>${summaries.map(esc).join('<br>')}</details>`;
+    $('import-summary').innerHTML = `<b>자동 분석 완료</b><br>신규 고객 <b>${Number(serverPreview.new_customer_count || 0).toLocaleString('ko-KR')}명</b> · 기존 고객 새 계약 <b>${Number(serverPreview.new_contract_count || 0).toLocaleString('ko-KR')}건</b> · 이미 등록된 계약 <b>${Number(serverPreview.existing_contract_count || 0).toLocaleString('ko-KR')}건</b> · 확인 필요 <b>${totalReview.toLocaleString('ko-KR')}건</b><br>동일 계약 중복 정리 <b>${totalDuplicates.toLocaleString('ko-KR')}건</b> · 빈칸/합계 제외 <b>${totalIgnored.toLocaleString('ko-KR')}행</b>${importSelectionNote}${errorNote}<details><summary>파일별 분석 보기</summary>${summaries.map(esc).join('<br>')}</details>`;
 
-    $('import-progress').textContent = `분석 완료 · ${files.length}개 파일 · 등록 후보 ${importRows.length.toLocaleString('ko-KR')}개 회선`;
+    $('import-progress').textContent = `분석 완료 · ${files.length}개 파일 · 등록 후보 ${importRows.length.toLocaleString('ko-KR')}개 계약`;
     renderImportPreview();
     $('preview-wrap').classList.toggle('hidden', !importRows.length);
     $('review-wrap').classList.toggle('hidden', !reviewRows.length);
@@ -205,13 +298,13 @@ async function readExcel(mode='files') {
 }
 
 async function previewImportRows(rows) {
-  const total = {new_count:0, update_count:0, unchanged_count:0, conflicts:0};
+  const total = {new_customer_count:0, new_contract_count:0, existing_contract_count:0, conflicts:0};
   for (let i=0; i<rows.length; i+=500) {
     const cleanRows = rows.slice(i,i+500).map(({_file_name,_reasons,_source_row,...row}) => row);
     const result = await api('/api/import/preview', { method:'POST', body:JSON.stringify({rows:cleanRows}) });
-    total.new_count += Number(result.new_count || 0);
-    total.update_count += Number(result.update_count || 0);
-    total.unchanged_count += Number(result.unchanged_count || 0);
+    total.new_customer_count += Number(result.new_customer_count || result.new_count || 0);
+    total.new_contract_count += Number(result.new_contract_count || result.update_count || 0);
+    total.existing_contract_count += Number(result.existing_contract_count || result.unchanged_count || 0);
     total.conflicts += Number(result.conflicts || 0);
   }
   return total;
@@ -270,22 +363,26 @@ async function runImport() {
   const files = selectedImportFiles;
   if (!files.length || !importRows.length) return;
   const reviewText = reviewRows.length ? `\n확인 필요 ${reviewRows.length}건은 자동 등록에서 제외됩니다.` : '';
-  if (!confirm(`${importRows.length.toLocaleString('ko-KR')}개 회선을 암호화 DB로 가져올까요? 같은 전화번호는 가장 최근 개통정보로 갱신하고, 다른 전화번호는 별도 회선으로 유지합니다. 원본 파일은 서버에 저장하지 않습니다.${reviewText}`)) return;
+  if (!confirm(`${importRows.length.toLocaleString('ko-KR')}개 계약 후보를 암호화 DB로 가져올까요? 같은 전화번호의 과거 계약은 계약 이력으로 보존하고, 고객 목록에는 가장 최근 개통정보를 표시합니다. 다른 전화번호는 별도 회선으로 유지합니다. 원본 파일은 서버에 저장하지 않습니다.${reviewText}`)) return;
 
   $('run-import').disabled=true; $('run-import').textContent='가져오는 중...';
   $('import-progress').classList.remove('hidden');
   try {
     const sourceLabel = files.length === 1 ? files[0].name : `판매일보 ${files.length}개 파일`;
-    let total={inserted:0,updated:0,skipped:0,conflicts:0};
+    let total={newCustomers:0,newContracts:0,existingContracts:0,skipped:0,conflicts:0};
     for (let i=0;i<importRows.length;i+=500) {
-      $('import-progress').textContent = `암호화 DB 저장 중 · ${Math.min(i + 500, importRows.length).toLocaleString('ko-KR')}/${importRows.length.toLocaleString('ko-KR')} 회선`;
+      $('import-progress').textContent = `암호화 DB 저장 중 · ${Math.min(i + 500, importRows.length).toLocaleString('ko-KR')}/${importRows.length.toLocaleString('ko-KR')} 계약`;
       await nextPaint();
       const cleanRows = importRows.slice(i,i+500).map(({_file_name,_reasons,_source_row,...row}) => row);
       const result=await api('/api/import',{method:'POST',body:JSON.stringify({filename:sourceLabel,rows:cleanRows})});
-      total.inserted+=result.inserted; total.updated+=result.updated; total.skipped+=result.skipped; total.conflicts+=result.conflicts||0;
+      total.newCustomers += Number(result.new_customer_count ?? result.inserted ?? 0);
+      total.newContracts += Number(result.new_contract_count ?? result.updated ?? 0);
+      total.existingContracts += Number(result.existing_contract_count ?? 0);
+      total.skipped += Number(result.skipped || 0);
+      total.conflicts += Number(result.conflicts || 0);
     }
-    $('import-progress').textContent = `등록 완료 · 신규 ${total.inserted} · 갱신 ${total.updated}`;
-    alert(`완료\n신규 ${total.inserted}개 회선 · 갱신 ${total.updated}개 회선 · 제외 ${total.skipped}행${total.conflicts?` · 충돌 ${total.conflicts}건`:''}`);
+    $('import-progress').textContent = `등록 완료 · 신규 고객 ${total.newCustomers} · 새 계약 ${total.newContracts}`;
+    alert(`완료\n신규 고객 ${total.newCustomers}명 · 기존 고객 새 계약 ${total.newContracts}건 · 이미 등록된 계약 ${total.existingContracts}건 · 제외 ${total.skipped}행${total.conflicts?` · 충돌 ${total.conflicts}건`:''}`);
     resetImportUi();
     await boot(); openTab('customers');
   } catch(error){showError(error)} finally {$('run-import').disabled=false;$('run-import').textContent='암호화 DB에 가져오기'}

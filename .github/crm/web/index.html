@@ -63,6 +63,28 @@
       <h2>고객 판매일보 가져오기</h2>
       <p class="sub">Excel(.xls/.xlsx)/CSV 파일을 여러 개 선택할 수 있습니다. 원본 파일은 서버에 저장하지 않고, 필요한 고객정보만 브라우저에서 추출해 Cloudflare D1의 암호화 고객 DB로 전송합니다. 이름·연락처·생년월일·단말기는 암호화 저장하고 전화번호 검색·중복확인은 HMAC을 사용합니다.</p>
 
+      <div class="onedrive-card">
+        <div class="bulk-import-head">
+          <div><strong>OneDrive에서 바로 가져오기</strong><small>OneDrive의 <b>웅비통신/웅비통신 판매일보</b> 폴더를 CRM이 읽어 월별 판매일보를 직접 분석합니다. 원본 Excel은 CRM 서버나 GitHub에 저장하지 않습니다.</small></div>
+          <span id="od-status" class="connection-state pending">설정 확인 중</span>
+        </div>
+        <div class="bulk-range">
+          <label>시작월<input id="od-start" type="month" value="2019-07"></label>
+          <label>종료월<input id="od-end" type="month" value="2026-08"></label>
+        </div>
+        <div class="onedrive-actions">
+          <button id="od-connect" class="onedrive-connect">Microsoft 계정 연결</button>
+          <button id="od-import" class="primary-inline">OneDrive 판매일보 자동 분석</button>
+          <button id="od-disconnect">연결 해제</button>
+        </div>
+        <details id="onedrive-setup" class="onedrive-setup">
+          <summary>최초 1회 Microsoft 앱 설정</summary>
+          <p class="sub">Microsoft Entra 앱 등록에서 SPA 리디렉션 URI를 <b>https://woongbi-crm.woongbts.workers.dev/</b> 로 등록하고, Microsoft Graph 위임 권한 <b>Files.Read</b>만 허용합니다. Client ID는 비밀키가 아니며 이 브라우저에만 저장됩니다.</p>
+          <div class="client-id-row"><input id="od-client-id" autocomplete="off" placeholder="Application (client) ID"><button id="od-save-client">Client ID 저장</button></div>
+        </details>
+        <small class="privacy-note">Microsoft 로그인 토큰은 브라우저 세션에만 보관하며 CRM API·D1·GitHub로 전송하지 않습니다.</small>
+      </div>
+
       <div class="bulk-import-card">
         <div class="bulk-import-head">
           <div><strong>판매일보 폴더 통째로 분석</strong><small>PC의 OneDrive 동기화 폴더에서 <b>웅비통신 판매일보</b> 폴더를 한 번 선택하면 지정 기간의 월별 판매일보만 자동으로 골라냅니다.</small></div>
@@ -87,7 +109,7 @@
         </div>
       </details>
 
-      <div class="mapping-note">자동 인식: <b>개통일 · 이름 · 연락처 · 생년월일 · 통신사 · 단말기 · 할부개월수</b><br>같은 전화번호는 가장 최근 개통정보로 갱신하고, 이름이 같아도 전화번호가 다르면 별도 회선으로 유지합니다.</div>
+      <div class="mapping-note">자동 인식: <b>개통일 · 이름 · 연락처 · 생년월일 · 통신사 · 단말기 · 할부개월수</b><br>같은 전화번호의 과거 개통은 계약 이력으로 모두 보존하고, 고객 목록에는 가장 최근 개통정보를 표시합니다. 이름이 같아도 전화번호가 다르면 별도 회선으로 유지합니다.</div>
       <div id="import-progress" class="import-progress hidden" aria-live="polite"></div>
       <div id="import-summary" class="summary hidden"></div>
 
@@ -130,6 +152,14 @@
     <form method="dialog" class="dialog-card">
       <div class="dialog-head"><strong id="detail-name">고객</strong><button value="cancel" class="ghost">닫기</button></div>
       <dl id="detail-list"></dl>
+
+      <section id="contract-history-wrap" class="contract-history-wrap hidden">
+        <div class="related-lines-head">
+          <h3>계약 이력 <span id="contract-history-count"></span></h3>
+          <small>같은 전화번호의 과거 개통을 삭제하지 않고 보존합니다.</small>
+        </div>
+        <div id="contract-history"></div>
+      </section>
 
       <section id="related-lines-wrap" class="related-lines-wrap hidden">
         <div class="related-lines-head">
