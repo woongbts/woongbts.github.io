@@ -1,0 +1,155 @@
+/* Woongbi Telecom readability pass · 2026-09-21
+   Keep the in-store consultation flow intact while improving legibility. */
+
+/* ---------- Shared ---------- */
+body{font-size:17px}
+
+/* ---------- Main storefront ---------- */
+body:not(.rate-page){--muted:#435f69}
+body:not(.rate-page) .nav{gap:12px}
+body:not(.rate-page) .menu{flex:1;min-width:0;justify-content:center;gap:12px;font-size:.93rem}
+body:not(.rate-page) .menu a{white-space:nowrap}
+body:not(.rate-page) .precon-badge{padding:6px 8px;gap:6px}
+body:not(.rate-page) .precon-badge-copy small{display:none}
+body:not(.rate-page) .intro{font-size:1.15rem;line-height:1.78}
+body:not(.rate-page) .service-tags li{font-size:1rem;padding:8px 13px}
+body:not(.rate-page) .hero-phone{font-size:1.04rem;font-weight:700}
+body:not(.rate-page) .hero-foot{font-size:1rem}
+body:not(.rate-page) .eyebrow{font-size:1.02rem}
+body:not(.rate-page) .card p,
+body:not(.rate-page) .fact p{font-size:1.05rem;line-height:1.72}
+body:not(.rate-page) .card a{font-size:1rem}
+body:not(.rate-page) .persona-card h3{font-size:1.18rem;line-height:1.5}
+body:not(.rate-page) .persona-card p{font-size:1rem;line-height:1.68}
+body:not(.rate-page) .owner-note>span{font-size:.98rem}
+body:not(.rate-page) .owner-note p{font-size:1.02rem;line-height:1.7}
+body:not(.rate-page) .principle p{font-size:1rem;line-height:1.7}
+body:not(.rate-page) .quick-cta p{font-size:1rem}
+body:not(.rate-page) .trust-strip span{font-size:.94rem}
+body:not(.rate-page) .review-card{padding:20px}
+body:not(.rate-page) .review-card blockquote{font-size:1.02rem;line-height:1.72}
+body:not(.rate-page) .review-card figcaption{font-size:.86rem;line-height:1.5}
+body:not(.rate-page) .review-note{font-size:.96rem;line-height:1.65}
+body:not(.rate-page) .photo-caption{font-size:.98rem}
+body:not(.rate-page) .photo-hint{font-size:.86rem}
+body:not(.rate-page) .steps p{font-size:1.02rem;line-height:1.7}
+body:not(.rate-page) .faq-list summary{font-size:1.04rem;line-height:1.55}
+body:not(.rate-page) .faq-list details p{font-size:1.02rem;line-height:1.72}
+body:not(.rate-page) .section-note{font-size:1.02rem;line-height:1.7}
+body:not(.rate-page) .details dt{font-size:.95rem}
+body:not(.rate-page) .details dd{font-size:1.04rem;line-height:1.6}
+body:not(.rate-page) footer{font-size:.96rem;line-height:1.65}
+body:not(.rate-page) .copyright{font-size:.88rem}
+
+@media (max-width:1100px) and (min-width:821px){
+  body:not(.rate-page) .nav{gap:9px}
+  body:not(.rate-page) .menu{gap:9px;font-size:.88rem}
+  body:not(.rate-page) .brand-copy{font-size:1.4rem}
+  body:not(.rate-page) .precon-badge-copy strong{font-size:.78rem}
+  body:not(.rate-page) .nav>.btn{padding-left:13px;padding-right:13px}
+}
+
+@media(max-width:640px){
+  body:not(.rate-page){font-size:16.5px}
+  body:not(.rate-page) .intro{font-size:1.08rem}
+  body:not(.rate-page) .review-grid{grid-template-columns:1fr;gap:10px}
+  body:not(.rate-page) .review-card{padding:17px}
+  body:not(.rate-page) .review-card blockquote{font-size:1rem}
+  body:not(.rate-page) .review-card figcaption{font-size:.84rem}
+  body:not(.rate-page) .persona-card p,
+  body:not(.rate-page) .principle p,
+  body:not(.rate-page) .faq-list details p{font-size:1rem}
+  body:not(.rate-page) .mobile-bar .btn{font-size:.98rem}
+}
+
+/* ---------- Rate / consultation page ---------- */
+.rate-page{--muted:#526b74;line-height:1.6}
+.rate-page .rate-brand{font-size:1.03rem}
+.rate-page .rate-brand small{font-size:.74rem}
+.rate-page .rate-home{font-size:.92rem}
+.rate-page .rate-badge,
+.rate-page .eyebrow{font-size:.82rem}
+.rate-page .rate-hero>div>p{font-size:1.1rem;line-height:1.8}
+.rate-page .rate-hero-note{font-size:.94rem;line-height:1.7}
+.rate-page .rate-hero-shortcuts>span{font-size:.9rem}
+.rate-page .rate-hero-shortcuts button{font-size:.9rem;min-height:44px}
+.rate-page .rate-tab{font-size:.9rem;min-height:44px}
+.rate-page .updated{font-size:.84rem}
+.rate-page .mobile-mode-switch button{font-size:.9rem;line-height:1.35}
+.rate-page .mobile-mode-guide{font-size:.88rem;line-height:1.6;padding:13px 15px}
+.rate-page .purpose-head h3{font-size:1.42rem}
+.rate-page .purpose-head p{font-size:.9rem;line-height:1.7}
+.rate-page .purpose-tabs button strong{font-size:1rem}
+.rate-page .purpose-tabs button small{font-size:.78rem;line-height:1.45}
+.rate-page .purpose-controls{position:relative;padding:38px 12px 12px;border:1px solid #d7e5e7;border-radius:14px;background:#fbfdfd}
+.rate-page .purpose-controls:before{content:'현재 상담 조건';position:absolute;left:12px;top:10px;color:var(--navy);font-size:.82rem;font-weight:900}
+.rate-page .purpose-controls>label:not(.purpose-pension){font-size:.82rem}
+.rate-page .purpose-controls select{font-size:.98rem}
+.rate-page .purpose-pension strong{font-size:.88rem}
+.rate-page .purpose-pension small{font-size:.77rem;line-height:1.5}
+.rate-page .field-help{font-size:.8rem;line-height:1.55;color:#687f87}
+.rate-page .purpose-category-note{font-size:.86rem;line-height:1.65;padding:13px 14px}
+.rate-page .purpose-results>p{font-size:.88rem}
+.rate-page .purpose-card{padding:17px;gap:8px}
+.rate-page .purpose-card-top span{font-size:.76rem}
+.rate-page .purpose-card-top small{font-size:.72rem}
+.rate-page .purpose-card>strong{font-size:1.13rem;line-height:1.45}
+.rate-page .purpose-card>em{font-size:.83rem;line-height:1.55}
+.rate-page .purpose-card-total span{font-size:.75rem}
+.rate-page .purpose-card-total b{font-size:1.52rem}
+.rate-page .purpose-card-detail>div,
+.rate-page .purpose-method-compare>div{font-size:.79rem;padding:7px 0}
+.rate-page .purpose-card-detail b,
+.rate-page .purpose-method-compare b{font-size:.81rem}
+.rate-page .purpose-best{font-size:.8rem;line-height:1.55;padding:10px 11px}
+.rate-page .purpose-card-actions button{font-size:.83rem;min-height:42px}
+.rate-page .purpose-footnote{font-size:.78rem;line-height:1.6}
+.rate-page .rate-form label{font-size:.9rem}
+.rate-page .rate-form select,
+.rate-page .rate-form input[type='search']{font-size:1rem}
+.rate-page .result-label{font-size:.88rem}
+.rate-page .result-breakdown div{font-size:.9rem}
+.rate-page .rate-result p{font-size:.95rem;line-height:1.7}
+.rate-page .rate-warning{font-size:.85rem;line-height:1.65}
+.rate-page .rate-actions a{font-size:.88rem;min-height:46px}
+.rate-page .compare-head strong{font-size:1rem}
+.rate-page .compare-head span{font-size:.8rem}
+.rate-page .compare-card>span{font-size:.82rem}
+.rate-page .compare-card>small{font-size:.76rem}
+.rate-page .compare-card>em,
+.rate-page .compare-card>i{font-size:.8rem}
+.rate-page .compare-diff{font-size:.82rem}
+.rate-page .quick-title strong{font-size:1.08rem}
+.rate-page .quick-title span{font-size:.84rem}
+.rate-page .quick-fields label,
+.rate-page .device-compare-selects label{font-size:.84rem}
+.rate-page .quick-results>p{font-size:.84rem}
+.rate-page .quick-result-card>span{font-size:.76rem}
+.rate-page .quick-result-card>strong{font-size:1.08rem}
+.rate-page .quick-result-card>em{font-size:.8rem}
+.rate-page .quick-result-card>small{font-size:.77rem}
+.rate-page .rate-footer p{font-size:.86rem;line-height:1.7}
+
+@media(max-width:760px){
+  .rate-page{font-size:16.5px}
+  .rate-page .rate-hero h1{line-height:1.12}
+  .rate-page .rate-hero-shortcuts>div{gap:7px}
+  .rate-page .rate-hero-shortcuts button{font-size:.88rem;min-height:46px}
+  .rate-page .rate-tabs{gap:7px}
+  .rate-page .rate-tab{font-size:.87rem;padding:10px 13px}
+  .rate-page .mobile-mode-switch{gap:7px}
+  .rate-page .mobile-mode-switch button{font-size:.86rem;min-height:46px}
+  .rate-page .mobile-mode-guide{font-size:.85rem}
+  .rate-page .purpose-recommend{padding:18px}
+  .rate-page .purpose-tabs button{min-height:80px}
+  .rate-page .purpose-controls{padding:38px 11px 11px}
+  .rate-page .purpose-card>strong{font-size:1.1rem}
+  .rate-page .purpose-card>em{min-height:0}
+  .rate-page .purpose-card-detail>div,
+  .rate-page .purpose-method-compare>div{font-size:.81rem}
+  .rate-page .purpose-card-detail b,
+  .rate-page .purpose-method-compare b{font-size:.82rem}
+  .rate-page .rate-card{padding:18px}
+  .rate-page .mobile-quote-bar-value span{font-size:.72rem}
+  .rate-page .mobile-quote-bar-value strong{font-size:1.15rem}
+}
