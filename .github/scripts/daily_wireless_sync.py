@@ -78,6 +78,11 @@ def clean(value):
     return " ".join(str(value or "").replace("\t", " ").split())
 
 
+def clean_plan_text(value):
+    # Collapse repeated + separators from public plan feeds.
+    return re.sub(r"\+{2,}", "+", clean(value))
+
+
 def eligible_rows(rows):
     return [
         row
@@ -369,10 +374,10 @@ def main():
                     "carrier": carrier,
                     "name": clean(plan.get("plan_name")),
                     "monthly_fee": fee,
-                    "data": clean(plan.get("data")),
-                    "voice": clean(plan.get("voice")),
-                    "sms": clean(plan.get("sms")),
-                    "video": clean(plan.get("video")),
+                    "data": clean_plan_text(plan.get("data")),
+                    "voice": clean_plan_text(plan.get("voice")),
+                    "sms": clean_plan_text(plan.get("sms")),
+                    "video": clean_plan_text(plan.get("video")),
                     "age_limit": clean(plan.get("age_limit")),
                     "network_type": clean(init.get("network_type")),
                     "source_order": plan_order,
