@@ -225,3 +225,16 @@ body:not(.rate-page) .top .menu{gap:12px;flex-wrap:nowrap}
   .rate-page .plan-picker-body{flex:none;overflow:visible!important;min-height:auto}
   .rate-page .plan-picker-list{flex:none;overflow:visible!important;max-height:none;min-height:auto;scrollbar-gutter:auto}
 }
+
+/* User-supplied mark cropped from this store's KAIT certificate; preserve the artwork. */
+body:not(.rate-page) .top .precon-badge{display:inline-flex!important;flex:0 0 auto;padding:0;gap:0;border:0;border-radius:0;background:transparent;box-shadow:none;line-height:0}
+body:not(.rate-page) .top .precon-badge:hover{background:transparent;outline:2px solid var(--teal);outline-offset:3px}
+body:not(.rate-page) .top .precon-badge:focus-visible{outline:3px solid var(--teal);outline-offset:3px}
+body:not(.rate-page) .top .precon-official-mark{display:block!important;width:88px;height:auto;max-width:none;object-fit:contain;border-radius:0;flex:none}
+@media(max-width:640px){
+  body:not(.rate-page) .top .nav{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 12px}
+  body:not(.rate-page) .top .brand{grid-column:1;grid-row:1;margin:0}
+  body:not(.rate-page) .top .precon-badge{grid-column:2;grid-row:1 / span 2;align-self:center}
+  body:not(.rate-page) .top .nav>.btn{grid-column:1;grid-row:2;justify-self:start;padding:7px 12px;font-size:13px;min-height:34px}
+  body:not(.rate-page) .top .menu{grid-column:1 / -1;grid-row:3;min-width:0;width:100%}
+}
