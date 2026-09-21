@@ -30,6 +30,8 @@ jobs:
           rm -f .github/workflows/crm-tablet-consent-step1.yml .github/scripts/crm_tablet_consent_step1.py
           git add -A
           git commit -m "Add CRM tablet consent capture"
+          git rebase --abort >/dev/null 2>&1 || true
+          rm -rf .git/rebase-merge .git/rebase-apply
           git fetch origin main
-          git rebase origin/main
+          git merge origin/main --no-edit
           git push origin HEAD:main
