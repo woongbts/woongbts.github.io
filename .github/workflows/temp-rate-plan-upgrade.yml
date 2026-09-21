@@ -1,0 +1,264 @@
+name: Temporary CRM rate plan upgrade
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/temp-rate-plan-upgrade.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Patch storefront header and CRM rate plan support
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          def replace_once(path, old, new):
+              p = Path(path)
+              s = p.read_text(encoding='utf-8')
+              if old not in s:
+                  raise SystemExit(f'expected pattern not found in {path}: {old[:120]!r}')
+              p.write_text(s.replace(old, new, 1), encoding='utf-8')
+
+          # 1) Storefront header: restore the pre-readability header sizing/spacing only.
+          css = Path('assets/readability-20260921.css')
+          s = css.read_text(encoding='utf-8')
+          for line in [
+              'body:not(.rate-page) .nav{gap:12px}\n',
+              'body:not(.rate-page) .menu{flex:1;min-width:0;justify-content:center;gap:12px;font-size:.93rem}\n',
+              'body:not(.rate-page) .menu a{white-space:nowrap}\n',
+              'body:not(.rate-page) .precon-badge{padding:6px 8px;gap:6px}\n',
+              'body:not(.rate-page) .precon-badge-copy small{display:none}\n',
+          ]:
+              if line not in s:
+                  raise SystemExit(f'header override missing: {line!r}')
+              s = s.replace(line, '', 1)
+          block = '''@media (max-width:1100px) and (min-width:821px){\n  body:not(.rate-page) .nav{gap:9px}\n  body:not(.rate-page) .menu{gap:9px;font-size:.88rem}\n  body:not(.rate-page) .brand-copy{font-size:1.4rem}\n  body:not(.rate-page) .precon-badge-copy strong{font-size:.78rem}\n  body:not(.rate-page) .nav>.btn{padding-left:13px;padding-right:13px}\n}\n\n'''
+          if block not in s:
+              raise SystemExit('1100px header block missing')
+          s = s.replace(block, '', 1)
+          start = s.index('/* ---------- Desktop header balance: keep every menu item visible ---------- */')
+          end = s.index('/* Purpose recommendation:', start)
+          s = s[:start] + '/* ---------- Storefront header ---------- */\n/* Desktop header intentionally inherits the original site-pro.css sizing and spacing. */\n\n' + s[end:]
+          css.write_text(s, encoding='utf-8')
+
+          replace_once('index.html', 'assets/readability-20260921.css?v=2', 'assets/readability-20260921.css?v=3')
+
+          # 2) Import parser: recognize rate plan from both wireless and SIM sheets.
+          path = '.github/crm/web/import-utils.js'
+          replace_once(path,
+              "  device_model: ['기종','사용기종','단말기','모델','모델명','device','device_model'],\n  installment_months:",
+              "  device_model: ['기종','사용기종','단말기','모델','모델명','device','device_model'],\n  rate_plan: ['요금제','요금제명','사용요금제','가입요금제','요금상품','plan','rate_plan'],\n  installment_months:")
+          replace_once(path,
+              "const PREFERRED_FIELDS = new Set(['birth_date','carrier','device_model','installment_months']);",
+              "const PREFERRED_FIELDS = new Set(['birth_date','carrier','device_model','rate_plan','installment_months']);")
+          replace_once(path,
+              "    device_model: cellValue(raw.device_model).slice(0,120),\n    installment_months:",
+              "    device_model: cellValue(raw.device_model).slice(0,120),\n    rate_plan: cellValue(raw.rate_plan).slice(0,160),\n    installment_months:")
+
+          # 3) Worker schema + encrypted plan storage/backfill + current service type.
+          path = '.github/crm/src/worker.js'
+          replace_once(path,
+              "    if (!columns.has('installment_months')) {\n      await env.DB.exec('ALTER TABLE customers ADD COLUMN installment_months INTEGER CHECK (installment_months IS NULL OR installment_months BETWEEN 0 AND 60)');\n    }\n    await env.DB.exec('CREATE INDEX IF NOT EXISTS idx_customers_installment_months ON customers(installment_months)');",
+              "    if (!columns.has('installment_months')) {\n      await env.DB.exec('ALTER TABLE customers ADD COLUMN installment_months INTEGER CHECK (installment_months IS NULL OR installment_months BETWEEN 0 AND 60)');\n    }\n    if (!columns.has('rate_plan_enc')) {\n      await env.DB.exec('ALTER TABLE customers ADD COLUMN rate_plan_enc TEXT');\n    }\n    if (!columns.has('service_type')) {\n      await env.DB.exec(\"ALTER TABLE customers ADD COLUMN service_type TEXT CHECK (service_type IN ('wireless','sim') OR service_type IS NULL)\");\n    }\n    await env.DB.exec('CREATE INDEX IF NOT EXISTS idx_customers_installment_months ON customers(installment_months)');")
+          replace_once(path,
+              "      device_model_enc TEXT,\n      installment_months INTEGER CHECK",
+              "      device_model_enc TEXT,\n      rate_plan_enc TEXT,\n      installment_months INTEGER CHECK")
+          replace_once(path,
+              "    if (!contractColumns.has('service_type')) {\n      await env.DB.exec(\"ALTER TABLE customer_contracts ADD COLUMN service_type TEXT CHECK (service_type IN ('wireless','sim') OR service_type IS NULL)\");\n    }",
+              "    if (!contractColumns.has('service_type')) {\n      await env.DB.exec(\"ALTER TABLE customer_contracts ADD COLUMN service_type TEXT CHECK (service_type IN ('wireless','sim') OR service_type IS NULL)\");\n    }\n    if (!contractColumns.has('rate_plan_enc')) {\n      await env.DB.exec('ALTER TABLE customer_contracts ADD COLUMN rate_plan_enc TEXT');\n    }")
+          replace_once(path,
+              "function matchesCustomerQuery(query, name, phone) {",
+              "function normalizeRatePlan(value) {\n  return String(value || '').trim().replace(/\\s+/g, ' ').toLowerCase();\n}\n\nfunction matchesCustomerQuery(query, name, phone) {")
+          replace_once(path,
+              "  const consent = url.searchParams.get('consent');\n  const exactPhone",
+              "  const consent = url.searchParams.get('consent');\n  const serviceType = url.searchParams.get('service_type');\n  const exactPhone")
+          replace_once(path,
+              "  if (carrier) { clauses.push('c.carrier=?'); binds.push(normalizeCarrier(carrier)); }\n  if (exactPhone)",
+              "  if (carrier) { clauses.push('c.carrier=?'); binds.push(normalizeCarrier(carrier)); }\n  if (serviceType && ['wireless','sim'].includes(serviceType)) { clauses.push('c.service_type=?'); binds.push(serviceType); }\n  if (exactPhone)")
+          replace_once(path,
+              "      device_model: row.device_model_enc ? await decryptText(row.device_model_enc, env) : '',\n      opened_on: row.opened_on,",
+              "      device_model: row.device_model_enc ? await decryptText(row.device_model_enc, env) : '',\n      rate_plan: row.rate_plan_enc ? await decryptText(row.rate_plan_enc, env) : '',\n      service_type: row.service_type || 'wireless',\n      opened_on: row.opened_on,")
+          replace_once(path,
+              "    const peers = await env.DB.prepare(`SELECT id, name_enc, phone_enc, birth_date_enc, carrier, device_model_enc, opened_on, installment_months",
+              "    const peers = await env.DB.prepare(`SELECT id, name_enc, phone_enc, birth_date_enc, carrier, device_model_enc, rate_plan_enc, service_type, opened_on, installment_months")
+          replace_once(path,
+              "        device_model: peer.device_model_enc ? await decryptText(peer.device_model_enc, env) : '',\n        opened_on: peer.opened_on,",
+              "        device_model: peer.device_model_enc ? await decryptText(peer.device_model_enc, env) : '',\n        rate_plan: peer.rate_plan_enc ? await decryptText(peer.rate_plan_enc, env) : '',\n        service_type: peer.service_type || 'wireless',\n        opened_on: peer.opened_on,")
+          replace_once(path,
+              "  const contractResult = await env.DB.prepare(`SELECT id, opened_on, carrier, device_model_enc, installment_months, service_type, created_at",
+              "  const contractResult = await env.DB.prepare(`SELECT id, opened_on, carrier, device_model_enc, rate_plan_enc, installment_months, service_type, created_at")
+          replace_once(path,
+              "      device_model: contract.device_model_enc ? await decryptText(contract.device_model_enc, env) : '',\n      installment_months:",
+              "      device_model: contract.device_model_enc ? await decryptText(contract.device_model_enc, env) : '',\n      rate_plan: contract.rate_plan_enc ? await decryptText(contract.rate_plan_enc, env) : '',\n      installment_months:")
+          replace_once(path,
+              "      device_model: row.device_model_enc ? await decryptText(row.device_model_enc, env) : '',\n      installment_months: row.installment_months,\n      service_type: 'wireless',",
+              "      device_model: row.device_model_enc ? await decryptText(row.device_model_enc, env) : '',\n      rate_plan: row.rate_plan_enc ? await decryptText(row.rate_plan_enc, env) : '',\n      installment_months: row.installment_months,\n      service_type: row.service_type || 'wireless',")
+          replace_once(path,
+              "    device_model: row.device_model_enc ? await decryptText(row.device_model_enc, env) : '',\n    opened_on: row.opened_on,",
+              "    device_model: row.device_model_enc ? await decryptText(row.device_model_enc, env) : '',\n    rate_plan: row.rate_plan_enc ? await decryptText(row.rate_plan_enc, env) : '',\n    service_type: row.service_type || 'wireless',\n    opened_on: row.opened_on,")
+          replace_once(path,
+              "      device_model: String(raw.device_model || '').trim().slice(0, 120),\n      opened_on:",
+              "      device_model: String(raw.device_model || '').trim().slice(0, 120),\n      rate_plan: String(raw.rate_plan || '').trim().slice(0, 160),\n      opened_on:")
+          replace_once(path,
+              "    const found = await env.DB.prepare(`SELECT id, phone_hmac, name_enc, birth_date_enc, opened_on FROM customers WHERE phone_hmac IN (${placeholders})`).bind(...chunk).all();",
+              "    const found = await env.DB.prepare(`SELECT id, phone_hmac, name_enc, birth_date_enc, rate_plan_enc, service_type, opened_on FROM customers WHERE phone_hmac IN (${placeholders})`).bind(...chunk).all();")
+          replace_once(path,
+              "      item._birth = item.birth_date_enc ? await decryptText(item.birth_date_enc, env) : '';\n      existing.set(item.phone_hmac, item);",
+              "      item._birth = item.birth_date_enc ? await decryptText(item.birth_date_enc, env) : '';\n      item._rate_plan = item.rate_plan_enc ? await decryptText(item.rate_plan_enc, env) : '';\n      existing.set(item.phone_hmac, item);")
+          old_loader = '''async function loadExistingContractHashes(prepared, env) {\n  const hashes = [...new Set(prepared.map(row => row.contract_hash))];\n  const existing = new Set();\n  for (let i = 0; i < hashes.length; i += 80) {\n    const chunk = hashes.slice(i, i + 80);\n    if (!chunk.length) continue;\n    const placeholders = chunk.map(() => '?').join(',');\n    const found = await env.DB.prepare(`SELECT contract_hmac FROM customer_contracts WHERE contract_hmac IN (${placeholders})`).bind(...chunk).all();\n    for (const item of found.results || []) existing.add(item.contract_hmac);\n  }\n  return existing;\n}\n'''
+          new_loader = '''async function loadExistingContracts(prepared, env) {\n  const hashes = [...new Set(prepared.map(row => row.contract_hash))];\n  const existing = new Map();\n  for (let i = 0; i < hashes.length; i += 80) {\n    const chunk = hashes.slice(i, i + 80);\n    if (!chunk.length) continue;\n    const placeholders = chunk.map(() => '?').join(',');\n    const found = await env.DB.prepare(`SELECT id, customer_id, contract_hmac, rate_plan_enc FROM customer_contracts WHERE contract_hmac IN (${placeholders})`).bind(...chunk).all();\n    for (const item of found.results || []) {\n      item._rate_plan = item.rate_plan_enc ? await decryptText(item.rate_plan_enc, env) : '';\n      existing.set(item.contract_hmac, item);\n    }\n  }\n  return existing;\n}\n'''
+          replace_once(path, old_loader, new_loader)
+          p = Path(path); s = p.read_text(encoding='utf-8'); s = s.replace('loadExistingContractHashes(', 'loadExistingContracts('); p.write_text(s, encoding='utf-8')
+          replace_once(path,
+              "  let existingContractCount = 0;\n  let conflicts = prepared.conflicts;",
+              "  let existingContractCount = 0;\n  let planBackfillCount = 0;\n  let planConflictCount = 0;\n  let conflicts = prepared.conflicts;")
+          replace_once(path,
+              "    if (existingContracts.has(row.contract_hash)) { existingContractCount++; continue; }",
+              "    const existingContract = existingContracts.get(row.contract_hash);\n    if (existingContract) {\n      existingContractCount++;\n      if (row.rate_plan) {\n        if (!existingContract._rate_plan) planBackfillCount++;\n        else if (normalizeRatePlan(existingContract._rate_plan) !== normalizeRatePlan(row.rate_plan)) planConflictCount++;\n      }\n      continue;\n    }")
+          replace_once(path,
+              "    conflicts,\n    new_count:",
+              "    conflicts,\n    plan_backfill_count: planBackfillCount,\n    plan_conflict_count: planConflictCount,\n    new_count:")
+          replace_once(path,
+              "  let snapshotUpdates = 0;\n  let conflicts = preparedResult.conflicts;",
+              "  let snapshotUpdates = 0;\n  let planBackfilled = 0;\n  let planConflicts = 0;\n  let conflicts = preparedResult.conflicts;")
+          replace_once(path,
+              "    if (existingContracts.has(row.contract_hash)) {\n      alreadyRegistered++; skipped++; continue;\n    }",
+              "    const existingContract = existingContracts.get(row.contract_hash);\n    if (existingContract) {\n      alreadyRegistered++;\n      if (row.rate_plan) {\n        if (!existingContract._rate_plan) {\n          const ratePlanEnc = await encryptText(row.rate_plan, env);\n          contractStatements.push(env.DB.prepare('UPDATE customer_contracts SET rate_plan_enc=?, updated_at=? WHERE id=?').bind(ratePlanEnc, now, existingContract.id));\n          existingContract._rate_plan = row.rate_plan;\n          planBackfilled++;\n          if (current && row.opened_on && row.opened_on === current.opened_on && !current._rate_plan) {\n            customerStatements.push(env.DB.prepare('UPDATE customers SET rate_plan_enc=?, service_type=COALESCE(service_type,?), updated_at=? WHERE id=?').bind(ratePlanEnc, row.service_type, now, current.id));\n            current._rate_plan = row.rate_plan;\n            if (!current.service_type) current.service_type = row.service_type;\n          }\n        } else if (normalizeRatePlan(existingContract._rate_plan) !== normalizeRatePlan(row.rate_plan)) {\n          planConflicts++;\n        }\n      }\n      if (current && row.opened_on && row.opened_on === current.opened_on && !current.service_type) {\n        customerStatements.push(env.DB.prepare('UPDATE customers SET service_type=?, updated_at=? WHERE id=?').bind(row.service_type, now, current.id));\n        current.service_type = row.service_type;\n      }\n      skipped++; continue;\n    }")
+          replace_once(path,
+              "      const deviceEnc = row.device_model ? await encryptText(row.device_model, env) : null;\n      customerStatements.push(env.DB.prepare(`INSERT INTO customers\n        (id,phone_hmac,name_enc,phone_enc,birth_date_enc,carrier,device_model_enc,opened_on,installment_months,source_type,source_ref,created_at,updated_at)\n        VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)`)\n        .bind(id, row.phone_hash, nameEnc, phoneEnc, birthEnc, row.carrier, deviceEnc, row.opened_on, row.installment_months, 'excel', batchId, now, now));\n      current = { id, phone_hmac: row.phone_hash, _name: row.name, _birth: row.birth_date || '', opened_on: row.opened_on || '' };",
+              "      const deviceEnc = row.device_model ? await encryptText(row.device_model, env) : null;\n      const ratePlanEnc = row.rate_plan ? await encryptText(row.rate_plan, env) : null;\n      customerStatements.push(env.DB.prepare(`INSERT INTO customers\n        (id,phone_hmac,name_enc,phone_enc,birth_date_enc,carrier,device_model_enc,rate_plan_enc,service_type,opened_on,installment_months,source_type,source_ref,created_at,updated_at)\n        VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`)\n        .bind(id, row.phone_hash, nameEnc, phoneEnc, birthEnc, row.carrier, deviceEnc, ratePlanEnc, row.service_type, row.opened_on, row.installment_months, 'excel', batchId, now, now));\n      current = { id, phone_hmac: row.phone_hash, _name: row.name, _birth: row.birth_date || '', _rate_plan: row.rate_plan || '', service_type: row.service_type, opened_on: row.opened_on || '' };")
+          replace_once(path,
+              "      const deviceEnc = row.device_model ? await encryptText(row.device_model, env) : null;\n      customerStatements.push(env.DB.prepare(`UPDATE customers SET\n        name_enc=?, phone_enc=?, birth_date_enc=COALESCE(?,birth_date_enc), carrier=COALESCE(?,carrier),\n        device_model_enc=COALESCE(?,device_model_enc), opened_on=COALESCE(?,opened_on),\n        installment_months=COALESCE(?,installment_months), source_type='excel', source_ref=?, updated_at=?\n        WHERE id=?`)\n        .bind(nameEnc, phoneEnc, birthEnc, row.carrier, deviceEnc, row.opened_on, row.installment_months, batchId, now, current.id));",
+              "      const deviceEnc = row.device_model ? await encryptText(row.device_model, env) : null;\n      const ratePlanEnc = row.rate_plan ? await encryptText(row.rate_plan, env) : null;\n      customerStatements.push(env.DB.prepare(`UPDATE customers SET\n        name_enc=?, phone_enc=?, birth_date_enc=COALESCE(?,birth_date_enc), carrier=COALESCE(?,carrier),\n        device_model_enc=COALESCE(?,device_model_enc), rate_plan_enc=COALESCE(?,rate_plan_enc), service_type=COALESCE(?,service_type), opened_on=COALESCE(?,opened_on),\n        installment_months=COALESCE(?,installment_months), source_type='excel', source_ref=?, updated_at=?\n        WHERE id=?`)\n        .bind(nameEnc, phoneEnc, birthEnc, row.carrier, deviceEnc, ratePlanEnc, row.service_type, row.opened_on, row.installment_months, batchId, now, current.id));")
+          replace_once(path,
+              "      if (row.opened_on) current.opened_on = row.opened_on;\n      snapshotUpdates++;",
+              "      if (row.rate_plan) current._rate_plan = row.rate_plan;\n      if (row.service_type) current.service_type = row.service_type;\n      if (row.opened_on) current.opened_on = row.opened_on;\n      snapshotUpdates++;")
+          replace_once(path,
+              "    const contractDeviceEnc = row.device_model ? await encryptText(row.device_model, env) : null;\n    contractStatements.push(env.DB.prepare(`INSERT INTO customer_contracts\n      (id,customer_id,opened_on,carrier,device_model_enc,installment_months,contract_hmac,source_type,source_ref,created_at,updated_at,service_type)\n      VALUES (?,?,?,?,?,?,?,?,?,?,?,?)`)\n      .bind(crypto.randomUUID(), current.id, row.opened_on, row.carrier, contractDeviceEnc, row.installment_months, row.contract_hash, 'excel', batchId, now, now, row.service_type));\n    existingContracts.add(row.contract_hash);",
+              "    const contractDeviceEnc = row.device_model ? await encryptText(row.device_model, env) : null;\n    const contractRatePlanEnc = row.rate_plan ? await encryptText(row.rate_plan, env) : null;\n    const contractId = crypto.randomUUID();\n    contractStatements.push(env.DB.prepare(`INSERT INTO customer_contracts\n      (id,customer_id,opened_on,carrier,device_model_enc,rate_plan_enc,installment_months,contract_hmac,source_type,source_ref,created_at,updated_at,service_type)\n      VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)`)\n      .bind(contractId, current.id, row.opened_on, row.carrier, contractDeviceEnc, contractRatePlanEnc, row.installment_months, row.contract_hash, 'excel', batchId, now, now, row.service_type));\n    existingContracts.set(row.contract_hash, { id: contractId, customer_id: current.id, contract_hmac: row.contract_hash, _rate_plan: row.rate_plan || '' });")
+          replace_once(path,
+              "    already_registered: alreadyRegistered, snapshot_updates: snapshotUpdates,\n    skipped, conflicts",
+              "    already_registered: alreadyRegistered, snapshot_updates: snapshotUpdates,\n    plan_backfilled: planBackfilled, plan_conflicts: planConflicts,\n    skipped, conflicts")
+          replace_once(path,
+              "    snapshot_update_count: snapshotUpdates,\n    inserted:",
+              "    snapshot_update_count: snapshotUpdates,\n    plan_backfill_count: planBackfilled,\n    plan_conflict_count: planConflicts,\n    inserted:")
+
+          # 4) CRM UI: filters, list/detail/history and import summaries.
+          path = '.github/crm/web/index.html'
+          replace_once(path,
+              '<select id="filter-carrier"><option value="">전체 통신사</option><option>SKT</option><option>KT</option><option>LGU+</option><option>알뜰폰</option></select>\n          <select id="filter-installment">',
+              '<select id="filter-carrier"><option value="">전체 통신사</option><option>SKT</option><option>KT</option><option>LGU+</option><option>알뜰폰</option></select>\n          <select id="filter-service-type"><option value="">개통구분 전체</option><option value="wireless">휴대폰</option><option value="sim">유심</option></select>\n          <select id="filter-installment">')
+          replace_once(path,
+              '<thead><tr><th>개통일</th><th>이름</th><th>연락처</th><th>생년월일</th><th>통신사</th><th>단말기</th><th>할부</th><th>문자동의</th><th></th></tr></thead>\n          <tbody id="customer-body"><tr><td colspan="9"',
+              '<thead><tr><th>개통일</th><th>이름</th><th>연락처</th><th>생년월일</th><th>구분</th><th>통신사</th><th>단말기</th><th>요금제</th><th>할부</th><th>문자동의</th><th></th></tr></thead>\n          <tbody id="customer-body"><tr><td colspan="11"')
+          replace_once(path,
+              '이름·연락처·생년월일·단말기는 암호화 저장하고 전화번호 검색·중복확인은 HMAC을 사용합니다.',
+              '이름·연락처·생년월일·단말기·요금제는 암호화 저장하고 전화번호 검색·중복확인은 HMAC을 사용합니다.')
+          replace_once(path,
+              '<b>https://woongbi-crm.woongbts.workers.dev/</b> 로 등록하고',
+              '<b>https://woongbi-crm.woongbts.workers.dev/auth-redirect.html</b> 로 등록하고')
+          replace_once(path,
+              '자동 인식: <b>무선·유심 탭 · 개통일 · 이름 · 연락처 · 생년월일 · 통신사 · 단말기 · 할부개월수</b>',
+              '자동 인식: <b>무선·유심 탭 · 개통일 · 이름 · 연락처 · 생년월일 · 통신사 · 단말기 · 요금제 · 할부개월수</b>')
+          replace_once(path,
+              '<thead><tr><th>개통일</th><th>이름</th><th>연락처</th><th>생년월일</th><th>통신사</th><th>단말기</th><th>할부</th></tr></thead>',
+              '<thead><tr><th>개통일</th><th>이름</th><th>연락처</th><th>생년월일</th><th>구분</th><th>통신사</th><th>단말기</th><th>요금제</th><th>할부</th></tr></thead>')
+
+          path = '.github/crm/web/app.js'
+          replace_once(path,
+              "  if ($('filter-carrier').value) params.set('carrier',$('filter-carrier').value);\n  if ($('filter-consent').value)",
+              "  if ($('filter-carrier').value) params.set('carrier',$('filter-carrier').value);\n  if ($('filter-service-type').value) params.set('service_type',$('filter-service-type').value);\n  if ($('filter-consent').value)")
+          replace_once(path,
+              "  $('customer-body').innerHTML = '<tr><td colspan=\"9\" class=\"muted\">불러오는 중...</td></tr>';",
+              "  $('customer-body').innerHTML = '<tr><td colspan=\"11\" class=\"muted\">불러오는 중...</td></tr>';")
+          replace_once(path,
+              "if (!data.customers.length) { $('customer-body').innerHTML='<tr><td colspan=\"9\" class=\"muted\">조건에 맞는 고객이 없습니다.</td></tr>'; return; }",
+              "if (!data.customers.length) { $('customer-body').innerHTML='<tr><td colspan=\"11\" class=\"muted\">조건에 맞는 고객이 없습니다.</td></tr>'; return; }")
+          replace_once(path,
+              "      <td>${esc(c.carrier||'-')}</td><td>${esc(c.device_model||'-')}</td><td>${esc(formatInstallment(c.installment_months))}</td>",
+              "      <td>${c.service_type === 'sim' ? '유심' : '휴대폰'}</td><td>${esc(c.carrier||'-')}</td><td>${esc(c.device_model||'-')}</td><td>${esc(c.rate_plan||'-')}</td><td>${esc(formatInstallment(c.installment_months))}</td>")
+          replace_once(path,
+              "<dt>통신사</dt><dd>${esc(c.carrier||'-')}</dd><dt>단말기</dt><dd>${esc(c.device_model||'-')}</dd><dt>할부개월</dt>",
+              "<dt>개통구분</dt><dd>${c.service_type === 'sim' ? '유심' : '휴대폰'}</dd><dt>통신사</dt><dd>${esc(c.carrier||'-')}</dd><dt>단말기</dt><dd>${esc(c.device_model||'-')}</dd><dt>요금제</dt><dd>${esc(c.rate_plan||'-')}</dd><dt>할부개월</dt>")
+          replace_once(path,
+              "    <p>${esc(line.opened_on||'-')} · ${esc(line.device_model||'-')} · ${esc(formatInstallment(line.installment_months))}</p>",
+              "    <p>${esc(line.opened_on||'-')} · ${line.service_type === 'sim' ? '유심' : '휴대폰'} · ${esc(line.device_model||'-')} · ${esc(line.rate_plan||'-')} · ${esc(formatInstallment(line.installment_months))}</p>")
+          replace_once(path,
+              "    <p>${esc(contract.device_model || '-')} · ${esc(formatInstallment(contract.installment_months))}${contract.current_snapshot ? ' · 기존 현재정보' : ''}</p>",
+              "    <p>${esc(contract.device_model || '-')} · ${esc(contract.rate_plan || '-')} · ${esc(formatInstallment(contract.installment_months))}${contract.current_snapshot ? ' · 기존 현재정보' : ''}</p>")
+          replace_once(path,
+              "const serverPreview = importRows.length ? await previewImportRows(importRows) : {new_customer_count:0,new_contract_count:0,existing_contract_count:0,conflicts:0};",
+              "const serverPreview = importRows.length ? await previewImportRows(importRows) : {new_customer_count:0,new_contract_count:0,existing_contract_count:0,plan_backfill_count:0,plan_conflict_count:0,conflicts:0};")
+          replace_once(path,
+              " · 이미 등록된 계약 <b>${Number(serverPreview.existing_contract_count || 0).toLocaleString('ko-KR')}건</b> · 확인 필요",
+              " · 이미 등록된 계약 <b>${Number(serverPreview.existing_contract_count || 0).toLocaleString('ko-KR')}건</b> · 요금제 보충 예정 <b>${Number(serverPreview.plan_backfill_count || 0).toLocaleString('ko-KR')}건</b> · 요금제 불일치 <b>${Number(serverPreview.plan_conflict_count || 0).toLocaleString('ko-KR')}건</b> · 확인 필요")
+          replace_once(path,
+              "    <td>${esc(r.carrier||'-')}</td><td>${esc(r.device_model||'-')}</td><td>${esc(formatInstallment(r.installment_months))}</td></tr>`).join('');",
+              "    <td>${r.service_type === 'sim' ? '유심' : '휴대폰'}</td><td>${esc(r.carrier||'-')}</td><td>${esc(r.device_model||'-')}</td><td>${esc(r.rate_plan||'-')}</td><td>${esc(formatInstallment(r.installment_months))}</td></tr>`).join('');")
+          replace_once(path,
+              "    let total={newCustomers:0,newContracts:0,existingContracts:0,skipped:0,conflicts:0};",
+              "    let total={newCustomers:0,newContracts:0,existingContracts:0,planBackfilled:0,planConflicts:0,skipped:0,conflicts:0};")
+          replace_once(path,
+              "      total.existingContracts += Number(result.existing_contract_count ?? 0);\n      total.skipped",
+              "      total.existingContracts += Number(result.existing_contract_count ?? 0);\n      total.planBackfilled += Number(result.plan_backfill_count ?? 0);\n      total.planConflicts += Number(result.plan_conflict_count ?? 0);\n      total.skipped")
+          replace_once(path,
+              "alert(`완료\\n신규 고객 ${total.newCustomers}명 · 기존 고객 새 계약 ${total.newContracts}건 · 이미 등록된 계약 ${total.existingContracts}건 · 제외 ${total.skipped}행${total.conflicts?` · 충돌 ${total.conflicts}건`:''}`);",
+              "alert(`완료\\n신규 고객 ${total.newCustomers}명 · 기존 고객 새 계약 ${total.newContracts}건 · 이미 등록된 계약 ${total.existingContracts}건 · 요금제 보충 ${total.planBackfilled}건${total.planConflicts?` · 요금제 불일치 ${total.planConflicts}건(자동 덮어쓰기 안 함)`:''} · 제외 ${total.skipped}행${total.conflicts?` · 충돌 ${total.conflicts}건`:''}`);")
+
+          path = '.github/crm/web/styles.css'
+          replace_once(path, '.customer-table{min-width:1080px}', '.customer-table{min-width:1320px}')
+
+          # 5) Regression tests.
+          path = '.github/crm/tests/import-utils.test.mjs'
+          replace_once(path,
+              "{ name:'2월 유심', rows:[['구분','개통일','통신사','고객명','개통번호','생년월일','모델명'],['1','2026-02-01','SK','유심테스트','1012345678','900101','']] },",
+              "{ name:'2월 유심', rows:[['구분','개통일','통신사','고객명','개통번호','생년월일','모델명','요금제'],['1','2026-02-01','SK','유심테스트','1012345678','900101','','유심 7GB']] },")
+          replace_once(path,
+              "['구분','개통일','통신사','고객명','개통번호','생년월일','모델명','할부개월수'],\n    ['1','2026-02-19','KT(에이딘)','테스트고객','1093115987','730305','SM-S931NK','24개월'],",
+              "['구분','개통일','통신사','고객명','개통번호','생년월일','모델명','요금제','할부개월수'],\n    ['1','2026-02-19','KT(에이딘)','테스트고객','1093115987','730305','SM-S931NK','5G 베이직','24개월'],")
+          replace_once(path,
+              "assert.equal(simClassified.valid[0].installment_months, null);",
+              "assert.equal(simClassified.valid[0].installment_months, null);\nassert.equal(simClassified.valid[0].rate_plan, '유심 7GB');")
+          replace_once(path,
+              "assert.equal(classified.valid[0].installment_months, 24);",
+              "assert.equal(classified.valid[0].installment_months, 24);\nassert.equal(classified.valid[0].rate_plan, '5G 베이직');")
+
+          path = '.github/crm/tests/worker-schema.test.mjs'
+          replace_once(path,
+              "    const contracts = await db.prepare('PRAGMA table_info(customer_contracts)').all();",
+              "    const customers = await db.prepare('PRAGMA table_info(customers)').all();\n    assert.ok(customers.results.some(column => column.name === 'rate_plan_enc'));\n    assert.ok(customers.results.some(column => column.name === 'service_type'));\n    const contracts = await db.prepare('PRAGMA table_info(customer_contracts)').all();")
+          replace_once(path,
+              "    assert.ok(contracts.results.some(column => column.name === 'service_type'));",
+              "    assert.ok(contracts.results.some(column => column.name === 'service_type'));\n    assert.ok(contracts.results.some(column => column.name === 'rate_plan_enc'));")
+
+          # Reference migration for fresh/manual environments; runtime ensureSchema remains authoritative in production.
+          Path('.github/crm/migrations/0004_rate_plan.sql').write_text("""ALTER TABLE customers ADD COLUMN rate_plan_enc TEXT;\nALTER TABLE customers ADD COLUMN service_type TEXT CHECK (service_type IN ('wireless','sim') OR service_type IS NULL);\nALTER TABLE customer_contracts ADD COLUMN rate_plan_enc TEXT;\n""", encoding='utf-8')
+
+          # Public privacy disclosure: the CRM now processes plan name and service type as contract data.
+          path = 'privacy.html'
+          p = Path(path); s = p.read_text(encoding='utf-8')
+          old = '이름, 연락처, 생년월일, 개통일, 통신사, 단말기, 할부개월수'
+          if old not in s:
+              raise SystemExit('privacy field list not found')
+          p.write_text(s.replace(old, '이름, 연락처, 생년월일, 개통일, 통신사, 단말기, 요금제, 할부개월수, 개통구분(휴대폰/유심)', 1), encoding='utf-8')
+          PY
+      - name: Verify CRM
+        working-directory: .github/crm
+        run: |
+          npm install --ignore-scripts
+          npm run check
+          npm run build
+      - name: Commit changes
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add assets/readability-20260921.css index.html privacy.html .github/crm
+          git commit -m 'Add encrypted CRM rate plan history'
+          git push
