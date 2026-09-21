@@ -21,7 +21,7 @@ jobs:
       - name: Validate CRM
         working-directory: .github/crm
         run: npm install --ignore-scripts && npm run check && npm run build
-      - name: Commit changes and clean temporary files
+      - name: Commit changes and push with retry
         shell: bash
         run: |
           set -euo pipefail
@@ -30,8 +30,27 @@ jobs:
           rm -f .github/workflows/crm-tablet-consent-step1.yml .github/scripts/crm_tablet_consent_step1.py
           git add -A
           git commit -m "Add CRM tablet consent capture"
-          git rebase --abort >/dev/null 2>&1 || true
-          rm -rf .git/rebase-merge .git/rebase-apply
-          git fetch origin main
-          git merge origin/main --no-edit
-          git push origin HEAD:main
+
+          for attempt in $(seq 1 20); do
+            echo "Push attempt ${attempt}/20"
+            git fetch origin main
+            if ! git merge-base --is-ancestor origin/main HEAD; then
+              git merge origin/main --no-edit
+            fi
+
+            # Concurrent sync commits can reintroduce these temporary files from main.
+            rm -f .github/workflows/crm-tablet-consent-step1.yml .github/scripts/crm_tablet_consent_step1.py
+            git add -A
+            if ! git diff --cached --quiet; then
+              git commit -m "Clean CRM tablet consent temporary files"
+            fi
+
+            if git push origin HEAD:main; then
+              echo "Push succeeded"
+              exit 0
+            fi
+            sleep 3
+          done
+
+          echo "Failed to push after retries" >&2
+          exit 1
