@@ -153,3 +153,30 @@ body:not(.rate-page) .copyright{font-size:.88rem}
   .rate-page .mobile-quote-bar-value span{font-size:.72rem}
   .rate-page .mobile-quote-bar-value strong{font-size:1.15rem}
 }
+
+/* ---------- Targeted desktop balance after readability pass ---------- */
+@media (max-width:1280px) and (min-width:821px){
+  body:not(.rate-page) .brand,
+  body:not(.rate-page) .precon-badge,
+  body:not(.rate-page) .nav>.btn{flex:0 0 auto}
+  body:not(.rate-page) .nav{gap:10px}
+  body:not(.rate-page) .menu{gap:11px;font-size:.88rem}
+  body:not(.rate-page) .menu a[href="#about"],
+  body:not(.rate-page) .menu a[href="#principles"],
+  body:not(.rate-page) .menu a[href="#faq"]{display:none}
+}
+
+/* Purpose recommendation: give long data labels room without shrinking the text. */
+.rate-page .wb-v2-specs{grid-template-columns:1fr 1fr;gap:7px;margin:10px 0}
+.rate-page .wb-v2-specs>span{padding:9px 10px}
+.rate-page .wb-v2-specs>span:first-child{grid-column:1/-1;display:grid;grid-template-columns:58px minmax(0,1fr);align-items:center;gap:10px}
+.rate-page .wb-v2-specs>span:first-child small{margin:0}
+.rate-page .wb-v2-specs small{font-size:.72rem}
+.rate-page .wb-v2-specs b{font-size:.82rem;line-height:1.4;word-break:keep-all;overflow-wrap:anywhere}
+
+@media(max-width:560px){
+  .rate-page .wb-v2-specs{grid-template-columns:1fr}
+  .rate-page .wb-v2-specs>span,
+  .rate-page .wb-v2-specs>span:first-child{grid-column:auto;display:grid;grid-template-columns:54px minmax(0,1fr);align-items:center;gap:9px}
+  .rate-page .wb-v2-specs small{margin:0}
+}
