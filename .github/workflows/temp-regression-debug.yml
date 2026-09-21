@@ -1,0 +1,26 @@
+name: Temporary site regression diagnostics
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/temp-regression-debug.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Capture regression output
+        run: |
+          python3 .github/scripts/validate_site.py > .github/regression-debug.txt 2>&1 || true
+      - name: Commit diagnostic output
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add .github/regression-debug.txt
+          git commit -m 'Capture site regression diagnostics'
+          git push
