@@ -35,6 +35,7 @@ for (const hasProfile of [false, true]) {
     }
     const contracts = await db.prepare('PRAGMA table_info(customer_contracts)').all();
     assert.ok(contracts.results.some(column => column.name === 'contract_hmac'));
+    assert.ok(contracts.results.some(column => column.name === 'service_type'));
     const indexes = await db.prepare("SELECT name FROM sqlite_schema WHERE type='index' AND tbl_name='customer_contracts'").all();
     assert.ok(indexes.results.some(index => index.name === 'idx_customer_contracts_customer'));
     assert.ok(indexes.results.some(index => index.name === 'idx_customer_contracts_opened_on'));

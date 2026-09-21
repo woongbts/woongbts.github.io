@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import {
-  classifyImportRows, dedupeImportRows, detectBestTable, normalizeBirthDate,
+  classifyImportRows, dedupeImportRows, detectBestTable, detectImportTables, normalizeBirthDate,
   normalizeCarrier, normalizeInstallmentMonths, normalizePhone, parseSalesMonthFromFileName,
   rowsToObjects, selectSalesFilesByRange
 } from '../web/import-utils.js';
@@ -38,6 +38,17 @@ const sheets = [
 const detected = detectBestTable(sheets);
 assert.equal(detected.sheetName, '2월 무선');
 assert.equal(detected.headerIndex, 1);
+const importTables = detectImportTables(sheets);
+assert.equal(importTables.length, 2);
+assert.equal(importTables[0].sheetType, 'wireless');
+assert.equal(importTables[0].sheetName, '2월 무선');
+assert.equal(importTables[1].sheetType, 'sim');
+assert.equal(importTables[1].sheetName, '2월 유심');
+const simObjects = rowsToObjects(importTables[1].rows, importTables[1].headerIndex);
+const simClassified = classifyImportRows(simObjects, 'sample.xlsx');
+assert.equal(simClassified.valid.length, 1);
+assert.equal(simClassified.review.length, 0);
+assert.equal(simClassified.valid[0].installment_months, null);
 
 const objects = rowsToObjects(detected.rows, detected.headerIndex);
 const classified = classifyImportRows(objects, 'sample.xlsx');
@@ -53,6 +64,13 @@ const historyRows = dedupeImportRows([
 ]);
 assert.equal(historyRows.rows.length, 2);
 assert.equal(historyRows.duplicates, 0);
+
+const wirelessAndSim = dedupeImportRows([
+  {name:'A',phone:duplicatePhone,birth_date:'1980-01-01',opened_on:'2025-01-01',carrier:'KT',device_model:'',installment_months:null,service_type:'wireless'},
+  {name:'A',phone:duplicatePhone,birth_date:'1980-01-01',opened_on:'2025-01-01',carrier:'KT',device_model:'',installment_months:null,service_type:'sim'}
+]);
+assert.equal(wirelessAndSim.rows.length, 2);
+assert.equal(wirelessAndSim.duplicates, 0);
 
 const exactDuplicate = dedupeImportRows([
   {name:'A',phone:duplicatePhone,birth_date:'1980-01-01',opened_on:'2025-01-01',carrier:'KT',device_model:'MODEL-B',installment_months:24},

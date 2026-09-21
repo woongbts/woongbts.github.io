@@ -12,7 +12,9 @@ export const FIELD_ALIASES = {
 
 const KEY_FIELDS = new Set(['opened_on','name','phone']);
 const PREFERRED_FIELDS = new Set(['birth_date','carrier','device_model','installment_months']);
-const SKIP_SHEET = /(유심|선불|유선|렌탈|가망|수입|지출)/i;
+const EXCLUDED_SHEET = /(선불|유선|렌탈|가망|수입|지출)/i;
+const WIRELESS_SHEET = /무선/i;
+const SIM_SHEET = /(유심|usim)/i;
 
 export function cleanHeader(value) {
   return String(value ?? '').toLowerCase().replace(/[\s_()\-./]/g,'');
@@ -43,12 +45,47 @@ export function detectBestTable(sheets) {
       const sheetName = String(sheet?.name || '');
       if (/무선/.test(sheetName)) score += 8;
       if (/판매일보/.test(sheetName)) score += 3;
-      if (SKIP_SHEET.test(sheetName)) score -= 12;
+      if (EXCLUDED_SHEET.test(sheetName)) score -= 12;
       if (!best || score > best.score) best = { sheetName, headerIndex: rowIndex, score, rows };
     }
   }
   if (!best) throw new Error('고객명/전화번호가 있는 판매일보 헤더를 자동으로 찾지 못했습니다.');
   return best;
+}
+
+function detectTableInSheet(sheet, sheetType) {
+  const rows = Array.isArray(sheet?.rows) ? sheet.rows : [];
+  let best = null;
+  const max = Math.min(rows.length, 25);
+  for (let rowIndex = 0; rowIndex < max; rowIndex++) {
+    const row = Array.isArray(rows[rowIndex]) ? rows[rowIndex] : [];
+    const fields = new Set(row.map(fieldForHeader).filter(Boolean));
+    if (!fields.has('name') || !fields.has('phone')) continue;
+    let score = 20;
+    if (fields.has('opened_on')) score += 10;
+    for (const field of PREFERRED_FIELDS) if (fields.has(field)) score += 3;
+    if (!best || score > best.score) best = {
+      sheetName: String(sheet?.name || ''), headerIndex: rowIndex, score, rows, sheetType
+    };
+  }
+  return best;
+}
+
+export function detectImportTables(sheets) {
+  const detected = [];
+  for (const sheet of sheets || []) {
+    const name = String(sheet?.name || '');
+    if (EXCLUDED_SHEET.test(name)) continue;
+    const sheetType = SIM_SHEET.test(name) ? 'sim' : WIRELESS_SHEET.test(name) ? 'wireless' : '';
+    if (!sheetType) continue;
+    const table = detectTableInSheet(sheet, sheetType);
+    if (table) detected.push(table);
+  }
+  if (detected.length) {
+    return detected.sort((a, b) => (a.sheetType === 'wireless' ? 0 : 1) - (b.sheetType === 'wireless' ? 0 : 1));
+  }
+  const fallback = detectBestTable(sheets);
+  return [{ ...fallback, sheetType: SIM_SHEET.test(fallback.sheetName) ? 'sim' : 'wireless' }];
 }
 
 export function rowsToObjects(rows, headerIndex = 0) {
@@ -240,7 +277,8 @@ export function dedupeImportRows(rows) {
       row.opened_on || '',
       row.carrier || '',
       deviceKey(row.device_model),
-      row.installment_months ?? ''
+      row.installment_months ?? '',
+      row.service_type === 'sim' ? 'sim' : ''
     ].join('|');
     if (byContract.has(contractKey)) duplicates++;
     else byContract.set(contractKey, row);

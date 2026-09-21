@@ -1,6 +1,6 @@
 import { read, utils } from 'xlsx';
 import {
-  classifyImportRows, dedupeImportRows, detectBestTable, formatInstallment, formatPhone,
+  classifyImportRows, dedupeImportRows, detectImportTables, formatInstallment, formatPhone,
   rowsToObjects, selectSalesFilesByRange
 } from './import-utils.js';
 import { connectOneDrive, disconnectOneDrive, discoverOneDriveSalesFiles, downloadOneDriveFiles, getOneDriveStatus, getStoredOneDriveClientId, setStoredOneDriveClientId } from './onedrive.js';
@@ -122,7 +122,7 @@ function renderContractHistory(contracts) {
   wrap.classList.remove('hidden');
   $('contract-history-count').textContent = `${contracts.length}건`;
   $('contract-history').innerHTML = contracts.map(contract => `<article class="contract-history-item">
-    <div><b>${esc(contract.opened_on || '-')}</b><span>${esc(contract.carrier || '-')}</span></div>
+    <div><b>${esc(contract.opened_on || '-')}</b><span>${contract.service_type === 'sim' ? '유심' : '무선'} · ${esc(contract.carrier || '-')}</span></div>
     <p>${esc(contract.device_model || '-')} · ${esc(formatInstallment(contract.installment_months))}${contract.current_snapshot ? ' · 기존 현재정보' : ''}</p>
   </article>`).join('');
 }
@@ -263,7 +263,7 @@ try {
         importRows.push(...result.valid);
         reviewRows.push(...result.review);
         totalIgnored += result.ignored;
-        summaries.push(`${file.name}: ${result.valid.length}명 / 확인 ${result.review.length}건 · ${result.sheetName} 시트`);
+        summaries.push(`${file.name}: ${result.valid.length}건 / 확인 ${result.review.length}건 · ${result.sheetSummaries.join(' / ')}`);
       } catch (error) {
         fileErrors.push(`${file.name}: ${error.message}`);
         summaries.push(`${file.name}: 파일 분석 실패`);
@@ -298,16 +298,9 @@ try {
 }
 
 async function previewImportRows(rows) {
-  const total = {new_customer_count:0, new_contract_count:0, existing_contract_count:0, conflicts:0};
-  for (let i=0; i<rows.length; i+=500) {
-    const cleanRows = rows.slice(i,i+500).map(({_file_name,_reasons,_source_row,...row}) => row);
-    const result = await api('/api/import/preview', { method:'POST', body:JSON.stringify({rows:cleanRows}) });
-    total.new_customer_count += Number(result.new_customer_count || result.new_count || 0);
-    total.new_contract_count += Number(result.new_contract_count || result.update_count || 0);
-    total.existing_contract_count += Number(result.existing_contract_count || result.unchanged_count || 0);
-    total.conflicts += Number(result.conflicts || 0);
-  }
-  return total;
+  if (rows.length > 5000) throw new Error('미리보기는 한 번에 최대 5,000개 계약까지 확인할 수 있습니다.');
+  const cleanRows = rows.map(({_file_name,_reasons,_source_row,_sheet_name,...row}) => row);
+  return api('/api/import/preview', { method:'POST', body:JSON.stringify({rows:cleanRows}) });
 }
 
 async function analyzeFile(file) {
@@ -325,10 +318,22 @@ async function analyzeFile(file) {
     throw new Error(`${file.name}: 지원 형식은 .xls, .xlsx 또는 .csv 입니다.`);
   }
 
-  const detected = detectBestTable(sheets);
-  const objects = rowsToObjects(detected.rows, detected.headerIndex);
-  const classified = classifyImportRows(objects, file.name);
-  return { ...classified, sheetName:detected.sheetName };
+  const detectedTables = detectImportTables(sheets);
+  const combined = { valid:[], review:[], ignored:0, sheetSummaries:[] };
+  for (const detected of detectedTables) {
+    const objects = rowsToObjects(detected.rows, detected.headerIndex);
+    const classified = classifyImportRows(objects, file.name);
+    const sheetLabel = detected.sheetType === 'sim' ? '유심' : '무선';
+    combined.valid.push(...classified.valid.map(row => ({
+      ...row, service_type:detected.sheetType, _sheet_name:detected.sheetName
+    })));
+    combined.review.push(...classified.review.map(row => ({
+      ...row, service_type:detected.sheetType, _sheet_name:detected.sheetName
+    })));
+    combined.ignored += classified.ignored;
+    combined.sheetSummaries.push(`${detected.sheetName}(${sheetLabel}) ${classified.valid.length}건`);
+  }
+  return combined;
 }
 
 function renderImportPreview() {
@@ -337,7 +342,7 @@ function renderImportPreview() {
     <td>${esc(r.carrier||'-')}</td><td>${esc(r.device_model||'-')}</td><td>${esc(formatInstallment(r.installment_months))}</td></tr>`).join('');
 
   $('review-body').innerHTML = reviewRows.slice(0,30).map(r => `<tr>
-    <td>${esc(r._file_name||'-')}</td><td>${esc(String(r._source_row||'-'))}</td><td>${esc(r.name||'-')}</td><td>${esc(formatPhone(r.phone)||'-')}</td>
+    <td>${esc(r._file_name||'-')}${r._sheet_name ? ` · ${esc(r._sheet_name)}` : ''}</td><td>${esc(String(r._source_row||'-'))}</td><td>${esc(r.name||'-')}</td><td>${esc(formatPhone(r.phone)||'-')}</td>
     <td>${esc((r._reasons||[]).join(', '))}</td></tr>`).join('');
 }
 
@@ -373,7 +378,7 @@ async function runImport() {
     for (let i=0;i<importRows.length;i+=500) {
       $('import-progress').textContent = `암호화 DB 저장 중 · ${Math.min(i + 500, importRows.length).toLocaleString('ko-KR')}/${importRows.length.toLocaleString('ko-KR')} 계약`;
       await nextPaint();
-      const cleanRows = importRows.slice(i,i+500).map(({_file_name,_reasons,_source_row,...row}) => row);
+      const cleanRows = importRows.slice(i,i+500).map(({_file_name,_reasons,_source_row,_sheet_name,...row}) => row);
       const result=await api('/api/import',{method:'POST',body:JSON.stringify({filename:sourceLabel,rows:cleanRows})});
       total.newCustomers += Number(result.new_customer_count ?? result.inserted ?? 0);
       total.newContracts += Number(result.new_contract_count ?? result.updated ?? 0);

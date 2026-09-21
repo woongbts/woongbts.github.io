@@ -146,6 +146,11 @@ async function ensureSchema(env) {
       env.DB.prepare('CREATE INDEX IF NOT EXISTS idx_customer_contracts_customer ON customer_contracts(customer_id)'),
       env.DB.prepare('CREATE INDEX IF NOT EXISTS idx_customer_contracts_opened_on ON customer_contracts(opened_on)')
     ]);
+    const contractInfo = await env.DB.prepare('PRAGMA table_info(customer_contracts)').all();
+    const contractColumns = new Set((contractInfo.results || []).map(row => String(row.name)));
+    if (!contractColumns.has('service_type')) {
+      await env.DB.exec("ALTER TABLE customer_contracts ADD COLUMN service_type TEXT CHECK (service_type IN ('wireless','sim') OR service_type IS NULL)");
+    }
   })().catch(error => {
     schemaReadyPromise = null;
     throw error;
@@ -281,7 +286,7 @@ async function getCustomer(env, id) {
     }
   }
 
-  const contractResult = await env.DB.prepare(`SELECT id, opened_on, carrier, device_model_enc, installment_months, created_at
+  const contractResult = await env.DB.prepare(`SELECT id, opened_on, carrier, device_model_enc, installment_months, service_type, created_at
     FROM customer_contracts WHERE customer_id=?
     ORDER BY COALESCE(opened_on,'0000-00-00') DESC, created_at DESC LIMIT 200`).bind(id).all();
   const contracts = [];
@@ -292,6 +297,7 @@ async function getCustomer(env, id) {
       carrier: contract.carrier,
       device_model: contract.device_model_enc ? await decryptText(contract.device_model_enc, env) : '',
       installment_months: contract.installment_months,
+      service_type: contract.service_type || 'wireless',
       created_at: contract.created_at
     });
   }
@@ -302,6 +308,7 @@ async function getCustomer(env, id) {
       carrier: row.carrier,
       device_model: row.device_model_enc ? await decryptText(row.device_model_enc, env) : '',
       installment_months: row.installment_months,
+      service_type: 'wireless',
       current_snapshot: true
     });
   }
@@ -343,6 +350,7 @@ async function prepareImportRows(rows, env) {
       device_model: String(raw.device_model || '').trim().slice(0, 120),
       opened_on: normalizeDate(raw.opened_on),
       installment_months: normalizeInstallmentMonths(raw.installment_months),
+      service_type: raw.service_type === 'sim' ? 'sim' : 'wireless',
       consent: normalizeConsent(raw.ad_sms_consent),
       consent_at: normalizeDateTime(raw.consent_at)
     };
@@ -517,9 +525,9 @@ async function importCustomers(request, env, user) {
 
     const contractDeviceEnc = row.device_model ? await encryptText(row.device_model, env) : null;
     contractStatements.push(env.DB.prepare(`INSERT INTO customer_contracts
-      (id,customer_id,opened_on,carrier,device_model_enc,installment_months,contract_hmac,source_type,source_ref,created_at,updated_at)
-      VALUES (?,?,?,?,?,?,?,?,?,?,?)`)
-      .bind(crypto.randomUUID(), current.id, row.opened_on, row.carrier, contractDeviceEnc, row.installment_months, row.contract_hash, 'excel', batchId, now, now));
+      (id,customer_id,opened_on,carrier,device_model_enc,installment_months,contract_hmac,source_type,source_ref,created_at,updated_at,service_type)
+      VALUES (?,?,?,?,?,?,?,?,?,?,?,?)`)
+      .bind(crypto.randomUUID(), current.id, row.opened_on, row.carrier, contractDeviceEnc, row.installment_months, row.contract_hash, 'excel', batchId, now, now, row.service_type));
     existingContracts.add(row.contract_hash);
     if (!wasNewCustomer) newContracts++;
 
@@ -645,13 +653,15 @@ async function phoneHmac(phone, env) {
 
 async function contractHmac(row, env) {
   const device = String(row.device_model || '').trim().replace(/\s+/g, '').toLowerCase();
-  const value = [
+  const parts = [
     normalizePhone(row.phone || ''),
     row.opened_on || '',
     row.carrier || '',
     device,
     row.installment_months ?? ''
-  ].join('|');
+  ];
+  // Preserve the legacy wireless hash so already-imported wireless contracts remain idempotent.
+  const value = row.service_type === 'sim' ? ['sim', ...parts].join('|') : parts.join('|');
   return hmacDigest(`contract:${value}`, env);
 }
 
