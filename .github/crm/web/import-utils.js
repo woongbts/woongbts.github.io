@@ -5,13 +5,14 @@ export const FIELD_ALIASES = {
   birth_date: ['생년월일','생일','출생일','birthdate','birth_date'],
   carrier: ['통신사','carrier'],
   device_model: ['기종','사용기종','단말기','모델','모델명','device','device_model'],
+  rate_plan: ['요금제','요금제명','사용요금제','가입요금제','요금상품','plan','rate_plan'],
   installment_months: ['할부개월수','할부개월','할부기간','installment_months'],
   ad_sms_consent: ['광고수신동의','문자수신동의','광고문자동의','sms동의','ad_sms_consent'],
   consent_at: ['동의일','수신동의일','consent_at']
 };
 
 const KEY_FIELDS = new Set(['opened_on','name','phone']);
-const PREFERRED_FIELDS = new Set(['birth_date','carrier','device_model','installment_months']);
+const PREFERRED_FIELDS = new Set(['birth_date','carrier','device_model','rate_plan','installment_months']);
 const EXCLUDED_SHEET = /(선불|유선|렌탈|가망|수입|지출)/i;
 const WIRELESS_SHEET = /무선/i;
 const SIM_SHEET = /(유심|usim)/i;
@@ -197,6 +198,7 @@ export function normalizeImportRow(row) {
     birth_date: normalizeBirthDate(raw.birth_date),
     carrier: normalizeCarrier(raw.carrier),
     device_model: cellValue(raw.device_model).slice(0,120),
+    rate_plan: cellValue(raw.rate_plan).slice(0,160),
     installment_months: normalizeInstallmentMonths(raw.installment_months),
     ad_sms_consent: cellValue(raw.ad_sms_consent),
     consent_at: normalizeDate(raw.consent_at),
@@ -252,6 +254,9 @@ export function dedupeImportRows(rows) {
   const conflictPhones = new Set();
   const byContract = new Map();
   const allRowsByPhone = new Map();
+  const planConflicts = new Set();
+  const allRowsByContract = new Map();
+  const planKey = value => String(value || '').trim().replace(/\s+/g, ' ').toLowerCase();
   let duplicates = 0;
 
   const nameKey = value => String(value || '').trim().replace(/\s+/g, '').toLowerCase();
@@ -280,8 +285,14 @@ export function dedupeImportRows(rows) {
       row.installment_months ?? '',
       row.service_type === 'sim' ? 'sim' : ''
     ].join('|');
-    if (byContract.has(contractKey)) duplicates++;
-    else byContract.set(contractKey, row);
+    if (!allRowsByContract.has(contractKey)) allRowsByContract.set(contractKey, []);
+    allRowsByContract.get(contractKey).push(row);
+    const previous = byContract.get(contractKey);
+    if (previous) {
+      duplicates++;
+      if (previous.rate_plan && row.rate_plan && planKey(previous.rate_plan) !== planKey(row.rate_plan)) planConflicts.add(contractKey);
+      if (!previous.rate_plan && row.rate_plan) byContract.set(contractKey, { ...previous, rate_plan: row.rate_plan });
+    } else byContract.set(contractKey, { ...row });
   }
 
   const conflicts = [];
@@ -290,7 +301,12 @@ export function dedupeImportRows(rows) {
       conflicts.push({ ...row, _reasons:['같은 전화번호의 명의자 정보 충돌'] });
     }
   }
-  const kept = [...byContract.values()].filter(row => !conflictPhones.has(String(row.phone || '')));
+  for (const key of planConflicts) {
+    for (const row of allRowsByContract.get(key)) {
+      if (!conflictPhones.has(String(row.phone || ''))) conflicts.push({ ...row, _reasons: ['같은 계약의 요금제 정보 충돌'] });
+    }
+  }
+  const kept = [...byContract.entries()].filter(([key, row]) => !planConflicts.has(key) && !conflictPhones.has(String(row.phone || ''))).map(([, row]) => row);
   return { rows: kept, conflicts, duplicates };
 }
 

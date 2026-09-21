@@ -126,6 +126,12 @@ async function ensureSchema(env) {
     if (!columns.has('installment_months')) {
       await env.DB.exec('ALTER TABLE customers ADD COLUMN installment_months INTEGER CHECK (installment_months IS NULL OR installment_months BETWEEN 0 AND 60)');
     }
+    if (!columns.has('rate_plan_enc')) {
+      await env.DB.exec('ALTER TABLE customers ADD COLUMN rate_plan_enc TEXT');
+    }
+    if (!columns.has('service_type')) {
+      await env.DB.exec("ALTER TABLE customers ADD COLUMN service_type TEXT CHECK (service_type IN ('wireless','sim') OR service_type IS NULL)");
+    }
     await env.DB.exec('CREATE INDEX IF NOT EXISTS idx_customers_installment_months ON customers(installment_months)');
     // D1 exec() splits on newlines; keep each complete DDL statement prepared.
     await env.DB.batch([
@@ -135,6 +141,7 @@ async function ensureSchema(env) {
       opened_on TEXT,
       carrier TEXT CHECK (carrier IN ('SKT','KT','LGU+','알뜰폰','기타') OR carrier IS NULL),
       device_model_enc TEXT,
+      rate_plan_enc TEXT,
       installment_months INTEGER CHECK (installment_months IS NULL OR installment_months BETWEEN 0 AND 60),
       contract_hmac TEXT NOT NULL UNIQUE,
       source_type TEXT NOT NULL DEFAULT 'excel',
@@ -150,6 +157,9 @@ async function ensureSchema(env) {
     const contractColumns = new Set((contractInfo.results || []).map(row => String(row.name)));
     if (!contractColumns.has('service_type')) {
       await env.DB.exec("ALTER TABLE customer_contracts ADD COLUMN service_type TEXT CHECK (service_type IN ('wireless','sim') OR service_type IS NULL)");
+    }
+    if (!contractColumns.has('rate_plan_enc')) {
+      await env.DB.exec('ALTER TABLE customer_contracts ADD COLUMN rate_plan_enc TEXT');
     }
   })().catch(error => {
     schemaReadyPromise = null;
@@ -190,6 +200,10 @@ function normalizePersonName(value) {
   return String(value || '').trim().replace(/\s+/g, '').toLowerCase();
 }
 
+function normalizeRatePlan(value) {
+  return String(value || '').trim().replace(/\s+/g, ' ').toLowerCase();
+}
+
 function matchesCustomerQuery(query, name, phone) {
   const raw = String(query || '').trim();
   if (!raw) return true;
@@ -203,6 +217,7 @@ async function listCustomers(env, url) {
   const binds = [];
   const carrier = url.searchParams.get('carrier');
   const consent = url.searchParams.get('consent');
+  const serviceType = url.searchParams.get('service_type');
   const exactPhone = normalizePhone(url.searchParams.get('phone') || '');
   const query = String(url.searchParams.get('q') || '').trim().slice(0, 80);
   const queryDigits = query.replace(/\D/g, '');
@@ -213,6 +228,7 @@ async function listCustomers(env, url) {
   const limit = boundedInt(url.searchParams.get('limit'), 1, 200, 100);
 
   if (carrier) { clauses.push('c.carrier=?'); binds.push(normalizeCarrier(carrier)); }
+  if (serviceType && ['wireless','sim'].includes(serviceType)) { clauses.push('c.service_type=?'); binds.push(serviceType); }
   if (exactPhone) { clauses.push('c.phone_hmac=?'); binds.push(await phoneHmac(exactPhone, env)); }
   else if (queryPhone) { clauses.push('c.phone_hmac=?'); binds.push(await phoneHmac(queryPhone, env)); }
   if (installmentMonths !== null) { clauses.push('c.installment_months=?'); binds.push(installmentMonths); }
@@ -242,6 +258,8 @@ async function listCustomers(env, url) {
       birth_date: row.birth_date_enc ? await decryptText(row.birth_date_enc, env) : '',
       carrier: row.carrier,
       device_model: row.device_model_enc ? await decryptText(row.device_model_enc, env) : '',
+      rate_plan: row.rate_plan_enc ? await decryptText(row.rate_plan_enc, env) : '',
+      service_type: row.service_type || null,
       opened_on: row.opened_on,
       installment_months: row.installment_months,
       months_since_open: monthsBetween(row.opened_on, new Date()),
@@ -265,7 +283,7 @@ async function getCustomer(env, id) {
   const relatedLines = [];
 
   if (name && birthDate) {
-    const peers = await env.DB.prepare(`SELECT id, name_enc, phone_enc, birth_date_enc, carrier, device_model_enc, opened_on, installment_months
+    const peers = await env.DB.prepare(`SELECT id, name_enc, phone_enc, birth_date_enc, carrier, device_model_enc, rate_plan_enc, service_type, opened_on, installment_months
       FROM customers WHERE customer_status='active' AND id<>?
       ORDER BY COALESCE(opened_on,'0000-00-00') DESC, created_at DESC LIMIT 5000`).bind(id).all();
     const personName = normalizePersonName(name);
@@ -280,13 +298,15 @@ async function getCustomer(env, id) {
         phone: await decryptText(peer.phone_enc, env),
         carrier: peer.carrier,
         device_model: peer.device_model_enc ? await decryptText(peer.device_model_enc, env) : '',
+        rate_plan: peer.rate_plan_enc ? await decryptText(peer.rate_plan_enc, env) : '',
+        service_type: peer.service_type || 'wireless',
         opened_on: peer.opened_on,
         installment_months: peer.installment_months
       });
     }
   }
 
-  const contractResult = await env.DB.prepare(`SELECT id, opened_on, carrier, device_model_enc, installment_months, service_type, created_at
+  const contractResult = await env.DB.prepare(`SELECT id, opened_on, carrier, device_model_enc, rate_plan_enc, installment_months, service_type, created_at
     FROM customer_contracts WHERE customer_id=?
     ORDER BY COALESCE(opened_on,'0000-00-00') DESC, created_at DESC LIMIT 200`).bind(id).all();
   const contracts = [];
@@ -296,6 +316,7 @@ async function getCustomer(env, id) {
       opened_on: contract.opened_on,
       carrier: contract.carrier,
       device_model: contract.device_model_enc ? await decryptText(contract.device_model_enc, env) : '',
+      rate_plan: contract.rate_plan_enc ? await decryptText(contract.rate_plan_enc, env) : '',
       installment_months: contract.installment_months,
       service_type: contract.service_type || 'wireless',
       created_at: contract.created_at
@@ -307,8 +328,9 @@ async function getCustomer(env, id) {
       opened_on: row.opened_on,
       carrier: row.carrier,
       device_model: row.device_model_enc ? await decryptText(row.device_model_enc, env) : '',
+      rate_plan: row.rate_plan_enc ? await decryptText(row.rate_plan_enc, env) : '',
       installment_months: row.installment_months,
-      service_type: 'wireless',
+      service_type: row.service_type || null,
       current_snapshot: true
     });
   }
@@ -320,6 +342,8 @@ async function getCustomer(env, id) {
     birth_date: birthDate,
     carrier: row.carrier,
     device_model: row.device_model_enc ? await decryptText(row.device_model_enc, env) : '',
+    rate_plan: row.rate_plan_enc ? await decryptText(row.rate_plan_enc, env) : '',
+    service_type: row.service_type || null,
     opened_on: row.opened_on,
     installment_months: row.installment_months,
     months_since_open: monthsBetween(row.opened_on, new Date()),
@@ -338,16 +362,18 @@ async function prepareImportRows(rows, env) {
   let invalid = 0;
   let duplicate = 0;
 
-  for (const raw of rows) {
+  for (const [input_index, raw] of rows.entries()) {
     const name = String(raw.name || '').trim().slice(0, 80);
     const phone = normalizePhone(raw.phone || '');
     if (!name || phone.length < 10 || phone.length > 11) { invalid++; continue; }
     const row = {
+      input_index,
       name,
       phone,
       birth_date: normalizeBirthDate(raw.birth_date),
       carrier: normalizeCarrier(raw.carrier),
       device_model: String(raw.device_model || '').trim().slice(0, 120),
+      rate_plan: String(raw.rate_plan || '').trim().slice(0, 160),
       opened_on: normalizeDate(raw.opened_on),
       installment_months: normalizeInstallmentMonths(raw.installment_months),
       service_type: raw.service_type === 'sim' ? 'sim' : 'wireless',
@@ -370,41 +396,73 @@ async function prepareImportRows(rows, env) {
   }
 
   const byContract = new Map();
+  const planConflictHashes = new Set();
   for (const row of normalized) {
     if (conflictPhones.has(row.phone_hash)) continue;
-    if (byContract.has(row.contract_hash)) { duplicate++; continue; }
-    byContract.set(row.contract_hash, row);
+    const previous = byContract.get(row.contract_hash);
+    if (previous) {
+      duplicate++;
+      if (previous.rate_plan && row.rate_plan && normalizeRatePlan(previous.rate_plan) !== normalizeRatePlan(row.rate_plan)) planConflictHashes.add(row.contract_hash);
+      if (!previous.rate_plan && row.rate_plan) previous.rate_plan = row.rate_plan;
+    } else byContract.set(row.contract_hash, row);
   }
-  const conflicts = normalized.filter(row => conflictPhones.has(row.phone_hash)).length;
-  return { rows: [...byContract.values()], invalid, duplicate, conflicts };
+  const review = normalized.filter(row => conflictPhones.has(row.phone_hash) || planConflictHashes.has(row.contract_hash)).map(row => ({
+    input_index: row.input_index,
+    reason: conflictPhones.has(row.phone_hash) ? '같은 전화번호의 명의자 정보 충돌' : '같은 계약의 요금제 정보 충돌'
+  }));
+  return { rows: [...byContract.values()].filter(row => !planConflictHashes.has(row.contract_hash)), invalid, duplicate, conflicts: review.length, review };
+
 }
 
 async function loadExistingCustomers(prepared, env) {
   const hashes = [...new Set(prepared.map(row => row.phone_hash))];
+  const sources = new Map(prepared.map(row => [row.phone_hash, row]));
+  const snapshotCandidates = new Map();
   const existing = new Map();
   for (let i = 0; i < hashes.length; i += 80) {
     const chunk = hashes.slice(i, i + 80);
     if (!chunk.length) continue;
     const placeholders = chunk.map(() => '?').join(',');
-    const found = await env.DB.prepare(`SELECT id, phone_hmac, name_enc, birth_date_enc, opened_on FROM customers WHERE phone_hmac IN (${placeholders})`).bind(...chunk).all();
+    const found = await env.DB.prepare(`SELECT id, phone_hmac, name_enc, birth_date_enc, rate_plan_enc, service_type, opened_on, carrier, device_model_enc, installment_months FROM customers WHERE phone_hmac IN (${placeholders})`).bind(...chunk).all();
     for (const item of found.results || []) {
       item._name = await decryptText(item.name_enc, env);
       item._birth = item.birth_date_enc ? await decryptText(item.birth_date_enc, env) : '';
+      item._rate_plan = item.rate_plan_enc ? await decryptText(item.rate_plan_enc, env) : '';
+      // Derive the current contract from its complete identity, not just its date.
+      const source = sources.get(item.phone_hmac);
+      const snapshot = { ...item, phone: source.phone, device_model: item.device_model_enc ? await decryptText(item.device_model_enc, env) : '' };
+      const types = item.service_type ? [item.service_type] : ['wireless', 'sim'];
+      const candidates = await Promise.all(types.map(service_type => contractHmac({ ...snapshot, service_type }, env)));
+      item._snapshot_matches = [];
+      for (const hash of candidates) snapshotCandidates.set(hash, item);
       existing.set(item.phone_hmac, item);
     }
   }
+  const candidateHashes = [...snapshotCandidates.keys()];
+  for (let i = 0; i < candidateHashes.length; i += 80) {
+    const chunk = candidateHashes.slice(i, i + 80);
+    const found = await env.DB.prepare(`SELECT customer_id, contract_hmac FROM customer_contracts WHERE contract_hmac IN (${chunk.map(() => '?').join(',')})`).bind(...chunk).all();
+    for (const contract of found.results || []) {
+      const current = snapshotCandidates.get(contract.contract_hmac);
+      if (current.id === contract.customer_id) current._snapshot_matches.push(contract.contract_hmac);
+    }
+  }
+  for (const item of existing.values()) item._snapshot_hash = item._snapshot_matches.length === 1 ? item._snapshot_matches[0] : null;
   return existing;
 }
 
-async function loadExistingContractHashes(prepared, env) {
+async function loadExistingContracts(prepared, env) {
   const hashes = [...new Set(prepared.map(row => row.contract_hash))];
-  const existing = new Set();
+  const existing = new Map();
   for (let i = 0; i < hashes.length; i += 80) {
     const chunk = hashes.slice(i, i + 80);
     if (!chunk.length) continue;
     const placeholders = chunk.map(() => '?').join(',');
-    const found = await env.DB.prepare(`SELECT contract_hmac FROM customer_contracts WHERE contract_hmac IN (${placeholders})`).bind(...chunk).all();
-    for (const item of found.results || []) existing.add(item.contract_hmac);
+    const found = await env.DB.prepare(`SELECT id, customer_id, contract_hmac, rate_plan_enc FROM customer_contracts WHERE contract_hmac IN (${placeholders})`).bind(...chunk).all();
+    for (const item of found.results || []) {
+      item._rate_plan = item.rate_plan_enc ? await decryptText(item.rate_plan_enc, env) : '';
+      existing.set(item.contract_hmac, item);
+    }
   }
   return existing;
 }
@@ -424,17 +482,28 @@ async function previewImport(request, env) {
 
   const prepared = await prepareImportRows(rows, env);
   const existingCustomers = await loadExistingCustomers(prepared.rows, env);
-  const existingContracts = await loadExistingContractHashes(prepared.rows, env);
+  const existingContracts = await loadExistingContracts(prepared.rows, env);
   const wouldExist = new Set(existingCustomers.keys());
   let newCustomerCount = 0;
   let newContractCount = 0;
   let existingContractCount = 0;
+  let planBackfillCount = 0;
+  let planConflictCount = 0;
   let conflicts = prepared.conflicts;
+  const review = [...prepared.review];
 
   for (const row of prepared.rows) {
     const current = existingCustomers.get(row.phone_hash);
-    if (current && !identityMatchesExisting(current, row)) { conflicts++; continue; }
-    if (existingContracts.has(row.contract_hash)) { existingContractCount++; continue; }
+    if (current && !identityMatchesExisting(current, row)) { conflicts++; review.push({ input_index: row.input_index, reason: '기존 고객의 명의자 정보와 다름' }); continue; }
+    const existingContract = existingContracts.get(row.contract_hash);
+    if (existingContract) {
+      existingContractCount++;
+      if (row.rate_plan) {
+        if (!existingContract._rate_plan) planBackfillCount++;
+        else if (normalizeRatePlan(existingContract._rate_plan) !== normalizeRatePlan(row.rate_plan)) { planConflictCount++; review.push({ input_index: row.input_index, reason: '기존 계약의 요금제와 다름 · 자동 덮어쓰기 제외' }); }
+      }
+      continue;
+    }
     if (!wouldExist.has(row.phone_hash)) {
       newCustomerCount++;
       wouldExist.add(row.phone_hash);
@@ -451,6 +520,9 @@ async function previewImport(request, env) {
     invalid_count: prepared.invalid,
     duplicate_count: prepared.duplicate,
     conflicts,
+    plan_backfill_count: planBackfillCount,
+    plan_conflict_count: planConflictCount,
+    review_rows: review,
     new_count: newCustomerCount,
     update_count: newContractCount,
     unchanged_count: existingContractCount
@@ -470,7 +542,7 @@ async function importCustomers(request, env, user) {
   if (!prepared.length) throw httpError(400, '유효한 이름/연락처 계약 행이 없습니다.');
 
   const existingCustomers = await loadExistingCustomers(prepared, env);
-  const existingContracts = await loadExistingContractHashes(prepared, env);
+  const existingContracts = await loadExistingContracts(prepared, env);
   const now = new Date().toISOString();
   const batchId = crypto.randomUUID();
   const customerStatements = [];
@@ -480,6 +552,8 @@ async function importCustomers(request, env, user) {
   let newContracts = 0;
   let alreadyRegistered = 0;
   let snapshotUpdates = 0;
+  let planBackfilled = 0;
+  let planConflicts = 0;
   let conflicts = preparedResult.conflicts;
   let skipped = preparedResult.invalid + preparedResult.duplicate + preparedResult.conflicts;
 
@@ -488,8 +562,29 @@ async function importCustomers(request, env, user) {
     if (current && !identityMatchesExisting(current, row)) {
       conflicts++; skipped++; continue;
     }
-    if (existingContracts.has(row.contract_hash)) {
-      alreadyRegistered++; skipped++; continue;
+    const existingContract = existingContracts.get(row.contract_hash);
+    if (existingContract) {
+      alreadyRegistered++;
+      if (row.rate_plan && existingContract._rate_plan && normalizeRatePlan(existingContract._rate_plan) !== normalizeRatePlan(row.rate_plan)) {
+        planConflicts++; skipped++; continue;
+      }
+      const statements = [];
+      if (row.rate_plan && !existingContract._rate_plan) {
+        const ratePlanEnc = await encryptText(row.rate_plan, env);
+        statements.push(env.DB.prepare('UPDATE customer_contracts SET rate_plan_enc=?, updated_at=? WHERE id=? AND rate_plan_enc IS NULL').bind(ratePlanEnc, now, existingContract.id));
+      }
+      if (current && current._snapshot_hash === row.contract_hash) {
+        // Read the saved contract value in the same transaction, including a concurrent backfill.
+        statements.push(env.DB.prepare(`UPDATE customers SET
+          rate_plan_enc=COALESCE(rate_plan_enc,(SELECT rate_plan_enc FROM customer_contracts WHERE id=?)),
+          service_type=COALESCE(service_type,?), updated_at=? WHERE id=?`)
+          .bind(existingContract.id, row.service_type, now, current.id));
+      }
+      if (statements.length) {
+        const results = await env.DB.batch(statements);
+        if (row.rate_plan && !existingContract._rate_plan && results[0].meta.changes) planBackfilled++;
+      }
+      skipped++; continue;
     }
 
     const wasNewCustomer = !current;
@@ -499,11 +594,12 @@ async function importCustomers(request, env, user) {
       const phoneEnc = await encryptText(row.phone, env);
       const birthEnc = row.birth_date ? await encryptText(row.birth_date, env) : null;
       const deviceEnc = row.device_model ? await encryptText(row.device_model, env) : null;
+      const ratePlanEnc = row.rate_plan ? await encryptText(row.rate_plan, env) : null;
       customerStatements.push(env.DB.prepare(`INSERT INTO customers
-        (id,phone_hmac,name_enc,phone_enc,birth_date_enc,carrier,device_model_enc,opened_on,installment_months,source_type,source_ref,created_at,updated_at)
-        VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)`)
-        .bind(id, row.phone_hash, nameEnc, phoneEnc, birthEnc, row.carrier, deviceEnc, row.opened_on, row.installment_months, 'excel', batchId, now, now));
-      current = { id, phone_hmac: row.phone_hash, _name: row.name, _birth: row.birth_date || '', opened_on: row.opened_on || '' };
+        (id,phone_hmac,name_enc,phone_enc,birth_date_enc,carrier,device_model_enc,rate_plan_enc,service_type,opened_on,installment_months,source_type,source_ref,created_at,updated_at)
+        VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`)
+        .bind(id, row.phone_hash, nameEnc, phoneEnc, birthEnc, row.carrier, deviceEnc, ratePlanEnc, row.service_type, row.opened_on, row.installment_months, 'excel', batchId, now, now));
+      current = { id, phone_hmac: row.phone_hash, _name: row.name, _birth: row.birth_date || '', _rate_plan: row.rate_plan || '', service_type: row.service_type, opened_on: row.opened_on || '', _snapshot_hash: row.contract_hash };
       existingCustomers.set(row.phone_hash, current);
       newCustomers++;
     } else if (!current.opened_on || (row.opened_on && row.opened_on >= current.opened_on)) {
@@ -511,24 +607,30 @@ async function importCustomers(request, env, user) {
       const phoneEnc = await encryptText(row.phone, env);
       const birthEnc = row.birth_date ? await encryptText(row.birth_date, env) : null;
       const deviceEnc = row.device_model ? await encryptText(row.device_model, env) : null;
+      const ratePlanEnc = row.rate_plan ? await encryptText(row.rate_plan, env) : null;
       customerStatements.push(env.DB.prepare(`UPDATE customers SET
-        name_enc=?, phone_enc=?, birth_date_enc=COALESCE(?,birth_date_enc), carrier=COALESCE(?,carrier),
-        device_model_enc=COALESCE(?,device_model_enc), opened_on=COALESCE(?,opened_on),
-        installment_months=COALESCE(?,installment_months), source_type='excel', source_ref=?, updated_at=?
+        name_enc=?, phone_enc=?, birth_date_enc=COALESCE(?,birth_date_enc), carrier=?,
+        device_model_enc=?, rate_plan_enc=?, service_type=?, opened_on=?,
+        installment_months=?, source_type='excel', source_ref=?, updated_at=?
         WHERE id=?`)
-        .bind(nameEnc, phoneEnc, birthEnc, row.carrier, deviceEnc, row.opened_on, row.installment_months, batchId, now, current.id));
+        .bind(nameEnc, phoneEnc, birthEnc, row.carrier, deviceEnc, ratePlanEnc, row.service_type, row.opened_on, row.installment_months, batchId, now, current.id));
       current._name = row.name;
       if (row.birth_date) current._birth = row.birth_date;
+      current._rate_plan = row.rate_plan || '';
+      current._snapshot_hash = row.contract_hash;
+      if (row.service_type) current.service_type = row.service_type;
       if (row.opened_on) current.opened_on = row.opened_on;
       snapshotUpdates++;
     }
 
     const contractDeviceEnc = row.device_model ? await encryptText(row.device_model, env) : null;
+    const contractRatePlanEnc = row.rate_plan ? await encryptText(row.rate_plan, env) : null;
+    const contractId = crypto.randomUUID();
     contractStatements.push(env.DB.prepare(`INSERT INTO customer_contracts
-      (id,customer_id,opened_on,carrier,device_model_enc,installment_months,contract_hmac,source_type,source_ref,created_at,updated_at,service_type)
-      VALUES (?,?,?,?,?,?,?,?,?,?,?,?)`)
-      .bind(crypto.randomUUID(), current.id, row.opened_on, row.carrier, contractDeviceEnc, row.installment_months, row.contract_hash, 'excel', batchId, now, now, row.service_type));
-    existingContracts.add(row.contract_hash);
+      (id,customer_id,opened_on,carrier,device_model_enc,rate_plan_enc,installment_months,contract_hmac,source_type,source_ref,created_at,updated_at,service_type)
+      VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)`)
+      .bind(contractId, current.id, row.opened_on, row.carrier, contractDeviceEnc, contractRatePlanEnc, row.installment_months, row.contract_hash, 'excel', batchId, now, now, row.service_type));
+    existingContracts.set(row.contract_hash, { id: contractId, customer_id: current.id, contract_hmac: row.contract_hash, _rate_plan: row.rate_plan || '' });
     if (!wasNewCustomer) newContracts++;
 
     if (row.consent === 'granted' && row.consent_at) {
@@ -550,6 +652,7 @@ async function importCustomers(request, env, user) {
   await audit(env, user.email, 'customer_import', 'import_batch', batchId, {
     rows: rows.length, new_customers: newCustomers, new_contracts: newContracts,
     already_registered: alreadyRegistered, snapshot_updates: snapshotUpdates,
+    plan_backfilled: planBackfilled, plan_conflicts: planConflicts,
     skipped, conflicts
   });
 
@@ -560,6 +663,8 @@ async function importCustomers(request, env, user) {
     new_contract_count: newContracts,
     existing_contract_count: alreadyRegistered,
     snapshot_update_count: snapshotUpdates,
+    plan_backfill_count: planBackfilled,
+    plan_conflict_count: planConflicts,
     inserted: newCustomers,
     updated: newContracts,
     skipped,

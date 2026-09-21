@@ -5,10 +5,12 @@ import { Miniflare, convertV4MiniflareOptions } from 'miniflare';
 const script = await readFile(new URL('../src/worker.js', import.meta.url), 'utf8');
 const initialSchema = await readFile(new URL('../migrations/0001_init.sql', import.meta.url), 'utf8');
 const profileSchema = await readFile(new URL('../migrations/0002_customer_profile.sql', import.meta.url), 'utf8');
+const contractSchema = await readFile(new URL('../migrations/0003_customer_contracts.sql', import.meta.url), 'utf8');
 
 // Exercise the real D1 binding, including its exec() newline behavior.
 // Databases are ephemeral and contain no customer records or production secrets.
-for (const hasProfile of [false, true]) {
+for (const stage of [0, 1, 2]) {
+  const hasProfile = stage >= 1;
   const mf = new Miniflare(convertV4MiniflareOptions({
     modules: true,
     script,
@@ -19,7 +21,7 @@ for (const hasProfile of [false, true]) {
   }));
   try {
     const db = await mf.getD1Database('DB');
-    for (const sql of [initialSchema, ...(hasProfile ? [profileSchema] : [])]) {
+    for (const sql of [initialSchema, ...(hasProfile ? [profileSchema] : []), ...(stage === 2 ? [contractSchema] : [])]) {
       for (const statement of sql.split(';').map(value => value.trim()).filter(Boolean)) {
         await db.prepare(statement).run();
       }
@@ -33,9 +35,13 @@ for (const hasProfile of [false, true]) {
         assert.equal(response.status, 200, `profile=${hasProfile} pass=${pass} ${path}: ${await response.text()}`);
       }
     }
+    const customers = await db.prepare('PRAGMA table_info(customers)').all();
+    assert.ok(customers.results.some(column => column.name === 'rate_plan_enc'));
+    assert.ok(customers.results.some(column => column.name === 'service_type'));
     const contracts = await db.prepare('PRAGMA table_info(customer_contracts)').all();
     assert.ok(contracts.results.some(column => column.name === 'contract_hmac'));
     assert.ok(contracts.results.some(column => column.name === 'service_type'));
+    assert.ok(contracts.results.some(column => column.name === 'rate_plan_enc'));
     const indexes = await db.prepare("SELECT name FROM sqlite_schema WHERE type='index' AND tbl_name='customer_contracts'").all();
     assert.ok(indexes.results.some(index => index.name === 'idx_customer_contracts_customer'));
     assert.ok(indexes.results.some(index => index.name === 'idx_customer_contracts_opened_on'));

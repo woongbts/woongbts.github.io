@@ -45,6 +45,7 @@
         <summary>상세 필터</summary>
         <div class="toolbar">
           <select id="filter-carrier"><option value="">전체 통신사</option><option>SKT</option><option>KT</option><option>LGU+</option><option>알뜰폰</option></select>
+          <select id="filter-service-type"><option value="">개통구분 전체</option><option value="wireless">휴대폰</option><option value="sim">유심</option></select>
           <select id="filter-installment"><option value="">할부 전체</option><option value="0">일시불</option><option value="12">12개월</option><option value="24">24개월</option><option value="30">30개월</option><option value="36">36개월</option></select>
           <select id="filter-consent"><option value="">동의 전체</option><option value="granted">수신동의</option><option value="unknown">미확인</option><option value="revoked">수신거부</option></select>
           <label class="check"><input id="filter-due" type="checkbox"> 개통 22~30개월</label>
@@ -53,15 +54,15 @@
 
       <div class="table-wrap">
         <table class="customer-table">
-          <thead><tr><th>개통일</th><th>이름</th><th>연락처</th><th>생년월일</th><th>통신사</th><th>단말기</th><th>할부</th><th>문자동의</th><th></th></tr></thead>
-          <tbody id="customer-body"><tr><td colspan="9" class="muted">불러오는 중...</td></tr></tbody>
+          <thead><tr><th>개통일</th><th>이름</th><th>연락처</th><th>생년월일</th><th>구분</th><th>통신사</th><th>단말기</th><th>요금제</th><th>할부</th><th>문자동의</th><th></th></tr></thead>
+          <tbody id="customer-body"><tr><td colspan="11" class="muted">불러오는 중...</td></tr></tbody>
         </table>
       </div>
     </section>
 
     <section class="panel" id="panel-import">
       <h2>고객 판매일보 가져오기</h2>
-      <p class="sub">Excel(.xls/.xlsx)/CSV 파일을 여러 개 선택할 수 있습니다. 원본 파일은 서버에 저장하지 않고, 필요한 고객정보만 브라우저에서 추출해 Cloudflare D1의 암호화 고객 DB로 전송합니다. 이름·연락처·생년월일·단말기는 암호화 저장하고 전화번호 검색·중복확인은 HMAC을 사용합니다.</p>
+      <p class="sub">Excel(.xls/.xlsx)/CSV 파일을 여러 개 선택할 수 있습니다. 원본 파일은 서버에 저장하지 않고, 필요한 고객정보만 브라우저에서 추출해 Cloudflare D1의 암호화 고객 DB로 전송합니다. 이름·연락처·생년월일·단말기·요금제는 암호화 저장하고 전화번호 검색·중복확인은 HMAC을 사용합니다.</p>
 
       <div class="onedrive-card">
         <div class="bulk-import-head">
@@ -79,7 +80,7 @@
         </div>
         <details id="onedrive-setup" class="onedrive-setup">
           <summary>최초 1회 Microsoft 앱 설정</summary>
-          <p class="sub">Microsoft Entra 앱 등록에서 SPA 리디렉션 URI를 <b>https://woongbi-crm.woongbts.workers.dev/</b> 로 등록하고, Microsoft Graph 위임 권한 <b>Files.Read</b>만 허용합니다. Client ID는 비밀키가 아니며 이 브라우저에만 저장됩니다.</p>
+          <p class="sub">Microsoft Entra 앱 등록에서 SPA 리디렉션 URI를 <b>https://woongbi-crm.woongbts.workers.dev/auth-redirect.html</b> 로 등록하고, Microsoft Graph 위임 권한 <b>Files.Read</b>만 허용합니다. Client ID는 비밀키가 아니며 이 브라우저에만 저장됩니다.</p>
           <div class="client-id-row"><input id="od-client-id" autocomplete="off" placeholder="Application (client) ID"><button id="od-save-client">Client ID 저장</button></div>
         </details>
         <small class="privacy-note">Microsoft 로그인 토큰은 브라우저 세션에만 보관하며 CRM API·D1·GitHub로 전송하지 않습니다.</small>
@@ -109,13 +110,13 @@
         </div>
       </details>
 
-      <div class="mapping-note">자동 인식: <b>무선·유심 탭 · 개통일 · 이름 · 연락처 · 생년월일 · 통신사 · 단말기 · 할부개월수</b><br>유심 탭은 단말기·할부 정보가 없어도 고객정보를 등록합니다.<br>같은 전화번호의 과거 개통은 계약 이력으로 모두 보존하고, 고객 목록에는 가장 최근 개통정보를 표시합니다. 이름이 같아도 전화번호가 다르면 별도 회선으로 유지합니다.</div>
+      <div class="mapping-note">자동 인식: <b>무선·유심 탭 · 개통일 · 이름 · 연락처 · 생년월일 · 통신사 · 단말기 · 요금제 · 할부개월수</b><br>유심 탭은 단말기·할부 정보가 없어도 고객정보를 등록합니다.<br>같은 전화번호의 과거 개통은 계약 이력으로 모두 보존하고, 고객 목록에는 가장 최근 개통정보를 표시합니다. 이름이 같아도 전화번호가 다르면 별도 회선으로 유지합니다.</div>
       <div id="import-progress" class="import-progress hidden" aria-live="polite"></div>
       <div id="import-summary" class="summary hidden"></div>
 
       <div id="preview-wrap" class="table-wrap hidden">
         <table>
-          <thead><tr><th>개통일</th><th>이름</th><th>연락처</th><th>생년월일</th><th>통신사</th><th>단말기</th><th>할부</th></tr></thead>
+          <thead><tr><th>개통일</th><th>이름</th><th>연락처</th><th>생년월일</th><th>구분</th><th>통신사</th><th>단말기</th><th>요금제</th><th>할부</th></tr></thead>
           <tbody id="preview-body"></tbody>
         </table>
       </div>
