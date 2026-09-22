@@ -1,0 +1,154 @@
+name: Temporary wired pricing patch
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/patch-wired-pricing-temp.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Patch wired pricing and TV counts
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import json
+
+          def replace_once(text, old, new, label):
+              count = text.count(old)
+              if count != 1:
+                  raise SystemExit(f"{label}: expected exactly 1 match, got {count}")
+              return text.replace(old, new, 1)
+
+          # 1) Customer-facing wired data: exact package totals.
+          data_path = Path("data/internet.json")
+          data = json.loads(data_path.read_text(encoding="utf-8"))
+          data.setdefault("meta", {})["updated_at"] = "2026-09-22"
+          data["meta"]["hellovision_note"] = (
+              "헬로비전 이코노미 TV 2대 월 총액은 WiFi 100M 44,380원, 160M 49,110원, "
+              "500M 52,140원, 1G 53,350원으로 반영한다. 추가 TV 1대는 이코노미 4,950원 + "
+              "UHD 셋톱 6,600원 = 월 11,550원 기준으로 TV 3대까지 계산한다."
+          )
+          data["meta"]["skylife_note"] = (
+              "스카이라이프 일반 IPTV 베이직 TV 2대 월 총액은 WiFi 100M 46,200원, 200M 47,300원, "
+              "500M 52,800원, 1G 58,300원으로 반영한다. TV 3대는 동일 산식 적용 여부가 확인되지 않아 "
+              "금액을 추정하지 않고 매장 확인으로 안내한다."
+          )
+          data["multi_tv_package_totals"] = [
+              {
+                  "provider_id": "LGHELLO",
+                  "internet_product_groups": ["BASIC"],
+                  "tv_product_key": "TV_UHD_ECONOMY",
+                  "max_tv_count": 3,
+                  "monthly_totals": {
+                      "1": {"100": 32830, "160": 37560, "500": 40590, "1000": 41800},
+                      "2": {"100": 44380, "160": 49110, "500": 52140, "1000": 53350},
+                      "3": {"100": 55930, "160": 60660, "500": 63690, "1000": 64900}
+                  },
+                  "additional_tv": {"service_fee": 4950, "settop_fee": 6600, "unit_total": 11550}
+              },
+              {
+                  "provider_id": "SKYLIFE",
+                  "internet_product_groups": ["BASIC"],
+                  "tv_product_key": "TV_IPIT_BASIC",
+                  "max_tv_count": 2,
+                  "monthly_totals": {
+                      "1": {"100": 34100, "200": 35200, "500": 40700, "1000": 46200},
+                      "2": {"100": 46200, "200": 47300, "500": 52800, "1000": 58300}
+                  }
+              }
+          ]
+          data_path.write_text(json.dumps(data, ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8")
+
+          # 2) Canonical calculator source. Production is rebuilt from this file below.
+          src_path = Path("src/rates.js")
+          src = src_path.read_text(encoding="utf-8")
+
+          src = replace_once(
+              src,
+              'LGHELLO:"TV-LGHELLO-TV_HD_ECONOMY",SKYLIFE:"TV-SKYLIFE-TV_IPIT_BASIC"',
+              'LGHELLO:"TV-LGHELLO-TV_UHD_ECONOMY",SKYLIFE:"TV-SKYLIFE-TV_IPIT_BASIC"',
+              "LG Hello default TV"
+          )
+
+          old_override = ',wbHelloBundleTotals={TV_HD_ECONOMY:{100:25130,160:29860,500:32890,1e3:34100},TV_UHD_ECONOMY:{100:32830,160:37560,500:40590,1e3:41800}};function wbWiredPackageOverride(e,t){if(!e||!t||"LGHELLO"!==e.provider_id)return null;const o=wbHelloBundleTotals[String(t.product_key||"")],r=Number(e.speed_mbps);return o&&n(o[r])?Number(o[r]):null}'
+          new_override = ';function wbWiredPackageRule(e,t){if(!e||!t)return null;const o=String(e.product_group||"").toUpperCase();return(s.multi_tv_package_totals||[]).find(n=>n.provider_id===e.provider_id&&n.tv_product_key===String(t.product_key||"")&&(!Array.isArray(n.internet_product_groups)||!n.internet_product_groups.length||n.internet_product_groups.map(e=>String(e).toUpperCase()).includes(o)))||null}function wbWiredPackageOverride(e,t,o=1){const r=wbWiredPackageRule(e,t);if(!r)return null;const a=String(Math.max(1,Math.min(3,Number(o||1)))),i=String(Number(e.speed_mbps)),l=r.monthly_totals?.[a]?.[i];return n(l)?Number(l):null}function wbWiredPackageExtra(e,t,o=1){const r=Math.max(1,Math.min(3,Number(o||1)));if(r<=1)return 0;const a=wbWiredPackageOverride(e,t,1),i=wbWiredPackageOverride(e,t,r);return n(a)&&n(i)?Math.max(0,Number(i)-Number(a)):null}function wbWiredPackageCountAllowed(e,t,o=1){const r=wbWiredPackageRule(e,t),a=Math.max(1,Number(o||1));return!r||!Number(r.max_tv_count)||a<=Number(r.max_tv_count)}'
+          src = replace_once(src, old_override, new_override, "wired package data override")
+
+          old_compare = 'p=a?Wt(t,Math.max(1,Number(o||1))):{known:!0,amount:0,extra:0};if(!p.known)return{known:!1,gift:ln(e,t),additionalUnknown:!0};const v=r+i+s+p.amount,wbPkg=1===Math.max(1,Number(o||1))?wbWiredPackageOverride(e,t):null,wbBase=n(wbPkg)?Number(wbPkg):v,wbIntDisc=n(wbPkg)?0:d,wbTvDisc=n(wbPkg)?0:m,wbSettop=n(wbPkg)?0:s;return{known:!0,base:wbBase,total:Math.max(0,wbBase-wbIntDisc-wbTvDisc),internetDiscount:wbIntDisc,tvDiscount:wbTvDisc,settopFee:wbSettop,additionalTv:p.amount,tvCount:a?Math.max(1,Number(o||1)):0,gift:ln(e,t)}}'
+          new_compare = 'wbCount=Math.max(1,Number(o||1)),p=a?Wt(t,wbCount):{known:!0,amount:0,extra:0},wbPkg=a?wbWiredPackageOverride(e,t,wbCount):null,wbAllowed=!a||wbWiredPackageCountAllowed(e,t,wbCount),wbExactExtra=a?wbWiredPackageExtra(e,t,wbCount):0,wbExtra=n(wbExactExtra)?Number(wbExactExtra):p.amount;if((!p.known||!wbAllowed)&&!n(wbPkg))return{known:!1,gift:ln(e,t),additionalUnknown:!0};const v=r+i+s+wbExtra,wbBase=n(wbPkg)?Number(wbPkg):v,wbIntDisc=n(wbPkg)?0:d,wbTvDisc=n(wbPkg)?0:m,wbSettop=n(wbPkg)?0:s;return{known:!0,base:wbBase,total:Math.max(0,wbBase-wbIntDisc-wbTvDisc),internetDiscount:wbIntDisc,tvDiscount:wbTvDisc,settopFee:wbSettop,additionalTv:wbExtra,tvCount:a?wbCount:0,gift:ln(e,t)}}'
+          src = replace_once(src, old_compare, new_compare, "wired comparison calculation")
+
+          old_detail = 'g=c?Rt():0,wbPkg=c&&1===g?wbWiredPackageOverride(o,r):null,x=c?Wt(r,g):{known:!0,amount:0,extra:0},C=x.known,w=x.amount,k=i&&d&&f&&C,$=k?n(wbPkg)?Number(wbPkg):l+m+h+w:null,'
+          new_detail = 'g=c?Rt():0,wbPkg=c?wbWiredPackageOverride(o,r,g):null,x=c?Wt(r,g):{known:!0,amount:0,extra:0},wbAllowed=!c||wbWiredPackageCountAllowed(o,r,g),wbExactExtra=c?wbWiredPackageExtra(o,r,g):0,C=(x.known&&wbAllowed)||n(wbPkg),w=n(wbExactExtra)?Number(wbExactExtra):x.amount,k=i&&d&&f&&C,$=k?n(wbPkg)?Number(wbPkg):l+m+h+w:null,'
+          src = replace_once(src, old_detail, new_detail, "wired detailed package selection")
+
+          src = replace_once(src, 'V=y+q,I=k&&S&&M,', 'V=(n(wbPkg)?0:y)+q,I=k&&S&&M,', "avoid double discount on exact package")
+
+          old_tv_split = 'const F=c&&d&&f?n(wbPkg)?Math.max(0,Number(wbPkg)-l):Math.max(0,m-_)+h:null;t("tv-fee-view").textContent=c?null!==F&&C?e(F+w):"매장 확인":"미선택",'
+          new_tv_split = 'const F=c&&d&&f?n(wbPkg)?Math.max(0,Number(wbPkg)-Math.max(0,l-b)):Math.max(0,m-_)+h:null;t("tv-fee-view").textContent=c?null!==F&&C?e(n(wbPkg)?F:F+w):"매장 확인":"미선택",'
+          src = replace_once(src, old_tv_split, new_tv_split, "TV total split")
+
+          src = replace_once(
+              src,
+              't("internet-bundle-discount").textContent=I?K?"-"+e(K):"미적용":"매장 확인",',
+              't("internet-bundle-discount").textContent=I?n(wbPkg)&&y?"요금에 포함":K?"-"+e(K):"미적용":"매장 확인",',
+              "package discount display"
+          )
+          src = replace_once(
+              src,
+              't("internet-result-wired-discount").textContent=c&&p?V?"-"+e(V):"미적용":E?S?"-"+e(q):"매장 확인":"미적용",',
+              't("internet-result-wired-discount").textContent=n(wbPkg)&&y?"요금에 포함":c&&p?V?"-"+e(V):"미적용":E?S?"-"+e(q):"매장 확인":"미적용",',
+              "result discount display"
+          )
+
+          src = replace_once(src, 'o=e?1===n?"tv1":2===n?"tv2":"":"internet";', 'o=e?1===n?"tv1":2===n?"tv2":"tv3":"internet";', "TV3 preset active state")
+          src = replace_once(src, 'o.value="tv2"===r?"2":"1"', 'o.value="tv3"===r?"3":"tv2"===r?"2":"1"', "TV3 preset click")
+          src = replace_once(src, 'data/internet.json?v=20260921-9', 'data/internet.json?v=20260922-1', "internet data cache version")
+
+          src_path.write_text(src, encoding="utf-8")
+
+          # 3) Add a TV 3 quick preset and bump calculator cache key.
+          html_path = Path("rates.html")
+          html = html_path.read_text(encoding="utf-8")
+          old_button = '                <button type="button" data-wired-life-preset="tv2">인터넷 + TV 2대</button>'
+          new_button = old_button + '\n                <button type="button" data-wired-life-preset="tv3">인터넷 + TV 3대</button>'
+          html = replace_once(html, old_button, new_button, "TV3 quick preset button")
+          html = replace_once(html, 'assets/rates.min.js?v=20260922-1', 'assets/rates.min.js?v=20260922-2', "rates JS cache version")
+          html_path.write_text(html, encoding="utf-8")
+
+          # 4) Purpose-built data assertions before the regular site checks.
+          check = json.loads(data_path.read_text(encoding="utf-8"))
+          rows = {(r["provider_id"], r["tv_product_key"]): r for r in check.get("multi_tv_package_totals", [])}
+          hello = rows[("LGHELLO", "TV_UHD_ECONOMY")]["monthly_totals"]
+          sky = rows[("SKYLIFE", "TV_IPIT_BASIC")]["monthly_totals"]
+          assert hello["2"] == {"100": 44380, "160": 49110, "500": 52140, "1000": 53350}
+          assert hello["3"] == {"100": 55930, "160": 60660, "500": 63690, "1000": 64900}
+          assert sky["2"] == {"100": 46200, "200": 47300, "500": 52800, "1000": 58300}
+          assert rows[("SKYLIFE", "TV_IPIT_BASIC")]["max_tv_count"] == 2
+          PY
+
+          python3 .github/scripts/build_rates_asset.py
+          node --check assets/rates.min.js
+          python3 .github/scripts/build_rates_asset.py --check
+          python3 .github/scripts/validate_site.py
+
+      - name: Commit patch and remove temporary workflow
+        run: |
+          rm -f .github/workflows/patch-wired-pricing-temp.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/rates.js assets/rates.min.js data/internet.json rates.html .github/workflows/patch-wired-pricing-temp.yml
+          git commit -m "Update multi-TV wired pricing"
+          git pull --rebase origin main
+          git push origin main
