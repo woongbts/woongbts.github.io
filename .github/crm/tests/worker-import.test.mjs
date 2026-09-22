@@ -1,10 +1,12 @@
+import { build } from 'esbuild';
+import { fileURLToPath } from 'node:url';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { Miniflare, convertV4MiniflareOptions } from 'miniflare';
 import { dedupeImportRows } from '../web/import-utils.js';
 
 // All records and keys are generated test fixtures in an ephemeral local D1 database.
-const script = await readFile(new URL('../src/worker.js', import.meta.url), 'utf8');
+const script = (await build({ entryPoints:[fileURLToPath(new URL('../src/worker.js',import.meta.url))],bundle:true,write:false,format:'esm',external:['cloudflare:*']})).outputFiles[0].text;
 const schema = await readFile(new URL('../migrations/0001_init.sql', import.meta.url), 'utf8');
 const mf = new Miniflare(convertV4MiniflareOptions({
   modules: true, script, compatibilityDate: '2026-09-01', d1Databases: ['DB'],

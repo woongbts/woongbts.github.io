@@ -43,5 +43,13 @@ jobs:
             echo 'Possible customer phone number or secret detected in committed CRM source.' >&2
             exit 1
           fi
+      - name: Block generated dependencies and temporary patch workflows
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git ls-files | grep -E '(^|/)(node_modules|dist|\.wrangler)/|crm-tablet-consent-(apply|branch|step1)\.yml|crm_tablet_consent_step1\.py'; then
+            echo 'Generated files and temporary patch workflows must not be committed.' >&2
+            exit 1
+          fi
       - name: Confirm production SMS stays locked by default
         run: grep -q 'SMS_MODE = "dry_run"' .github/crm/wrangler.toml.example

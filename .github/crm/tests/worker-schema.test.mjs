@@ -1,8 +1,10 @@
+import { build } from 'esbuild';
+import { fileURLToPath } from 'node:url';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { Miniflare, convertV4MiniflareOptions } from 'miniflare';
 
-const script = await readFile(new URL('../src/worker.js', import.meta.url), 'utf8');
+const script = (await build({ entryPoints:[fileURLToPath(new URL('../src/worker.js',import.meta.url))],bundle:true,write:false,format:'esm',external:['cloudflare:*']})).outputFiles[0].text;
 const initialSchema = await readFile(new URL('../migrations/0001_init.sql', import.meta.url), 'utf8');
 const profileSchema = await readFile(new URL('../migrations/0002_customer_profile.sql', import.meta.url), 'utf8');
 const contractSchema = await readFile(new URL('../migrations/0003_customer_contracts.sql', import.meta.url), 'utf8');

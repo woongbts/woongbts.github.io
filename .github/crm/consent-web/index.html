@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>웅비통신 고객관리 선택 동의</title><link rel="stylesheet" href="/consent.css"></head>
+<body><main><header><strong>웅비통신 덕천만덕점</strong><h1>고객관리 알림 선택 신청</h1></header>
+<p id="status" role="status">동의 화면을 확인하고 있습니다.</p>
+<section id="form" hidden><p id="customer"></p><p id="refusal" class="notice"></p>
+<div class="card"><label><input type="checkbox" id="marketing_use"> <b>[선택] 고객관리·마케팅 목적 개인정보 수집·이용 동의</b></label>
+<dl><dt>수집·이용 목적</dt><dd id="purpose"></dd><dt>수집 항목</dt><dd id="items"></dd><dt>보유·이용기간</dt><dd id="retention"></dd><dt>철회 방법</dt><dd id="withdrawal"></dd></dl></div>
+<fieldset class="card"><legend>[선택] 광고성 정보 수신 동의</legend><p id="advertising"></p>
+<label><input type="checkbox" id="ad_sms" disabled> 문자(SMS/MMS)</label>
+<label><input type="checkbox" id="ad_kakao" disabled> 카카오톡</label>
+<label><input type="checkbox" id="ad_call" disabled> 전화</label>
+<p>채널별로 선택할 수 있으며, 언제든 철회할 수 있습니다. 야간 광고 수신동의는 받지 않습니다.</p></fieldset>
+<p id="version"></p><div class="actions"><button id="submit" type="button">선택 내용 등록</button><button id="decline" type="button" class="secondary">동의하지 않고 종료</button></div></section>
+<p id="receipt"></p></main><script src="/consent.js" defer></script></body></html>

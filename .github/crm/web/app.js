@@ -11,6 +11,8 @@ let reviewRows = [];
 let selectedImportFiles = [];
 let importSelectionNote = '';
 let selectedCustomerId = null;
+let consentPolicy=null;
+let consentLinkTimer;
 
 for (const button of document.querySelectorAll('.tabs button')) button.addEventListener('click', () => openTab(button.dataset.tab));
 $('refresh').addEventListener('click', boot);
@@ -25,6 +27,10 @@ $('od-disconnect').addEventListener('click', disconnectOneDriveUi);
 $('run-import').addEventListener('click', runImport);
 $('preview-campaign').addEventListener('click', previewCampaign);
 $('save-consent').addEventListener('click', saveConsent);
+$('issue-consent').addEventListener('click', issueConsentLink);
+$('withdraw-consent').addEventListener('click', withdrawCustomerConsent);
+$('copy-consent-link').addEventListener('click',async()=>{try{await navigator.clipboard.writeText($('consent-link').value);}catch{showError(new Error('링크를 선택하여 직접 복사해 주세요.'));}});
+$('customer-dialog').addEventListener('close',clearConsentLink);
 $('send-campaign').addEventListener('click', () => alert('실발송은 아직 잠겨 있습니다. 문자업체 계정과 발신번호 등록 후 활성화합니다.'));
 
 async function api(path, options={}) {
@@ -86,7 +92,10 @@ function bindDetailButtons() {
 async function showCustomer(id) {
   try {
     const {customer:c} = await api(`/api/customers/${id}`);
+    clearConsentLink();
     selectedCustomerId = id;
+    $('consent-adult').checked=false;
+    await loadConsentManagement(id);
     $('detail-name').textContent = c.name;
     $('detail-list').innerHTML = `<dt>개통일</dt><dd>${esc(c.opened_on||'-')}</dd><dt>연락처</dt><dd>${esc(formatPhone(c.phone))}</dd><dt>생년월일</dt><dd>${esc(c.birth_date||'-')}</dd><dt>개통구분</dt><dd>${c.service_type === 'sim' ? '유심' : c.service_type === 'wireless' ? '휴대폰' : '미확인'}</dd><dt>통신사</dt><dd>${esc(c.carrier||'-')}</dd><dt>단말기</dt><dd>${esc(c.device_model||'-')}</dd><dt>요금제</dt><dd>${esc(c.rate_plan||'-')}</dd><dt>할부개월</dt><dd>${esc(formatInstallment(c.installment_months))}</dd><dt>개통 후 경과</dt><dd>${c.months_since_open==null?'-':`${c.months_since_open}개월`}</dd><dt>문자동의</dt><dd>${consentLabel(c.ad_sms_status)}</dd>`;
     renderRelatedLines(c.related_lines || []);
@@ -423,3 +432,44 @@ function esc(v){return String(v??'').replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&l
 function showError(error){console.error(error);alert(error.message||'오류가 발생했습니다.')}
 
 boot();
+
+function clearConsentLink(){
+  clearTimeout(consentLinkTimer);$('consent-link').value='';$('consent-link-wrap').hidden=true;
+}
+async function loadConsentManagement(id){
+  const [policy,history]=await Promise.all([api('/api/consent-policy'),api('/api/customers/'+id+'/consent-history')]);
+  consentPolicy=policy.policy;
+  $('consent-policy-state').textContent=consentPolicy.approved?'고객 직접 선택 · 모든 항목 선택 사항':'준비 중 — 최종 문구와 파기 절차 확인 후 사용 가능합니다.';
+  $('issue-consent').disabled=!consentPolicy.approved;
+  const labels={purpose:'수집·이용 목적',items:'수집 항목',retention:'보유·이용기간',refusal:'거부권',withdrawal:'철회 방법',advertising:'광고 안내'};
+  $('consent-policy-preview').innerHTML='<dl>'+Object.entries(labels).map(([k,label])=>'<dt>'+label+'</dt><dd>'+esc(consentPolicy[k])+'</dd>').join('')+'</dl><p>문자(SMS/MMS) · 카카오톡 · 전화는 각각 별도 선택합니다.</p><p>확인할 항목: '+esc(consentPolicy.pending.join(' / ')||'없음')+'</p>';
+  const label={marketing_use:'개인정보 이용',ad_sms:'문자',ad_kakao:'카카오톡',ad_call:'전화'};
+  const state={consented:'동의',denied:'미동의',withdrawn:'철회'};
+  $('consent-events').innerHTML=history.events.length?history.events.map(e=>'<article><b>'+esc(new Date(e.captured_at).toLocaleString('ko-KR'))+'</b><p>'+Object.entries(e.choices).map(([k,v])=>esc(label[k]+': '+state[v])).join(' · ')+'</p><small>'+esc((e.version||'철회 기록')+' · '+(e.capture_method==='customer_link'?'고객 직접 선택':'매장 철회 접수'))+'</small>'+consentEvidence(e)+'</article>').join(''):'새 동의 이력이 없습니다. 기존 미확인 고객은 자동 동의 처리하지 않습니다.';
+}
+async function issueConsentLink(){
+  if(!selectedCustomerId||!$('consent-adult').checked){showError(new Error('성인 고객 본인의 직접 선택 여부를 확인해 주세요.'));return;}
+  const id=selectedCustomerId;$('issue-consent').disabled=true;clearConsentLink();
+  try{
+    const r=await api('/api/customers/'+id+'/consent-session',{method:'POST',body:JSON.stringify({adult_confirmed:true})});
+    if(id!==selectedCustomerId||!$('customer-dialog').open)return;
+    $('consent-link').value=r.url;$('consent-link-wrap').hidden=false;
+    $('consent-link-expiry').textContent=new Date(r.expires_at).toLocaleTimeString('ko-KR')+'까지 1회 사용 가능 · 재발급하면 이전 링크는 취소됩니다.';
+    consentLinkTimer=setTimeout(clearConsentLink,Math.max(0,Date.parse(r.expires_at)-Date.now()));
+  }catch(e){showError(e);}finally{$('issue-consent').disabled=!consentPolicy?.approved;}
+}
+async function withdrawCustomerConsent(){
+  if(!selectedCustomerId||!confirm('고객의 철회 요청을 확인했나요? 개인정보 마케팅 이용과 문자·카카오톡·전화 동의를 모두 철회하고, 발급된 링크를 취소합니다.'))return;
+  try{
+    await api('/api/customers/'+selectedCustomerId+'/consent-withdraw',{method:'POST',body:JSON.stringify({confirmed:true})});
+    clearConsentLink();await loadConsentManagement(selectedCustomerId);await loadCustomers();
+    alert('전체 동의 철회를 기록했습니다. 마케팅 대상에서 제외됩니다.');
+  }catch(e){showError(e);}
+}
+
+function consentEvidence(event){
+  if(!event.form)return '';
+  const f=event.form;
+  const reminder=event.first_confirmation_due?'<p>최초 수신동의 확인 안내 기준일: '+esc(event.first_confirmation_due.slice(0,10))+' (동의 자동 만료일이 아닙니다)</p>':'';
+  return reminder+'<details><summary>당시 동의 문구 보기</summary><p>'+[f.purpose,f.items,f.retention,f.refusal,f.withdrawal,f.advertising].map(esc).join('</p><p>')+'</p><small>문구 확인값 '+esc(event.form_hash)+'</small></details>';
+}
