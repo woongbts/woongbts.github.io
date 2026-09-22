@@ -20,7 +20,8 @@ export default {
       } catch {return reply({ok:false,error:'요청을 처리할 수 없습니다.'},400);}
     }
     if(request.method==='GET' && ['/c','/','/consent.js','/consent.css'].includes(url.pathname)) {
-      const path=['/c','/'].includes(url.pathname)?'/index.html':url.pathname;
+      // Fetch the directory URL: /index.html is canonicalized back to / by Assets.
+      const path=['/c','/'].includes(url.pathname)?'/':url.pathname;
       const asset=await env.ASSETS.fetch(new Request(new URL(path,url.origin),request));
       const safe=new Headers(asset.headers); for(const [k,v] of Object.entries(headers))safe.set(k,v);
       return new Response(asset.body,{status:asset.status,headers:safe});

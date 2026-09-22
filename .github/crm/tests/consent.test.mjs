@@ -18,7 +18,7 @@ for(const enabled of [false,true]){
  if(enabled){assert.ok(script.includes('approved: true'));assert.ok(script.includes('pending: []'));}
  const mf=new Miniflare(convertV4MiniflareOptions({workers:[
    {name:'crm',routes:['crm.test/*'],modules:true,script,compatibilityDate:'2026-09-01',bindings,d1Databases:['DB']},
-   {name:'public',routes:['consent.test/*'],modules:true,script:gateway,compatibilityDate:'2026-09-01',serviceBindings:{CONSENT:{name:'crm',entrypoint:'ConsentPublic'},ASSETS:()=>new Response('consent fixture')}}
+   {name:'public',routes:['consent.test/*'],modules:true,script:gateway,compatibilityDate:'2026-09-01',serviceBindings:{CONSENT:{name:'crm',entrypoint:'ConsentPublic'},ASSETS:req=>new URL(req.url).pathname==='/index.html'?Response.redirect(new URL('/',req.url).href,301):new Response('consent fixture')}}
  ]}));
  try{
   const db=await mf.getD1Database('DB','crm');
@@ -35,6 +35,7 @@ for(const enabled of [false,true]){
   assert.equal((await call('form',{token:'f'.repeat(64)},'https://attacker.invalid')).status,403);
   assert.equal((await pub.fetch('https://consent.test/api/customers')).status,404);
   assert.equal((await pub.fetch('https://consent.test/')).headers.get('cache-control'),'no-store');
+  assert.equal((await pub.fetch('https://consent.test/c',{redirect:'manual'})).status,200);
   assert.equal((await (await admin(path+'/consent-history')).json()).events.length,0);
   r=await admin(path+'/consent-session',{adult_confirmed:true});
   if(!enabled){assert.equal(r.status,409);assert.equal((await db.prepare('SELECT COUNT(*) n FROM consent_events').first()).n,0);continue;}
