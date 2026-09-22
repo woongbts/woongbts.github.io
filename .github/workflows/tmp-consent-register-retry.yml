@@ -1,0 +1,50 @@
+name: Retry fixed CRM consent page
+
+on:
+  push:
+    branches: [tmp-consent-register-20260922]
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    if: github.event.head_commit.message == 'Retry fixed consent page updater'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: tmp-consent-register-20260922
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Reapply patch and fix test
+        shell: python
+        run: |
+          from pathlib import Path
+          source = Path('.github/workflows/tmp-consent-register-apply.yml')
+          text = source.read_text(encoding='utf-8')
+          block = text.split('        run: |\n', 1)[1].split('      - name: Install and validate CRM', 1)[0]
+          script = '\n'.join(line[10:] if line.startswith('          ') else line for line in block.splitlines())
+          exec(compile(script, 'embedded-consent-patch.py', 'exec'), {'__name__':'__main__'})
+          test_path = Path('.github/crm/tests/consent.test.mjs')
+          test = test_path.read_text(encoding='utf-8')
+          old = "  assert.equal(r.status,200,await r.clone().text());\n  const intake=await r.json();assert.equal(intake.customer_status,'created');assert.equal(intake.stored,true);"
+          new = "  const intake=await r.json();assert.equal(r.status,200,JSON.stringify(intake));assert.equal(intake.customer_status,'created');assert.equal(intake.stored,true);"
+          if old not in test:
+              raise SystemExit('intake assertion marker not found')
+          test_path.write_text(test.replace(old,new),encoding='utf-8')
+          Path('.github/workflows/tmp-consent-register-retry.yml').unlink(missing_ok=True)
+      - name: Install and validate CRM
+        working-directory: .github/crm
+        run: npm install --ignore-scripts && npm run check && npm run build
+      - name: Commit validated result
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add -A
+          git commit -m 'Add fixed tablet consent registration page'
+          git push origin HEAD:tmp-consent-register-20260922
