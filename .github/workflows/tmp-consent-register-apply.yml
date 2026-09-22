@@ -1,0 +1,246 @@
+name: Apply fixed CRM consent page
+
+on:
+  push:
+    branches: [tmp-consent-register-20260922]
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    if: github.event.head_commit.message == 'Add one-shot fixed consent page updater'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: tmp-consent-register-20260922
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Apply consent page changes
+        shell: python
+        run: |
+          from pathlib import Path
+
+          root = Path('.github/crm')
+
+          policy = """// Owner-approved store consent text. Keep this file free of customer data.
+          export const CONSENT_POLICY = Object.freeze({
+            version: 'WB-CONSENT-20260922-1',
+            approved: true,
+            retentionYears: 3,
+            operator: '웅비통신 덕천만덕점',
+            title: '고객관리 알림 선택 신청',
+            purpose: '약정·요금할인 종료 시점 안내, 통신비·결합할인 점검, 기기변경 및 매장 혜택·프로모션 안내',
+            items: '성명, 휴대전화번호, 기존 거래 고객의 경우 가입 통신사·개통일·최근 거래일',
+            retention: '동의일로부터 3년 또는 동의 철회 시까지 중 먼저 도래하는 때',
+            refusal: '모두 선택 사항입니다. 동의하지 않아도 휴대전화 개통·A/S·기본 상담 이용에는 제한이 없습니다.',
+            withdrawal: '매장 방문 또는 대표전화 051-343-7677로 동의 철회를 요청할 수 있습니다. 철회가 확인되면 고객관리·마케팅 이용과 선택한 광고 수신을 중단합니다.',
+            advertising: '통신상품, 요금·결합 혜택, 기기변경, 매장 행사 및 프로모션 정보를 선택한 채널로 안내합니다.',
+            channels: { ad_sms: '문자(SMS/MMS)', ad_kakao: '카카오톡', ad_call: '전화' },
+            pending: []
+          });
+          """
+          (root / 'src/consent-policy.js').write_text(policy, encoding='utf-8')
+
+          gateway_path = root / 'src/consent-public.js'
+          gateway = gateway_path.read_text(encoding='utf-8')
+          old = """    if(request.method==='POST' && ['/api/form','/api/submit'].includes(url.pathname)) {
+                if(request.headers.get('origin')!==url.origin || !request.headers.get('content-type')?.startsWith('application/json')) return reply({ok:false,error:'요청 출처를 확인할 수 없습니다.'},403);
+                try {
+                  const reader=request.body?.getReader(); if(!reader) return reply({ok:false},400);
+                  let size=0; const chunks=[];
+                  while(true) {const {done,value}=await reader.read(); if(done)break; size+=value.length; if(size>4096){await reader.cancel();return reply({ok:false},413);} chunks.push(value);}
+                  const bytes=new Uint8Array(size); let offset=0; for(const part of chunks){bytes.set(part,offset);offset+=part.length;}
+                  const body=JSON.parse(new TextDecoder().decode(bytes));
+                  const result=url.pathname==='/api/form'?await env.CONSENT.load(body.token):await env.CONSENT.submit(body);
+                  return reply(result,result.ok?200:result.status||400);
+                } catch {return reply({ok:false,error:'요청을 처리할 수 없습니다.'},400);}
+              }
+              if(request.method==='GET' && ['/c','/','/consent.js','/consent.css'].includes(url.pathname)) {
+                // Fetch the directory URL: /index.html is canonicalized back to / by Assets.
+                const path=['/c','/'].includes(url.pathname)?'/':url.pathname;
+                const asset=await env.ASSETS.fetch(new Request(new URL(path,url.origin),request));
+          """
+          new = """    if(request.method==='GET' && url.pathname==='/api/policy') {
+                const result=await env.CONSENT.policy();
+                return reply(result,result.ok?200:result.status||400);
+              }
+              if(request.method==='POST' && ['/api/form','/api/submit','/api/register'].includes(url.pathname)) {
+                if(request.headers.get('origin')!==url.origin || !request.headers.get('content-type')?.startsWith('application/json')) return reply({ok:false,error:'요청 출처를 확인할 수 없습니다.'},403);
+                try {
+                  const reader=request.body?.getReader(); if(!reader) return reply({ok:false},400);
+                  let size=0; const chunks=[];
+                  while(true) {const {done,value}=await reader.read(); if(done)break; size+=value.length; if(size>4096){await reader.cancel();return reply({ok:false},413);} chunks.push(value);}
+                  const bytes=new Uint8Array(size); let offset=0; for(const part of chunks){bytes.set(part,offset);offset+=part.length;}
+                  const body=JSON.parse(new TextDecoder().decode(bytes));
+                  const result=url.pathname==='/api/form'
+                    ?await env.CONSENT.load(body.token)
+                    :url.pathname==='/api/submit'
+                      ?await env.CONSENT.submit(body)
+                      :await env.CONSENT.intake(body);
+                  return reply(result,result.ok?200:result.status||400);
+                } catch {return reply({ok:false,error:'요청을 처리할 수 없습니다.'},400);}
+              }
+              if(request.method==='GET' && ['/c','/','/register','/register/','/register.js','/consent.js','/consent.css'].includes(url.pathname)) {
+                // Fetch directory URLs to avoid Assets canonical redirects for index.html.
+                const path=['/c','/'].includes(url.pathname)?'/':['/register','/register/'].includes(url.pathname)?'/register/':url.pathname;
+                const asset=await env.ASSETS.fetch(new Request(new URL(path,url.origin),request));
+          """
+          if old not in gateway:
+              raise SystemExit('consent-public route marker not found')
+          gateway_path.write_text(gateway.replace(old, new), encoding='utf-8')
+
+          worker_path = root / 'src/worker.js'
+          worker = worker_path.read_text(encoding='utf-8')
+          marker = "async function consentHistory(env, id) {"
+          if marker not in worker:
+              raise SystemExit('worker consentHistory marker not found')
+          intake = r"""
+          async function publicConsentPolicy() {
+            requireApprovedPolicy();
+            const formJson=JSON.stringify(CONSENT_POLICY);
+            return {ok:true,policy:CONSENT_POLICY,form_hash:await consentHash(formJson)};
+          }
+          async function submitConsentIntake(env, body) {
+            await ensureSchema(env);
+            requireApprovedPolicy();
+            const name=String(body?.name||'').trim().replace(/\s+/g,' ').slice(0,80);
+            const phone=normalizePhone(body?.phone||'');
+            if(name.length<2 || phone.length<10 || phone.length>11) throw httpError(400,'성명과 휴대전화번호를 확인해 주세요.');
+            if(body?.adult_confirmed!==true) throw httpError(400,'성인 고객 본인이 직접 작성해 주세요.');
+            if(!body.choices || CONSENT_PURPOSES.some(p=>typeof body.choices[p]!=='boolean')) throw httpError(400,'각 동의 항목을 확인해 주세요.');
+            if(!body.choices.marketing_use && CONSENT_PURPOSES.slice(1).some(p=>body.choices[p])) throw httpError(400,'광고 채널 선택에는 개인정보 수집·이용 동의가 필요합니다.');
+            const formJson=JSON.stringify(CONSENT_POLICY), formHash=await consentHash(formJson);
+            if(body.form_hash!==formHash) throw httpError(409,'동의 문구가 변경되었습니다. 화면을 새로고침해 주세요.');
+            if(!body.choices.marketing_use) return {ok:true,stored:false,message:'동의하지 않은 경우 입력하신 고객정보는 저장하지 않습니다.'};
+
+            const phoneHash=await phoneHmac(phone,env);
+            let customer=await env.DB.prepare("SELECT id,name_enc FROM customers WHERE phone_hmac=? AND customer_status='active' LIMIT 1").bind(phoneHash).first();
+            const now=new Date().toISOString(), receipt=crypto.randomUUID();
+            let customerId, customerStatus='matched';
+            if(customer){
+              const existingName=await decryptText(customer.name_enc,env);
+              if(normalizePersonName(existingName)!==normalizePersonName(name)) throw httpError(409,'입력하신 성명과 연락처를 확인해 주세요. 매장 직원에게 말씀해 주세요.');
+              customerId=customer.id;
+            }else{
+              customerId=crypto.randomUUID(); customerStatus='created';
+              await env.DB.prepare(`INSERT INTO customers
+                (id,phone_hmac,name_enc,phone_enc,carrier,device_model_enc,opened_on,customer_status,source_type,source_ref,created_at,updated_at)
+                VALUES (?,?,?,?,NULL,NULL,NULL,'active','consent_page',?,?,?)`)
+                .bind(customerId,phoneHash,await encryptText(name,env),await encryptText(phone,env),receipt,now,now).run();
+            }
+            const choices=Object.fromEntries(CONSENT_PURPOSES.map(p=>[p,body.choices[p]?'consented':'denied']));
+            const eventId=crypto.randomUUID(), validUntil=consentExpiry(now);
+            const evidence=await encryptText(JSON.stringify({event_id:eventId,form_hash:formHash,receipt_id:receipt,source:'fixed_tablet_page'}),env);
+            const statements=[
+              env.DB.prepare('INSERT OR IGNORE INTO consent_forms(form_hash,version,text_json,created_at) VALUES(?,?,?,?)').bind(formHash,CONSENT_POLICY.version,formJson,now),
+              env.DB.prepare(`INSERT INTO consent_events(id,customer_id,form_hash,choices_json,captured_at,capture_method,valid_until,receipt_id)
+                VALUES(?,?,?,?,?,'customer_tablet',?,?)`).bind(eventId,customerId,formHash,JSON.stringify(choices),now,validUntil,receipt)
+            ];
+            for(const purpose of ['marketing_use','ad_sms']){
+              const status=body.choices[purpose]?'granted':'revoked';
+              statements.push(env.DB.prepare(`INSERT INTO consents(id,customer_id,purpose,status,captured_at,capture_method,evidence_enc,revoked_at,created_at)
+                VALUES(?,?,?,?,?,'web',?,?,?)`).bind(crypto.randomUUID(),customerId,purpose,status,now,evidence,status==='revoked'?now:null,now));
+            }
+            await env.DB.batch(statements);
+            return {ok:true,stored:true,receipt_id:receipt,captured_at:now,customer_status:customerStatus,choices};
+          }
+          """
+          worker = worker.replace(marker, intake + "\n" + marker)
+          old_class = """// Named entrypoint exposes only two token-scoped operations. No generic CRM proxy.
+          export class ConsentPublic extends WorkerEntrypoint {
+            async load(token) { return consentResult(()=>loadConsentForm(this.env,token)); }
+            async submit(body) { return consentResult(()=>submitConsentForm(this.env,body)); }
+          }
+          """
+          new_class = """// Named entrypoint exposes only consent-specific operations. No generic CRM proxy.
+          export class ConsentPublic extends WorkerEntrypoint {
+            async policy() { return consentResult(()=>publicConsentPolicy()); }
+            async load(token) { return consentResult(()=>loadConsentForm(this.env,token)); }
+            async submit(body) { return consentResult(()=>submitConsentForm(this.env,body)); }
+            async intake(body) { return consentResult(()=>submitConsentIntake(this.env,body)); }
+          }
+          """
+          if old_class not in worker:
+              raise SystemExit('ConsentPublic class marker not found')
+          worker_path.write_text(worker.replace(old_class,new_class),encoding='utf-8')
+
+          register_dir = root / 'consent-web/register'
+          register_dir.mkdir(parents=True, exist_ok=True)
+          register_html = """<!doctype html>
+          <html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>웅비통신 고객관리 알림 신청</title><link rel="stylesheet" href="/consent.css"></head>
+          <body><main><header><strong>웅비통신 덕천만덕점</strong><h1>고객관리 알림 신청</h1></header>
+          <p class="notice"><b>통신사 개통 서류와 별개의 웅비통신 선택 동의입니다.</b><br>동의하지 않으셔도 개통·A/S·기본 상담 이용에는 제한이 없습니다.</p>
+          <p id="status" role="status">동의 내용을 불러오는 중입니다.</p>
+          <section id="register-form" hidden>
+          <div class="card"><h2>고객 정보</h2><label class="field">성명<input class="text-input" id="name" type="text" maxlength="40" autocomplete="name" placeholder="성명을 입력해 주세요"></label><label class="field">휴대전화번호<input class="text-input" id="phone" type="tel" maxlength="14" inputmode="tel" autocomplete="tel" placeholder="휴대전화번호를 입력해 주세요"></label><label><input type="checkbox" id="adult"> 본인은 만 19세 이상이며 본인이 직접 작성합니다.</label></div>
+          <div class="card"><label><input type="checkbox" id="marketing_use"> <b>[선택] 고객관리·마케팅 목적 개인정보 수집·이용 동의</b></label><dl><dt>수집·이용 목적</dt><dd id="purpose"></dd><dt>수집·이용 항목</dt><dd id="items"></dd><dt>보유·이용기간</dt><dd id="retention"></dd><dt>동의 거부권</dt><dd id="refusal"></dd><dt>철회 방법</dt><dd id="withdrawal"></dd></dl></div>
+          <fieldset class="card"><legend>[선택] 광고성 정보 수신 동의</legend><p id="advertising"></p><label><input type="checkbox" id="ad_sms" disabled> 문자(SMS/MMS)</label><label><input type="checkbox" id="ad_kakao" disabled> 카카오톡</label><label><input type="checkbox" id="ad_call" disabled> 전화</label><p class="helper">원하는 채널만 선택할 수 있습니다. 야간 광고 수신동의는 받지 않습니다.</p></fieldset>
+          <p id="version" class="helper"></p><div class="actions"><button id="submit" type="button">동의하고 등록하기</button><button id="decline" type="button" class="secondary">동의하지 않고 초기화</button></div></section>
+          <section id="done" class="card success" hidden><h2>등록되었습니다</h2><p id="receipt"></p><p>잠시 후 다음 고객을 위한 입력 화면으로 돌아갑니다.</p><button id="again" type="button" class="secondary">지금 초기화</button></section>
+          </main><script src="/register.js" defer></script></body></html>
+          """
+          (register_dir / 'index.html').write_text(register_html,encoding='utf-8')
+
+          register_js = r"""const $=id=>document.getElementById(id);
+          const purposes=['marketing_use','ad_sms','ad_kakao','ad_call'];
+          let formHash='',busy=false,resetTimer;
+          async function jsonApi(path,options={}){const r=await fetch(path,{cache:'no-store',credentials:'omit',...options});const data=await r.json();if(!r.ok)throw new Error(data.error||'요청을 처리할 수 없습니다.');return data;}
+          function clearForm(){clearTimeout(resetTimer);$('name').value='';$('phone').value='';$('adult').checked=false;purposes.forEach(p=>{$(p).checked=false;});purposes.slice(1).forEach(p=>$(p).disabled=true);$('done').hidden=true;$('register-form').hidden=false;$('status').textContent='고객님께서 직접 읽고 선택해 주세요.';$('name').focus();}
+          function channelState(){const enabled=$('marketing_use').checked;purposes.slice(1).forEach(p=>{$(p).disabled=!enabled;if(!enabled)$(p).checked=false;});}
+          $('marketing_use').addEventListener('change',channelState);
+          $('decline').addEventListener('click',()=>{clearForm();$('status').textContent='동의하지 않은 경우 입력정보를 저장하지 않습니다.';});
+          $('again').addEventListener('click',clearForm);
+          $('phone').addEventListener('input',e=>{const d=e.target.value.replace(/\D/g,'').slice(0,11);e.target.value=d.length>7?`${d.slice(0,3)}-${d.slice(3,-4)}-${d.slice(-4)}`:d.length>3?`${d.slice(0,3)}-${d.slice(3)}`:d;});
+          $('submit').addEventListener('click',async()=>{
+            if(busy)return;const name=$('name').value.trim(),phone=$('phone').value.trim();
+            if(name.length<2){$('status').textContent='성명을 확인해 주세요.';$('name').focus();return;}
+            if(phone.replace(/\D/g,'').length<10){$('status').textContent='휴대전화번호를 확인해 주세요.';$('phone').focus();return;}
+            if(!$('adult').checked){$('status').textContent='성인 고객 본인이 직접 작성하는지 확인해 주세요.';return;}
+            if(!$('marketing_use').checked){$('status').textContent='개인정보 수집·이용 동의가 선택되지 않았습니다. 동의하지 않으시면 아래 초기화 버튼을 눌러 주세요.';return;}
+            busy=true;$('submit').disabled=$('decline').disabled=true;$('status').textContent='등록 중입니다.';
+            try{const choices=Object.fromEntries(purposes.map(p=>[p,$(p).checked]));const r=await jsonApi('/api/register',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({name,phone,adult_confirmed:true,form_hash:formHash,choices})});$('register-form').hidden=true;$('done').hidden=false;$('status').textContent='선택하신 내용을 안전하게 등록했습니다.';$('receipt').textContent='접수번호 '+r.receipt_id+' · '+new Date(r.captured_at).toLocaleString('ko-KR');resetTimer=setTimeout(clearForm,5000);}catch(e){$('status').textContent=e.message;}finally{busy=false;$('submit').disabled=$('decline').disabled=false;}
+          });
+          (async()=>{try{const r=await jsonApi('/api/policy');formHash=r.form_hash;for(const key of ['purpose','items','retention','refusal','withdrawal','advertising'])$(key).textContent=r.policy[key];$('version').textContent='동의서 '+r.policy.version;$('register-form').hidden=false;$('status').textContent='고객님께서 직접 읽고 선택해 주세요.';}catch(e){$('status').textContent=e.message;}})();
+          """
+          (root / 'consent-web/register.js').write_text(register_js,encoding='utf-8')
+
+          css_path=root/'consent-web/consent.css'
+          css=css_path.read_text(encoding='utf-8')
+          extra=".field{font-weight:700}.text-input{display:block;width:100%;height:auto;margin-top:8px;padding:14px 16px;border:1px solid #9db8c1;border-radius:12px;background:#fff;color:#143e4c;font:inherit;accent-color:auto}.text-input:focus{border-color:#147d74;outline:3px solid #bfe3de}.helper{font-size:15px;color:#54717b}.success{border-color:#7fc6b9;background:#eef9f6}h2{font-size:22px;margin:0 0 10px}"
+          if extra not in css: css += extra
+          css_path.write_text(css,encoding='utf-8')
+
+          pkg_path=root/'package.json'
+          pkg=pkg_path.read_text(encoding='utf-8')
+          pkg=pkg.replace('node --check consent-web/consent.js && node tests/consent.test.mjs','node --check consent-web/consent.js && node --check consent-web/register.js && node tests/consent.test.mjs')
+          pkg_path.write_text(pkg,encoding='utf-8')
+
+          test_path=root/'tests/consent.test.mjs'
+          test=test_path.read_text(encoding='utf-8')
+          test=test.replace("// A fixture-only approved policy exercises the dormant live flow. Never deploy it.\nfor(const enabled of [false,true]){\n const script=enabled?original.replace('approved: false','approved: true').replace(/pending: \\[[^\\]]*\\]/,'pending: []'):original;\n if(enabled){assert.ok(script.includes('approved: true'));assert.ok(script.includes('pending: []'));}","// Exercise both a disabled-policy fixture and the deployed approved policy.\nfor(const enabled of [false,true]){\n const script=enabled?original:original.replace('approved: true','approved: false');\n if(enabled){assert.ok(script.includes('approved: true'));assert.ok(script.includes('pending: []'));}")
+          test=test.replace("  const call=async(path,body,origin='https://consent.test')=>pub.fetch('https://consent.test/api/'+path,{method:'POST',headers:{'content-type':'application/json',origin},body:JSON.stringify(body)});","  const call=async(path,body,origin='https://consent.test')=>pub.fetch('https://consent.test/api/'+path,{method:'POST',headers:{'content-type':'application/json',origin},body:JSON.stringify(body)});\n  const pubGet=async path=>pub.fetch('https://consent.test/api/'+path,{method:'GET'});")
+          needle="  if(!enabled){assert.equal(r.status,409);assert.equal((await db.prepare('SELECT COUNT(*) n FROM consent_events').first()).n,0);continue;}\n"
+          addition=needle+"  const publicPolicy=await (await pubGet('policy')).json();\n  assert.equal(publicPolicy.ok,true);\n  const newPhone=['010','0000','0002'].join('');\n  const intakeChoices={marketing_use:true,ad_sms:true,ad_kakao:false,ad_call:false};\n  r=await call('register',{name:'신규고객',phone:newPhone,adult_confirmed:true,form_hash:publicPolicy.form_hash,choices:intakeChoices});\n  assert.equal(r.status,200,await r.clone().text());\n  const intake=await r.json();assert.equal(intake.customer_status,'created');assert.equal(intake.stored,true);\n  const newCustomer=(await (await admin('customers?q='+encodeURIComponent(newPhone))).json()).customers[0];\n  assert.equal(newCustomer.name,'신규고객');assert.equal(newCustomer.ad_sms_status,'granted');\n  assert.equal((await call('register',{name:'다른이름',phone:newPhone,adult_confirmed:true,form_hash:publicPolicy.form_hash,choices:intakeChoices})).status,409);\n  const beforeNoConsent=Number((await db.prepare('SELECT COUNT(*) n FROM customers').first()).n);\n  r=await call('register',{name:'미저장고객',phone:['010','0000','0003'].join(''),adult_confirmed:true,form_hash:publicPolicy.form_hash,choices:Object.fromEntries(Object.keys(intakeChoices).map(p=>[p,false]))});\n  assert.equal(r.status,200);assert.equal((await r.json()).stored,false);assert.equal(Number((await db.prepare('SELECT COUNT(*) n FROM customers').first()).n),beforeNoConsent);\n"
+          if needle not in test: raise SystemExit('consent test insertion marker not found')
+          test=test.replace(needle,addition)
+          test=test.replace("console.log('Draft policy blocks production collection; unknown customers stay unknown');","console.log('Consent policy gating, fixed tablet intake, token flow and unknown-customer safety passed');")
+          test_path.write_text(test,encoding='utf-8')
+
+          wf=Path('.github/workflows/tmp-consent-register-apply.yml')
+          if wf.exists(): wf.unlink()
+      - name: Install and validate CRM
+        working-directory: .github/crm
+        run: npm install --ignore-scripts && npm run check && npm run build
+      - name: Commit validated result
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add -A
+          git commit -m 'Add fixed tablet consent registration page'
+          git push origin HEAD:tmp-consent-register-20260922
