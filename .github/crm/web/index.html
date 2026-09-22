@@ -153,6 +153,16 @@
     <form method="dialog" class="dialog-card">
       <div class="dialog-head"><strong id="detail-name">고객</strong><button value="cancel" class="ghost">닫기</button></div>
       <dl id="detail-list"></dl>
+      <section class="consent-management">
+        <h3>고객관리 선택 동의</h3>
+        <p id="consent-policy-state">동의 문구 확인 중</p>
+        <details><summary>동의 문구 및 확인할 항목</summary><div id="consent-policy-preview"></div></details>
+        <label><input id="consent-adult" type="checkbox"> 성인 고객 본인이 직접 선택할 예정임을 확인했습니다.</label>
+        <button id="issue-consent" type="button" disabled>고객용 동의 링크 발급</button>
+        <div id="consent-link-wrap" hidden><p>고객용 기기에 아래 링크를 열어 주세요. 이 관리자 화면은 고객에게 넘기지 마세요.</p><input id="consent-link" readonly aria-label="일회용 고객 동의 링크"><button id="copy-consent-link" type="button">링크 복사</button><p id="consent-link-expiry"></p></div>
+        <button id="withdraw-consent" type="button" class="ghost">고객 요청에 따라 전체 동의 철회</button>
+        <h4>고객 직접 동의·철회 이력</h4><div id="consent-events"></div>
+      </section>
 
       <section id="contract-history-wrap" class="contract-history-wrap hidden">
         <div class="related-lines-head">
@@ -170,9 +180,9 @@
         <div id="related-lines"></div>
       </section>
 
-      <h3>광고성 문자 수신동의 기록</h3>
+      <h3>기존 문자 기록의 거부·미확인 정정</h3>
       <div class="consent-grid">
-        <select id="consent-status"><option value="granted">동의</option><option value="revoked">수신거부</option><option value="unknown">미확인</option></select>
+        <select id="consent-status"><option value="revoked">수신거부</option><option value="unknown">미확인</option></select>
         <select id="consent-method"><option value="paper">서면</option><option value="qr">QR</option><option value="web">웹</option><option value="phone">전화</option><option value="other">기타</option></select>
         <input id="consent-at" type="datetime-local">
       </div>

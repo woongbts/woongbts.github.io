@@ -47,6 +47,7 @@ jobs:
           [assets]
           directory = "./dist"
           binding = "ASSETS"
+          run_worker_first = true
 
           [[d1_databases]]
           binding = "DB"
@@ -61,3 +62,6 @@ jobs:
           grep -F 'database_name = "woongbi-crm"' wrangler.toml
       - name: Deploy CRM Worker and preserve dashboard vars/secrets
         run: npx wrangler deploy --config wrangler.toml --name woongbi-crm --keep-vars
+
+      - name: Deploy isolated customer consent page
+        run: npx wrangler deploy --config wrangler.consent.toml --name woongbi-consent

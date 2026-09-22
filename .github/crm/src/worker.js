@@ -1,3 +1,5 @@
+import { WorkerEntrypoint } from 'cloudflare:workers';
+import { CONSENT_POLICY } from './consent-policy.js';
 const encoder = new TextEncoder();
 const decoder = new TextDecoder();
 let jwksCache = { at: 0, keys: [] };
@@ -16,7 +18,7 @@ export default {
     } catch (error) {
       const status = Number(error?.status) || 500;
       const message = status >= 500 ? '서버 처리 중 오류가 발생했습니다.' : String(error.message || '요청을 처리할 수 없습니다.');
-      if (status >= 500) console.error(error);
+      if (status >= 500) console.error('CRM request failed', { status });
       return json({ ok: false, error: message }, status);
     }
   }
@@ -46,6 +48,13 @@ async function handleApi(request, env, user, url) {
   const customerMatch = url.pathname.match(/^\/api\/customers\/([a-f0-9-]+)$/i);
   if (customerMatch && method === 'GET') return getCustomer(env, customerMatch[1]);
 
+  if (method === 'GET' && url.pathname === '/api/consent-policy') return json({ok:true, policy:CONSENT_POLICY});
+  const sessionMatch = url.pathname.match(/^\/api\/customers\/([a-f0-9-]+)\/consent-session$/i);
+  if (sessionMatch && method === 'POST') return issueConsentSession(request, env, user, sessionMatch[1]);
+  const historyMatch = url.pathname.match(/^\/api\/customers\/([a-f0-9-]+)\/consent-history$/i);
+  if (historyMatch && method === 'GET') return consentHistory(env, historyMatch[1]);
+  const withdrawMatch = url.pathname.match(/^\/api\/customers\/([a-f0-9-]+)\/consent-withdraw$/i);
+  if (withdrawMatch && method === 'POST') return withdrawConsent(request, env, user, withdrawMatch[1]);
   const consentMatch = url.pathname.match(/^\/api\/customers\/([a-f0-9-]+)\/consent$/i);
   if (consentMatch && method === 'POST') return recordConsent(request, env, user, consentMatch[1]);
 
@@ -153,6 +162,7 @@ async function ensureSchema(env) {
       env.DB.prepare('CREATE INDEX IF NOT EXISTS idx_customer_contracts_customer ON customer_contracts(customer_id)'),
       env.DB.prepare('CREATE INDEX IF NOT EXISTS idx_customer_contracts_opened_on ON customer_contracts(opened_on)')
     ]);
+    await ensureConsentSchema(env);
     const contractInfo = await env.DB.prepare('PRAGMA table_info(customer_contracts)').all();
     const contractColumns = new Set((contractInfo.results || []).map(row => String(row.name)));
     if (!contractColumns.has('service_type')) {
@@ -635,7 +645,7 @@ async function importCustomers(request, env, user) {
 
     if (row.consent === 'granted' && row.consent_at) {
       consentStatements.push(env.DB.prepare(`INSERT INTO consents (id,customer_id,purpose,status,captured_at,capture_method,evidence_enc,created_at) VALUES (?,?,?,?,?,?,?,?)`)
-        .bind(crypto.randomUUID(), current.id, 'ad_sms', 'granted', row.consent_at, 'imported_record', await encryptText('기존 동의기록이 있는 Excel 행에서 가져옴', env), now));
+        .bind(crypto.randomUUID(), current.id, 'ad_sms', 'unknown', row.consent_at, 'imported_record', await encryptText('Excel 동의 표시: 원문·목적·채널·증빙 검토 전, 동의 자동 부여 안 함', env), now));
     } else if (row.consent === 'revoked') {
       consentStatements.push(env.DB.prepare(`INSERT INTO consents (id,customer_id,purpose,status,captured_at,capture_method,evidence_enc,revoked_at,created_at) VALUES (?,?,?,?,?,?,?,?,?)`)
         .bind(crypto.randomUUID(), current.id, 'ad_sms', 'revoked', row.consent_at || now, 'imported_record', await encryptText(row.consent_at ? '기존 수신거부 기록을 Excel에서 가져옴' : 'Excel에 수신거부로 표시됨(원 거부일 미기재)', env), row.consent_at || now, now));
@@ -676,10 +686,11 @@ async function recordConsent(request, env, user, customerId) {
   const exists = await env.DB.prepare('SELECT id FROM customers WHERE id=?').bind(customerId).first();
   if (!exists) throw httpError(404, '고객을 찾을 수 없습니다.');
   const body = await readJson(request);
-  const status = ['granted','revoked','unknown'].includes(body.status) ? body.status : null;
+  if (body.status === 'granted') throw httpError(409, '고객 직접 동의 화면을 이용해 주세요. 기존 증빙은 검토 기록으로만 보관합니다.');
+  const status = ['revoked','unknown'].includes(body.status) ? body.status : null;
   const method = ['paper','qr','web','phone','imported_record','other'].includes(body.method) ? body.method : null;
   if (!status || !method) throw httpError(400, '동의 상태와 수집방법을 확인해 주세요.');
-  const capturedAt = normalizeDateTime(body.captured_at) || new Date().toISOString();
+  const capturedAt = new Date().toISOString();
   const evidence = String(body.evidence || '').trim();
   if (status === 'granted' && !evidence) throw httpError(400, '동의 증빙 또는 기록 내용을 입력해 주세요.');
   const now = new Date().toISOString();
@@ -703,6 +714,9 @@ async function previewCampaign(request, env) {
 
   const total = await env.DB.prepare(`SELECT COUNT(*) count FROM customers c WHERE c.customer_status='active' AND c.opened_on BETWEEN ? AND ?${carrierSql}`).bind(...params).first();
   const eligible = await env.DB.prepare(`SELECT COUNT(*) count FROM customers c WHERE c.customer_status='active' AND c.opened_on BETWEEN ? AND ?${carrierSql}
+    AND EXISTS (SELECT 1 FROM consent_events e WHERE e.id=(SELECT id FROM consent_events WHERE customer_id=c.id ORDER BY rowid DESC LIMIT 1)
+      AND json_extract(e.choices_json,'$.marketing_use')='consented' AND json_extract(e.choices_json,'$.ad_sms')='consented'
+      AND e.valid_until > strftime('%Y-%m-%dT%H:%M:%fZ','now'))
     AND COALESCE((SELECT status FROM consents x WHERE x.customer_id=c.id AND x.purpose='ad_sms' ORDER BY captured_at DESC, created_at DESC LIMIT 1),'unknown')='granted'`).bind(...params).first();
   const totalCount = Number(total?.count || 0);
   const eligibleCount = Number(eligible?.count || 0);
@@ -710,6 +724,8 @@ async function previewCampaign(request, env) {
 }
 
 async function sendCampaign(request, env, user, campaignId) {
+  const koreaHour = (new Date().getUTCHours() + 9) % 24;
+  if (koreaHour >= 21 || koreaHour < 8) throw httpError(409, '오후 9시부터 오전 8시까지 광고 발송은 차단됩니다.');
   if ((env.SMS_MODE || 'dry_run') !== 'enabled') {
     await audit(env, user.email, 'campaign_send_blocked', 'campaign', campaignId, { reason: 'SMS_MODE not enabled' });
     throw httpError(409, '문자 실발송은 아직 잠겨 있습니다. 문자업체 연결·발신번호 등록·수신동의 정책 확인 후 활성화합니다.');
@@ -926,3 +942,145 @@ function bytesBase64(bytes) {
   for (const b of bytes) binary += String.fromCharCode(b);
   return btoa(binary);
 }
+
+
+const CONSENT_ORIGIN = 'https://woongbi-consent.woongbts.workers.dev';
+const CONSENT_PURPOSES = ['marketing_use', 'ad_sms', 'ad_kakao', 'ad_call'];
+
+async function ensureConsentSchema(env) {
+  await env.DB.batch(CONSENT_DDL.map(sql => env.DB.prepare(sql)));
+}
+function requireApprovedPolicy() {
+  if (!CONSENT_POLICY.approved || !Number.isInteger(CONSENT_POLICY.retentionYears) || CONSENT_POLICY.retentionYears <= 0 || CONSENT_POLICY.pending.length) {
+    throw httpError(409, '동의 문구·보유기간 확인 전입니다. 현재는 미리보기만 가능합니다.');
+  }
+}
+function consentExpiry(now, years = CONSENT_POLICY.retentionYears) {
+  const date=new Date(now), month=date.getUTCMonth();
+  date.setUTCFullYear(date.getUTCFullYear()+years);
+  if (date.getUTCMonth()!==month) date.setUTCDate(0);
+  return date.toISOString();
+}
+function requireSameOrigin(request) {
+  if (request.headers.get('origin') !== new URL(request.url).origin ||
+      !request.headers.get('content-type')?.startsWith('application/json')) throw httpError(403, '요청 출처를 확인할 수 없습니다.');
+}
+async function consentHash(text) {
+  return [...new Uint8Array(await crypto.subtle.digest('SHA-256', encoder.encode(text)))].map(v=>v.toString(16).padStart(2,'0')).join('');
+}
+async function requireCustomer(env, id) {
+  const row = await env.DB.prepare("SELECT id,name_enc,phone_enc FROM customers WHERE id=? AND customer_status='active'").bind(id).first();
+  if (!row) throw httpError(404, '고객을 찾을 수 없습니다.');
+  return row;
+}
+async function issueConsentSession(request, env, user, customerId) {
+  requireSameOrigin(request);
+  requireApprovedPolicy();
+  const body = await readJson(request);
+  if (body.adult_confirmed !== true) throw httpError(400, '성인 고객 본인의 직접 선택인지 확인해 주세요. 미성년자·대리인 절차는 준비 중입니다.');
+  await requireCustomer(env, customerId);
+  const now = new Date().toISOString();
+  const expiresAt = new Date(Date.now()+10*60*1000).toISOString();
+  const token = [...crypto.getRandomValues(new Uint8Array(32))].map(v=>v.toString(16).padStart(2,'0')).join('');
+  const tokenHash = await consentHash(token);
+  const formJson = JSON.stringify(CONSENT_POLICY);
+  const formHash = await consentHash(formJson);
+  const actor = await encryptText(user.email, env);
+  await env.DB.batch([
+    env.DB.prepare('INSERT OR IGNORE INTO consent_forms(form_hash,version,text_json,created_at) VALUES(?,?,?,?)').bind(formHash,CONSENT_POLICY.version,formJson,now),
+    env.DB.prepare('UPDATE consent_sessions SET cancelled_at=? WHERE customer_id=? AND used_event IS NULL AND cancelled_at IS NULL').bind(now,customerId),
+    env.DB.prepare('INSERT INTO consent_sessions(token_hash,customer_id,form_hash,issued_by_enc,created_at,expires_at) VALUES(?,?,?,?,?,?)').bind(tokenHash,customerId,formHash,actor,now,expiresAt)
+  ]);
+  // Fragment is never sent in URLs, server logs or referrers.
+  return json({ok:true, url:CONSENT_ORIGIN+'/c#'+token, expires_at:expiresAt});
+}
+async function findConsentSession(env, token) {
+  requireApprovedPolicy();
+  if (typeof token !== 'string' || !/^[a-f0-9]{64}$/.test(token)) throw httpError(410, '링크가 만료되었거나 사용할 수 없습니다.');
+  const hash = await consentHash(token);
+  const row = await env.DB.prepare(`SELECT s.*, f.text_json FROM consent_sessions s JOIN consent_forms f ON f.form_hash=s.form_hash
+    JOIN customers c ON c.id=s.customer_id
+    WHERE s.token_hash=? AND s.used_event IS NULL AND s.cancelled_at IS NULL AND s.expires_at>? AND c.customer_status='active'`).bind(hash,new Date().toISOString()).first();
+  if (!row) throw httpError(410, '링크가 만료되었거나 사용할 수 없습니다.');
+  if (row.form_hash !== await consentHash(JSON.stringify(CONSENT_POLICY))) throw httpError(410, '동의 문구가 변경되었습니다. 새 링크를 요청해 주세요.');
+  return row;
+}
+async function loadConsentForm(env, token) {
+  await ensureSchema(env);
+  const session = await findConsentSession(env,token);
+  const row = await requireCustomer(env,session.customer_id);
+  const name = await decryptText(row.name_enc,env);
+  const phone = await decryptText(row.phone_enc,env);
+  return {ok:true, policy:JSON.parse(session.text_json), form_hash:session.form_hash, expires_at:session.expires_at,
+    customer_label:(Array.from(name)[0] || '')+'** 고객님 · 연락처 끝번호 '+phone.slice(-4)};
+}
+async function submitConsentForm(env, body) {
+  await ensureSchema(env);
+  const session = await findConsentSession(env,body?.token);
+  if (body.form_hash !== session.form_hash) throw httpError(409,'동의 문구를 다시 확인해 주세요.');
+  if (!body.choices || CONSENT_PURPOSES.some(p=>typeof body.choices[p]!=='boolean')) throw httpError(400,'각 동의 항목을 확인해 주세요.');
+  if (!body.choices.marketing_use && CONSENT_PURPOSES.slice(1).some(p=>body.choices[p])) throw httpError(400,'광고 채널 선택에는 개인정보 수집·이용 동의가 필요합니다.');
+  const choices = Object.fromEntries(CONSENT_PURPOSES.map(p=>[p,body.choices[p]?'consented':'denied']));
+  const id=crypto.randomUUID(), receipt=crypto.randomUUID(), now=new Date().toISOString();
+  const validUntil = body.choices.marketing_use ? consentExpiry(now) : null;
+  const statements = [
+    env.DB.prepare('UPDATE consent_sessions SET used_event=? WHERE token_hash=? AND used_event IS NULL AND cancelled_at IS NULL AND expires_at>?').bind(id,session.token_hash,now),
+    env.DB.prepare(`INSERT INTO consent_events(id,customer_id,form_hash,token_hash,choices_json,captured_at,capture_method,actor_enc,valid_until,receipt_id)
+      SELECT ?,customer_id,form_hash,token_hash,?,?,'customer_link',issued_by_enc,?,? FROM consent_sessions WHERE token_hash=? AND used_event=?`)
+      .bind(id,JSON.stringify(choices),now,validUntil,receipt,session.token_hash,id)
+  ];
+  for (const purpose of ['marketing_use','ad_sms']) {
+    const status=body.choices[purpose]?'granted':'revoked';
+    statements.push(env.DB.prepare(`INSERT INTO consents(id,customer_id,purpose,status,captured_at,capture_method,evidence_enc,revoked_at,created_at)
+      SELECT ?,customer_id,?,?,?,'web',?,?,? FROM consent_sessions WHERE token_hash=? AND used_event=?`)
+      .bind(crypto.randomUUID(),purpose,status,now,await encryptText(JSON.stringify({event_id:id,form_hash:session.form_hash}),env),status==='revoked'?now:null,now,session.token_hash,id));
+  }
+  const results=await env.DB.batch(statements);
+  if (!results[0].meta.changes) throw httpError(410,'이미 등록했거나 만료된 링크입니다.');
+  return {ok:true, receipt_id:receipt, captured_at:now, choices};
+}
+async function consentHistory(env, id) {
+  await requireCustomer(env,id);
+  const rows=await env.DB.prepare(`SELECT e.id,e.choices_json,e.captured_at,e.capture_method,e.valid_until,e.receipt_id,f.version,f.form_hash,f.text_json
+    FROM consent_events e LEFT JOIN consent_forms f ON f.form_hash=e.form_hash WHERE customer_id=? ORDER BY e.rowid DESC LIMIT 100`).bind(id).all();
+  return json({ok:true, events:rows.results.map(({choices_json,text_json,...r})=>{
+    const choices=JSON.parse(choices_json);
+    return {...r,choices,form:text_json?JSON.parse(text_json):null,
+      first_confirmation_due:CONSENT_PURPOSES.slice(1).some(p=>choices[p]==='consented')?consentExpiry(r.captured_at,2):null};
+  })});
+}
+async function withdrawConsent(request, env, user, id) {
+  requireSameOrigin(request);
+  await requireCustomer(env,id);
+  const body=await readJson(request);
+  if (body.confirmed !== true) throw httpError(400,'고객 철회 요청을 확인해 주세요.');
+  const now=new Date().toISOString(), eventId=crypto.randomUUID();
+  const choices=Object.fromEntries(CONSENT_PURPOSES.map(p=>[p,'withdrawn']));
+  const statements=[
+    env.DB.prepare('UPDATE consent_sessions SET cancelled_at=? WHERE customer_id=? AND used_event IS NULL').bind(now,id),
+    env.DB.prepare(`INSERT INTO consent_events(id,customer_id,choices_json,captured_at,capture_method,actor_enc,receipt_id) VALUES(?,?,?,?,'staff_withdrawal',?,?)`)
+      .bind(eventId,id,JSON.stringify(choices),now,await encryptText(user.email,env),crypto.randomUUID())
+  ];
+  for(const purpose of ['marketing_use','ad_sms']) statements.push(env.DB.prepare(`INSERT INTO consents(id,customer_id,purpose,status,captured_at,capture_method,revoked_at,created_at) VALUES(?,?,?,'revoked',?,'other',?,?)`).bind(crypto.randomUUID(),id,purpose,now,now,now));
+  await env.DB.batch(statements);
+  return json({ok:true});
+}
+// Named entrypoint exposes only two token-scoped operations. No generic CRM proxy.
+export class ConsentPublic extends WorkerEntrypoint {
+  async load(token) { return consentResult(()=>loadConsentForm(this.env,token)); }
+  async submit(body) { return consentResult(()=>submitConsentForm(this.env,body)); }
+}
+async function consentResult(fn) {
+  try { return await fn(); } catch(e) {
+    const status=Number(e.status)||500;
+    return {ok:false,status,error:status>=500?'처리 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.':e.message};
+  }
+}
+
+const CONSENT_DDL = [
+  "CREATE TABLE IF NOT EXISTS consent_forms (\n  form_hash TEXT PRIMARY KEY, version TEXT NOT NULL, text_json TEXT NOT NULL, created_at TEXT NOT NULL\n)",
+  "CREATE TABLE IF NOT EXISTS consent_sessions (\n  token_hash TEXT PRIMARY KEY, customer_id TEXT NOT NULL REFERENCES customers(id) ON DELETE CASCADE,\n  form_hash TEXT NOT NULL REFERENCES consent_forms(form_hash), issued_by_enc TEXT NOT NULL,\n  created_at TEXT NOT NULL, expires_at TEXT NOT NULL, used_event TEXT, cancelled_at TEXT\n)",
+  "CREATE INDEX IF NOT EXISTS idx_consent_sessions_customer ON consent_sessions(customer_id)",
+  "CREATE TABLE IF NOT EXISTS consent_events (\n  id TEXT PRIMARY KEY, customer_id TEXT NOT NULL REFERENCES customers(id) ON DELETE CASCADE,\n  form_hash TEXT REFERENCES consent_forms(form_hash), token_hash TEXT UNIQUE,\n  choices_json TEXT NOT NULL, captured_at TEXT NOT NULL, capture_method TEXT NOT NULL,\n  actor_enc TEXT, valid_until TEXT, receipt_id TEXT NOT NULL UNIQUE\n)",
+  "CREATE INDEX IF NOT EXISTS idx_consent_events_customer ON consent_events(customer_id,captured_at)"
+];
