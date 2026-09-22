@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow,noarchive"><meta name="theme-color" content="#126d66"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="웅비통신 동의"><link rel="manifest" href="/manifest.webmanifest"><link rel="icon" href="/icon.svg" type="image/svg+xml"><title>웅비통신 고객 동의</title><link rel="stylesheet" href="/consent.css"></head>
+<body><main><header><strong>웅비통신 덕천만덕점</strong><h1>고객관리·광고 안내 선택 동의</h1><p>내용을 읽고 고객님께서 직접 선택해 주세요.</p></header>
+<p id="status" role="status" tabindex="-1">동의 내용을 불러오고 있습니다.</p>
+<form id="intake-form" autocomplete="off" hidden>
+<p id="refusal" class="notice"></p>
+<section class="card"><h2>고객 정보</h2>
+<label for="customer-name">이름</label><input id="customer-name" name="customer_name" maxlength="40" autocomplete="off" autocapitalize="off" required placeholder="고객님 이름">
+<label for="customer-phone">휴대전화번호</label><input id="customer-phone" name="customer_phone" type="tel" inputmode="tel" maxlength="16" autocomplete="off" required placeholder="숫자로 입력해 주세요">
+<p id="adult-notice" class="small"></p><label><input id="adult" type="checkbox"> 성인 고객 본인이 작성합니다.</label>
+<div class="trap" aria-hidden="true"><label>웹사이트<input id="website" tabindex="-1" autocomplete="off"></label></div></section>
+<section class="card"><h2>개인정보 수집·이용</h2>
+<dl><dt>수집·이용 목적</dt><dd id="purpose"></dd><dt>수집 항목</dt><dd id="items"></dd><dt>보유·이용기간</dt><dd id="retention"></dd><dt>철회 방법</dt><dd id="withdrawal"></dd></dl>
+<p id="record-notice" class="small"></p><label><input id="marketing_use" type="checkbox"> <b id="privacy-label"></b></label></section>
+<fieldset class="card"><legend id="advertising-label"></legend><p id="advertising"></p>
+<label><input id="ad_sms" type="checkbox" disabled> 문자(SMS/MMS)</label>
+<label><input id="ad_kakao" type="checkbox" disabled> 카카오톡</label>
+<label><input id="ad_call" type="checkbox" disabled> 전화</label><p id="channel-notice" class="small"></p></fieldset>
+<p id="version" class="small"></p><div class="actions"><button id="submit" type="submit" disabled>선택 내용 접수하기</button><button id="decline" type="button" class="secondary">동의하지 않고 종료</button></div>
+</form><button id="next" class="secondary" type="button" hidden>다음 고객 작성</button>
+<footer><p>문의·철회 접수: 웅비통신 <a href="tel:0513437677">051-343-7677</a></p><small>기존 고객정보를 조회하는 화면이 아닙니다.</small></footer>
+</main><script src="/intake.js" defer></script></body></html>

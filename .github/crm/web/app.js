@@ -11,11 +11,14 @@ let reviewRows = [];
 let selectedImportFiles = [];
 let importSelectionNote = '';
 let selectedCustomerId = null;
+let intakeCursor=null;let intakeLoading=false;
 let consentPolicy=null;
 let consentLinkTimer;
 
 for (const button of document.querySelectorAll('.tabs button')) button.addEventListener('click', () => openTab(button.dataset.tab));
 $('refresh').addEventListener('click', boot);
+$('reload-intakes').addEventListener('click',()=>loadIntakes());
+$('more-intakes').addEventListener('click',()=>loadIntakes(true));
 $('search-customers').addEventListener('click', loadCustomers);
 $('filter-query').addEventListener('keydown', event => { if (event.key === 'Enter') loadCustomers(); });
 $('read-file').addEventListener('click', () => readExcel('files'));
@@ -58,6 +61,7 @@ async function boot() {
 }
 
 function openTab(tab) {
+  if(tab==='intakes')loadIntakes();
   document.querySelectorAll('.tabs button').forEach(b => b.classList.toggle('active', b.dataset.tab===tab));
   document.querySelectorAll('.panel').forEach(p => p.classList.toggle('active', p.id===`panel-${tab}`));
 }
@@ -472,4 +476,36 @@ function consentEvidence(event){
   const f=event.form;
   const reminder=event.first_confirmation_due?'<p>최초 수신동의 확인 안내 기준일: '+esc(event.first_confirmation_due.slice(0,10))+' (동의 자동 만료일이 아닙니다)</p>':'';
   return reminder+'<details><summary>당시 동의 문구 보기</summary><p>'+[f.purpose,f.items,f.retention,f.refusal,f.withdrawal,f.advertising].map(esc).join('</p><p>')+'</p><small>문구 확인값 '+esc(event.form_hash)+'</small></details>';
+}
+async function loadIntakes(more=false){
+ if(intakeLoading)return;intakeLoading=true;$('reload-intakes').disabled=true;$('more-intakes').disabled=true;
+ try{
+  const data=await api('/api/consent-intakes'+(more&&intakeCursor?'?before='+encodeURIComponent(intakeCursor):''));
+  intakeCursor=data.next_cursor;$('more-intakes').hidden=!intakeCursor;
+  if(!more)$('intake-list').replaceChildren();
+  for(const item of data.items){
+   const card=document.createElement('article');card.className='intake-card';
+   const match={exact:'이름·번호가 일치하는 기존 고객',different_name:'기존 번호와 이름 불일치 — 확인 필요',new:'신규 접수'};
+   const channels=Object.entries(item.choices).filter(([k,v])=>k!=='marketing_use'&&v).map(([k])=>({ad_sms:'문자',ad_kakao:'카카오톡',ad_call:'전화'})[k]);
+   card.innerHTML='<h3>'+esc(item.name)+' · '+esc(formatPhone(item.phone))+'</h3><p>'+esc(match[item.match])+' · <b>'+(item.status==='confirmed'?'직원 확인 완료':'확인 대기')+'</b></p><p>개인정보 이용: 동의 · 광고 채널: '+esc(channels.join(', ')||'선택 없음')+'</p><p>접수 '+esc(new Date(item.captured_at).toLocaleString('ko-KR'))+' · 보유기한 '+esc(item.expires_at.slice(0,10))+'</p><details><summary>당시 동의 문구</summary><p>'+[item.form.purpose,item.form.items,item.form.retention,item.form.refusal,item.form.withdrawal,item.form.record_notice].map(esc).join('</p><p>')+'</p><small>'+esc(item.form.version)+'</small></details>';
+   const actions=document.createElement('div');actions.className='intake-actions';
+   if(item.status==='pending'){
+    const button=document.createElement('button');button.type='button';button.textContent='본인 접수 확인';
+    button.disabled=item.match==='different_name';
+    button.addEventListener('click',()=>actOnIntake(item.id,'review'));actions.append(button);
+   }
+   if(item.customer_id){const b=document.createElement('button');b.type='button';b.textContent='연결된 고객 보기';b.addEventListener('click',()=>showCustomer(item.customer_id));actions.append(b);}
+   for(const [mode,label] of [['withdraw','고객 요청으로 전체 철회'],['delete','잘못된 접수 삭제']]){
+    const b=document.createElement('button');b.type='button';b.className='ghost';b.textContent=label;b.addEventListener('click',()=>actOnIntake(item.id,mode));actions.append(b);
+   }
+   card.append(actions);$('intake-list').append(card);
+  }
+  $('intake-result').textContent=$('intake-list').children.length?$('intake-list').children.length+'건 표시':'접수 내역이 없습니다.';
+ }catch(e){$('intake-result').textContent=e.message;}
+ finally{intakeLoading=false;$('reload-intakes').disabled=false;$('more-intakes').disabled=false;}
+}
+async function actOnIntake(id,mode){
+ const messages={review:'고객 본인이 직접 작성한 접수임을 확인했나요? 기존 고객정보나 문자 수신동의 상태는 자동 변경하지 않습니다.',withdraw:'고객 본인의 철회 요청을 확인했나요? 같은 전화번호의 접수 정보를 삭제하고, 기존 고객의 개인정보 마케팅 이용과 광고 수신동의를 모두 철회합니다.',delete:'이 잘못된 접수 1건을 삭제할까요? 되돌릴 수 없으며, 기존 고객의 동의 상태는 바꾸지 않습니다.'};
+ if(!confirm(messages[mode]))return;
+ try{await api('/api/consent-intakes/'+id+'/'+(mode==='review'?'review':'remove'),{method:'POST',body:JSON.stringify({confirmed:true,withdraw:mode==='withdraw'})});await loadIntakes();}catch(e){showError(e);}
 }

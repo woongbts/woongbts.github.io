@@ -17,3 +17,8 @@ entrypoint = "ConsentPublic"
 
 [observability]
 enabled = false
+
+[[ratelimits]]
+name = "INTAKE_LIMITER"
+namespace_id = "1001"
+simple = { limit = 12, period = 60 }

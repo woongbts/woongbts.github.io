@@ -49,6 +49,9 @@ jobs:
           binding = "ASSETS"
           run_worker_first = true
 
+          [triggers]
+          crons = ["0 * * * *"]
+
           [[d1_databases]]
           binding = "DB"
           database_name = "woongbi-crm"

@@ -5,3 +5,5 @@
 .consent-management label{font-size:16px;line-height:1.6}.consent-management input[type=checkbox]{width:20px;height:20px}
 #consent-policy-preview{line-height:1.7}#consent-policy-preview dd{margin:4px 0 14px}#consent-events article{border-top:1px solid #bad3ce;padding:12px 0}
 #consent-link{width:100%}[hidden]{display:none!important}
+
+.intake-card{border:1px solid #bfd5da;border-radius:14px;padding:20px;margin:16px 0;background:white;overflow-wrap:anywhere}.intake-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}.intake-card details{line-height:1.7}

@@ -1,0 +1,70 @@
+import assert from 'node:assert/strict';
+import {readFile} from 'node:fs/promises';
+import {fileURLToPath} from 'node:url';
+import {build} from 'esbuild';
+import {Miniflare,convertV4MiniflareOptions} from 'miniflare';
+const bundle=async path=>(await build({entryPoints:[fileURLToPath(new URL(path,import.meta.url))],bundle:true,write:false,format:'esm',external:['cloudflare:*']})).outputFiles[0].text;
+const script=await bundle('../src/worker.js'),gateway=await bundle('../src/consent-public.js');
+const schema=await readFile(new URL('../migrations/0001_init.sql',import.meta.url),'utf8');
+const mf=new Miniflare(convertV4MiniflareOptions({workers:[
+ {name:'crm',routes:['crm.test/*'],modules:true,script,compatibilityDate:'2026-09-01',d1Databases:['DB'],bindings:{DEV_AUTH_BYPASS:'1',ALLOWED_ADMIN_EMAILS:'admin@example.invalid',SMS_MODE:'dry_run',CRM_DATA_KEY_B64:Buffer.alloc(32,7).toString('base64'),CRM_HMAC_KEY_B64:Buffer.alloc(32,9).toString('base64')}},
+ {name:'public',routes:['consent.test/*'],modules:true,script:gateway,compatibilityDate:'2026-09-01',serviceBindings:{CONSENT:{name:'crm',entrypoint:'ConsentPublic'}},ratelimits:{INTAKE_LIMITER:{namespace_id:'1001',simple:{limit:100,period:60}}},assets:{directory:fileURLToPath(new URL('../consent-web/',import.meta.url)),binding:'ASSETS',run_worker_first:true}}
+]}));
+const headers={'X-CRM-Dev-Email':'admin@example.invalid','content-type':'application/json',origin:'https://crm.test'};
+const admin=(path,body)=>mf.dispatchFetch('https://crm.test/api/'+path,{headers,method:body?'POST':'GET',...(body?{body:JSON.stringify(body)}:{})});
+const submit=(body,origin='https://consent.test')=>mf.dispatchFetch('https://consent.test/api/intake',{method:'POST',headers:{'content-type':'application/json',origin},body:JSON.stringify(body)});
+try{
+ const db=await mf.getD1Database('DB','crm');
+ for(const sql of schema.split(';').map(s=>s.trim()).filter(Boolean))await db.prepare(sql).run();
+ assert.equal((await admin('health')).status,200);
+ const home=await mf.dispatchFetch('https://consent.test/',{redirect:'manual'});
+ assert.equal(home.status,200);assert.match(await home.text(),/customer-name/);
+ assert.match(home.headers.get('content-security-policy'),/manifest-src 'self'/);
+ assert.equal((await mf.dispatchFetch('https://consent.test/intake.js')).status,200);
+ assert.equal((await mf.dispatchFetch('https://consent.test/manifest.webmanifest')).status,200);
+ assert.equal((await mf.dispatchFetch('https://consent.test/api/customers')).status,404);
+ assert.equal((await mf.dispatchFetch('https://crm.test/api/consent-intakes')).status,401);
+ const form=await (await mf.dispatchFetch('https://consent.test/api/intake-form')).json();
+ assert.equal(form.policy.items,'이름, 휴대전화번호');
+ const phone=['010','0000','0001'].join('');
+ const choices={marketing_use:true,ad_sms:true,ad_kakao:false,ad_call:false};
+ const body={request_id:crypto.randomUUID(),form_hash:form.form_hash,name:'가상고객',phone,choices,adult_confirmed:true};
+ assert.equal((await submit(body,'https://evil.invalid')).status,403);
+ assert.equal((await submit({...body,phone:'123'})).status,400);
+ assert.equal((await submit({...body,adult_confirmed:false})).status,400);
+ assert.equal((await submit({...body,form_hash:'stale'})).status,409);
+ const refuse={...body,choices:Object.fromEntries(Object.keys(choices).map(k=>[k,false]))};
+ assert.deepEqual(await (await submit(refuse)).json(),{ok:true,saved:false});
+ assert.equal((await db.prepare('SELECT COUNT(*) n FROM consent_intakes').first()).n,0);
+ assert.equal((await submit(body)).status,200);
+ assert.equal((await submit(body)).status,200);
+ assert.equal((await submit({...body,name:'다른이름'})).status,409);
+ let raw=await db.prepare('SELECT * FROM consent_intakes').first();
+ assert.ok(!raw.payload_enc.includes(body.name)&&!raw.payload_enc.includes(phone));
+ assert.ok(!JSON.stringify(raw).includes(phone));
+ assert.equal((await db.prepare('SELECT COUNT(*) n FROM consent_intakes').first()).n,1);
+ let list=await (await admin('consent-intakes')).json();
+ assert.equal(list.items[0].name,body.name);assert.equal(list.items[0].match,'new');assert.equal(list.items[0].status,'pending');
+ assert.equal((await db.prepare('SELECT COUNT(*) n FROM consents').first()).n,0);
+ await admin('import',{rows:[{name:body.name,phone,carrier:'KT',opened_on:'2024-09-01'}]});
+ list=await (await admin('consent-intakes')).json();assert.equal(list.items[0].match,'exact');
+ assert.equal((await admin('consent-intakes/'+body.request_id+'/review',{confirmed:true})).status,200);
+ list=await (await admin('consent-intakes')).json();assert.equal(list.items[0].status,'confirmed');assert.ok(list.items[0].customer_id);
+ assert.equal((await db.prepare('SELECT COUNT(*) n FROM consents').first()).n,0);
+ const spoof={...body,request_id:crypto.randomUUID(),name:'다른이름'};
+ assert.equal((await submit(spoof)).status,200);
+ assert.equal((await admin('consent-intakes/'+spoof.request_id+'/review',{confirmed:true})).status,409);
+ assert.equal((await admin('consent-intakes/'+spoof.request_id+'/remove',{confirmed:true})).status,200);
+ assert.equal((await db.prepare('SELECT COUNT(*) n FROM consent_intakes').first()).n,1);
+ assert.equal((await admin('consent-intakes/'+body.request_id+'/remove',{confirmed:true,withdraw:true})).status,200);
+ assert.equal((await db.prepare('SELECT COUNT(*) n FROM consent_intakes').first()).n,0);
+ const latest=await db.prepare("SELECT status FROM consents WHERE purpose='ad_sms' ORDER BY rowid DESC LIMIT 1").first();assert.equal(latest.status,'revoked');
+ const expire={...body,request_id:crypto.randomUUID()};await submit(expire);
+ await db.prepare("UPDATE consent_intakes SET expires_at='2000-01-01'").run();
+ assert.equal((await (await admin('consent-intakes')).json()).items.length,0);
+ assert.equal((await db.prepare('SELECT COUNT(*) n FROM consent_intakes').first()).n,0);
+ const big=await mf.dispatchFetch('https://consent.test/api/intake',{method:'POST',headers:{'content-type':'application/json',origin:'https://consent.test'},body:'x'.repeat(5000)});
+ assert.equal(big.status,413);
+ console.log('Fixed-page intake: real asset routing, refusal/no storage, encryption, idempotency, identity review, withdrawal and expiry passed');
+}finally{await mf.dispose();}
+
