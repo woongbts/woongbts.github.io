@@ -1,3 +1,4 @@
+import { createIntakeHandlers } from './intake.js';
 import { WorkerEntrypoint } from 'cloudflare:workers';
 import { CONSENT_POLICY } from './consent-policy.js';
 const encoder = new TextEncoder();
@@ -5,7 +6,9 @@ const decoder = new TextDecoder();
 let jwksCache = { at: 0, keys: [] };
 let schemaReadyPromise = null;
 
+const intakeHandlers = createIntakeHandlers({encryptText,decryptText,phoneHmac,json,httpError,requireSameOrigin,readJson,normalizeName:normalizePersonName,withdrawConsent});
 export default {
+  async scheduled(event, env) { await ensureSchema(env); await intakeHandlers.purge(env); },
   async fetch(request, env) {
     try {
       const user = await authenticate(request, env);
@@ -26,6 +29,9 @@ export default {
 
 async function handleApi(request, env, user, url) {
   const method = request.method.toUpperCase();
+  if (method === 'GET' && url.pathname === '/api/consent-intakes') return intakeHandlers.list(env,url);
+  const intakeMatch=url.pathname.match(/^\/api\/consent-intakes\/([a-f0-9-]+)\/(review|remove)$/i);
+  if(intakeMatch && method==='POST') return intakeHandlers[intakeMatch[2]](request,env,user,intakeMatch[1]);
   if (method === 'GET' && url.pathname === '/api/health') {
     return json({ ok: true, service: 'woongbi-crm', storage: 'Cloudflare D1', pii_encryption: 'AES-GCM', phone_lookup: 'HMAC-SHA-256', raw_file_storage: false, sms_mode: env.SMS_MODE || 'dry_run' });
   }
@@ -163,6 +169,7 @@ async function ensureSchema(env) {
       env.DB.prepare('CREATE INDEX IF NOT EXISTS idx_customer_contracts_opened_on ON customer_contracts(opened_on)')
     ]);
     await ensureConsentSchema(env);
+    await intakeHandlers.ensure(env);
     const contractInfo = await env.DB.prepare('PRAGMA table_info(customer_contracts)').all();
     const contractColumns = new Set((contractInfo.results || []).map(row => String(row.name)));
     if (!contractColumns.has('service_type')) {
@@ -1063,10 +1070,13 @@ async function withdrawConsent(request, env, user, id) {
   ];
   for(const purpose of ['marketing_use','ad_sms']) statements.push(env.DB.prepare(`INSERT INTO consents(id,customer_id,purpose,status,captured_at,capture_method,revoked_at,created_at) VALUES(?,?,?,'revoked',?,'other',?,?)`).bind(crypto.randomUUID(),id,purpose,now,now,now));
   await env.DB.batch(statements);
+  await intakeHandlers.removeForCustomer(env,id);
   return json({ok:true});
 }
 // Named entrypoint exposes only two token-scoped operations. No generic CRM proxy.
 export class ConsentPublic extends WorkerEntrypoint {
+  async intakeForm() { return consentResult(()=>intakeHandlers.form()); }
+  async intakeSubmit(body) { return consentResult(async()=>{await ensureSchema(this.env);return intakeHandlers.submit(this.env,body);}); }
   async load(token) { return consentResult(()=>loadConsentForm(this.env,token)); }
   async submit(body) { return consentResult(()=>submitConsentForm(this.env,body)); }
 }

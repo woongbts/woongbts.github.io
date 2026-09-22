@@ -1,0 +1,17 @@
+{
+  "name": "웅비통신 고객 동의",
+  "short_name": "웅비통신 동의",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#f2f7f8",
+  "theme_color": "#126d66",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
