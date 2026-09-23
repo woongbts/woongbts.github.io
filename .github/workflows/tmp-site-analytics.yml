@@ -30,6 +30,7 @@ jobs:
           if ! grep -q 'analytics-config.js?v=20260924-1' links.html; then
             sed -i 's#<script src="/assets/site-analytics.min.js?v=20260924-1" defer></script>#<script src="/assets/analytics-config.js?v=20260924-1" defer></script><script src="/assets/site-analytics.min.js?v=20260924-1" defer></script>#' links.html
           fi
+          python .github/scripts/tmp_preserve_eol.py
       - name: Validate CRM and site
         shell: bash
         run: |
@@ -58,6 +59,7 @@ jobs:
           set -euo pipefail
           rm .github/workflows/tmp-site-analytics.yml
           rm .github/scripts/tmp_site_analytics.py
+          rm .github/scripts/tmp_preserve_eol.py
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add -A
