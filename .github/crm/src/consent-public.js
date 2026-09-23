@@ -28,7 +28,7 @@ export default {
         return reply(result,result.ok?200:result.status||400);
       } catch {return reply({ok:false,error:'요청을 처리할 수 없습니다.'},400);}
     }
-    if(request.method==='GET' && ['/c','/','/consent.js','/consent.css','/intake.js','/handwriting.js','/manifest.webmanifest','/icon.svg'].includes(url.pathname)) {
+    if(request.method==='GET' && ['/c','/','/consent.js','/consent.css','/intake.js','/handwriting.js','/manifest.webmanifest','/icon.svg','/privacy'].includes(url.pathname)) {
       // Fetch the directory URL: /index.html is canonicalized back to / by Assets.
       const path=url.pathname==='/'?'/intake':url.pathname==='/c'?'/':url.pathname;
       const asset=await env.ASSETS.fetch(new Request(new URL(path,url.origin),request));

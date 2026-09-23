@@ -30,7 +30,7 @@ export default {
 async function handleApi(request, env, user, url) {
   const method = request.method.toUpperCase();
   if (method === 'GET' && url.pathname === '/api/consent-intakes') return intakeHandlers.list(env,url);
-  const intakeMatch=url.pathname.match(/^\/api\/consent-intakes\/([a-f0-9-]+)\/(review|remove|handwriting)$/i);
+  const intakeMatch=url.pathname.match(/^\/api\/consent-intakes\/([a-f0-9-]+)\/(review|remove|handwriting|channel|notice)$/i);
   if(intakeMatch && method==='GET' && intakeMatch[2]==='handwriting') return intakeHandlers.handwriting(env,intakeMatch[1]);
   if(intakeMatch && method==='POST' && intakeMatch[2]!=='handwriting') return intakeHandlers[intakeMatch[2]](request,env,user,intakeMatch[1]);
   if (method === 'GET' && url.pathname === '/api/health') {

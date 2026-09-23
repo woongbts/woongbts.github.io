@@ -3,3 +3,5 @@
 #intake-form h2{font-size:22px;margin-top:0}.small{font-size:15px;color:#47616b}footer{margin-top:32px;font-size:15px}footer a{color:#126d66}.trap{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
 
 .handwriting-pad{display:block;width:100%;height:auto;aspect-ratio:760/280;background:white;border:2px dashed #729eaa;border-radius:12px;touch-action:none;user-select:none;-webkit-user-select:none;cursor:crosshair;margin:14px 0}#customer-step h2{font-size:24px}#choice-summary p{margin:6px 0;font-weight:700}#customer-step button{margin:8px 0}#handoff{margin-bottom:16px}
+
+.consent-essential{font-size:20px}.consent-essential strong{font-size:22px}#customer-confirmed{min-width:24px}#status{white-space:pre-line;overflow-wrap:anywhere}.privacy-draft h2{font-size:24px}
