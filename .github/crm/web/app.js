@@ -482,13 +482,14 @@ async function loadIntakes(more=false){
  if(intakeLoading)return;intakeLoading=true;$('reload-intakes').disabled=true;$('more-intakes').disabled=true;
  try{
   const data=await api('/api/consent-intakes'+(more&&intakeCursor?'?before='+encodeURIComponent(intakeCursor):''));
+  $('intake-readiness').textContent=data.collection_enabled?'신규 접수 가능':data.collection_message+' 기존 접수의 확인·철회는 계속 이용할 수 있습니다.';
   intakeCursor=data.next_cursor;$('more-intakes').hidden=!intakeCursor;
   if(!more)$('intake-list').replaceChildren();
   for(const item of data.items){
    const card=document.createElement('article');card.className='intake-card';
    const match={exact:'이름·번호가 일치하는 기존 고객',different_name:'기존 번호와 이름 불일치 — 확인 필요',phone_only:'번호 일치 — 손글씨 이름을 확인해 주세요',new:'신규 접수'};
-   const channels=Object.entries(item.choices).filter(([k,v])=>k!=='marketing_use'&&v).map(([k])=>({ad_sms:'문자',ad_kakao:'카카오톡',ad_call:'전화'})[k]);
-   card.innerHTML='<h3>'+esc(item.name||'손글씨 이름 확인')+' · '+esc(formatPhone(item.phone))+'</h3><p>'+esc(match[item.match])+' · <b>'+(item.status==='confirmed'?'직원 확인 완료':'확인 대기')+'</b></p><p>개인정보 이용: 동의 · 광고 채널: '+esc(channels.join(', ')||'선택 없음')+'</p><p>접수 '+esc(new Date(item.captured_at).toLocaleString('ko-KR'))+' · 보유기한 '+esc(item.expires_at.slice(0,10))+'</p><details><summary>당시 동의 문구</summary><p>'+[item.form.purpose,item.form.items,item.form.retention,item.form.refusal,item.form.withdrawal,item.form.record_notice].map(esc).join('</p><p>')+'</p><small>'+esc(item.form.version)+'</small></details>';
+   const channels=Object.entries(item.effective_choices||item.choices).filter(([k,v])=>k.startsWith('ad_')&&v).map(([k])=>({ad_sms:'문자',ad_kakao:'카카오톡',ad_call:'전화'})[k]);
+   card.innerHTML='<h3>'+esc(item.name||'손글씨 이름 확인')+' · '+esc(formatPhone(item.phone))+'</h3><p>'+esc(match[item.match])+' · <b>'+(item.status==='confirmed'?'직원 확인 완료':'확인 대기')+'</b></p><p>선택 내역: '+esc(Object.hasOwn(item.choices,'customer_care')?('상담 관리 '+(item.choices.customer_care?'동의':'미동의')+' / 마케팅 이용 '+(item.choices.marketing_use?'동의':'미동의')):'고객관리·마케팅 이용 동의(이전 문구)')+' · 현재 광고 채널: '+esc(channels.join(', ')||'선택 없음')+'</p><p>접수 '+esc(new Date(item.captured_at).toLocaleString('ko-KR'))+' · 보유기한 '+esc(item.expires_at.slice(0,10))+'</p><details><summary>당시 동의 문구</summary><p>'+[item.form.purpose,item.form.items,item.form.retention,item.form.refusal,item.form.withdrawal,item.form.advertising,item.form.channel_notice,item.form.linkage_notice,item.form.record_notice].map(esc).join('</p><p>')+'</p><small>'+esc(item.form.version)+'</small></details>';
    const actions=document.createElement('div');actions.className='intake-actions';
    const handwritingReview=item.has_handwriting?addHandwritingReview(card,item):null;
    if(item.status==='pending'){
@@ -500,16 +501,16 @@ async function loadIntakes(more=false){
    for(const [mode,label] of [['withdraw','고객 요청으로 전체 철회'],['delete','잘못된 접수 삭제']]){
     const b=document.createElement('button');b.type='button';b.className='ghost';b.textContent=label;b.addEventListener('click',()=>actOnIntake(item.id,mode));actions.append(b);
    }
-   card.append(actions);$('intake-list').append(card);
+   card.append(actions);addIntakeComplianceControls(card,item);$('intake-list').append(card);
   }
   $('intake-result').textContent=$('intake-list').children.length?$('intake-list').children.length+'건 표시':'접수 내역이 없습니다.';
  }catch(e){$('intake-result').textContent=e.message;}
  finally{intakeLoading=false;$('reload-intakes').disabled=false;$('more-intakes').disabled=false;}
 }
 async function actOnIntake(id,mode,extra={}){
- const messages={review:'고객 본인이 직접 작성한 접수임을 확인했나요? 기존 고객정보나 문자 수신동의 상태는 자동 변경하지 않습니다.',withdraw:'고객 본인의 철회 요청을 확인했나요? 같은 전화번호의 접수 정보를 삭제하고, 기존 고객의 개인정보 마케팅 이용과 광고 수신동의를 모두 철회합니다.',delete:'이 잘못된 접수 1건을 삭제할까요? 되돌릴 수 없으며, 기존 고객의 동의 상태는 바꾸지 않습니다.'};
+ const messages={review:'고객 본인이 직접 작성한 접수임을 확인했나요? 기존 고객정보나 문자 수신동의 상태는 자동 변경하지 않습니다.',withdraw:'고객 본인의 전체 철회 요청을 확인했나요? 처리 후 매장명·철회일·처리 결과를 고객에게 안내해 주세요. 같은 전화번호의 접수 정보를 삭제하고, 기존 고객의 개인정보 마케팅 이용과 광고 수신동의를 모두 철회합니다.',channel:'고객 본인의 해당 채널 수신동의 철회 요청을 확인했나요? 같은 번호의 기존 접수에 반영합니다. 다른 채널은 유지하고 새 동의를 부여하지 않습니다.',notice:'매장명, 동의·철회 사실과 날짜, 처리 결과(정기 안내는 유지·철회 방법)를 실제로 고객에게 안내했나요? 이 버튼은 문자나 카카오톡을 발송하지 않으며, 지금 안내를 완료했다는 기록만 남깁니다.',delete:'이 잘못된 접수 1건을 삭제할까요? 되돌릴 수 없으며, 기존 고객의 동의 상태는 바꾸지 않습니다.'};
  if(!confirm(messages[mode]))return;
- try{await api('/api/consent-intakes/'+id+'/'+(mode==='review'?'review':'remove'),{method:'POST',body:JSON.stringify({confirmed:true,...extra,withdraw:mode==='withdraw'})});await loadIntakes();}catch(e){showError(e);}
+ try{const result=await api('/api/consent-intakes/'+id+'/'+(['review','channel','notice'].includes(mode)?mode:'remove'),{method:'POST',body:JSON.stringify({confirmed:true,...extra,withdraw:mode==='withdraw',notice_confirmed:mode==='withdraw'})});await loadIntakes();if(result.notice)alert(result.notice);}catch(e){showError(e);}
 }
 
 function addHandwritingReview(card,item){
@@ -533,4 +534,30 @@ function addHandwritingReview(card,item){
   finally{loading=false;}
  });
  return {value:()=>({name:input.value,handwriting_checked:loaded&&checked.checked})};
+}
+
+function addIntakeComplianceControls(card,item){
+ const channels={ad_sms:'문자',ad_kakao:'카카오톡',ad_call:'전화'};
+ const group=document.createElement('div');group.className='intake-actions';
+ for(const [key,label] of Object.entries(channels)){
+  if(!(item.effective_choices||item.choices)[key])continue;
+  const b=document.createElement('button');b.type='button';b.className='ghost';b.textContent=label+'만 수신동의 철회';
+  b.addEventListener('click',()=>actOnIntake(item.id,'channel',{channel:key}));group.append(b);
+ }
+ card.append(group);
+ for(const task of item.notice_tasks||[]){
+  const row=document.createElement('div');row.className='intake-notice-task';
+  const p=document.createElement('p');p.textContent=task.label+' · 안내 기한 '+new Date(task.due).toLocaleDateString('ko-KR')+(Date.parse(task.due)<Date.now()?' · 기한 경과':'');
+  const select=document.createElement('select');select.setAttribute('aria-label',task.label+' 실제 안내 방법');
+  for(const [value,label] of [['','안내 방법 선택'],['in_person','매장에서 직접 안내'],['paper','서면 교부'],['sms','문자 안내'],['kakao','카카오톡 안내'],['phone','전화 안내']]){const option=document.createElement('option');option.value=value;option.textContent=label;select.append(option);}
+  const button=document.createElement('button');button.type='button';button.textContent='실제 안내 완료 기록';
+  button.disabled=task.target==='periodic'&&Date.now()<Date.parse(task.due)-30*86400000;
+  button.addEventListener('click',()=>{if(!select.value){showError(new Error('실제로 안내한 방법을 선택해 주세요.'));return;}actOnIntake(item.id,'notice',{target:task.target,method:select.value});});
+  row.append(p,select,button);card.append(row);
+ }
+ if(item.actions?.length){
+  const details=document.createElement('details'),summary=document.createElement('summary');summary.textContent='철회·안내 처리 기록';details.append(summary);
+  for(const a of item.actions){const p=document.createElement('p');p.textContent=new Date(a.created_at).toLocaleString('ko-KR')+' · '+(a.kind==='channel_withdrawal'?(channels[a.target]+' 수신동의 철회'):'고객 안내 완료 · '+({in_person:'매장',paper:'서면',sms:'문자',kakao:'카카오톡',phone:'전화'}[a.method]||a.method));details.append(p);}
+  card.append(details);
+ }
 }

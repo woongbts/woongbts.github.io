@@ -10,6 +10,7 @@
 <div class="trap" aria-hidden="true"><label>웹사이트<input id="website" tabindex="-1" autocomplete="off"></label></div></section>
 <section class="card"><h2>개인정보 수집·이용</h2>
 <dl><dt>수집·이용 목적</dt><dd id="purpose"></dd><dt>수집 항목</dt><dd id="items"></dd><dt>보유·이용기간</dt><dd id="retention"></dd><dt>철회 방법</dt><dd id="withdrawal"></dd></dl>
+<label><input id="customer_care" type="checkbox"> <b id="care-label"></b></label><p id="linkage-notice" class="notice"></p>
 <p id="record-notice" class="small"></p><label><input id="marketing_use" type="checkbox"> <b id="privacy-label"></b></label></section>
 <fieldset class="card"><legend id="advertising-label"></legend><p id="advertising"></p>
 <label><input id="ad_sms" type="checkbox" disabled> 문자(SMS/MMS)</label>
@@ -19,13 +20,14 @@
 <button id="handoff" type="button">고객 작성 화면으로 넘기기</button></div>
 <section id="customer-step" hidden>
 <h2>고객님, 선택 내용을 확인해 주세요</h2><p id="phone-summary"></p><div id="choice-summary" class="notice"></div>
-<details><summary>동의 내용 전체 보기</summary><div id="customer-policy"></div></details>
+<section class="card consent-essential"><h2>목적·항목·보유기간·거부권 안내</h2><div id="customer-policy"></div><p><a href="/privacy" target="_blank" rel="noopener">개인정보 처리 안내</a></p></section>
 <button id="edit-choices" type="button" class="secondary">번호·동의 선택 수정</button>
 <p id="adult-notice" class="small"></p><label><input id="adult" type="checkbox"> 성인 고객 본인이 작성합니다.</label>
 <section class="card"><h2>이름을 손글씨로 써 주세요</h2><canvas id="name-pad" class="handwriting-pad" width="760" height="280" aria-label="손글씨 이름 작성 칸"></canvas><button id="clear-name" type="button" class="secondary">이름 지우고 다시 쓰기</button></section>
 <section class="card"><h2>서명해 주세요</h2><p>위 전화번호·선택 내용·동의 문구를 확인한 뒤 서명해 주세요.</p><canvas id="signature-pad" class="handwriting-pad" width="760" height="280" aria-label="손글씨 서명 작성 칸"></canvas><button id="clear-signature" type="button" class="secondary">서명 지우고 다시 쓰기</button></section>
+<label class="notice"><input id="customer-confirmed" type="checkbox"> 위 내용을 읽었으며 표시된 동의·미동의 선택은 제 의사와 일치합니다.</label>
 <button id="submit" type="submit">위 내용을 확인하고 접수하기</button></section>
 <p id="version" class="small"></p><div class="actions"><button id="decline" type="button" class="secondary">동의하지 않고 종료</button></div>
 </form><button id="next" class="secondary" type="button" hidden>다음 고객 작성</button>
-<footer><p>문의·철회 접수: 웅비통신 <a href="tel:0513437677">051-343-7677</a></p><small>기존 고객정보를 조회하는 화면이 아닙니다.</small></footer>
+<footer><p><a href="/privacy">개인정보 처리 안내 및 권리 행사</a></p><p>문의·철회 접수: 웅비통신 <a href="tel:0513437677">051-343-7677</a></p><small>기존 고객정보를 조회하는 화면이 아닙니다.</small></footer>
 </main><script type="module" src="/intake.js"></script></body></html>

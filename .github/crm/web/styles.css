@@ -9,3 +9,5 @@
 .intake-card{border:1px solid #bfd5da;border-radius:14px;padding:20px;margin:16px 0;background:white;overflow-wrap:anywhere}.intake-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}.intake-card details{line-height:1.7}
 
 .intake-handwriting{width:100%;max-width:760px;height:auto;background:#fff;border:1px solid #a7c2ca;border-radius:10px}.intake-card label{display:block;margin:12px 0}.intake-card input[type=text]{display:block;max-width:300px;margin-top:6px}.intake-card input[type=checkbox]{width:20px;height:20px;margin-right:8px}
+
+.intake-notice-task{padding:14px;border:1px solid #bdd3d9;border-radius:10px;margin:12px 0}.intake-notice-task select{padding:10px;max-width:100%;margin-right:10px}#intake-readiness{padding:14px;background:#fff6dc;border-radius:10px}
