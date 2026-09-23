@@ -23,8 +23,13 @@ jobs:
           node-version: '22'
       - name: Patch visitor analytics
         run: python .github/scripts/tmp_site_analytics.py
-      - name: Fix generated analytics asset newline
-        run: python -c "from pathlib import Path; p=Path('assets/site-analytics.min.js'); s=p.read_text(); p.write_text(s[:-2]+'\n' if s.endswith('\\\\n') else s)"
+      - name: Finalize public analytics assets
+        shell: bash
+        run: |
+          python -c "from pathlib import Path; p=Path('assets/site-analytics.min.js'); s=p.read_text(); p.write_text(s[:-2]+'\n' if s.endswith('\\\\n') else s)"
+          if ! grep -q 'analytics-config.js?v=20260924-1' links.html; then
+            sed -i 's#<script src="/assets/site-analytics.min.js?v=20260924-1" defer></script>#<script src="/assets/analytics-config.js?v=20260924-1" defer></script><script src="/assets/site-analytics.min.js?v=20260924-1" defer></script>#' links.html
+          fi
       - name: Validate CRM and site
         shell: bash
         run: |
@@ -35,8 +40,17 @@ jobs:
           npm run build
           cd ../..
           node --check assets/site-analytics.min.js
+          node --check assets/analytics-config.js
           python .github/scripts/validate_site.py
-          python -c "from pathlib import Path; assert 'siteAnalyticsCollect' in Path('.github/crm/src/worker.js').read_text(); assert '/api/site-analytics' in Path('.github/crm/src/consent-public.js').read_text(); assert 'stat-site-today-visits' in Path('.github/crm/web/index.html').read_text(); assert 'site-analytics.min.js?v=20260924-1' in Path('index.html').read_text(); assert 'site-analytics.min.js?v=20260924-1' in Path('rates.html').read_text(); assert 'site-analytics.min.js?v=20260924-1' in Path('links.html').read_text(); assert 'IP 주소는 방문통계 DB에 저장하지 않습니다' in Path('privacy.html').read_text()"
+          grep -q 'siteAnalyticsCollect' .github/crm/src/worker.js
+          grep -q '/api/site-analytics' .github/crm/src/consent-public.js
+          grep -q 'stat-site-today-visits' .github/crm/web/index.html
+          grep -q 'site_analytics' .github/crm/web/app.js
+          for p in index.html rates.html links.html; do
+            grep -q 'analytics-config.js?v=20260924-1' "$p"
+            grep -q 'site-analytics.min.js?v=20260924-1' "$p"
+          done
+          grep -q '방문 통계 DB에는 이름·전화번호·IP 주소를 저장하지 않습니다' privacy.html
           git diff --check
       - name: Commit patched files
         shell: bash
