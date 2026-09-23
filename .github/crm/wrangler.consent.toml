@@ -22,3 +22,8 @@ enabled = false
 name = "INTAKE_LIMITER"
 namespace_id = "1001"
 simple = { limit = 12, period = 60 }
+
+[[ratelimits]]
+name = "ANALYTICS_LIMITER"
+namespace_id = "1002"
+simple = { limit = 120, period = 60 }

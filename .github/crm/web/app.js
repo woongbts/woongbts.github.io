@@ -57,6 +57,17 @@ async function boot() {
     $('stat-due').textContent = dash.maturity_22_30.toLocaleString('ko-KR');
     $('stat-consent').textContent = dash.consent_granted.toLocaleString('ko-KR');
     $('stat-blocked').textContent = (dash.consent_revoked + dash.consent_unknown).toLocaleString('ko-KR');
+    const site = dash.site_analytics || {today:{},last7:{},last30:{},top_pages:[],top_sources:[]};
+    $('stat-site-today-visits').textContent = Number(site.today?.visits||0).toLocaleString('ko-KR');
+    $('stat-site-today-pageviews').textContent = Number(site.today?.pageviews||0).toLocaleString('ko-KR');
+    $('stat-site-7d-visits').textContent = Number(site.last7?.visits||0).toLocaleString('ko-KR');
+    $('stat-site-30d-visits').textContent = Number(site.last30?.visits||0).toLocaleString('ko-KR');
+    const pageNames={'/':'홈','/rates.html':'요금 알아보기','/links.html':'블로그·SNS'};
+    const sourceNames={direct:'직접 방문',internal:'사이트 내부',other:'기타'};
+    const topPage=site.top_pages?.[0], topSource=site.top_sources?.[0];
+    $('site-analytics-note').textContent = Number(site.last30?.pageviews||0)
+      ? `최근 30일 페이지 조회 ${Number(site.last30.pageviews).toLocaleString('ko-KR')}회 · 인기 페이지 ${pageNames[topPage?.path]||topPage?.path||'-'} · 주요 유입 ${sourceNames[topSource?.source]||topSource?.source||'-'}`
+      : '오늘부터 방문 통계를 집계합니다. 이름·전화번호·IP 주소는 방문통계 DB에 저장하지 않습니다.';
     await loadCustomers();
   } catch (error) { showError(error); }
 }
