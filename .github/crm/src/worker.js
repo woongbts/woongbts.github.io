@@ -8,7 +8,7 @@ let schemaReadyPromise = null;
 
 const intakeHandlers = createIntakeHandlers({encryptText,decryptText,phoneHmac,json,httpError,requireSameOrigin,readJson,normalizeName:normalizePersonName,withdrawConsent});
 export default {
-  async scheduled(event, env) { await ensureSchema(env); await intakeHandlers.purge(env); },
+  async scheduled(event, env) { await ensureSchema(env); await intakeHandlers.purge(env); await purgeSiteAnalyticsSeen(env); },
   async fetch(request, env) {
     try {
       const user = await authenticate(request, env);
@@ -170,6 +170,7 @@ async function ensureSchema(env) {
       env.DB.prepare('CREATE INDEX IF NOT EXISTS idx_customer_contracts_opened_on ON customer_contracts(opened_on)')
     ]);
     await ensureConsentSchema(env);
+    await ensureSiteAnalyticsSchema(env);
     await intakeHandlers.ensure(env);
     const contractInfo = await env.DB.prepare('PRAGMA table_info(customer_contracts)').all();
     const contractColumns = new Set((contractInfo.results || []).map(row => String(row.name)));
@@ -190,7 +191,7 @@ async function dashboard(env) {
   const now = new Date();
   const from = isoMonthsAgo(now, 30);
   const to = isoMonthsAgo(now, 22);
-  const [total, due, consent] = await Promise.all([
+  const [total, due, consent, siteAnalytics] = await Promise.all([
     env.DB.prepare("SELECT COUNT(*) count FROM customers WHERE customer_status='active'").first(),
     env.DB.prepare("SELECT COUNT(*) count FROM customers WHERE customer_status='active' AND opened_on BETWEEN ? AND ?")
       .bind(from, to).first(),
@@ -201,7 +202,8 @@ async function dashboard(env) {
       FROM (
         SELECT c.id, COALESCE((SELECT status FROM consents x WHERE x.customer_id=c.id AND x.purpose='ad_sms' ORDER BY captured_at DESC, created_at DESC LIMIT 1),'unknown') latest
         FROM customers c WHERE c.customer_status='active'
-      )`).first()
+      )`).first(),
+    analyticsDashboard(env)
   ]);
   return json({
     ok: true,
@@ -210,8 +212,97 @@ async function dashboard(env) {
     consent_granted: Number(consent?.granted || 0),
     consent_revoked: Number(consent?.revoked || 0),
     consent_unknown: Number(consent?.unknown || 0),
+    site_analytics: siteAnalytics,
     sms_mode: env.SMS_MODE || 'dry_run'
   });
+}
+
+function kstDateKey(value = new Date()) {
+  return new Intl.DateTimeFormat('en-CA', { timeZone:'Asia/Seoul', year:'numeric', month:'2-digit', day:'2-digit' }).format(value);
+}
+
+async function ensureSiteAnalyticsSchema(env) {
+  await env.DB.batch([
+    env.DB.prepare(`CREATE TABLE IF NOT EXISTS site_analytics_daily (
+      day TEXT PRIMARY KEY, visits INTEGER NOT NULL DEFAULT 0, pageviews INTEGER NOT NULL DEFAULT 0
+    )`),
+    env.DB.prepare(`CREATE TABLE IF NOT EXISTS site_analytics_pages (
+      day TEXT NOT NULL, path TEXT NOT NULL, pageviews INTEGER NOT NULL DEFAULT 0, PRIMARY KEY(day,path)
+    )`),
+    env.DB.prepare(`CREATE TABLE IF NOT EXISTS site_analytics_sources (
+      day TEXT NOT NULL, source TEXT NOT NULL, visits INTEGER NOT NULL DEFAULT 0, PRIMARY KEY(day,source)
+    )`),
+    env.DB.prepare(`CREATE TABLE IF NOT EXISTS site_analytics_devices (
+      day TEXT NOT NULL, device TEXT NOT NULL, visits INTEGER NOT NULL DEFAULT 0, PRIMARY KEY(day,device)
+    )`),
+    env.DB.prepare(`CREATE TABLE IF NOT EXISTS site_analytics_seen (
+      day TEXT NOT NULL, session_id TEXT NOT NULL, created_at TEXT NOT NULL, PRIMARY KEY(day,session_id)
+    )`),
+    env.DB.prepare('CREATE INDEX IF NOT EXISTS idx_site_analytics_seen_created ON site_analytics_seen(created_at)')
+  ]);
+}
+
+async function siteAnalyticsCollect(env, body) {
+  await ensureSchema(env);
+  const sessionId = String(body?.session_id || '').trim();
+  if (!/^(?:[0-9a-f]{32}|[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})$/i.test(sessionId)) {
+    throw httpError(400, '방문 세션 형식이 올바르지 않습니다.');
+  }
+  const rawPath = String(body?.path || '').split('?')[0].slice(0, 120);
+  const aliases = {'/index.html':'/','/':'/','/rates.html':'/rates.html','/links.html':'/links.html'};
+  const pagePath = aliases[rawPath];
+  if (!pagePath) throw httpError(400, '집계 대상 페이지가 아닙니다.');
+  let source = String(body?.source || 'direct').trim().toLowerCase().slice(0,80);
+  if (!/^(?:direct|internal|other|[a-z0-9.-]+)$/.test(source)) source = 'other';
+  const device = ['mobile','tablet','desktop'].includes(body?.device) ? body.device : 'other';
+  const now = new Date().toISOString();
+  const day = kstDateKey(new Date());
+  const seen = await env.DB.prepare('INSERT OR IGNORE INTO site_analytics_seen(day,session_id,created_at) VALUES(?,?,?)')
+    .bind(day,sessionId,now).run();
+  const firstVisit = Number(seen?.meta?.changes || 0) > 0 ? 1 : 0;
+  const statements = [
+    env.DB.prepare(`INSERT INTO site_analytics_daily(day,visits,pageviews) VALUES(?,?,1)
+      ON CONFLICT(day) DO UPDATE SET visits=site_analytics_daily.visits+excluded.visits,pageviews=site_analytics_daily.pageviews+1`).bind(day,firstVisit),
+    env.DB.prepare(`INSERT INTO site_analytics_pages(day,path,pageviews) VALUES(?,?,1)
+      ON CONFLICT(day,path) DO UPDATE SET pageviews=site_analytics_pages.pageviews+1`).bind(day,pagePath)
+  ];
+  if (firstVisit) {
+    statements.push(
+      env.DB.prepare(`INSERT INTO site_analytics_sources(day,source,visits) VALUES(?,?,1)
+        ON CONFLICT(day,source) DO UPDATE SET visits=site_analytics_sources.visits+1`).bind(day,source),
+      env.DB.prepare(`INSERT INTO site_analytics_devices(day,device,visits) VALUES(?,?,1)
+        ON CONFLICT(day,device) DO UPDATE SET visits=site_analytics_devices.visits+1`).bind(day,device)
+    );
+  }
+  await env.DB.batch(statements);
+  return {ok:true};
+}
+
+async function analyticsDashboard(env) {
+  const today = kstDateKey(new Date());
+  const from7 = kstDateKey(new Date(Date.now()-6*86400000));
+  const from30 = kstDateKey(new Date(Date.now()-29*86400000));
+  const [todayRow, weekRow, monthRow, topPages, topSources, devices] = await Promise.all([
+    env.DB.prepare('SELECT visits,pageviews FROM site_analytics_daily WHERE day=?').bind(today).first(),
+    env.DB.prepare('SELECT COALESCE(SUM(visits),0) visits,COALESCE(SUM(pageviews),0) pageviews FROM site_analytics_daily WHERE day BETWEEN ? AND ?').bind(from7,today).first(),
+    env.DB.prepare('SELECT COALESCE(SUM(visits),0) visits,COALESCE(SUM(pageviews),0) pageviews FROM site_analytics_daily WHERE day BETWEEN ? AND ?').bind(from30,today).first(),
+    env.DB.prepare('SELECT path,SUM(pageviews) pageviews FROM site_analytics_pages WHERE day BETWEEN ? AND ? GROUP BY path ORDER BY pageviews DESC LIMIT 5').bind(from30,today).all(),
+    env.DB.prepare('SELECT source,SUM(visits) visits FROM site_analytics_sources WHERE day BETWEEN ? AND ? GROUP BY source ORDER BY visits DESC LIMIT 5').bind(from30,today).all(),
+    env.DB.prepare('SELECT device,SUM(visits) visits FROM site_analytics_devices WHERE day BETWEEN ? AND ? GROUP BY device ORDER BY visits DESC').bind(from30,today).all()
+  ]);
+  return {
+    today:{visits:Number(todayRow?.visits||0),pageviews:Number(todayRow?.pageviews||0)},
+    last7:{visits:Number(weekRow?.visits||0),pageviews:Number(weekRow?.pageviews||0)},
+    last30:{visits:Number(monthRow?.visits||0),pageviews:Number(monthRow?.pageviews||0)},
+    top_pages:(topPages.results||[]).map(r=>({path:r.path,pageviews:Number(r.pageviews||0)})),
+    top_sources:(topSources.results||[]).map(r=>({source:r.source,visits:Number(r.visits||0)})),
+    devices:(devices.results||[]).map(r=>({device:r.device,visits:Number(r.visits||0)}))
+  };
+}
+
+async function purgeSiteAnalyticsSeen(env) {
+  const cutoff = kstDateKey(new Date(Date.now()-2*86400000));
+  await env.DB.prepare('DELETE FROM site_analytics_seen WHERE day < ?').bind(cutoff).run();
 }
 
 function normalizePersonName(value) {
@@ -1076,6 +1167,7 @@ async function withdrawConsent(request, env, user, id) {
 }
 // Named entrypoint exposes only two token-scoped operations. No generic CRM proxy.
 export class ConsentPublic extends WorkerEntrypoint {
+  async siteAnalyticsCollect(body) { return consentResult(()=>siteAnalyticsCollect(this.env,body)); }
   async intakeForm() { return consentResult(()=>intakeHandlers.form()); }
   async intakeSubmit(body) { return consentResult(async()=>{await ensureSchema(this.env);return intakeHandlers.submit(this.env,body);}); }
   async load(token) { return consentResult(()=>loadConsentForm(this.env,token)); }

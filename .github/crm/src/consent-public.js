@@ -4,9 +4,26 @@ const headers = {
   'content-security-policy':"default-src 'none'; script-src 'self'; style-src 'self'; connect-src 'self'; img-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'self'; frame-ancestors 'none'"
 };
 function reply(body,status=200) {return new Response(JSON.stringify(body),{status,headers:{...headers,'content-type':'application/json; charset=utf-8'}});}
+const SITE_ORIGIN='https://woongbts.github.io';
+function analyticsReply(body,status=200){return new Response(JSON.stringify(body),{status,headers:{...headers,'content-type':'application/json; charset=utf-8','access-control-allow-origin':SITE_ORIGIN,'vary':'Origin'}});}
 export default {
   async fetch(request,env) {
     const url=new URL(request.url);
+    if(url.pathname==='/api/site-analytics' && request.method==='OPTIONS') {
+      if(request.headers.get('origin')!==SITE_ORIGIN) return new Response(null,{status:403,headers});
+      return new Response(null,{status:204,headers:{...headers,'access-control-allow-origin':SITE_ORIGIN,'access-control-allow-methods':'POST, OPTIONS','access-control-allow-headers':'content-type','access-control-max-age':'86400','vary':'Origin'}});
+    }
+    if(url.pathname==='/api/site-analytics' && request.method==='POST') {
+      if(request.headers.get('origin')!==SITE_ORIGIN) return analyticsReply({ok:false,error:'요청 출처를 확인할 수 없습니다.'},403);
+      const type=request.headers.get('content-type')||'';
+      if(!(type.startsWith('text/plain')||type.startsWith('application/json'))) return analyticsReply({ok:false,error:'요청 형식을 확인할 수 없습니다.'},415);
+      try {
+        if(env.ANALYTICS_LIMITER){const key=request.headers.get('CF-Connecting-IP')||'unknown';if(!(await env.ANALYTICS_LIMITER.limit({key})).success)return analyticsReply({ok:false,error:'요청이 잠시 많습니다.'},429);}
+        const raw=await request.text(); if(raw.length>2048)return analyticsReply({ok:false,error:'요청이 너무 큽니다.'},413);
+        const result=await env.CONSENT.siteAnalyticsCollect(JSON.parse(raw));
+        return analyticsReply(result,result.ok?200:result.status||400);
+      } catch {return analyticsReply({ok:false,error:'방문 통계를 기록하지 못했습니다.'},400);}
+    }
     if(request.method==='GET' && url.pathname==='/api/intake-form') {
       try {const data=await env.CONSENT.intakeForm();return reply(data,data.ok?200:503);}
       catch {return reply({ok:false,error:'동의 내용을 불러오지 못했습니다.'},503);}
