@@ -1,7 +1,8 @@
+import { validateHandwriting } from '../consent-web/handwriting.js';
 const POLICY = Object.freeze({
- version:'WB-INTAKE-20260922-1',operator:'웅비통신 덕천만덕점',title:'고객관리·광고 안내 선택 동의',
+ version:'WB-INTAKE-20260922-2',operator:'웅비통신 덕천만덕점',title:'고객관리·광고 안내 선택 동의',
  purpose:'매장의 고객관리 상담, 약정·요금할인 종료 안내, 통신비·결합할인 점검, 기기변경 및 매장 행사·프로모션 안내',
- items:'이름, 휴대전화번호',
+ items:'휴대전화번호, 손글씨 이름, 손글씨 서명, 직원이 확인하여 정리한 이름',
  retention:'동의일로부터 3년 또는 동의 철회 시까지 중 먼저 도래하는 때',
  refusal:'모두 선택 사항입니다. 동의하지 않아도 개통·A/S·기본 상담 이용에는 제한이 없습니다.',
  withdrawal:'매장 방문 또는 대표전화 051-343-7677로 동의 철회를 요청할 수 있습니다. 매장에서 본인 확인 후 처리합니다.',
@@ -11,7 +12,7 @@ const POLICY = Object.freeze({
  channels:{ad_sms:'문자(SMS/MMS)',ad_kakao:'카카오톡',ad_call:'전화'},
  channel_notice:'채널별로 선택할 수 있으며 언제든 철회할 수 있습니다. 야간 광고 수신동의는 받지 않습니다.',
  adult_notice:'성인 고객 본인이 작성하는 화면입니다. 미성년자·대리인은 직원에게 문의해 주세요.',
- record_notice:'선택 결과, 동의 문구의 버전, 접수 시각을 함께 기록합니다. 접수 정보는 직원 확인 후 고객관리용으로 사용합니다.'
+ record_notice:'직원이 준비한 선택 내용을 고객이 확인하고 손글씨 이름·서명과 함께 접수합니다. 선택 결과, 동의 문구의 버전, 서버 접수 시각을 함께 기록합니다. 접수 정보는 직원 확인 후 고객관리용으로 사용합니다.'
 });
 const PURPOSES=['marketing_use','ad_sms','ad_kakao','ad_call'];
 export const INTAKE_DDL=[
@@ -36,13 +37,14 @@ export function createIntakeHandlers(h){
    return {ok:true,saved:false};
   }
   if(body.adult_confirmed!==true)throw h.httpError(400,'성인 고객 본인이 작성하는지 확인해 주세요.');
-  const name=String(body.name||'').normalize('NFC').trim().replace(/\s+/g,' ');
+  if(body.customer_confirmed!==true)throw h.httpError(400,'고객님께서 선택 내용을 확인한 뒤 접수해 주세요.');
+  let handwriting_name,signature;
+  try{handwriting_name=validateHandwriting(body.handwriting_name);signature=validateHandwriting(body.signature);}catch(e){throw h.httpError(400,e.message);}
   const phone=String(body.phone||'').replace(/[\s()-]/g,'');
-  if(name.length<2||name.length>40||/[\u0000-\u001f<>&]/.test(name))throw h.httpError(400,'이름을 2~40자로 입력해 주세요.');
   if(!/^01[016789]\d{7,8}$/.test(phone))throw h.httpError(400,'휴대전화번호를 확인해 주세요.');
   if(!/^[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}$/i.test(body.request_id||''))throw h.httpError(400,'페이지를 새로 열고 다시 작성해 주세요.');
   const now=new Date().toISOString(),choices=Object.fromEntries(PURPOSES.map(p=>[p,body.choices[p]]));
-  const payload=JSON.stringify({name,phone,choices,adult_confirmed:true});
+  const payload=JSON.stringify({name:'',phone,choices,adult_confirmed:true,customer_confirmed:true,capture_method:'staff_prepared_customer_handwritten',handwriting_name,signature});
   await env.DB.prepare('INSERT OR IGNORE INTO consent_intakes(id,payload_enc,phone_hmac,form_hash,form_json,captured_at,expires_at) VALUES(?,?,?,?,?,?,?)')
    .bind(body.request_id,await h.encryptText(payload,env),await h.phoneHmac(phone,env),body.form_hash,policyJson,now,expireDate(now)).run();
   const saved=await env.DB.prepare('SELECT payload_enc FROM consent_intakes WHERE id=?').bind(body.request_id).first();
@@ -58,10 +60,19 @@ export function createIntakeHandlers(h){
   for(const row of rows.results.slice(0,50)){
    const payload=JSON.parse(await h.decryptText(row.payload_enc,env));
    const match=await env.DB.prepare("SELECT id,name_enc FROM customers WHERE phone_hmac=? AND customer_status='active'").bind(row.phone_hmac).first();
-   const exact=match&&h.normalizeName(await h.decryptText(match.name_enc,env))===h.normalizeName(payload.name);
-   items.push({id:row.id,...payload,captured_at:row.captured_at,expires_at:row.expires_at,status:row.status,reviewed_at:row.reviewed_at,customer_id:row.customer_id,match:exact?'exact':match?'different_name':'new',form:JSON.parse(row.form_json)});
+   let reviewedName='';
+   if(row.reviewed_by_enc){try{reviewedName=JSON.parse(await h.decryptText(row.reviewed_by_enc,env)).name||'';}catch{}}
+   const exact=match&&h.normalizeName(await h.decryptText(match.name_enc,env))===h.normalizeName(reviewedName||payload.name);
+   const {handwriting_name,signature,...summary}=payload;
+   items.push({id:row.id,...summary,name:reviewedName||payload.name,has_handwriting:!!handwriting_name,captured_at:row.captured_at,expires_at:row.expires_at,status:row.status,reviewed_at:row.reviewed_at,customer_id:row.customer_id,match:exact?'exact':match?(handwriting_name?'phone_only':'different_name'):'new',form:JSON.parse(row.form_json)});
   }
   return h.json({ok:true,items,next_cursor:rows.results.length>50?String(rows.results[49].seq):null});
+ },
+ async handwriting(env,id){
+  const row=await env.DB.prepare('SELECT payload_enc FROM consent_intakes WHERE id=? AND expires_at>?').bind(id,new Date().toISOString()).first();
+  if(!row)throw h.httpError(404,'접수 내역이 없거나 보유기간이 지났습니다.');
+  const p=JSON.parse(await h.decryptText(row.payload_enc,env));
+  return h.json({ok:true,handwriting_name:p.handwriting_name||null,signature:p.signature||null});
  },
  async review(request,env,user,id){
   h.requireSameOrigin(request);
@@ -69,10 +80,13 @@ export function createIntakeHandlers(h){
   const row=await env.DB.prepare('SELECT * FROM consent_intakes WHERE id=? AND expires_at>?').bind(id,new Date().toISOString()).first();
   if(!row)throw h.httpError(404,'접수 내역이 없거나 보유기간이 지났습니다.');
   const payload=JSON.parse(await h.decryptText(row.payload_enc,env));
+  const reviewedName=String(body.name||payload.name||'').normalize('NFC').trim().replace(/\s+/g,' ');
+  if(reviewedName.length<2||reviewedName.length>40||/[\u0000-\u001f<>&]/.test(reviewedName))throw h.httpError(400,'손글씨 이름을 확인하고 문자로 입력해 주세요.');
+  if(payload.handwriting_name&&body.handwriting_checked!==true)throw h.httpError(400,'손글씨 이름과 서명을 확인해 주세요.');
   const match=await env.DB.prepare("SELECT id,name_enc FROM customers WHERE phone_hmac=? AND customer_status='active'").bind(row.phone_hmac).first();
-  if(match&&h.normalizeName(await h.decryptText(match.name_enc,env))!==h.normalizeName(payload.name))throw h.httpError(409,'기존 고객의 이름과 다릅니다. 본인과 입력 내용을 확인한 후 다시 접수해 주세요.');
+  if(match&&h.normalizeName(await h.decryptText(match.name_enc,env))!==h.normalizeName(reviewedName))throw h.httpError(409,'기존 고객의 이름과 다릅니다. 본인과 입력 내용을 확인한 후 다시 접수해 주세요.');
   await env.DB.prepare("UPDATE consent_intakes SET status='confirmed',customer_id=?,reviewed_at=?,reviewed_by_enc=? WHERE id=? AND status='pending'")
-   .bind(match?.id||null,new Date().toISOString(),await h.encryptText(user.email,env),id).run();
+   .bind(match?.id||null,new Date().toISOString(),await h.encryptText(JSON.stringify({email:user.email,name:reviewedName}),env),id).run();
   return h.json({ok:true});
  },
  async remove(request,env,user,id){

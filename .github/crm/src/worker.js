@@ -30,8 +30,9 @@ export default {
 async function handleApi(request, env, user, url) {
   const method = request.method.toUpperCase();
   if (method === 'GET' && url.pathname === '/api/consent-intakes') return intakeHandlers.list(env,url);
-  const intakeMatch=url.pathname.match(/^\/api\/consent-intakes\/([a-f0-9-]+)\/(review|remove)$/i);
-  if(intakeMatch && method==='POST') return intakeHandlers[intakeMatch[2]](request,env,user,intakeMatch[1]);
+  const intakeMatch=url.pathname.match(/^\/api\/consent-intakes\/([a-f0-9-]+)\/(review|remove|handwriting)$/i);
+  if(intakeMatch && method==='GET' && intakeMatch[2]==='handwriting') return intakeHandlers.handwriting(env,intakeMatch[1]);
+  if(intakeMatch && method==='POST' && intakeMatch[2]!=='handwriting') return intakeHandlers[intakeMatch[2]](request,env,user,intakeMatch[1]);
   if (method === 'GET' && url.pathname === '/api/health') {
     return json({ ok: true, service: 'woongbi-crm', storage: 'Cloudflare D1', pii_encryption: 'AES-GCM', phone_lookup: 'HMAC-SHA-256', raw_file_storage: false, sms_mode: env.SMS_MODE || 'dry_run' });
   }

@@ -1,3 +1,4 @@
+import {renderHandwriting} from '../consent-web/handwriting.js';
 import { read, utils } from 'xlsx';
 import {
   classifyImportRows, dedupeImportRows, detectImportTables, formatInstallment, formatPhone,
@@ -485,14 +486,15 @@ async function loadIntakes(more=false){
   if(!more)$('intake-list').replaceChildren();
   for(const item of data.items){
    const card=document.createElement('article');card.className='intake-card';
-   const match={exact:'이름·번호가 일치하는 기존 고객',different_name:'기존 번호와 이름 불일치 — 확인 필요',new:'신규 접수'};
+   const match={exact:'이름·번호가 일치하는 기존 고객',different_name:'기존 번호와 이름 불일치 — 확인 필요',phone_only:'번호 일치 — 손글씨 이름을 확인해 주세요',new:'신규 접수'};
    const channels=Object.entries(item.choices).filter(([k,v])=>k!=='marketing_use'&&v).map(([k])=>({ad_sms:'문자',ad_kakao:'카카오톡',ad_call:'전화'})[k]);
-   card.innerHTML='<h3>'+esc(item.name)+' · '+esc(formatPhone(item.phone))+'</h3><p>'+esc(match[item.match])+' · <b>'+(item.status==='confirmed'?'직원 확인 완료':'확인 대기')+'</b></p><p>개인정보 이용: 동의 · 광고 채널: '+esc(channels.join(', ')||'선택 없음')+'</p><p>접수 '+esc(new Date(item.captured_at).toLocaleString('ko-KR'))+' · 보유기한 '+esc(item.expires_at.slice(0,10))+'</p><details><summary>당시 동의 문구</summary><p>'+[item.form.purpose,item.form.items,item.form.retention,item.form.refusal,item.form.withdrawal,item.form.record_notice].map(esc).join('</p><p>')+'</p><small>'+esc(item.form.version)+'</small></details>';
+   card.innerHTML='<h3>'+esc(item.name||'손글씨 이름 확인')+' · '+esc(formatPhone(item.phone))+'</h3><p>'+esc(match[item.match])+' · <b>'+(item.status==='confirmed'?'직원 확인 완료':'확인 대기')+'</b></p><p>개인정보 이용: 동의 · 광고 채널: '+esc(channels.join(', ')||'선택 없음')+'</p><p>접수 '+esc(new Date(item.captured_at).toLocaleString('ko-KR'))+' · 보유기한 '+esc(item.expires_at.slice(0,10))+'</p><details><summary>당시 동의 문구</summary><p>'+[item.form.purpose,item.form.items,item.form.retention,item.form.refusal,item.form.withdrawal,item.form.record_notice].map(esc).join('</p><p>')+'</p><small>'+esc(item.form.version)+'</small></details>';
    const actions=document.createElement('div');actions.className='intake-actions';
+   const handwritingReview=item.has_handwriting?addHandwritingReview(card,item):null;
    if(item.status==='pending'){
     const button=document.createElement('button');button.type='button';button.textContent='본인 접수 확인';
     button.disabled=item.match==='different_name';
-    button.addEventListener('click',()=>actOnIntake(item.id,'review'));actions.append(button);
+    button.addEventListener('click',()=>actOnIntake(item.id,'review',handwritingReview?handwritingReview.value():{}));actions.append(button);
    }
    if(item.customer_id){const b=document.createElement('button');b.type='button';b.textContent='연결된 고객 보기';b.addEventListener('click',()=>showCustomer(item.customer_id));actions.append(b);}
    for(const [mode,label] of [['withdraw','고객 요청으로 전체 철회'],['delete','잘못된 접수 삭제']]){
@@ -504,8 +506,31 @@ async function loadIntakes(more=false){
  }catch(e){$('intake-result').textContent=e.message;}
  finally{intakeLoading=false;$('reload-intakes').disabled=false;$('more-intakes').disabled=false;}
 }
-async function actOnIntake(id,mode){
+async function actOnIntake(id,mode,extra={}){
  const messages={review:'고객 본인이 직접 작성한 접수임을 확인했나요? 기존 고객정보나 문자 수신동의 상태는 자동 변경하지 않습니다.',withdraw:'고객 본인의 철회 요청을 확인했나요? 같은 전화번호의 접수 정보를 삭제하고, 기존 고객의 개인정보 마케팅 이용과 광고 수신동의를 모두 철회합니다.',delete:'이 잘못된 접수 1건을 삭제할까요? 되돌릴 수 없으며, 기존 고객의 동의 상태는 바꾸지 않습니다.'};
  if(!confirm(messages[mode]))return;
- try{await api('/api/consent-intakes/'+id+'/'+(mode==='review'?'review':'remove'),{method:'POST',body:JSON.stringify({confirmed:true,withdraw:mode==='withdraw'})});await loadIntakes();}catch(e){showError(e);}
+ try{await api('/api/consent-intakes/'+id+'/'+(mode==='review'?'review':'remove'),{method:'POST',body:JSON.stringify({confirmed:true,...extra,withdraw:mode==='withdraw'})});await loadIntakes();}catch(e){showError(e);}
+}
+
+function addHandwritingReview(card,item){
+ const details=document.createElement('details'),title=document.createElement('summary');title.textContent='손글씨 이름·서명 확인';details.append(title);
+ const content=document.createElement('div');details.append(content);card.append(details);
+ const label=document.createElement('label');label.textContent='손글씨를 읽고 이름 입력';
+ const input=document.createElement('input');input.type='text';input.maxLength=40;input.autocomplete='off';input.value=item.name||'';input.disabled=item.status==='confirmed';label.append(input);
+ const checkedLabel=document.createElement('label'),checked=document.createElement('input');checked.type='checkbox';checked.disabled=true;checkedLabel.append(checked,document.createTextNode('손글씨 이름과 서명을 확인했습니다.'));
+ if(item.status==='pending')card.append(label,checkedLabel);
+ let loaded=false,loading=false;
+ details.addEventListener('toggle',async()=>{
+  if(!details.open||loaded||loading)return;loading=true;content.textContent='불러오는 중…';
+  try{
+   const data=await api('/api/consent-intakes/'+item.id+'/handwriting');content.replaceChildren();
+   for(const [key,text] of [['handwriting_name','고객 손글씨 이름'],['signature','고객 손글씨 서명']]){
+    const caption=document.createElement('p');caption.textContent=text;const canvas=document.createElement('canvas');canvas.width=760;canvas.height=280;canvas.className='intake-handwriting';canvas.setAttribute('aria-label',text);
+    content.append(caption,canvas);renderHandwriting(canvas,data[key]||[]);
+   }
+   loaded=true;checked.disabled=false;
+  }catch(e){content.textContent=e.message;}
+  finally{loading=false;}
+ });
+ return {value:()=>({name:input.value,handwriting_checked:loaded&&checked.checked})};
 }

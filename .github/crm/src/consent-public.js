@@ -21,14 +21,14 @@ export default {
         }
         const reader=request.body?.getReader(); if(!reader) return reply({ok:false},400);
         let size=0; const chunks=[];
-        while(true) {const {done,value}=await reader.read(); if(done)break; size+=value.length; if(size>4096){await reader.cancel();return reply({ok:false},413);} chunks.push(value);}
+        while(true) {const {done,value}=await reader.read(); if(done)break; size+=value.length; if(size>(url.pathname==='/api/intake'?131072:4096)){await reader.cancel();return reply({ok:false},413);} chunks.push(value);}
         const bytes=new Uint8Array(size); let offset=0; for(const part of chunks){bytes.set(part,offset);offset+=part.length;}
         const body=JSON.parse(new TextDecoder().decode(bytes));
         const result=url.pathname==='/api/intake'?await env.CONSENT.intakeSubmit(body):url.pathname==='/api/form'?await env.CONSENT.load(body.token):await env.CONSENT.submit(body);
         return reply(result,result.ok?200:result.status||400);
       } catch {return reply({ok:false,error:'요청을 처리할 수 없습니다.'},400);}
     }
-    if(request.method==='GET' && ['/c','/','/consent.js','/consent.css','/intake.js','/manifest.webmanifest','/icon.svg'].includes(url.pathname)) {
+    if(request.method==='GET' && ['/c','/','/consent.js','/consent.css','/intake.js','/handwriting.js','/manifest.webmanifest','/icon.svg'].includes(url.pathname)) {
       // Fetch the directory URL: /index.html is canonicalized back to / by Assets.
       const path=url.pathname==='/'?'/intake':url.pathname==='/c'?'/':url.pathname;
       const asset=await env.ASSETS.fetch(new Request(new URL(path,url.origin),request));
