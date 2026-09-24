@@ -24,6 +24,14 @@ jobs:
           ref: main
           fetch-depth: 0
 
+      - name: Snapshot current verified wireless data
+        shell: bash
+        run: |
+          set -euo pipefail
+          cp data/catalog.json "$RUNNER_TEMP/catalog-before.json"
+          cp data/plans.json "$RUNNER_TEMP/plans-before.json"
+          cp data/supports.json "$RUNNER_TEMP/supports-before.json"
+
       - name: Refresh verified public wireless data
         run: python3 .github/scripts/daily_wireless_sync.py
 
@@ -44,6 +52,19 @@ jobs:
           node --check assets/site-pro.min.js
           python3 .github/scripts/build_rates_asset.py --check
           python3 .github/scripts/validate_site.py
+
+      - name: Report verified wireless changes
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 .github/scripts/report_wireless_changes.py \
+            --old-catalog "$RUNNER_TEMP/catalog-before.json" \
+            --old-plans "$RUNNER_TEMP/plans-before.json" \
+            --old-supports "$RUNNER_TEMP/supports-before.json" \
+            --new-catalog data/catalog.json \
+            --new-plans data/plans.json \
+            --new-supports data/supports.json \
+            --step-summary "$GITHUB_STEP_SUMMARY"
 
       - name: Commit only verified changes
         shell: bash
