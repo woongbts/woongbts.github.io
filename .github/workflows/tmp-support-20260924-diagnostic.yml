@@ -1,0 +1,116 @@
+name: Diagnose 2026-09-24 wireless support targets
+
+on:
+  push:
+    branches:
+      - tmp-support-20260924-work
+
+permissions:
+  contents: read
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      WIRELESS_SOURCE_BASE_URL: ${{ secrets.WIRELESS_SOURCE_BASE_URL }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: tmp-support-20260924-work
+          fetch-depth: 0
+
+      - name: Print exact target IDs and current subsidy values
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import importlib.util
+          import json
+          from pathlib import Path
+
+          catalog = json.loads(Path('data/catalog.json').read_text(encoding='utf-8'))
+          plans = json.loads(Path('data/plans.json').read_text(encoding='utf-8'))
+          supports = json.loads(Path('data/supports.json').read_text(encoding='utf-8'))
+
+          devices = catalog.get('devices') or []
+          plan_rows = plans.get('mobile_plans') or []
+          plan_by_id = {p.get('id'): p for p in plan_rows}
+          device_by_id = {d.get('id'): d for d in devices}
+
+          expanded = {}
+          for rule in supports.get('support_schedules') or []:
+              for did in rule.get('device_ids') or []:
+                  for jt in rule.get('join_types') or []:
+                      for pid, amount in (rule.get('amounts') or {}).items():
+                          expanded[(rule.get('carrier'), did, jt, pid)] = amount
+
+          refs = {'SKT': 'SKT-XP-2901', 'KT': 'KT-XP-2582', 'LGU+': 'LG-XP-1097'}
+          print('=== Reference plans ===')
+          for carrier, pid in refs.items():
+              p = plan_by_id.get(pid)
+              print(carrier, pid, (p or {}).get('name'), (p or {}).get('monthly_fee'))
+
+          print('\n=== Current S26 devices and support on exact screenshot plan ===')
+          s26 = [d for d in devices if 'S26' in str(d.get('name') or '').upper()]
+          for d in sorted(s26, key=lambda x: (str(x.get('carrier')), str(x.get('name')))):
+              carrier = d.get('carrier')
+              pid = refs.get(carrier)
+              if not pid:
+                  continue
+              vals = {jt: expanded.get((carrier, d.get('id'), jt, pid)) for jt in ('기기변경','번호이동','신규가입')}
+              print(json.dumps({
+                  'carrier': carrier,
+                  'id': d.get('id'),
+                  'name': d.get('name'),
+                  'model': d.get('model'),
+                  'model_code': d.get('model_code'),
+                  'retail_price': d.get('retail_price'),
+                  'release_date': d.get('release_date'),
+                  'support': vals,
+              }, ensure_ascii=False))
+
+          print('\n=== Current LGU+ iPhone 17 devices ===')
+          iph = [d for d in devices if d.get('carrier') == 'LGU+' and ('아이폰 17' in str(d.get('name') or '') or 'IPHONE 17' in str(d.get('name') or '').upper())]
+          for d in sorted(iph, key=lambda x: str(x.get('name'))):
+              pid = refs['LGU+']
+              vals = {jt: expanded.get(('LGU+', d.get('id'), jt, pid)) for jt in ('기기변경','번호이동','신규가입')}
+              print(json.dumps({
+                  'carrier': d.get('carrier'),
+                  'id': d.get('id'),
+                  'name': d.get('name'),
+                  'model': d.get('model'),
+                  'model_code': d.get('model_code'),
+                  'retail_price': d.get('retail_price'),
+                  'release_date': d.get('release_date'),
+                  'support': vals,
+              }, ensure_ascii=False))
+          if not iph:
+              print('NO CURRENT LGU+ IPHONE 17 DEVICES')
+
+          print('\n=== Public source LGU+ rows matching iPhone 17 ===')
+          spec = importlib.util.spec_from_file_location('wireless_sync', '.github/scripts/daily_wireless_sync.py')
+          mod = importlib.util.module_from_spec(spec)
+          spec.loader.exec_module(mod)
+          payload = mod.get_json('/api/data/get_device_list.php', {
+              'telecom_id': 'LGUPLUS',
+              'manufacturer_id': '',
+              'sort_type1': 'PHONE',
+              'sort_type2': 'RELEASE_DT_DESC',
+              'keyword': '',
+              'search_group': '',
+              'search_support_mnp': '',
+          })
+          matched = []
+          for row in payload.get('data') or []:
+              text = ' '.join(str(v or '') for v in row.values()).lower()
+              if ('아이폰' in text or 'iphone' in text) and '17' in text:
+                  matched.append(row)
+          for row in matched:
+              keep = {k: row.get(k) for k in ('device_idx','device_name','device_model','model_name','manufacturer_name','factory_price','release_dt') if k in row}
+              if not keep:
+                  keep = row
+              print(json.dumps(keep, ensure_ascii=False))
+          if not matched:
+              print('NO PUBLIC SOURCE IPHONE 17 MATCHES')
+          PY
