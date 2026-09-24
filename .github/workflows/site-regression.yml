@@ -41,5 +41,7 @@ jobs:
         run: python3 -m py_compile .github/scripts/daily_wireless_sync.py .github/scripts/build_rates_asset.py .github/scripts/validate_site.py
       - name: Verify canonical calculator source
         run: python3 .github/scripts/build_rates_asset.py --check
+      - name: Verify wireless change report
+        run: python3 .github/scripts/test_wireless_report.py
       - name: Run site regression checks
         run: python3 .github/scripts/validate_site.py
