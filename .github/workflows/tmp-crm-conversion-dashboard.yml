@@ -1,0 +1,32 @@
+name: Temporary CRM conversion dashboard patch
+
+on:
+  push:
+    branches: [crm-conversion-dashboard-clean-20260928]
+    paths:
+      - '.github/workflows/tmp-crm-conversion-dashboard.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: crm-conversion-dashboard-clean-20260928
+      - name: Apply patch
+        run: python3 .github/scripts/tmp_crm_conversion_dashboard.py
+      - name: Validate JavaScript
+        run: |
+          node --check .github/crm/src/worker.js
+          node --check .github/crm/web/app.js
+      - name: Commit patched files
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add .github/crm/src/worker.js .github/crm/web/app.js .github/crm/web/index.html
+          git commit -m 'Show website conversion analytics in CRM dashboard'
+          git push origin HEAD:crm-conversion-dashboard-clean-20260928
