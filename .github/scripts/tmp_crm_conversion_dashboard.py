@@ -106,9 +106,7 @@ replace_once(
 html = '.github/crm/web/index.html'
 replace_once(
     html,
-    """    <p id="site-analytics-note" class="sub">오늘부터 방문 통계를 집계합니다. 이름·전화번호·IP 주소는 방문통계 DB에 저장하지 않습니다.</p>
-
-    <nav class="tabs" aria-label="CRM 메뉴">""",
+    """    <p id="site-analytics-note" class="sub">오늘부터 방문 통계를 집계합니다. 이름·전화번호·IP 주소는 방문통계 DB에 저장하지 않습니다.</p>""",
     """    <p id="site-analytics-note" class="sub">오늘부터 방문 통계를 집계합니다. 이름·전화번호·IP 주소는 방문통계 DB에 저장하지 않습니다.</p>
 
     <h2>홈페이지 전환 통계 <small class="sub">최근 30일</small></h2>
@@ -122,7 +120,5 @@ replace_once(
       <article><small>AI 질문</small><b id="stat-conv-ai-question">-</b></article>
       <article><small>AI → 상담</small><b id="stat-conv-ai-consult">-</b></article>
     </section>
-    <p id="site-conversion-note" class="sub">최근 30일 전환 통계를 불러오는 중입니다.</p>
-
-    <nav class="tabs" aria-label="CRM 메뉴">""",
+    <p id="site-conversion-note" class="sub">최근 30일 전환 통계를 불러오는 중입니다.</p>""",
 )
