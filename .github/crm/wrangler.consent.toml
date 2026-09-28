@@ -15,6 +15,11 @@ binding = "CONSENT"
 service = "woongbi-crm"
 entrypoint = "ConsentPublic"
 
+[[d1_databases]]
+binding = "DB"
+database_name = "woongbi-crm"
+database_id = "bc27cc13-1a30-44f0-831e-dffdad6a68f6"
+
 [observability]
 enabled = false
 
