@@ -1,9 +1,8 @@
 @import url("./readability-20260921-base.css");
 
-/* Mobile storefront refinement · 2026-09-21
+/* Mobile storefront refinement · 2026-09-28
    Keep the official KAIT mark visible, remove redundant top call CTA on phones,
-   wrap the full navigation without horizontal scrolling, and keep the four
-   primary telecom shortcuts on one row. */
+   keep the primary navigation focused, and keep the four telecom shortcuts on one row. */
 @media(max-width:640px){
   body:not(.rate-page) .top .nav{
     display:grid;
@@ -48,29 +47,35 @@
   body:not(.rate-page) .top .menu{
     grid-column:1 / -1;
     grid-row:2;
-    display:flex!important;
-    flex-wrap:wrap!important;
-    justify-content:flex-start;
-    align-items:center;
-    gap:2px 14px;
+    display:grid!important;
+    grid-template-columns:repeat(4,minmax(0,1fr));
+    align-items:stretch;
+    gap:6px;
     width:100%;
     min-width:0;
     overflow:visible;
-    scrollbar-width:none;
   }
 
-  body:not(.rate-page) .top .menu::-webkit-scrollbar{
-    display:none;
+  /* Mobile users get the four actions most likely to lead to a decision.
+     The hidden sections remain available by scrolling the page. */
+  body:not(.rate-page) .top .menu a:nth-child(2),
+  body:not(.rate-page) .top .menu a:nth-child(3),
+  body:not(.rate-page) .top .menu a:nth-child(4),
+  body:not(.rate-page) .top .menu a:nth-child(6){
+    display:none!important;
   }
 
   body:not(.rate-page) .top .menu a{
-    flex:0 0 auto;
-    display:flex;
-    align-items:center;
-    min-height:34px;
-    padding:6px 0;
-    font-size:12.5px!important;
-    line-height:1.25;
+    min-width:0;
+    min-height:38px;
+    justify-content:center;
+    padding:7px 4px;
+    border:1px solid rgba(16,60,82,.12);
+    border-radius:10px;
+    background:rgba(255,255,255,.78);
+    font-size:12px!important;
+    line-height:1.2;
+    text-align:center;
     white-space:nowrap;
   }
 
@@ -95,11 +100,13 @@
 
 @media(max-width:380px){
   body:not(.rate-page) .top .menu{
-    gap:1px 11px;
+    gap:5px;
   }
 
   body:not(.rate-page) .top .menu a{
-    font-size:12px!important;
+    font-size:11.5px!important;
+    padding-left:2px;
+    padding-right:2px;
   }
 
   body:not(.rate-page) .top .precon-official-mark{
