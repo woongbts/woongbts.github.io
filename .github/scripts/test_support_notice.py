@@ -22,6 +22,7 @@ class NoticeTests(unittest.TestCase):
         result = self.run_build()
         self.assertEqual(len(result['changes']), 2)
         self.assertEqual(result['changes'][0]['before'], 500000)
+        self.assertEqual(result['changes'][0]['plan_id'], 'SKT-XP-2901')
         self.assertEqual(result['changes'][0]['after'], 600000)
 
     def test_no_change_does_not_make_old_notice_today(self):
