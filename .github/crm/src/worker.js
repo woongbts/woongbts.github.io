@@ -238,7 +238,17 @@ async function ensureSiteAnalyticsSchema(env) {
     env.DB.prepare(`CREATE TABLE IF NOT EXISTS site_analytics_seen (
       day TEXT NOT NULL, session_id TEXT NOT NULL, created_at TEXT NOT NULL, PRIMARY KEY(day,session_id)
     )`),
-    env.DB.prepare('CREATE INDEX IF NOT EXISTS idx_site_analytics_seen_created ON site_analytics_seen(created_at)')
+    env.DB.prepare('CREATE INDEX IF NOT EXISTS idx_site_analytics_seen_created ON site_analytics_seen(created_at)'),
+    env.DB.prepare(`CREATE TABLE IF NOT EXISTS site_conversion_daily (
+      day TEXT NOT NULL,
+      event TEXT NOT NULL,
+      path TEXT NOT NULL,
+      source TEXT NOT NULL,
+      device TEXT NOT NULL,
+      count INTEGER NOT NULL DEFAULT 0,
+      PRIMARY KEY(day,event,path,source,device)
+    )`),
+    env.DB.prepare('CREATE INDEX IF NOT EXISTS idx_site_conversion_event_day ON site_conversion_daily(event,day)')
   ]);
 }
 
@@ -282,13 +292,17 @@ async function analyticsDashboard(env) {
   const today = kstDateKey(new Date());
   const from7 = kstDateKey(new Date(Date.now()-6*86400000));
   const from30 = kstDateKey(new Date(Date.now()-29*86400000));
-  const [todayRow, weekRow, monthRow, topPages, topSources, devices] = await Promise.all([
+  const [todayRow, weekRow, monthRow, topPages, topSources, devices, conversions, conversionSources] = await Promise.all([
     env.DB.prepare('SELECT visits,pageviews FROM site_analytics_daily WHERE day=?').bind(today).first(),
     env.DB.prepare('SELECT COALESCE(SUM(visits),0) visits,COALESCE(SUM(pageviews),0) pageviews FROM site_analytics_daily WHERE day BETWEEN ? AND ?').bind(from7,today).first(),
     env.DB.prepare('SELECT COALESCE(SUM(visits),0) visits,COALESCE(SUM(pageviews),0) pageviews FROM site_analytics_daily WHERE day BETWEEN ? AND ?').bind(from30,today).first(),
     env.DB.prepare('SELECT path,SUM(pageviews) pageviews FROM site_analytics_pages WHERE day BETWEEN ? AND ? GROUP BY path ORDER BY pageviews DESC LIMIT 5').bind(from30,today).all(),
     env.DB.prepare('SELECT source,SUM(visits) visits FROM site_analytics_sources WHERE day BETWEEN ? AND ? GROUP BY source ORDER BY visits DESC LIMIT 5').bind(from30,today).all(),
-    env.DB.prepare('SELECT device,SUM(visits) visits FROM site_analytics_devices WHERE day BETWEEN ? AND ? GROUP BY device ORDER BY visits DESC').bind(from30,today).all()
+    env.DB.prepare('SELECT device,SUM(visits) visits FROM site_analytics_devices WHERE day BETWEEN ? AND ? GROUP BY device ORDER BY visits DESC').bind(from30,today).all(),
+    env.DB.prepare('SELECT event,SUM(count) count FROM site_conversion_daily WHERE day BETWEEN ? AND ? GROUP BY event ORDER BY count DESC').bind(from30,today).all(),
+    env.DB.prepare(`SELECT source,SUM(count) count FROM site_conversion_daily
+      WHERE day BETWEEN ? AND ? AND event IN ('phone_click','kakao_click','booking_click','consult_click','ai_phone_click','ai_kakao_click')
+      GROUP BY source ORDER BY count DESC LIMIT 5`).bind(from30,today).all()
   ]);
   return {
     today:{visits:Number(todayRow?.visits||0),pageviews:Number(todayRow?.pageviews||0)},
@@ -296,7 +310,9 @@ async function analyticsDashboard(env) {
     last30:{visits:Number(monthRow?.visits||0),pageviews:Number(monthRow?.pageviews||0)},
     top_pages:(topPages.results||[]).map(r=>({path:r.path,pageviews:Number(r.pageviews||0)})),
     top_sources:(topSources.results||[]).map(r=>({source:r.source,visits:Number(r.visits||0)})),
-    devices:(devices.results||[]).map(r=>({device:r.device,visits:Number(r.visits||0)}))
+    devices:(devices.results||[]).map(r=>({device:r.device,visits:Number(r.visits||0)})),
+    conversions:Object.fromEntries((conversions.results||[]).map(r=>[r.event,Number(r.count||0)])),
+    conversion_sources:(conversionSources.results||[]).map(r=>({source:r.source,count:Number(r.count||0)}))
   };
 }
 
