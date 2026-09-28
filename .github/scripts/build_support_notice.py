@@ -3,6 +3,8 @@ import argparse
 import hashlib
 import json
 from pathlib import Path
+from datetime import datetime
+from zoneinfo import ZoneInfo
 from report_wireless_changes import flatten_supports
 
 REFERENCES = {'SKT': ('SKT-XP-2901', '베스트 109(T 우주)'),
@@ -32,7 +34,7 @@ def build(old_supports, catalog, plans, supports, previous=None):
                 if before == after:
                     continue
                 changes.append({'carrier': carrier, 'device_id': did, 'device': device['name'],
-                                'plan': expected_name, 'monthly_fee': plan_map[pid]['monthly_fee'],
+                                'plan_id': pid, 'plan': expected_name, 'monthly_fee': plan_map[pid]['monthly_fee'],
                                 'join': join, 'before': before, 'after': after})
     if not changes and previous:
         result = dict(previous)
@@ -53,6 +55,7 @@ def main():
     previous = load(path) if path.exists() else None
     result = build(load(args.old_supports), load('data/catalog.json'), load('data/plans.json'),
                    load('data/supports.json'), previous)
+    result['checked_at'] = datetime.now(ZoneInfo('Asia/Seoul')).isoformat(timespec='seconds')
     path.write_text(json.dumps(result, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
     print(f"Customer notice: {len(result['changes'])} reference-plan changes; date={result['date']}")
 

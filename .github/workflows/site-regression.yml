@@ -51,6 +51,8 @@ jobs:
       - name: Verify customer support notice
         run: |
           node --check assets/support-notice.js
+          node --check assets/store-sale-policy.js
+          node .github/scripts/test_sale_policy.cjs
           python3 .github/scripts/test_support_notice.py
       - name: Run site regression checks
         run: python3 .github/scripts/validate_site.py

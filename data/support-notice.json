@@ -12,7 +12,8 @@
       "monthly_fee": 109000,
       "join": "기기변경",
       "before": 500000,
-      "after": 600000
+      "after": 600000,
+      "plan_id": "SKT-XP-2901"
     },
     {
       "carrier": "SKT",
@@ -22,7 +23,8 @@
       "monthly_fee": 109000,
       "join": "기기변경",
       "before": 500000,
-      "after": 600000
+      "after": 600000,
+      "plan_id": "SKT-XP-2901"
     },
     {
       "carrier": "SKT",
@@ -32,7 +34,8 @@
       "monthly_fee": 109000,
       "join": "기기변경",
       "before": 500000,
-      "after": 600000
+      "after": 600000,
+      "plan_id": "SKT-XP-2901"
     },
     {
       "carrier": "SKT",
@@ -42,7 +45,8 @@
       "monthly_fee": 109000,
       "join": "기기변경",
       "before": 500000,
-      "after": 600000
+      "after": 600000,
+      "plan_id": "SKT-XP-2901"
     },
     {
       "carrier": "SKT",
@@ -52,7 +56,8 @@
       "monthly_fee": 109000,
       "join": "기기변경",
       "before": 500000,
-      "after": 600000
+      "after": 600000,
+      "plan_id": "SKT-XP-2901"
     },
     {
       "carrier": "SKT",
@@ -62,7 +67,8 @@
       "monthly_fee": 109000,
       "join": "기기변경",
       "before": 500000,
-      "after": 600000
+      "after": 600000,
+      "plan_id": "SKT-XP-2901"
     },
     {
       "carrier": "SKT",
@@ -72,7 +78,8 @@
       "monthly_fee": 109000,
       "join": "기기변경",
       "before": 500000,
-      "after": 600000
+      "after": 600000,
+      "plan_id": "SKT-XP-2901"
     },
     {
       "carrier": "KT",
@@ -82,7 +89,8 @@
       "monthly_fee": 110000,
       "join": "기기변경",
       "before": 500000,
-      "after": 600000
+      "after": 600000,
+      "plan_id": "KT-XP-2582"
     },
     {
       "carrier": "KT",
@@ -92,7 +100,8 @@
       "monthly_fee": 110000,
       "join": "기기변경",
       "before": 500000,
-      "after": 600000
+      "after": 600000,
+      "plan_id": "KT-XP-2582"
     },
     {
       "carrier": "KT",
@@ -102,7 +111,8 @@
       "monthly_fee": 110000,
       "join": "기기변경",
       "before": 500000,
-      "after": 600000
+      "after": 600000,
+      "plan_id": "KT-XP-2582"
     },
     {
       "carrier": "KT",
@@ -112,7 +122,8 @@
       "monthly_fee": 110000,
       "join": "기기변경",
       "before": 500000,
-      "after": 600000
+      "after": 600000,
+      "plan_id": "KT-XP-2582"
     },
     {
       "carrier": "KT",
@@ -122,7 +133,8 @@
       "monthly_fee": 110000,
       "join": "기기변경",
       "before": 500000,
-      "after": 600000
+      "after": 600000,
+      "plan_id": "KT-XP-2582"
     },
     {
       "carrier": "KT",
@@ -132,7 +144,8 @@
       "monthly_fee": 110000,
       "join": "기기변경",
       "before": 500000,
-      "after": 600000
+      "after": 600000,
+      "plan_id": "KT-XP-2582"
     },
     {
       "carrier": "KT",
@@ -142,7 +155,8 @@
       "monthly_fee": 110000,
       "join": "기기변경",
       "before": 500000,
-      "after": 600000
+      "after": 600000,
+      "plan_id": "KT-XP-2582"
     },
     {
       "carrier": "LGU+",
@@ -152,7 +166,8 @@
       "monthly_fee": 115000,
       "join": "기기변경",
       "before": 500000,
-      "after": 600000
+      "after": 600000,
+      "plan_id": "LG-XP-1097"
     },
     {
       "carrier": "LGU+",
@@ -162,7 +177,8 @@
       "monthly_fee": 115000,
       "join": "기기변경",
       "before": 500000,
-      "after": 600000
+      "after": 600000,
+      "plan_id": "LG-XP-1097"
     },
     {
       "carrier": "LGU+",
@@ -172,7 +188,8 @@
       "monthly_fee": 115000,
       "join": "기기변경",
       "before": 500000,
-      "after": 600000
+      "after": 600000,
+      "plan_id": "LG-XP-1097"
     },
     {
       "carrier": "LGU+",
@@ -182,7 +199,8 @@
       "monthly_fee": 115000,
       "join": "기기변경",
       "before": 500000,
-      "after": 600000
+      "after": 600000,
+      "plan_id": "LG-XP-1097"
     },
     {
       "carrier": "LGU+",
@@ -192,7 +210,8 @@
       "monthly_fee": 115000,
       "join": "기기변경",
       "before": 500000,
-      "after": 600000
+      "after": 600000,
+      "plan_id": "LG-XP-1097"
     },
     {
       "carrier": "LGU+",
@@ -202,7 +221,8 @@
       "monthly_fee": 115000,
       "join": "기기변경",
       "before": 500000,
-      "after": 600000
+      "after": 600000,
+      "plan_id": "LG-XP-1097"
     },
     {
       "carrier": "LGU+",
@@ -212,7 +232,9 @@
       "monthly_fee": 115000,
       "join": "기기변경",
       "before": 500000,
-      "after": 600000
+      "after": 600000,
+      "plan_id": "LG-XP-1097"
     }
-  ]
+  ],
+  "checked_at": "2026-09-27T07:49:57Z"
 }

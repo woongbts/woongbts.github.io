@@ -23,6 +23,8 @@
       top.append(heading, close);
       const body = el('div', undefined, 'support-notice-body');
       body.append(el('p', `${data.date} 확인된 변경`, 'support-notice-date'), el('p', '대표 요금제 기준으로 확인된 공시지원금 변경입니다. 가입유형과 요금제에 따라 금액이 다릅니다.', 'support-notice-intro'));
+      if (data.date < today()) body.append(el('p', '지난 변경 내역입니다. 현재 판매 조건과 지원금은 계산기 또는 매장에서 다시 확인해 주세요.', 'support-notice-history'));
+      if (typeof data.checked_at === 'string' && !Number.isNaN(Date.parse(data.checked_at))) body.append(el('p', `최근 자동 갱신 성공: ${new Date(data.checked_at).toLocaleString('ko-KR', {timeZone:'Asia/Seoul'})} (한국시간) · 새 변동이 없으면 공지 날짜는 유지됩니다.`, 'support-notice-checked'));
       for (const carrier of ['SKT', 'KT', 'LGU+']) {
         const rows = changes.filter(r => r.carrier === carrier);
         if (!rows.length) continue;
@@ -30,10 +32,10 @@
         const groups = new Map();
         for (const r of rows) {
           const key = JSON.stringify([r.plan, r.monthly_fee, r.join, r.before, r.after]);
-          if (!groups.has(key)) groups.set(key, {row: r, names: []});
-          groups.get(key).names.push(r.device);
+          if (!groups.has(key)) groups.set(key, {row: r, models: []});
+          groups.get(key).models.push(r);
         }
-        for (const {row: r, names} of groups.values()) {
+        for (const {row: r, models} of groups.values()) {
           const card = el('article', undefined, 'support-notice-card');
           card.append(el('p', `${r.join} · ${r.plan} (월 ${money(r.monthly_fee)})`, 'support-notice-condition'));
           let label;
@@ -41,7 +43,16 @@
           else if (r.before === null) label = `지원금 신규 확인 · ${money(r.after)}`;
           else label = `${money(r.before)} → ${money(r.after)} (${r.after > r.before ? '+' : '−'}${money(Math.abs(r.after - r.before))})`;
           card.append(el('p', label, 'support-notice-amount'));
-          const list = el('ul'); for (const name of [...new Set(names)]) list.append(el('li', name));
+          const list = el('ul');
+          for (const model of models) {
+            const item = el('li', undefined, 'support-notice-model'); item.append(el('span', model.device));
+            if (model.after !== null && typeof model.device_id === 'string' && typeof model.plan_id === 'string') {
+              const url = new URL('/rates.html', location.origin);
+              for (const [key, value] of Object.entries({tab:'mobile', c:model.carrier, j:model.join, d:model.device_id, p:model.plan_id, m:'support', mo:'24', w:'none'})) url.searchParams.set(key, value);
+              const calculate = el('a', '이 조건으로 계산'); calculate.href = url.href; calculate.setAttribute('aria-label', `${model.carrier} ${model.device} ${model.join} 이 조건으로 계산`); item.append(calculate);
+            }
+            list.append(item);
+          }
           card.append(list); section.append(card);
         }
         body.append(section);
