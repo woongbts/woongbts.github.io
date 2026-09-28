@@ -43,5 +43,9 @@ jobs:
         run: python3 .github/scripts/build_rates_asset.py --check
       - name: Verify wireless change report
         run: python3 .github/scripts/test_wireless_report.py
+      - name: Verify customer support notice
+        run: |
+          node --check assets/support-notice.js
+          python3 .github/scripts/test_support_notice.py
       - name: Run site regression checks
         run: python3 .github/scripts/validate_site.py

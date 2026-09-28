@@ -75,11 +75,16 @@ jobs:
           retention-days: 90
           if-no-files-found: error
 
+      - name: Build customer support notice
+        run: |
+          python3 .github/scripts/test_support_notice.py
+          python3 .github/scripts/build_support_notice.py --old-supports "$RUNNER_TEMP/supports-before.json"
+
       - name: Commit only verified changes
         shell: bash
         run: |
           set -euo pipefail
-          git add data/catalog.json data/plans.json data/supports.json
+          git add data/catalog.json data/plans.json data/supports.json data/support-notice.json
           if git diff --cached --quiet; then
             echo 'No verified wireless data changes'
             exit 0
