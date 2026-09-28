@@ -5,8 +5,12 @@ def replace_once(path, old, new):
     p = Path(path)
     raw = p.read_bytes()
     matches = []
+    seen = set()
     for newline in ('\r\n', '\n'):
         old_b = old.replace('\n', newline).encode('utf-8')
+        if old_b in seen:
+            continue
+        seen.add(old_b)
         count = raw.count(old_b)
         if count:
             matches.append((newline, old_b, count))
