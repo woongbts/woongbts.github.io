@@ -62,12 +62,31 @@ async function boot() {
     $('stat-site-today-pageviews').textContent = Number(site.today?.pageviews||0).toLocaleString('ko-KR');
     $('stat-site-7d-visits').textContent = Number(site.last7?.visits||0).toLocaleString('ko-KR');
     $('stat-site-30d-visits').textContent = Number(site.last30?.visits||0).toLocaleString('ko-KR');
-    const pageNames={'/':'홈','/rates.html':'요금 알아보기','/links.html':'블로그·SNS'};
+    const conversion = site.conversions || {};
+    const conversionValue = event => Number(conversion[event] || 0);
+    $('stat-conv-phone').textContent = conversionValue('phone_click').toLocaleString('ko-KR');
+    $('stat-conv-kakao').textContent = conversionValue('kakao_click').toLocaleString('ko-KR');
+    $('stat-conv-booking').textContent = conversionValue('booking_click').toLocaleString('ko-KR');
+    $('stat-conv-rate').textContent = conversionValue('rate_open').toLocaleString('ko-KR');
+    $('stat-conv-consult').textContent = conversionValue('consult_click').toLocaleString('ko-KR');
+    $('stat-conv-ai-open').textContent = conversionValue('ai_open').toLocaleString('ko-KR');
+    $('stat-conv-ai-question').textContent = conversionValue('ai_question').toLocaleString('ko-KR');
+    const aiPhone = conversionValue('ai_phone_click');
+    const aiKakao = conversionValue('ai_kakao_click');
+    $('stat-conv-ai-consult').textContent = (aiPhone + aiKakao).toLocaleString('ko-KR');
+    const pageNames={'/':'홈','/rates.html':'요금 알아보기','/links.html':'블로그·SNS','/manduk-mobile.html':'만덕 상담 안내'};
     const sourceNames={direct:'직접 방문',internal:'사이트 내부',other:'기타'};
     const topPage=site.top_pages?.[0], topSource=site.top_sources?.[0];
     $('site-analytics-note').textContent = Number(site.last30?.pageviews||0)
       ? `최근 30일 페이지 조회 ${Number(site.last30.pageviews).toLocaleString('ko-KR')}회 · 인기 페이지 ${pageNames[topPage?.path]||topPage?.path||'-'} · 주요 유입 ${sourceNames[topSource?.source]||topSource?.source||'-'}`
       : '오늘부터 방문 통계를 집계합니다. 이름·전화번호·IP 주소는 방문통계 DB에 저장하지 않습니다.';
+    const consultTotal = conversionValue('phone_click') + conversionValue('kakao_click') + conversionValue('booking_click') + conversionValue('consult_click') + aiPhone + aiKakao;
+    const sourceSummary = (site.conversion_sources || []).slice(0, 3)
+      .map(item => `${sourceNames[item.source] || item.source || '-'} ${Number(item.count || 0).toLocaleString('ko-KR')}회`)
+      .join(' · ');
+    $('site-conversion-note').textContent = consultTotal
+      ? `최근 30일 상담 관련 행동 ${consultTotal.toLocaleString('ko-KR')}회${sourceSummary ? ` · 주요 전환 유입 ${sourceSummary}` : ''} · AI 상담 전환 전화 ${aiPhone.toLocaleString('ko-KR')}회 / 카카오 ${aiKakao.toLocaleString('ko-KR')}회`
+      : '전환 행동이 쌓이면 전화·카카오·예약·요금조회·AI 이용과 주요 유입경로를 최근 30일 기준으로 보여줍니다.';
     await loadCustomers();
   } catch (error) { showError(error); }
 }
