@@ -20,6 +20,7 @@ class NoticeTests(unittest.TestCase):
     def test_only_reference_amount_changes(self):
         self.new['support_schedules'][0]['amounts']['SKT-XP-2901'] = 600000
         result = self.run_build()
+        self.assertEqual(result['refresh_change_count'], 2)
         self.assertEqual(len(result['changes']), 2)
         self.assertEqual(result['changes'][0]['before'], 500000)
         self.assertEqual(result['changes'][0]['plan_id'], 'SKT-XP-2901')
@@ -28,6 +29,7 @@ class NoticeTests(unittest.TestCase):
     def test_no_change_does_not_make_old_notice_today(self):
         previous = {'date': '2026-09-22', 'id': 'old', 'changes': [{'example': True}]}
         result = self.run_build(previous)
+        self.assertEqual(result['refresh_change_count'], 0)
         self.assertEqual(result['date'], '2026-09-22')
         self.assertEqual(result['id'], 'old')
         self.assertEqual(result['checked_on'], '2026-09-24')

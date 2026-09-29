@@ -1,7 +1,6 @@
 (() => {
   'use strict';
-  const launch = document.getElementById('support-notice-open');
-  if (!launch || typeof HTMLDialogElement === 'undefined') return;
+  if (typeof HTMLDialogElement === 'undefined') return;
   const today = () => new Intl.DateTimeFormat('en-CA', {timeZone: 'Asia/Seoul', year: 'numeric', month: '2-digit', day: '2-digit'}).format(new Date());
   const read = (store, key) => { try { return window[store].getItem(key); } catch { return null; } };
   const write = (store, key, value) => { try { window[store].setItem(key, value); } catch { /* Optional dismissal memory. */ } };
@@ -66,11 +65,10 @@
       const dismiss = () => dialog.close();
       close.addEventListener('click', dismiss);
       hide.addEventListener('click', () => { write('localStorage', 'woongbi-support-hide', today()); dismiss(); });
-      dialog.addEventListener('close', () => { document.body.classList.remove('support-notice-active'); if (returnFocus?.isConnected) returnFocus.focus(); });
+      dialog.addEventListener('close', () => { write('sessionStorage', 'woongbi-support-seen', `${today()}:${data.id}`); document.body.classList.remove('support-notice-active'); if (returnFocus?.isConnected) returnFocus.focus(); });
       dialog.addEventListener('click', event => { if (event.target === dialog) { const r = dialog.getBoundingClientRect(); if (event.clientX < r.left || event.clientX > r.right || event.clientY < r.top || event.clientY > r.bottom) dismiss(); } });
-      const open = () => { returnFocus = document.activeElement; dialog.showModal(); document.body.classList.add('support-notice-active'); close.focus(); write('sessionStorage', 'woongbi-support-seen', data.id); };
-      launch.hidden = false; launch.textContent = `지원금 변동 안내 · ${data.date}`; launch.addEventListener('click', open);
-      if (data.date === today() && read('localStorage', 'woongbi-support-hide') !== today() && read('sessionStorage', 'woongbi-support-seen') !== data.id) {
+      const open = () => { returnFocus = document.activeElement; dialog.showModal(); document.body.classList.add('support-notice-active'); close.focus(); };
+      if (read('localStorage', 'woongbi-support-hide') !== today() && read('sessionStorage', 'woongbi-support-seen') !== `${today()}:${data.id}`) {
         // Avoid interrupting another dialog, a background tab or a customer who already started interacting.
         let interacted = false;
         const onInteraction = () => { interacted = true; };

@@ -1,3 +1,4 @@
+import {loadWirelessStatus} from './wireless-status.js';
 import {renderHandwriting} from '../consent-web/handwriting.js';
 import { read, utils } from 'xlsx';
 import {
@@ -46,6 +47,7 @@ async function api(path, options={}) {
 }
 
 async function boot() {
+  void loadWirelessStatus();
   try {
     await refreshOneDriveStatus();
     const [health, dash] = await Promise.all([api('/api/health'), api('/api/dashboard')]);
@@ -85,8 +87,8 @@ async function boot() {
       .map(item => `${sourceNames[item.source] || item.source || '-'} ${Number(item.count || 0).toLocaleString('ko-KR')}회`)
       .join(' · ');
     $('site-conversion-note').textContent = consultTotal
-      ? `최근 30일 상담 관련 행동 ${consultTotal.toLocaleString('ko-KR')}회${sourceSummary ? ` · 주요 전환 유입 ${sourceSummary}` : ''} · AI 상담 전환 전화 ${aiPhone.toLocaleString('ko-KR')}회 / 카카오 ${aiKakao.toLocaleString('ko-KR')}회`
-      : '전환 행동이 쌓이면 전화·카카오·예약·요금조회·AI 이용과 주요 유입경로를 최근 30일 기준으로 보여줍니다.';
+      ? `최근 30일 상담 관련 행동 ${consultTotal.toLocaleString('ko-KR')}회${sourceSummary ? ` · 주요 클릭 유입 ${sourceSummary}` : ''} · AI 상담 링크 클릭 전화 ${aiPhone.toLocaleString('ko-KR')}회 / 카카오 ${aiKakao.toLocaleString('ko-KR')}회`
+      : '클릭 기록이 쌓이면 전화·카카오·예약·요금조회·AI 이용과 주요 유입경로를 최근 30일 기준으로 보여줍니다.';
     await loadCustomers();
   } catch (error) { showError(error); }
 }

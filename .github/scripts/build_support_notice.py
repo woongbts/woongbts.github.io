@@ -2,6 +2,7 @@
 import argparse
 import hashlib
 import json
+import os
 from pathlib import Path
 from datetime import datetime
 from zoneinfo import ZoneInfo
@@ -38,11 +39,12 @@ def build(old_supports, catalog, plans, supports, previous=None):
                                 'join': join, 'before': before, 'after': after})
     if not changes and previous:
         result = dict(previous)
+        result['refresh_change_count'] = 0
         result['checked_on'] = day
         return result
     content = {'date': day, 'changes': changes}
     revision = hashlib.sha256(json.dumps(content, ensure_ascii=False, sort_keys=True).encode()).hexdigest()[:16]
-    return {'version': 1, 'id': revision, 'date': day, 'checked_on': day, 'changes': changes}
+    return {'version': 1, 'id': revision, 'date': day, 'checked_on': day, 'changes': changes, 'refresh_change_count': len(changes)}
 
 
 def main():
@@ -55,9 +57,10 @@ def main():
     previous = load(path) if path.exists() else None
     result = build(load(args.old_supports), load('data/catalog.json'), load('data/plans.json'),
                    load('data/supports.json'), previous)
+    result['refresh_run_id'] = os.environ.get('GITHUB_RUN_ID')
     result['checked_at'] = datetime.now(ZoneInfo('Asia/Seoul')).isoformat(timespec='seconds')
     path.write_text(json.dumps(result, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
-    print(f"Customer notice: {len(result['changes'])} reference-plan changes; date={result['date']}")
+    print(f"Customer notice: {result['refresh_change_count']} reference-plan changes; date={result['date']}")
 
 
 if __name__ == '__main__':
