@@ -14,25 +14,60 @@ class NoticeTests(unittest.TestCase):
         self.new = copy.deepcopy(self.old)
         self.new['meta']['updated_at'] = '2026-09-24'
 
-    def run_build(self, previous=None):
-        return build(self.old, self.catalog, self.plans, self.new, previous)
+    def run_build(self, previous=None, checked_on='2026-09-29'):
+        return build(self.old, self.catalog, self.plans, self.new, previous, checked_on=checked_on)
 
     def test_only_reference_amount_changes(self):
         self.new['support_schedules'][0]['amounts']['SKT-XP-2901'] = 600000
         result = self.run_build()
         self.assertEqual(result['refresh_change_count'], 2)
+        self.assertEqual(result['support_amount_change_count'], 2)
+        self.assertEqual(result['support_delta_count'], 2)
         self.assertEqual(len(result['changes']), 2)
         self.assertEqual(result['changes'][0]['before'], 500000)
         self.assertEqual(result['changes'][0]['plan_id'], 'SKT-XP-2901')
         self.assertEqual(result['changes'][0]['after'], 600000)
 
-    def test_no_change_does_not_make_old_notice_today(self):
+    def test_no_change_preserves_old_notice_but_updates_check_date(self):
         previous = {'date': '2026-09-22', 'id': 'old', 'changes': [{'example': True}]}
         result = self.run_build(previous)
         self.assertEqual(result['refresh_change_count'], 0)
+        self.assertEqual(result['support_amount_change_count'], 0)
+        self.assertEqual(result['support_entry_added_count'], 0)
+        self.assertEqual(result['support_entry_removed_count'], 0)
+        self.assertEqual(result['support_delta_count'], 0)
         self.assertEqual(result['date'], '2026-09-22')
         self.assertEqual(result['id'], 'old')
-        self.assertEqual(result['checked_on'], '2026-09-24')
+        self.assertEqual(result['checked_on'], '2026-09-29')
+
+    def test_non_reference_amount_change_is_counted_without_customer_notice(self):
+        extra_old = {'carrier': 'SKT', 'device_ids': ['d'], 'join_types': ['신규가입'],
+                     'amounts': {'OTHER-PLAN': 100000}}
+        extra_new = copy.deepcopy(extra_old)
+        extra_new['amounts']['OTHER-PLAN'] = 120000
+        self.old['support_schedules'].append(extra_old)
+        self.new['support_schedules'].append(extra_new)
+        previous = {'date': '2026-09-22', 'id': 'old', 'changes': [{'example': True}]}
+        result = self.run_build(previous)
+        self.assertEqual(result['support_amount_change_count'], 1)
+        self.assertEqual(result['support_delta_count'], 1)
+        self.assertEqual(result['refresh_change_count'], 0)
+        self.assertEqual(result['date'], '2026-09-22')
+
+    def test_added_and_removed_support_entries_are_separate_from_amount_changes(self):
+        self.old['support_schedules'].append(
+            {'carrier': 'SKT', 'device_ids': ['d'], 'join_types': ['신규가입'],
+             'amounts': {'OLD-PLAN': 100000}}
+        )
+        self.new['support_schedules'].append(
+            {'carrier': 'SKT', 'device_ids': ['d'], 'join_types': ['신규가입'],
+             'amounts': {'NEW-PLAN': 100000}}
+        )
+        result = self.run_build()
+        self.assertEqual(result['support_amount_change_count'], 0)
+        self.assertEqual(result['support_entry_added_count'], 1)
+        self.assertEqual(result['support_entry_removed_count'], 1)
+        self.assertEqual(result['support_delta_count'], 2)
 
     def test_future_iphone_not_advertised(self):
         self.catalog['devices'][0]['name'] = '아이폰 17 256GB(NEW)'
