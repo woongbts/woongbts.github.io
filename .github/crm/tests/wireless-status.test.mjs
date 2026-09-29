@@ -1,0 +1,12 @@
+import assert from 'node:assert/strict';
+import {describeWireless} from '../web/wireless-status.js';
+const now = Date.parse('2026-09-29T03:00:00Z');
+const success = {id:1,status:'completed',conclusion:'success',updated_at:'2026-09-29T02:00:00Z'};
+assert.match(describeWireless([success],{refresh_run_id:'1',refresh_change_count:0},now),/변동 없음/);
+assert.match(describeWireless([success],{refresh_run_id:'1',refresh_change_count:21},now),/변동 21건/);
+assert.match(describeWireless([success],{refresh_run_id:'2',refresh_change_count:0},now),/확인 전/);
+assert.match(describeWireless([{...success,id:2,conclusion:'failure'},success],null,now),/미완료/);
+assert.match(describeWireless([{...success,status:'in_progress',conclusion:null},success],null,now),/실행 중/);
+assert.match(describeWireless([{...success,updated_at:'2026-09-26T02:00:00Z'}],null,now),/48시간/);
+assert.match(describeWireless([],null,now),/확인할 수 없습니다/);
+console.log('Wireless status: success, no-change, stale, failure and mismatched evidence passed');
