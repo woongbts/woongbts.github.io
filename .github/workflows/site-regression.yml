@@ -31,6 +31,7 @@ jobs:
           node --check assets/rates.min.js
           node --check assets/site-pro.min.js
           node --check assets/ai-chat.min.js
+          node --check assets/mobile-menu.js
           node --check assets/pwa.min.js
           node --check assets/recommendation-engine-v2.js
           node --check assets/conversion-tracker.min.js
