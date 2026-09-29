@@ -292,12 +292,23 @@ async function analyticsDashboard(env) {
   const today = kstDateKey(new Date());
   const from7 = kstDateKey(new Date(Date.now()-6*86400000));
   const from30 = kstDateKey(new Date(Date.now()-29*86400000));
-  const [todayRow, weekRow, monthRow, topPages, topSources, devices, conversions, conversionSources] = await Promise.all([
+  const [todayRow, weekRow, monthRow, topPages, topSources, sourceBreakdown, devices, conversions, conversionSources] = await Promise.all([
     env.DB.prepare('SELECT visits,pageviews FROM site_analytics_daily WHERE day=?').bind(today).first(),
     env.DB.prepare('SELECT COALESCE(SUM(visits),0) visits,COALESCE(SUM(pageviews),0) pageviews FROM site_analytics_daily WHERE day BETWEEN ? AND ?').bind(from7,today).first(),
     env.DB.prepare('SELECT COALESCE(SUM(visits),0) visits,COALESCE(SUM(pageviews),0) pageviews FROM site_analytics_daily WHERE day BETWEEN ? AND ?').bind(from30,today).first(),
     env.DB.prepare('SELECT path,SUM(pageviews) pageviews FROM site_analytics_pages WHERE day BETWEEN ? AND ? GROUP BY path ORDER BY pageviews DESC LIMIT 5').bind(from30,today).all(),
     env.DB.prepare('SELECT source,SUM(visits) visits FROM site_analytics_sources WHERE day BETWEEN ? AND ? GROUP BY source ORDER BY visits DESC LIMIT 5').bind(from30,today).all(),
+    env.DB.prepare(`SELECT
+      COALESCE(SUM(CASE WHEN source='direct' THEN visits ELSE 0 END),0) direct,
+      COALESCE(SUM(CASE WHEN source LIKE '%google.%' OR source LIKE '%googleusercontent.%' THEN visits ELSE 0 END),0) google,
+      COALESCE(SUM(CASE WHEN source LIKE '%naver.%' THEN visits ELSE 0 END),0) naver,
+      COALESCE(SUM(CASE WHEN source LIKE '%instagram.%' THEN visits ELSE 0 END),0) instagram,
+      COALESCE(SUM(CASE WHEN source<>'direct'
+        AND source NOT LIKE '%google.%'
+        AND source NOT LIKE '%googleusercontent.%'
+        AND source NOT LIKE '%naver.%'
+        AND source NOT LIKE '%instagram.%' THEN visits ELSE 0 END),0) other
+      FROM site_analytics_sources WHERE day BETWEEN ? AND ?`).bind(from30,today).first(),
     env.DB.prepare('SELECT device,SUM(visits) visits FROM site_analytics_devices WHERE day BETWEEN ? AND ? GROUP BY device ORDER BY visits DESC').bind(from30,today).all(),
     env.DB.prepare('SELECT event,SUM(count) count FROM site_conversion_daily WHERE day BETWEEN ? AND ? GROUP BY event ORDER BY count DESC').bind(from30,today).all(),
     env.DB.prepare(`SELECT source,SUM(count) count FROM site_conversion_daily
@@ -310,6 +321,13 @@ async function analyticsDashboard(env) {
     last30:{visits:Number(monthRow?.visits||0),pageviews:Number(monthRow?.pageviews||0)},
     top_pages:(topPages.results||[]).map(r=>({path:r.path,pageviews:Number(r.pageviews||0)})),
     top_sources:(topSources.results||[]).map(r=>({source:r.source,visits:Number(r.visits||0)})),
+    source_breakdown:{
+      direct:Number(sourceBreakdown?.direct||0),
+      google:Number(sourceBreakdown?.google||0),
+      naver:Number(sourceBreakdown?.naver||0),
+      instagram:Number(sourceBreakdown?.instagram||0),
+      other:Number(sourceBreakdown?.other||0)
+    },
     devices:(devices.results||[]).map(r=>({device:r.device,visits:Number(r.visits||0)})),
     conversions:Object.fromEntries((conversions.results||[]).map(r=>[r.event,Number(r.count||0)])),
     conversion_sources:(conversionSources.results||[]).map(r=>({source:r.source,count:Number(r.count||0)}))
