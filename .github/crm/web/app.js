@@ -78,10 +78,10 @@ async function boot() {
     $('stat-conv-ai-consult').textContent = (aiPhone + aiKakao).toLocaleString('ko-KR');
     const pageNames={'/':'홈','/rates.html':'요금 알아보기','/links.html':'블로그·SNS','/manduk-mobile.html':'만덕 상담 안내'};
     const sourceNames={direct:'직접 방문',internal:'사이트 내부',other:'기타'};
-    const topPage=site.top_pages?.[0], topSource=site.top_sources?.[0];
+    const topPage=site.top_pages?.[0]; const sourceBreakdown=site.source_breakdown||{}; const sourceText=[`직접 방문 ${Number(sourceBreakdown.direct||0).toLocaleString('ko-KR')}회`,`Google ${Number(sourceBreakdown.google||0).toLocaleString('ko-KR')}회`,`Naver ${Number(sourceBreakdown.naver||0).toLocaleString('ko-KR')}회`,`Instagram ${Number(sourceBreakdown.instagram||0).toLocaleString('ko-KR')}회`,`기타 ${Number(sourceBreakdown.other||0).toLocaleString('ko-KR')}회`].join(' · ');
     $('site-analytics-note').textContent = Number(site.last30?.pageviews||0)
-      ? `최근 30일 페이지 조회 ${Number(site.last30.pageviews).toLocaleString('ko-KR')}회 · 인기 페이지 ${pageNames[topPage?.path]||topPage?.path||'-'} · 주요 유입 ${sourceNames[topSource?.source]||topSource?.source||'-'}`
-      : '오늘부터 방문 통계를 집계합니다. 이름·전화번호·IP 주소는 방문통계 DB에 저장하지 않습니다.';
+      ? `최근 30일 페이지 조회 ${Number(site.last30.pageviews).toLocaleString('ko-KR')}회 · 인기 페이지 ${pageNames[topPage?.path]||topPage?.path||'-'} · 유입경로 ${sourceText}`
+      : `최근 30일 유입경로 ${sourceText} · 이름·전화번호·IP 주소는 방문통계 DB에 저장하지 않습니다.`;
     const consultTotal = conversionValue('phone_click') + conversionValue('kakao_click') + conversionValue('booking_click') + conversionValue('consult_click') + aiPhone + aiKakao;
     const sourceSummary = (site.conversion_sources || []).slice(0, 3)
       .map(item => `${sourceNames[item.source] || item.source || '-'} ${Number(item.count || 0).toLocaleString('ko-KR')}회`)
