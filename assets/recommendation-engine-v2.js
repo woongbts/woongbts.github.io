@@ -72,12 +72,71 @@
     return picked;
   }
   function categoryLabel(cat){return{senior:'효도폰',value:'가성비폰',premium:'프리미엄폰'}[cat]||'휴대폰'}
-  function updateNote(category,count){const el=qs('#purpose-category-note');if(!el)return;const base=category==='senior'?'현재 판매 단말에서 월 부담·사용 편의·공시지원/선택약정을 함께 계산해 부모님용 후보를 자동으로 고릅니다.':category==='value'?'현재 판매 단말 전체에서 24개월 총부담·공시지원 비율·월 부담을 다시 계산해 가성비 후보를 자동으로 고릅니다.':'최신 프리미엄 라인업에서 공시지원·선택약정·24개월 총부담·저장용량을 함께 비교합니다.';el.innerHTML=`${base}<span class="wb-v2-engine-note">오늘 데이터 기준 ${count.toLocaleString('ko-KR')}개 계산 조합 비교 · 추천 결과는 데이터 변경 시 자동으로 달라집니다.</span>`}
+  function updateNote(category){
+    const el=qs('#purpose-category-note');if(!el)return;
+    el.textContent=category==='senior'?'월 부담과 사용 편의를 고려한 부모님용 후보입니다.':category==='value'?'기기값과 월요금을 함께 비교한 가성비 후보입니다.':'최신 프리미엄 기종의 월요금과 할인방식을 비교해 보세요.';
+  }
   function addKV(parent,label,value,cls=''){const d=document.createElement('div');if(cls)d.className=cls;const s=document.createElement('span'),b=document.createElement('b');s.textContent=label;b.textContent=value;d.append(s,b);parent.appendChild(d)}
-  function consultText(c,category){const method=c.best.method==='support'?'공시지원금':'선택약정 25%';const arr=['[웅비통신 자동 추천 상담]',`용도: ${categoryLabel(category)}`,`추천 이유: ${c.lane}`,`통신사: ${c.d.carrier}`,`가입유형: ${c.join}`,`기종: ${c.d.name}`,`요금제: ${c.p.name} / ${won(c.p.monthly_fee)}`,`추천 조건: ${method}`,`예상 월 납부액: ${won(c.best.monthly)}`,`24개월 예상 총부담: ${won(c.best.total24)}`];if(c.support)arr.push(`공시지원금: ${won(c.support.support)}`);if(c.welfare==='basic_pension')arr.push(`기초연금 할인 반영: -${won(c.best.welfareAmount)}`);arr.push('※ 실제 가입 가능 여부·자격·지원금·재고·프로모션은 상담 시점에 최종 확인합니다.');return arr.join('\n')}
+  function consultText(c,category){const method=c.best.method==='support'?'공시지원금':'선택약정 25%';const arr=['[웅비통신 자동 추천 상담]',`용도: ${categoryLabel(category)}`,`추천 이유: ${c.lane}`,`통신사: ${c.d.carrier}`,`가입유형: ${c.join}`,`기종: ${c.d.name}`,`요금제: ${c.p.name} / ${won(c.p.monthly_fee)}`,`추천 조건: ${method}`,`예상 월 납부액: ${won(c.best.monthly)}`,`24개월 예상 총부담: ${won(c.best.total24)}`];if(c.support)arr.push(`공시지원금: ${won(c.support.support)}`);if(c.welfare==='basic_pension')arr.push(`기초연금 할인 반영: -${won(c.best.welfareAmount)}`);arr.push('매장 추가지원금·가족/인터넷 결합 미반영', '※ 실제 가입 가능 여부·자격·지원금·재고·프로모션은 상담 시점에 최종 확인합니다.', `견적 링크: ${detailUrl(c)}`);return arr.join('\n')}
   async function copyAndKakao(text){window.WoongbiQuoteHandoff.open(text)}
   function detailUrl(c){const u=new URL('/rates.html',location.origin);u.searchParams.set('tab','mobile');u.searchParams.set('c',c.d.carrier);u.searchParams.set('j',c.join);u.searchParams.set('d',c.d.id);u.searchParams.set('p',c.p.id);u.searchParams.set('m',c.best.method);u.searchParams.set('mo','24');u.searchParams.set('w',c.welfare);return u.toString()}
-  function card(c,category){const a=document.createElement('article');a.className='purpose-card wb-v2-card';a.dataset.deviceId=c.d.id;a.dataset.planId=c.p.id;const top=document.createElement('div');top.className='purpose-card-top';const left=document.createElement('span'),badge=document.createElement('small');left.textContent=`${c.d.carrier} · ${c.join}`;badge.textContent=c.lane;top.append(left,badge);const title=document.createElement('strong');title.textContent=c.d.name;const image=deviceImage(c.d),imageFrame=image?document.createElement('div'):null;if(imageFrame){const img=document.createElement('img');imageFrame.className='device-card-image purpose-device-image wb-v2-device-image';img.src=image;img.alt=c.d.name||'휴대폰';img.loading='lazy';img.decoding='async';img.addEventListener('error',()=>imageFrame.remove(),{once:true});imageFrame.appendChild(img)}const plan=document.createElement('em');plan.textContent=c.p.name;const eligibility=window.WoongbiPlanEligibility.labels(c.p);if(eligibility.length)plan.textContent+=' · '+eligibility.join(' · ');const kicker=document.createElement('div');kicker.className='wb-v2-kicker';comboReason(c,category).forEach((x,i)=>{const s=document.createElement('span');s.textContent=x;if(i===0)s.classList.add('good');kicker.appendChild(s)});const total=document.createElement('div');total.className='purpose-card-total';const ts=document.createElement('span'),tb=document.createElement('b');ts.textContent=c.welfare==='basic_pension'?'예상 월 납부액 · 기초연금 할인 포함':'예상 월 납부액';tb.textContent=won(c.best.monthly);total.append(ts,tb);const details=document.createElement('div');details.className='purpose-card-detail';addKV(details,'월 기기값 · 이자 포함',won(c.best.inst.monthly));addKV(details,'할인 후 통신요금',won(c.best.service));if(c.support)addKV(details,'공시지원금','-'+won(c.support.support));if(c.welfare==='basic_pension'&&c.best.welfareAmount)addKV(details,'기초연금 수급자 할인','-'+won(c.best.welfareAmount),'welfare-line');const specs=document.createElement('div');specs.className='wb-v2-specs';[['데이터',c.p.data],['통화',c.p.voice],['문자',c.p.sms]].forEach(([l,v])=>{const s=document.createElement('span'),sm=document.createElement('small'),b=document.createElement('b');sm.textContent=l;b.textContent=v||'확인 필요';s.append(sm,b);specs.appendChild(s)});const cmp=document.createElement('div');cmp.className='wb-v2-compare';[['공시지원 월',c.support],['선택약정 월',c.contract]].forEach(([l,q])=>{const d=document.createElement('div');if(q&&q.method===c.best.method)d.className='best';const sm=document.createElement('small'),b=document.createElement('b');sm.textContent=l;b.textContent=q?won(q.monthly):'매장 확인';d.append(sm,b);cmp.appendChild(d)});const why=document.createElement('div');why.className='wb-v2-why';const ws=document.createElement('strong');ws.textContent=`왜 ${c.lane}인가요?`;const wp=document.createElement('span');wp.textContent=comboReason(c,category).join(' · ');why.append(ws,wp);const actions=document.createElement('div');actions.className='purpose-card-actions';const detail=document.createElement('button'),consult=document.createElement('button');detail.type='button';consult.type='button';detail.textContent='자세히 계산';consult.textContent='이 조건 상담';consult.className='primary';detail.addEventListener('click',()=>location.href=detailUrl(c));consult.addEventListener('click',()=>copyAndKakao(consultText(c,category)));actions.append(detail,consult);a.append(top);if(imageFrame)a.append(imageFrame);a.append(title,plan,kicker,total,details,specs,cmp,why,actions);return a}
+  function card(c,category){
+    const a=document.createElement('article');
+    a.className='purpose-card wb-v2-card';a.dataset.deviceId=c.d.id;a.dataset.planId=c.p.id;
+    const top=document.createElement('div');top.className='purpose-card-top';
+    const left=document.createElement('span'),badge=document.createElement('small');
+    left.textContent=`${c.d.carrier} · ${c.join}`;badge.textContent=c.lane;top.append(left,badge);
+    const title=document.createElement('strong');title.textContent=c.d.name;
+    const image=deviceImage(c.d),imageFrame=image?document.createElement('div'):null;
+    if(imageFrame){
+      const img=document.createElement('img');imageFrame.className='device-card-image purpose-device-image wb-v2-device-image';
+      img.src=image;img.alt=c.d.name||'휴대폰';img.loading='lazy';img.decoding='async';
+      img.addEventListener('error',()=>imageFrame.remove(),{once:true});imageFrame.appendChild(img);
+    }
+    const plan=document.createElement('em');plan.textContent=c.p.name;
+    const eligibility=window.WoongbiPlanEligibility.labels(c.p);
+    if(eligibility.length)plan.textContent+=' · '+eligibility.join(' · ');
+    const reason=document.createElement('p');reason.className='recommend-reason';
+    const reasons=comboReason(c,category);
+    reason.textContent=reasons.find(x=>!x.includes('24개월 기준')&&!x.includes('기준 계산'))||'공시지원과 선택약정 중 24개월 총 부담이 낮은 조건입니다.';
+    const total=document.createElement('div');total.className='purpose-card-total';
+    const ts=document.createElement('span'),tb=document.createElement('b');
+    ts.textContent=c.welfare==='basic_pension'?'예상 월 납부액 · 기초연금 할인 포함':'예상 월 납부액';
+    tb.textContent=won(c.best.monthly);total.append(ts,tb);
+    const amountNote=document.createElement('p');amountNote.className='quote-amount-note';
+    amountNote.textContent='매장 추가지원금·가족/인터넷 결합 미반영 · 최종 조건은 상담으로 확인';
+    const specs=document.createElement('div');specs.className='wb-v2-specs';
+    [['데이터',c.p.data],['통화',c.p.voice]].forEach(([label,value])=>{
+      const item=document.createElement('span'),sm=document.createElement('small'),b=document.createElement('b');
+      sm.textContent=label;b.textContent=value||'확인 필요';item.append(sm,b);specs.appendChild(item);
+    });
+    const expanded=document.createElement('details');expanded.className='recommend-details';
+    const summary=document.createElement('summary');summary.textContent='요금 구성·할인 비교 자세히 보기';
+    const body=document.createElement('div');body.className='recommend-details-body';
+    const details=document.createElement('div');details.className='purpose-card-detail';
+    addKV(details,'월 기기값 · 이자 포함',won(c.best.inst.monthly));
+    addKV(details,'할인 후 통신요금',won(c.best.service));
+    // Show the support amount actually used by the selected method.
+    if(c.best.method==='support'&&c.support)addKV(details,'적용 공시지원금','-'+won(c.support.support));
+    if(c.welfare==='basic_pension'&&c.best.welfareAmount)addKV(details,'기초연금 수급자 할인','-'+won(c.best.welfareAmount),'welfare-line');
+    addKV(details,'문자',c.p.sms||'확인 필요');
+    const cmp=document.createElement('div');cmp.className='wb-v2-compare';
+    [['공시지원 월',c.support],['선택약정 월',c.contract]].forEach(([label,q])=>{
+      const item=document.createElement('div');if(q&&q.method===c.best.method)item.className='best';
+      const sm=document.createElement('small'),b=document.createElement('b');
+      sm.textContent=label;b.textContent=q?won(q.monthly):'매장 확인';item.append(sm,b);cmp.appendChild(item);
+    });
+    const why=document.createElement('div');why.className='wb-v2-why';
+    const ws=document.createElement('strong'),wp=document.createElement('span');
+    ws.textContent=`왜 ${c.lane}인가요?`;wp.textContent=reasons.join(' · ');why.append(ws,wp);
+    body.append(details,cmp,why);expanded.append(summary,body);
+    const actions=document.createElement('div');actions.className='purpose-card-actions';
+    const detail=document.createElement('button'),consult=document.createElement('button');
+    detail.type='button';consult.type='button';detail.textContent='기종·요금제 바꿔 계산';consult.textContent='이 조건으로 상담';consult.className='primary';
+    detail.addEventListener('click',()=>location.href=detailUrl(c));
+    consult.addEventListener('click',()=>copyAndKakao(consultText(c,category)));actions.append(detail,consult);
+    a.append(top);if(imageFrame)a.append(imageFrame);a.append(title,plan,reason,total,amountNote,specs,expanded,actions);return a;
+  }
   function currentCategory(){const active=qs('[data-purpose-category].active');return active?.dataset.purposeCategory||state.category||'senior'}
   function render(){if(!ROOT||!state.ready||state.rendering)return;const category=currentCategory();state.category=category;if(category==='kids')return;state.rendering=true;try{const carrier=qs('#purpose-carrier')?.value||'all',join=qs('#purpose-join')?.value||'번호이동',pension=!!qs('#purpose-pension')?.checked,results=qs('#purpose-results');if(!results)return;const combos=buildCombos(category,carrier,join,pension),chosen=select(category,combos);updateNote(category,combos.length);results.innerHTML='';results.dataset.engineV2='1';if(!chosen.length){results.innerHTML='<p>현재 등록된 데이터에서 이 조건에 맞는 자동 추천 조합을 찾지 못했습니다. 통신사나 가입유형을 바꾸거나 직접 계산을 이용해 주세요.</p>';return}chosen.forEach(c=>results.appendChild(card(c,category)))}finally{state.rendering=false}}
   function schedule(){setTimeout(render,0)}
@@ -90,3 +149,4 @@
     const map=new Map;[...(catalog?.devices||[]),...(extra?.devices||[]),...(iphone?.devices||[])].forEach(d=>map.set(d.id,d));catalog.devices=[...map.values()].filter(d=>window.WoongbiSalePolicy.available(d));state.catalog=catalog;state.plans={...(plans||{}),mobile_plans:(plans?.mobile_plans||[]).map(p=>({...p,data:String(p?.data||'').replace(/\+{2,}/g,'+'),voice:String(p?.voice||'').replace(/\+{2,}/g,'+'),sms:String(p?.sms||'').replace(/\+{2,}/g,'+'),video:String(p?.video||'').replace(/\+{2,}/g,'+')}))};state.supports=supports;state.overrides=overrides;state.ready=true;render();setTimeout(render,1200)}catch(err){console.warn('Recommendation engine v2 unavailable',err)}}
   window.WoongbiRecommendationV2={render,status:()=>({ready:state.ready,category:state.category}),recommend:(category,options={})=>select(category,buildCombos(category,options.carrier||'all',options.join||'번호이동',false)),detailUrl,dataDate:()=>state.catalog?.meta?.updated_at};window.WoongbiRecommendationV2.ready=load();
 })();
+

@@ -27,7 +27,7 @@
   <link rel="manifest" href="/manifest.webmanifest"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="apple-mobile-web-app-title" content="웅비통신">
   <link rel="stylesheet" href="assets/rates.css?v=20260919-2">
   <link rel="stylesheet" href="assets/readability-20260921.css?v=20260929-2">
-<link rel="stylesheet" href="/assets/customer-polish.css?v=20260930-1"><link rel="stylesheet" href="/assets/mvno-easy.css?v=20260930-7"></head>
+<link rel="stylesheet" href="/assets/customer-polish.css?v=20260930-2"><link rel="stylesheet" href="/assets/mvno-easy.css?v=20260930-7"></head>
 <body class="rate-page">
   <header class="rate-top">
     <div class="rate-wrap rate-nav">
@@ -39,20 +39,8 @@
   <main>
     <section class="rate-hero">
       <div class="rate-wrap">
-        <span class="rate-badge">휴대폰·공신폰·알뜰폰·인터넷 간편견적</span>
-        <h1>고객이 고르면,<br><em>필요한 금액만 자동으로.</em></h1>
-        <p>휴대폰부터 공신폰·알뜰폰·선불폰·인터넷·TV까지 선택한 조건에 맞춰 필요한 정보를 확인할 수 있습니다.</p>
-        <div class="rate-hero-note">추가지원금, 실시간 재고, 일부 결합·프로모션처럼 최종 확인이 필요한 항목은 매장 문의로 안내합니다.</div>
-        <div class="rate-hero-shortcuts" aria-label="상담 종류 바로가기">
-          <span>무엇을 알아보고 계세요?</span>
-          <div>
-            <button type="button" data-jump-tab="mobile">휴대폰 바꾸기</button>
-            <button type="button" data-jump-tab="studyphone">공신폰</button>
-            <button type="button" data-jump-tab="mvno">알뜰폰</button>
-            <button type="button" data-jump-tab="prepaid">선불폰</button>
-            <button type="button" data-jump-tab="internet">인터넷·TV</button>
-          </div>
-        </div>
+        <h1>내 조건에 맞는 <em>월요금 알아보기</em></h1>
+        <p>궁금한 상품을 고르고 예상 월요금을 확인하세요. 최종 가입 조건은 상담으로 안내합니다.</p>
       </div>
     </section>
 
@@ -67,17 +55,17 @@
         </div>
 
         <section class="rate-panel active" data-panel="mobile">
-          <div class="rate-panel-head"><div><span class="eyebrow">휴대폰</span><h2>공시지원 / 선택약정 비교</h2></div><span class="updated" id="catalog-updated">데이터 기준 확인 중</span></div>
+          <div class="rate-panel-head"><div><span class="eyebrow">휴대폰</span><h2>휴대폰 요금 알아보기</h2></div><span class="updated" id="catalog-updated">데이터 기준 확인 중</span></div>
 <p id="store-price-period" class="store-price-period" hidden></p>
 <div class="mobile-mode-switch" role="tablist" aria-label="휴대폰 견적 방식">
   <button type="button" class="active" data-mobile-mode="purpose">처음이라면 · 쉬운 추천</button>
   <button type="button" data-mobile-mode="direct">상세 계산</button>
   <button type="button" data-mobile-mode="quick">월 예산으로 추천</button>
 </div>
-<div class="mobile-mode-guide"><strong>처음 오셨다면 ‘쉬운 추천’부터 보세요.</strong><span>대상만 고르면 추천을 먼저 보여드리고, 더 자세히 보고 싶을 때 상세 계산으로 들어가면 됩니다.</span></div>
+<p class="mobile-mode-guide">추천부터 살펴보거나, 원하는 기종을 직접 계산해 보세요.</p>
 <section class="purpose-recommend" id="purpose-recommend">
   <div class="purpose-head">
-    <div><span class="eyebrow">웅비통신 추천관</span><h3>누구를 위한 휴대폰인가요?</h3><p>등록된 출고가·요금제·공시지원금을 이용해 월 예상 납부액과 할인방식을 비교합니다. 확인되지 않은 금액은 임의로 계산하지 않습니다.</p></div>
+    <div><h3>누구를 위한 휴대폰인가요?</h3><p>대상을 고르면 추천 기종과 월 예상요금을 보여드립니다.</p></div>
   </div>
   <div class="purpose-tabs" role="tablist" aria-label="휴대폰 용도 선택">
     <button type="button" class="active" data-purpose-category="senior"><strong>효도폰</strong><small>부모님께 부담 적게</small></button>
@@ -215,6 +203,7 @@
               <span class="result-label">예상 월 납부액</span>
               <strong id="monthly-total">—</strong>
               <p class="monthly-total-help">월 단말기 할부금 + 월 통신요금</p>
+              <p class="quote-amount-note">매장 추가지원금·가족/인터넷 결합 미반영<br>최종 가입 조건은 상담으로 확인해 주세요.</p>
               <div class="result-breakdown">
                 <div><span>월 단말금 · 할부이자 포함</span><b id="device-monthly">—</b></div>
                 <div><span>월 통신요금</span><b id="service-monthly">—</b></div>
@@ -233,7 +222,7 @@
                 <button type="button" class="primary" id="consult-quote">이 조건으로 상담하기</button>
                 <small id="quote-action-status" aria-live="polite"></small>
               </div>
-              <p class="quote-next-step">전화 상담 시에도 아래 선택한 기종·요금제를 말씀해 주세요. 이름이나 전화번호 입력 없이 견적을 확인할 수 있습니다.</p>
+              <p class="quote-next-step">카카오톡 상담은 견적을 복사한 뒤 채팅창에 붙여넣어 주세요. 전화 상담은 선택한 기종·요금제와 아래 견적번호를 함께 말씀해 주세요.</p>
               <details class="calc-explain" id="calc-explain">
                 <summary>왜 이 금액인가요?</summary>
                 <div class="calc-explain-grid">
@@ -533,9 +522,9 @@
 
   <footer class="rate-footer"><div class="rate-wrap"><strong>웅비통신 덕천만덕점</strong><p>부산광역시 북구 만덕대로178번길 17 · 월~토 11:00~20:00 · 일요일 휴무 · 051-343-7677</p><p>표시 금액은 상담을 돕기 위한 예상치이며 실제 개통 조건과 다를 수 있습니다.</p><p class="copyright-notice">© 2026 웅비통신 덕천만덕점 · 페이지 구성·콘텐츠·상담 로직의 무단 복제 및 상업적 이용을 금합니다.</p></div></footer>
   <script src="assets/store-sale-policy.js?v=20260928-1" defer></script>
-  <script src="assets/quote-handoff.js?v=20260930-1" defer></script>
+  <script src="assets/quote-handoff.js?v=20260930-2" defer></script>
   <script src="/assets/plan-eligibility.js?v=20260930-3" defer></script>
-<script src="/assets/mvno-display.js?v=20260930-7" defer></script><script src="assets/rates.min.js?v=20260930-7" defer></script>
+<script src="/assets/mvno-display.js?v=20260930-7" defer></script><script src="assets/rates.min.js?v=20260930-8" defer></script>
   <script src="assets/ai-chat.min.js?v=20260917-2" defer></script>
 
   <div class="mobile-quote-bar" id="mobile-quote-bar" hidden>
@@ -543,6 +532,6 @@
     <button type="button" id="mobile-quote-detail">상세</button>
     <button type="button" class="primary" id="mobile-quote-consult">상담</button>
   </div>
-  <script src="/assets/analytics-config.js?v=20260929-2" defer></script><script src="/assets/conversion-tracker.min.js?v=20260918-1" defer></script><script src="/assets/site-analytics.min.js?v=20260930-5" defer></script><script src="/assets/pwa.min.js?v=20260930-4" defer></script>
+  <script src="/assets/analytics-config.js?v=20260929-2" defer></script><script src="/assets/conversion-tracker.min.js?v=20260918-1" defer></script><script src="/assets/site-analytics.min.js?v=20260930-5" defer></script><script src="/assets/pwa.min.js?v=20260930-5" defer></script>
 </body>
 </html>

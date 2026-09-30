@@ -9,10 +9,14 @@
       dialog.id = 'quote-handoff';
       dialog.className = 'quote-handoff';
       dialog.setAttribute('aria-labelledby', 'quote-handoff-title');
-      dialog.innerHTML = '<h2 id="quote-handoff-title">선택한 견적으로 상담하기</h2><p>견적을 복사한 뒤 카카오톡 상담창에 붙여넣어 주세요. 상담창을 여는 것만으로 견적이 전송되지는 않습니다.</p><label for="quote-handoff-text">상담할 견적 내용</label><textarea id="quote-handoff-text" readonly></textarea><p role="status" aria-live="polite"></p><div class="quote-handoff-actions"><button type="button" data-copy>견적 복사</button><a href="https://pf.kakao.com/_nWwNT/chat" target="_blank" rel="noopener noreferrer">카카오톡 상담 열기</a><button type="button" data-close>닫기</button></div>';
+      dialog.innerHTML = '<h2 id="quote-handoff-title">이 조건으로 상담하세요</h2><ol class="quote-handoff-steps"><li><strong>견적 내용을 복사하세요.</strong> 아래에 선택한 기종·요금제와 예상 금액이 담겨 있습니다.</li><li><strong>카카오톡 상담창에 붙여넣어 보내주세요.</strong> 상담창을 여는 것만으로 견적이 전송되지는 않습니다.</li></ol><label for="quote-handoff-text">상담할 견적 내용</label><textarea id="quote-handoff-text" readonly></textarea><p role="status" aria-live="polite"></p><div class="quote-handoff-actions"><button type="button" data-copy>견적 복사</button><a href="https://pf.kakao.com/_nWwNT/chat" target="_blank" rel="noopener noreferrer">카카오톡 상담 열기</a><button type="button" data-close>닫기</button></div><p class="quote-handoff-phone"><a href="tel:0513437677">전화 상담 · 051-343-7677</a><span data-phone-guide></span></p>';
       const area = dialog.querySelector('textarea');
       const status = dialog.querySelector('[role="status"]');
       area.value = text;
+      const quoteNumber = String(text).match(/^견적번호:\s*(.+)$/m)?.[1]?.trim();
+      dialog.querySelector('[data-phone-guide]').textContent = quoteNumber
+        ? `전화하실 때 선택한 기종·요금제와 견적번호 ${quoteNumber}를 함께 말씀해 주세요.`
+        : '전화하실 때 아래 견적 내용의 기종·요금제와 가입유형을 말씀해 주세요.';
       async function copy() {
         try {
           if (!navigator.clipboard?.writeText) throw Error('unavailable');
