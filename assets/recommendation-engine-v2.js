@@ -132,7 +132,7 @@
     body.append(details,cmp,why);expanded.append(summary,body);
     const actions=document.createElement('div');actions.className='purpose-card-actions';
     const detail=document.createElement('button'),consult=document.createElement('button');
-    detail.type='button';consult.type='button';detail.textContent='기종·요금제 바꿔 계산';consult.textContent='이 조건으로 상담';consult.className='primary';
+    detail.type='button';consult.type='button';detail.textContent='조건 바꿔 계산';consult.textContent='이 조건으로 상담';consult.className='primary';
     detail.addEventListener('click',()=>location.href=detailUrl(c));
     consult.addEventListener('click',()=>copyAndKakao(consultText(c,category)));actions.append(detail,consult);
     a.append(top);if(imageFrame)a.append(imageFrame);a.append(title,plan,reason,total,amountNote,specs,expanded,actions);return a;
