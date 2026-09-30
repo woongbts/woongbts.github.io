@@ -18,8 +18,9 @@ const engine=fs.readFileSync('assets/recommendation-engine-v2.js','utf8');
 const num=v=>v!==null&&v!==undefined&&v!==''&&Number.isFinite(Number(v));
 const d={id:'test-device',carrier:'LGU+',retail_price:1254000},p={id:'test-plan',monthly_fee:66000};
 const state={catalog:{mobile_supports:[]},supports:{support_schedules:[{carrier:'LGU+',device_ids:[d.id],join_types:['번호이동'],amounts:{[p.id]:3120000}}]}};
-const ctx={num,n:num,state,o:state.catalog,a:state.supports.support_schedules,clean:v=>String(v||'').replace(/\s+/g,'').toLowerCase()};
+const ctx={window:{},num,n:num,state,o:state.catalog,a:state.supports.support_schedules,clean:v=>String(v||'').replace(/\s+/g,'').toLowerCase()};
 vm.createContext(ctx);
+vm.runInContext(fs.readFileSync("assets/plan-eligibility.js","utf8"),ctx);
 for(const name of ['validPublicSupport','supportFor','audienceAllowed'])vm.runInContext(extract(engine,name),ctx);
 for(const name of ['wbValidPublicSupport','N'])vm.runInContext(extract(calculator,name),ctx);
 for(const bad of [3120000,-1,1.5,null,'',Infinity]){

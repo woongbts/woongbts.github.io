@@ -84,37 +84,12 @@ for plan in mobile_plans:
         errors.append(f"non-handset plan leaked: {plan.get('id')} {plan.get('name')}")
         break
 
-# Main four-card contract and calculator deep links.
-cards = storefront.get("cards") or []
-check(len(cards) == 4, f"storefront card count must be 4, got {len(cards)}")
-rendered = len(re.findall(r'<article class="deal-card" data-calculator-url="', site))
-check(rendered == 4, f"rendered homepage deal-card count must be 4, got {rendered}")
-
-site_unescaped = html.unescape(site)
-for card in cards:
-    name = card.get("name") or ""
-    url = card.get("calculator_url") or ""
-    check(bool(name) and name in site, f"homepage card missing: {name}")
-    check(bool(url) and url in site_unescaped, f"homepage card link changed: {name}")
-    query = parse_qs(urlparse(url).query)
-    did = (query.get("d") or [""])[0]
-    pid = (query.get("p") or [""])[0]
-    carrier = (query.get("c") or [""])[0]
-    join = (query.get("j") or [""])[0]
-    method = (query.get("m") or [""])[0]
-
-    check(did in device_by_id, f"storefront unknown device: {name} {did}")
-    check(pid in plan_by_id, f"storefront unknown plan: {name} {pid}")
-    check(join in ("기기변경", "번호이동", "신규가입"), f"storefront invalid join type: {name}")
-    check(method in ("support", "contract"), f"storefront invalid discount method: {name}")
-
-    if did in device_by_id:
-        device = device_by_id[did]
-        check(device.get("carrier") == carrier, f"storefront device/carrier mismatch: {name}")
-        eligible = (device.get("eligible_plan_ids_by_join_type") or {}).get(join) or device.get("eligible_plan_ids") or []
-        check(pid in eligible, f"storefront plan is not eligible for device/join: {name}")
-    if pid in plan_by_id:
-        check(plan_by_id[pid].get("carrier") == carrier, f"storefront plan/carrier mismatch: {name}")
+# Homepage uses the calculator engine; fixture/URL parity is exercised by test_home_recommendations.cjs.
+cards = ["senior", "senior", "value", "premium"]
+check("engine.recommend('senior')" in site and "engine.recommend('value')" in site and "engine.recommend('premium')" in site, "homepage shared recommendation engine missing")
+check("card.href=engine.detailUrl(c)" in site, "homepage calculator conditions are not shared")
+check("plan-eligibility.js" in index and "plan-eligibility.js" in rates_html, "shared eligibility wiring missing")
+check("이런 분들이 많이 찾아오세요" not in index, "duplicate service section returned")
 
 # Recommendation and known-quote invariants.
 for marker in ("갤럭시 Jump5 5G", "갤럭시 A37 5G", "갤럭시 퀀텀7", "51910", "55740", "62340"):
@@ -160,7 +135,7 @@ for path in ("manifest.webmanifest","sw.js","offline.html","404.html","assets/pw
 check('rel="manifest"' in index and 'rel="manifest"' in rates_html, "PWA manifest link missing")
 check("conversion-tracker.min.js" in index and "conversion-tracker.min.js" in rates_html, "conversion tracker wiring missing")
 check("pwa.min.js" in index and "pwa.min.js" in rates_html, "PWA registration wiring missing")
-check("/IMG_2451.webp?v=20260918-1" in site, "A37 local image missing")
+check(Path("assets/device-images.js").exists(), "shared homepage device images missing")
 check("images.samsung.com" not in site, "A37 still depends on external image host")
 check("https://woongbts.github.io/rates.html" in Path("sitemap.xml").read_text(encoding="utf-8"), "rates page missing from sitemap")
 

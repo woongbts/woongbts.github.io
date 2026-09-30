@@ -35,6 +35,9 @@ jobs:
           node --check assets/pwa.min.js
           node --check assets/recommendation-engine-v2.js
           node .github/scripts/test_support_integrity.cjs
+          node .github/scripts/test_home_recommendations.cjs
+          node --check assets/plan-eligibility.js
+          node --check assets/device-images.js
           python3 .github/scripts/test_official_support.py
           node --check assets/conversion-tracker.min.js
           node --check assets/site-analytics.min.js
