@@ -103,7 +103,7 @@ async function readAnalyticsBody(request){
   const type=request.headers.get('content-type')||'';
   if(!(type.startsWith('text/plain')||type.startsWith('application/json'))) return {error:analyticsReply({ok:false,error:'요청 형식을 확인할 수 없습니다.'},415)};
   if(request.headers.get('origin')!==SITE_ORIGIN) return {error:analyticsReply({ok:false,error:'요청 출처를 확인할 수 없습니다.'},403)};
-  if(request.headers.get('sec-fetch-site') && !['same-site','same-origin'].includes(request.headers.get('sec-fetch-site'))) return {error:analyticsReply({ok:false,error:'요청 출처를 확인할 수 없습니다.'},403)};
+  // The public homepage and this collector are cross-site; exact Origin above is required.
   if(request.body===null) return {error:analyticsReply({ok:false,error:'요청 내용이 없습니다.'},400)};
   const raw=await request.text();
   if(raw.length>2048) return {error:analyticsReply({ok:false,error:'요청이 너무 큽니다.'},413)};
