@@ -21,7 +21,7 @@
       const close = el('button', '×', 'support-notice-close'); close.type = 'button'; close.setAttribute('aria-label', '지원금 안내 닫기');
       top.append(heading, close);
       const body = el('div', undefined, 'support-notice-body');
-      body.append(el('p', `변경 확인일: ${data.date}`, 'support-notice-date'), el('p', '대표 요금제 기준으로 확인된 공시지원금 변경입니다. 가입유형과 요금제에 따라 금액이 다릅니다.', 'support-notice-intro'));
+      body.append(el('p', `${data.date} 변경${data.date < today() ? ' · 지난 공지' : ''}`, 'support-notice-date'));
       const summaries = new Map();
       for (const row of changes) {
         if (row.before === null || row.after === null || row.before === row.after) continue;
@@ -31,12 +31,13 @@
       }
       if (summaries.size) {
         const summary = el('div', undefined, 'support-notice-summary');
-        summary.append(el('strong', '이번 안내의 핵심'));
-        for (const {row, count} of [...summaries.values()].slice(0, 3)) summary.append(el('p', `${row.join} ${count}개 기종·통신사 조합: ${money(row.before)} → ${money(row.after)}. 적용 요금제는 아래에서 확인해 주세요.`));
+        
+        for (const {row, count} of [...summaries.values()].slice(0, 3)) summary.append(el('p', `${row.join} · ${money(row.before)} → ${money(row.after)}`));
         body.append(summary);
       }
-      if (data.date < today()) body.append(el('p', '지난 변경 내역입니다. 현재 판매 조건과 지원금은 계산기 또는 매장에서 다시 확인해 주세요.', 'support-notice-history'));
-      if (typeof data.checked_at === 'string' && !Number.isNaN(Date.parse(data.checked_at))) body.append(el('p', `최근 자동 갱신 성공: ${new Date(data.checked_at).toLocaleString('ko-KR', {timeZone:'Asia/Seoul'})} (한국시간) · 새 변동이 없으면 공지 날짜는 유지됩니다.`, 'support-notice-checked'));
+      if (!summaries.size) body.append(el('p', `새 지원금 조건 ${changes.length}건이 확인됐습니다.`, 'support-notice-summary'));
+      const details = el('details', undefined, 'support-notice-details');
+      details.append(el('summary', '적용 기종·요금제 보기'));
       for (const carrier of ['SKT', 'KT', 'LGU+']) {
         const rows = changes.filter(r => r.carrier === carrier);
         if (!rows.length) continue;
@@ -57,31 +58,33 @@
           card.append(el('p', label, 'support-notice-amount'));
           const list = el('ul');
           for (const model of models) {
-            const item = el('li', undefined, 'support-notice-model'); item.append(el('span', model.device));
+            const item = el('li', undefined, 'support-notice-model');
             if (model.after !== null && typeof model.device_id === 'string' && typeof model.plan_id === 'string') {
               const url = new URL('/rates.html', location.origin);
               for (const [key, value] of Object.entries({tab:'mobile', c:model.carrier, j:model.join, d:model.device_id, p:model.plan_id, m:'support', mo:'24', w:'none'})) url.searchParams.set(key, value);
-              const calculate = el('a', '이 조건으로 계산'); calculate.href = url.href; calculate.setAttribute('aria-label', `${model.carrier} ${model.device} ${model.join} 이 조건으로 계산`); item.append(calculate);
-            }
+              const calculate = el('a', model.device); calculate.href = url.href; calculate.setAttribute('aria-label', `${model.carrier} ${model.device} ${model.join} 이 조건으로 계산`); item.append(calculate);
+            } else item.append(el('span', model.device));
             list.append(item);
           }
           card.append(list); section.append(card);
         }
-        body.append(section);
+        details.append(section);
       }
-      body.append(el('p', '표시 금액은 단말기 구매에 적용되는 공시지원금이며 현금 지급액이나 최종 구매가는 아닙니다. 선택약정 요금할인과는 다른 할인 방식입니다. 전체 요금제·출고가·재고·최종 가입 조건은 상담 시 확인해 주세요. 변동 없는 항목은 생략합니다.', 'support-notice-footnote'));
+      if (typeof data.checked_at === 'string' && !Number.isNaN(Date.parse(data.checked_at))) details.append(el('p', `데이터 확인: ${new Date(data.checked_at).toLocaleString('ko-KR', {timeZone:'Asia/Seoul'})}`, 'support-notice-checked'));
+      body.append(details);
+      body.append(el('p', `${data.date < today() ? '지난 변경 내역입니다. ' : ''}대표 요금제 기준이며 가입유형·요금제에 따라 다릅니다. 현재 조건은 계산기에서 확인하세요.`, 'support-notice-footnote'));
       const actions = el('footer', undefined, 'support-notice-actions');
       const hide = el('button', '오늘 보지 않기'); hide.type = 'button';
-      const link = el('a', '내 조건으로 요금 알아보기'); link.href = '/rates.html';
+      const link = el('a', '요금 계산기'); link.href = '/rates.html';
       actions.append(hide, link); dialog.append(top, body, actions); document.body.append(dialog);
       let returnFocus;
       const dismiss = () => dialog.close();
       close.addEventListener('click', dismiss);
       hide.addEventListener('click', () => { write('localStorage', 'woongbi-support-hide', today()); dismiss(); });
-      dialog.addEventListener('close', () => { write('sessionStorage', 'woongbi-support-seen', `${today()}:${data.id}`); document.body.classList.remove('support-notice-active'); if (returnFocus?.isConnected) returnFocus.focus(); });
+      dialog.addEventListener('close', () => { write('sessionStorage', 'woongbi-support-seen', `${today()}:${data.id}`); write('localStorage', 'woongbi-support-dismissed', data.id); document.body.classList.remove('support-notice-active'); if (returnFocus?.isConnected) returnFocus.focus(); });
       dialog.addEventListener('click', event => { if (event.target === dialog) { const r = dialog.getBoundingClientRect(); if (event.clientX < r.left || event.clientX > r.right || event.clientY < r.top || event.clientY > r.bottom) dismiss(); } });
       const open = () => { returnFocus = document.activeElement; dialog.showModal(); document.body.classList.add('support-notice-active'); close.focus(); };
-      if (read('localStorage', 'woongbi-support-hide') !== today() && read('sessionStorage', 'woongbi-support-seen') !== `${today()}:${data.id}`) {
+      if (read('localStorage', 'woongbi-support-dismissed') !== data.id && read('localStorage', 'woongbi-support-hide') !== today() && read('sessionStorage', 'woongbi-support-seen') !== `${today()}:${data.id}`) {
         // Avoid interrupting another dialog, a background tab or a customer who already started interacting.
         let interacted = false;
         const onInteraction = () => { interacted = true; };
