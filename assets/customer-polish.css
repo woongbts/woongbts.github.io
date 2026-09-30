@@ -50,6 +50,14 @@
 .purpose-card .recommend-details-body{padding:12px}
 .purpose-card .recommend-details-body .purpose-card-detail{margin-top:0}
 .rate-page .purpose-card .wb-v2-compare small,.rate-page .purpose-card .wb-v2-compare b,.rate-page .purpose-card .wb-v2-why,.rate-page .purpose-card .wb-v2-why strong{font-size:15px;line-height:1.5}
+.rate-page .purpose-card .wb-v2-compare button{min-height:96px;padding:12px 10px;border:1px solid #cddcdf;border-radius:12px;background:#fff;color:#163d4a;text-align:left;font:inherit;cursor:pointer}
+.rate-page .purpose-card .wb-v2-compare button small,.rate-page .purpose-card .wb-v2-compare button b{display:block}
+.rate-page .purpose-card .wb-v2-compare button b{margin-top:4px}
+.rate-page .purpose-card .wb-v2-compare button span{display:block;margin-top:8px;font-size:14px;color:#476068;line-height:1.5}
+.rate-page .purpose-card .wb-v2-compare button.best{border:2px solid #087d75;background:#e9f7f3}
+.rate-page .purpose-card .wb-v2-compare button.best span{color:#087d75;font-weight:700}
+.rate-page .purpose-card .wb-v2-compare button:focus-visible{outline:3px solid #16857c;outline-offset:3px}
+.rate-page .purpose-card .wb-v2-compare button:disabled{opacity:.65;cursor:default}
 .purpose-card .purpose-card-actions{margin-top:auto;padding-top:8px}
 .purpose-card .purpose-card-actions button{min-height:46px;font-size:16px}
 .quote-handoff-steps{padding-left:24px;font-size:17px;line-height:1.7}

@@ -36,6 +36,7 @@ jobs:
           node --check assets/recommendation-engine-v2.js
           node .github/scripts/test_support_integrity.cjs
           node .github/scripts/test_home_recommendations.cjs
+          node .github/scripts/test_recommendation_methods.cjs
           node --check assets/plan-eligibility.js
           node --check assets/device-images.js
           python3 .github/scripts/test_official_support.py
@@ -68,3 +69,4 @@ jobs:
           python3 .github/scripts/test_support_notice.py
       - name: Run site regression checks
         run: python3 .github/scripts/validate_site.py
+

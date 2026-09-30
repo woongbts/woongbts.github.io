@@ -5,7 +5,7 @@
   const won=v=>Number.isFinite(Number(v))?`${Math.max(0,Math.round(Number(v))).toLocaleString('ko-KR')}원`:'—';
   const num=v=>v!==null&&v!==''&&Number.isFinite(Number(v));
   const clean=s=>String(s||'').toLowerCase().replace(/\s+/g,'');
-  const state={category:'senior',catalog:null,plans:null,supports:null,overrides:null,ready:false,rendering:false};
+  const state={category:'senior',catalog:null,plans:null,supports:null,overrides:null,ready:false,rendering:false,methods:new Map()};
   const style=document.createElement('style');
   style.textContent=`
     .wb-v2-card{position:relative}.wb-v2-kicker{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:8px 0 2px}.wb-v2-kicker span{display:inline-flex;padding:5px 9px;border-radius:999px;background:#eef6f8;color:#0d536c;font-size:.75rem;font-weight:800}.wb-v2-kicker span.good{background:#e8f7ef;color:#137447}.wb-v2-specs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:12px 0}.wb-v2-specs>span{min-width:0;border:1px solid #dce8ec;border-radius:12px;padding:9px;background:#fbfdfe}.wb-v2-specs small{display:block;color:#70838a;font-size:.7rem;margin-bottom:4px}.wb-v2-specs b{display:block;color:#173842;font-size:.82rem;line-height:1.35;word-break:keep-all}.wb-v2-why{margin:12px 0 0;padding:12px 13px;border-radius:14px;background:#f5f8f9;color:#405b64;font-size:.8rem;line-height:1.55}.wb-v2-why strong{display:block;color:#153e4d;font-size:.82rem;margin-bottom:3px}.wb-v2-compare{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}.wb-v2-compare div{padding:9px 10px;border-radius:12px;border:1px solid #dfe8eb;background:#fff}.wb-v2-compare small{display:block;color:#74858b;font-size:.68rem}.wb-v2-compare b{display:block;margin-top:3px;font-size:.82rem;color:#163d4a}.wb-v2-compare .best{border-color:#9fd8bd;background:#f1fbf6}.wb-v2-engine-note{display:flex;align-items:center;gap:7px;margin-top:6px;color:#6d8188;font-size:.74rem}.wb-v2-engine-note::before{content:'●';color:#1b9b65;font-size:.55rem}@media(max-width:560px){.wb-v2-specs{grid-template-columns:1fr}.wb-v2-compare{grid-template-columns:1fr 1fr}}
@@ -77,10 +77,14 @@
     el.textContent=category==='senior'?'월 부담과 사용 편의를 고려한 부모님용 후보입니다.':category==='value'?'기기값과 월요금을 함께 비교한 가성비 후보입니다.':'최신 프리미엄 기종의 월요금과 할인방식을 비교해 보세요.';
   }
   function addKV(parent,label,value,cls=''){const d=document.createElement('div');if(cls)d.className=cls;const s=document.createElement('span'),b=document.createElement('b');s.textContent=label;b.textContent=value;d.append(s,b);parent.appendChild(d)}
-  function consultText(c,category){const method=c.best.method==='support'?'공시지원금':'선택약정 25%';const arr=['[웅비통신 자동 추천 상담]',`용도: ${categoryLabel(category)}`,`추천 이유: ${c.lane}`,`통신사: ${c.d.carrier}`,`가입유형: ${c.join}`,`기종: ${c.d.name}`,`요금제: ${c.p.name} / ${won(c.p.monthly_fee)}`,`추천 조건: ${method}`,`예상 월 납부액: ${won(c.best.monthly)}`,`24개월 예상 총부담: ${won(c.best.total24)}`];if(c.support)arr.push(`공시지원금: ${won(c.support.support)}`);if(c.welfare==='basic_pension')arr.push(`기초연금 할인 반영: -${won(c.best.welfareAmount)}`);arr.push('매장 추가지원금·가족/인터넷 결합 미반영', '※ 실제 가입 가능 여부·자격·지원금·재고·프로모션은 상담 시점에 최종 확인합니다.', `견적 링크: ${detailUrl(c)}`);return arr.join('\n')}
+  function consultText(c,category){const method=c.best.method==='support'?'공시지원금':'선택약정 25%';const arr=['[웅비통신 자동 추천 상담]',`용도: ${categoryLabel(category)}`,`추천 이유: ${c.lane}`,`통신사: ${c.d.carrier}`,`가입유형: ${c.join}`,`기종: ${c.d.name}`,`요금제: ${c.p.name} / ${won(c.p.monthly_fee)}`,`선택한 할인방식: ${method}`,`예상 월 납부액: ${won(c.best.monthly)}`,`24개월 예상 총부담: ${won(c.best.total24)}`];if(c.best.method==='support')arr.push(`적용 공시지원금: ${won(c.best.support)}`);else arr.push(`선택약정 월 할인: ${won(c.best.contractDiscount)}`);if(c.welfare==='basic_pension')arr.push(`기초연금 할인 반영: -${won(c.best.welfareAmount)}`);arr.push('매장 추가지원금·가족/인터넷 결합 미반영', '※ 실제 가입 가능 여부·자격·지원금·재고·프로모션은 상담 시점에 최종 확인합니다.', `견적 링크: ${detailUrl(c)}`);return arr.join('\n')}
   async function copyAndKakao(text){window.WoongbiQuoteHandoff.open(text)}
   function detailUrl(c){const u=new URL('/rates.html',location.origin);u.searchParams.set('tab','mobile');u.searchParams.set('c',c.d.carrier);u.searchParams.set('j',c.join);u.searchParams.set('d',c.d.id);u.searchParams.set('p',c.p.id);u.searchParams.set('m',c.best.method);u.searchParams.set('mo','24');u.searchParams.set('w',c.welfare);return u.toString()}
   function card(c,category){
+    const key=[c.d.id,c.p.id,c.join,c.welfare].join('|');
+    const remembered=state.methods.get(key);
+    let selected=(remembered==='support'?c.support:remembered==='contract'?c.contract:null)||c.best;
+    const selectedCombo=()=>({...c,best:selected});
     const a=document.createElement('article');
     a.className='purpose-card wb-v2-card';a.dataset.deviceId=c.d.id;a.dataset.planId=c.p.id;
     const top=document.createElement('div');top.className='purpose-card-top';
@@ -101,8 +105,7 @@
     reason.textContent=reasons.find(x=>!x.includes('24개월 기준')&&!x.includes('기준 계산'))||'공시지원과 선택약정 중 24개월 총 부담이 낮은 조건입니다.';
     const total=document.createElement('div');total.className='purpose-card-total';
     const ts=document.createElement('span'),tb=document.createElement('b');
-    ts.textContent=c.welfare==='basic_pension'?'예상 월 납부액 · 기초연금 할인 포함':'예상 월 납부액';
-    tb.textContent=won(c.best.monthly);total.append(ts,tb);
+    total.append(ts,tb);
     const amountNote=document.createElement('p');amountNote.className='quote-amount-note';
     amountNote.textContent='매장 추가지원금·가족/인터넷 결합 미반영 · 최종 조건은 상담으로 확인';
     const specs=document.createElement('div');specs.className='wb-v2-specs';
@@ -114,18 +117,34 @@
     const summary=document.createElement('summary');summary.textContent='요금 구성·할인 비교 자세히 보기';
     const body=document.createElement('div');body.className='recommend-details-body';
     const details=document.createElement('div');details.className='purpose-card-detail';
-    addKV(details,'월 기기값 · 이자 포함',won(c.best.inst.monthly));
-    addKV(details,'할인 후 통신요금',won(c.best.service));
-    // Show the support amount actually used by the selected method.
-    if(c.best.method==='support'&&c.support)addKV(details,'적용 공시지원금','-'+won(c.support.support));
-    if(c.welfare==='basic_pension'&&c.best.welfareAmount)addKV(details,'기초연금 수급자 할인','-'+won(c.best.welfareAmount),'welfare-line');
-    addKV(details,'문자',c.p.sms||'확인 필요');
     const cmp=document.createElement('div');cmp.className='wb-v2-compare';
-    [['공시지원 월',c.support],['선택약정 월',c.contract]].forEach(([label,q])=>{
-      const item=document.createElement('div');if(q&&q.method===c.best.method)item.className='best';
-      const sm=document.createElement('small'),b=document.createElement('b');
-      sm.textContent=label;b.textContent=q?won(q.monthly):'매장 확인';item.append(sm,b);cmp.appendChild(item);
+    cmp.setAttribute('role','group');cmp.setAttribute('aria-label',`${c.d.name} 할인방식 선택`);
+    const choices=[];
+    [['공시지원금',c.support],['선택약정 25%',c.contract]].forEach(([label,q])=>{
+      const item=document.createElement('button');item.type='button';item.disabled=!q;
+      const sm=document.createElement('small'),b=document.createElement('b'),status=document.createElement('span');
+      sm.textContent=label;b.textContent=q?`월 ${won(q.monthly)}`:'매장 확인';
+      item.append(sm,b,status);cmp.appendChild(item);choices.push({item,status,q});
+      item.addEventListener('click',()=>{if(!q)return;selected=q;state.methods.set(key,q.method);refresh();});
     });
+    function refresh(){
+      const method=selected.method==='support'?'공시지원금':'선택약정 25%';
+      ts.textContent=`예상 월 납부액 · ${method}${c.welfare==='basic_pension'?' · 기초연금 할인 포함':''}`;
+      tb.textContent=won(selected.monthly);a.dataset.selectedMethod=selected.method;
+      details.replaceChildren();
+      addKV(details,'월 기기값 · 이자 포함',won(selected.inst.monthly));
+      addKV(details,'할인 후 통신요금',won(selected.service));
+      if(selected.method==='support')addKV(details,'적용 공시지원금','-'+won(selected.support));
+      else addKV(details,'선택약정 월 할인','-'+won(selected.contractDiscount));
+      if(c.welfare==='basic_pension'&&selected.welfareAmount)addKV(details,'기초연금 수급자 할인','-'+won(selected.welfareAmount),'welfare-line');
+      addKV(details,'문자',c.p.sms||'확인 필요');
+      choices.forEach(({item,status,q})=>{
+        const active=!!q&&q.method===selected.method,recommended=!!q&&q.method===c.best.method;
+        item.classList.toggle('best',active);item.setAttribute('aria-pressed',String(active));
+        status.textContent=!q?'금액 확인 필요':active?(recommended?'추천 · 선택됨':'선택됨'):(recommended?'추천 · 선택하기':'선택하기');
+      });
+    }
+    refresh();
     const why=document.createElement('div');why.className='wb-v2-why';
     const ws=document.createElement('strong'),wp=document.createElement('span');
     ws.textContent=`왜 ${c.lane}인가요?`;wp.textContent=reasons.join(' · ');why.append(ws,wp);
@@ -133,8 +152,8 @@
     const actions=document.createElement('div');actions.className='purpose-card-actions';
     const detail=document.createElement('button'),consult=document.createElement('button');
     detail.type='button';consult.type='button';detail.textContent='조건 바꿔 계산';consult.textContent='이 조건으로 상담';consult.className='primary';
-    detail.addEventListener('click',()=>location.href=detailUrl(c));
-    consult.addEventListener('click',()=>copyAndKakao(consultText(c,category)));actions.append(detail,consult);
+    detail.addEventListener('click',()=>location.href=detailUrl(selectedCombo()));
+    consult.addEventListener('click',()=>copyAndKakao(consultText(selectedCombo(),category)));actions.append(detail,consult);
     a.append(top);if(imageFrame)a.append(imageFrame);a.append(title,plan,reason,total,amountNote,specs,expanded,actions);return a;
   }
   function currentCategory(){const active=qs('[data-purpose-category].active');return active?.dataset.purposeCategory||state.category||'senior'}
