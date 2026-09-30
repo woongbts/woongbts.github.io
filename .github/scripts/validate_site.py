@@ -33,6 +33,14 @@ def check(condition, message):
     if not condition:
         errors.append(message)
 
+# Support amounts must never turn an invalid feed value into a free handset.
+for schedule in schedules:
+    for did in schedule.get("device_ids") or []:
+        device = device_by_id.get(did)
+        check(device is not None, f"unknown support device: {did}")
+        for pid, amount in (schedule.get("amounts") or {}).items():
+            check(type(amount) is int and device is not None and 0 <= amount <= device["retail_price"], f"unverified support: {did} {pid}={amount}")
+
 # Core carrier coverage.
 for carrier in ("SKT", "KT", "LGU+"):
     check(any(d.get("carrier") == carrier for d in devices), f"no devices for {carrier}")
