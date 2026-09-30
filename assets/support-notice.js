@@ -21,7 +21,20 @@
       const close = el('button', '×', 'support-notice-close'); close.type = 'button'; close.setAttribute('aria-label', '지원금 안내 닫기');
       top.append(heading, close);
       const body = el('div', undefined, 'support-notice-body');
-      body.append(el('p', `${data.date} 확인된 변경`, 'support-notice-date'), el('p', '대표 요금제 기준으로 확인된 공시지원금 변경입니다. 가입유형과 요금제에 따라 금액이 다릅니다.', 'support-notice-intro'));
+      body.append(el('p', `변경 확인일: ${data.date}`, 'support-notice-date'), el('p', '대표 요금제 기준으로 확인된 공시지원금 변경입니다. 가입유형과 요금제에 따라 금액이 다릅니다.', 'support-notice-intro'));
+      const summaries = new Map();
+      for (const row of changes) {
+        if (row.before === null || row.after === null || row.before === row.after) continue;
+        const key = JSON.stringify([row.join, row.before, row.after]);
+        if (!summaries.has(key)) summaries.set(key, {row, count: 0});
+        summaries.get(key).count++;
+      }
+      if (summaries.size) {
+        const summary = el('div', undefined, 'support-notice-summary');
+        summary.append(el('strong', '이번 안내의 핵심'));
+        for (const {row, count} of [...summaries.values()].slice(0, 3)) summary.append(el('p', `${row.join} ${count}개 기종·통신사 조합: ${money(row.before)} → ${money(row.after)}. 적용 요금제는 아래에서 확인해 주세요.`));
+        body.append(summary);
+      }
       if (data.date < today()) body.append(el('p', '지난 변경 내역입니다. 현재 판매 조건과 지원금은 계산기 또는 매장에서 다시 확인해 주세요.', 'support-notice-history'));
       if (typeof data.checked_at === 'string' && !Number.isNaN(Date.parse(data.checked_at))) body.append(el('p', `최근 자동 갱신 성공: ${new Date(data.checked_at).toLocaleString('ko-KR', {timeZone:'Asia/Seoul'})} (한국시간) · 새 변동이 없으면 공지 날짜는 유지됩니다.`, 'support-notice-checked'));
       for (const carrier of ['SKT', 'KT', 'LGU+']) {

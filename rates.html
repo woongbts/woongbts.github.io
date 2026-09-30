@@ -27,7 +27,7 @@
   <link rel="manifest" href="/manifest.webmanifest"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="apple-mobile-web-app-title" content="웅비통신">
   <link rel="stylesheet" href="assets/rates.css?v=20260919-2">
   <link rel="stylesheet" href="assets/readability-20260921.css?v=20260929-2">
-<link rel="stylesheet" href="/assets/customer-polish.css?v=20260929-2"></head>
+<link rel="stylesheet" href="/assets/customer-polish.css?v=20260930-1"></head>
 <body class="rate-page">
   <header class="rate-top">
     <div class="rate-wrap rate-nav">
@@ -214,15 +214,26 @@
             <div class="rate-card rate-result" id="mobile-result">
               <span class="result-label">예상 월 납부액</span>
               <strong id="monthly-total">—</strong>
+              <p class="monthly-total-help">월 단말기 할부금 + 월 통신요금</p>
               <div class="result-breakdown">
-                <div><span id="principal-label">단말 할부원금</span><b id="principal">—</b></div>
                 <div><span>월 단말금 · 할부이자 포함</span><b id="device-monthly">—</b></div>
+                <div><span>월 통신요금</span><b id="service-monthly">—</b></div>
+                <div><span id="principal-label">단말 할부원금</span><b id="principal">—</b></div>
+
                 <div><span>총 할부이자 · 연 5.9%</span><b id="installment-fee">—</b></div>
                 <div><span id="plan-discount-label">요금 할인</span><b id="plan-discount-view">—</b></div>
                 <div><span>복지할인</span><b id="welfare-view">미적용</b></div>
-                <div><span>월 통신요금</span><b id="service-monthly">—</b></div>
+
               </div>
               <p id="calc-summary">통신사, 가입유형, 할인방식, 기종, 요금제를 선택하면 자동으로 계산됩니다.</p>
+              <div class="quote-condition-note"><strong>금액과 함께 확인해 주세요</strong><p>월 납부액은 단말기 할부금과 통신요금의 합계입니다. 할부금에는 연 5.9% 기준 이자가 포함됩니다. 선택한 복지할인은 자격 확인이 필요하며, 가족·인터넷 결합과 매장 추가지원금은 이 휴대폰 계산에 포함하지 않습니다.</p><p>요금제 유지 기간·부가서비스·재고·최종 가입 조건은 상담에서 확인해 주세요.</p></div>
+    <div class="quote-tools">
+                <button type="button" id="copy-quote">견적 복사</button>
+                <button type="button" id="share-quote">견적 공유</button>
+                <button type="button" class="primary" id="consult-quote">이 조건으로 상담하기</button>
+                <small id="quote-action-status" aria-live="polite"></small>
+              </div>
+              <p class="quote-next-step">전화 상담 시에도 아래 선택한 기종·요금제를 말씀해 주세요. 이름이나 전화번호 입력 없이 견적을 확인할 수 있습니다.</p>
               <details class="calc-explain" id="calc-explain">
                 <summary>왜 이 금액인가요?</summary>
                 <div class="calc-explain-grid">
@@ -278,12 +289,7 @@
       </div>
       <div class="device-compare-results" id="device-compare-results"><p>기종과 요금제를 선택한 뒤 비교할 기종을 추가해 주세요.</p></div>
     </section>
-    <div class="quote-tools">
-                <button type="button" id="copy-quote">견적 복사</button>
-                <button type="button" id="share-quote">견적 공유</button>
-                <button type="button" class="primary" id="consult-quote">이 조건으로 상담하기</button>
-                <small id="quote-action-status" aria-live="polite"></small>
-              </div>
+
               <div class="rate-warning">공시지원 코스는 확인된 가입유형·기종·요금제별 지원금이 있을 때 할부원금과 월 납부액까지 계산합니다. 선택약정 코스는 단말 지원금 없이 통신요금 25% 할인을 반영합니다. 단말 할부는 연 5.9% 원리금균등 방식의 예상치이며 실제 청구액은 달라질 수 있습니다.</div>
               <div class="rate-actions"><a href="tel:0513437677">전화로 최종 확인</a><a class="kakao" href="http://pf.kakao.com/_nWwNT/chat" target="_blank" rel="noopener noreferrer">카카오톡 문의</a></div>
             </div>
@@ -527,8 +533,8 @@
 
   <footer class="rate-footer"><div class="rate-wrap"><strong>웅비통신 덕천만덕점</strong><p>부산광역시 북구 만덕대로178번길 17 · 월~토 11:00~20:00 · 일요일 휴무 · 051-343-7677</p><p>표시 금액은 상담을 돕기 위한 예상치이며 실제 개통 조건과 다를 수 있습니다.</p><p class="copyright-notice">© 2026 웅비통신 덕천만덕점 · 페이지 구성·콘텐츠·상담 로직의 무단 복제 및 상업적 이용을 금합니다.</p></div></footer>
   <script src="assets/store-sale-policy.js?v=20260928-1" defer></script>
-  <script src="assets/quote-handoff.js?v=20260928-2" defer></script>
-  <script src="assets/rates.min.js?v=20260928-2" defer></script>
+  <script src="assets/quote-handoff.js?v=20260930-1" defer></script>
+  <script src="assets/rates.min.js?v=20260930-1" defer></script>
   <script src="assets/ai-chat.min.js?v=20260917-2" defer></script>
 
   <div class="mobile-quote-bar" id="mobile-quote-bar" hidden>
@@ -536,6 +542,6 @@
     <button type="button" id="mobile-quote-detail">상세</button>
     <button type="button" class="primary" id="mobile-quote-consult">상담</button>
   </div>
-  <script src="/assets/analytics-config.js?v=20260929-2" defer></script><script src="/assets/conversion-tracker.min.js?v=20260918-1" defer></script><script src="/assets/site-analytics.min.js?v=20260924-1" defer></script><script src="/assets/pwa.min.js?v=20260928-1" defer></script>
+  <script src="/assets/analytics-config.js?v=20260929-2" defer></script><script src="/assets/conversion-tracker.min.js?v=20260918-1" defer></script><script src="/assets/site-analytics.min.js?v=20260924-1" defer></script><script src="/assets/pwa.min.js?v=20260930-1" defer></script>
 </body>
 </html>
