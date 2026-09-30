@@ -8,6 +8,7 @@ import time
 import urllib.parse
 import urllib.request
 from concurrent.futures import ThreadPoolExecutor, as_completed
+from official_support import verified_lgu_support
 from datetime import datetime, timedelta
 from zoneinfo import ZoneInfo
 
@@ -72,6 +73,10 @@ def money(value):
         return None
     text = str(value).replace(",", "").replace("원", "").strip()
     return int(text) if text.lstrip("-").isdigit() else None
+
+
+def valid_public_support(amount, retail_price):
+    return type(amount) is int and type(retail_price) is int and retail_price > 0 and 0 <= amount <= retail_price
 
 
 def clean(value):
@@ -233,7 +238,7 @@ def validate_dataset(old_catalog, old_plans, old_supports, catalog, plan_data, s
         for pid, amount in amounts.items():
             if pid not in plan_ids:
                 raise RuntimeError(f"support schedule references unknown plan: {pid}")
-            if amount is None or not (0 <= int(amount) <= 5000000):
+            if not all(valid_public_support(amount, next(d["retail_price"] for d in devices if d["id"] == did)) for did in ids):
                 raise RuntimeError(f"invalid public support: {pid}={amount}")
         carrier = schedule.get("carrier")
         for join_type in schedule.get("join_types") or []:
@@ -265,6 +270,7 @@ def main():
     all_devices = []
     all_plans = {}
     per_device_support = {}
+    official_corrections = 0
 
     for api_carrier, carrier, prefix in CARRIERS:
         device_payload = get_json(
@@ -349,8 +355,17 @@ def main():
                     ids.append(plan_id)
                     union_by_source_id.setdefault(raw_plan_id, (plan_order, plan))
                     support = money(plan.get(support_field))
-                    if support is not None:
+                    if valid_public_support(support, money(device.get("factory_price"))):
                         amounts[plan_id] = support
+                    elif support is not None:
+                        if carrier != "LGU+":
+                            raise RuntimeError(f"invalid primary support for {carrier}: {source_id} {raw_plan_id}")
+                        support = verified_lgu_support(
+                            clean(device.get("device_name")), money(device.get("factory_price")),
+                            clean(plan.get("plan_name")), money(plan.get("price")), join_label,
+                        )
+                        amounts[plan_id] = support
+                        official_corrections += 1
                 eligible_by_join[join_label] = ids
                 support_by_join[join_label] = amounts
 
@@ -546,6 +561,7 @@ def main():
                 "new": new_counts,
                 "devices_by_carrier": by_carrier,
                 "result": "validated",
+                "official_support_entries_corrected": official_corrections,
             },
             ensure_ascii=False,
             indent=2,
