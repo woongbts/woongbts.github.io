@@ -16,3 +16,12 @@
   body:not(.rate-page) .top .mobile-menu-ready .menu a:last-child{border-bottom:0}
   .mobile-menu-toggle:focus-visible,.mobile-menu-ready .menu a:focus-visible{outline:3px solid #087d75;outline-offset:-3px}
 }
+
+/* Keep the amount, conditions and next step together. */
+.visit-guide,.quote-condition-note,.support-notice-summary{padding:16px 18px;border:1px solid #c4deda;border-radius:12px;background:#eff8f6;color:#173f49;line-height:1.7}
+.visit-guide{margin:20px 0}.visit-guide strong,.quote-condition-note strong,.support-notice-summary strong{font-size:18px}.visit-guide p,.quote-condition-note p,.support-notice-summary p{margin:8px 0;font-size:16px}.visit-guide a{font-size:16px;font-weight:700;text-underline-offset:4px}
+.monthly-total-help{margin:6px 0 16px;color:#345966;font-size:16px}.quote-condition-note{margin:16px 0}.quote-next-step{font-size:15px;line-height:1.7;color:#345966}
+#mobile-result #monthly-total{font-size:clamp(36px,7vw,52px);line-height:1.2;overflow-wrap:anywhere}
+#mobile-result .result-breakdown>div:nth-child(-n+2){font-size:17px;font-weight:700}
+#mobile-result .quote-tools{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0 8px}#mobile-result .quote-tools button{min-height:46px}#mobile-result .quote-tools .primary{order:-1;flex-basis:100%;font-size:17px}#mobile-result .quote-tools small{flex-basis:100%}
+@media(max-width:640px){.visit-guide,.quote-condition-note,.support-notice-summary{padding:14px}.quote-handoff{padding:18px}.quote-handoff-actions a,.quote-handoff-actions button{min-height:46px;box-sizing:border-box}}
