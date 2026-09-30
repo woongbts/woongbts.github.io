@@ -14,16 +14,18 @@
   const groups = [
     {key:'light',title:'월 부담 가볍게',description:'데이터를 적게 쓰고 요금을 낮추고 싶다면',match:p=>gb(p)<5},
     {key:'daily',title:'일상용으로 균형 있게',description:'카카오톡·검색 등 일상 사용량에 맞춰 비교',match:p=>gb(p)>=5 && gb(p)<15},
-    {key:'data',title:'데이터 넉넉하게',description:'외부에서 데이터를 많이 쓴다면',match:p=>gb(p)>=15}
+    {key:'data',title:'데이터 넉넉하게',description:'외부에서 데이터를 많이 쓴다면',match:p=>gb(p)>=15 || /일\s*2GB/.test(p.data || '')}
   ];
+  // Customer-facing store assortment. Business settlement details are private.
+  const picks = {
+    light:['MMOBILE-1295','UPLUSE-1705','HELLOUPLUS-1492'],
+    daily:['SKYLIFE-2069','MMOBILE-2148','UPLUSE-1623'],
+    data:['UPLUSE-2390','SKYLIFE-2084','7MOBILE-1685']
+  };
   function recommend(data, selected='all') {
-    const eligible = clean(data).plans.filter(p=>Number.isFinite(fee(p)) && fee(p)>0 && gb(p)>0 && !/청소년|키즈|어린이|시니어|만\s*\d|디바이스|데이터전용/.test(p.name || '') && /무제한|기본제공|[1-9]\d*\s*분/.test(p.voice || ''));
+    const plans = new Map(clean(data).plans.map(p=>[p.id,p]));
     return groups.filter(g=>selected==='all'||g.key===selected).flatMap(g=>{
-      const seen = new Set();
-      return eligible.filter(g.match).sort((a,b)=>fee(a)-fee(b)||String(a.id).localeCompare(String(b.id))).filter(p=>{
-        const key=[p.provider_id,p.name,p.data,p.voice,p.sms].join('|');
-        if(seen.has(key))return false;seen.add(key);return true;
-      }).slice(0, selected==='all'?1:3).map(plan=>({plan,group:g}));
+      return picks[g.key].map(id=>plans.get(id)).filter(p=>p && Number.isFinite(fee(p)) && fee(p)>0 && g.match(p)).slice(0, selected==='all'?1:3).map(plan=>({plan,group:g}));
     });
   }
   window.WoongbiMvnoDisplay={clean,recommend,groups};
