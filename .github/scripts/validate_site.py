@@ -21,6 +21,7 @@ site = Path("assets/site-pro.min.js").read_text(encoding="utf-8")
 rates = Path("assets/rates.min.js").read_text(encoding="utf-8")
 recommend_bridge = Path("assets/recommend-api-bridge.min.js").read_text(encoding="utf-8")
 quote_bridge = Path("assets/quote-api-bridge.min.js").read_text(encoding="utf-8")
+studyphone_bridge = Path("assets/studyphone-api-bridge.min.js").read_text(encoding="utf-8")
 index = Path("index.html").read_text(encoding="utf-8")
 rates_html = Path("rates.html").read_text(encoding="utf-8")
 
@@ -109,6 +110,12 @@ for marker in ('data-device-brand="samsung"', 'data-device-brand="apple"', 'data
 for marker in ('searchParams.set("d"', 'searchParams.set("p"', 'searchParams.set("m"'):
     check(marker in rates, f"calculator deep-link support missing: {marker}")
 check("/quote/mobile" in quote_bridge, "server mobile quote wiring missing")
+check("/quote/studyphone" in studyphone_bridge, "server studyphone quote wiring missing")
+check("WoongbiStudyphoneApi" in studyphone_bridge, "studyphone server state bridge missing")
+check("studyphone-api-bridge.min.js" in rates_html, "studyphone API bridge script missing")
+check(not Path("data/studyphone.json").exists(), "public studyphone pricing data returned")
+for marker in ("installment_apr", "public_support", "function Qe(e){const t=l?.device", "Math.pow(1+o,t)"):
+    check(marker not in rates, f"public studyphone quote logic returned: {marker}")
 
 # Key tabs must remain present.
 for label in ("휴대폰", "공신폰", "알뜰폰(후불)", "선불폰", "인터넷·TV"):
@@ -155,6 +162,7 @@ public_text = "\n".join([
     site,
     recommend_bridge,
     quote_bridge,
+    studyphone_bridge,
 ]).lower()
 for word in forbidden:
     check(word.lower() not in public_text, f"forbidden internal/customer-facing token leaked: {word}")
