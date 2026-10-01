@@ -34,6 +34,8 @@ jobs:
           node --check assets/mobile-menu.js
           node --check assets/pwa.min.js
           node --check assets/recommendation-engine-v2.js
+          node --check assets/quote-api-bridge.min.js
+          node --check assets/recommend-api-bridge.min.js
           node .github/scripts/test_support_integrity.cjs
           node .github/scripts/test_home_recommendations.cjs
           node .github/scripts/test_recommendation_methods.cjs
@@ -69,4 +71,3 @@ jobs:
           python3 .github/scripts/test_support_notice.py
       - name: Run site regression checks
         run: python3 .github/scripts/validate_site.py
-
