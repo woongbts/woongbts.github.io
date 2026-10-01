@@ -52,9 +52,15 @@ jobs:
           ! grep -q 'recommendation-engine-v2.js' assets/pwa.min.js
           ! grep -q 'recommendation-engine-v2.js' sw.js
           grep -q '/recommend/purpose' assets/recommend-api-bridge.min.js
+          grep -q '/recommend/quick' assets/recommend-api-bridge.min.js
           grep -q '공시지원금' assets/recommend-api-bridge.min.js
           grep -q '선택약정 25%' assets/recommend-api-bridge.min.js
           grep -q 'aria-pressed' assets/recommend-api-bridge.min.js
+          ! grep -q 'const fe={senior:' src/rates.js
+          ! grep -q 'jump5:{category:"value"' src/rates.js
+          ! grep -q 'function Ke(){' src/rates.js
+          ! grep -q 'profiles={light:{min:3e4' src/rates.js
+          ! grep -q 'const devices=(o?.devices||\[\]).filter(e=>e.carrier===carrier&&V(e,brand)' src/rates.js
       - name: Validate Python safety scripts
         run: python3 -m py_compile .github/scripts/daily_wireless_sync.py .github/scripts/build_rates_asset.py .github/scripts/validate_site.py .github/scripts/update_sitemap.py
       - name: Verify canonical calculator source
