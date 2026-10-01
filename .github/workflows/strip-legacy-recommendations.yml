@@ -1,0 +1,45 @@
+name: Strip legacy recommendation logic
+
+on:
+  push:
+    branches:
+      - hardening/strip-legacy-recommendations
+    paths:
+      - '.github/scripts/strip_legacy_mobile_recommendations.mjs'
+      - '.github/workflows/strip-legacy-recommendations.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  strip:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: hardening/strip-legacy-recommendations
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Strip public legacy recommendation logic
+        run: node .github/scripts/strip_legacy_mobile_recommendations.mjs
+      - name: Validate transformed calculator source
+        run: |
+          node --check src/rates.js
+          node --check assets/rates.min.js
+          python3 .github/scripts/build_rates_asset.py --check
+          ! grep -q 'jump5:{category:"value"' src/rates.js
+          ! grep -q 'profiles={light:{min:3e4' src/rates.js
+          grep -q '/recommend/purpose' assets/recommend-api-bridge.min.js
+          grep -q '/recommend/quick' assets/recommend-api-bridge.min.js
+      - name: Commit transformed source
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add src/rates.js assets/rates.min.js
+          git diff --cached --quiet && exit 0
+          git commit -m 'Strip public legacy mobile recommendation logic'
+          git push origin HEAD:hardening/strip-legacy-recommendations
