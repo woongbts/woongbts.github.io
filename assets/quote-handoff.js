@@ -37,7 +37,7 @@
     }
   };
 
-  if (/\/rates\.html$/.test(location.pathname)) {
+  if (typeof location !== 'undefined' && /\/rates\.html$/.test(location.pathname)) {
     const bridge = document.createElement('script');
     bridge.src = '/assets/quote-api-bridge.min.js?v=20261001-1';
     bridge.async = false;
