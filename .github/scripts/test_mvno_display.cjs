@@ -1,25 +1,47 @@
 const assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm');
-const window={};vm.runInNewContext(fs.readFileSync('assets/mvno-display.js','utf8'),{window});
+const source=fs.readFileSync('assets/mvno-display.js','utf8');
+const bridge=fs.readFileSync('assets/mvno-api-bridge.min.js','utf8');
+const window={};vm.runInNewContext(source,{window});
 const api=window.WoongbiMvnoDisplay;
-const data=JSON.parse(fs.readFileSync('data/mvno-postpaid.json','utf8'));
-assert.equal(api.clean(data).plans.length,data.plans.length,'Excluded providers must not return in published data');
-assert.equal(api.clean(data).providers.length,data.providers.length);
-const injected={providers:[...data.providers,{id:'SMKT',name:'스노우맨'}],plans:[...data.plans,{id:'excluded',provider_id:'SMKT',monthly_fee:1,data:'7GB',voice:'무제한'}]};
-assert(!api.clean(injected).plans.some(p=>p.id==='excluded'));
-const rows=api.recommend(data);assert.equal(rows.length,3);assert.equal(new Set(rows.map(r=>r.group.key)).size,3);
-assert.deepEqual(Array.from(rows,r=>r.plan.id),['MMOBILE-1295','SKYLIFE-2069','UPLUSE-2390']);
-const cheap={...data,plans:[...data.plans,{id:'unreviewed-cheapest',provider_id:'MMOBILE',monthly_fee:1,data:'4GB',voice:'무제한'}]};
-assert(!api.recommend(cheap,'light').some(r=>r.plan.id==='unreviewed-cheapest'),'Unreviewed cheap plans must not replace store assortment');
-assert(api.recommend(data,'data').some(r=>r.plan.id==='SKYLIFE-2084'),'Daily data plan belongs to high-use comparison');
-for(const key of ['light','daily','data'])for(const {plan} of api.recommend(data,key))assert(plan.customer_note,'Every store pick needs customer terms');
-const contracted=data.plans.find(p=>p.id==='UPLUSE-2390');assert.equal(contracted.contract_months,12);assert.match(contracted.customer_note,/할인반환금/);
-assert.match(data.plans.find(p=>p.id==='MMOBILE-2148').customer_note,/880원.*19,280원/);
-assert.equal(data.plans.find(p=>p.id==='SKYLIFE-1615').monthly_fee,13900);
-assert.match(data.plans.find(p=>p.id==='MMOBILE-2151').data,/3Mbps/);
-assert(!/수수료|환수|마진|commission|rebate|mnp_fee/i.test(JSON.stringify(data)),'Public data must contain customer terms only');
-for(const group of api.groups){
- const choices=api.recommend(data,group.key);assert(choices.length>0&&choices.length<=3);
- const fee=p=>Number(p.special_monthly_fee??p.monthly_fee);
- choices.forEach((row,index)=>{assert(group.match(row.plan));assert(data.plans.some(p=>p.id===row.plan.id));if(index)assert(fee(choices[index-1].plan)<=fee(row.plan));});
+
+assert(api,'MVNO display helper missing');
+assert.match(bridge,/\/catalog\/mvno/,'MVNO server catalog endpoint missing');
+assert.match(bridge,/WoongbiMvnoApi/,'MVNO server bridge global missing');
+assert(!fs.existsSync('data/mvno-postpaid.json'),'Public MVNO source data must stay removed');
+for(const marker of ['SMKT','SMSKT','IYAGISKT','IYAGIKT','IYAGILG','MMOBILE-1295','UPLUSE-1705','SKYLIFE-2069','UPLUSE-2390']){
+  assert(!source.includes(marker),`Private assortment marker leaked into display helper: ${marker}`);
 }
-console.log('MVNO assortment exclusion, usage groups and price ordering passed.');
+
+const groups=[
+  {key:'light',title:'월 부담 가볍게',description:'가볍게'},
+  {key:'daily',title:'일상용으로 균형 있게',description:'균형'},
+  {key:'data',title:'데이터 넉넉하게',description:'넉넉하게'}
+];
+const plans={
+  l1:{id:'L1',provider_id:'P1',name:'라이트1'},l2:{id:'L2',provider_id:'P1',name:'라이트2'},l3:{id:'L3',provider_id:'P2',name:'라이트3'},
+  d1:{id:'D1',provider_id:'P1',name:'데일리1'},d2:{id:'D2',provider_id:'P2',name:'데일리2'},
+  h1:{id:'H1',provider_id:'P2',name:'데이터1'}
+};
+const catalog={
+  meta:{updated_at:'2026-10-01',store_reviewed_at:'2026-09-30'},
+  providers:[{id:'P1',name:'통신사1'},{id:'P2',name:'통신사2'}],
+  plans:Object.values(plans),
+  groups,
+  recommendations:{light:[plans.l1,plans.l2,plans.l3],daily:[plans.d1,plans.d2],data:[plans.h1]}
+};
+
+assert.equal(api.clean(catalog),catalog,'Server-prepared catalog should pass through unchanged');
+const all=api.recommend(catalog,'all');
+assert.equal(all.length,3);
+assert.deepEqual(Array.from(all,row=>row.plan.id),['L1','D1','H1']);
+assert.equal(new Set(all.map(row=>row.group.key)).size,3);
+assert.deepEqual(Array.from(api.recommend(catalog,'light'),row=>row.plan.id),['L1','L2','L3']);
+assert.deepEqual(Array.from(api.recommend(catalog,'daily'),row=>row.plan.id),['D1','D2']);
+assert.deepEqual(Array.from(api.recommend(catalog,'data'),row=>row.plan.id),['H1']);
+assert.equal(api.recommend(catalog,'unknown').length,0);
+
+const empty=api.clean(null);
+assert.deepEqual(Array.from(empty.providers),[]);
+assert.deepEqual(Array.from(empty.plans),[]);
+assert.equal(api.recommend(empty).length,0);
+console.log('MVNO display uses server-prepared assortment without public store policy.');

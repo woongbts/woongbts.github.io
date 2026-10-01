@@ -24,6 +24,8 @@ quote_bridge = Path("assets/quote-api-bridge.min.js").read_text(encoding="utf-8"
 studyphone_bridge = Path("assets/studyphone-api-bridge.min.js").read_text(encoding="utf-8")
 internet_bridge = Path("assets/internet-api-bridge.min.js").read_text(encoding="utf-8")
 internet_ui = Path("assets/internet-ui.min.js").read_text(encoding="utf-8")
+mvno_bridge = Path("assets/mvno-api-bridge.min.js").read_text(encoding="utf-8")
+mvno_display = Path("assets/mvno-display.js").read_text(encoding="utf-8")
 index = Path("index.html").read_text(encoding="utf-8")
 rates_html = Path("rates.html").read_text(encoding="utf-8")
 
@@ -127,6 +129,15 @@ check(not Path("data/internet.json").exists(), "public internet pricing data ret
 for marker in ("fallbackSettopFee", "internetDiscountBySpeed", "wbWiredPackageOverride", "SKB_TV_POP180:{100:30", "TV_SMART_PLUS:{100:29", "const Mt=t(\"internet-carrier\")"):
     check(marker not in rates, f"public wired pricing logic returned: {marker}")
 
+# MVNO assortment exclusions and store-curated picks are server-owned.
+check("/catalog/mvno" in mvno_bridge, "server MVNO catalog wiring missing")
+check("WoongbiMvnoApi" in mvno_bridge and "WoongbiMvnoApi" in rates, "MVNO server state bridge missing")
+check("mvno-api-bridge.min.js" in rates_html, "MVNO server bridge script missing")
+check(not Path("data/mvno-postpaid.json").exists(), "public MVNO source data returned")
+for marker in ("MMOBILE-1295", "SKYLIFE-2069", "UPLUSE-2390", "SMKT", "IYAGISKT"):
+    check(marker not in mvno_display, f"public MVNO assortment policy returned: {marker}")
+check("data/mvno-postpaid.json" not in rates, "public MVNO JSON fetch returned")
+
 # Key tabs must remain present.
 for label in ("휴대폰", "공신폰", "알뜰폰(후불)", "선불폰", "인터넷·TV"):
     check(label in rates_html, f"customer tab missing: {label}")
@@ -175,6 +186,8 @@ public_text = "\n".join([
     studyphone_bridge,
     internet_bridge,
     internet_ui,
+    mvno_bridge,
+    mvno_display,
 ]).lower()
 for word in forbidden:
     check(word.lower() not in public_text, f"forbidden internal/customer-facing token leaked: {word}")
