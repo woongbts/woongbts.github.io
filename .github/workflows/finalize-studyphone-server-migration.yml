@@ -41,9 +41,10 @@ jobs:
       - name: Commit finalized migration
         run: |
           set -euo pipefail
+          git restore .github/workflows/site-regression.yml
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add rates.html sw.js src/rates.js assets/rates.min.js assets/studyphone-api-bridge.min.js .github/scripts/validate_site.py .github/workflows/site-regression.yml data/studyphone.json
+          git add rates.html sw.js src/rates.js assets/rates.min.js assets/studyphone-api-bridge.min.js .github/scripts/validate_site.py data/studyphone.json
           git diff --cached --quiet && exit 0
           git commit -m 'Finalize server-owned studyphone quotes'
           git push origin HEAD:hardening/server-only-studyphone
