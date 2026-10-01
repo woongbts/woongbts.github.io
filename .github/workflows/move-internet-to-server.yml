@@ -30,13 +30,15 @@ jobs:
           node --check src/rates.js
           node --check assets/rates.min.js
           node --check assets/internet-api-bridge.min.js
+          node --check assets/internet-ui.min.js
           python3 .github/scripts/build_rates_asset.py --check
           ! grep -q 'fallbackSettopFee' src/rates.js
           ! grep -q 'internetDiscountBySpeed' src/rates.js
           ! grep -q 'wbWiredPackageOverride' src/rates.js
           ! grep -q 'data/internet.json' src/rates.js
-          grep -q 'WoongbiInternetApi' src/rates.js
-          grep -q 'wbWiredLoadOptions' src/rates.js
+          ! grep -q 'const Mt=t("internet-carrier")' src/rates.js
+          grep -q '/quote/internet' assets/internet-api-bridge.min.js
+          grep -q 'WoongbiInternetApi' assets/internet-ui.min.js
       - name: Commit transformed calculator
         run: |
           set -euo pipefail
