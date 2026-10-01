@@ -1,0 +1,51 @@
+name: Move selected-plan recommendation to server
+
+on:
+  push:
+    branches:
+      - hardening/server-plan-recommend
+    paths:
+      - '.github/scripts/move_plan_recommend_to_server.mjs'
+      - '.github/workflows/move-plan-recommend-to-server.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  migrate:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: hardening/server-plan-recommend
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Move selected-plan recommendation rules behind server API
+        run: node .github/scripts/move_plan_recommend_to_server.mjs
+      - name: Validate transformed calculator
+        run: |
+          node --check src/rates.js
+          node --check assets/rates.min.js
+          node --check assets/plan-recommend-api-bridge.min.js
+          node --check sw.js
+          python3 .github/scripts/build_rates_asset.py --check
+          grep -q '/recommend/plans' assets/plan-recommend-api-bridge.min.js
+          grep -q 'WoongbiPlanRecommendApi' src/rates.js
+          ! grep -q 'function wbGeneralRecommendPlan' src/rates.js
+          ! grep -q '월 기본료를 낮춰 시작하기 좋은 일반 요금제' src/rates.js
+          ! grep -q '월 부담과 데이터 제공량을 함께 비교하기 좋은 구간' src/rates.js
+          ! grep -q '영상·SNS 사용량이 많은 경우 먼저 비교하기 좋은 구성' src/rates.js
+          ! grep -q '데이터 무제한 표기가 있는 요금제 중 월 부담이 낮은 구성' src/rates.js
+          ! grep -q '콘텐츠·구독·디바이스 혜택이 요금제명에 명시된 구성' src/rates.js
+      - name: Commit transformed public calculator
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add src/rates.js assets/rates.min.js rates.html sw.js
+          git diff --cached --quiet && exit 0
+          git commit -m 'Use private API for selected-plan recommendations'
+          git push origin HEAD:hardening/server-plan-recommend
