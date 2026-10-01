@@ -22,6 +22,8 @@ rates = Path("assets/rates.min.js").read_text(encoding="utf-8")
 recommend_bridge = Path("assets/recommend-api-bridge.min.js").read_text(encoding="utf-8")
 quote_bridge = Path("assets/quote-api-bridge.min.js").read_text(encoding="utf-8")
 studyphone_bridge = Path("assets/studyphone-api-bridge.min.js").read_text(encoding="utf-8")
+internet_bridge = Path("assets/internet-api-bridge.min.js").read_text(encoding="utf-8")
+internet_ui = Path("assets/internet-ui.min.js").read_text(encoding="utf-8")
 index = Path("index.html").read_text(encoding="utf-8")
 rates_html = Path("rates.html").read_text(encoding="utf-8")
 
@@ -117,6 +119,14 @@ check(not Path("data/studyphone.json").exists(), "public studyphone pricing data
 for marker in ("installment_apr", "public_support", "function Qe(e){const t=l?.device", "Math.pow(1+o,t)"):
     check(marker not in rates, f"public studyphone quote logic returned: {marker}")
 
+# Internet/TV pricing, bundle rules, extra-TV formulas and gift matrices are server-owned.
+check("/quote/internet" in internet_bridge, "server internet quote wiring missing")
+check("WoongbiInternetApi" in internet_bridge and "WoongbiInternetApi" in internet_ui, "internet server state bridge missing")
+check("internet-api-bridge.min.js" in rates_html and "internet-ui.min.js" in rates_html, "internet server scripts missing")
+check(not Path("data/internet.json").exists(), "public internet pricing data returned")
+for marker in ("fallbackSettopFee", "internetDiscountBySpeed", "wbWiredPackageOverride", "SKB_TV_POP180:{100:30", "TV_SMART_PLUS:{100:29", "const Mt=t(\"internet-carrier\")"):
+    check(marker not in rates, f"public wired pricing logic returned: {marker}")
+
 # Key tabs must remain present.
 for label in ("휴대폰", "공신폰", "알뜰폰(후불)", "선불폰", "인터넷·TV"):
     check(label in rates_html, f"customer tab missing: {label}")
@@ -163,6 +173,8 @@ public_text = "\n".join([
     recommend_bridge,
     quote_bridge,
     studyphone_bridge,
+    internet_bridge,
+    internet_ui,
 ]).lower()
 for word in forbidden:
     check(word.lower() not in public_text, f"forbidden internal/customer-facing token leaked: {word}")
