@@ -1,7 +1,7 @@
 {
   "meta": {
-    "version": 1,
-    "description": "웅비통신 고객상담 플랫폼의 매장 예외·추천 정책. 자동수집 데이터와 분리해 관리합니다."
+    "version": 2,
+    "description": "웅비통신 고객 화면용 기기 보정 데이터입니다."
   },
   "pinned_devices": {
     "AT-M140S": {
@@ -60,24 +60,6 @@
         "wireless_charging": "미지원",
         "film_attached": "미부착",
         "external_memory": "미지원"
-      }
-    }
-  },
-  "recommendation_policy": {
-    "senior_priority": [
-      "스타일폴더2",
-      "Wide9",
-      "Buddy5",
-      "A37",
-      "A17"
-    ],
-    "excluded_devices_by_carrier": {
-      "LGU+": {
-        "name_tokens": [
-          "motorola",
-          "moto"
-        ],
-        "reason": "일반 고객 추천 및 직접 계산 노출 제외"
       }
     }
   }
