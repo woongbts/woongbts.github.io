@@ -37,6 +37,7 @@ jobs:
           node --check assets/pwa.min.js
           node --check assets/quote-api-bridge.min.js
           node --check assets/recommend-api-bridge.min.js
+          node --check assets/plan-recommend-api-bridge.min.js
           node --check assets/studyphone-api-bridge.min.js
           node --check assets/internet-api-bridge.min.js
           node --check assets/internet-ui.min.js
@@ -70,6 +71,18 @@ jobs:
           grep -q '공시지원금' assets/recommend-api-bridge.min.js
           grep -q '선택약정 25%' assets/recommend-api-bridge.min.js
           grep -q 'aria-pressed' assets/recommend-api-bridge.min.js
+          grep -q '/recommend/plans' assets/plan-recommend-api-bridge.min.js
+          grep -q 'WoongbiPlanRecommendApi' assets/plan-recommend-api-bridge.min.js
+          grep -q 'WoongbiPlanRecommendApi' src/rates.js
+          grep -q 'plan-recommend-api-bridge.min.js' rates.html
+          grep -q 'plan-recommend-api-bridge.min.js' sw.js
+          ! grep -q 'function wbGeneralRecommendPlan' src/rates.js
+          ! grep -q '월 기본료를 낮춰 시작하기 좋은 일반 요금제' src/rates.js
+          ! grep -q '월 부담과 데이터 제공량을 함께 비교하기 좋은 구간' src/rates.js
+          ! grep -q '영상·SNS 사용량이 많은 경우 먼저 비교하기 좋은 구성' src/rates.js
+          ! grep -q '데이터 무제한 표기가 있는 요금제 중 월 부담이 낮은 구성' src/rates.js
+          ! grep -q '콘텐츠·구독·디바이스 혜택이 요금제명에 명시된 구성' src/rates.js
+          ! grep -q '가입 가능한 일반 요금제 중 월 기본료가 낮은 순서로 함께 비교' src/rates.js
           ! grep -q '"recommendation_policy"' data/store-overrides.json
           grep -q '"pinned_devices"' data/store-overrides.json
           grep -q '/quote/studyphone' assets/studyphone-api-bridge.min.js

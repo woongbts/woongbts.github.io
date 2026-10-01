@@ -20,6 +20,7 @@ storefront = load_json("data/storefront.json")
 site = Path("assets/site-pro.min.js").read_text(encoding="utf-8")
 rates = Path("assets/rates.min.js").read_text(encoding="utf-8")
 recommend_bridge = Path("assets/recommend-api-bridge.min.js").read_text(encoding="utf-8")
+plan_recommend_bridge = Path("assets/plan-recommend-api-bridge.min.js").read_text(encoding="utf-8")
 quote_bridge = Path("assets/quote-api-bridge.min.js").read_text(encoding="utf-8")
 studyphone_bridge = Path("assets/studyphone-api-bridge.min.js").read_text(encoding="utf-8")
 internet_bridge = Path("assets/internet-api-bridge.min.js").read_text(encoding="utf-8")
@@ -108,6 +109,21 @@ for marker in ("const fe={senior:", 'jump5:{category:"value"', "function Ke(){",
 check("function wbVisibleDevice" in rates and 't.includes("motorola")' in rates, "LGU+ Motorola exclusion guard missing")
 check("function wbHandsetPlan" in rates, "handset-plan guard missing")
 
+# Selected-device plan ranking is server-owned. Public code may render badges/reasons but must not decide them.
+check("/recommend/plans" in plan_recommend_bridge, "server selected-plan recommendation wiring missing")
+check("WoongbiPlanRecommendApi" in plan_recommend_bridge and "WoongbiPlanRecommendApi" in rates, "selected-plan recommendation bridge missing")
+check("plan-recommend-api-bridge.min.js" in rates_html, "selected-plan recommendation script missing")
+for marker in (
+    "function wbGeneralRecommendPlan",
+    "월 기본료를 낮춰 시작하기 좋은 일반 요금제",
+    "월 부담과 데이터 제공량을 함께 비교하기 좋은 구간",
+    "영상·SNS 사용량이 많은 경우 먼저 비교하기 좋은 구성",
+    "데이터 무제한 표기가 있는 요금제 중 월 부담이 낮은 구성",
+    "콘텐츠·구독·디바이스 혜택이 요금제명에 명시된 구성",
+    "가입 가능한 일반 요금제 중 월 기본료가 낮은 순서로 함께 비교",
+):
+    check(marker not in rates, f"public selected-plan recommendation rule returned: {marker}")
+
 # Direct-calculator filters and deep-link support.
 for marker in ('data-device-brand="samsung"', 'data-device-brand="apple"', 'data-device-brand="other"'):
     check(marker in rates_html, f"device brand filter missing: {marker}")
@@ -182,6 +198,7 @@ public_text = "\n".join([
     rates,
     site,
     recommend_bridge,
+    plan_recommend_bridge,
     quote_bridge,
     studyphone_bridge,
     internet_bridge,
