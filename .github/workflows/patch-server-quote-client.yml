@@ -1,0 +1,47 @@
+name: Patch server quote client
+
+on:
+  push:
+    branches:
+      - hardening/server-only-mobile-quote
+    paths:
+      - '.github/scripts/patch_server_quote_client.mjs'
+      - '.github/workflows/patch-server-quote-client.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: hardening/server-only-mobile-quote
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Patch handoff and save guards
+        run: node .github/scripts/patch_server_quote_client.mjs
+      - name: Validate patched client
+        run: |
+          node --check src/rates.js
+          node --check assets/rates.min.js
+          node --check assets/quote-api-bridge.min.js
+          python3 .github/scripts/build_rates_asset.py --check
+          grep -q '자동 계산을 불러온 뒤 저장해 주세요' src/rates.js
+          grep -q 'quote-api-loaded",()=>ze());\[I,K\].forEach' src/rates.js
+          ! grep -q 'function T(e,t,o,a,i,l)' src/rates.js
+          ! grep -q 'function R(e,t)' src/rates.js
+          ! grep -q 'function W(e,t)' src/rates.js
+      - name: Commit patched client
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add src/rates.js assets/rates.min.js
+          git diff --cached --quiet && exit 0
+          git commit -m 'Guard server quote handoff and saved quotes'
+          git push origin HEAD:hardening/server-only-mobile-quote
