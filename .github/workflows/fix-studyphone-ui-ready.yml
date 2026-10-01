@@ -1,0 +1,43 @@
+name: Fix studyphone UI ready state
+
+on:
+  push:
+    branches:
+      - hotfix/studyphone-ui-ready
+    paths:
+      - '.github/scripts/fix_studyphone_snapshot_shadow.mjs'
+      - '.github/workflows/fix-studyphone-ui-ready.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  hotfix:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: hotfix/studyphone-ui-ready
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Apply studyphone snapshot hotfix
+        run: node .github/scripts/fix_studyphone_snapshot_shadow.mjs
+      - name: Validate calculator bundle
+        run: |
+          node --check src/rates.js
+          node --check assets/rates.min.js
+          python3 .github/scripts/build_rates_asset.py --check
+          ! grep -q 'function wbApplyStudyphoneSnapshot(e){' src/rates.js
+          grep -q 'function wbApplyStudyphoneSnapshot(snapshot){' src/rates.js
+      - name: Commit hotfix
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add src/rates.js assets/rates.min.js
+          git diff --cached --quiet && exit 0
+          git commit -m 'Fix studyphone server snapshot rendering'
+          git push origin HEAD:hotfix/studyphone-ui-ready
