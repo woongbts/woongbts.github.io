@@ -1,0 +1,50 @@
+name: Strip public mobile quote math
+
+on:
+  push:
+    branches:
+      - hardening/server-only-mobile-quote
+    paths:
+      - '.github/scripts/strip_public_mobile_quote_math.mjs'
+      - '.github/workflows/strip-public-mobile-quote.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  strip:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: hardening/server-only-mobile-quote
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Strip public mobile quote formulas
+        run: node .github/scripts/strip_public_mobile_quote_math.mjs
+      - name: Validate transformed source
+        run: |
+          node --check src/rates.js
+          node --check assets/rates.min.js
+          node --check assets/quote-api-bridge.min.js
+          python3 .github/scripts/build_rates_asset.py --check
+          ! grep -q 'function N(' src/rates.js
+          ! grep -q 'function R(' src/rates.js
+          ! grep -q 'function W(' src/rates.js
+          ! grep -q 'function T(' src/rates.js
+          ! grep -q 'const n=.059/12' src/rates.js
+          grep -q 'WoongbiQuoteApi?.getCurrent' src/rates.js
+          grep -q 'quotePair' src/rates.js
+          grep -q 'window.WoongbiQuoteApi=' assets/quote-api-bridge.min.js
+      - name: Commit transformed source
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add src/rates.js assets/rates.min.js
+          git diff --cached --quiet && exit 0
+          git commit -m 'Move mobile quote calculations to server API'
+          git push origin HEAD:hardening/server-only-mobile-quote
