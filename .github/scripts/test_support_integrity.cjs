@@ -14,9 +14,10 @@ function extract(source, name) {
   return source.slice(start,end);
 }
 const calculator=fs.readFileSync('src/rates.js','utf8');
+const num=v=>v!==null&&v!==undefined&&v!==''&&Number.isFinite(Number(v));
 const d={id:'test-device',carrier:'LGU+',retail_price:1254000},p={id:'test-plan',monthly_fee:66000};
 const state={catalog:{mobile_supports:[]},supports:{support_schedules:[{carrier:'LGU+',device_ids:[d.id],join_types:['번호이동'],amounts:{[p.id]:3120000}}]}};
-const ctx={window:{},o:state.catalog,a:state.supports.support_schedules};
+const ctx={window:{},n:num,o:state.catalog,a:state.supports.support_schedules};
 vm.createContext(ctx);
 vm.runInContext(fs.readFileSync('assets/plan-eligibility.js','utf8'),ctx);
 for(const name of ['wbValidPublicSupport','N'])vm.runInContext(extract(calculator,name),ctx);
