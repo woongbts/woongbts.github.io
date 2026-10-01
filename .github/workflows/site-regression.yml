@@ -38,6 +38,7 @@ jobs:
           node --check assets/studyphone-api-bridge.min.js
           node --check assets/internet-api-bridge.min.js
           node --check assets/internet-ui.min.js
+          node --check assets/mvno-api-bridge.min.js
           node .github/scripts/test_support_integrity.cjs
           node .github/scripts/test_home_recommendations.cjs
           node --check assets/plan-eligibility.js
@@ -79,6 +80,16 @@ jobs:
           ! grep -q 'TV_SMART_PLUS:{100:29' src/rates.js
           ! grep -q 'const Mt=t("internet-carrier")' src/rates.js
           ! grep -q 'data/internet.json' src/rates.js
+          grep -q '/catalog/mvno' assets/mvno-api-bridge.min.js
+          grep -q 'WoongbiMvnoApi' assets/mvno-api-bridge.min.js
+          grep -q 'WoongbiMvnoApi' src/rates.js
+          test ! -e data/mvno-postpaid.json
+          ! grep -q 'data/mvno-postpaid.json' src/rates.js
+          ! grep -q 'MMOBILE-1295' assets/mvno-display.js
+          ! grep -q 'SKYLIFE-2069' assets/mvno-display.js
+          ! grep -q 'UPLUSE-2390' assets/mvno-display.js
+          ! grep -q 'SMKT' assets/mvno-display.js
+          ! grep -q 'IYAGISKT' assets/mvno-display.js
           ! grep -q 'const fe={senior:' src/rates.js
           ! grep -q 'jump5:{category:"value"' src/rates.js
           ! grep -q 'function Ke(){' src/rates.js
