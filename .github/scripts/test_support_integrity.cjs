@@ -1,32 +1,36 @@
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const vm = require('node:vm');
-function extract(source, name) {
-  const start = source.indexOf('function '+name+'(');
-  assert.ok(start >= 0, name+' missing');
-  const open = source.indexOf('{', start);
-  let depth=1, end=open+1;
-  for (; depth && end<source.length; end++) {
-    if(source[end]==='{') depth++;
-    if(source[end]==='}') depth--;
-  }
-  assert.equal(depth,0);
-  return source.slice(start,end);
-}
-const calculator=fs.readFileSync('src/rates.js','utf8');
-const num=v=>v!==null&&v!==undefined&&v!==''&&Number.isFinite(Number(v));
-const d={id:'test-device',carrier:'LGU+',retail_price:1254000},p={id:'test-plan',monthly_fee:66000};
-const state={catalog:{mobile_supports:[]},supports:{support_schedules:[{carrier:'LGU+',device_ids:[d.id],join_types:['번호이동'],amounts:{[p.id]:3120000}}]}};
-const ctx={window:{},n:num,o:state.catalog,a:state.supports.support_schedules};
+
+const calculator = fs.readFileSync('src/rates.js','utf8');
+const bridge = fs.readFileSync('assets/quote-api-bridge.min.js','utf8');
+
+for (const marker of [
+  'function wbValidPublicSupport(',
+  'function N(',
+  'function R(',
+  'function W(',
+  'function T(',
+  'const n=.059/12',
+  '28600),label:"생계·의료급여"',
+  '45100)',
+  '23650',
+]) assert.equal(calculator.includes(marker), false, `public quote formula returned: ${marker}`);
+
+assert.ok(calculator.includes('window.WoongbiQuoteApi?.getCurrent'), 'direct calculator must read server quote cache');
+assert.ok(calculator.includes('window.WoongbiQuoteApi?.sync'), 'direct calculator must trigger server quote sync');
+assert.ok(calculator.includes('l.quotePair'), 'device comparison must request server quote pairs');
+assert.ok(bridge.includes("https://woongbi-quote-api.woongbts.workers.dev/quote/mobile"), 'production quote endpoint missing');
+assert.ok(bridge.includes('window.WoongbiQuoteApi='), 'server quote state manager missing');
+assert.ok(bridge.includes('fetchQuote'), 'arbitrary server quote fetch missing');
+assert.ok(bridge.includes('quotePair'), 'server quote pair API missing');
+assert.ok(bridge.includes("dataset.quoteApi='unavailable'"), 'safe unavailable state missing');
+assert.ok(bridge.includes('현재 자동 계산을 불러오지 못했습니다'), 'customer-safe failure message missing');
+
+const ctx={window:{},document:{getElementById:()=>null}};
 vm.createContext(ctx);
 vm.runInContext(fs.readFileSync('assets/plan-eligibility.js','utf8'),ctx);
-for(const name of ['wbValidPublicSupport','N'])vm.runInContext(extract(calculator,name),ctx);
-for(const bad of [3120000,-1,1.5,null,'',Infinity]) assert.equal(ctx.wbValidPublicSupport(bad,d),false);
-assert.equal(ctx.N(d,p,'번호이동'),null);
-state.supports.support_schedules[0].amounts[p.id]=390000;
-assert.equal(ctx.N(d,p,'번호이동').public_support,390000);
-state.catalog.mobile_supports=[{device_id:d.id,plan_id:p.id,join_type:'번호이동',public_support:3120000}];
-assert.equal(ctx.N(d,p,'번호이동'),null);
 assert.equal(ctx.window.WoongbiPlanEligibility.allowed({name:'데이터플랜80GB(복지)',age_limit:'ALL'},'premium'),false);
 assert.equal(ctx.window.WoongbiPlanEligibility.allowed({name:'데이터플랜MAX',age_limit:'ALL'},'premium'),true);
-console.log('Support integrity: invalid public support is rejected by the direct calculator and shared audience rules remain valid.');
+
+console.log('Server-only quote integrity: public formulas absent, server cache/fetch wiring present, safe failure and shared audience rules passed.');
