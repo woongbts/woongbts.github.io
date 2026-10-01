@@ -4,7 +4,10 @@
   "main": "worker.js",
   "compatibility_date": "2026-09-14",
   "workers_dev": true,
-  "ai": {
-    "binding": "AI"
-  }
+  "services": [
+    {
+      "binding": "AI_CORE",
+      "service": "woongb-ai-core"
+    }
+  ]
 }
