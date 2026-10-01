@@ -7,6 +7,13 @@ export default {
         headers: { "Content-Type": "application/json; charset=UTF-8", "Cache-Control": "no-store" },
       });
     }
-    return env.AI_CORE.fetch(request);
+    const upstream = await env.AI_CORE.fetch(request);
+    const headers = new Headers(upstream.headers);
+    headers.set("X-Woongbi-AI-Proxy", "private-core");
+    return new Response(upstream.body, {
+      status: upstream.status,
+      statusText: upstream.statusText,
+      headers,
+    });
   },
 };
