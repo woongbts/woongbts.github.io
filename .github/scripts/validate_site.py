@@ -19,6 +19,8 @@ storefront = load_json("data/storefront.json")
 
 site = Path("assets/site-pro.min.js").read_text(encoding="utf-8")
 rates = Path("assets/rates.min.js").read_text(encoding="utf-8")
+recommend_bridge = Path("assets/recommend-api-bridge.min.js").read_text(encoding="utf-8")
+quote_bridge = Path("assets/quote-api-bridge.min.js").read_text(encoding="utf-8")
 index = Path("index.html").read_text(encoding="utf-8")
 rates_html = Path("rates.html").read_text(encoding="utf-8")
 
@@ -66,7 +68,6 @@ for d in style:
         check(bool(matched), f"missing public support: {d.get('id')} {join}")
 
 # Non-handset plans must never leak into the phone calculator.
-# Legacy 2G/3G plans are retired and must never return to customer-facing data.
 legacy_2g_3g_plans = [
     p for p in mobile_plans
     if re.search(r"(^|[^a-z0-9])[23]g([^a-z0-9]|$)", str(p.get("name") or "").lower().replace(" ", ""), re.IGNORECASE)
@@ -84,17 +85,21 @@ for plan in mobile_plans:
         errors.append(f"non-handset plan leaked: {plan.get('id')} {plan.get('name')}")
         break
 
-# Homepage uses the calculator engine; fixture/URL parity is exercised by test_home_recommendations.cjs.
+# Homepage uses its current shared calculator-card integration.
 cards = ["senior", "senior", "value", "premium"]
 check("engine.recommend('senior')" in site and "engine.recommend('value')" in site and "engine.recommend('premium')" in site, "homepage shared recommendation engine missing")
 check("card.href=engine.detailUrl(c)" in site, "homepage calculator conditions are not shared")
 check("plan-eligibility.js" in index and "plan-eligibility.js" in rates_html, "shared eligibility wiring missing")
 check("이런 분들이 많이 찾아오세요" not in index, "duplicate service section returned")
 
-# Recommendation and known-quote invariants.
-for marker in ("갤럭시 Jump5 5G", "갤럭시 A37 5G", "갤럭시 퀀텀7", "51910", "55740", "62340"):
-    check(marker in rates, f"value-phone regression marker missing: {marker}")
-check("스타일폴더2" in rates, "senior Style Folder 2 recommendation missing")
+# Recommendation logic is server-owned. Public code must only keep UI/wiring, not the old selection tables/algorithms.
+check("/recommend/purpose" in recommend_bridge, "server purpose recommendation wiring missing")
+check("/recommend/quick" in recommend_bridge, "server quick recommendation wiring missing")
+check("wb-server-card" in recommend_bridge, "server purpose card renderer missing")
+check("quick-plan-specs" in recommend_bridge, "server quick plan allowance renderer missing")
+check("methodMemory" in recommend_bridge and "aria-pressed" in recommend_bridge, "server recommendation method switching missing")
+for marker in ("const fe={senior:", 'jump5:{category:"value"', "function Ke(){", "profiles={light:{min:3e4"):
+    check(marker not in rates, f"legacy recommendation logic returned: {marker}")
 check("function wbVisibleDevice" in rates and 't.includes("motorola")' in rates, "LGU+ Motorola exclusion guard missing")
 check("function wbHandsetPlan" in rates, "handset-plan guard missing")
 
@@ -103,6 +108,7 @@ for marker in ('data-device-brand="samsung"', 'data-device-brand="apple"', 'data
     check(marker in rates_html, f"device brand filter missing: {marker}")
 for marker in ('searchParams.set("d"', 'searchParams.set("p"', 'searchParams.set("m"'):
     check(marker in rates, f"calculator deep-link support missing: {marker}")
+check("/quote/mobile" in quote_bridge, "server mobile quote wiring missing")
 
 # Key tabs must remain present.
 for label in ("휴대폰", "공신폰", "알뜰폰(후불)", "선불폰", "인터넷·TV"):
@@ -122,12 +128,12 @@ check(index.count(PRECON_URL) >= 2, "official pre-approval lookup must remain in
 check('대표자 : 신웅비' in index, "representative name missing for Naver business verification")
 check('"founder":{"@type":"Person","name":"신웅비"}' in index, "representative structured data missing")
 
-# Quick recommendation v3 contract.
+# Quick recommendation v3 contract is rendered by the server bridge.
 check('id="quick-data"' not in rates_html, "legacy quick data selector returned")
 check('월 부담 가볍게 · 3~4만원대' in rates_html, "quick monthly burden band missing")
 check('내 조건으로 3가지 비교' in rates_html, "quick recommendation title missing")
-check('월 부담 우선' in rates and '기기 균형' in rates and '데이터 여유' in rates, "smart quick recommendation lanes missing")
-check('quick-plan-specs' in rates, "quick plan allowance display missing")
+check('/recommend/quick' in recommend_bridge, "smart quick recommendation endpoint missing")
+check('quick-plan-specs' in recommend_bridge, "quick plan allowance display missing")
 
 # PWA, local image and measurement hooks.
 for path in ("manifest.webmanifest","sw.js","offline.html","404.html","assets/pwa.min.js","assets/analytics-config.js","assets/conversion-tracker.min.js"):
@@ -147,6 +153,8 @@ public_text = "\n".join([
     json.dumps(supports, ensure_ascii=False),
     rates,
     site,
+    recommend_bridge,
+    quote_bridge,
 ]).lower()
 for word in forbidden:
     check(word.lower() not in public_text, f"forbidden internal/customer-facing token leaked: {word}")
