@@ -59,6 +59,8 @@ jobs:
           grep -q '공시지원금' assets/recommend-api-bridge.min.js
           grep -q '선택약정 25%' assets/recommend-api-bridge.min.js
           grep -q 'aria-pressed' assets/recommend-api-bridge.min.js
+          ! grep -q '"recommendation_policy"' data/store-overrides.json
+          grep -q '"pinned_devices"' data/store-overrides.json
           grep -q '/quote/studyphone' assets/studyphone-api-bridge.min.js
           grep -q 'WoongbiStudyphoneApi' assets/studyphone-api-bridge.min.js
           test ! -e data/studyphone.json
