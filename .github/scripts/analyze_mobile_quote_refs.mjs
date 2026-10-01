@@ -28,21 +28,21 @@ function extractFunctions(src) {
 
 const funcs=extractFunctions(source);
 console.log('FUNCTION_COUNT',funcs.length);
-for(const target of ['N','R','W','T','ce','ae','se','ze','Ge']){
+for(const target of ['N','R','W','T','ce','se','ze','De','We','me','Ue','ue','Ze','Re','Oe']){
   const fn=funcs.find(x=>x.name===target);
   console.log(`\n=== FUNCTION ${target} ===`);
   if(!fn){console.log('MISSING');continue}
-  console.log(fn.body.slice(0,4000));
+  console.log(fn.body.slice(0,10000));
 }
 
-for(const token of ['N(','R(','W(','T(','ce(','ae(','se(','ze(','Ge(','monthly-total','quote-copy','quote-save','quote-share']){
+for(const token of ['N(','R(','W(','T(','ce(','se(','ze(','De(','We(','me(','Ue(','ue(','monthly-total','copy-quote','share-quote','save-quote']){
   const users=funcs.filter(fn=>fn.body.includes(token)).map(fn=>fn.name);
   const count=source.split(token).length-1;
   console.log(`\nTOKEN ${token} count=${count} functions=${users.join(',')}`);
   let from=0,shown=0;
-  while(shown<8){
+  while(shown<12){
     const at=source.indexOf(token,from);if(at<0)break;
-    console.log('CTX',source.slice(Math.max(0,at-180),Math.min(source.length,at+260)).replace(/\s+/g,' '));
+    console.log('CTX',source.slice(Math.max(0,at-220),Math.min(source.length,at+420)).replace(/\s+/g,' '));
     from=at+token.length;shown++;
   }
 }
