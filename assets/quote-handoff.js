@@ -44,7 +44,7 @@
     document.head.appendChild(quoteBridge);
 
     const recommendBridge = document.createElement('script');
-    recommendBridge.src = '/assets/recommend-api-bridge.min.js?v=20261001-1';
+    recommendBridge.src = '/assets/recommend-api-bridge.min.js?v=20261001-2';
     recommendBridge.async = false;
     document.head.appendChild(recommendBridge);
   }
