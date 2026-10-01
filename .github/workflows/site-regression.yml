@@ -35,6 +35,7 @@ jobs:
           node --check assets/pwa.min.js
           node --check assets/quote-api-bridge.min.js
           node --check assets/recommend-api-bridge.min.js
+          node --check assets/studyphone-api-bridge.min.js
           node .github/scripts/test_support_integrity.cjs
           node .github/scripts/test_home_recommendations.cjs
           node --check assets/plan-eligibility.js
@@ -56,6 +57,13 @@ jobs:
           grep -q '공시지원금' assets/recommend-api-bridge.min.js
           grep -q '선택약정 25%' assets/recommend-api-bridge.min.js
           grep -q 'aria-pressed' assets/recommend-api-bridge.min.js
+          grep -q '/quote/studyphone' assets/studyphone-api-bridge.min.js
+          grep -q 'WoongbiStudyphoneApi' assets/studyphone-api-bridge.min.js
+          test ! -e data/studyphone.json
+          ! grep -q 'installment_apr' src/rates.js
+          ! grep -q 'public_support' src/rates.js
+          ! grep -q 'function Qe(e){const t=l?.device' src/rates.js
+          ! grep -q 'Math.pow(1+o,t)' src/rates.js
           ! grep -q 'const fe={senior:' src/rates.js
           ! grep -q 'jump5:{category:"value"' src/rates.js
           ! grep -q 'function Ke(){' src/rates.js
