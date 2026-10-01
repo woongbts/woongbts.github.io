@@ -33,12 +33,10 @@ jobs:
           node --check assets/ai-chat.min.js
           node --check assets/mobile-menu.js
           node --check assets/pwa.min.js
-          node --check assets/recommendation-engine-v2.js
           node --check assets/quote-api-bridge.min.js
           node --check assets/recommend-api-bridge.min.js
           node .github/scripts/test_support_integrity.cjs
           node .github/scripts/test_home_recommendations.cjs
-          node .github/scripts/test_recommendation_methods.cjs
           node --check assets/plan-eligibility.js
           node --check assets/device-images.js
           python3 .github/scripts/test_official_support.py
@@ -50,11 +48,13 @@ jobs:
           node --check assets/analytics-config.js
           node .github/scripts/test_naver_common.cjs
           node --check sw.js
-          grep -q 'recommendation-engine-v2.js' assets/pwa.min.js
-          grep -q 'WoongbiRecommendationV2' assets/recommendation-engine-v2.js
-          grep -q '24개월 총부담 우선' assets/recommendation-engine-v2.js
-          grep -q '사용 편의 우선' assets/recommendation-engine-v2.js
-          grep -q '공시지원 우선' assets/recommendation-engine-v2.js
+          test ! -e assets/recommendation-engine-v2.js
+          ! grep -q 'recommendation-engine-v2.js' assets/pwa.min.js
+          ! grep -q 'recommendation-engine-v2.js' sw.js
+          grep -q '/recommend/purpose' assets/recommend-api-bridge.min.js
+          grep -q '공시지원금' assets/recommend-api-bridge.min.js
+          grep -q '선택약정 25%' assets/recommend-api-bridge.min.js
+          grep -q 'aria-pressed' assets/recommend-api-bridge.min.js
       - name: Validate Python safety scripts
         run: python3 -m py_compile .github/scripts/daily_wireless_sync.py .github/scripts/build_rates_asset.py .github/scripts/validate_site.py .github/scripts/update_sitemap.py
       - name: Verify canonical calculator source
