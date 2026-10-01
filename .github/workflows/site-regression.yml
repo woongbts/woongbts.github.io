@@ -9,6 +9,8 @@ on:
       - 'manduk-mobile.html'
       - 'privacy.html'
       - 'sw.js'
+      - 'worker.js'
+      - 'wrangler.jsonc'
       - 'assets/**'
       - 'src/**'
       - 'data/**'
@@ -52,6 +54,14 @@ jobs:
           node --check assets/analytics-config.js
           node .github/scripts/test_naver_common.cjs
           node --check sw.js
+          node --check worker.js
+          grep -q 'AI_CORE.fetch' worker.js
+          ! grep -q 'systemPrompt' worker.js
+          ! grep -q '@cf/' worker.js
+          ! grep -q 'answerKnownQuestion' worker.js
+          grep -q '"binding": "AI_CORE"' wrangler.jsonc
+          grep -q '"service": "woongb-ai-core"' wrangler.jsonc
+          ! grep -q '"ai"' wrangler.jsonc
           test ! -e assets/recommendation-engine-v2.js
           ! grep -q 'recommendation-engine-v2.js' assets/pwa.min.js
           ! grep -q 'recommendation-engine-v2.js' sw.js
