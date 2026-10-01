@@ -38,9 +38,14 @@
   };
 
   if (typeof location !== 'undefined' && /\/rates\.html$/.test(location.pathname)) {
-    const bridge = document.createElement('script');
-    bridge.src = '/assets/quote-api-bridge.min.js?v=20261001-1';
-    bridge.async = false;
-    document.head.appendChild(bridge);
+    const quoteBridge = document.createElement('script');
+    quoteBridge.src = '/assets/quote-api-bridge.min.js?v=20261001-1';
+    quoteBridge.async = false;
+    document.head.appendChild(quoteBridge);
+
+    const recommendBridge = document.createElement('script');
+    recommendBridge.src = '/assets/recommend-api-bridge.min.js?v=20261001-1';
+    recommendBridge.async = false;
+    document.head.appendChild(recommendBridge);
   }
 })();
