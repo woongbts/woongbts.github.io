@@ -4,3 +4,4 @@ Purpose: download product thumbnails into this repository so customer-facing car
 Retry: parallel localization
 Retry: fast localization
 Retry: search missing images
+Retry: DuckDuckGo image search
