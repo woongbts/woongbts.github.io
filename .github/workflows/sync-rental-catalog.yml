@@ -1,0 +1,50 @@
+name: Sync Woongbi Rental catalog
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/scripts/sync_rental_catalog.py"
+      - ".github/workflows/sync-rental-catalog.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-rental-catalog
+  cancel-in-progress: true
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Import public rental catalog
+        run: python .github/scripts/sync_rental_catalog.py
+      - name: Validate catalog
+        run: |
+          python - <<'PY'
+          import json
+          data=json.load(open("rental/data/products.json",encoding="utf-8"))
+          n=len(data.get("products",[]))
+          print("catalog products:",n)
+          if n < 300:
+              raise SystemExit("Catalog import unexpectedly small")
+          forbidden=("commission","customer_share_rate","share_rate")
+          raw=json.dumps(data,ensure_ascii=False).lower()
+          for word in forbidden:
+              if word in raw:
+                  raise SystemExit("Forbidden internal field leaked: "+word)
+          PY
+      - name: Commit catalog
+        run: |
+          if [ -z "$(git status --porcelain -- rental/data/products.json)" ]; then
+            echo "No catalog changes"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add rental/data/products.json
+          git commit -m "Sync full Woongbi Rental catalog"
+          git push
