@@ -8,21 +8,20 @@
   const brandFilters = document.getElementById('brand-filters');
   const categoryFilter = document.getElementById('category-filter');
   const count = document.getElementById('catalog-count');
+  const moreBtn = document.getElementById('catalog-more');
 
-  const state = { query: '', brand: '', category: '' };
+  const PAGE_SIZE = 24;
+  const state = { query: '', brand: '', category: '', limit: PAGE_SIZE };
   let products = [];
 
   const won = n => Number(n).toLocaleString('ko-KR') + '원';
 
-  function purifierArt() {
-    return '<div class="purifier-art large" aria-hidden="true"><div class="purifier-head"><span>250</span></div><div class="purifier-body"></div><div class="purifier-base"></div></div>';
-  }
-
   function visual(product) {
     if (product.image) {
-      return '<img class="catalog-product-image" src="' + product.image + '" alt="' + product.name + '" loading="lazy" referrerpolicy="no-referrer">';
+      return '<img class="catalog-product-image" src="' + product.image + '" alt="' + product.name + '" loading="lazy" referrerpolicy="no-referrer" onerror="this.hidden=true;this.nextElementSibling.hidden=false">' +
+        '<div class="catalog-image-placeholder" hidden><span class="placeholder-mark">W</span><strong>제품 이미지 준비중</strong><small>' + (product.model || '') + '</small></div>';
     }
-    return '<div class="catalog-image-placeholder" aria-label="제품 이미지 준비중"><span class="placeholder-mark">W</span><strong>제품 이미지 준비중</strong><small>' + (product.model || '') + '</small></div>';
+    return '<div class="catalog-image-placeholder"><span class="placeholder-mark">W</span><strong>제품 이미지 준비중</strong><small>' + (product.model || '') + '</small></div>';
   }
 
   function renderProduct(product) {
@@ -31,7 +30,7 @@
     const giftValues = validOptions.map(o => Number(o.gift)).filter(Number.isFinite);
     const minMonthly = monthlyValues.length ? Math.min(...monthlyValues) : null;
     const maxGift = giftValues.length ? Math.max(...giftValues) : null;
-    const managements = [...new Set(validOptions.map(o => o.managementLabel).filter(Boolean))].join(' · ');
+    const managements = [...new Set(validOptions.map(o => o.managementLabel).filter(Boolean))].slice(0,3).join(' · ');
     const tags = (product.tags || []).slice(0, 5).map(t => '<span>' + t + '</span>').join('');
     const highlights = (product.highlights || []).slice(0, 4).map(t => '<li>' + t + '</li>').join('');
 
@@ -76,18 +75,43 @@
       product.name,
       product.model,
       product.category,
+      product.rawCategory,
       ...(product.tags || [])
     ].join(' '));
     return haystack.includes(normalizeText(state.query));
   }
 
+  function filteredProducts() {
+    return products.filter(matches);
+  }
+
   function render() {
-    const visible = products.filter(matches);
+    const filtered = filteredProducts();
+    const visible = filtered.slice(0, state.limit);
+
     grid.innerHTML = visible.length
       ? visible.map(renderProduct).join('')
       : '<p class="catalog-error">조건에 맞는 상품이 없습니다. 검색어나 필터를 바꿔보세요.</p>';
     grid.removeAttribute('aria-busy');
-    if (count) count.textContent = '현재 ' + visible.length.toLocaleString('ko-KR') + '개 상품';
+
+    if (count) {
+      count.textContent = filtered.length
+        ? '전체 ' + filtered.length.toLocaleString('ko-KR') + '개 중 ' + visible.length.toLocaleString('ko-KR') + '개 표시'
+        : '검색 결과 0개';
+    }
+
+    if (moreBtn) {
+      const remaining = Math.max(0, filtered.length - visible.length);
+      moreBtn.hidden = remaining === 0;
+      moreBtn.textContent = remaining
+        ? '상품 더보기 · ' + Math.min(PAGE_SIZE, remaining).toLocaleString('ko-KR') + '개'
+        : '';
+    }
+  }
+
+  function resetAndRender() {
+    state.limit = PAGE_SIZE;
+    render();
   }
 
   function setupFilters() {
@@ -104,7 +128,7 @@
         btn.addEventListener('click', () => {
           state.brand = btn.dataset.brand || '';
           brandFilters.querySelectorAll('button').forEach(x => x.classList.toggle('active', x === btn));
-          render();
+          resetAndRender();
         });
       });
     }
@@ -114,12 +138,25 @@
         categories.map(category => '<option value="' + category + '">' + category + '</option>').join('');
       categoryFilter.addEventListener('change', () => {
         state.category = categoryFilter.value;
-        render();
+        resetAndRender();
       });
     }
 
     searchInput?.addEventListener('input', () => {
       state.query = searchInput.value;
+      resetAndRender();
+    });
+
+    document.querySelectorAll('[data-category-link]').forEach(link => {
+      link.addEventListener('click', () => {
+        state.category = link.dataset.categoryLink || '';
+        if (categoryFilter) categoryFilter.value = state.category;
+        resetAndRender();
+      });
+    });
+
+    moreBtn?.addEventListener('click', () => {
+      state.limit += PAGE_SIZE;
       render();
     });
   }
@@ -138,5 +175,6 @@
       grid.innerHTML = '<p class="catalog-error">상품 정보를 불러오지 못했습니다. 잠시 후 다시 확인해 주세요.</p>';
       grid.removeAttribute('aria-busy');
       if (count) count.textContent = '';
+      if (moreBtn) moreBtn.hidden = true;
     });
 })();
