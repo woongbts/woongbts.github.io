@@ -337,6 +337,35 @@ def scrape() -> tuple[list[dict], dict]:
     return products, stats
 
 
+def option_signature(option: dict) -> tuple:
+    return (
+        norm_space(option.get("sourceOption")),
+        as_int(option.get("term")) or 0,
+        as_int(option.get("monthly")),
+        norm_space(option.get("managementLabel")),
+    )
+
+
+def carry_forward_gifts(imported: list[dict], current: dict) -> None:
+    current_products = current.get("products") or []
+    by_source = {str(p.get("sourceId")): p for p in current_products if p.get("sourceId")}
+    by_model = {model_key(p.get("model")): p for p in current_products if p.get("model")}
+
+    for product in imported:
+        old = by_source.get(str(product.get("sourceId"))) or by_model.get(model_key(product.get("model")))
+        if not old:
+            continue
+        old_options = {option_signature(o): o for o in (old.get("options") or [])}
+        for option in product.get("options") or []:
+            previous = old_options.get(option_signature(option))
+            if not previous:
+                continue
+            if previous.get("gift") is not None:
+                option["gift"] = previous.get("gift")
+                if previous.get("giftPolicyMonth"):
+                    option["giftPolicyMonth"] = previous.get("giftPolicyMonth")
+
+
 def merge_curated(imported: list[dict], current: dict) -> list[dict]:
     current_products = current.get("products") or []
     curated_by_model = {
@@ -376,6 +405,7 @@ def merge_curated(imported: list[dict], current: dict) -> list[dict]:
 def main():
     current = json.loads(OUT.read_text(encoding="utf-8")) if OUT.exists() else {"products": []}
     imported, stats = scrape()
+    carry_forward_gifts(imported, current)
     products = merge_curated(imported, current)
     payload = {
         "updatedAt": "2026-10-02",
