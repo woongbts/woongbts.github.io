@@ -112,7 +112,14 @@ def infer_category(title: str, current: str) -> str:
 
 def availability_from_title(title: str) -> str:
     t = norm_space(title)
-    if any(k in t for k in ("단종", "접수불가", "판매종료", "품절")):
+    if any(k in t for k in ("접수불가", "판매종료", "품절")):
+        return "inactive"
+    if "단종예정" in t:
+        return "active"
+    # A few products remain orderable while only one named colour is discontinued.
+    if "단종" in t and re.search(r"\([^)]*(?:화이트|블랙|베이지|스카이|그레이|실버|핑크|브라운|색상)[^)]*단종[^)]*\)", t):
+        return "active"
+    if "단종" in t:
         return "inactive"
     return "active"
 
