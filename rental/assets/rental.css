@@ -176,3 +176,19 @@
   .category-grid-all .category small{font-size:.72rem;line-height:1.35}
   .catalog-more{width:100%;min-height:50px;font-size:.92rem}
 }
+
+/* Full rental catalog */
+.category-grid-all{grid-template-columns:repeat(5,minmax(0,1fr))}
+.category-grid-all .category{min-height:126px;transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease}
+.category-grid-all .category:hover{transform:translateY(-2px);border-color:#b7cfcb;box-shadow:0 10px 24px rgba(21,55,59,.07)}
+.category-grid-all .category strong{margin-top:20px}
+.catalog-more-wrap{display:flex;justify-content:center;margin-top:24px}
+.catalog-more{min-width:210px;background:#fff}
+@media(max-width:920px){.category-grid-all{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:560px){
+  .category-grid-all{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:9px}
+  .category-grid-all .category{min-height:114px;padding:15px}
+  .category-grid-all .category strong{margin-top:16px;font-size:1rem}
+  .category-grid-all .category small{font-size:.72rem}
+  .catalog-more{width:100%;min-height:52px;font-size:.94rem}
+}
