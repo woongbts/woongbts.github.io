@@ -15,6 +15,7 @@ from urllib.request import Request, urlopen
 BASE = "https://woongbi.vip-rental.com"
 UA = "Mozilla/5.0 (compatible; WoongbiRentalCatalogSync/2.0)"
 OUT = Path("rental/data/products.json")
+GIFT_MATCHES = Path("rental/data/gift-matches.json")
 PAGE_SIZE = 24
 
 ROOTS = {
@@ -366,6 +367,39 @@ def carry_forward_gifts(imported: list[dict], current: dict) -> None:
                     option["giftPolicyMonth"] = previous.get("giftPolicyMonth")
 
 
+
+
+def apply_sanitized_gift_matches(products: list[dict]) -> dict:
+    """Apply only customer-facing gift amounts from the sanitized match file."""
+    if not GIFT_MATCHES.exists():
+        return {"matchedProducts": 0, "matchedOptions": 0}
+
+    data = json.loads(GIFT_MATCHES.read_text(encoding="utf-8"))
+    matches = data.get("matches") or {}
+    matched_products = 0
+    matched_options = 0
+
+    for product in products:
+        product_matches = matches.get(str(product.get("id") or "")) or {}
+        applied = 0
+        for option in product.get("options") or []:
+            key = str(option.get("key") or "")
+            if key not in product_matches:
+                continue
+            gift = as_int(product_matches.get(key))
+            if gift is None:
+                continue
+            option["gift"] = gift
+            option["giftPolicyMonth"] = data.get("effectiveMonth") or "2026-10"
+            applied += 1
+            matched_options += 1
+        if applied:
+            product["giftStatus"] = "matched"
+            matched_products += 1
+
+    return {"matchedProducts": matched_products, "matchedOptions": matched_options}
+
+
 def merge_curated(imported: list[dict], current: dict) -> list[dict]:
     current_products = current.get("products") or []
     curated_by_model = {
@@ -407,6 +441,7 @@ def main():
     imported, stats = scrape()
     carry_forward_gifts(imported, current)
     products = merge_curated(imported, current)
+    gift_stats = apply_sanitized_gift_matches(products)
     payload = {
         "updatedAt": "2026-10-02",
         "policyMonth": current.get("policyMonth", "2026-10"),
@@ -414,6 +449,7 @@ def main():
         "policySourceLabel": current.get("policySourceLabel", "2026년 10월 렌탈 정책"),
         "catalogSource": "woongbi.vip-rental.com public catalog",
         "catalogStats": stats,
+        "giftMatchStats": gift_stats,
         "products": products,
     }
     OUT.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
