@@ -7,3 +7,4 @@ Retry: search missing images
 Retry: DuckDuckGo image search
 Retry: verified direct image URLs
 Retry: image proxy fallback
+Retry: verified override pages
