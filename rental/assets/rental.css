@@ -160,3 +160,19 @@
   .catalog-info h3{font-size:1.42rem!important}
   .catalog-description{font-size:.96rem!important;font-weight:800}
 }
+
+/* Full rental catalog categories */
+.category-grid-all{grid-template-columns:repeat(5,1fr)}
+.category-grid-all .category{min-height:132px}
+.catalog-more-wrap{display:flex;justify-content:center;margin-top:26px}
+.catalog-more{min-width:220px}
+@media(max-width:980px){
+  .category-grid-all{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:560px){
+  .category-grid-all{grid-template-columns:1fr 1fr!important;gap:9px}
+  .category-grid-all .category{min-height:116px;padding:15px}
+  .category-grid-all .category strong{margin-top:18px;font-size:1rem;line-height:1.25}
+  .category-grid-all .category small{font-size:.72rem;line-height:1.35}
+  .catalog-more{width:100%;min-height:50px;font-size:.92rem}
+}
