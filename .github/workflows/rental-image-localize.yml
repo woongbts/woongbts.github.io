@@ -27,7 +27,7 @@ jobs:
           python - <<'PY'
           import html, io, json, re
           from concurrent.futures import ThreadPoolExecutor, as_completed
-          from urllib.parse import quote, quote_plus
+          from urllib.parse import quote, quote_plus, urljoin
           from pathlib import Path
           import requests
           from PIL import Image, ImageOps
@@ -60,6 +60,34 @@ jobs:
               if getattr(im,'is_animated',False):im.seek(0)
               return im
             except Exception:return None
+
+          def page_image_candidates(session,p):
+            page=str(p.get('imagePageUrl') or '').strip()
+            if not page:return []
+            try:
+              r=session.get(page,headers=headers,timeout=(5,10),allow_redirects=True)
+              if r.status_code!=200:return []
+              raw=html.unescape(r.text)
+              found=[]
+              pats=[
+                r'<meta[^>]+(?:property|name)=["\\\'](?:og:image|twitter:image)["\\\'][^>]+content=["\\\']([^"\\\']+)',
+                r'<meta[^>]+content=["\\\']([^"\\\']+)["\\\'][^>]+(?:property|name)=["\\\'](?:og:image|twitter:image)["\\\']',
+                r'<img[^>]+(?:src|data-src|data-original)=["\\\']([^"\\\']+)',
+              ]
+              model_key=re.sub(r'[^a-z0-9]','',str(p.get('model') or '').lower())
+              for pat in pats:
+                for u in re.findall(pat,raw,re.I):
+                  u=urljoin(page,u)
+                  if not u.startswith('http') or u in found:continue
+                  low=u.lower()
+                  if any(x in low for x in ['logo','icon','banner','sprite','card','event']):continue
+                  found.append(u)
+              def rank(u):
+                key=re.sub(r'[^a-z0-9]','',u.lower())
+                return (2 if model_key and model_key in key else 0)+(1 if any(x in key for x in ['product','goods','item','upload']) else 0)
+              return sorted(found,key=rank,reverse=True)[:20]
+            except Exception:
+              return []
 
           def image_search_candidates(session,p):
             model=str(p.get('model') or '').strip()
@@ -151,6 +179,21 @@ jobs:
               if priority==0 and best is not None:
                 w,h=best.size
                 if .35<=w/h<=2.8 and w>=250 and h>=250:break
+            page_urls=[]
+            if best is None:
+              page_urls=page_image_candidates(session,p)
+              for priority,url in enumerate(page_urls[:14],10):
+                im=fetch_img(session,url,p.get('imagePageUrl') or '')
+                if im is None:
+                  proxy='https://images.weserv.nl/?url='+quote(url,safe='')+'&w=1200&output=jpg&q=88'
+                  im=fetch_img(session,proxy,'https://images.weserv.nl/')
+                if im is None:continue
+                s=score(im,priority)
+                if s>best_score:best=im.copy();best_url=url;best_score=s
+                if best is not None:
+                  w,h=best.size
+                  if .20<=w/h<=5 and w>=240 and h>=200:break
+
             search_urls=[]
             if best is None:
               search_urls=image_search_candidates(session,p)
@@ -166,7 +209,7 @@ jobs:
                   w,h=best.size
                   if .25<=w/h<=4 and w>=300 and h>=220:break
             if best is None:
-              return {'ok':False,'id':pid,'brand':p.get('brand'),'name':p.get('name'),'model':p.get('model'),'sourceUrl':p.get('sourceUrl'),'candidates':cand[:8],'searched':search_urls[:10]}
+              return {'ok':False,'id':pid,'brand':p.get('brand'),'name':p.get('name'),'model':p.get('model'),'sourceUrl':p.get('sourceUrl'),'candidates':cand[:8],'pageImages':page_urls[:10],'searched':search_urls[:10]}
             try:
               best=ImageOps.exif_transpose(best)
               if best.mode not in ('RGB','RGBA'):best=best.convert('RGBA' if 'transparency' in best.info else 'RGB')
