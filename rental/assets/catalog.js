@@ -15,6 +15,11 @@
   let products = [];
 
   const won = n => Number(n).toLocaleString('ko-KR') + '원';
+  const brandLabel = brand => ({
+    'COWAY':'코웨이',
+    'CUCKOO':'쿠쿠',
+    'LG퓨리케어':'LG 퓨리케어'
+  }[brand] || brand || '');
 
   function visual(product) {
     if (product.image) {
@@ -40,7 +45,7 @@
     return `
       <article class="catalog-card">
         <a class="catalog-visual" href="${product.page || '#'}" aria-label="${product.name} 상세보기">
-          <span class="brand-label">${product.brand || ''}</span>
+          <span class="brand-label">${brandLabel(product.brand)}</span>
           ${visual(product)}
         </a>
         <div class="catalog-info">
@@ -129,7 +134,7 @@
     if (brandFilters) {
       brandFilters.innerHTML = [
         '<button type="button" class="active" data-brand="">전체</button>',
-        ...brands.map(brand => '<button type="button" data-brand="' + brand + '">' + brand + '</button>')
+        ...brands.map(brand => '<button type="button" data-brand="' + brand + '">' + brandLabel(brand) + '</button>')
       ].join('');
 
       brandFilters.querySelectorAll('button').forEach(btn => {
@@ -159,6 +164,14 @@
     });
 
     const shortcutLinks = [...document.querySelectorAll('[data-category-link]')];
+    const categoryCounts = products.reduce((acc, product) => {
+      acc[product.category] = (acc[product.category] || 0) + 1;
+      return acc;
+    }, {});
+    shortcutLinks.forEach(link => {
+      link.hidden = !categoryCounts[link.dataset.categoryLink];
+    });
+
     const syncShortcutActive = () => {
       shortcutLinks.forEach(link => link.classList.toggle('active', link.dataset.categoryLink === state.category));
     };
@@ -171,6 +184,8 @@
         resetAndRender();
       });
     });
+
+    syncShortcutActive();
 
     moreBtn?.addEventListener('click', () => {
       state.limit += PAGE_SIZE;
