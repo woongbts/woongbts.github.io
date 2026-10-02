@@ -25,8 +25,9 @@ jobs:
         shell: bash
         run: |
           python - <<'PY'
-          import io, json, re
+          import html, io, json, re
           from concurrent.futures import ThreadPoolExecutor, as_completed
+          from urllib.parse import quote_plus
           from pathlib import Path
           import requests
           from PIL import Image, ImageOps
@@ -60,6 +61,33 @@ jobs:
               return im
             except Exception:return None
 
+          def image_search_candidates(session,p):
+            query=' '.join(str(x or '') for x in [p.get('brand'),p.get('model'),p.get('name')]).strip()
+            if not query:return []
+            try:
+              url='https://www.bing.com/images/search?q='+quote_plus(query)+'&form=HDRSC2&first=1'
+              r=session.get(url,headers=headers,timeout=(4,8))
+              if r.status_code!=200:return []
+              raw=r.text
+              found=[]
+              patterns=[
+                r'murl&quot;:&quot;(https?://.*?)(?:&quot;|")',
+                r'"murl":"(https?:\\/\\/.*?)"',
+              ]
+              for pat in patterns:
+                for m in re.findall(pat,raw,re.I):
+                  u=html.unescape(m).replace('\\/','/')
+                  try:u=bytes(u,'utf-8').decode('unicode_escape')
+                  except Exception:pass
+                  if u.startswith('http') and u not in found:
+                    low=u.lower()
+                    if any(x in low for x in ['logo','icon','banner','sprite']):continue
+                    found.append(u)
+                  if len(found)>=12:return found
+              return found
+            except Exception:
+              return []
+
           def score(im,priority):
             w,h=im.size
             if w<180 or h<180:return -10000
@@ -90,8 +118,19 @@ jobs:
               if priority==0 and best is not None:
                 w,h=best.size
                 if .35<=w/h<=2.8 and w>=250 and h>=250:break
+            search_urls=[]
             if best is None:
-              return {'ok':False,'id':pid,'brand':p.get('brand'),'name':p.get('name'),'model':p.get('model'),'sourceUrl':p.get('sourceUrl'),'candidates':cand[:8]}
+              search_urls=image_search_candidates(session,p)
+              for priority,url in enumerate(search_urls[:10],20):
+                im=fetch_img(session,url,'https://www.bing.com/')
+                if im is None:continue
+                s=score(im,priority)
+                if s>best_score:best=im.copy();best_url=url;best_score=s
+                if best is not None:
+                  w,h=best.size
+                  if .25<=w/h<=4 and w>=300 and h>=220:break
+            if best is None:
+              return {'ok':False,'id':pid,'brand':p.get('brand'),'name':p.get('name'),'model':p.get('model'),'sourceUrl':p.get('sourceUrl'),'candidates':cand[:8],'searched':search_urls[:10]}
             try:
               best=ImageOps.exif_transpose(best)
               if best.mode not in ('RGB','RGBA'):best=best.convert('RGBA' if 'transparency' in best.info else 'RGB')
