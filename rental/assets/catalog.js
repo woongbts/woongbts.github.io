@@ -138,6 +138,9 @@
         categories.map(category => '<option value="' + category + '">' + category + '</option>').join('');
       categoryFilter.addEventListener('change', () => {
         state.category = categoryFilter.value;
+        document.querySelectorAll('[data-category-link]').forEach(link => {
+          link.classList.toggle('active', link.dataset.categoryLink === state.category);
+        });
         resetAndRender();
       });
     }
@@ -147,10 +150,16 @@
       resetAndRender();
     });
 
-    document.querySelectorAll('[data-category-link]').forEach(link => {
+    const shortcutLinks = [...document.querySelectorAll('[data-category-link]')];
+    const syncShortcutActive = () => {
+      shortcutLinks.forEach(link => link.classList.toggle('active', link.dataset.categoryLink === state.category));
+    };
+
+    shortcutLinks.forEach(link => {
       link.addEventListener('click', () => {
         state.category = link.dataset.categoryLink || '';
         if (categoryFilter) categoryFilter.value = state.category;
+        syncShortcutActive();
         resetAndRender();
       });
     });
