@@ -2,12 +2,12 @@
 .top .rental-badge{
   display:inline-flex;
   align-items:center;
-  gap:7px;
+  gap:9px;
   flex:0 0 auto;
-  min-height:44px;
-  padding:5px 8px;
+  min-height:52px;
+  padding:4px 9px;
   border:1px solid #bfd5d2;
-  border-radius:12px;
+  border-radius:13px;
   background:#f7fbfa;
   color:#15373b;
   text-decoration:none;
@@ -15,15 +15,16 @@
   box-shadow:0 5px 14px rgba(16,60,82,.05);
 }
 .top .rental-badge:hover{border-color:#0f766e;background:#eff8f6}
-.top .rental-badge img{display:block;width:34px;height:34px;flex:0 0 auto}
+.top .rental-badge img{display:block;width:44px;height:44px;flex:0 0 auto}
 .top .rental-badge-copy{display:block;white-space:nowrap;text-align:left}
-.top .rental-badge-copy strong{display:block;font-size:.76rem;font-weight:900;letter-spacing:-.03em}
-.top .rental-badge-copy small{display:block;margin-top:3px;color:#6d7f81;font-size:.52rem;font-weight:800;letter-spacing:.04em}
+.top .rental-badge-copy strong{display:block;font-size:1.18rem;font-weight:900;letter-spacing:-.05em}
+.top .rental-badge-copy small{display:block;margin-top:4px;color:#6d7f81;font-size:.58rem;font-weight:800;letter-spacing:.05em}
 
 @media(max-width:1120px) and (min-width:821px){
-  .top .rental-badge{padding:5px}
-  .top .rental-badge-copy{display:none}
-  .top .rental-badge img{width:36px;height:36px}
+  .top .rental-badge{gap:6px;padding:4px 7px}
+  .top .rental-badge img{width:40px;height:40px}
+  .top .rental-badge-copy strong{font-size:1rem}
+  .top .rental-badge-copy small{display:none}
 }
 
 @media(max-width:640px){
@@ -35,38 +36,37 @@
   body:not(.rate-page) .top .rental-badge{
     grid-column:2;
     grid-row:1;
-    width:48px;
     min-height:48px;
-    padding:3px 3px 4px;
-    gap:0;
-    flex-direction:column;
-    justify-content:center;
+    padding:3px 6px;
+    gap:6px;
     border-radius:11px;
   }
-  body:not(.rate-page) .top .rental-badge img{width:29px;height:29px}
-  body:not(.rate-page) .top .rental-badge-copy{display:block;margin-top:1px;text-align:center;line-height:1}
-  body:not(.rate-page) .top .rental-badge-copy strong{font-size:0}
-  body:not(.rate-page) .top .rental-badge-copy strong::after{content:"렌탈";font-size:10px;font-weight:900;letter-spacing:-.04em}
+  body:not(.rate-page) .top .rental-badge img{width:40px;height:40px}
+  body:not(.rate-page) .top .rental-badge-copy{display:block;text-align:left;line-height:1.05}
+  body:not(.rate-page) .top .rental-badge-copy strong{font-size:1.08rem;font-weight:900;letter-spacing:-.05em}
   body:not(.rate-page) .top .rental-badge-copy small{display:none}
   body:not(.rate-page) .top .precon-badge{grid-column:3;grid-row:1}
   body:not(.rate-page) .top .menu{grid-column:1/-1;grid-row:2}
 
   body:not(.rate-page) .top .nav.mobile-menu-ready{
     grid-template-columns:minmax(0,1fr) auto auto auto;
-    gap:6px;
+    gap:5px;
   }
   body:not(.rate-page) .top .mobile-menu-ready .rental-badge{grid-column:2;grid-row:1}
   body:not(.rate-page) .top .mobile-menu-ready .precon-badge{grid-column:3;grid-row:1}
   body:not(.rate-page) .top .mobile-menu-toggle{
     grid-column:4;
     grid-row:1;
-    min-width:68px;
+    min-width:64px;
+    padding-left:7px;
+    padding-right:7px;
   }
 }
 
-@media(max-width:380px){
-  body:not(.rate-page) .top .nav.mobile-menu-ready{gap:5px}
-  body:not(.rate-page) .top .rental-badge{width:44px;min-height:46px}
-  body:not(.rate-page) .top .rental-badge img{width:27px;height:27px}
-  body:not(.rate-page) .top .mobile-menu-toggle{min-width:64px;padding-left:7px;padding-right:7px}
+@media(max-width:390px){
+  body:not(.rate-page) .top .nav.mobile-menu-ready{gap:4px}
+  body:not(.rate-page) .top .rental-badge{gap:4px;padding-left:4px;padding-right:4px}
+  body:not(.rate-page) .top .rental-badge img{width:36px;height:36px}
+  body:not(.rate-page) .top .rental-badge-copy strong{font-size:.96rem}
+  body:not(.rate-page) .top .mobile-menu-toggle{min-width:60px;padding-left:5px;padding-right:5px}
 }
