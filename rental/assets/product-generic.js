@@ -147,11 +147,39 @@
 
     const img = $('#generic-image');
     const art = $('#generic-art');
-    if (product.image) {
-      img.src = product.image;
+    const imageCandidates = [...new Set([
+      product.image,
+      ...((product.detailImages || []).slice(0, 3))
+    ].filter(Boolean))];
+
+    if (imageCandidates.length) {
+      let imageIndex = 0;
       img.alt = product.name;
-      img.hidden = false;
-      art.hidden = true;
+      img.hidden = true;
+      art.hidden = false;
+
+      const tryNextImage = () => {
+        imageIndex += 1;
+        if (imageIndex < imageCandidates.length) {
+          img.src = imageCandidates[imageIndex];
+        } else {
+          img.hidden = true;
+          art.hidden = false;
+          img.removeAttribute('src');
+        }
+      };
+
+      img.addEventListener('load', () => {
+        if (img.naturalWidth > 0) {
+          img.hidden = false;
+          art.hidden = true;
+        } else {
+          tryNextImage();
+        }
+      });
+
+      img.addEventListener('error', tryNextImage);
+      img.src = imageCandidates[0];
     }
 
     if (product.sourceUrl) {
