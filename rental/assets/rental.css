@@ -145,3 +145,18 @@
   .generic-highlight-list{grid-template-columns:1fr}
   .generic-highlight-list span{font-size:.9rem}
 }
+
+/* Compact missing-image treatment */
+.catalog-image-placeholder{height:180px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;border:1px dashed #cfdcda;border-radius:18px;background:linear-gradient(145deg,#fbfcfb,#f3f7f6);color:#547072;text-align:center}
+.catalog-image-placeholder .placeholder-mark{display:grid;place-items:center;width:52px;height:52px;border-radius:16px;background:var(--ink);color:#fff;font-size:1.2rem;font-weight:1000}
+.catalog-image-placeholder strong{font-size:.92rem}
+.catalog-image-placeholder small{font-size:.76rem;color:#8a999a}
+@media(max-width:560px){
+  .catalog-visual{height:190px!important;min-height:190px!important;max-height:190px!important;padding:18px 20px!important}
+  .catalog-image-placeholder{height:122px;width:100%;max-width:270px;margin:auto}
+  .catalog-image-placeholder .placeholder-mark{width:44px;height:44px;border-radius:14px;font-size:1rem}
+  .catalog-image-placeholder strong{font-size:.88rem}
+  .catalog-info{padding-top:20px!important}
+  .catalog-info h3{font-size:1.42rem!important}
+  .catalog-description{font-size:.96rem!important;font-weight:800}
+}
