@@ -185,7 +185,7 @@
     })
     .then(data => {
       products = Array.isArray(data.products)
-        ? data.products.filter(p => !/접수불가/.test(String(p.name || '')))
+        ? data.products.filter(p => p.availability !== 'inactive' && !/접수불가/.test(String(p.name || '')))
         : [];
       setupFilters();
       render();
