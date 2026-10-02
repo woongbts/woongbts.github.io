@@ -121,6 +121,16 @@
       $('#generic-source-note').textContent = '상품 기본정보는 기존 웅비렌탈 판매자료와 2026년 10월 정책을 기준으로 정리했습니다.';
     }
 
+    const detailImages = (product.detailImages || []).filter(Boolean).slice(0, 24);
+    const detailSection = $('#generic-source-detail');
+    const detailBox = $('#generic-detail-images');
+    if (detailSection && detailBox && detailImages.length) {
+      detailBox.innerHTML = detailImages.map((src, index) =>
+        '<img src="' + src + '" alt="' + product.name + ' 상세 이미지 ' + (index + 1) + '" loading="lazy" referrerpolicy="no-referrer">'
+      ).join('');
+      detailSection.hidden = false;
+    }
+
     const first = (product.options || [])[0];
     if (!first) throw new Error('no options');
     state.management = first.management;
