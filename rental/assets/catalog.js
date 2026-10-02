@@ -27,7 +27,10 @@
   function renderProduct(product) {
     const validOptions = Array.isArray(product.options) ? product.options.filter(o => Number.isFinite(Number(o.monthly))) : [];
     const monthlyValues = validOptions.map(o => Number(o.monthly));
-    const giftValues = validOptions.map(o => Number(o.gift)).filter(Number.isFinite);
+    const giftValues = validOptions
+      .filter(o => o.gift !== null && o.gift !== undefined && o.gift !== '')
+      .map(o => Number(o.gift))
+      .filter(Number.isFinite);
     const minMonthly = monthlyValues.length ? Math.min(...monthlyValues) : null;
     const maxGift = giftValues.length ? Math.max(...giftValues) : null;
     const managements = [...new Set(validOptions.map(o => o.managementLabel).filter(Boolean))].slice(0,3).join(' · ');
