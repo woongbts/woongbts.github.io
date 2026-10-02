@@ -39,6 +39,16 @@ jobs:
           out_dir.mkdir(parents=True,exist_ok=True)
           data=json.loads(data_path.read_text(encoding='utf-8'))
           products=data.get('products',[])
+          override_path=root/'rental/data/image-overrides.json'
+          if override_path.exists():
+            overrides=json.loads(override_path.read_text(encoding='utf-8'))
+            for p in products:
+              ov=overrides.get(str(p.get('id') or ''),{})
+              if ov.get('imagePageUrl'):p['imagePageUrl']=ov['imagePageUrl']
+              if ov.get('image'):
+                p.setdefault('imageSourceOriginal',p.get('image'))
+                p['imageSearchSource']=ov['image']
+                p['image']=ov['image']
           headers={
             'User-Agent':'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 Chrome/128 Safari/537.36',
             'Accept':'image/avif,image/webp,image/apng,image/*,*/*;q=0.8',
@@ -252,7 +262,7 @@ jobs:
         run: |
           git config user.name "woongbi-image-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add rental/data/products.json rental/data/image-sync-report.json rental/assets/product-images
+          git add rental/data/products.json rental/data/image-sync-report.json rental/assets/product-images rental/data/image-overrides.json
           if git diff --cached --quiet; then exit 0; fi
           git commit -m "Localize rental product images"
           git pull --rebase origin main
