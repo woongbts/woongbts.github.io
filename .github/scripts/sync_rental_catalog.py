@@ -88,6 +88,34 @@ def normalize_category(label: str) -> str:
     return CATEGORY_MAP.get(label, label or "기타")
 
 
+def infer_category(title: str, current: str) -> str:
+    if current and current != "기타":
+        return current
+    t = norm_space(title)
+    rules = [
+        ("정수기", ["정수기", "제빙기", "정수"]),
+        ("공기청정기", ["공기청정", "제습기"]),
+        ("비데·연수기", ["비데", "연수기"]),
+        ("매트리스·프레임", ["매트리스", "프레임", "침대", "파운데이션"]),
+        ("세탁·건조·의류관리", ["세탁기", "건조기", "스타일러", "에어드레서", "의류관리"]),
+        ("냉장고·김치냉장고", ["김치냉장고", "냉장고"]),
+        ("에어컨·청소기", ["에어컨", "청소기"]),
+        ("안마의자", ["안마의자", "안마"]),
+        ("주방가전", ["식기세척", "전기레인지", "인덕션", "오븐", "커피머신", "전자레인지"]),
+    ]
+    for category, keywords in rules:
+        if any(k in t for k in keywords):
+            return category
+    return current or "기타"
+
+
+def availability_from_title(title: str) -> str:
+    t = norm_space(title)
+    if any(k in t for k in ("단종", "접수불가", "판매종료", "품절")):
+        return "inactive"
+    return "active"
+
+
 def clean_title(title: str) -> str:
     title = norm_space(title)
     return re.sub(r"^\[[^\]]+\]\s*", "", title).strip()
@@ -268,6 +296,8 @@ def scrape() -> tuple[list[dict], dict]:
             title = clean_title(item.get("title"))
             model = norm_space(item.get("item_name"))
             category = submap.get(str(item.get("cate_id2")), "기타")
+            category = infer_category(title, category)
+            availability = availability_from_title(title)
             options = make_options(item)
             if not title or not options:
                 continue
@@ -299,6 +329,7 @@ def scrape() -> tuple[list[dict], dict]:
                 "detailImages": detail_images,
                 "options": options,
                 "sourceKind": "clover-public",
+                "availability": availability,
             })
             added += 1
         stats[brand] = {"sourceTotal": total, "imported": added, "pages": pages}
