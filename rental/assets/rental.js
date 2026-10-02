@@ -1,17 +1,14 @@
 (() => {
   'use strict';
 
-  const variants = {
-    'visit-36': { monthly: 51900, card: 38900, gift: 205000, care: '방문형 4개월', label: '방문관리 · 36개월' },
-    'visit-60': { monthly: 44900, card: 31900, gift: 280000, care: '방문형 4개월', label: '방문관리 · 60개월' },
-    'self-36':  { monthly: 48900, card: 35900, gift: 190000, care: '셀프형 12개월', label: '셀프관리 · 36개월' },
-    'self-60':  { monthly: 42900, card: 29900, gift: 265000, care: '셀프형 12개월', label: '셀프관리 · 60개월' }
-  };
-
-  const panel = document.querySelector('[data-product="cp-aqs100ewh"]');
+  const panel = document.querySelector('[data-product]');
   if (!panel) return;
 
-  const state = { management: 'self', term: '60' };
+  const productId = panel.dataset.product;
+  const defaultOptionKey = panel.dataset.defaultOption || '';
+  const managementBox = panel.querySelector('[data-selector="management"]');
+  const termBox = panel.querySelector('[data-selector="term"]');
+
   const monthly = document.getElementById('monthly-fee');
   const card = document.getElementById('card-fee');
   const gift = document.getElementById('gift-fee');
@@ -22,42 +19,99 @@
   const stickySelection = document.getElementById('sticky-selection');
 
   const won = n => Number(n).toLocaleString('ko-KR') + '원';
+  let product = null;
+  let state = { management: '', term: '' };
 
-  function render() {
-    const key = state.management + '-' + state.term;
-    const v = variants[key];
-    if (!v) return;
-    monthly.textContent = won(v.monthly);
-    card.textContent = won(v.card);
-    gift.textContent = won(v.gift);
-    care.textContent = v.care;
-    if (modalCard) modalCard.textContent = '월 ' + won(v.card);
-    if (stickyMonthly) stickyMonthly.textContent = won(v.monthly);
-    if (stickyGift) stickyGift.textContent = won(v.gift);
-    if (stickySelection) stickySelection.textContent = v.label;
+  function currentOptions() {
+    return product.options.filter(o => o.management === state.management);
+  }
 
-    panel.querySelectorAll('[data-selector="management"] button').forEach(btn => {
-      btn.classList.toggle('active', btn.dataset.value === state.management);
+  function renderManagementButtons() {
+    const unique = [];
+    product.options.forEach(o => {
+      if (!unique.some(x => x.value === o.management)) {
+        unique.push({ value:o.management, label:o.managementLabel });
+      }
     });
-    panel.querySelectorAll('[data-selector="term"] button').forEach(btn => {
-      btn.classList.toggle('active', btn.dataset.value === state.term);
+    managementBox.innerHTML = unique.map(x =>
+      '<button type="button" data-value="'+x.value+'">'+x.label+'</button>'
+    ).join('');
+    managementBox.classList.toggle('single', unique.length === 1);
+
+    managementBox.querySelectorAll('button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        state.management = btn.dataset.value;
+        const options = currentOptions();
+        if (!options.some(o => String(o.term) === String(state.term))) {
+          state.term = String(options[0].term);
+        }
+        render();
+      });
     });
   }
 
-  panel.querySelectorAll('[data-selector] button').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const group = btn.closest('[data-selector]').dataset.selector;
-      state[group] = btn.dataset.value;
-      render();
-    });
-  });
+  function renderTermButtons() {
+    const terms = [...new Set(currentOptions().map(o => String(o.term)))];
+    termBox.innerHTML = terms.map(term =>
+      '<button type="button" data-value="'+term+'">'+term+'개월</button>'
+    ).join('');
+    termBox.classList.toggle('single', terms.length === 1);
 
-  document.querySelectorAll('[data-preset-management]').forEach(link => {
-    link.addEventListener('click', () => {
-      state.management = link.dataset.presetManagement;
-      render();
+    termBox.querySelectorAll('button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        state.term = btn.dataset.value;
+        render();
+      });
     });
-  });
+  }
+
+  function render() {
+    renderTermButtons();
+    const variant = product.options.find(o =>
+      o.management === state.management && String(o.term) === String(state.term)
+    );
+    if (!variant) return;
+
+    if (monthly) monthly.textContent = won(variant.monthly);
+    if (card) card.textContent = won(variant.card);
+    if (gift) gift.textContent = won(variant.gift);
+    if (care) care.textContent = variant.care;
+    if (modalCard) modalCard.textContent = '월 ' + won(variant.card);
+    if (stickyMonthly) stickyMonthly.textContent = won(variant.monthly);
+    if (stickyGift) stickyGift.textContent = won(variant.gift);
+    if (stickySelection) stickySelection.textContent = variant.managementLabel + ' · ' + variant.term + '개월';
+
+    managementBox.querySelectorAll('button').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.value === state.management);
+    });
+    termBox.querySelectorAll('button').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.value === String(state.term));
+    });
+  }
+
+  function initializeProduct(data) {
+    product = data.products.find(p => p.id === productId);
+    if (!product || !product.options.length) throw new Error('product not found');
+
+    const preferred = product.options.find(o => o.key === defaultOptionKey) || product.options[0];
+    state = { management: preferred.management, term: String(preferred.term) };
+
+    renderManagementButtons();
+    render();
+
+    document.querySelectorAll('[data-preset-management]').forEach(link => {
+      link.addEventListener('click', () => {
+        const target = link.dataset.presetManagement;
+        if (!product.options.some(o => o.management === target)) return;
+        state.management = target;
+        const options = currentOptions();
+        if (!options.some(o => String(o.term) === String(state.term))) {
+          state.term = String(options[0].term);
+        }
+        render();
+      });
+    });
+  }
 
   const modal = document.getElementById('card-modal');
   const openBtn = document.getElementById('card-info-btn');
@@ -80,5 +134,14 @@
     if (e.key === 'Escape') closeModal();
   });
 
-  render();
+  fetch('data/products.json', {cache:'no-store'})
+    .then(r => {
+      if (!r.ok) throw new Error('product data fetch failed');
+      return r.json();
+    })
+    .then(initializeProduct)
+    .catch(() => {
+      const notice = panel.querySelector('.notice-box p');
+      if (notice) notice.textContent = '상품 정보를 불러오지 못했습니다. 최신 조건은 상담으로 확인해 주세요.';
+    });
 })();
