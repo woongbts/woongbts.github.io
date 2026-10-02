@@ -62,31 +62,61 @@ jobs:
             except Exception:return None
 
           def image_search_candidates(session,p):
-            query=' '.join(str(x or '') for x in [p.get('brand'),p.get('model'),p.get('name')]).strip()
+            model=str(p.get('model') or '').strip()
+            brand=str(p.get('brand') or '').strip()
+            name=str(p.get('name') or '').strip()
+            query=' '.join(x for x in [model,brand,name] if x).strip()
             if not query:return []
+            found=[]
+
+            # DuckDuckGo image JSON is more stable than scraping rendered image pages.
+            try:
+              home=session.get('https://duckduckgo.com/',params={'q':query},headers=headers,timeout=(4,8))
+              m=re.search(r'vqd=["\\\']?([0-9-]+)',home.text)
+              if m:
+                vqd=m.group(1)
+                ih=dict(headers);ih['Referer']='https://duckduckgo.com/'
+                rr=session.get('https://duckduckgo.com/i.js',params={'l':'kr-kr','o':'json','q':query,'vqd':vqd,'f':',,,,','p':'1'},headers=ih,timeout=(4,10))
+                if rr.status_code==200:
+                  items=rr.json().get('results',[])
+                  model_key=re.sub(r'[^a-z0-9]','',model.lower())
+                  def rank(item):
+                    title=str(item.get('title') or '')+' '+str(item.get('url') or '')
+                    title_key=re.sub(r'[^a-z0-9]','',title.lower())
+                    return (1 if model_key and model_key in title_key else 0)
+                  items=sorted(items,key=rank,reverse=True)
+                  for item in items:
+                    u=str(item.get('image') or '')
+                    if u.startswith('http') and u not in found:
+                      low=u.lower()
+                      if any(x in low for x in ['logo','icon','banner','sprite']):continue
+                      found.append(u)
+                    if len(found)>=14:return found
+            except Exception:
+              pass
+
+            # Fallback: Bing image metadata embedded in result HTML.
             try:
               url='https://www.bing.com/images/search?q='+quote_plus(query)+'&form=HDRSC2&first=1'
               r=session.get(url,headers=headers,timeout=(4,8))
-              if r.status_code!=200:return []
               raw=r.text
-              found=[]
               patterns=[
-                r'murl&quot;:&quot;(https?://.*?)(?:&quot;|")',
+                r'murl(?:&quot;|")?\s*:\s*(?:&quot;|")?(https?[^"&]+)',
                 r'"murl":"(https?:\\/\\/.*?)"',
               ]
               for pat in patterns:
-                for m in re.findall(pat,raw,re.I):
-                  u=html.unescape(m).replace('\\/','/')
+                for mm in re.findall(pat,raw,re.I):
+                  u=html.unescape(mm).replace('\\/','/')
                   try:u=bytes(u,'utf-8').decode('unicode_escape')
                   except Exception:pass
                   if u.startswith('http') and u not in found:
                     low=u.lower()
                     if any(x in low for x in ['logo','icon','banner','sprite']):continue
                     found.append(u)
-                  if len(found)>=12:return found
-              return found
+                  if len(found)>=14:return found
             except Exception:
-              return []
+              pass
+            return found
 
           def score(im,priority):
             w,h=im.size
