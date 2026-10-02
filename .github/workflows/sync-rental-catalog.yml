@@ -6,6 +6,7 @@ on:
     branches: [main]
     paths:
       - ".github/scripts/sync_rental_catalog.py"
+      - "rental/data/gift-matches.json"
       - ".github/workflows/sync-rental-catalog.yml"
 
 permissions:
