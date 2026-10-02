@@ -1,0 +1,31 @@
+name: Probe Clover catalog source
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/scripts/probe_clover.py"
+      - ".github/workflows/probe-clover.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: probe-clover
+  cancel-in-progress: true
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python .github/scripts/probe_clover.py
+      - name: Commit probe
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .github/tmp/clover-probe.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Refresh Clover probe"
+          git push
