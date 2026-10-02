@@ -30,7 +30,7 @@
     "imagePageUrl": "https://ib.cowaymall.co.kr/shop/400086"
   },
   "clover-674": {
-    "imagePageUrl": "https://main.cowaymall.co.kr/shop/200010"
+    "imagePageUrl": "https://www.coway-on.kr/user/product_detail?category_no=20&product_no=201911-0112"
   },
   "clover-436": {
     "imagePageUrl": "https://thefirst.cowaymall.co.kr/shop/200011"
@@ -86,10 +86,11 @@
     "imagePageUrl": "https://ruhensus.com/whp-3900/"
   },
   "clover-2093": {
-    "imagePageUrl": "https://www.ruhens.co.kr/product/view.php?PNO=109"
+    "imagePageUrl": "https://www.ruhens.co.kr/product/view.php?PNO=109",
+    "image": "https://www.ruhens.co.kr/FileData/product/20241015112708670dd2fc8388f.png"
   },
   "clover-1752": {
-    "imagePageUrl": "https://www.water25.kr/product/product_view.htm?idx=17309&product_category=01040000"
+    "imagePageUrl": "https://ruhens.co.kr/product/view.php?PNO=20"
   },
   "clover-1753": {
     "imagePageUrl": "https://www.ruhens.co.kr/product/view.php?PNO=19"
@@ -105,5 +106,24 @@
   },
   "clover-2034": {
     "imagePageUrl": "https://m.billigo.kr/shop/view.php?ca_id=&index_no=4861"
+  },
+  "clover-1888": {
+    "imagePageUrl": "https://m.xn--o39at6k1oeg4tvkk6gf.com/model/view.php?ca_id=003010&index_no=27199"
+  },
+  "clover-257": {
+    "imagePageUrl": "https://www.hyundairentalmall.com/shop/largeimage.php?ca_id=4040&it_id=1546586320&no=1"
+  },
+  "clover-271": {
+    "imagePageUrl": "https://test1.rental-shop.net/html/dh_product/prod_list/?cate_no=5-133-386"
+  },
+  "clover-254": {
+    "imagePageUrl": "https://www.hyundai-rental.co.kr/user/product_detail?product_no=202004-0234"
+  },
+  "clover-2099": {
+    "imagePageUrl": "https://www.honeyrental.kr/product/%EC%BF%A0%EC%BF%A0-%EB%83%89%EC%98%A8%EC%A0%95%EC%88%98%EA%B8%B0-%EB%A0%8C%ED%83%88-cp-f603-%EB%AF%B8%EB%84%A4%EB%9E%84-%EC%9B%8C%ED%84%B0-%EB%93%B1%EB%A1%9D%EB%B9%84%C2%B7%EC%84%A4%EC%B9%98%EB%B9%84-%EB%A9%B4%EC%A0%9C-%EC%95%BD%EC%A0%95356%EB%85%84/2925/"
+  },
+  "clover-2037": {
+    "imagePageUrl": "https://the-rental.kr/shop_view/?idx=4085",
+    "image": "https://cdn.imweb.me/thumbnail/20230501/4d2c9ff7d3a08.jpg"
   }
 }
