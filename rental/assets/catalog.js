@@ -22,7 +22,7 @@
     if (product.image) {
       return '<img class="catalog-product-image" src="' + product.image + '" alt="' + product.name + '" loading="lazy" referrerpolicy="no-referrer">';
     }
-    return purifierArt();
+    return '<div class="catalog-image-placeholder" aria-label="제품 이미지 준비중"><span class="placeholder-mark">W</span><strong>제품 이미지 준비중</strong><small>' + (product.model || '') + '</small></div>';
   }
 
   function renderProduct(product) {
