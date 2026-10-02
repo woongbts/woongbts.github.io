@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="description" content="웅비렌탈 - 정수기·생활가전 렌탈 조건과 월요금, 사은품을 쉽고 깔끔하게 비교하세요.">
   <title>웅비렌탈 | 렌탈도 싸면서 깔끔하게</title>
-  <link rel="stylesheet" href="assets/rental.css?v=20261002-11">
+  <link rel="stylesheet" href="assets/rental.css?v=20261002-12">
   <style id="catalog-mobile-critical">
     @media (max-width:560px){
       .catalog-card{display:block!important}
@@ -89,23 +89,29 @@
         <p class="eyebrow dark">제품 카테고리</p>
         <div class="section-title-row">
           <h2>필요한 렌탈 제품부터 골라보세요.</h2>
-          <p>1차 버전은 정수기부터 시작하고, 이후 카테고리를 순차 확대합니다.</p>
+          <p>정수기·공기청정기·비데부터 생활가전과 매트리스까지 한곳에서 찾아볼 수 있습니다.</p>
         </div>
-        <div class="category-grid">
-          <a class="category active" href="#products"><span>01</span><strong>정수기</strong><small>얼음 · 냉온 · 직수</small></a>
-          <div class="category soon"><span>02</span><strong>공기청정기</strong><small>준비 중</small></div>
-          <div class="category soon"><span>03</span><strong>비데</strong><small>준비 중</small></div>
-          <div class="category soon"><span>04</span><strong>생활가전</strong><small>준비 중</small></div>
+        <div class="category-grid category-grid-all">
+          <a class="category active" href="#products" data-category-link="정수기"><span>01</span><strong>정수기</strong><small>얼음 · 냉온 · 직수</small></a>
+          <a class="category" href="#products" data-category-link="공기청정기"><span>02</span><strong>공기청정기</strong><small>청정 · 제습</small></a>
+          <a class="category" href="#products" data-category-link="비데·연수기"><span>03</span><strong>비데·연수기</strong><small>비데 · 연수</small></a>
+          <a class="category" href="#products" data-category-link="주방가전"><span>04</span><strong>주방가전</strong><small>식기세척 · 조리</small></a>
+          <a class="category" href="#products" data-category-link="생활가전"><span>05</span><strong>생활가전</strong><small>다양한 생활가전</small></a>
+          <a class="category" href="#products" data-category-link="세탁·건조·의류관리"><span>06</span><strong>세탁·건조</strong><small>세탁 · 건조 · 의류관리</small></a>
+          <a class="category" href="#products" data-category-link="냉장고·김치냉장고"><span>07</span><strong>냉장고</strong><small>냉장 · 김치냉장고</small></a>
+          <a class="category" href="#products" data-category-link="에어컨·청소기"><span>08</span><strong>에어컨·청소기</strong><small>냉방 · 청소</small></a>
+          <a class="category" href="#products" data-category-link="안마의자"><span>09</span><strong>안마의자</strong><small>안마 · 휴식</small></a>
+          <a class="category" href="#products" data-category-link="매트리스·프레임"><span>10</span><strong>매트리스</strong><small>매트리스 · 프레임</small></a>
         </div>
       </div>
     </section>
 
     <section class="section tint" id="products">
       <div class="wrap">
-        <p class="eyebrow dark">정수기</p>
+        <p class="eyebrow dark">렌탈 상품 전체</p>
         <div class="section-title-row">
-          <h2>조건을 바꾸면 금액도 같이 바뀝니다.</h2>
-          <p>제품별 관리방식과 계약기간에 따라 월요금과 사은품이 달라질 수 있습니다.</p>
+          <h2>웅비렌탈 상품을 브랜드·품목별로 찾아보세요.</h2>
+          <p>기존 웅비렌탈 공개 카탈로그를 기준으로 상품을 모았으며, 월요금과 사은품은 확인된 조건부터 순차 반영합니다.</p>
         </div>
 
         <div class="catalog-tools" aria-label="상품 검색 및 필터">
@@ -122,6 +128,7 @@
           <p id="catalog-count" class="catalog-count" aria-live="polite"></p>
         </div>
         <div id="product-grid" class="catalog-grid" aria-busy="true"><p class="catalog-loading">상품 정보를 불러오는 중입니다.</p></div>
+        <div class="catalog-more-wrap"><button id="catalog-more" class="btn ghost catalog-more" type="button" hidden>상품 더보기</button></div>
       </div>
     </section>
 
@@ -159,6 +166,6 @@
     </div>
     <div class="wrap footer-note">상품·요금·프로모션·제휴카드·사은품 조건은 변경될 수 있으며 최종 접수 전 상담을 통해 확인합니다.</div>
   </footer>
-  <script src="assets/catalog.js?v=20261002-5" defer></script>
+  <script src="assets/catalog.js?v=20261002-6" defer></script>
 </body>
 </html>
