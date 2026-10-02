@@ -17,6 +17,7 @@
   const stickyMonthly = document.getElementById('sticky-monthly');
   const stickyGift = document.getElementById('sticky-gift');
   const stickySelection = document.getElementById('sticky-selection');
+  const cardWrap = card ? card.closest('.quote-card') : null;
 
   const won = n => Number(n).toLocaleString('ko-KR') + '원';
   let product = null;
@@ -73,10 +74,12 @@
     if (!variant) return;
 
     if (monthly) monthly.textContent = won(variant.monthly);
-    if (card) card.textContent = won(variant.card);
+    const hasCard = variant.card !== null && variant.card !== undefined && Number.isFinite(Number(variant.card));
+    if (cardWrap) cardWrap.hidden = !hasCard;
+    if (card && hasCard) card.textContent = won(variant.card);
     if (gift) gift.textContent = won(variant.gift);
     if (care) care.textContent = variant.care;
-    if (modalCard) modalCard.textContent = '월 ' + won(variant.card);
+    if (modalCard && hasCard) modalCard.textContent = '월 ' + won(variant.card);
     if (stickyMonthly) stickyMonthly.textContent = won(variant.monthly);
     if (stickyGift) stickyGift.textContent = won(variant.gift);
     if (stickySelection) stickySelection.textContent = variant.managementLabel + ' · ' + variant.term + '개월';
