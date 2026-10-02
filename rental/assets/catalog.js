@@ -179,7 +179,9 @@
       return r.json();
     })
     .then(data => {
-      products = Array.isArray(data.products) ? data.products : [];
+      products = Array.isArray(data.products)
+        ? data.products.filter(p => !/접수불가/.test(String(p.name || '')))
+        : [];
       setupFilters();
       render();
     })
