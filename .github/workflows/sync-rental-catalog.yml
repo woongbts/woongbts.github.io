@@ -47,4 +47,5 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add rental/data/products.json
           git commit -m "Sync full Woongbi Rental catalog"
+          git pull --rebase origin main
           git push
