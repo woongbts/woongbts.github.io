@@ -90,34 +90,94 @@
         "직수",
         "7인치 디스플레이"
       ],
-      "promo": "동시구매 10% · 추가결합 5% 할인 안내",
+      "promo": "2026년 10월 정책 기준 · 동시구매/기존결합 할인 상담 확인",
       "cardNote": "제휴카드 적용 예시",
       "common": {
         "initialCost": "면제 표시",
         "ownership": "계약기간(60/72개월) 만료 후 소유권 이전 안내",
-        "requiredUse": "36/60/72개월 안내",
-        "managementCycle": "2개월 / 4개월 선택 안내"
+        "requiredUse": "36/60/72/84개월 안내",
+        "managementCycle": "방문 2개월 / 4개월 선택"
       },
       "options": [
         {
-          "key": "visit-36",
-          "management": "visit",
-          "managementLabel": "방문관리",
+          "key": "visit2-36",
+          "management": "visit2",
+          "managementLabel": "방문관리 2개월",
           "term": 36,
-          "monthly": 61900,
-          "card": 46900,
-          "gift": 220000,
-          "care": "방문관리 · 2/4개월 선택"
+          "monthly": 64900,
+          "card": null,
+          "gift": 230000,
+          "care": "방문관리 · 2개월"
         },
         {
-          "key": "visit-60",
-          "management": "visit",
-          "managementLabel": "방문관리",
+          "key": "visit2-60",
+          "management": "visit2",
+          "managementLabel": "방문관리 2개월",
+          "term": 60,
+          "monthly": 61900,
+          "card": null,
+          "gift": 260000,
+          "care": "방문관리 · 2개월"
+        },
+        {
+          "key": "visit2-72",
+          "management": "visit2",
+          "managementLabel": "방문관리 2개월",
+          "term": 72,
+          "monthly": 59900,
+          "card": null,
+          "gift": 300000,
+          "care": "방문관리 · 2개월"
+        },
+        {
+          "key": "visit2-84",
+          "management": "visit2",
+          "managementLabel": "방문관리 2개월",
+          "term": 84,
+          "monthly": 57900,
+          "card": null,
+          "gift": 300000,
+          "care": "방문관리 · 2개월"
+        },
+        {
+          "key": "visit4-36",
+          "management": "visit4",
+          "managementLabel": "방문관리 4개월",
+          "term": 36,
+          "monthly": 61900,
+          "card": null,
+          "gift": 220000,
+          "care": "방문관리 · 4개월"
+        },
+        {
+          "key": "visit4-60",
+          "management": "visit4",
+          "managementLabel": "방문관리 4개월",
           "term": 60,
           "monthly": 57900,
-          "card": 42900,
+          "card": null,
           "gift": 250000,
-          "care": "방문관리 · 2/4개월 선택"
+          "care": "방문관리 · 4개월"
+        },
+        {
+          "key": "visit4-72",
+          "management": "visit4",
+          "managementLabel": "방문관리 4개월",
+          "term": 72,
+          "monthly": 55900,
+          "card": null,
+          "gift": 290000,
+          "care": "방문관리 · 4개월"
+        },
+        {
+          "key": "visit4-84",
+          "management": "visit4",
+          "managementLabel": "방문관리 4개월",
+          "term": 84,
+          "monthly": 53900,
+          "card": null,
+          "gift": 290000,
+          "care": "방문관리 · 4개월"
         }
       ],
       "sourceUrl": "https://woongbi.vip-rental.com/categ/1059/2261",
@@ -508,6 +568,230 @@
         "직수형"
       ],
       "shortDescription": "얼음 사용량이 많은 가정에 맞는 대용량형."
+    },
+    {
+      "id": "chp-7220n",
+      "brand": "COWAY",
+      "name": "코웨이 아이콘 정수기3 냉온정",
+      "model": "CHP-7220N",
+      "category": "정수기",
+      "color": "다양한 색상",
+      "page": "product.html?id=chp-7220n",
+      "image": "https://miso-customer-public.s3.ap-northeast-2.amazonaws.com/rental_img/20240322_purifier/COWAY/COWAYP29/COWAYP29_MAIN_5.png",
+      "imageSource": "https://miso.kr/booking/rental/water_purifier/CHP-7220N",
+      "sourceUrl": "https://cowaystory.cowaymall.co.kr/shop/100059",
+      "tags": [
+        "냉온정수기",
+        "직수",
+        "초소형",
+        "자가관리"
+      ],
+      "promo": "2026년 10월 정책 기준 · 타사보상 할인 조건 별도",
+      "shortDescription": "16cm급 슬림한 크기에 냉수·온수·정수 기능을 담은 아이콘 정수기3.",
+      "highlights": [
+        "냉수·온수·정수",
+        "초소형 슬림 디자인",
+        "방문관리 / 자가관리",
+        "타사보상 할인 가능"
+      ],
+      "common": {
+        "requiredUse": "36/60/72/84개월",
+        "managementCycle": "방문 4개월 / 자가관리"
+      },
+      "options": [
+        {
+          "key": "visit-36",
+          "management": "visit",
+          "managementLabel": "방문관리",
+          "term": 36,
+          "monthly": 38900,
+          "card": null,
+          "gift": 205000,
+          "care": "방문관리 · 4개월"
+        },
+        {
+          "key": "visit-60",
+          "management": "visit",
+          "managementLabel": "방문관리",
+          "term": 60,
+          "monthly": 35900,
+          "card": null,
+          "gift": 250000,
+          "care": "방문관리 · 4개월"
+        },
+        {
+          "key": "visit-72",
+          "management": "visit",
+          "managementLabel": "방문관리",
+          "term": 72,
+          "monthly": 33900,
+          "card": null,
+          "gift": 285000,
+          "care": "방문관리 · 4개월"
+        },
+        {
+          "key": "visit-84",
+          "management": "visit",
+          "managementLabel": "방문관리",
+          "term": 84,
+          "monthly": 31900,
+          "card": null,
+          "gift": 285000,
+          "care": "방문관리 · 4개월"
+        },
+        {
+          "key": "self-36",
+          "management": "self",
+          "managementLabel": "자가관리",
+          "term": 36,
+          "monthly": 35900,
+          "card": null,
+          "gift": 190000,
+          "care": "자가관리"
+        },
+        {
+          "key": "self-60",
+          "management": "self",
+          "managementLabel": "자가관리",
+          "term": 60,
+          "monthly": 32900,
+          "card": null,
+          "gift": 235000,
+          "care": "자가관리"
+        },
+        {
+          "key": "self-72",
+          "management": "self",
+          "managementLabel": "자가관리",
+          "term": 72,
+          "monthly": 30900,
+          "card": null,
+          "gift": 265000,
+          "care": "자가관리"
+        },
+        {
+          "key": "self-84",
+          "management": "self",
+          "managementLabel": "자가관리",
+          "term": 84,
+          "monthly": 28900,
+          "card": null,
+          "gift": 265000,
+          "care": "자가관리"
+        }
+      ]
+    },
+    {
+      "id": "cp-7211n-v2",
+      "brand": "COWAY",
+      "name": "코웨이 아이콘2 냉정수기",
+      "model": "CP-7211N_V2",
+      "category": "정수기",
+      "color": "스노우 화이트 등",
+      "page": "product.html?id=cp-7211n-v2",
+      "image": "https://dxjqoz29v7d9l.cloudfront.net/product-thumbnail/CO21-T-1.png",
+      "imageSource": "https://rentre.kr/product/detail/1522010108",
+      "sourceUrl": "https://m-coway.imweb.me/hd-water-care",
+      "tags": [
+        "냉정수기",
+        "직수",
+        "아이콘2",
+        "자가관리"
+      ],
+      "promo": "2026년 10월 정책 기준 · 타사보상 할인 조건 별도",
+      "shortDescription": "냉수와 정수에 집중한 아이콘2 직수형 정수기.",
+      "highlights": [
+        "냉수·정수",
+        "직수형",
+        "방문관리 / 자가관리",
+        "3·5·6·7년 약정"
+      ],
+      "common": {
+        "requiredUse": "36/60/72/84개월",
+        "managementCycle": "방문 4개월 / 자가관리"
+      },
+      "options": [
+        {
+          "key": "visit-36",
+          "management": "visit",
+          "managementLabel": "방문관리",
+          "term": 36,
+          "monthly": 35900,
+          "card": null,
+          "gift": 190000,
+          "care": "방문관리 · 4개월"
+        },
+        {
+          "key": "visit-60",
+          "management": "visit",
+          "managementLabel": "방문관리",
+          "term": 60,
+          "monthly": 32900,
+          "card": null,
+          "gift": 205000,
+          "care": "방문관리 · 4개월"
+        },
+        {
+          "key": "visit-72",
+          "management": "visit",
+          "managementLabel": "방문관리",
+          "term": 72,
+          "monthly": 30900,
+          "card": null,
+          "gift": 240000,
+          "care": "방문관리 · 4개월"
+        },
+        {
+          "key": "visit-84",
+          "management": "visit",
+          "managementLabel": "방문관리",
+          "term": 84,
+          "monthly": 28900,
+          "card": null,
+          "gift": 240000,
+          "care": "방문관리 · 4개월"
+        },
+        {
+          "key": "self-36",
+          "management": "self",
+          "managementLabel": "자가관리",
+          "term": 36,
+          "monthly": 32900,
+          "card": null,
+          "gift": 185000,
+          "care": "자가관리"
+        },
+        {
+          "key": "self-60",
+          "management": "self",
+          "managementLabel": "자가관리",
+          "term": 60,
+          "monthly": 29900,
+          "card": null,
+          "gift": 200000,
+          "care": "자가관리"
+        },
+        {
+          "key": "self-72",
+          "management": "self",
+          "managementLabel": "자가관리",
+          "term": 72,
+          "monthly": 27900,
+          "card": null,
+          "gift": 230000,
+          "care": "자가관리"
+        },
+        {
+          "key": "self-84",
+          "management": "self",
+          "managementLabel": "자가관리",
+          "term": 84,
+          "monthly": 25900,
+          "card": null,
+          "gift": 230000,
+          "care": "자가관리"
+        }
+      ]
     }
   ],
   "policyMonth": "2026-10",
