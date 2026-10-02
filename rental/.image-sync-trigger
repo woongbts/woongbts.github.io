@@ -2,3 +2,4 @@ Rental image localization trigger
 Requested: 2026-10-03
 Purpose: download product thumbnails into this repository so customer-facing cards do not depend on external hotlinks.
 Retry: parallel localization
+Retry: fast localization
