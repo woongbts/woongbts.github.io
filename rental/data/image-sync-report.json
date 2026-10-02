@@ -1,9 +1,9 @@
 {
   "generatedAt": "2026-10-03",
   "visibleProducts": 294,
-  "localizedOrExisting": 243,
-  "failed": 51,
-  "changedProducts": 0,
+  "localizedOrExisting": 244,
+  "failed": 50,
+  "changedProducts": 1,
   "failures": [
     {
       "ok": false,
@@ -15,7 +15,8 @@
       "candidates": [
         "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/videoframe_1545.png",
         "https://woongbi.vip-rental.com/_var/rental/vshop/250530172233_1.jpg"
-      ]
+      ],
+      "searched": []
     },
     {
       "ok": false,
@@ -27,7 +28,8 @@
       "candidates": [
         "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/id0105_4598_attimg_org.png",
         "https://woongbi.vip-rental.com/_var/rental/vshop/chrome-capture-2023-8-5(1).png"
-      ]
+      ],
+      "searched": []
     },
     {
       "ok": false,
@@ -39,7 +41,8 @@
       "candidates": [
         "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250412105655_1.png",
         "https://djr0828.img.or.kr/1-CHPI-7521L-2.png"
-      ]
+      ],
+      "searched": []
     },
     {
       "ok": false,
@@ -51,7 +54,8 @@
       "candidates": [
         "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/chp-6340l_1_1.png",
         "https://woongbi.vip-rental.com/_var/rental/vshop/1a51de87f1daddc44e5af56fa39ddcdd_1693226177_6001.jpg"
-      ]
+      ],
+      "searched": []
     },
     {
       "ok": false,
@@ -63,7 +67,8 @@
       "candidates": [
         "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/cp-6340l_1_1.png",
         "https://woongbi.vip-rental.com/_var/rental/vshop/240910110653_1.jpg"
-      ]
+      ],
+      "searched": []
     },
     {
       "ok": false,
@@ -75,7 +80,8 @@
       "candidates": [
         "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230629095706_1.gif",
         "https://woongbi.vip-rental.com/_var/rental/vshop/230629100644_1.png"
-      ]
+      ],
+      "searched": []
     },
     {
       "ok": false,
@@ -88,7 +94,8 @@
         "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/id0101_4648_attimg_org.png",
         "https://woongbi.vip-rental.com/_var/rental/vshop/23a9310ba6d3ee82c1fc2b7f555651e8_1696562476_5028.jpg",
         "https://woongbi.vip-rental.com/_var/rental/vshop/23a9310ba6d3ee82c1fc2b7f555651e8_1696562475_5581.jpg"
-      ]
+      ],
+      "searched": []
     },
     {
       "ok": false,
@@ -101,7 +108,8 @@
         "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/id0101_4649_attimg_org.png",
         "https://woongbi.vip-rental.com/_var/rental/vshop/23a9310ba6d3ee82c1fc2b7f555651e8_1696570990_2732.jpg",
         "https://woongbi.vip-rental.com/_var/rental/vshop/23a9310ba6d3ee82c1fc2b7f555651e8_1696570993_1218.jpg"
-      ]
+      ],
+      "searched": []
     },
     {
       "ok": false,
@@ -116,7 +124,8 @@
         "https://woongbi.vip-rental.com/_var/rental/vshop/23a9310ba6d3ee82c1fc2b7f555651e8_1696562085_7001.jpg",
         "https://woongbi.vip-rental.com/_var/rental/vshop/210506142622_1.jpg",
         "https://woongbi.vip-rental.com/_var/rental/vshop/wwwwww.jpg"
-      ]
+      ],
+      "searched": []
     },
     {
       "ok": false,
@@ -128,7 +137,8 @@
       "candidates": [
         "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230630114033_1.gif",
         "https://woongbi.vip-rental.com/_var/rental/vshop/cmk-pr04_01.jpg"
-      ]
+      ],
+      "searched": []
     },
     {
       "ok": false,
@@ -140,7 +150,8 @@
       "candidates": [
         "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230630112613_1.gif",
         "https://woongbi.vip-rental.com/_var/rental/vshop/230406152835_1.jpg"
-      ]
+      ],
+      "searched": []
     },
     {
       "ok": false,
@@ -152,7 +163,8 @@
       "candidates": [
         "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230630110632_1.gif",
         "https://woongbi.vip-rental.com/_var/rental/vshop/230406152945_1.jpg"
-      ]
+      ],
+      "searched": []
     },
     {
       "ok": false,
@@ -164,7 +176,8 @@
       "candidates": [
         "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230629155907_1.gif",
         "https://woongbi.vip-rental.com/_var/rental/vshop/cmss-ob03_01.jpg"
-      ]
+      ],
+      "searched": []
     },
     {
       "ok": false,
@@ -176,7 +189,8 @@
       "candidates": [
         "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230630105625_1.gif",
         "https://woongbi.vip-rental.com/_var/rental/vshop/230630104236_1.jpg"
-      ]
+      ],
+      "searched": []
     },
     {
       "ok": false,
@@ -188,7 +202,8 @@
       "candidates": [
         "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230630103539_1.gif",
         "https://woongbi.vip-rental.com/_var/rental/vshop/230630101253_1.jpg"
-      ]
+      ],
+      "searched": []
     },
     {
       "ok": false,
@@ -200,7 +215,8 @@
       "candidates": [
         "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/id0101_4554_attimg_org.png",
         "https://woongbi.vip-rental.com/_var/rental/vshop/bas39-a_01.jpg"
-      ]
+      ],
+      "searched": []
     },
     {
       "ok": false,
@@ -212,7 +228,8 @@
       "candidates": [
         "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/id0101_1635_attimg_org.png",
         "https://woongbi.vip-rental.com/_var/rental/vshop/cfs-w02_01.jpg"
-      ]
+      ],
+      "searched": []
     },
     {
       "ok": false,
@@ -224,7 +241,8 @@
       "candidates": [
         "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/id0101_3717_attimg_org.png",
         "https://woongbi.vip-rental.com/_var/rental/vshop/230629134335_1.png"
-      ]
+      ],
+      "searched": []
     },
     {
       "ok": false,
@@ -236,7 +254,8 @@
       "candidates": [
         "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/id0101_3716_attimg_org.png",
         "https://woongbi.vip-rental.com/_var/rental/vshop/230629135243_1.png"
-      ]
+      ],
+      "searched": []
     },
     {
       "ok": false,
@@ -249,7 +268,8 @@
         "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/wp-46s9p510m_1_1.jpg",
         "https://woongbi.vip-rental.com/_var/rental/vshop/wp-45s9p510.jpg",
         "https://woongbi.vip-rental.com/_var/rental/vshop/20240528160129.png"
-      ]
+      ],
+      "searched": []
     },
     {
       "ok": false,
@@ -261,7 +281,8 @@
       "candidates": [
         "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231101182504_1_1.png",
         "https://woongbi.vip-rental.com/_var/rental/vshop/62971320146190.jpg"
-      ]
+      ],
+      "searched": []
     },
     {
       "ok": false,
@@ -273,7 +294,8 @@
       "candidates": [
         "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/ap-15h5170_1.jpg",
         "https://woongbi.vip-rental.com/_var/rental/vshop/ap-15h5170_01.jpg"
-      ]
+      ],
+      "searched": []
     },
     {
       "ok": false,
@@ -285,7 +307,8 @@
       "candidates": [
         "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/ap-20h7560_4.jpg",
         "https://woongbi.vip-rental.com/_var/rental/vshop/240528164649_1.jpg"
-      ]
+      ],
+      "searched": []
     },
     {
       "ok": false,
@@ -298,7 +321,8 @@
         "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/ap-10h4052_1.jpg",
         "https://woongbi.vip-rental.com/_var/rental/vshop/ap-10h4052_01.jpg",
         "https://woongbi.vip-rental.com/_var/rental/vshop/20240528182048.png"
-      ]
+      ],
+      "searched": []
     },
     {
       "ok": false,
@@ -311,7 +335,8 @@
         "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/20240529_112736_047_1.jpg",
         "https://woongbi.vip-rental.com/_var/rental/vshop/ap-10h4550_01.jpg",
         "https://woongbi.vip-rental.com/_var/rental/vshop/20240529112029.png"
-      ]
+      ],
+      "searched": []
     },
     {
       "ok": false,
@@ -324,7 +349,8 @@
         "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/av-06h3050_1.jpg",
         "https://woongbi.vip-rental.com/_var/rental/vshop/oa.jpg",
         "https://woongbi.vip-rental.com/_var/rental/vshop/20240529141717.png"
-      ]
+      ],
+      "searched": []
     },
     {
       "ok": false,
@@ -342,7 +368,8 @@
         "https://woongbi.vip-rental.com/_var/rental/vshop/eb949ceb9dbcec9db4ed8ab8-ec9584ec9db4ec8aa4_06.jpg",
         "https://woongbi.vip-rental.com/_var/rental/vshop/eb949ceb9dbcec9db4ed8ab8-ec9584ec9db4ec8aa4_07.gif",
         "https://woongbi.vip-rental.com/_var/rental/vshop/eb949ceb9dbcec9db4ed8ab8-ec9584ec9db4ec8aa4_08.jpg"
-      ]
+      ],
+      "searched": []
     },
     {
       "ok": false,
@@ -360,7 +387,8 @@
         "https://woongbi.vip-rental.com/_var/rental/vshop/eb949ceb9dbcec9db4ed8ab8-ec9584ec9db4_eab7b8eba088ec9db4_05.gif",
         "https://woongbi.vip-rental.com/_var/rental/vshop/eb949ceb9dbcec9db4ed8ab8-ec9584ec9db4_eab7b8eba088ec9db4_06.jpg",
         "https://woongbi.vip-rental.com/_var/rental/vshop/eb949ceb9dbcec9db4ed8ab8-ec9584ec9db4_eab7b8eba088ec9db4_07.jpg"
-      ]
+      ],
+      "searched": []
     },
     {
       "ok": false,
@@ -376,7 +404,8 @@
         "https://www.hdquming.com/uploadImage/images/000046/20210419163816324_U5AEBX6U.jpeg",
         "https://www.hdquming.com/uploadImage/images/000046/20210419163821230_R8RC1FDR.jpeg",
         "https://www.hdquming.com/uploadImage/images/000046/20210419163825569_PHOPYKZD.jpeg"
-      ]
+      ],
+      "searched": []
     },
     {
       "ok": false,
@@ -393,7 +422,8 @@
         "https://www.hdquming.com/uploadImage/images/000046/20210419161929590_HF59XVGK.jpeg",
         "https://www.hdquming.com/uploadImage/images/000046/20210419161939686_WE2JT4YP.jpeg",
         "https://www.hdquming.com/uploadImage/images/000046/20210419161944368_P4N0DKZ8.jpeg"
-      ]
+      ],
+      "searched": []
     },
     {
       "ok": false,
@@ -408,7 +438,8 @@
         "https://www.hdquming.com/uploadImage/images/000045/20210419160528971_14FBZ3LN.jpeg",
         "https://www.hdquming.com/uploadImage/images/000045/20210419160536578_IL4ATYZU.jpeg",
         "https://www.hdquming.com/uploadImage/images/000046/20210419160543347_2JF3BSIA.jpeg"
-      ]
+      ],
+      "searched": []
     },
     {
       "ok": false,
@@ -422,7 +453,8 @@
         "https://woongbi.vip-rental.com/_var/rental/vshop/cp-acsr1620sw_1.jpg",
         "https://woongbi.vip-rental.com/_var/rental/vshop/cp-acsr1620sw_2.jpg",
         "https://woongbi.vip-rental.com/_var/rental/vshop/cp-acsr1620sw_3.jpg"
-      ]
+      ],
+      "searched": []
     },
     {
       "ok": false,
@@ -434,7 +466,8 @@
       "candidates": [
         "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/240520143016_1_1.png",
         "https://woongbi.vip-rental.com/_var/rental/vshop/cp-f603sw.jpg"
-      ]
+      ],
+      "searched": []
     },
     {
       "ok": false,
@@ -452,7 +485,8 @@
         "https://woongbi.vip-rental.com/_var/rental/vshop/cp-acs1610snw_5.jpg",
         "https://woongbi.vip-rental.com/_var/rental/vshop/cp-acs1610snw_6.jpg",
         "https://woongbi.vip-rental.com/_var/rental/vshop/cp-acs1610snw_7.jpg"
-      ]
+      ],
+      "searched": []
     },
     {
       "ok": false,
@@ -464,7 +498,8 @@
       "candidates": [
         "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/240911111434_1.jpg",
         "https://woongbi.vip-rental.com/_var/rental/vshop/cp-wr602hw.jpg"
-      ]
+      ],
+      "searched": []
     },
     {
       "ok": false,
@@ -476,7 +511,8 @@
       "candidates": [
         "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/cp-wrp602sw_1_1.jpg",
         "https://woongbi.vip-rental.com/_var/rental/vshop/cp-wrp602sw.jpg"
-      ]
+      ],
+      "searched": []
     },
     {
       "ok": false,
@@ -488,7 +524,8 @@
       "candidates": [
         "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/1988111144_y17luhbj_ac-n25w10fws_1.jpg",
         "https://woongbi.vip-rental.com/_var/rental/vshop/210304194842_1.jpg"
-      ]
+      ],
+      "searched": []
     },
     {
       "ok": false,
@@ -500,19 +537,8 @@
       "candidates": [
         "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/ac-09aa10fwh_1.jpg",
         "https://woongbi.vip-rental.com/_var/rental/vshop/8e9a913d17b2f.jpg"
-      ]
-    },
-    {
-      "ok": false,
-      "id": "clover-2106",
-      "brand": "CUCKOO",
-      "name": "쿠쿠 리네이처",
-      "model": "CMS-D10SLGB",
-      "sourceUrl": "https://woongbi.vip-rental.com/categ/1068/2106",
-      "candidates": [
-        "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/3a7506e644b22.jpg",
-        "https://woongbi.vip-rental.com/_var/rental/vshop/cbc5f8f6d4909.png"
-      ]
+      ],
+      "searched": []
     },
     {
       "ok": false,
@@ -524,7 +550,8 @@
       "candidates": [
         "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/5cf1d450a2ae5.jpg",
         "https://woongbi.vip-rental.com/_var/rental/vshop/5cf1d450a2ae5.png"
-      ]
+      ],
+      "searched": []
     },
     {
       "ok": false,
@@ -537,7 +564,8 @@
         "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/00.png",
         "https://woongbi.vip-rental.com/_var/rental/vshop/20001595990259.jpg",
         "https://woongbi.vip-rental.com/_var/rental/vshop/award_banner_1283.jpg"
-      ]
+      ],
+      "searched": []
     },
     {
       "ok": false,
@@ -549,7 +577,8 @@
       "candidates": [
         "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/240206181836_1.jpg",
         "https://woongbi.vip-rental.com/_var/rental/vshop/94b1148b_(1).jpg"
-      ]
+      ],
+      "searched": []
     },
     {
       "ok": false,
@@ -561,7 +590,8 @@
       "candidates": [
         "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/whp-3300_1_1.png",
         "https://woongbi.vip-rental.com/_var/rental/vshop/240206171011_1.jpg"
-      ]
+      ],
+      "searched": []
     },
     {
       "ok": false,
@@ -573,7 +603,8 @@
       "candidates": [
         "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/whp-3020_1_1.png",
         "https://woongbi.vip-rental.com/_var/rental/vshop/af780b2d_.jpg"
-      ]
+      ],
+      "searched": []
     },
     {
       "ok": false,
@@ -585,7 +616,8 @@
       "candidates": [
         "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/whp-3030_1_1.png",
         "https://woongbi.vip-rental.com/_var/rental/vshop/e74b1ddb_.jpg"
-      ]
+      ],
+      "searched": []
     },
     {
       "ok": false,
@@ -597,7 +629,8 @@
       "candidates": [
         "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/202305311113496476ad5d9182e.jpg",
         "https://woongbi.vip-rental.com/_var/rental/vshop/94b1148b_.jpg"
-      ]
+      ],
+      "searched": []
     },
     {
       "ok": false,
@@ -609,7 +642,8 @@
       "candidates": [
         "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/whp-2200_1_1.jpg",
         "https://woongbi.vip-rental.com/_var/rental/vshop/whp-2200.jpg"
-      ]
+      ],
+      "searched": []
     },
     {
       "ok": false,
@@ -621,7 +655,8 @@
       "candidates": [
         "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250313101042_1.png",
         "https://ruhens.co.kr/FileData/edtImg/ac9cabfd_"
-      ]
+      ],
+      "searched": []
     },
     {
       "ok": false,
@@ -634,7 +669,8 @@
         "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231114120006_1_1.png",
         "https://woongbi.vip-rental.com/_var/rental/vshop/f9877bf9914234f123d068de0b4ca443_1717057359_0746.jpg",
         "https://xn--sm2bv18apld5xf.kr/data/editor/tlpartner/2002/95915bd51c1202c6c29920ae1abfb3ab_1582354014_8897.jpg"
-      ]
+      ],
+      "searched": []
     },
     {
       "ok": false,
@@ -646,7 +682,8 @@
       "candidates": [
         "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231114115452_1_1.png",
         "https://woongbi.vip-rental.com/_var/rental/vshop/240801114026_1.jpg"
-      ]
+      ],
+      "searched": []
     },
     {
       "ok": false,
@@ -659,7 +696,8 @@
         "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231114115855_1_1.png",
         "https://woongbi.vip-rental.com/_var/rental/vshop/1592205587.379.jpg",
         "https://woongbi.vip-rental.com/_var/rental/vshop/1592205258.4273.jpg"
-      ]
+      ],
+      "searched": []
     }
   ]
 }

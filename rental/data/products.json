@@ -25643,7 +25643,7 @@
       "rawCategory": "안마의자",
       "color": "그레이 브라운",
       "page": "product.html?id=clover-2106",
-      "image": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/3a7506e644b22.jpg",
+      "image": "assets/product-images/clover-2106.webp",
       "sourceUrl": "https://woongbi.vip-rental.com/categ/1068/2106",
       "tags": [
         "안마의자",
@@ -25675,7 +25675,9 @@
       ],
       "sourceKind": "clover-public",
       "availability": "active",
-      "giftStatus": "matched"
+      "giftStatus": "matched",
+      "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/3a7506e644b22.jpg",
+      "imageLocalizedFrom": "https://preview.free3d.com/img/2017/06/2408167672157046640/vqmvptc8.jpg"
     },
     {
       "id": "clover-2108",
