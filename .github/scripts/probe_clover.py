@@ -40,7 +40,17 @@ def main():
         except Exception as e:
             script_info.append({"url":src,"error":str(e)}); continue
         refs=sorted(set(unescape(x) for x in re.findall(r'["\']([^"\']*(?:categ/|api|board|item|goods|product)[^"\']*)["\']',js,re.I)))
-        script_info.append({"url":src,"length":len(js),"refs":refs[:2000]})
+        snippets=[]
+        if "vshop" in src:
+            for pat in ["load_board.php","axios.get","getDatas","pageNum","categ=","categ2=","m_id"]:
+                start=0
+                while True:
+                    i=js.find(pat,start)
+                    if i<0: break
+                    snippets.append({"pattern":pat,"text":js[max(0,i-550):min(len(js),i+950)]})
+                    start=i+len(pat)
+                    if sum(1 for s in snippets if s["pattern"]==pat)>=8: break
+        script_info.append({"url":src,"length":len(js),"refs":refs[:2000],"snippets":snippets[:80]})
     OUT.parent.mkdir(parents=True,exist_ok=True)
     OUT.write_text(json.dumps({"pages":pages,"scripts":script_info},ensure_ascii=False,indent=2),encoding="utf-8")
 if __name__=="__main__": main()
