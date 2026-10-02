@@ -50,11 +50,58 @@
   }
 
   function visual(product) {
-    if (product.image) {
-      return '<img class="catalog-product-image" src="' + product.image + '" alt="' + product.name + '" loading="lazy" referrerpolicy="no-referrer" onerror="this.hidden=true;this.nextElementSibling.hidden=false">' +
-        '<div class="catalog-image-placeholder" hidden><span class="placeholder-mark">W</span><strong>제품 이미지 준비중</strong><small>' + (product.model || '') + '</small></div>';
+    const placeholder = '<div class="catalog-image-placeholder"><span class="placeholder-mark">W</span><strong>제품 이미지 준비중</strong><small>' + (product.model || '') + '</small></div>';
+    if (!product.image && !(product.detailImages || []).length) {
+      return '<div class="catalog-image-slot">' + placeholder + '</div>';
     }
-    return '<div class="catalog-image-placeholder"><span class="placeholder-mark">W</span><strong>제품 이미지 준비중</strong><small>' + (product.model || '') + '</small></div>';
+    return '<div class="catalog-image-slot">' +
+      '<img class="catalog-product-image" data-product-id="' + product.id + '" alt="' + product.name + '" loading="lazy" referrerpolicy="no-referrer">' +
+      placeholder +
+      '</div>';
+  }
+
+  function bindCatalogImages() {
+    grid.querySelectorAll('.catalog-product-image').forEach(img => {
+      const product = products.find(p => String(p.id) === String(img.dataset.productId));
+      const placeholder = img.nextElementSibling;
+      if (!product) return;
+
+      const candidates = [...new Set([
+        product.image,
+        ...((product.detailImages || []).slice(0, 3))
+      ].filter(Boolean))];
+
+      let index = 0;
+      const showPlaceholder = () => {
+        img.classList.remove('is-ready');
+        if (placeholder) placeholder.hidden = false;
+      };
+      const tryNext = () => {
+        index += 1;
+        if (index < candidates.length) {
+          img.src = candidates[index];
+        } else {
+          showPlaceholder();
+          img.removeAttribute('src');
+        }
+      };
+
+      img.addEventListener('load', () => {
+        if (img.naturalWidth > 0) {
+          img.classList.add('is-ready');
+          if (placeholder) placeholder.hidden = true;
+        } else {
+          tryNext();
+        }
+      });
+
+      img.addEventListener('error', tryNext);
+      showPlaceholder();
+
+      if (candidates.length) {
+        img.src = candidates[0];
+      }
+    });
   }
 
   function renderProduct(product) {
@@ -163,6 +210,7 @@
     grid.innerHTML = visible.length
       ? visible.map(renderProduct).join('')
       : '<p class="catalog-error">조건에 맞는 상품이 없습니다. 검색어나 필터를 바꿔보세요.</p>';
+    if (visible.length) bindCatalogImages();
     grid.removeAttribute('aria-busy');
 
     if (count) {
