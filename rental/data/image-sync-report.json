@@ -1,24 +1,10 @@
 {
   "generatedAt": "2026-10-03",
   "visibleProducts": 294,
-  "localizedOrExisting": 283,
-  "failed": 11,
-  "changedProducts": 29,
+  "localizedOrExisting": 288,
+  "failed": 6,
+  "changedProducts": 9,
   "failures": [
-    {
-      "ok": false,
-      "id": "clover-1888",
-      "brand": "COWAY",
-      "name": "BEREX 마이 프레임 사이드형 (플랫/볼륨)",
-      "model": "CF(SS/Q/K)-FP02S",
-      "sourceUrl": "https://woongbi.vip-rental.com/categ/1059/1888",
-      "candidates": [
-        "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230630103539_1.gif",
-        "https://woongbi.vip-rental.com/_var/rental/vshop/230630101253_1.jpg"
-      ],
-      "pageImages": [],
-      "searched": []
-    },
     {
       "ok": false,
       "id": "clover-674",
@@ -49,20 +35,6 @@
     },
     {
       "ok": false,
-      "id": "clover-2127",
-      "brand": "청호나이스",
-      "name": "공기청정기 NEW HERO 2_21평",
-      "model": "AP-20H7560",
-      "sourceUrl": "https://woongbi.vip-rental.com/categ/1060/2127",
-      "candidates": [
-        "https://goyang21.or.kr/data/item/2021120116171973/7I2464Sk7J281.png",
-        "https://woongbi.vip-rental.com/_var/rental/vshop/240528164649_1.jpg"
-      ],
-      "pageImages": [],
-      "searched": []
-    },
-    {
-      "ok": false,
       "id": "clover-257",
       "brand": "현대큐밍",
       "name": "럭셔리 매트리스SET_퀸",
@@ -75,25 +47,6 @@
         "https://www.hdquming.com/uploadImage/images/000046/20210419163816324_U5AEBX6U.jpeg",
         "https://www.hdquming.com/uploadImage/images/000046/20210419163821230_R8RC1FDR.jpeg",
         "https://www.hdquming.com/uploadImage/images/000046/20210419163825569_PHOPYKZD.jpeg"
-      ],
-      "pageImages": [],
-      "searched": []
-    },
-    {
-      "ok": false,
-      "id": "clover-271",
-      "brand": "현대큐밍",
-      "name": "프리미엄 매트리스SET_퀸",
-      "model": "HLM1970QE0(화이트/미드 브라운)",
-      "sourceUrl": "https://woongbi.vip-rental.com/categ/1061/271",
-      "candidates": [
-        "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/200224065521_427.png",
-        "https://www.hdquming.com/uploadImage/images/000046/20210419161909619_0YJC4MEC.jpeg",
-        "https://www.hdquming.com/uploadImage/images/000046/20210419161917964_7136PVWD.jpeg",
-        "https://www.hdquming.com/uploadImage/images/000046/20210419161923914_TE7TZ8KL.jpeg",
-        "https://www.hdquming.com/uploadImage/images/000046/20210419161929590_HF59XVGK.jpeg",
-        "https://www.hdquming.com/uploadImage/images/000046/20210419161939686_WE2JT4YP.jpeg",
-        "https://www.hdquming.com/uploadImage/images/000046/20210419161944368_P4N0DKZ8.jpeg"
       ],
       "pageImages": [],
       "searched": []
@@ -117,27 +70,13 @@
     },
     {
       "ok": false,
-      "id": "clover-2099",
-      "brand": "CUCKOO",
-      "name": "내추럴워터 정수기(데스크형,스탠드형)",
-      "model": "CP-F603",
-      "sourceUrl": "https://woongbi.vip-rental.com/categ/1068/2099",
-      "candidates": [
-        "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/240520143016_1_1.png",
-        "https://woongbi.vip-rental.com/_var/rental/vshop/cp-f603sw.jpg"
-      ],
-      "pageImages": [],
-      "searched": []
-    },
-    {
-      "ok": false,
       "id": "clover-2093",
       "brand": "루헨스",
       "name": "더프레임 직수형 냉온",
       "model": "WHP-3300",
       "sourceUrl": "https://woongbi.vip-rental.com/categ/1069/2093",
       "candidates": [
-        "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/whp-3300_1_1.png",
+        "https://www.ruhens.co.kr/FileData/product/20241015112708670dd2fc8388f.png",
         "https://woongbi.vip-rental.com/_var/rental/vshop/240206171011_1.jpg"
       ],
       "pageImages": [],
@@ -153,20 +92,6 @@
       "candidates": [
         "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/whp-3020_1_1.png",
         "https://woongbi.vip-rental.com/_var/rental/vshop/af780b2d_.jpg"
-      ],
-      "pageImages": [],
-      "searched": []
-    },
-    {
-      "ok": false,
-      "id": "clover-2037",
-      "brand": "유버스",
-      "name": "냉온정수기 (화이트)",
-      "model": "UBUS-P202(SUF/HUF)",
-      "sourceUrl": "https://woongbi.vip-rental.com/categ/1226/2037",
-      "candidates": [
-        "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231114115452_1_1.png",
-        "https://woongbi.vip-rental.com/_var/rental/vshop/240801114026_1.jpg"
       ],
       "pageImages": [],
       "searched": []
