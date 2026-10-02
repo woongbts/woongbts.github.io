@@ -3,6 +3,16 @@
 
   const id = new URLSearchParams(location.search).get('id');
   const won = n => Number(n).toLocaleString('ko-KR') + '원';
+  const brandLabel = brand => ({
+    'COWAY':'코웨이',
+    'CUCKOO':'쿠쿠',
+    'LG퓨리케어':'LG 퓨리케어',
+    'SK매직':'SK매직',
+    '청호나이스':'청호나이스',
+    '현대큐밍':'현대큐밍',
+    '루헨스':'루헨스',
+    '유버스':'유버스'
+  }[brand] || brand || '');
   const $ = sel => document.querySelector(sel);
 
   const managementBox = $('#generic-management');
@@ -94,16 +104,17 @@
 
     document.title = product.name + ' | 웅비렌탈';
     $('#breadcrumb-model').textContent = product.model || product.name;
-    $('#generic-brand').textContent = product.brand || 'WOONGBI RENTAL';
+    $('#generic-brand').textContent = brandLabel(product.brand) || 'WOONGBI RENTAL';
     $('#generic-title').textContent = product.name;
     $('#generic-model').textContent = [product.model, product.color].filter(Boolean).join(' · ');
+    $('#generic-description').textContent = product.shortDescription || '';
     $('#generic-model-row').textContent = product.model || '-';
     $('#generic-promo').textContent = product.promo || '최신 정책 상담 확인';
     $('#generic-color').textContent = product.color || '상담 확인';
     $('#generic-tags').innerHTML = (product.tags || []).map(t => '<span>' + t + '</span>').join('');
     $('#generic-highlights').innerHTML = (product.highlights || []).map(t => '<span>' + t + '</span>').join('');
 
-    $('#summary-brand').textContent = product.brand || '-';
+    $('#summary-brand').textContent = brandLabel(product.brand) || '-';
     $('#summary-category').textContent = product.category || '-';
     $('#summary-management').textContent = [...new Set((product.options || []).map(o => o.managementLabel).filter(Boolean))].join(' / ') || '-';
     $('#summary-terms').textContent = [...new Set((product.options || []).map(o => o.term).filter(Boolean))].sort((a,b)=>a-b).map(x => x + '개월').join(' / ') || '-';
