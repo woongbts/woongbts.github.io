@@ -268,3 +268,17 @@
   .catalog-image-slot{height:122px}
   .catalog-image-slot .catalog-image-placeholder{max-width:270px}
 }
+
+
+/* Branded link back to Woongbi Telecom */
+.nav-home-link{gap:7px;padding:5px 9px;min-height:44px;text-align:left;line-height:1.05}
+.nav-home-link img{display:block;width:30px;height:30px;flex:0 0 auto}
+.nav-home-link span{display:block;min-width:0}
+.nav-home-link strong{display:block;font-size:.76rem;font-weight:950;letter-spacing:-.03em;white-space:nowrap}
+.nav-home-link small{display:block;margin-top:3px;color:#738889;font-size:.56rem;font-weight:800;white-space:nowrap}
+@media(max-width:560px){
+  .nav-home-link{gap:5px;padding:4px 7px;min-height:40px}
+  .nav-home-link img{width:27px;height:27px}
+  .nav-home-link strong{font-size:.7rem}
+  .nav-home-link small{display:none}
+}
