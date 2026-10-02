@@ -46,6 +46,10 @@
       "pages": 1
     }
   },
+  "giftMatchStats": {
+    "matchedProducts": 226,
+    "matchedOptions": 655
+  },
   "products": [
     {
       "id": "clover-2254",
@@ -131,7 +135,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2251",
@@ -238,7 +243,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2196",
@@ -340,7 +346,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2223",
@@ -436,7 +443,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2226",
@@ -501,7 +509,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2250",
@@ -608,7 +617,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2203",
@@ -677,7 +687,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2202",
@@ -776,7 +787,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2104",
@@ -883,7 +895,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2105",
@@ -989,7 +1002,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2150",
@@ -1088,7 +1102,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-1759",
@@ -1160,7 +1175,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2060",
@@ -1264,7 +1280,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2059",
@@ -1370,7 +1387,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2058",
@@ -1474,7 +1492,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-1675",
@@ -1578,7 +1597,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-1857",
@@ -1682,7 +1702,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2121",
@@ -1777,7 +1798,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-1856",
@@ -1830,7 +1852,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2168",
@@ -1893,7 +1916,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2244",
@@ -1967,7 +1991,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-1594",
@@ -2029,7 +2054,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2154",
@@ -2090,7 +2116,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-1934",
@@ -2159,7 +2186,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-165",
@@ -2307,7 +2335,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2225",
@@ -2377,7 +2406,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2174",
@@ -2451,7 +2481,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-1779",
@@ -2526,7 +2557,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-95",
@@ -2630,7 +2662,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2167",
@@ -2703,7 +2736,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-1805",
@@ -2951,7 +2985,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "inactive"
+      "availability": "inactive",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-1922",
@@ -3076,7 +3111,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2173",
@@ -3548,7 +3584,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2242",
@@ -3605,7 +3642,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2230",
@@ -3688,7 +3726,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2231",
@@ -3770,7 +3809,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2211",
@@ -3853,7 +3893,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2210",
@@ -4034,7 +4075,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2136",
@@ -4136,7 +4178,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-1775",
@@ -4235,7 +4278,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-1586",
@@ -4317,7 +4361,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-1588",
@@ -4373,7 +4418,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-1760",
@@ -4612,7 +4658,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "inactive"
+      "availability": "inactive",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2184",
@@ -5794,7 +5841,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-1821",
@@ -5876,7 +5924,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2118",
@@ -6067,7 +6116,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2228",
@@ -6124,7 +6174,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-1970",
@@ -6294,7 +6345,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "inactive"
+      "availability": "inactive",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-1832",
@@ -7168,7 +7220,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2215",
@@ -7248,7 +7301,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2214",
@@ -7328,7 +7382,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2206",
@@ -7410,7 +7465,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2195",
@@ -7466,7 +7522,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2186",
@@ -7547,7 +7604,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2161",
@@ -7628,7 +7686,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2156",
@@ -7684,7 +7743,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2031",
@@ -7788,7 +7848,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2030",
@@ -7892,7 +7953,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-1756",
@@ -7997,7 +8059,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-1679",
@@ -8161,7 +8224,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-384",
@@ -8242,7 +8306,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-282",
@@ -8344,7 +8409,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "chpci-8400n",
@@ -8387,7 +8453,8 @@
           "monthly": 64900,
           "card": null,
           "gift": 230000,
-          "care": "방문관리 · 2개월"
+          "care": "방문관리 · 2개월",
+          "giftPolicyMonth": "2026-10"
         },
         {
           "key": "visit2-60",
@@ -8397,7 +8464,8 @@
           "monthly": 61900,
           "card": null,
           "gift": 260000,
-          "care": "방문관리 · 2개월"
+          "care": "방문관리 · 2개월",
+          "giftPolicyMonth": "2026-10"
         },
         {
           "key": "visit2-72",
@@ -8407,7 +8475,8 @@
           "monthly": 59900,
           "card": null,
           "gift": 300000,
-          "care": "방문관리 · 2개월"
+          "care": "방문관리 · 2개월",
+          "giftPolicyMonth": "2026-10"
         },
         {
           "key": "visit2-84",
@@ -8417,7 +8486,8 @@
           "monthly": 57900,
           "card": null,
           "gift": 300000,
-          "care": "방문관리 · 2개월"
+          "care": "방문관리 · 2개월",
+          "giftPolicyMonth": "2026-10"
         },
         {
           "key": "visit4-36",
@@ -8427,7 +8497,8 @@
           "monthly": 61900,
           "card": null,
           "gift": 220000,
-          "care": "방문관리 · 4개월"
+          "care": "방문관리 · 4개월",
+          "giftPolicyMonth": "2026-10"
         },
         {
           "key": "visit4-60",
@@ -8437,7 +8508,8 @@
           "monthly": 57900,
           "card": null,
           "gift": 250000,
-          "care": "방문관리 · 4개월"
+          "care": "방문관리 · 4개월",
+          "giftPolicyMonth": "2026-10"
         },
         {
           "key": "visit4-72",
@@ -8447,7 +8519,8 @@
           "monthly": 55900,
           "card": null,
           "gift": 290000,
-          "care": "방문관리 · 4개월"
+          "care": "방문관리 · 4개월",
+          "giftPolicyMonth": "2026-10"
         },
         {
           "key": "visit4-84",
@@ -8457,11 +8530,13 @@
           "monthly": 53900,
           "card": null,
           "gift": 290000,
-          "care": "방문관리 · 4개월"
+          "care": "방문관리 · 4개월",
+          "giftPolicyMonth": "2026-10"
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "chpi-7430n",
@@ -8505,7 +8580,8 @@
           "monthly": 52900,
           "card": null,
           "gift": 215000,
-          "care": "방문관리 · 2개월"
+          "care": "방문관리 · 2개월",
+          "giftPolicyMonth": "2026-10"
         },
         {
           "key": "visit2-60",
@@ -8515,7 +8591,8 @@
           "monthly": 49900,
           "card": null,
           "gift": 240000,
-          "care": "방문관리 · 2개월"
+          "care": "방문관리 · 2개월",
+          "giftPolicyMonth": "2026-10"
         },
         {
           "key": "visit2-72",
@@ -8525,7 +8602,8 @@
           "monthly": 47900,
           "card": null,
           "gift": 280000,
-          "care": "방문관리 · 2개월"
+          "care": "방문관리 · 2개월",
+          "giftPolicyMonth": "2026-10"
         },
         {
           "key": "visit2-84",
@@ -8535,7 +8613,8 @@
           "monthly": 45900,
           "card": null,
           "gift": 280000,
-          "care": "방문관리 · 2개월"
+          "care": "방문관리 · 2개월",
+          "giftPolicyMonth": "2026-10"
         },
         {
           "key": "visit4-36",
@@ -8545,7 +8624,8 @@
           "monthly": 49900,
           "card": null,
           "gift": 215000,
-          "care": "방문관리 · 4개월"
+          "care": "방문관리 · 4개월",
+          "giftPolicyMonth": "2026-10"
         },
         {
           "key": "visit4-60",
@@ -8555,7 +8635,8 @@
           "monthly": 46900,
           "card": null,
           "gift": 240000,
-          "care": "방문관리 · 4개월"
+          "care": "방문관리 · 4개월",
+          "giftPolicyMonth": "2026-10"
         },
         {
           "key": "visit4-72",
@@ -8565,7 +8646,8 @@
           "monthly": 44900,
           "card": null,
           "gift": 275000,
-          "care": "방문관리 · 4개월"
+          "care": "방문관리 · 4개월",
+          "giftPolicyMonth": "2026-10"
         },
         {
           "key": "visit4-84",
@@ -8575,7 +8657,8 @@
           "monthly": 42900,
           "card": null,
           "gift": 275000,
-          "care": "방문관리 · 4개월"
+          "care": "방문관리 · 4개월",
+          "giftPolicyMonth": "2026-10"
         },
         {
           "key": "self-36",
@@ -8585,7 +8668,8 @@
           "monthly": 47900,
           "card": null,
           "gift": 210000,
-          "care": "자가관리 · 4개월 필터"
+          "care": "자가관리 · 4개월 필터",
+          "giftPolicyMonth": "2026-10"
         },
         {
           "key": "self-60",
@@ -8595,7 +8679,8 @@
           "monthly": 44900,
           "card": null,
           "gift": 230000,
-          "care": "자가관리 · 4개월 필터"
+          "care": "자가관리 · 4개월 필터",
+          "giftPolicyMonth": "2026-10"
         },
         {
           "key": "self-72",
@@ -8605,7 +8690,8 @@
           "monthly": 42900,
           "card": null,
           "gift": 270000,
-          "care": "자가관리 · 4개월 필터"
+          "care": "자가관리 · 4개월 필터",
+          "giftPolicyMonth": "2026-10"
         },
         {
           "key": "self-84",
@@ -8615,11 +8701,13 @@
           "monthly": 40900,
           "card": null,
           "gift": 270000,
-          "care": "자가관리 · 4개월 필터"
+          "care": "자가관리 · 4개월 필터",
+          "giftPolicyMonth": "2026-10"
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "chpi-7420n",
@@ -8663,7 +8751,8 @@
           "monthly": 60900,
           "card": null,
           "gift": 230000,
-          "care": "방문관리 · 2개월"
+          "care": "방문관리 · 2개월",
+          "giftPolicyMonth": "2026-10"
         },
         {
           "key": "visit2-60",
@@ -8673,7 +8762,8 @@
           "monthly": 56900,
           "card": null,
           "gift": 255000,
-          "care": "방문관리 · 2개월"
+          "care": "방문관리 · 2개월",
+          "giftPolicyMonth": "2026-10"
         },
         {
           "key": "visit2-72",
@@ -8683,7 +8773,8 @@
           "monthly": 53900,
           "card": null,
           "gift": 295000,
-          "care": "방문관리 · 2개월"
+          "care": "방문관리 · 2개월",
+          "giftPolicyMonth": "2026-10"
         },
         {
           "key": "visit2-84",
@@ -8693,7 +8784,8 @@
           "monthly": 51900,
           "card": null,
           "gift": 295000,
-          "care": "방문관리 · 2개월"
+          "care": "방문관리 · 2개월",
+          "giftPolicyMonth": "2026-10"
         },
         {
           "key": "visit4-36",
@@ -8703,7 +8795,8 @@
           "monthly": 57900,
           "card": null,
           "gift": 220000,
-          "care": "방문관리 · 4개월"
+          "care": "방문관리 · 4개월",
+          "giftPolicyMonth": "2026-10"
         },
         {
           "key": "visit4-60",
@@ -8713,7 +8806,8 @@
           "monthly": 53900,
           "card": null,
           "gift": 250000,
-          "care": "방문관리 · 4개월"
+          "care": "방문관리 · 4개월",
+          "giftPolicyMonth": "2026-10"
         },
         {
           "key": "visit4-72",
@@ -8723,7 +8817,8 @@
           "monthly": 50900,
           "card": null,
           "gift": 290000,
-          "care": "방문관리 · 4개월"
+          "care": "방문관리 · 4개월",
+          "giftPolicyMonth": "2026-10"
         },
         {
           "key": "visit4-84",
@@ -8733,11 +8828,13 @@
           "monthly": 48900,
           "card": null,
           "gift": 285000,
-          "care": "방문관리 · 4개월"
+          "care": "방문관리 · 4개월",
+          "giftPolicyMonth": "2026-10"
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2208",
@@ -8797,7 +8894,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2209",
@@ -8856,7 +8954,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-1786",
@@ -8938,7 +9037,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-1785",
@@ -9019,7 +9119,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2187",
@@ -9078,7 +9179,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "chp-7220n",
@@ -9121,7 +9223,8 @@
           "monthly": 38900,
           "card": null,
           "gift": 205000,
-          "care": "방문관리 · 4개월"
+          "care": "방문관리 · 4개월",
+          "giftPolicyMonth": "2026-10"
         },
         {
           "key": "visit-60",
@@ -9131,7 +9234,8 @@
           "monthly": 35900,
           "card": null,
           "gift": 250000,
-          "care": "방문관리 · 4개월"
+          "care": "방문관리 · 4개월",
+          "giftPolicyMonth": "2026-10"
         },
         {
           "key": "visit-72",
@@ -9141,7 +9245,8 @@
           "monthly": 33900,
           "card": null,
           "gift": 285000,
-          "care": "방문관리 · 4개월"
+          "care": "방문관리 · 4개월",
+          "giftPolicyMonth": "2026-10"
         },
         {
           "key": "visit-84",
@@ -9151,7 +9256,8 @@
           "monthly": 31900,
           "card": null,
           "gift": 285000,
-          "care": "방문관리 · 4개월"
+          "care": "방문관리 · 4개월",
+          "giftPolicyMonth": "2026-10"
         },
         {
           "key": "self-36",
@@ -9161,7 +9267,8 @@
           "monthly": 35900,
           "card": null,
           "gift": 190000,
-          "care": "자가관리"
+          "care": "자가관리",
+          "giftPolicyMonth": "2026-10"
         },
         {
           "key": "self-60",
@@ -9171,7 +9278,8 @@
           "monthly": 32900,
           "card": null,
           "gift": 235000,
-          "care": "자가관리"
+          "care": "자가관리",
+          "giftPolicyMonth": "2026-10"
         },
         {
           "key": "self-72",
@@ -9181,7 +9289,8 @@
           "monthly": 30900,
           "card": null,
           "gift": 265000,
-          "care": "자가관리"
+          "care": "자가관리",
+          "giftPolicyMonth": "2026-10"
         },
         {
           "key": "self-84",
@@ -9191,11 +9300,13 @@
           "monthly": 28900,
           "card": null,
           "gift": 265000,
-          "care": "자가관리"
+          "care": "자가관리",
+          "giftPolicyMonth": "2026-10"
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2194",
@@ -9276,7 +9387,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2247",
@@ -9331,7 +9443,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2239",
@@ -9390,7 +9503,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2222",
@@ -9447,7 +9561,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2193",
@@ -9530,7 +9645,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2188",
@@ -9611,7 +9727,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2255",
@@ -9692,7 +9809,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-1579",
@@ -9756,7 +9874,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-1724",
@@ -9833,7 +9952,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-1725",
@@ -9909,7 +10029,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "p-350n",
@@ -9965,7 +10086,8 @@
           "monthly": 19900,
           "card": null,
           "gift": 160000,
-          "care": "방문관리 · 6개월"
+          "care": "방문관리 · 6개월",
+          "giftPolicyMonth": "2026-10"
         },
         {
           "key": "visit-60",
@@ -9975,7 +10097,8 @@
           "monthly": 18900,
           "card": null,
           "gift": 170000,
-          "care": "방문관리 · 6개월"
+          "care": "방문관리 · 6개월",
+          "giftPolicyMonth": "2026-10"
         },
         {
           "key": "visit-72",
@@ -9985,7 +10108,8 @@
           "monthly": 17900,
           "card": null,
           "gift": 195000,
-          "care": "방문관리 · 6개월"
+          "care": "방문관리 · 6개월",
+          "giftPolicyMonth": "2026-10"
         },
         {
           "key": "visit-84",
@@ -9995,7 +10119,8 @@
           "monthly": 16900,
           "card": null,
           "gift": 195000,
-          "care": "방문관리 · 6개월"
+          "care": "방문관리 · 6개월",
+          "giftPolicyMonth": "2026-10"
         },
         {
           "key": "self-36",
@@ -10005,7 +10130,8 @@
           "monthly": 18900,
           "card": null,
           "gift": 160000,
-          "care": "자가관리"
+          "care": "자가관리",
+          "giftPolicyMonth": "2026-10"
         },
         {
           "key": "self-60",
@@ -10015,7 +10141,8 @@
           "monthly": 17900,
           "card": null,
           "gift": 170000,
-          "care": "자가관리"
+          "care": "자가관리",
+          "giftPolicyMonth": "2026-10"
         },
         {
           "key": "self-72",
@@ -10025,7 +10152,8 @@
           "monthly": 16900,
           "card": null,
           "gift": 195000,
-          "care": "자가관리"
+          "care": "자가관리",
+          "giftPolicyMonth": "2026-10"
         },
         {
           "key": "self-84",
@@ -10035,11 +10163,13 @@
           "monthly": 15900,
           "card": null,
           "gift": 195000,
-          "care": "자가관리"
+          "care": "자가관리",
+          "giftPolicyMonth": "2026-10"
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-1915",
@@ -10144,7 +10274,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-1933",
@@ -10202,7 +10333,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-1932",
@@ -10259,7 +10391,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-1791",
@@ -10336,7 +10469,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-1916",
@@ -10412,7 +10546,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-1764",
@@ -10517,7 +10652,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-1913",
@@ -10584,7 +10720,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-181",
@@ -10631,7 +10768,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-223",
@@ -10721,7 +10859,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-1808",
@@ -10782,7 +10921,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-1910",
@@ -10846,7 +10986,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-1882",
@@ -10892,7 +11033,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2076",
@@ -10947,7 +11089,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2075",
@@ -11002,7 +11145,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-175",
@@ -11063,7 +11207,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-245",
@@ -11115,7 +11260,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-234",
@@ -11164,7 +11310,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-1766",
@@ -11267,7 +11414,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-1770",
@@ -11346,7 +11494,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-1877",
@@ -11443,7 +11592,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-1879",
@@ -11523,7 +11673,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-1880",
@@ -11603,7 +11754,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-1881",
@@ -11684,7 +11836,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-1727",
@@ -11764,7 +11917,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "inactive"
+      "availability": "inactive",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-1726",
@@ -11846,7 +12000,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2256",
@@ -11927,7 +12082,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2233",
@@ -12009,7 +12165,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2221",
@@ -12090,7 +12247,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "inactive"
+      "availability": "inactive",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-1353",
@@ -12369,7 +12527,7 @@
           "term": 60,
           "monthly": 34900,
           "card": null,
-          "gift": 185000,
+          "gift": 170000,
           "care": "토탈케어(퀸",
           "sourceOption": "토탈케어(퀸)60",
           "giftPolicyMonth": "2026-10"
@@ -12400,7 +12558,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-1371",
@@ -12574,9 +12733,10 @@
           "term": 84,
           "monthly": 32900,
           "card": null,
-          "gift": null,
+          "gift": 195000,
           "care": "토탈케어(퀸",
-          "sourceOption": "토탈케어(퀸)84"
+          "sourceOption": "토탈케어(퀸)84",
+          "giftPolicyMonth": "2026-10"
         },
         {
           "key": "standard-option-84",
@@ -12592,7 +12752,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-1890",
@@ -12911,7 +13072,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2086",
@@ -12994,7 +13156,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-1326",
@@ -13050,7 +13213,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-1883",
@@ -13210,7 +13374,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2155",
@@ -13267,7 +13432,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "inactive"
+      "availability": "inactive",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-1782",
@@ -13350,7 +13516,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-1895",
@@ -13449,7 +13616,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-393",
@@ -13595,7 +13763,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-441",
@@ -13657,7 +13826,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-674",
@@ -13738,7 +13908,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-436",
@@ -13819,7 +13990,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2074",
@@ -13921,7 +14093,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "inactive"
+      "availability": "inactive",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-1337",
@@ -14059,7 +14232,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "inactive"
+      "availability": "inactive",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-1722",
@@ -14310,7 +14484,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-1799",
@@ -14395,7 +14570,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2216",
@@ -14442,7 +14618,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2145",
@@ -14501,7 +14678,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2170",
@@ -14558,7 +14736,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2151",
@@ -14661,7 +14840,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2051",
@@ -14728,7 +14908,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2217",
@@ -14787,7 +14968,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2045",
@@ -14846,7 +15028,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2046",
@@ -14905,7 +15088,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2126",
@@ -14963,7 +15147,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2243",
@@ -15028,7 +15213,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2152",
@@ -15084,7 +15270,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2218",
@@ -15199,7 +15386,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2057",
@@ -15256,7 +15444,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2054",
@@ -15312,7 +15501,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2205",
@@ -15392,7 +15582,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2052",
@@ -15430,9 +15621,10 @@
           "term": 36,
           "monthly": 23900,
           "card": null,
-          "gift": null,
+          "gift": 85000,
           "care": "기본 조건",
-          "sourceOption": "36"
+          "sourceOption": "36",
+          "giftPolicyMonth": "2026-10"
         },
         {
           "key": "standard-option-60",
@@ -15447,7 +15639,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-581",
@@ -15502,7 +15695,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-571",
@@ -15560,7 +15754,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2260",
@@ -15860,7 +16055,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2127",
@@ -16216,7 +16412,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2131",
@@ -17950,7 +18147,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-1690",
@@ -17988,9 +18186,10 @@
           "term": 36,
           "monthly": 20900,
           "card": null,
-          "gift": null,
+          "gift": 90000,
           "care": "기본 조건",
-          "sourceOption": "36"
+          "sourceOption": "36",
+          "giftPolicyMonth": "2026-10"
         },
         {
           "key": "standard-option-48",
@@ -17999,13 +18198,15 @@
           "term": 48,
           "monthly": 17900,
           "card": null,
-          "gift": null,
+          "gift": 115000,
           "care": "기본 조건",
-          "sourceOption": "48"
+          "sourceOption": "48",
+          "giftPolicyMonth": "2026-10"
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-1691",
@@ -18054,13 +18255,15 @@
           "term": 48,
           "monthly": 17900,
           "card": null,
-          "gift": null,
+          "gift": 65000,
           "care": "기본 조건",
-          "sourceOption": "48"
+          "sourceOption": "48",
+          "giftPolicyMonth": "2026-10"
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "inactive"
+      "availability": "inactive",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2124",
@@ -18803,7 +19006,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2012",
@@ -18955,7 +19159,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-681",
@@ -19028,7 +19233,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-1817",
@@ -19101,7 +19307,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2235",
@@ -19180,7 +19387,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2220",
@@ -19340,7 +19548,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-236",
@@ -19419,7 +19628,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2073",
@@ -19508,7 +19718,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-235",
@@ -19588,7 +19799,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-679",
@@ -19675,7 +19887,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-241",
@@ -19756,7 +19969,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-1898",
@@ -20036,7 +20250,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-256",
@@ -20769,7 +20984,8 @@
           "monthly": 51900,
           "card": 38900,
           "gift": 205000,
-          "care": "방문형 4개월"
+          "care": "방문형 4개월",
+          "giftPolicyMonth": "2026-10"
         },
         {
           "key": "visit-60",
@@ -20779,7 +20995,8 @@
           "monthly": 44900,
           "card": 31900,
           "gift": 280000,
-          "care": "방문형 4개월"
+          "care": "방문형 4개월",
+          "giftPolicyMonth": "2026-10"
         },
         {
           "key": "self-36",
@@ -20789,7 +21006,8 @@
           "monthly": 48900,
           "card": 35900,
           "gift": 190000,
-          "care": "셀프형 12개월"
+          "care": "셀프형 12개월",
+          "giftPolicyMonth": "2026-10"
         },
         {
           "key": "self-60",
@@ -20799,11 +21017,13 @@
           "monthly": 42900,
           "card": 29900,
           "gift": 265000,
-          "care": "셀프형 12개월"
+          "care": "셀프형 12개월",
+          "giftPolicyMonth": "2026-10"
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-1769",
@@ -20901,7 +21121,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2249",
@@ -21269,7 +21490,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2219",
@@ -21449,7 +21671,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2159",
@@ -21537,7 +21760,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2158",
@@ -21628,7 +21852,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2237",
@@ -21726,7 +21951,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-1908",
@@ -21808,7 +22034,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-446",
@@ -21889,7 +22116,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-1603",
@@ -21970,7 +22198,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2067",
@@ -22236,7 +22465,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2147",
@@ -22295,7 +22525,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2099",
@@ -22350,7 +22581,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-1774",
@@ -22388,7 +22620,7 @@
           "term": 36,
           "monthly": 25900,
           "card": null,
-          "gift": 75000,
+          "gift": 70000,
           "care": "스탠드",
           "sourceOption": "(스탠드)36",
           "giftPolicyMonth": "2026-10"
@@ -22400,7 +22632,7 @@
           "term": 60,
           "monthly": 21900,
           "card": null,
-          "gift": 120000,
+          "gift": 110000,
           "care": "스탠드",
           "sourceOption": "(스탠드)60",
           "giftPolicyMonth": "2026-10"
@@ -22431,7 +22663,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2015",
@@ -22532,7 +22765,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2143",
@@ -22620,7 +22854,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-1702",
@@ -22702,7 +22937,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-1829",
@@ -22772,7 +23008,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2063",
@@ -22811,7 +23048,7 @@
           "term": 36,
           "monthly": 24900,
           "card": null,
-          "gift": 70000,
+          "gift": 65000,
           "care": "스탠드",
           "sourceOption": "(스탠드)36",
           "giftPolicyMonth": "2026-10"
@@ -22823,7 +23060,7 @@
           "term": 60,
           "monthly": 20900,
           "card": null,
-          "gift": 110000,
+          "gift": 105000,
           "care": "스탠드",
           "sourceOption": "(스탠드)60",
           "giftPolicyMonth": "2026-10"
@@ -22854,7 +23091,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2016",
@@ -22905,7 +23143,7 @@
           "term": 60,
           "monthly": 19900,
           "card": null,
-          "gift": 105000,
+          "gift": 100000,
           "care": "스탠드",
           "sourceOption": "(스탠드)60",
           "giftPolicyMonth": "2026-10"
@@ -22936,7 +23174,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2141",
@@ -22993,7 +23232,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2142",
@@ -23050,7 +23290,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-1599",
@@ -23108,7 +23349,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2064",
@@ -23165,7 +23407,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-1802",
@@ -23224,7 +23467,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-1705",
@@ -23307,7 +23551,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-1721",
@@ -23388,7 +23633,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-1720",
@@ -23470,7 +23716,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2068",
@@ -23522,7 +23769,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-1906",
@@ -23603,7 +23851,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2175",
@@ -23685,7 +23934,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2176",
@@ -23853,7 +24103,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2178",
@@ -23935,7 +24186,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2179",
@@ -24017,7 +24269,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-1907",
@@ -24099,7 +24352,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2065",
@@ -24159,7 +24413,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2144",
@@ -24215,7 +24470,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-1656",
@@ -24302,7 +24558,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-1657",
@@ -24384,7 +24641,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-481",
@@ -24442,7 +24700,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-500",
@@ -24490,7 +24749,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-516",
@@ -24560,7 +24820,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-528",
@@ -24752,7 +25013,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2108",
@@ -24808,7 +25070,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2109",
@@ -25100,7 +25363,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2097",
@@ -25155,7 +25419,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-726",
@@ -25218,7 +25483,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2093",
@@ -25277,7 +25543,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-1589",
@@ -25353,7 +25620,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-1752",
@@ -25437,7 +25705,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-1753",
@@ -25520,7 +25789,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2094",
@@ -25558,9 +25828,10 @@
           "term": 36,
           "monthly": 22901,
           "card": null,
-          "gift": null,
+          "gift": 95000,
           "care": "스탠드",
-          "sourceOption": "(스탠드)36"
+          "sourceOption": "(스탠드)36",
+          "giftPolicyMonth": "2026-10"
         },
         {
           "key": "standard-option-48",
@@ -25569,9 +25840,10 @@
           "term": 48,
           "monthly": 19901,
           "card": null,
-          "gift": null,
+          "gift": 105000,
           "care": "스탠드",
-          "sourceOption": "(스탠드)48"
+          "sourceOption": "(스탠드)48",
+          "giftPolicyMonth": "2026-10"
         },
         {
           "key": "standard-option-36",
@@ -25599,7 +25871,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-711",
@@ -25656,7 +25929,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-728",
@@ -25700,7 +25974,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2180",
@@ -25804,7 +26079,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2181",
@@ -25892,7 +26168,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2183",
@@ -25979,7 +26256,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-1401",
@@ -26037,7 +26315,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-1405",
@@ -26075,9 +26354,10 @@
           "term": 36,
           "monthly": 29901,
           "card": null,
-          "gift": null,
+          "gift": 95000,
           "care": "하프",
-          "sourceOption": "(하프)36"
+          "sourceOption": "(하프)36",
+          "giftPolicyMonth": "2026-10"
         },
         {
           "key": "standard-option-60",
@@ -26116,7 +26396,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2037",
@@ -26178,9 +26459,10 @@
           "term": 36,
           "monthly": 27901,
           "card": null,
-          "gift": null,
+          "gift": 95000,
           "care": "스탠드",
-          "sourceOption": "(스탠드)36"
+          "sourceOption": "(스탠드)36",
+          "giftPolicyMonth": "2026-10"
         },
         {
           "key": "standard-option-60",
@@ -26189,13 +26471,15 @@
           "term": 60,
           "monthly": 21901,
           "card": null,
-          "gift": null,
+          "gift": 95000,
           "care": "스탠드",
-          "sourceOption": "(스탠드)60"
+          "sourceOption": "(스탠드)60",
+          "giftPolicyMonth": "2026-10"
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2034",
@@ -26253,7 +26537,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2039",
@@ -26312,7 +26597,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-1417",
@@ -26375,7 +26661,8 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "giftStatus": "matched"
     },
     {
       "id": "cp-7211n-v2",
@@ -26415,7 +26702,8 @@
           "monthly": 35900,
           "card": null,
           "gift": 190000,
-          "care": "방문관리 · 4개월"
+          "care": "방문관리 · 4개월",
+          "giftPolicyMonth": "2026-10"
         },
         {
           "key": "visit-60",
@@ -26425,7 +26713,8 @@
           "monthly": 32900,
           "card": null,
           "gift": 205000,
-          "care": "방문관리 · 4개월"
+          "care": "방문관리 · 4개월",
+          "giftPolicyMonth": "2026-10"
         },
         {
           "key": "visit-72",
@@ -26435,7 +26724,8 @@
           "monthly": 30900,
           "card": null,
           "gift": 240000,
-          "care": "방문관리 · 4개월"
+          "care": "방문관리 · 4개월",
+          "giftPolicyMonth": "2026-10"
         },
         {
           "key": "visit-84",
@@ -26445,7 +26735,8 @@
           "monthly": 28900,
           "card": null,
           "gift": 240000,
-          "care": "방문관리 · 4개월"
+          "care": "방문관리 · 4개월",
+          "giftPolicyMonth": "2026-10"
         },
         {
           "key": "self-36",
@@ -26455,7 +26746,8 @@
           "monthly": 32900,
           "card": null,
           "gift": 185000,
-          "care": "자가관리"
+          "care": "자가관리",
+          "giftPolicyMonth": "2026-10"
         },
         {
           "key": "self-60",
@@ -26465,7 +26757,8 @@
           "monthly": 29900,
           "card": null,
           "gift": 200000,
-          "care": "자가관리"
+          "care": "자가관리",
+          "giftPolicyMonth": "2026-10"
         },
         {
           "key": "self-72",
@@ -26475,7 +26768,8 @@
           "monthly": 27900,
           "card": null,
           "gift": 230000,
-          "care": "자가관리"
+          "care": "자가관리",
+          "giftPolicyMonth": "2026-10"
         },
         {
           "key": "self-84",
@@ -26485,15 +26779,11 @@
           "monthly": 25900,
           "card": null,
           "gift": 230000,
-          "care": "자가관리"
+          "care": "자가관리",
+          "giftPolicyMonth": "2026-10"
         }
-      ]
+      ],
+      "giftStatus": "matched"
     }
-  ],
-  "giftSync": {
-    "policyMonth": "2026-10",
-    "method": "verified unique policy match",
-    "updatedAt": "2026-10-02",
-    "newMatchedOptions": 676
-  }
+  ]
 }
