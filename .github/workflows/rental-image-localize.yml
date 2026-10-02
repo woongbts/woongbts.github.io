@@ -79,23 +79,39 @@ jobs:
               if r.status_code!=200:return []
               raw=html.unescape(r.text)
               found=[]
-              pats=[
-                r'<meta[^>]+(?:property|name)=["\\\'](?:og:image|twitter:image)["\\\'][^>]+content=["\\\']([^"\\\']+)',
-                r'<meta[^>]+content=["\\\']([^"\\\']+)["\\\'][^>]+(?:property|name)=["\\\'](?:og:image|twitter:image)["\\\']',
-                r'<img[^>]+(?:src|data-src|data-original)=["\\\']([^"\\\']+)',
-              ]
+              labels={}
               model_key=re.sub(r'[^a-z0-9]','',str(p.get('model') or '').lower())
-              for pat in pats:
-                for u in re.findall(pat,raw,re.I):
-                  u=urljoin(page,u)
-                  if not u.startswith('http') or u in found:continue
-                  low=u.lower()
-                  if any(x in low for x in ['logo','icon','banner','sprite','card','event']):continue
-                  found.append(u)
+              name_key=re.sub(r'[^a-z0-9가-힣]','',str(p.get('name') or '').lower())
+
+              def add_url(u,label=''):
+                u=urljoin(page,u)
+                if not u.startswith('http') or u in found:return
+                low=u.lower()
+                if any(x in low for x in ['logo','icon','banner','sprite','card','event']):return
+                found.append(u);labels[u]=str(label or '')
+
+              for pat in [
+                r'<meta[^>]+(?:property|name)=["\\\'](?:og:image|twitter:image)["\\\'][^>]+content=["\\\']([^"\\\']+)',
+                r'<meta[^>]+content=["\\\']([^"\\\']+)["\\\'][^>]+(?:property|name)=["\\\'](?:og:image|twitter:image)["\\\']'
+              ]:
+                for u in re.findall(pat,raw,re.I):add_url(u,'meta')
+
+              for tag in re.findall(r'<img\\b[^>]*>',raw,re.I):
+                msrc=re.search(r'(?:src|data-src|data-original)=["\\\']([^"\\\']+)',tag,re.I)
+                if not msrc:continue
+                malt=re.search(r'alt=["\\\']([^"\\\']*)',tag,re.I)
+                add_url(msrc.group(1),malt.group(1) if malt else '')
+
               def rank(u):
                 key=re.sub(r'[^a-z0-9]','',u.lower())
-                return (2 if model_key and model_key in key else 0)+(1 if any(x in key for x in ['product','goods','item','upload']) else 0)
-              return sorted(found,key=rank,reverse=True)[:20]
+                label_key=re.sub(r'[^a-z0-9가-힣]','',labels.get(u,'').lower())
+                score=0
+                if model_key and model_key in key:score+=5
+                if model_key and model_key in re.sub(r'[^a-z0-9]','',label_key):score+=8
+                if name_key and len(name_key)>5 and name_key[:10] in label_key:score+=4
+                if any(x in key for x in ['product','goods','item','upload','thumbnail']):score+=1
+                return score
+              return sorted(found,key=rank,reverse=True)[:24]
             except Exception:
               return []
 
