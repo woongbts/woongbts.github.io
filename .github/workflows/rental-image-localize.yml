@@ -51,7 +51,7 @@ jobs:
             h=dict(headers)
             if referer:h['Referer']=referer
             try:
-              r=session.get(url,headers=h,timeout=(6,12),allow_redirects=True)
+              r=session.get(url,headers=h,timeout=(3,5),allow_redirects=True)
               if r.status_code!=200 or len(r.content)<1200:return None
               ctype=(r.headers.get('content-type') or '').lower()
               if 'svg' in ctype:return None
@@ -83,7 +83,7 @@ jobs:
             referer=p.get('sourceUrl') or 'https://woongbi.vip-rental.com/'
             best=None;best_url=None;best_score=-10000
             for priority,url in enumerate(cand[:8]):
-              im=fetch_img(session,url,referer) or fetch_img(session,url,'')
+              im=fetch_img(session,url,referer)
               if im is None:continue
               s=score(im,priority)
               if s>best_score:best=im.copy();best_url=url;best_score=s
@@ -104,7 +104,7 @@ jobs:
 
           targets=[p for p in products if visible(p)]
           results={}
-          with ThreadPoolExecutor(max_workers=12) as ex:
+          with ThreadPoolExecutor(max_workers=30) as ex:
             futs={ex.submit(localize,p):p for p in targets}
             for i,fut in enumerate(as_completed(futs),1):
               r=fut.result();results[r.get('id')]=r
