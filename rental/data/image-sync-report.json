@@ -1,23 +1,10 @@
 {
   "generatedAt": "2026-10-03",
   "visibleProducts": 294,
-  "localizedOrExisting": 245,
-  "failed": 49,
-  "changedProducts": 1,
+  "localizedOrExisting": 254,
+  "failed": 40,
+  "changedProducts": 9,
   "failures": [
-    {
-      "ok": false,
-      "id": "clover-2201",
-      "brand": "LG퓨리케어",
-      "name": "LG 퓨리케어 360˚ 공기청정기 플러스 + 무빙휠 세트 100㎡ 2등급",
-      "model": "AS305DWWAM",
-      "sourceUrl": "https://woongbi.vip-rental.com/categ/1058/2201",
-      "candidates": [
-        "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/videoframe_1545.png",
-        "https://woongbi.vip-rental.com/_var/rental/vshop/250530172233_1.jpg"
-      ],
-      "searched": []
-    },
     {
       "ok": false,
       "id": "clover-384",
@@ -33,32 +20,6 @@
     },
     {
       "ok": false,
-      "id": "clover-2187",
-      "brand": "COWAY",
-      "name": "얼음냉온정수기 RO",
-      "model": "CHPI-7521L",
-      "sourceUrl": "https://woongbi.vip-rental.com/categ/1059/2187",
-      "candidates": [
-        "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250412105655_1.png",
-        "https://djr0828.img.or.kr/1-CHPI-7521L-2.png"
-      ],
-      "searched": []
-    },
-    {
-      "ok": false,
-      "id": "clover-1933",
-      "brand": "COWAY",
-      "name": "엘리트 냉온정수기(방문관리전용)",
-      "model": "CHP-6340L",
-      "sourceUrl": "https://woongbi.vip-rental.com/categ/1059/1933",
-      "candidates": [
-        "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/chp-6340l_1_1.png",
-        "https://woongbi.vip-rental.com/_var/rental/vshop/1a51de87f1daddc44e5af56fa39ddcdd_1693226177_6001.jpg"
-      ],
-      "searched": []
-    },
-    {
-      "ok": false,
       "id": "clover-1932",
       "brand": "COWAY",
       "name": "엘리트 냉정수기(방문관리전용)/온수불가",
@@ -67,19 +28,6 @@
       "candidates": [
         "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/cp-6340l_1_1.png",
         "https://woongbi.vip-rental.com/_var/rental/vshop/240910110653_1.jpg"
-      ],
-      "searched": []
-    },
-    {
-      "ok": false,
-      "id": "clover-1770",
-      "brand": "COWAY",
-      "name": "노블 인덕션 All-Free (4구)",
-      "model": "CIR-F41",
-      "sourceUrl": "https://woongbi.vip-rental.com/categ/1059/1770",
-      "candidates": [
-        "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230629095706_1.gif",
-        "https://woongbi.vip-rental.com/_var/rental/vshop/230629100644_1.png"
       ],
       "searched": []
     },
@@ -108,35 +56,6 @@
         "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/id0101_4649_attimg_org.png",
         "https://woongbi.vip-rental.com/_var/rental/vshop/23a9310ba6d3ee82c1fc2b7f555651e8_1696570990_2732.jpg",
         "https://woongbi.vip-rental.com/_var/rental/vshop/23a9310ba6d3ee82c1fc2b7f555651e8_1696570993_1218.jpg"
-      ],
-      "searched": []
-    },
-    {
-      "ok": false,
-      "id": "clover-1726",
-      "brand": "COWAY",
-      "name": "프라임S 하이라이트 (3구)",
-      "model": "CER-04",
-      "sourceUrl": "https://woongbi.vip-rental.com/categ/1059/1726",
-      "candidates": [
-        "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/id0101_4650_attimg_org.png",
-        "https://woongbi.vip-rental.com/_var/rental/vshop/23a9310ba6d3ee82c1fc2b7f555651e8_1696562081_8127.jpg",
-        "https://woongbi.vip-rental.com/_var/rental/vshop/23a9310ba6d3ee82c1fc2b7f555651e8_1696562085_7001.jpg",
-        "https://woongbi.vip-rental.com/_var/rental/vshop/210506142622_1.jpg",
-        "https://woongbi.vip-rental.com/_var/rental/vshop/wwwwww.jpg"
-      ],
-      "searched": []
-    },
-    {
-      "ok": false,
-      "id": "clover-1651",
-      "brand": "COWAY",
-      "name": "BEREX 하이브리드 4 매트리스",
-      "model": "CM(SS/Q/K)-PR04(M/H)-V2",
-      "sourceUrl": "https://woongbi.vip-rental.com/categ/1059/1651",
-      "candidates": [
-        "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230630114033_1.gif",
-        "https://woongbi.vip-rental.com/_var/rental/vshop/cmk-pr04_01.jpg"
       ],
       "searched": []
     },
@@ -207,19 +126,6 @@
     },
     {
       "ok": false,
-      "id": "clover-1897",
-      "brand": "COWAY",
-      "name": "룰루 스스로케어 비데(저수압 특화)",
-      "model": "BAS39-A",
-      "sourceUrl": "https://woongbi.vip-rental.com/categ/1059/1897",
-      "candidates": [
-        "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/id0101_4554_attimg_org.png",
-        "https://woongbi.vip-rental.com/_var/rental/vshop/bas39-a_01.jpg"
-      ],
-      "searched": []
-    },
-    {
-      "ok": false,
       "id": "clover-1304",
       "brand": "COWAY",
       "name": "BEREX 모던 싱글 프레임",
@@ -268,19 +174,6 @@
         "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/wp-46s9p510m_1_1.jpg",
         "https://woongbi.vip-rental.com/_var/rental/vshop/wp-45s9p510.jpg",
         "https://woongbi.vip-rental.com/_var/rental/vshop/20240528160129.png"
-      ],
-      "searched": []
-    },
-    {
-      "ok": false,
-      "id": "clover-2057",
-      "brand": "청호나이스",
-      "name": "냉온정수기 슈퍼 트리 (할인프로모션)",
-      "model": "WP-80S9P510M",
-      "sourceUrl": "https://woongbi.vip-rental.com/categ/1060/2057",
-      "candidates": [
-        "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231101182504_1_1.png",
-        "https://woongbi.vip-rental.com/_var/rental/vshop/62971320146190.jpg"
       ],
       "searched": []
     },
@@ -335,20 +228,6 @@
         "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/20240529_112736_047_1.jpg",
         "https://woongbi.vip-rental.com/_var/rental/vshop/ap-10h4550_01.jpg",
         "https://woongbi.vip-rental.com/_var/rental/vshop/20240529112029.png"
-      ],
-      "searched": []
-    },
-    {
-      "ok": false,
-      "id": "clover-2135",
-      "brand": "청호나이스",
-      "name": "환기 공기청정기 OA_7평형",
-      "model": "AV-06H3050",
-      "sourceUrl": "https://woongbi.vip-rental.com/categ/1060/2135",
-      "candidates": [
-        "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/av-06h3050_1.jpg",
-        "https://woongbi.vip-rental.com/_var/rental/vshop/oa.jpg",
-        "https://woongbi.vip-rental.com/_var/rental/vshop/20240529141717.png"
       ],
       "searched": []
     },
