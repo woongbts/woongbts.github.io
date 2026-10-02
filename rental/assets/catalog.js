@@ -7,11 +7,12 @@
   const searchInput = document.getElementById('catalog-search');
   const brandFilters = document.getElementById('brand-filters');
   const categoryFilter = document.getElementById('category-filter');
+  const featureFilters = document.getElementById('feature-filters');
   const count = document.getElementById('catalog-count');
   const moreBtn = document.getElementById('catalog-more');
 
   const PAGE_SIZE = 24;
-  const state = { query: '', brand: '', category: '', limit: PAGE_SIZE };
+  const state = { query: '', brand: '', category: '', feature: '', limit: PAGE_SIZE };
   let products = [];
 
   const won = n => Number(n).toLocaleString('ko-KR') + '원';
@@ -20,6 +21,32 @@
     'CUCKOO':'쿠쿠',
     'LG퓨리케어':'LG 퓨리케어'
   }[brand] || brand || '');
+
+  const featureDefs = [
+    {key:'ice', label:'얼음', test:text => /얼음/.test(text)},
+    {key:'direct', label:'직수', test:text => /직수/.test(text)},
+    {key:'hotcold', label:'냉온', test:text => /냉온|냉수·온수/.test(text)},
+    {key:'self', label:'셀프관리', test:text => /셀프|자가관리/.test(text)},
+    {key:'pet', label:'펫', test:text => /펫/.test(text)},
+    {key:'large', label:'대용량', test:text => /대용량/.test(text)}
+  ];
+
+  function optionLabel(value) {
+    let x = String(value || '').trim();
+    if (!x) return '';
+    x = x.replace(/^단종\//, '');
+    x = x.replace(/^기본 조건$/, '기본 옵션');
+    x = x.replace(/^방문형(?=$|[·/)]|\s)/, '방문관리');
+    x = x.replace(/^셀프형(?=$|[·/)]|\s)/, '셀프관리');
+    x = x.replace(/^관리형$/, '관리형');
+    x = x.replace(/^킹\(K$/, '킹').replace(/^퀸\(Q$/, '퀸').replace(/^슈퍼싱글\(SS$/, '슈퍼싱글');
+    x = x.replace(/^토탈케어\((라지킹|킹|퀸|슈퍼싱글|싱글)$/, '토탈케어 · $1');
+    x = x.replace(/6개월\s*반값할인/g, '6개월 반값').replace(/10개월\s*반값할인/g, '10개월 반값');
+    x = x.replace(/\/+/g, ' · ').replace(/\s*·\s*/g, ' · ').replace(/\s+/g, ' ').trim();
+    if (x === '슬러지통x') return '슬러지통 없음';
+    if (x === '슬러지통o') return '슬러지통 있음';
+    return x;
+  }
 
   function visual(product) {
     if (product.image) {
@@ -38,7 +65,7 @@
       .filter(Number.isFinite);
     const minMonthly = monthlyValues.length ? Math.min(...monthlyValues) : null;
     const maxGift = giftValues.length ? Math.max(...giftValues) : null;
-    const managements = [...new Set(validOptions.map(o => o.managementLabel).filter(Boolean))].slice(0,3).join(' · ');
+    const managements = [...new Set(validOptions.map(o => optionLabel(o.managementLabel)).filter(Boolean))].slice(0,3).join(' · ');
     const tags = (product.tags || []).slice(0, 5).map(t => '<span>' + t + '</span>').join('');
     const highlights = (product.highlights || []).slice(0, 4).map(t => '<li>' + t + '</li>').join('');
 
@@ -73,12 +100,8 @@
     return String(value || '').toLowerCase().replace(/\s+/g, ' ').trim();
   }
 
-  function matches(product) {
-    if (state.brand && product.brand !== state.brand) return false;
-    if (state.category && product.category !== state.category) return false;
-    if (!state.query) return true;
-
-    const haystack = normalizeText([
+  function productText(product) {
+    return normalizeText([
       product.brand,
       product.name,
       product.model,
@@ -89,14 +112,46 @@
       ...(product.tags || []),
       ...(product.highlights || [])
     ].join(' '));
-    return haystack.includes(normalizeText(state.query));
+  }
+
+  function matchesBase(product) {
+    if (state.brand && product.brand !== state.brand) return false;
+    if (state.category && product.category !== state.category) return false;
+    if (state.query && !productText(product).includes(normalizeText(state.query))) return false;
+    return true;
+  }
+
+  function matches(product) {
+    if (!matchesBase(product)) return false;
+    if (!state.feature) return true;
+    const def = featureDefs.find(x => x.key === state.feature);
+    return !def || def.test(productText(product));
   }
 
   function filteredProducts() {
     return products.filter(p => p.availability !== 'inactive').filter(matches);
   }
 
+  function renderFeatureFilters() {
+    if (!featureFilters) return;
+    const base = products.filter(p => p.availability !== 'inactive').filter(matchesBase);
+    featureFilters.innerHTML = [
+      '<button type="button" class="' + (!state.feature ? 'active' : '') + '" data-feature="">전체 기능</button>',
+      ...featureDefs.map(def => {
+        const n = base.filter(p => def.test(productText(p))).length;
+        return n ? '<button type="button" class="' + (state.feature === def.key ? 'active' : '') + '" data-feature="' + def.key + '">' + def.label + '<small>' + n + '</small></button>' : '';
+      }).filter(Boolean)
+    ].join('');
+    featureFilters.querySelectorAll('button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        state.feature = btn.dataset.feature || '';
+        resetAndRender();
+      });
+    });
+  }
+
   function render() {
+    renderFeatureFilters();
     const filtered = filteredProducts();
     const visible = filtered.slice(0, state.limit);
 
@@ -163,6 +218,7 @@
 
     searchInput?.addEventListener('input', () => {
       state.query = searchInput.value;
+      if (state.feature && !featureDefs.some(def => def.key === state.feature)) state.feature = '';
       resetAndRender();
     });
 
@@ -203,7 +259,7 @@
     })
     .then(data => {
       products = Array.isArray(data.products)
-        ? data.products.filter(p => p.availability !== 'inactive' && !/접수불가/.test(String(p.name || '')))
+        ? data.products.filter(p => p.availability !== 'inactive' && !/접수불가|접수중지/.test(String(p.name || '')))
         : [];
       setupFilters();
       render();
