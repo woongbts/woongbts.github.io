@@ -118,8 +118,13 @@
   }
 
   function setupFilters() {
-    const brands = [...new Set(products.map(p => p.brand).filter(Boolean))].sort((a,b) => a.localeCompare(b, 'ko'));
-    const categories = [...new Set(products.map(p => p.category).filter(Boolean))].sort((a,b) => a.localeCompare(b, 'ko'));
+    const activeProducts = products.filter(p => p.availability !== 'inactive');
+    const brands = [...new Set(activeProducts.map(p => p.brand).filter(Boolean))].sort((a,b) => a.localeCompare(b, 'ko'));
+    const categories = [...new Set(activeProducts.map(p => p.category).filter(Boolean))].sort((a,b) => a.localeCompare(b, 'ko'));
+
+    document.querySelectorAll('[data-category-link]').forEach(link => {
+      link.hidden = !categories.includes(link.dataset.categoryLink || '');
+    });
 
     if (brandFilters) {
       brandFilters.innerHTML = [
