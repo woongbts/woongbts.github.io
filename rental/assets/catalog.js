@@ -38,6 +38,7 @@
     x = x.replace(/^기본 조건$/, '기본 옵션');
     x = x.replace(/^방문형(?=$|[·/)]|\s)/, '방문관리');
     x = x.replace(/^셀프형(?=$|[·/)]|\s)/, '셀프관리');
+    x = x.replace(/^(방문관리|셀프관리)\)\d+개월$/, '$1');
     x = x.replace(/^관리형$/, '관리형');
     x = x.replace(/^킹\(K$/, '킹').replace(/^퀸\(Q$/, '퀸').replace(/^슈퍼싱글\(SS$/, '슈퍼싱글');
     x = x.replace(/^토탈케어\((라지킹|킹|퀸|슈퍼싱글|싱글)$/, '토탈케어 · $1');
@@ -135,6 +136,10 @@
   function renderFeatureFilters() {
     if (!featureFilters) return;
     const base = products.filter(p => p.availability !== 'inactive').filter(matchesBase);
+    if (state.feature) {
+      const activeDef = featureDefs.find(x => x.key === state.feature);
+      if (!activeDef || !base.some(p => activeDef.test(productText(p)))) state.feature = '';
+    }
     featureFilters.innerHTML = [
       '<button type="button" class="' + (!state.feature ? 'active' : '') + '" data-feature="">전체 기능</button>',
       ...featureDefs.map(def => {
