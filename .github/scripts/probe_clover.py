@@ -1,27 +1,36 @@
 #!/usr/bin/env python3
-import json,re,ssl
+import json,ssl
 from pathlib import Path
-from urllib.parse import urlparse
+from urllib.parse import urlencode,urlparse
 from urllib.request import Request,urlopen
 
-URL="https://woongbi.vip-rental.com/module/vshop/tpl/basic/js/vshop3.js"
+BASE="https://woongbi.vip-rental.com"
 OUT=Path(".github/tmp/clover-probe.json")
 UA="Mozilla/5.0 (compatible; WoongbiRentalProbe/1.0)"
 
-def fetch(url):
-    req=Request(url,headers={"User-Agent":UA,"Accept-Language":"ko-KR,ko;q=0.9"})
-    ctx=ssl._create_unverified_context() if urlparse(url).netloc=="woongbi.vip-rental.com" else None
+def fetch_json(url):
+    req=Request(url,headers={"User-Agent":UA,"Accept-Language":"ko-KR,ko;q=0.9","Referer":BASE+"/"})
+    ctx=ssl._create_unverified_context()
     with urlopen(req,timeout=15,context=ctx) as r:
-        return r.read().decode(r.headers.get_content_charset() or "utf-8","replace")
+        return json.loads(r.read().decode("utf-8","replace"))
 
-js=fetch(URL)
-snips=[]
-for pat in ["load_board.php","axios.get","getDatas","pageNum","categ =","categ2","m_id","plink"]:
-    start=0; found=0
-    while True:
-        i=js.find(pat,start)
-        if i<0 or found>=12: break
-        snips.append({"pattern":pat,"text":js[max(0,i-800):min(len(js),i+1500)]})
-        start=i+len(pat); found+=1
+def load(categ,categ2=0,page=1,mid=""):
+    q=urlencode({"page":page,"categ":categ,"categ2":categ2,"orderby":"item_attr-desc","mid":mid})
+    return fetch_json(BASE+"/module/vshop/load_board.php?"+q)
+
+samples={}
+for cid in [1057,1058,1059,1060,1061,1062,1063,1064,1065,1066,1068,1069,1070,1071,1073,1074,1075,1076,1077,1078,1079,1080,1081,1082,1083,1084,1086,1087,1088,1090,1091,1092,1093,1094,1095,1096,1100,1115,1118,1120,1121,1123,1172,1208,1226,1227,1228,1229,1230,1237,1245,1246]:
+    try:
+        d=load(cid)
+        samples[str(cid)]={
+          "ResultCode":d.get("ResultCode"),
+          "total":d.get("total"),
+          "listnum":d.get("listnum"),
+          "submenu":d.get("submenu"),
+          "list_sample":(d.get("list") or [])[:2],
+          "keys":sorted(d.keys())
+        }
+    except Exception as e:
+        samples[str(cid)]={"error":str(e)}
 OUT.parent.mkdir(parents=True,exist_ok=True)
-OUT.write_text(json.dumps({"url":URL,"length":len(js),"snippets":snips},ensure_ascii=False,indent=2),encoding="utf-8")
+OUT.write_text(json.dumps(samples,ensure_ascii=False,indent=2),encoding="utf-8")
