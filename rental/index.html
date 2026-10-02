@@ -5,7 +5,28 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="description" content="웅비렌탈 - 정수기·생활가전 렌탈 조건과 월요금, 사은품을 쉽고 깔끔하게 비교하세요.">
   <title>웅비렌탈 | 렌탈도 싸면서 깔끔하게</title>
-  <link rel="stylesheet" href="assets/rental.css?v=20261002-1">
+  <link rel="stylesheet" href="assets/rental.css?v=20261002-10">
+  <style id="catalog-mobile-critical">
+    @media (max-width:560px){
+      .catalog-card{display:block!important}
+      .catalog-visual{height:220px!important;min-height:220px!important;max-height:220px!important;overflow:hidden!important;padding:20px!important}
+      .catalog-visual .purifier-art.large{width:92px!important;margin:auto!important;transform:none!important}
+      .catalog-visual .purifier-art.large .purifier-head{height:66px!important}
+      .catalog-visual .purifier-art.large .purifier-body{height:104px!important}
+      .catalog-product-image{height:155px!important;max-height:155px!important;width:100%!important;object-fit:contain!important}
+      .catalog-info{padding:22px 20px 24px!important}
+      .catalog-info h3{font-size:1.38rem!important;line-height:1.28!important}
+      .catalog-description{font-size:.94rem!important;line-height:1.55!important}
+      .catalog-highlights{display:grid!important;grid-template-columns:1fr 1fr!important;gap:7px!important}
+      .catalog-highlights li{font-size:.82rem!important;line-height:1.35!important}
+      .catalog-prices{display:grid!important;grid-template-columns:1fr 1fr!important;gap:8px!important}
+      .catalog-prices small{font-size:.78rem!important}
+      .catalog-prices strong{font-size:1.14rem!important}
+      .product-actions{display:grid!important;grid-template-columns:1.25fr 1fr!important;gap:8px!important}
+      .product-actions .btn{min-height:50px!important;font-size:.9rem!important}
+    }
+  </style>
+  <link rel="icon" href="../assets/woongbi-mark.svg" type="image/svg+xml">
 </head>
 <body>
   <header class="site-header">
@@ -43,7 +64,7 @@
 
         <aside class="hero-card" aria-label="웅비렌탈 핵심 안내">
           <div class="hero-card-top">
-            <span class="pill">SAMPLE</span>
+            <span class="pill">추천 상품</span>
             <strong>쿠쿠 제로 100 미니 얼음 냉온정수기</strong>
             <small>CP-AQS100EWH</small>
           </div>
@@ -88,30 +109,20 @@
           <p>제품별 관리방식과 계약기간에 따라 월요금과 사은품이 달라질 수 있습니다.</p>
         </div>
 
-        <article class="product-card">
-          <div class="product-visual">
-            <span class="brand-label">CUCKOO</span>
-            <div class="purifier-art large" aria-hidden="true">
-              <div class="purifier-head"><span>250</span></div>
-              <div class="purifier-body"></div>
-              <div class="purifier-base"></div>
-            </div>
+        <div class="catalog-tools" aria-label="상품 검색 및 필터">
+          <label class="catalog-search">
+            <span>상품 검색</span>
+            <input id="catalog-search" type="search" placeholder="브랜드·제품명·모델명 검색" autocomplete="off">
+          </label>
+          <div class="catalog-filter-row">
+            <div id="brand-filters" class="catalog-filters" aria-label="브랜드 필터"></div>
+            <select id="category-filter" class="catalog-select" aria-label="카테고리">
+              <option value="">전체 카테고리</option>
+            </select>
           </div>
-          <div class="product-info">
-            <div class="product-tags"><span>얼음정수기</span><span>냉수</span><span>온수</span><span>직수</span></div>
-            <h3>쿠쿠 제로 100 미니 얼음 냉온정수기</h3>
-            <p class="model">CP-AQS100EWH</p>
-            <div class="price-row">
-              <div><small>월 렌탈료</small><strong>42,900원부터</strong></div>
-              <div class="gift"><small>웅비렌탈 사은품</small><strong>최대 280,000원</strong></div>
-            </div>
-            <p class="promo">6개월 반값 할인 조건 · 방문관리/셀프관리 선택 가능</p>
-            <div class="product-actions">
-              <a class="btn primary" href="product-cp-aqs100ewh.html">조건별 금액 보기</a>
-              <a class="btn ghost" href="http://pf.kakao.com/_nWwNT/chat" target="_blank" rel="noopener noreferrer">바로 상담</a>
-            </div>
-          </div>
-        </article>
+          <p id="catalog-count" class="catalog-count" aria-live="polite"></p>
+        </div>
+        <div id="product-grid" class="catalog-grid" aria-busy="true"><p class="catalog-loading">상품 정보를 불러오는 중입니다.</p></div>
       </div>
     </section>
 
@@ -149,6 +160,6 @@
     </div>
     <div class="wrap footer-note">상품·요금·프로모션·제휴카드·사은품 조건은 변경될 수 있으며 최종 접수 전 상담을 통해 확인합니다.</div>
   </footer>
-  <script src="assets/rental.js?v=20261002-1" defer></script>
+  <script src="assets/catalog.js?v=20261002-4" defer></script>
 </body>
 </html>
