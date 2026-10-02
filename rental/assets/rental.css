@@ -192,3 +192,14 @@
   .category-grid-all .category small{font-size:.72rem}
   .catalog-more{width:100%;min-height:52px;font-size:.94rem}
 }
+
+/* Imported product detail landing */
+.generic-source-detail{background:#fff}
+.detail-image-wrap>h2{margin:8px 0 0;font-size:clamp(1.55rem,3vw,2.25rem);letter-spacing:-.035em}
+.detail-image-note{max-width:760px;margin:12px 0 28px;color:#6f8182;font-size:.86rem;line-height:1.65}
+.generic-detail-images{width:min(100%,920px);margin:0 auto;display:flex;flex-direction:column;gap:0}
+.generic-detail-images img{display:block;width:100%;height:auto;object-fit:contain;background:#fff}
+@media(max-width:560px){
+  .detail-image-note{font-size:.84rem;margin-bottom:20px}
+  .generic-source-detail{padding-top:46px}
+}
