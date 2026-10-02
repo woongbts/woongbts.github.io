@@ -1,0 +1,516 @@
+{
+  "updatedAt": "2026-10-02",
+  "products": [
+    {
+      "id": "cp-aqs100ewh",
+      "brand": "CUCKOO",
+      "name": "쿠쿠 제로 100 미니 얼음 냉온정수기",
+      "model": "CP-AQS100EWH",
+      "category": "정수기",
+      "color": "아이스 화이트",
+      "page": "product-cp-aqs100ewh.html",
+      "tags": [
+        "얼음정수기",
+        "직수",
+        "냉수",
+        "온수"
+      ],
+      "promo": "6개월 반값 할인",
+      "cardNote": "제휴카드 적용 예시",
+      "common": {
+        "initialCost": "면제 표시",
+        "ownership": "렌탈계약 60/72/84개월 이상 사용 시 소유권 이전 안내",
+        "requiredUse": "36/60/72/84개월 안내",
+        "filterCycle": "4개월 안내",
+        "installation": "조리수 설치 불가 안내"
+      },
+      "options": [
+        {
+          "key": "visit-36",
+          "management": "visit",
+          "managementLabel": "방문관리",
+          "term": 36,
+          "monthly": 51900,
+          "card": 38900,
+          "gift": 205000,
+          "care": "방문형 4개월"
+        },
+        {
+          "key": "visit-60",
+          "management": "visit",
+          "managementLabel": "방문관리",
+          "term": 60,
+          "monthly": 44900,
+          "card": 31900,
+          "gift": 280000,
+          "care": "방문형 4개월"
+        },
+        {
+          "key": "self-36",
+          "management": "self",
+          "managementLabel": "셀프관리",
+          "term": 36,
+          "monthly": 48900,
+          "card": 35900,
+          "gift": 190000,
+          "care": "셀프형 12개월"
+        },
+        {
+          "key": "self-60",
+          "management": "self",
+          "managementLabel": "셀프관리",
+          "term": 60,
+          "monthly": 42900,
+          "card": 29900,
+          "gift": 265000,
+          "care": "셀프형 12개월"
+        }
+      ],
+      "image": "https://contents.lotteon.com/itemimage/20260429111206/LO/26/50/75/17/38/_2/65/07/51/73/9/LO2650751738_2650751739_1.jpg/dims/resizef/554X554/format/webp/optimize",
+      "imageSource": "https://www.lotteon.com/p/product/PD62173751",
+      "highlights": [
+        "얼음·냉수·온수·정수",
+        "방문관리 / 셀프관리",
+        "초슬림 19cm 디자인",
+        "6개월 반값 할인"
+      ],
+      "shortDescription": "얼음까지 필요한 집이라면, 작은 공간에 한 번에."
+    },
+    {
+      "id": "chpci-8400n",
+      "brand": "COWAY",
+      "name": "코웨이 카페 얼음 냉온정수기",
+      "model": "CHPCI-8400N",
+      "category": "정수기",
+      "color": "페블 블랙 / 퓨어화이트",
+      "page": "product-chpci-8400n.html",
+      "tags": [
+        "얼음정수기",
+        "커피",
+        "직수",
+        "냉온"
+      ],
+      "promo": "동시구매 10% · 추가결합 5% 할인 안내",
+      "cardNote": "제휴카드 적용 예시",
+      "common": {
+        "initialCost": "면제 표시",
+        "ownership": "계약기간(60/72개월) 만료 후 소유권 이전 안내",
+        "requiredUse": "36/60/72개월 안내",
+        "managementCycle": "2개월 / 4개월 선택 안내"
+      },
+      "options": [
+        {
+          "key": "visit-36",
+          "management": "visit",
+          "managementLabel": "방문관리",
+          "term": 36,
+          "monthly": 61900,
+          "card": 46900,
+          "gift": 220000,
+          "care": "방문관리 · 2/4개월 선택"
+        },
+        {
+          "key": "visit-60",
+          "management": "visit",
+          "managementLabel": "방문관리",
+          "term": 60,
+          "monthly": 57900,
+          "card": 42900,
+          "gift": 250000,
+          "care": "방문관리 · 2/4개월 선택"
+        }
+      ],
+      "sourceUrl": "https://woongbi.vip-rental.com/categ/1059/2261",
+      "highlights": [
+        "물·얼음·커피 올인원",
+        "냉수·온수·직수",
+        "방문관리",
+        "관리주기 2개월 / 4개월"
+      ],
+      "shortDescription": "물·얼음·커피를 한 제품으로 쓰고 싶은 고객에게."
+    },
+    {
+      "id": "p-350n",
+      "brand": "COWAY",
+      "name": "코웨이 나노직수 미니 정수기",
+      "model": "P-350N",
+      "category": "정수기",
+      "color": "도브 화이트 / 오트밀 베이지 / 실버",
+      "page": "product.html?id=p-350n",
+      "image": "https://m.renters.co.kr/web/product/medium/202102/aa2fb5f52292b5c3564eb2ef4137eb8d.jpg",
+      "imageSource": "https://m.renters.co.kr/product/list_zoom.html?cate_no=68&page=1&sort_method=3",
+      "sourceUrl": "https://woongbi.vip-rental.com/categ/1059/1912",
+      "tags": [
+        "정수전용",
+        "직수",
+        "무전원",
+        "초슬림"
+      ],
+      "promo": "2026년 10월 정책 기준",
+      "common": {
+        "initialCost": "초기비용 면제 안내",
+        "requiredUse": "36/60/72/84개월",
+        "managementCycle": "방문 6개월 / 자가관리"
+      },
+      "options": [
+        {
+          "key": "visit-36",
+          "management": "visit",
+          "managementLabel": "방문관리",
+          "term": 36,
+          "monthly": 19900,
+          "card": null,
+          "gift": 160000,
+          "care": "방문관리 · 6개월"
+        },
+        {
+          "key": "visit-60",
+          "management": "visit",
+          "managementLabel": "방문관리",
+          "term": 60,
+          "monthly": 18900,
+          "card": null,
+          "gift": 170000,
+          "care": "방문관리 · 6개월"
+        },
+        {
+          "key": "visit-72",
+          "management": "visit",
+          "managementLabel": "방문관리",
+          "term": 72,
+          "monthly": 17900,
+          "card": null,
+          "gift": 195000,
+          "care": "방문관리 · 6개월"
+        },
+        {
+          "key": "visit-84",
+          "management": "visit",
+          "managementLabel": "방문관리",
+          "term": 84,
+          "monthly": 16900,
+          "card": null,
+          "gift": 195000,
+          "care": "방문관리 · 6개월"
+        },
+        {
+          "key": "self-36",
+          "management": "self",
+          "managementLabel": "자가관리",
+          "term": 36,
+          "monthly": 18900,
+          "card": null,
+          "gift": 160000,
+          "care": "자가관리"
+        },
+        {
+          "key": "self-60",
+          "management": "self",
+          "managementLabel": "자가관리",
+          "term": 60,
+          "monthly": 17900,
+          "card": null,
+          "gift": 170000,
+          "care": "자가관리"
+        },
+        {
+          "key": "self-72",
+          "management": "self",
+          "managementLabel": "자가관리",
+          "term": 72,
+          "monthly": 16900,
+          "card": null,
+          "gift": 195000,
+          "care": "자가관리"
+        },
+        {
+          "key": "self-84",
+          "management": "self",
+          "managementLabel": "자가관리",
+          "term": 84,
+          "monthly": 15900,
+          "card": null,
+          "gift": 195000,
+          "care": "자가관리"
+        }
+      ],
+      "highlights": [
+        "정수전용 직수",
+        "무전원",
+        "방문관리 / 자가관리",
+        "초슬림 미니형"
+      ],
+      "shortDescription": "전기 없이 깔끔하게 쓰는 초슬림 정수전용 모델."
+    },
+    {
+      "id": "chpi-7430n",
+      "brand": "COWAY",
+      "name": "코웨이 아이콘 얼음정수기 미니",
+      "model": "CHPI-7430N",
+      "category": "정수기",
+      "color": "아이스 화이트 / 아이스 블루 / 아이스 핑크 등",
+      "page": "product.html?id=chpi-7430n",
+      "image": "https://cdn.rentre.kr/product-thumbnail/76a9f09a6e2e45aeaf1b245dc920f9fc.png",
+      "imageSource": "https://rentre.kr/product/1600005415/",
+      "sourceUrl": "https://woongbi.vip-rental.com/",
+      "tags": [
+        "얼음",
+        "냉수",
+        "온수",
+        "직수",
+        "미니"
+      ],
+      "promo": "2026년 10월 정책 기준 · 타사보상 조건 별도",
+      "common": {
+        "initialCost": "등록비 면제 행사 안내",
+        "requiredUse": "36/60/72/84개월",
+        "managementCycle": "방문 2개월/4개월 · 자가관리"
+      },
+      "options": [
+        {
+          "key": "visit2-36",
+          "management": "visit2",
+          "managementLabel": "방문관리 2개월",
+          "term": 36,
+          "monthly": 52900,
+          "card": null,
+          "gift": 215000,
+          "care": "방문관리 · 2개월"
+        },
+        {
+          "key": "visit2-60",
+          "management": "visit2",
+          "managementLabel": "방문관리 2개월",
+          "term": 60,
+          "monthly": 49900,
+          "card": null,
+          "gift": 240000,
+          "care": "방문관리 · 2개월"
+        },
+        {
+          "key": "visit2-72",
+          "management": "visit2",
+          "managementLabel": "방문관리 2개월",
+          "term": 72,
+          "monthly": 47900,
+          "card": null,
+          "gift": 280000,
+          "care": "방문관리 · 2개월"
+        },
+        {
+          "key": "visit2-84",
+          "management": "visit2",
+          "managementLabel": "방문관리 2개월",
+          "term": 84,
+          "monthly": 45900,
+          "card": null,
+          "gift": 280000,
+          "care": "방문관리 · 2개월"
+        },
+        {
+          "key": "visit4-36",
+          "management": "visit4",
+          "managementLabel": "방문관리 4개월",
+          "term": 36,
+          "monthly": 49900,
+          "card": null,
+          "gift": 215000,
+          "care": "방문관리 · 4개월"
+        },
+        {
+          "key": "visit4-60",
+          "management": "visit4",
+          "managementLabel": "방문관리 4개월",
+          "term": 60,
+          "monthly": 46900,
+          "card": null,
+          "gift": 240000,
+          "care": "방문관리 · 4개월"
+        },
+        {
+          "key": "visit4-72",
+          "management": "visit4",
+          "managementLabel": "방문관리 4개월",
+          "term": 72,
+          "monthly": 44900,
+          "card": null,
+          "gift": 275000,
+          "care": "방문관리 · 4개월"
+        },
+        {
+          "key": "visit4-84",
+          "management": "visit4",
+          "managementLabel": "방문관리 4개월",
+          "term": 84,
+          "monthly": 42900,
+          "card": null,
+          "gift": 275000,
+          "care": "방문관리 · 4개월"
+        },
+        {
+          "key": "self-36",
+          "management": "self",
+          "managementLabel": "자가관리",
+          "term": 36,
+          "monthly": 47900,
+          "card": null,
+          "gift": 210000,
+          "care": "자가관리 · 4개월 필터"
+        },
+        {
+          "key": "self-60",
+          "management": "self",
+          "managementLabel": "자가관리",
+          "term": 60,
+          "monthly": 44900,
+          "card": null,
+          "gift": 230000,
+          "care": "자가관리 · 4개월 필터"
+        },
+        {
+          "key": "self-72",
+          "management": "self",
+          "managementLabel": "자가관리",
+          "term": 72,
+          "monthly": 42900,
+          "card": null,
+          "gift": 270000,
+          "care": "자가관리 · 4개월 필터"
+        },
+        {
+          "key": "self-84",
+          "management": "self",
+          "managementLabel": "자가관리",
+          "term": 84,
+          "monthly": 40900,
+          "card": null,
+          "gift": 270000,
+          "care": "자가관리 · 4개월 필터"
+        }
+      ],
+      "highlights": [
+        "얼음·냉수·온수",
+        "방문 2개월 / 4개월",
+        "자가관리 선택 가능",
+        "미니 타입"
+      ],
+      "shortDescription": "얼음 기능은 챙기고 크기는 줄인 미니형."
+    },
+    {
+      "id": "chpi-7420n",
+      "brand": "COWAY",
+      "name": "코웨이 아이콘 얼음정수기 맥스",
+      "model": "CHPI-7420N",
+      "category": "정수기",
+      "color": "아이스 화이트 / 아이스 블루 / 아이스 그레이",
+      "page": "product.html?id=chpi-7420n",
+      "image": "https://m.coway-mall.kr/web/product/extra/big/202508/d0789fe9a45c82952ca4bdc60e21a5d2.jpg",
+      "imageSource": "https://m.coway-mall.kr/product/detail.html?cate_no=24&display_group=1&product_no=654",
+      "sourceUrl": "https://woongbi.vip-rental.com/",
+      "tags": [
+        "얼음",
+        "냉수",
+        "온수",
+        "직수",
+        "대용량"
+      ],
+      "promo": "2026년 10월 정책 기준 · 타사보상 조건 별도",
+      "common": {
+        "requiredUse": "36/60/72/84개월",
+        "managementCycle": "방문 2개월 / 4개월"
+      },
+      "options": [
+        {
+          "key": "visit2-36",
+          "management": "visit2",
+          "managementLabel": "방문관리 2개월",
+          "term": 36,
+          "monthly": 60900,
+          "card": null,
+          "gift": 230000,
+          "care": "방문관리 · 2개월"
+        },
+        {
+          "key": "visit2-60",
+          "management": "visit2",
+          "managementLabel": "방문관리 2개월",
+          "term": 60,
+          "monthly": 56900,
+          "card": null,
+          "gift": 255000,
+          "care": "방문관리 · 2개월"
+        },
+        {
+          "key": "visit2-72",
+          "management": "visit2",
+          "managementLabel": "방문관리 2개월",
+          "term": 72,
+          "monthly": 53900,
+          "card": null,
+          "gift": 295000,
+          "care": "방문관리 · 2개월"
+        },
+        {
+          "key": "visit2-84",
+          "management": "visit2",
+          "managementLabel": "방문관리 2개월",
+          "term": 84,
+          "monthly": 51900,
+          "card": null,
+          "gift": 295000,
+          "care": "방문관리 · 2개월"
+        },
+        {
+          "key": "visit4-36",
+          "management": "visit4",
+          "managementLabel": "방문관리 4개월",
+          "term": 36,
+          "monthly": 57900,
+          "card": null,
+          "gift": 220000,
+          "care": "방문관리 · 4개월"
+        },
+        {
+          "key": "visit4-60",
+          "management": "visit4",
+          "managementLabel": "방문관리 4개월",
+          "term": 60,
+          "monthly": 53900,
+          "card": null,
+          "gift": 250000,
+          "care": "방문관리 · 4개월"
+        },
+        {
+          "key": "visit4-72",
+          "management": "visit4",
+          "managementLabel": "방문관리 4개월",
+          "term": 72,
+          "monthly": 50900,
+          "card": null,
+          "gift": 290000,
+          "care": "방문관리 · 4개월"
+        },
+        {
+          "key": "visit4-84",
+          "management": "visit4",
+          "managementLabel": "방문관리 4개월",
+          "term": 84,
+          "monthly": 48900,
+          "card": null,
+          "gift": 285000,
+          "care": "방문관리 · 4개월"
+        }
+      ],
+      "highlights": [
+        "얼음·냉수·온수",
+        "방문 2개월 / 4개월",
+        "대용량 타입",
+        "직수형"
+      ],
+      "shortDescription": "얼음 사용량이 많은 가정에 맞는 대용량형."
+    }
+  ],
+  "policyMonth": "2026-10",
+  "policyStatus": "synced",
+  "policySourceLabel": "2026년 10월 렌탈 정책"
+}
