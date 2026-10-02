@@ -26607,7 +26607,7 @@
       "rawCategory": "공기청정기",
       "color": "그레이",
       "page": "product.html?id=clover-728",
-      "image": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250313101042_1.png",
+      "image": "assets/product-images/clover-728.webp",
       "sourceUrl": "https://woongbi.vip-rental.com/categ/1069/728",
       "tags": [
         "공기청정기",
@@ -26641,7 +26641,9 @@
       ],
       "sourceKind": "clover-public",
       "availability": "active",
-      "giftStatus": "matched"
+      "giftStatus": "matched",
+      "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250313101042_1.png",
+      "imageLocalizedFrom": "https://ruhens.co.kr/FileData/edtImg/ac9cabfd_"
     },
     {
       "id": "clover-2180",
