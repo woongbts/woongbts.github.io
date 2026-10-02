@@ -84,7 +84,10 @@
       product.model,
       product.category,
       product.rawCategory,
-      ...(product.tags || [])
+      product.color,
+      product.shortDescription,
+      ...(product.tags || []),
+      ...(product.highlights || [])
     ].join(' '));
     return haystack.includes(normalizeText(state.query));
   }
