@@ -1,0 +1,1143 @@
+{
+  "effectiveMonth": "2026-10",
+  "matches": {
+    "clover-2254": {
+      "visit-option-36": 175000,
+      "visit-option-60": 275000,
+      "self-option-36": 180000,
+      "self-option-60": 275000
+    },
+    "clover-2251": {
+      "visit-option-36": 215000,
+      "visit-option-60": 330000,
+      "self-option-36": 215000,
+      "self-option-60": 330000
+    },
+    "clover-2196": {
+      "visit-option-36": 185000,
+      "visit-option-60": 285000,
+      "self-option-36": 185000,
+      "self-option-60": 280000
+    },
+    "clover-2223": {
+      "visit-option-36": 105000,
+      "visit-option-60": 165000,
+      "self-option-36": 105000,
+      "self-option-60": 160000
+    },
+    "clover-2226": {
+      "visit-option-36": 95000,
+      "visit-option-60": 95000
+    },
+    "clover-2250": {
+      "visit-option-36": 160000,
+      "visit-option-60": 160000,
+      "self-option-36": 160000,
+      "self-option-60": 160000
+    },
+    "clover-2203": {
+      "visit-36-36": 55000,
+      "visit-60-60": 50000
+    },
+    "clover-2202": {
+      "visit-option-36": 155000,
+      "visit-option-60": 230000,
+      "self-option-36": 155000,
+      "self-option-60": 230000
+    },
+    "clover-2104": {
+      "visit-option-36": 130000,
+      "visit-option-60": 130000,
+      "self-option-36": 130000,
+      "self-option-60": 130000
+    },
+    "clover-2105": {
+      "visit-option-36": 80000,
+      "visit-option-60": 80000,
+      "self-option-36": 80000,
+      "self-option-60": 80000
+    },
+    "clover-2150": {
+      "visit-option-36": 35000,
+      "self-option-36": 35000,
+      "self-option-60": 35000
+    },
+    "clover-1759": {
+      "visit-option-36": 130000,
+      "visit-1-60": 170000
+    },
+    "clover-2060": {
+      "visit-option-36": 105000,
+      "visit-option-60": 135000,
+      "self-option-36": 85000,
+      "self-option-60": 105000
+    },
+    "clover-2059": {
+      "visit-option-36": 110000,
+      "visit-option-60": 145000,
+      "self-option-36": 90000,
+      "self-option-60": 115000
+    },
+    "clover-2058": {
+      "visit-option-36": 85000,
+      "visit-option-60": 105000,
+      "self-option-36": 65000,
+      "self-option-60": 85000
+    },
+    "clover-1675": {
+      "visit-option-36": 100000,
+      "visit-option-60": 90000,
+      "self-option-36": 95000,
+      "self-option-60": 85000
+    },
+    "clover-1857": {
+      "visit-option-36": 70000,
+      "visit-option-60": 60000,
+      "self-option-36": 60000,
+      "self-option-60": 50000
+    },
+    "clover-2121": {
+      "visit-option-36": 90000,
+      "visit-option-60": 85000,
+      "self-option-36": 90000,
+      "self-option-60": 80000
+    },
+    "clover-1856": {
+      "visit-option-36": 220000
+    },
+    "clover-2168": {
+      "visit-option-36": 10000,
+      "visit-option-60": 5000
+    },
+    "clover-2244": {
+      "standard-option-36": 100000,
+      "standard-option-60": 95000
+    },
+    "clover-1594": {
+      "visit-option-36": 135000,
+      "visit-option-60": 135000
+    },
+    "clover-2154": {
+      "visit-option-36": 95000,
+      "visit-option-60": 95000
+    },
+    "clover-1934": {
+      "standard-option-36": 30000,
+      "standard-option-60": 25000
+    },
+    "clover-2224": {
+      "visit-option-36": 95000,
+      "visit-option-60": 95000
+    },
+    "clover-2225": {
+      "visit-option-36": 135000,
+      "visit-option-60": 135000
+    },
+    "clover-2174": {
+      "standard-option-36": 30000,
+      "standard-option-60": 25000
+    },
+    "clover-1779": {
+      "self-option-36": 35000,
+      "self-option-60": 35000
+    },
+    "clover-1860": {
+      "visit-option-36": 80000
+    },
+    "clover-2167": {
+      "standard-option-36": 30000,
+      "standard-option-60": 25000
+    },
+    "clover-2120": {
+      "visit-option-36": 160000,
+      "visit-option-60": 160000,
+      "self-option-36": 160000,
+      "self-option-60": 160000
+    },
+    "clover-2259": {
+      "visit-option-60": 315000,
+      "visit-option-72": 315000
+    },
+    "clover-2258": {
+      "visit-option-60": 245000,
+      "visit-option-72": 245000
+    },
+    "clover-2242": {
+      "visit-option-60": 315000,
+      "visit-option-72": 315000
+    },
+    "clover-2230": {
+      "visit-option-60": 195000,
+      "self-option-60": 185000,
+      "self-option-72": 195000
+    },
+    "clover-2231": {
+      "visit-option-60": 185000,
+      "self-option-60": 175000,
+      "self-option-72": 185000
+    },
+    "clover-2211": {
+      "visit-option-48": 145000,
+      "visit-option-60": 230000,
+      "self-option-48": 140000,
+      "self-option-60": 215000
+    },
+    "clover-1927": {
+      "visit-option-48": 130000,
+      "self-option-48": 125000,
+      "self-option-60": 190000
+    },
+    "clover-2136": {
+      "visit-option-60": 150000,
+      "self-option-60": 140000,
+      "self-option-72": 140000
+    },
+    "clover-1775": {
+      "visit-option-48": 150000,
+      "visit-option-60": 240000,
+      "self-option-48": 145000,
+      "self-option-60": 225000
+    },
+    "clover-1586": {
+      "visit-option-48": 150000,
+      "visit-option-60": 240000,
+      "self-option-48": 145000,
+      "self-option-60": 225000
+    },
+    "clover-1588": {
+      "visit-option-48": 145000,
+      "visit-option-60": 225000
+    },
+    "clover-1771": {
+      "visit-option-60": 200000,
+      "self-option-60": 150000,
+      "self-option-72": 160000
+    },
+    "clover-1820": {
+      "visit-option-48": 145000,
+      "self-option-48": 135000
+    },
+    "clover-1821": {
+      "visit-option-60": 220000,
+      "self-option-60": 205000,
+      "self-option-72": 225000
+    },
+    "clover-2227": {
+      "visit-option-48": 120000,
+      "visit-option-60": 105000
+    },
+    "clover-2228": {
+      "visit-option-48": 150000,
+      "visit-option-60": 130000
+    },
+    "clover-2137": {
+      "visit-option-60": 165000,
+      "self-option-60": 150000,
+      "self-option-72": 160000
+    },
+    "clover-2232": {
+      "visit-option-36": 195000,
+      "visit-option-60": 195000,
+      "self-option-36": 190000,
+      "self-option-60": 190000
+    },
+    "clover-2215": {
+      "visit-option-36": 170000,
+      "visit-option-60": 170000,
+      "self-option-60": 165000
+    },
+    "clover-2214": {
+      "visit-option-36": 195000,
+      "visit-option-60": 195000,
+      "self-option-60": 190000
+    },
+    "clover-2206": {
+      "visit-option-36": 215000,
+      "visit-option-60": 215000,
+      "self-option-60": 215000
+    },
+    "clover-2195": {
+      "visit-option-36": 220000,
+      "visit-option-60": 220000
+    },
+    "clover-2186": {
+      "visit-option-36": 235000,
+      "visit-option-60": 235000,
+      "self-option-60": 235000
+    },
+    "clover-2161": {
+      "visit-option-36": 225000,
+      "visit-option-60": 225000,
+      "self-option-36": 225000,
+      "self-option-60": 225000
+    },
+    "clover-2156": {
+      "visit-option-36": 185000,
+      "visit-option-60": 185000
+    },
+    "clover-2031": {
+      "visit-option-36": 210000,
+      "visit-option-60": 210000,
+      "self-option-36": 210000,
+      "self-option-60": 210000
+    },
+    "clover-2030": {
+      "visit-option-36": 210000,
+      "visit-option-60": 210000,
+      "self-option-36": 195000,
+      "self-option-60": 195000
+    },
+    "clover-1756": {
+      "visit-option-36": 225000,
+      "visit-option-60": 225000,
+      "self-option-36": 225000,
+      "self-option-60": 225000
+    },
+    "clover-312": {
+      "standard-option-36": 225000,
+      "standard-option-60": 225000
+    },
+    "clover-384": {
+      "visit-option-36": 195000,
+      "self-option-36": 190000,
+      "visit-option-60": 195000,
+      "self-option-60": 190000
+    },
+    "clover-282": {
+      "visit-option-36": 180000,
+      "visit-option-60": 180000,
+      "self-option-36": 170000,
+      "self-option-60": 170000
+    },
+    "chpci-8400n": {
+      "visit2-36": 230000,
+      "visit2-60": 260000,
+      "visit2-72": 300000,
+      "visit2-84": 300000,
+      "visit4-36": 220000,
+      "visit4-60": 250000,
+      "visit4-72": 290000,
+      "visit4-84": 290000
+    },
+    "chpi-7430n": {
+      "visit2-36": 215000,
+      "visit2-60": 240000,
+      "visit2-72": 280000,
+      "visit2-84": 280000,
+      "visit4-36": 215000,
+      "visit4-60": 240000,
+      "visit4-72": 275000,
+      "visit4-84": 275000,
+      "self-36": 210000,
+      "self-60": 230000,
+      "self-72": 270000,
+      "self-84": 270000
+    },
+    "chpi-7420n": {
+      "visit2-36": 230000,
+      "visit2-60": 255000,
+      "visit2-72": 295000,
+      "visit2-84": 295000,
+      "visit4-36": 220000,
+      "visit4-60": 250000,
+      "visit4-72": 290000,
+      "visit4-84": 285000
+    },
+    "clover-2208": {
+      "visit-option-36": 215000,
+      "visit-option-60": 240000
+    },
+    "clover-2209": {
+      "visit-option-36": 215000,
+      "visit-option-60": 240000
+    },
+    "clover-1786": {
+      "visit-option-36": 215000,
+      "visit-option-60": 240000
+    },
+    "clover-1785": {
+      "visit-option-36": 210000,
+      "visit-option-60": 230000
+    },
+    "clover-2187": {
+      "visit-option-36": 210000,
+      "visit-option-60": 230000
+    },
+    "chp-7220n": {
+      "visit-36": 205000,
+      "visit-60": 250000,
+      "visit-72": 285000,
+      "visit-84": 285000,
+      "self-36": 190000,
+      "self-60": 235000,
+      "self-72": 265000,
+      "self-84": 265000
+    },
+    "clover-2194": {
+      "visit-option-36": 205000,
+      "self-option-36": 195000,
+      "self-option-60": 215000
+    },
+    "clover-2247": {
+      "standard-option-36": 230000,
+      "standard-option-60": 255000
+    },
+    "clover-2239": {
+      "standard-option-36": 235000,
+      "standard-option-60": 265000
+    },
+    "clover-2222": {
+      "standard-option-36": 190000,
+      "standard-option-60": 205000
+    },
+    "clover-2193": {
+      "visit-option-36": 205000,
+      "self-option-36": 195000,
+      "self-option-60": 215000
+    },
+    "clover-2188": {
+      "visit-option-36": 160000,
+      "self-option-36": 160000,
+      "self-option-60": 170000
+    },
+    "clover-2255": {
+      "visit-option-36": 195000,
+      "visit-option-60": 215000,
+      "self-option-60": 205000
+    },
+    "clover-1579": {
+      "standard-option-36": 220000,
+      "standard-option-60": 245000
+    },
+    "clover-1724": {
+      "standard-option-36": 215000,
+      "standard-option-60": 240000
+    },
+    "clover-1725": {
+      "standard-option-36": 210000,
+      "standard-option-60": 230000
+    },
+    "p-350n": {
+      "visit-36": 160000,
+      "visit-60": 170000,
+      "visit-72": 195000,
+      "visit-84": 195000,
+      "self-36": 160000,
+      "self-60": 170000,
+      "self-72": 195000,
+      "self-84": 195000
+    },
+    "clover-1915": {
+      "visit-option-36": 205000,
+      "visit-option-60": 225000,
+      "self-option-36": 205000,
+      "self-option-60": 220000
+    },
+    "clover-1933": {
+      "visit-option-36": 190000,
+      "visit-option-60": 205000
+    },
+    "clover-1932": {
+      "visit-option-36": 190000,
+      "visit-option-60": 205000
+    },
+    "clover-1791": {
+      "visit-option-36": 235000,
+      "visit-option-60": 265000
+    },
+    "clover-1916": {
+      "visit-option-36": 215000,
+      "visit-option-60": 240000
+    },
+    "clover-1764": {
+      "visit-option-36": 210000,
+      "self-option-36": 205000,
+      "visit-option-60": 230000,
+      "self-option-60": 225000
+    },
+    "clover-1913": {
+      "standard-option-36": 165000,
+      "standard-option-60": 180000
+    },
+    "clover-181": {
+      "standard-option-36": 165000
+    },
+    "clover-223": {
+      "standard-option-36": 230000,
+      "standard-option-60": 255000
+    },
+    "clover-1808": {
+      "standard-option-60": 395000
+    },
+    "clover-1910": {
+      "standard-option-36": 220000,
+      "standard-option-60": 245000
+    },
+    "clover-1882": {
+      "standard-option-60": 195000
+    },
+    "clover-2076": {
+      "standard-option-60": 315000,
+      "standard-option-84": 300000
+    },
+    "clover-2075": {
+      "standard-option-60": 280000,
+      "standard-option-84": 280000
+    },
+    "clover-175": {
+      "standard-option-36": 190000,
+      "standard-option-60": 205000
+    },
+    "clover-245": {
+      "standard-option-36": 220000
+    },
+    "clover-234": {
+      "standard-option-36": 235000
+    },
+    "clover-1766": {
+      "visit-option-36": 205000,
+      "visit-option-60": 225000,
+      "self-option-36": 205000,
+      "self-option-60": 220000
+    },
+    "clover-1770": {
+      "visit-option-60": 300000,
+      "visit-option-72": 320000,
+      "self-option-72": 310000
+    },
+    "clover-1877": {
+      "visit-option-60": 350000,
+      "self-option-60": 340000,
+      "self-option-72": 360000
+    },
+    "clover-1879": {
+      "visit-option-60": 200000,
+      "visit-option-72": 210000,
+      "self-option-60": 190000,
+      "self-option-72": 205000
+    },
+    "clover-1880": {
+      "visit-option-60": 190000,
+      "visit-option-72": 205000,
+      "self-option-60": 190000,
+      "self-option-72": 205000
+    },
+    "clover-1881": {
+      "visit-option-60": 215000,
+      "visit-option-72": 230000,
+      "self-option-60": 210000,
+      "self-option-72": 225000
+    },
+    "clover-1727": {
+      "visit-option-60": 210000,
+      "visit-option-72": 225000,
+      "self-option-72": 215000
+    },
+    "clover-1726": {
+      "visit-option-60": 190000,
+      "visit-option-72": 205000,
+      "self-option-72": 205000
+    },
+    "clover-2256": {
+      "visit-option-36": 195000,
+      "visit-option-60": 195000,
+      "self-option-60": 195000
+    },
+    "clover-2233": {
+      "visit-option-36": 180000,
+      "visit-option-60": 180000,
+      "self-option-60": 170000
+    },
+    "clover-2221": {
+      "visit-option-36": 180000,
+      "visit-option-60": 180000,
+      "self-option-60": 170000
+    },
+    "clover-2185": {
+      "standard-option-60": 170000
+    },
+    "clover-1886": {
+      "standard-option-84": 195000
+    },
+    "clover-1897": {
+      "visit-option-36": 170000,
+      "visit-option-60": 170000
+    },
+    "clover-2086": {
+      "visit-option-36": 195000,
+      "visit-option-60": 195000,
+      "self-option-36": 190000,
+      "self-option-60": 190000
+    },
+    "clover-1326": {
+      "standard-q-60": 185000
+    },
+    "clover-1304": {
+      "standard-option-60": 165000,
+      "standard-option-84": 175000
+    },
+    "clover-2155": {
+      "visit-option-36": 180000,
+      "visit-option-60": 180000
+    },
+    "clover-1782": {
+      "visit-option-36": 185000,
+      "visit-option-60": 185000,
+      "self-option-36": 185000,
+      "self-option-60": 185000
+    },
+    "clover-1895": {
+      "visit-option-36": 205000,
+      "visit-option-60": 205000,
+      "self-option-36": 195000,
+      "self-option-60": 195000
+    },
+    "clover-1894": {
+      "visit-option-36": 200000,
+      "visit-option-60": 200000,
+      "self-option-36": 190000,
+      "self-option-60": 190000
+    },
+    "clover-441": {
+      "standard-option-36": 190000,
+      "standard-option-60": 190000
+    },
+    "clover-674": {
+      "visit-option-60": 220000,
+      "visit-option-72": 235000,
+      "self-option-60": 220000,
+      "self-option-72": 235000
+    },
+    "clover-436": {
+      "visit-option-60": 220000,
+      "visit-option-72": 235000,
+      "self-option-60": 215000,
+      "self-option-72": 230000
+    },
+    "clover-2074": {
+      "visit-option-60": 200000,
+      "visit-option-72": 215000,
+      "self-option-60": 190000,
+      "self-option-72": 200000
+    },
+    "clover-1646": {
+      "visit-option-36": 165000,
+      "visit-option-60": 165000
+    },
+    "clover-2248": {
+      "visit-option-36": 155000,
+      "visit-option-60": 305000,
+      "self-option-36": 150000,
+      "self-option-60": 295000
+    },
+    "clover-1799": {
+      "visit-option-36": 240000,
+      "visit-6-60": 225000,
+      "self-option-36": 235000,
+      "self-6-60": 220000
+    },
+    "clover-2216": {
+      "visit-option-60": 150000
+    },
+    "clover-2145": {
+      "visit-option-36": 215000,
+      "visit-option-60": 195000
+    },
+    "clover-2170": {
+      "visit-option-36": 180000,
+      "visit-option-60": 130000
+    },
+    "clover-2151": {
+      "visit-option-36": 115000
+    },
+    "clover-2051": {
+      "standard-option-36": 85000,
+      "standard-option-60": 90000
+    },
+    "clover-2217": {
+      "visit-option-36": 205000,
+      "visit-option-60": 260000
+    },
+    "clover-2045": {
+      "visit-option-36": 250000,
+      "visit-option-60": 305000
+    },
+    "clover-2046": {
+      "visit-option-36": 260000,
+      "visit-option-60": 250000
+    },
+    "clover-2126": {
+      "visit-option-36": 220000,
+      "visit-option-60": 220000
+    },
+    "clover-2243": {
+      "visit-option-36": 100000,
+      "visit-option-60": 110000
+    },
+    "clover-2152": {
+      "visit-option-60": 75000
+    },
+    "clover-2241": {
+      "standard-option-60": 245000
+    },
+    "clover-2057": {
+      "standard-option-36": 245000,
+      "standard-option-60": 225000
+    },
+    "clover-2054": {
+      "standard-option-60": 125000
+    },
+    "clover-2205": {
+      "visit-option-36": 165000,
+      "visit-option-60": 165000
+    },
+    "clover-2052": {
+      "standard-option-36": 85000
+    },
+    "clover-581": {
+      "standard-option-36": 80000,
+      "standard-option-60": 70000
+    },
+    "clover-571": {
+      "standard-option-36": 185000,
+      "standard-option-60": 185000
+    },
+    "clover-2240": {
+      "standard-option-36": 55000,
+      "standard-option-60": 80000
+    },
+    "clover-729": {
+      "standard-option-36": 65000,
+      "standard-option-48": 85000
+    },
+    "clover-1624": {
+      "standard-option-36": 40000,
+      "standard-option-48": 40000
+    },
+    "clover-1690": {
+      "standard-option-36": 90000,
+      "standard-option-48": 115000
+    },
+    "clover-1691": {
+      "standard-option-48": 65000
+    },
+    "clover-2011": {
+      "standard-option-36": 80000,
+      "standard-option-60": 80000
+    },
+    "clover-1719": {
+      "standard-option-36": 135000,
+      "standard-option-60": 135000,
+      "standard-option-72": 135000
+    },
+    "clover-681": {
+      "standard-option-36": 155000,
+      "standard-option-60": 185000,
+      "standard-option-72": 200000
+    },
+    "clover-1817": {
+      "standard-option-36": 120000,
+      "standard-option-60": 180000,
+      "standard-option-72": 190000
+    },
+    "clover-2235": {
+      "self-option-36": 10000,
+      "visit-option-60": 10000
+    },
+    "clover-1905": {
+      "visit-option-36": 175000,
+      "self-option-60": 130000
+    },
+    "clover-236": {
+      "visit-option-36": 105000,
+      "self-option-60": 75000
+    },
+    "clover-2073": {
+      "visit-option-36": 130000,
+      "visit-option-60": 155000,
+      "self-option-60": 155000
+    },
+    "clover-235": {
+      "visit-option-36": 75000,
+      "visit-option-60": 100000,
+      "self-option-60": 65000
+    },
+    "clover-679": {
+      "visit-option-36": 20000,
+      "self-option-36": 10000,
+      "visit-option-60": 5000
+    },
+    "clover-241": {
+      "visit-option-36": 65000,
+      "visit-option-60": 75000,
+      "self-option-60": 75000
+    },
+    "clover-1737": {
+      "visit-option-36": 75000,
+      "visit-option-60": 75000,
+      "self-option-36": 65000,
+      "self-option-60": 65000
+    },
+    "cp-aqs100ewh": {
+      "visit-36": 205000,
+      "visit-60": 280000,
+      "self-36": 190000,
+      "self-60": 265000
+    },
+    "clover-1769": {
+      "visit-option-36": 195000,
+      "self-option-36": 180000
+    },
+    "clover-2236": {
+      "visit-option-36": 135000,
+      "self-option-36": 130000,
+      "visit-option-60": 185000,
+      "self-option-60": 170000
+    },
+    "clover-2197": {
+      "visit-option-36": 55000,
+      "visit-option-60": 90000,
+      "self-option-36": 50000,
+      "self-option-60": 75000
+    },
+    "clover-2159": {
+      "visit-option-36": 115000,
+      "self-option-36": 110000,
+      "visit-option-60": 155000,
+      "self-option-60": 140000
+    },
+    "clover-2158": {
+      "visit-option-36": 175000,
+      "self-option-36": 165000,
+      "visit-option-60": 225000,
+      "self-option-60": 215000
+    },
+    "clover-2237": {
+      "visit-option-36": 145000,
+      "self-option-36": 135000,
+      "visit-option-60": 195000,
+      "self-option-60": 185000
+    },
+    "clover-1908": {
+      "visit-option-36": 130000,
+      "self-option-36": 120000,
+      "visit-option-60": 175000,
+      "self-option-60": 160000
+    },
+    "clover-446": {
+      "visit-option-36": 105000,
+      "self-option-36": 90000,
+      "visit-option-60": 135000,
+      "self-option-60": 115000
+    },
+    "clover-1603": {
+      "visit-option-36": 110000,
+      "self-option-36": 105000,
+      "visit-option-60": 150000,
+      "self-option-60": 135000
+    },
+    "clover-2253": {
+      "visit-option-36": 175000,
+      "visit-option-60": 260000
+    },
+    "clover-2147": {
+      "visit-option-36": 250000,
+      "visit-option-60": 355000
+    },
+    "clover-2099": {
+      "standard-option-36": 50000,
+      "standard-option-60": 95000
+    },
+    "clover-1774": {
+      "standard-option-36": 70000,
+      "standard-option-60": 110000
+    },
+    "clover-2015": {
+      "visit-option-36": 145000,
+      "visit-option-60": 250000,
+      "self-option-36": 135000,
+      "self-option-60": 235000
+    },
+    "clover-2143": {
+      "visit-option-36": 155000,
+      "visit-option-60": 190000,
+      "self-option-36": 145000,
+      "self-option-60": 175000
+    },
+    "clover-1702": {
+      "visit-option-36": 40000,
+      "visit-option-60": 65000,
+      "self-option-36": 35000,
+      "self-option-60": 55000
+    },
+    "clover-1829": {
+      "visit-option-36": 245000,
+      "visit-option-60": 350000
+    },
+    "clover-2063": {
+      "standard-option-36": 65000,
+      "standard-option-60": 105000
+    },
+    "clover-2016": {
+      "standard-option-36": 65000,
+      "standard-option-60": 100000
+    },
+    "clover-2141": {
+      "visit-option-36": 75000,
+      "visit-option-60": 120000
+    },
+    "clover-2142": {
+      "visit-option-36": 85000,
+      "visit-option-60": 130000
+    },
+    "clover-1599": {
+      "visit-option-36": 110000,
+      "visit-option-60": 155000
+    },
+    "clover-2064": {
+      "visit-option-36": 100000,
+      "visit-option-60": 150000
+    },
+    "clover-1802": {
+      "visit-option-36": 205000,
+      "visit-option-60": 230000
+    },
+    "clover-1705": {
+      "visit-option-36": 120000,
+      "self-option-36": 105000,
+      "visit-option-48": 125000,
+      "self-option-48": 115000
+    },
+    "clover-1721": {
+      "visit-option-36": 90000,
+      "self-option-36": 80000,
+      "visit-option-60": 110000,
+      "self-option-60": 100000
+    },
+    "clover-1720": {
+      "visit-option-36": 90000,
+      "self-option-36": 75000,
+      "visit-option-60": 105000,
+      "self-option-60": 90000
+    },
+    "clover-2068": {
+      "standard-option-36": 55000
+    },
+    "clover-1906": {
+      "visit-option-36": 75000,
+      "visit-option-60": 90000,
+      "self-option-36": 65000,
+      "self-option-60": 80000
+    },
+    "clover-2175": {
+      "visit-option-36": 45000,
+      "self-option-36": 35000,
+      "visit-option-60": 105000,
+      "self-option-60": 85000
+    },
+    "clover-2177": {
+      "visit-option-36": 55000,
+      "self-option-36": 45000
+    },
+    "clover-2178": {
+      "visit-option-36": 45000,
+      "self-option-36": 35000,
+      "visit-option-60": 105000,
+      "self-option-60": 85000
+    },
+    "clover-2179": {
+      "visit-option-36": 30000,
+      "self-option-36": 15000,
+      "visit-option-60": 70000,
+      "self-option-60": 45000
+    },
+    "clover-1907": {
+      "visit-option-36": 70000,
+      "visit-option-60": 85000,
+      "self-option-36": 60000,
+      "self-option-60": 70000
+    },
+    "clover-2065": {
+      "self-option-36": 35000,
+      "self-option-60": 60000
+    },
+    "clover-2144": {
+      "visit-option-36": 75000,
+      "visit-option-60": 105000
+    },
+    "clover-1656": {
+      "visit-option-36": 35000,
+      "visit-option-48": 50000,
+      "self-option-36": 25000,
+      "self-option-48": 35000
+    },
+    "clover-1657": {
+      "visit-option-36": 45000,
+      "self-option-36": 35000,
+      "visit-option-48": 75000,
+      "self-option-48": 60000
+    },
+    "clover-481": {
+      "visit-option-36": 25000,
+      "self-option-36": 15000
+    },
+    "clover-500": {
+      "visit-option-36": 30000
+    },
+    "clover-516": {
+      "self-option-36": 80000,
+      "self-option-48": 90000,
+      "self-option-60": 100000
+    },
+    "clover-2106": {
+      "standard-option-60": 170000
+    },
+    "clover-2108": {
+      "standard-option-48": 290000,
+      "standard-option-60": 300000
+    },
+    "clover-2096": {
+      "standard-option-36": 25000,
+      "standard-option-48": 35000,
+      "standard-option-60": 35000
+    },
+    "clover-2097": {
+      "standard-option-36": 190000,
+      "standard-option-48": 270000
+    },
+    "clover-726": {
+      "standard-option-36": 135000,
+      "standard-option-48": 190000
+    },
+    "clover-2093": {
+      "standard-option-48": 245000,
+      "standard-option-60": 245000
+    },
+    "clover-1589": {
+      "standard-option-36": 190000,
+      "standard-option-48": 245000,
+      "standard-option-60": 270000
+    },
+    "clover-1752": {
+      "visit-option-36": 160000,
+      "visit-option-48": 215000,
+      "self-option-36": 105000,
+      "self-option-48": 135000
+    },
+    "clover-1753": {
+      "visit-option-36": 105000,
+      "visit-option-48": 135000,
+      "self-option-36": 105000,
+      "self-option-48": 135000
+    },
+    "clover-2094": {
+      "standard-option-36": 95000,
+      "standard-option-48": 105000
+    },
+    "clover-711": {
+      "standard-option-36": 160000,
+      "standard-option-48": 160000
+    },
+    "clover-728": {
+      "standard-option-36": 105000
+    },
+    "clover-2180": {
+      "visit-option-36": 135000,
+      "self-option-36": 115000,
+      "self-option-60": 160000
+    },
+    "clover-2181": {
+      "visit-option-36": 105000,
+      "self-option-36": 105000,
+      "visit-option-60": 190000,
+      "self-option-48": 125000
+    },
+    "clover-2183": {
+      "visit-option-36": 105000,
+      "self-option-36": 105000,
+      "self-option-60": 105000
+    },
+    "clover-1401": {
+      "standard-option-36": 95000,
+      "standard-option-60": 95000
+    },
+    "clover-1405": {
+      "standard-option-36": 95000
+    },
+    "clover-2037": {
+      "standard-option-36": 95000,
+      "standard-option-60": 95000
+    },
+    "clover-2034": {
+      "standard-option-36": 95000,
+      "standard-option-60": 95000
+    },
+    "clover-2039": {
+      "self-option-36": 100000,
+      "visit-option-36": 115000
+    },
+    "clover-1417": {
+      "visit-option-36": 150000,
+      "self-option-36": 125000
+    },
+    "cp-7211n-v2": {
+      "visit-36": 190000,
+      "visit-60": 205000,
+      "visit-72": 240000,
+      "visit-84": 240000,
+      "self-36": 185000,
+      "self-60": 200000,
+      "self-72": 230000,
+      "self-84": 230000
+    }
+  },
+  "stats": {
+    "products": 366,
+    "matchedProducts": 226,
+    "matchedOptions": 647,
+    "ambiguousOptions": 57,
+    "unmatchedOptions": 362,
+    "byBrand": {
+      "SK매직": {
+        "matched": 91,
+        "ambiguous": 0,
+        "unmatched": 11
+      },
+      "LG퓨리케어": {
+        "matched": 47,
+        "ambiguous": 6,
+        "unmatched": 126
+      },
+      "COWAY": {
+        "matched": 247,
+        "ambiguous": 0,
+        "unmatched": 64
+      },
+      "청호나이스": {
+        "matched": 47,
+        "ambiguous": 10,
+        "unmatched": 65
+      },
+      "현대큐밍": {
+        "matched": 33,
+        "ambiguous": 6,
+        "unmatched": 72
+      },
+      "CUCKOO": {
+        "matched": 136,
+        "ambiguous": 32,
+        "unmatched": 18
+      },
+      "루헨스": {
+        "matched": 35,
+        "ambiguous": 2,
+        "unmatched": 2
+      },
+      "유버스": {
+        "matched": 11,
+        "ambiguous": 1,
+        "unmatched": 4
+      }
+    }
+  }
+}
