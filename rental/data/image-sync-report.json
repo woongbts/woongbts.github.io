@@ -3,7 +3,7 @@
   "visibleProducts": 294,
   "localizedOrExisting": 243,
   "failed": 51,
-  "changedProducts": 243,
+  "changedProducts": 0,
   "failures": [
     {
       "ok": false,
