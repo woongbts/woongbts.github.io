@@ -3299,7 +3299,7 @@
       "rawCategory": "공기청정기",
       "color": "크리미스노우",
       "page": "product.html?id=clover-2201",
-      "image": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/videoframe_1545.png",
+      "image": "https://miso-customer-public.s3.ap-northeast-2.amazonaws.com/rental_img/20240625_airpurifier/LG/LGA6/LGA6_MAIN_1.png",
       "sourceUrl": "https://woongbi.vip-rental.com/categ/1058/2201",
       "tags": [
         "공기청정기",
@@ -3367,7 +3367,9 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/videoframe_1545.png",
+      "imageSearchSource": "https://miso-customer-public.s3.ap-northeast-2.amazonaws.com/rental_img/20240625_airpurifier/LG/LGA6/LGA6_MAIN_1.png"
     },
     {
       "id": "clover-2171",
@@ -9417,7 +9419,7 @@
       "rawCategory": "정수기",
       "color": "아이스 화이트 / 아이스 그레이",
       "page": "product.html?id=clover-2187",
-      "image": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250412105655_1.png",
+      "image": "https://m.cowayrental.shop/web/product/big/202504/c63632489eee7053a75085cd2349ed87.jpg",
       "sourceUrl": "https://woongbi.vip-rental.com/categ/1059/2187",
       "tags": [
         "정수기",
@@ -9465,7 +9467,9 @@
       ],
       "sourceKind": "clover-public",
       "availability": "active",
-      "giftStatus": "matched"
+      "giftStatus": "matched",
+      "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250412105655_1.png",
+      "imageSearchSource": "https://m.cowayrental.shop/web/product/big/202504/c63632489eee7053a75085cd2349ed87.jpg"
     },
     {
       "id": "chp-7220n",
@@ -10606,7 +10610,7 @@
       "rawCategory": "정수기",
       "color": "포슬린 화이트",
       "page": "product.html?id=clover-1933",
-      "image": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/chp-6340l_1_1.png",
+      "image": "https://coway.speedgabia.com/pictures/13aa3217b.png",
       "sourceUrl": "https://woongbi.vip-rental.com/categ/1059/1933",
       "tags": [
         "정수기",
@@ -10654,7 +10658,9 @@
       ],
       "sourceKind": "clover-public",
       "availability": "active",
-      "giftStatus": "matched"
+      "giftStatus": "matched",
+      "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/chp-6340l_1_1.png",
+      "imageSearchSource": "https://coway.speedgabia.com/pictures/13aa3217b.png"
     },
     {
       "id": "clover-1932",
@@ -11786,7 +11792,7 @@
       "rawCategory": "생활가전",
       "color": "페블 그레이 / 히말라얀 솔트 핑크 / 오트밀 베이지",
       "page": "product.html?id=clover-1770",
-      "image": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230629095706_1.gif",
+      "image": "https://ljjlove369.cafe24.com/web/product/Induction%28Thum%29/CIR-F41GSs.png",
       "sourceUrl": "https://woongbi.vip-rental.com/categ/1059/1770",
       "tags": [
         "생활가전",
@@ -11856,7 +11862,9 @@
       ],
       "sourceKind": "clover-public",
       "availability": "active",
-      "giftStatus": "matched"
+      "giftStatus": "matched",
+      "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230629095706_1.gif",
+      "imageSearchSource": "https://ljjlove369.cafe24.com/web/product/Induction%28Thum%29/CIR-F41GSs.png"
     },
     {
       "id": "clover-1877",
@@ -12307,7 +12315,7 @@
       "rawCategory": "생활가전",
       "color": "블랙",
       "page": "product.html?id=clover-1726",
-      "image": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/id0101_4650_attimg_org.png",
+      "image": "https://cdn.imweb.me/thumbnail/20241213/11714a696ce28.png",
       "sourceUrl": "https://woongbi.vip-rental.com/categ/1059/1726",
       "tags": [
         "생활가전",
@@ -12380,7 +12388,9 @@
       ],
       "sourceKind": "clover-public",
       "availability": "active",
-      "giftStatus": "matched"
+      "giftStatus": "matched",
+      "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/id0101_4650_attimg_org.png",
+      "imageSearchSource": "https://cdn.imweb.me/thumbnail/20241213/11714a696ce28.png"
     },
     {
       "id": "clover-2256",
@@ -12726,7 +12736,7 @@
       "rawCategory": "매트리스/프레임",
       "color": "중간(Medium) / 단단함(Hard)",
       "page": "product.html?id=clover-1651",
-      "image": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230630114033_1.gif",
+      "image": "https://cdn.imweb.me/thumbnail/20220308/bfdd400f531a3.png",
       "sourceUrl": "https://woongbi.vip-rental.com/categ/1059/1651",
       "tags": [
         "매트리스·프레임",
@@ -12819,7 +12829,9 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230630114033_1.gif",
+      "imageSearchSource": "https://cdn.imweb.me/thumbnail/20220308/bfdd400f531a3.png"
     },
     {
       "id": "clover-1351",
@@ -13420,7 +13432,7 @@
       "rawCategory": "비데/연수기",
       "color": "화이트",
       "page": "product.html?id=clover-1897",
-      "image": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/id0101_4554_attimg_org.png",
+      "image": "https://ljjlove369.cafe24.com/web/product/bidet%28Thum%29/BAS39-A%28s%29.png",
       "sourceUrl": "https://woongbi.vip-rental.com/categ/1059/1897",
       "tags": [
         "비데·연수기",
@@ -13467,7 +13479,9 @@
       ],
       "sourceKind": "clover-public",
       "availability": "active",
-      "giftStatus": "matched"
+      "giftStatus": "matched",
+      "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/id0101_4554_attimg_org.png",
+      "imageSearchSource": "https://ljjlove369.cafe24.com/web/product/bidet%28Thum%29/BAS39-A%28s%29.png"
     },
     {
       "id": "clover-2086",
@@ -15845,7 +15859,7 @@
       "rawCategory": "정수기/제빙기",
       "color": "오트밀 베이지",
       "page": "product.html?id=clover-2057",
-      "image": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231101182504_1_1.png",
+      "image": "https://www.daonhomesys.com/site_data/shop_product_mst/1735608646_bIyVkthx_WP-80S9P51.png",
       "sourceUrl": "https://woongbi.vip-rental.com/categ/1060/2057",
       "tags": [
         "정수기",
@@ -15890,7 +15904,9 @@
       ],
       "sourceKind": "clover-public",
       "availability": "active",
-      "giftStatus": "matched"
+      "giftStatus": "matched",
+      "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231101182504_1_1.png",
+      "imageSearchSource": "https://www.daonhomesys.com/site_data/shop_product_mst/1735608646_bIyVkthx_WP-80S9P51.png"
     },
     {
       "id": "clover-2054",
@@ -16781,7 +16797,7 @@
       "rawCategory": "공기청정기",
       "color": "화이트",
       "page": "product.html?id=clover-2135",
-      "image": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/av-06h3050_1.jpg",
+      "image": "https://chungho-dobong.com/data/item/1618387792/thumb-20210412132459808084_500x500.jpg",
       "sourceUrl": "https://woongbi.vip-rental.com/categ/1060/2135",
       "tags": [
         "공기청정기",
@@ -16825,7 +16841,9 @@
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "active"
+      "availability": "active",
+      "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/av-06h3050_1.jpg",
+      "imageSearchSource": "https://chungho-dobong.com/data/item/1618387792/thumb-20210412132459808084_500x500.jpg"
     },
     {
       "id": "clover-729",
