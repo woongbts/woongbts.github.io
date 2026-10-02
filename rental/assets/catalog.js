@@ -85,7 +85,7 @@
   }
 
   function filteredProducts() {
-    return products.filter(matches);
+    return products.filter(p => p.availability !== 'inactive').filter(matches);
   }
 
   function render() {
