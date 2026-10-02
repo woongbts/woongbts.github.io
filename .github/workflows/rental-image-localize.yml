@@ -11,202 +11,131 @@ permissions:
 jobs:
   localize:
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-
       - name: Install image tools
         run: python -m pip install --disable-pip-version-check pillow requests
-
       - name: Download and optimize product images
         shell: bash
         run: |
           python - <<'PY'
-          import io, json, os, re, time
+          import io, json, re
+          from concurrent.futures import ThreadPoolExecutor, as_completed
           from pathlib import Path
           import requests
           from PIL import Image, ImageOps
 
-          root = Path('.')
-          data_path = root / 'rental/data/products.json'
-          out_dir = root / 'rental/assets/product-images'
-          report_path = root / 'rental/data/image-sync-report.json'
-          out_dir.mkdir(parents=True, exist_ok=True)
-
-          data = json.loads(data_path.read_text(encoding='utf-8'))
-          products = data.get('products', [])
-
-          session = requests.Session()
-          base_headers = {
-              'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 Chrome/128 Safari/537.36',
-              'Accept': 'image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8',
-              'Accept-Language': 'ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7',
+          root=Path('.')
+          data_path=root/'rental/data/products.json'
+          out_dir=root/'rental/assets/product-images'
+          report_path=root/'rental/data/image-sync-report.json'
+          out_dir.mkdir(parents=True,exist_ok=True)
+          data=json.loads(data_path.read_text(encoding='utf-8'))
+          products=data.get('products',[])
+          headers={
+            'User-Agent':'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 Chrome/128 Safari/537.36',
+            'Accept':'image/avif,image/webp,image/apng,image/*,*/*;q=0.8',
+            'Accept-Language':'ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7'
           }
 
           def visible(p):
-              name = str(p.get('name') or '')
-              return p.get('availability') != 'inactive' and not re.search(r'접수불가|접수중지', name)
+            return p.get('availability')!='inactive' and not re.search(r'접수불가|접수중지',str(p.get('name') or ''))
 
-          def fetch_image(url, referer=''):
-              headers = dict(base_headers)
-              if referer:
-                  headers['Referer'] = referer
-              try:
-                  r = session.get(url, headers=headers, timeout=18, allow_redirects=True)
-                  if r.status_code != 200 or len(r.content) < 1200:
-                      return None
-                  ctype = (r.headers.get('content-type') or '').lower()
-                  if 'svg' in ctype or url.lower().split('?')[0].endswith('.svg'):
-                      return None
-                  img = Image.open(io.BytesIO(r.content))
-                  img.load()
-                  if getattr(img, 'is_animated', False):
-                      img.seek(0)
-                  return img
-              except Exception:
-                  return None
+          def fetch_img(session,url,referer=''):
+            h=dict(headers)
+            if referer:h['Referer']=referer
+            try:
+              r=session.get(url,headers=h,timeout=(6,12),allow_redirects=True)
+              if r.status_code!=200 or len(r.content)<1200:return None
+              ctype=(r.headers.get('content-type') or '').lower()
+              if 'svg' in ctype:return None
+              im=Image.open(io.BytesIO(r.content));im.load()
+              if getattr(im,'is_animated',False):im.seek(0)
+              return im
+            except Exception:return None
 
-          def score_image(img, priority):
-              w, h = img.size
-              if w < 180 or h < 180:
-                  return -10_000
-              ratio = w / h if h else 99
-              ratio_penalty = abs(1.0 - min(max(ratio, 0.15), 6.0))
-              tall_penalty = 8 if ratio < 0.30 else 0
-              wide_penalty = 5 if ratio > 3.5 else 0
-              area_bonus = min((w*h)/1_000_000, 4)
-              return 30 - priority*2 - ratio_penalty*5 - tall_penalty - wide_penalty + area_bonus
+          def score(im,priority):
+            w,h=im.size
+            if w<180 or h<180:return -10000
+            ratio=w/h if h else 99
+            return 30-priority*2-abs(1-min(max(ratio,.15),6))*5-(8 if ratio<.30 else 0)-(5 if ratio>3.5 else 0)+min(w*h/1_000_000,4)
 
-          successes = []
-          failures = []
-          changed = 0
+          def localize(p):
+            pid=str(p.get('id') or '').strip()
+            if not pid:return {'ok':False,'id':'','reason':'no-id'}
+            rel=f'assets/product-images/{pid}.webp'
+            dest=root/'rental'/rel
+            if dest.exists() and dest.stat().st_size>1500:
+              return {'ok':True,'id':pid,'rel':rel,'from':p.get('imageLocalizedFrom'),'existing':True}
 
-          for idx, p in enumerate(products, 1):
-              if not visible(p):
-                  continue
-              pid = str(p.get('id') or '').strip()
-              if not pid:
-                  continue
+            original=p.get('image')
+            cand=[]
+            if original and not str(original).startswith('assets/'):cand.append(original)
+            cand.extend([x for x in (p.get('detailImages') or []) if x])
+            seen=set();cand=[x for x in cand if not (x in seen or seen.add(x))]
+            session=requests.Session()
+            referer=p.get('sourceUrl') or 'https://woongbi.vip-rental.com/'
+            best=None;best_url=None;best_score=-10000
+            for priority,url in enumerate(cand[:8]):
+              im=fetch_img(session,url,referer) or fetch_img(session,url,'')
+              if im is None:continue
+              s=score(im,priority)
+              if s>best_score:best=im.copy();best_url=url;best_score=s
+              if priority==0 and best is not None:
+                w,h=best.size
+                if .35<=w/h<=2.8 and w>=250 and h>=250:break
+            if best is None:
+              return {'ok':False,'id':pid,'brand':p.get('brand'),'name':p.get('name'),'model':p.get('model'),'sourceUrl':p.get('sourceUrl'),'candidates':cand[:8]}
+            try:
+              best=ImageOps.exif_transpose(best)
+              if best.mode not in ('RGB','RGBA'):best=best.convert('RGBA' if 'transparency' in best.info else 'RGB')
+              best.thumbnail((1000,1000),Image.Resampling.LANCZOS)
+              if best.mode=='RGBA':best.save(dest,'WEBP',quality=84,method=6,lossless=False)
+              else:best.convert('RGB').save(dest,'WEBP',quality=84,method=6)
+              return {'ok':True,'id':pid,'rel':rel,'from':best_url,'size':list(best.size)}
+            except Exception as e:
+              return {'ok':False,'id':pid,'name':p.get('name'),'model':p.get('model'),'error':str(e)}
 
-              rel = f'assets/product-images/{pid}.webp'
-              dest = root / 'rental' / rel
-              if dest.exists() and dest.stat().st_size > 1500:
-                  if p.get('image') != rel:
-                      p.setdefault('imageSourceOriginal', p.get('image'))
-                      p['image'] = rel
-                      changed += 1
-                  successes.append({'id': pid, 'model': p.get('model'), 'status': 'existing'})
-                  continue
+          targets=[p for p in products if visible(p)]
+          results={}
+          with ThreadPoolExecutor(max_workers=12) as ex:
+            futs={ex.submit(localize,p):p for p in targets}
+            for i,fut in enumerate(as_completed(futs),1):
+              r=fut.result();results[r.get('id')]=r
+              if i%25==0:print(f'processed {i}/{len(targets)}',flush=True)
 
-              original = p.get('image')
-              candidates = []
-              if original and not str(original).startswith('assets/'):
-                  candidates.append(original)
-              candidates.extend([x for x in (p.get('detailImages') or []) if x])
-              # De-duplicate while preserving order.
-              seen = set()
-              candidates = [x for x in candidates if not (x in seen or seen.add(x))]
+          ok=[];fail=[];changed=0
+          for p in targets:
+            pid=str(p.get('id') or '')
+            r=results.get(pid) or {'ok':False,'id':pid,'reason':'missing-result'}
+            if r.get('ok'):
+              rel=r['rel']
+              if p.get('image')!=rel:
+                p.setdefault('imageSourceOriginal',p.get('image'))
+                p['image']=rel
+                changed+=1
+              if r.get('from'):p['imageLocalizedFrom']=r['from']
+              ok.append(r)
+            else:fail.append(r)
 
-              best = None
-              best_url = None
-              best_score = -10_000
-              referer = p.get('sourceUrl') or 'https://woongbi.vip-rental.com/'
-
-              for priority, url in enumerate(candidates[:8]):
-                  img = fetch_image(url, referer)
-                  if img is None and referer:
-                      img = fetch_image(url, '')
-                  if img is None:
-                      continue
-                  s = score_image(img, priority)
-                  if s > best_score:
-                      best = img.copy()
-                      best_url = url
-                      best_score = s
-                  # The original thumbnail is preferred if it is a normal product-shot ratio.
-                  if priority == 0 and best is not None:
-                      w, h = best.size
-                      if 0.35 <= (w / h) <= 2.8 and w >= 250 and h >= 250:
-                          break
-
-              if best is None:
-                  failures.append({
-                      'id': pid,
-                      'brand': p.get('brand'),
-                      'name': p.get('name'),
-                      'model': p.get('model'),
-                      'sourceUrl': p.get('sourceUrl'),
-                      'candidates': candidates[:8],
-                  })
-                  continue
-
-              try:
-                  best = ImageOps.exif_transpose(best)
-                  if best.mode not in ('RGB', 'RGBA'):
-                      best = best.convert('RGBA' if 'transparency' in best.info else 'RGB')
-                  best.thumbnail((1000, 1000), Image.Resampling.LANCZOS)
-                  if best.mode == 'RGBA':
-                      best.save(dest, 'WEBP', quality=84, method=6, lossless=False)
-                  else:
-                      best.convert('RGB').save(dest, 'WEBP', quality=84, method=6)
-                  p.setdefault('imageSourceOriginal', original)
-                  p['image'] = rel
-                  p['imageLocalizedFrom'] = best_url
-                  changed += 1
-                  successes.append({
-                      'id': pid,
-                      'model': p.get('model'),
-                      'file': rel,
-                      'from': best_url,
-                      'size': list(best.size),
-                  })
-              except Exception as e:
-                  failures.append({
-                      'id': pid,
-                      'brand': p.get('brand'),
-                      'name': p.get('name'),
-                      'model': p.get('model'),
-                      'error': str(e),
-                      'sourceUrl': p.get('sourceUrl'),
-                  })
-
-              if len(successes) % 25 == 0:
-                  time.sleep(0.4)
-
-          data['updatedAt'] = '2026-10-03'
-          data_path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
-          report = {
-              'generatedAt': '2026-10-03',
-              'visibleProducts': sum(1 for p in products if visible(p)),
-              'localizedOrExisting': len(successes),
-              'failed': len(failures),
-              'changedProducts': changed,
-              'failures': failures,
-          }
-          report_path.write_text(json.dumps(report, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
-          print(json.dumps({k:v for k,v in report.items() if k != 'failures'}, ensure_ascii=False))
-          if failures:
-              print('FAILED MODELS:')
-              for x in failures:
-                  print(x.get('id'), x.get('model'), x.get('name'))
+          data['updatedAt']='2026-10-03'
+          data_path.write_text(json.dumps(data,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          report={'generatedAt':'2026-10-03','visibleProducts':len(targets),'localizedOrExisting':len(ok),'failed':len(fail),'changedProducts':changed,'failures':fail}
+          report_path.write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          print(json.dumps({k:v for k,v in report.items() if k!='failures'},ensure_ascii=False),flush=True)
           PY
-
       - name: Commit localized images
-        shell: bash
         run: |
           git config user.name "woongbi-image-bot"
           git config user.email "actions@users.noreply.github.com"
           git add rental/data/products.json rental/data/image-sync-report.json rental/assets/product-images
-          if git diff --cached --quiet; then
-            echo "No image changes"
-            exit 0
-          fi
+          if git diff --cached --quiet; then exit 0; fi
           git commit -m "Localize rental product images"
           git pull --rebase origin main
           git push
