@@ -15,6 +15,29 @@
   }[brand] || brand || '');
   const $ = sel => document.querySelector(sel);
 
+  function optionLabel(value) {
+    let x = String(value || '').trim();
+    if (!x) return '';
+    x = x.replace(/^단종\//, '');
+    x = x.replace(/^기본 조건$/, '기본 옵션');
+    x = x.replace(/^방문형(?=$|[·/)]|\s)/, '방문관리');
+    x = x.replace(/^셀프형(?=$|[·/)]|\s)/, '셀프관리');
+    x = x.replace(/^킹\(K$/, '킹').replace(/^퀸\(Q$/, '퀸').replace(/^슈퍼싱글\(SS$/, '슈퍼싱글');
+    x = x.replace(/^토탈케어\((라지킹|킹|퀸|슈퍼싱글|싱글)$/, '토탈케어 · $1');
+    x = x.replace(/6개월\s*반값할인/g, '6개월 반값').replace(/10개월\s*반값할인/g, '10개월 반값');
+    x = x.replace(/\/+/g, ' · ').replace(/\s*·\s*/g, ' · ').replace(/\s+/g, ' ').trim();
+    if (x === '슬러지통x') return '슬러지통 없음';
+    if (x === '슬러지통o') return '슬러지통 있음';
+    return x;
+  }
+
+  function optionHeading(category) {
+    if (category === '정수기' || category === '공기청정기' || category === '비데·연수기') return '관리방식 / 제품 옵션';
+    if (category === '매트리스·프레임') return '사이즈 / 케어 옵션';
+    if (category === '주방가전') return '설치 / 제품 옵션';
+    return '제품 옵션';
+  }
+
   const managementBox = $('#generic-management');
   const termBox = $('#generic-term');
   let product = null;
@@ -34,7 +57,7 @@
     const unique = [];
     (product.options || []).forEach(o => {
       if (!unique.some(x => x.value === o.management)) {
-        unique.push({value:o.management, label:o.managementLabel || o.management});
+        unique.push({value:o.management, label:optionLabel(o.managementLabel || o.management)});
       }
     });
 
@@ -85,7 +108,7 @@
     $('#monthly-fee').textContent = v.monthly == null ? '상담 확인' : won(v.monthly);
     $('#gift-fee').textContent = v.gift == null ? '상담 확인' : won(v.gift);
     $('#care-cycle').textContent = v.care || '상담 확인';
-    $('#sticky-selection').textContent = (v.managementLabel || '') + ' · ' + v.term + '개월';
+    $('#sticky-selection').textContent = optionLabel(v.managementLabel || v.management) + ' · ' + v.term + '개월';
     $('#sticky-monthly').textContent = v.monthly == null ? '상담 확인' : won(v.monthly);
     $('#sticky-gift').textContent = v.gift == null ? '상담 확인' : won(v.gift);
 
@@ -116,7 +139,9 @@
 
     $('#summary-brand').textContent = brandLabel(product.brand) || '-';
     $('#summary-category').textContent = product.category || '-';
-    $('#summary-management').textContent = [...new Set((product.options || []).map(o => o.managementLabel).filter(Boolean))].join(' / ') || '-';
+    $('#generic-option-label').textContent = optionHeading(product.category);
+    $('#summary-option-label').textContent = optionHeading(product.category);
+    $('#summary-management').textContent = [...new Set((product.options || []).map(o => optionLabel(o.managementLabel || o.management)).filter(Boolean))].join(' / ') || '-';
     $('#summary-terms').textContent = [...new Set((product.options || []).map(o => o.term).filter(Boolean))].sort((a,b)=>a-b).map(x => x + '개월').join(' / ') || '-';
 
     const img = $('#generic-image');
