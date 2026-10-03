@@ -10,6 +10,7 @@
   <meta name="apple-mobile-web-app-title" content="웅비렌탈">
   <meta name="application-name" content="웅비렌탈">
   <link rel="icon" href="assets/woongbi-rental-mark.svg?v=20261003-blue2" type="image/svg+xml">
+  <link rel="icon" href="assets/woongbi-rental-icon-32.png?v=20261003-blue2" sizes="32x32" type="image/png">
   <link rel="apple-touch-icon" sizes="180x180" href="assets/woongbi-rental-icon-180.png?v=20261003-blue2">
   <link rel="manifest" href="manifest.webmanifest?v=20261003-blue2">
 <link rel="stylesheet" href="assets/rental.css?v=20261003-9">
@@ -36,7 +37,8 @@
   <script id="rental-dom-cleanup">
     document.addEventListener('DOMContentLoaded', () => {
       [...document.body.childNodes].forEach(node => {
-        if (node.nodeType === Node.TEXT_NODE && /\\n/.test(node.textContent || '')) node.remove();
+        if (node.nodeType === Node.TEXT_NODE && /\
+/.test(node.textContent || '')) node.remove();
       });
     });
   </script>
