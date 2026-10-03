@@ -5180,6 +5180,40 @@
         "렌탈사별 조건 비교",
         "렌탈사별 월요금 비교"
       ]
+    },
+    {
+      "id": "clover-1353",
+      "brand": "COWAY",
+      "name": "BEREX 프라임 매트리스 (라지킹)",
+      "model": "CM(SS/Q/K/LK)-S03M",
+      "category": "매트리스·프레임",
+      "page": "product.html?id=clover-1353",
+      "image": "assets/product-images/clover-1353.webp",
+      "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230630111957_1.gif",
+      "detailImages": [
+        "http://rentalplanner.kr/web/upload/NNEditor/20200122/CMLK-S03_PP01_shop1_161511.jpg"
+      ],
+      "availability": "active",
+      "sourceKind": "clover-public",
+      "options": [
+        {
+          "key": "large-king-60",
+          "management": "large-king-totalcare",
+          "managementLabel": "토탈케어 · 라지킹",
+          "term": 60,
+          "monthly": 49900,
+          "card": null,
+          "gift": 210000,
+          "care": "라지킹 · 60개월",
+          "giftPolicyMonth": "2026-10",
+          "sourceOption": "토탈케어(라지킹)60"
+        }
+      ],
+      "highlights": [
+        "라지킹",
+        "BEREX 프라임",
+        "60개월"
+      ]
     }
   ]
 }
