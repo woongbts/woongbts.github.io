@@ -1,0 +1,25 @@
+{
+  "name": "웅비렌탈",
+  "short_name": "웅비렌탈",
+  "description": "정수기·생활가전 렌탈 상품 비교와 상담",
+  "lang": "ko-KR",
+  "start_url": "/rental/",
+  "scope": "/rental/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#168FD1",
+  "icons": [
+    {
+      "src": "assets/woongbi-rental-mark.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/woongbi-rental-mark.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ]
+}
