@@ -19,10 +19,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Install browser
-        run: |
-          python -m pip install --disable-pip-version-check playwright
-          python -m playwright install --with-deps chromium
+      - name: Install parser
+        run: python -m pip install --disable-pip-version-check beautifulsoup4
       - name: Scrape public rental-company terms
         run: python .github/scripts/scrape_clover_offers.py
       - name: Commit public offer facts
