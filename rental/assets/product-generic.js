@@ -161,6 +161,9 @@
     $('#generic-description').textContent = product.shortDescription || '';
     $('#generic-model-row').textContent = product.model || '-';
     $('#generic-promo').textContent = product.promo || '최신 정책 상담 확인';
+    document.body.classList.toggle('appliance-rental-detail', product.sourceKind === 'clover-import');
+    const careLabel = $('#care-cycle-label');
+    if (careLabel) careLabel.textContent = product.sourceKind === 'clover-import' ? '조건 안내' : '관리주기';
     $('#generic-color').textContent = product.color || '상담 확인';
     $('#generic-tags').innerHTML = (product.tags || []).map(t => '<span>' + t + '</span>').join('');
     $('#generic-highlights').innerHTML = (product.highlights || []).map(t => '<span>' + t + '</span>').join('');

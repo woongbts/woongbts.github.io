@@ -13,7 +13,7 @@
   <link rel="icon" href="assets/woongbi-rental-icon-32.png?v=20261003-blue3" sizes="32x32" type="image/png">
   <link rel="apple-touch-icon" sizes="180x180" href="assets/woongbi-rental-icon-180.png?v=20261003-blue3">
   <link rel="manifest" href="manifest.webmanifest?v=20261003-blue3">
-<link rel="stylesheet" href="assets/rental.css?v=20261003-11">
+<link rel="stylesheet" href="assets/rental.css?v=20261003-12">
   <style id="catalog-mobile-critical">
     @media (max-width:560px){
       .catalog-card{display:block!important}
@@ -103,14 +103,21 @@
       </div>
     </section>
 
-    <section class="section recommend-section" id="recommend">
+    <section class="section recommend-section" id="recommendations">
       <div class="wrap">
         <p class="eyebrow dark">웅비 추천</p>
         <div class="section-title-row recommend-title-row">
           <h2>혜택 좋은 상품만 먼저 빠르게 보세요.</h2>
           <p>사은품 규모와 월요금, 상품 구성을 함께 보고 카테고리별로 추렸습니다.</p>
         </div>
+        <p class="policy-badge">2026년 10월 기준 · 최종 접수 전 최신 조건 확인</p>
         <div id="recommend-tabs" class="recommend-tabs" role="tablist" aria-label="추천 상품 카테고리"></div>
+        <div id="recommend-sort" class="recommend-sort" aria-label="추천 상품 정렬">
+          <span>정렬</span>
+          <button type="button" class="active" data-recommend-sort="recommend" aria-pressed="true">추천</button>
+          <button type="button" data-recommend-sort="monthly" aria-pressed="false">월요금 낮은순</button>
+          <button type="button" data-recommend-sort="gift" aria-pressed="false">사은품 높은순</button>
+        </div>
         <div id="recommend-grid" class="recommend-grid" aria-live="polite"></div>
       </div>
     </section>
@@ -140,24 +147,12 @@
       </div>
     </section>
 
-    <section class="section recommend-section" id="recommendations">
-      <div class="wrap">
-        <p class="eyebrow dark">웅비 추천</p>
-        <div class="section-title-row recommend-title-row">
-          <h2>조건 좋은 상품부터 짧게 골라보세요.</h2>
-          <p>정수기·공기청정기·비데 등 주요 품목에서 사은품 조건이 좋은 상품을 먼저 보여드립니다.</p>
-        </div>
-        <div id="recommend-tabs" class="recommend-tabs" role="tablist" aria-label="추천상품 품목"></div>
-        <div id="recommend-grid" class="recommend-grid" aria-live="polite"></div>
-      </div>
-    </section>
-
     <section class="section tint" id="products">
       <div class="wrap">
         <p class="eyebrow dark">렌탈 상품 전체</p>
         <div class="section-title-row">
           <h2>웅비렌탈 상품을 브랜드·품목별로 찾아보세요.</h2>
-          <p>기존 웅비렌탈 공개 카탈로그를 기준으로 상품을 모았으며, 월요금과 사은품은 확인된 조건부터 순차 반영합니다.</p>
+          <p>2026년 10월 확인 자료를 기준으로 상품을 정리했으며, 월요금과 사은품은 최종 접수 전 최신 조건을 다시 확인합니다.</p>
         </div>
 
         <div class="catalog-open-row">
@@ -195,6 +190,7 @@
           <h2>‘얼마 받는지’ 숨기지 않고<br>제품별로 먼저 보여드립니다.</h2>
         </div>
         <div class="benefit-note">
+          <span class="policy-badge compact">2026년 10월 기준</span>
           <strong>사은품 금액은 선택 조건에 따라 달라집니다.</strong>
           <p>관리방식·계약기간·프로모션 등 실제 접수 조건에 따라 최종 금액이 달라질 수 있습니다. 상담 시 최신 조건을 다시 확인해 드립니다. (※ 12개월 이내 미납·정지 또는 해지 시 사은품 금액은 반환해 주셔야 합니다.)</p>
         </div>
@@ -222,6 +218,6 @@
     </div>
     <div class="wrap footer-note">상품·요금·프로모션·제휴카드·사은품 조건은 변경될 수 있으며 최종 접수 전 상담을 통해 확인합니다.</div>
   </footer>
-  <script src="assets/catalog.js?v=20261003-16" defer></script>
+  <script src="assets/catalog.js?v=20261003-17" defer></script>
 </body>
 </html>

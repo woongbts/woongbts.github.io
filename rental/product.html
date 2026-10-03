@@ -13,7 +13,7 @@
   <link rel="icon" href="assets/woongbi-rental-icon-32.png?v=20261003-blue3" sizes="32x32" type="image/png">
   <link rel="apple-touch-icon" sizes="180x180" href="assets/woongbi-rental-icon-180.png?v=20261003-blue3">
   <link rel="manifest" href="manifest.webmanifest?v=20261003-blue3">
-<link rel="stylesheet" href="assets/rental.css?v=20261003-9">
+<link rel="stylesheet" href="assets/rental.css?v=20261003-12">
 </head>
 <body>
   <header class="site-header">
@@ -54,18 +54,23 @@
           <div id="generic-highlights" class="generic-highlight-list" aria-label="핵심 특징"></div>
         </div>
 
-        <div class="selector-block">
-          <strong id="generic-option-label">제품 옵션</strong>
+        <div class="selection-flow" aria-label="조건 선택 순서">
+          <span><b>1</b> 렌탈사·옵션 선택</span><i>→</i><span><b>2</b> 계약기간 선택</span><i>→</i><span><b>3</b> 금액 확인</span>
+        </div>
+
+        <div class="selector-block selector-step-block">
+          <div class="selector-heading"><span class="selector-step">1</span><strong id="generic-option-label">제품 옵션</strong></div>
           <div class="segmented generic-segmented" id="generic-management"></div>
         </div>
 
-        <div class="selector-block">
-          <strong>계약 조건</strong>
+        <div class="selector-block selector-step-block">
+          <div class="selector-heading"><span class="selector-step">2</span><strong>계약기간 선택</strong></div>
           <div class="segmented generic-segmented" id="generic-term"></div>
           <small class="selector-help">2026년 10월 확인 정책 기준이며 최종 접수 전 최신 조건을 다시 확인합니다.</small>
         </div>
 
         <div class="quote-box">
+          <div class="quote-basis">2026년 10월 기준 · 선택 조건 예상 금액</div>
           <div class="quote-main">
             <small>월 렌탈료</small>
             <strong id="monthly-fee">-</strong>
@@ -83,7 +88,7 @@
         <div class="condition-list">
           <div><span>프로모션</span><b id="generic-promo">최신 정책 상담 확인</b></div>
           <div><span>색상</span><b id="generic-color">상담 확인</b></div>
-          <div><span>관리주기</span><b id="care-cycle">상담 확인</b></div>
+          <div><span id="care-cycle-label">관리주기</span><b id="care-cycle">상담 확인</b></div>
           <div><span>모델명</span><b id="generic-model-row">-</b></div>
         </div>
 
@@ -135,6 +140,6 @@
     <div class="wrap footer-inner"><div><strong>웅비렌탈</strong><span>웅비통신 덕천만덕점</span></div><div><a href="tel:0513437677">051-343-7677</a></div></div>
     <div class="wrap footer-note">상품·요금·프로모션·제휴카드·사은품 조건은 변경될 수 있으며 최종 접수 전 상담을 통해 확인합니다.</div>
   </footer>
-  <script src="assets/product-generic.js?v=20261003-12" defer></script>
+  <script src="assets/product-generic.js?v=20261003-13" defer></script>
 </body>
 </html>

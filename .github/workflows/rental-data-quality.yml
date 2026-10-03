@@ -1,0 +1,28 @@
+name: Rental data quality
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'rental/data/products.json'
+      - 'rental/data/appliance-gift-options.json'
+      - 'rental/assets/product-images/**'
+      - 'scripts/check-rental-data.py'
+      - '.github/workflows/rental-data-quality.yml'
+  schedule:
+    - cron: '0 0 1 * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate rental catalog and customer gifts
+        run: python scripts/check-rental-data.py

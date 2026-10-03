@@ -14,12 +14,14 @@
   const catalogPanel = document.getElementById('catalog-panel');
   const recommendTabs = document.getElementById('recommend-tabs');
   const recommendGrid = document.getElementById('recommend-grid');
+  const recommendSort = document.getElementById('recommend-sort');
   const applianceMore = document.getElementById('appliance-more');
   const applianceGrid = document.querySelector('.appliance-grid');
 
   const PAGE_SIZE = window.matchMedia('(max-width:560px)').matches ? 8 : 12;
   const RECOMMEND_CATEGORIES = ['정수기','공기청정기','비데·연수기','안마의자','매트리스·프레임'];
   let recommendCategory = '정수기';
+  let recommendSortMode = 'recommend';
   const state = { query: '', brand: '', category: '', feature: '', limit: PAGE_SIZE };
   let products = [];
 
@@ -270,31 +272,67 @@
       .filter(p => !/단종|접수불가|접수중지/.test(String(p.name || '')))
       .filter(p => recommendationScore(p) >= 0);
 
-    const selected = [];
-    const preferredGroups = BRAND_PREFERENCE.map(pref => ({
-      pref,
-      items: candidates
-        .filter(p => pref.test(String(p.brand || '')))
-        .sort((a,b) => recommendationScore(b) - recommendationScore(a))
-    }));
+    if (recommendSort) {
+      recommendSort.querySelectorAll('button').forEach(btn => {
+        const mode = btn.dataset.recommendSort || 'recommend';
+        const active = mode === recommendSortMode;
+        btn.classList.toggle('active', active);
+        btn.setAttribute('aria-pressed', active ? 'true' : 'false');
+        btn.onclick = () => {
+          recommendSortMode = mode;
+          renderRecommendations();
+        };
+      });
+    }
 
-    // Show one strong-value option from each preferred brand in the requested order.
-    preferredGroups.forEach(group => {
-      if (selected.length >= 4) return;
-      if (group.items.length) selected.push(group.items[0]);
-    });
+    let selected = [];
 
-    // If a preferred brand is missing in this category, fill with the best remaining value picks.
-    if (selected.length < 4) {
-      candidates
-        .filter(p => !selected.includes(p))
+    if (recommendSortMode === 'monthly') {
+      selected = [...candidates]
         .sort((a,b) => {
-          const brandDiff = brandPreference(a).rank - brandPreference(b).rank;
-          return brandDiff || (recommendationScore(b) - recommendationScore(a));
+          const am = recommendationMetrics(a);
+          const bm = recommendationMetrics(b);
+          return (am?.minMonthly ?? Infinity) - (bm?.minMonthly ?? Infinity)
+            || brandPreference(a).rank - brandPreference(b).rank
+            || recommendationScore(b) - recommendationScore(a);
         })
-        .forEach(p => {
-          if (selected.length < 4) selected.push(p);
-        });
+        .slice(0, 4);
+    } else if (recommendSortMode === 'gift') {
+      selected = [...candidates]
+        .sort((a,b) => {
+          const am = recommendationMetrics(a);
+          const bm = recommendationMetrics(b);
+          return (bm?.maxGift ?? -1) - (am?.maxGift ?? -1)
+            || (am?.minMonthly ?? Infinity) - (bm?.minMonthly ?? Infinity)
+            || brandPreference(a).rank - brandPreference(b).rank;
+        })
+        .slice(0, 4);
+    } else {
+      const preferredGroups = BRAND_PREFERENCE.map(pref => ({
+        pref,
+        items: candidates
+          .filter(p => pref.test(String(p.brand || '')))
+          .sort((a,b) => recommendationScore(b) - recommendationScore(a))
+      }));
+
+      // 기본 추천은 매장 선호 브랜드 순서를 지키면서 월요금과 사은품의 균형이 좋은 상품을 한 개씩 보여준다.
+      preferredGroups.forEach(group => {
+        if (selected.length >= 4) return;
+        if (group.items.length) selected.push(group.items[0]);
+      });
+
+      // 해당 품목에 선호 브랜드가 없으면 남은 상품 중 조건 균형이 좋은 순서로 채운다.
+      if (selected.length < 4) {
+        candidates
+          .filter(p => !selected.includes(p))
+          .sort((a,b) => {
+            const brandDiff = brandPreference(a).rank - brandPreference(b).rank;
+            return brandDiff || (recommendationScore(b) - recommendationScore(a));
+          })
+          .forEach(p => {
+            if (selected.length < 4) selected.push(p);
+          });
+      }
     }
 
     recommendGrid.innerHTML = selected.map(recommendationCard).join('');

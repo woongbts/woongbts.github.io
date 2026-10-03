@@ -1,0 +1,38 @@
+name: Rental mobile smoke
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'rental/**'
+      - 'scripts/rental-mobile-smoke.cjs'
+      - '.github/workflows/rental-mobile-smoke.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  iphone-smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install Playwright
+        run: |
+          mkdir -p /tmp/woongbi-playwright
+          cd /tmp/woongbi-playwright
+          npm init -y >/dev/null 2>&1
+          npm install playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Start local site
+        run: |
+          python3 -m http.server 4173 --directory . >/tmp/woongbi-http.log 2>&1 &
+          sleep 2
+      - name: iPhone 14 UI smoke test
+        env:
+          NODE_PATH: /tmp/woongbi-playwright/node_modules
+        run: node scripts/rental-mobile-smoke.cjs
