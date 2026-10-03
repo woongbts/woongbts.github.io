@@ -14309,7 +14309,7 @@
       "rawCategory": "생활가전",
       "color": "미러실버",
       "page": "product.html?id=clover-674",
-      "image": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/id0101_3717_attimg_org.png",
+      "image": "assets/product-images/clover-674.webp",
       "sourceUrl": "https://woongbi.vip-rental.com/categ/1059/674",
       "tags": [
         "생활가전",
@@ -14381,7 +14381,10 @@
       "sourceKind": "clover-public",
       "availability": "active",
       "giftStatus": "matched",
-      "imagePageUrl": "https://www.coway-on.kr/user/product_detail?category_no=20&product_no=201911-0112"
+      "imagePageUrl": "https://coway-mall.kr/product/fad-01s-%EC%BD%94%EC%9B%A8%EC%9D%B4-%EC%9D%98%EB%A5%98%EC%B2%AD%EC%A0%95%EA%B8%B0-%EB%8D%94%EB%B8%94%EC%BC%80%EC%96%B4%EA%B3%A0%EA%B8%89%ED%98%95/566/",
+      "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/id0101_3717_attimg_org.png",
+      "imageSearchSource": "https://coway-mall.kr/web/product/small/202105/d252592e0c91858ba470fe98b85a9d64.png",
+      "imageLocalizedFrom": "https://coway-mall.kr/web/product/small/202105/d252592e0c91858ba470fe98b85a9d64.png"
     },
     {
       "id": "clover-436",
@@ -16471,7 +16474,7 @@
       "rawCategory": "공기청정기",
       "color": "화이트",
       "page": "product.html?id=clover-2128",
-      "image": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/ap-15h5170_1.jpg",
+      "image": "assets/product-images/clover-2128.webp",
       "sourceUrl": "https://woongbi.vip-rental.com/categ/1060/2128",
       "tags": [
         "공기청정기",
@@ -16527,7 +16530,10 @@
       ],
       "sourceKind": "clover-public",
       "availability": "active",
-      "imagePageUrl": "https://www.roku-chungho.co.kr/user/product_detail?category_no=10&product_no=202404-1119"
+      "imagePageUrl": "https://miso.kr/rental/air_purifier/AP-15H5170",
+      "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/ap-15h5170_1.jpg",
+      "imageSearchSource": "https://miso-customer-public.s3.ap-northeast-2.amazonaws.com/rental_img/20240625_airpurifier/CHUNGHO/CHUNGHOA7/CHUNGHOA5_MAIN_1.png",
+      "imageLocalizedFrom": "https://miso-customer-public.s3.ap-northeast-2.amazonaws.com/rental_img/20240625_airpurifier/CHUNGHO/CHUNGHOA7/CHUNGHOA5_MAIN_1.png"
     },
     {
       "id": "clover-2240",
@@ -20948,7 +20954,7 @@
       "rawCategory": "",
       "color": "화이트 / 미드 브라운",
       "page": "product.html?id=clover-257",
-      "image": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/200224065521_460.png",
+      "image": "https://www.hyundairentalmall.com/shop/largeimage.php?ca_id=4040&it_id=1546586320&no=1",
       "sourceUrl": "https://woongbi.vip-rental.com/categ/1061/257",
       "tags": [
         "매트리스·프레임",
@@ -20998,7 +21004,9 @@
       ],
       "sourceKind": "clover-public",
       "availability": "active",
-      "imagePageUrl": "https://www.hyundairentalmall.com/shop/largeimage.php?ca_id=4040&it_id=1546586320&no=1"
+      "imagePageUrl": "https://www.hyundairentalmall.com/shop/item.php?ca_id=4040&it_id=1546586320&page=1",
+      "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/200224065521_460.png",
+      "imageSearchSource": "https://www.hyundairentalmall.com/shop/largeimage.php?ca_id=4040&it_id=1546586320&no=1"
     },
     {
       "id": "clover-259",
@@ -21502,7 +21510,7 @@
       "rawCategory": "",
       "color": "화이트 / 미드 브라운",
       "page": "product.html?id=clover-254",
-      "image": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/200224065521_466.png",
+      "image": "https://www.hyundairentalmall.com/shop/largeimage.php?ca_id=4040&it_id=1546586017&no=1",
       "sourceUrl": "https://woongbi.vip-rental.com/categ/1061/254",
       "tags": [
         "매트리스·프레임",
@@ -21549,7 +21557,9 @@
       ],
       "sourceKind": "clover-public",
       "availability": "active",
-      "imagePageUrl": "https://www.hyundai-rental.co.kr/user/product_detail?product_no=202004-0234"
+      "imagePageUrl": "https://www.hyundairentalmall.com/shop/item.php?ca_id=4040&it_id=1546586017&page=1",
+      "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/200224065521_466.png",
+      "imageSearchSource": "https://www.hyundairentalmall.com/shop/largeimage.php?ca_id=4040&it_id=1546586017&no=1"
     },
     {
       "id": "cp-aqs100ewh",
@@ -26280,7 +26290,7 @@
       "rawCategory": "정수기",
       "color": "실버",
       "page": "product.html?id=clover-2093",
-      "image": "https://www.ruhens.co.kr/FileData/product/20241015112708670dd2fc8388f.png",
+      "image": "https://www.ruhens.co.kr/FileData/product/20241015113232670dd4409169f.png",
       "sourceUrl": "https://woongbi.vip-rental.com/categ/1069/2093",
       "tags": [
         "정수기",
@@ -26330,7 +26340,7 @@
       "giftStatus": "matched",
       "imagePageUrl": "https://www.ruhens.co.kr/product/view.php?PNO=109",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/whp-3300_1_1.png",
-      "imageSearchSource": "https://www.ruhens.co.kr/FileData/product/20241015112708670dd2fc8388f.png"
+      "imageSearchSource": "https://www.ruhens.co.kr/FileData/product/20241015113232670dd4409169f.png"
     },
     {
       "id": "clover-1589",
@@ -26421,7 +26431,7 @@
       "rawCategory": "정수기",
       "color": "화이트",
       "page": "product.html?id=clover-1752",
-      "image": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/whp-3020_1_1.png",
+      "image": "https://ruhens.co.kr/FileData/product/20241015141301670df9dddd57a.png",
       "sourceUrl": "https://woongbi.vip-rental.com/categ/1069/1752",
       "tags": [
         "정수기",
@@ -26495,7 +26505,9 @@
       "sourceKind": "clover-public",
       "availability": "active",
       "giftStatus": "matched",
-      "imagePageUrl": "https://ruhens.co.kr/product/view.php?PNO=20"
+      "imagePageUrl": "https://ruhens.co.kr/product/view.php?PNO=20",
+      "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/whp-3020_1_1.png",
+      "imageSearchSource": "https://ruhens.co.kr/FileData/product/20241015141301670df9dddd57a.png"
     },
     {
       "id": "clover-1753",

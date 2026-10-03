@@ -1,38 +1,10 @@
 {
   "generatedAt": "2026-10-03",
   "visibleProducts": 294,
-  "localizedOrExisting": 288,
-  "failed": 6,
-  "changedProducts": 9,
+  "localizedOrExisting": 290,
+  "failed": 4,
+  "changedProducts": 8,
   "failures": [
-    {
-      "ok": false,
-      "id": "clover-674",
-      "brand": "COWAY",
-      "name": "사계절 의류청정기 더블케어(FAD-01S)",
-      "model": "FAD-01S",
-      "sourceUrl": "https://woongbi.vip-rental.com/categ/1059/674",
-      "candidates": [
-        "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/id0101_3717_attimg_org.png",
-        "https://woongbi.vip-rental.com/_var/rental/vshop/230629134335_1.png"
-      ],
-      "pageImages": [],
-      "searched": []
-    },
-    {
-      "ok": false,
-      "id": "clover-2128",
-      "brand": "청호나이스",
-      "name": "공기청정기 NEW HERO S2_16평형/단종예정",
-      "model": "AP-15H5170",
-      "sourceUrl": "https://woongbi.vip-rental.com/categ/1060/2128",
-      "candidates": [
-        "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/ap-15h5170_1.jpg",
-        "https://woongbi.vip-rental.com/_var/rental/vshop/ap-15h5170_01.jpg"
-      ],
-      "pageImages": [],
-      "searched": []
-    },
     {
       "ok": false,
       "id": "clover-257",
@@ -41,7 +13,7 @@
       "model": "HLM1950QE0(화이트&미드 브라운)",
       "sourceUrl": "https://woongbi.vip-rental.com/categ/1061/257",
       "candidates": [
-        "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/200224065521_460.png",
+        "https://www.hyundairentalmall.com/shop/largeimage.php?ca_id=4040&it_id=1546586320&no=1",
         "https://www.hdquming.com/uploadImage/images/000046/20210419163802560_YQ7VKI4A.jpeg",
         "https://www.hdquming.com/uploadImage/images/000046/20210419163811996_HZDLCE0H.jpeg",
         "https://www.hdquming.com/uploadImage/images/000046/20210419163816324_U5AEBX6U.jpeg",
@@ -59,7 +31,7 @@
       "model": "HLM1950SE0(화이트/미드 브라운)",
       "sourceUrl": "https://woongbi.vip-rental.com/categ/1061/254",
       "candidates": [
-        "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/200224065521_466.png",
+        "https://www.hyundairentalmall.com/shop/largeimage.php?ca_id=4040&it_id=1546586017&no=1",
         "https://www.hdquming.com/uploadImage/images/000045/20210419160513500_53FTWGFT.jpeg",
         "https://www.hdquming.com/uploadImage/images/000045/20210419160528971_14FBZ3LN.jpeg",
         "https://www.hdquming.com/uploadImage/images/000045/20210419160536578_IL4ATYZU.jpeg",
@@ -76,7 +48,7 @@
       "model": "WHP-3300",
       "sourceUrl": "https://woongbi.vip-rental.com/categ/1069/2093",
       "candidates": [
-        "https://www.ruhens.co.kr/FileData/product/20241015112708670dd2fc8388f.png",
+        "https://www.ruhens.co.kr/FileData/product/20241015113232670dd4409169f.png",
         "https://woongbi.vip-rental.com/_var/rental/vshop/240206171011_1.jpg"
       ],
       "pageImages": [],
@@ -90,7 +62,7 @@
       "model": "WHP-3020",
       "sourceUrl": "https://woongbi.vip-rental.com/categ/1069/1752",
       "candidates": [
-        "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/whp-3020_1_1.png",
+        "https://ruhens.co.kr/FileData/product/20241015141301670df9dddd57a.png",
         "https://woongbi.vip-rental.com/_var/rental/vshop/af780b2d_.jpg"
       ],
       "pageImages": [],
