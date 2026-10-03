@@ -72,7 +72,7 @@
   }
 
   function visual(product) {
-    const placeholder = '<div class="catalog-image-placeholder"><span class="placeholder-mark">W</span><strong>제품 이미지 준비중</strong><small>' + (product.model || '') + '</small></div>';
+    const placeholder = '<div class="catalog-image-placeholder"><span class="placeholder-mark">W</span><strong>이미지 불러오는 중</strong><small>' + (product.model || '') + '</small></div>';
     if (!product.image && !(product.detailImages || []).length) {
       return '<div class="catalog-image-slot">' + placeholder + '</div>';
     }
