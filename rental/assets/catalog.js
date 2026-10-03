@@ -15,7 +15,7 @@
   const recommendTabs = document.getElementById('recommend-tabs');
   const recommendGrid = document.getElementById('recommend-grid');
 
-  const PAGE_SIZE = 12;
+  const PAGE_SIZE = window.matchMedia('(max-width:560px)').matches ? 8 : 12;
   const RECOMMEND_CATEGORIES = ['정수기','공기청정기','비데·연수기','안마의자','매트리스·프레임'];
   let recommendCategory = '정수기';
   const state = { query: '', brand: '', category: '', feature: '', limit: PAGE_SIZE };
@@ -179,7 +179,7 @@
     const monthly = validOptions.map(o => Number(o.monthly)).filter(Number.isFinite);
     const maxGift = Math.max(...gifts);
     const maxMonthly = monthly.length ? Math.max(...monthly) : 0;
-    return maxGift + maxMonthly * 1.35;
+    return maxGift * 2 + maxMonthly * 0.9;
   }
 
   function recommendationCard(product) {
