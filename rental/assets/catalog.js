@@ -500,15 +500,24 @@
     });
   }
 
-  fetch('data/products.json', {cache:'no-store'})
-    .then(r => {
+  Promise.all([
+    fetch('data/products.json', {cache:'no-store'}).then(r => {
       if (!r.ok) throw new Error('catalog fetch failed');
       return r.json();
-    })
-    .then(data => {
+    }),
+    fetch('data/appliance-gift-options.json', {cache:'no-store'})
+      .then(r => r.ok ? r.json() : null)
+      .catch(() => null)
+  ])
+    .then(([data, giftData]) => {
       products = Array.isArray(data.products)
         ? data.products.filter(p => p.availability !== 'inactive' && !/접수불가|접수중지/.test(String(p.name || '')))
         : [];
+      const overrides = giftData?.products || {};
+      products.forEach(product => {
+        const override = overrides[product.id];
+        if (override && product.sourceKind === 'clover-import') Object.assign(product, override);
+      });
       handleDirectSectionHash();
       setupFilters();
       renderRecommendations();
