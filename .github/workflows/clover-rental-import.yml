@@ -22,7 +22,7 @@ jobs:
       - name: Install parser
         run: python -m pip install --disable-pip-version-check beautifulsoup4
       - name: Import non-duplicate Clover products
-        run: python .github/scripts/import_clover_rental.py
+        run: python .github/scripts/import_clover_list.py
       - name: Commit imported catalog
         run: |
           git config user.name "woongbi-catalog-bot"
