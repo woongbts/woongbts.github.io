@@ -1,28 +1,10 @@
 {
   "generatedAt": "2026-10-03",
   "visibleProducts": 294,
-  "localizedOrExisting": 290,
-  "failed": 4,
-  "changedProducts": 8,
+  "localizedOrExisting": 293,
+  "failed": 1,
+  "changedProducts": 11,
   "failures": [
-    {
-      "ok": false,
-      "id": "clover-257",
-      "brand": "현대큐밍",
-      "name": "럭셔리 매트리스SET_퀸",
-      "model": "HLM1950QE0(화이트&미드 브라운)",
-      "sourceUrl": "https://woongbi.vip-rental.com/categ/1061/257",
-      "candidates": [
-        "https://www.hyundairentalmall.com/shop/largeimage.php?ca_id=4040&it_id=1546586320&no=1",
-        "https://www.hdquming.com/uploadImage/images/000046/20210419163802560_YQ7VKI4A.jpeg",
-        "https://www.hdquming.com/uploadImage/images/000046/20210419163811996_HZDLCE0H.jpeg",
-        "https://www.hdquming.com/uploadImage/images/000046/20210419163816324_U5AEBX6U.jpeg",
-        "https://www.hdquming.com/uploadImage/images/000046/20210419163821230_R8RC1FDR.jpeg",
-        "https://www.hdquming.com/uploadImage/images/000046/20210419163825569_PHOPYKZD.jpeg"
-      ],
-      "pageImages": [],
-      "searched": []
-    },
     {
       "ok": false,
       "id": "clover-254",
@@ -31,39 +13,11 @@
       "model": "HLM1950SE0(화이트/미드 브라운)",
       "sourceUrl": "https://woongbi.vip-rental.com/categ/1061/254",
       "candidates": [
-        "https://www.hyundairentalmall.com/shop/largeimage.php?ca_id=4040&it_id=1546586017&no=1",
+        "https://www.daonhomesys.com/site_data/shop_product_mst/1589253661_kTq2Z1vJ_6001.jpg",
         "https://www.hdquming.com/uploadImage/images/000045/20210419160513500_53FTWGFT.jpeg",
         "https://www.hdquming.com/uploadImage/images/000045/20210419160528971_14FBZ3LN.jpeg",
         "https://www.hdquming.com/uploadImage/images/000045/20210419160536578_IL4ATYZU.jpeg",
         "https://www.hdquming.com/uploadImage/images/000046/20210419160543347_2JF3BSIA.jpeg"
-      ],
-      "pageImages": [],
-      "searched": []
-    },
-    {
-      "ok": false,
-      "id": "clover-2093",
-      "brand": "루헨스",
-      "name": "더프레임 직수형 냉온",
-      "model": "WHP-3300",
-      "sourceUrl": "https://woongbi.vip-rental.com/categ/1069/2093",
-      "candidates": [
-        "https://www.ruhens.co.kr/FileData/product/20241015113232670dd4409169f.png",
-        "https://woongbi.vip-rental.com/_var/rental/vshop/240206171011_1.jpg"
-      ],
-      "pageImages": [],
-      "searched": []
-    },
-    {
-      "ok": false,
-      "id": "clover-1752",
-      "brand": "루헨스",
-      "name": "직수형 냉온정수기",
-      "model": "WHP-3020",
-      "sourceUrl": "https://woongbi.vip-rental.com/categ/1069/1752",
-      "candidates": [
-        "https://ruhens.co.kr/FileData/product/20241015141301670df9dddd57a.png",
-        "https://woongbi.vip-rental.com/_var/rental/vshop/af780b2d_.jpg"
       ],
       "pageImages": [],
       "searched": []
