@@ -6,6 +6,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 PRODUCTS = ROOT / "rental/data/products.json"
 GIFTS = ROOT / "rental/data/appliance-gift-options.json"
+OVERRIDES = ROOT / "rental/data/catalog-overrides.json"
 OUT = ROOT / "rental/data/featured.json"
 
 CATEGORIES = ["정수기", "공기청정기", "비데·연수기", "안마의자", "매트리스·프레임"]
@@ -18,7 +19,7 @@ PREFS = [
 LIMITS = {"정수기":45000, "공기청정기":40000, "비데·연수기":30000, "안마의자":120000, "매트리스·프레임":65000}
 
 def metrics(product):
-    options = [o for o in product.get("options", []) if isinstance(o.get("monthly"), (int, float))]
+    options = [o for o in product.get("options", []) if isinstance(o.get("monthly"), (int, float)) and "단종/" not in " ".join(str(o.get(k) or "") for k in ("managementLabel","sourceOption","care"))]
     if not options:
         return None
     monthly = [int(o["monthly"]) for o in options]
@@ -55,9 +56,13 @@ def slim(product):
 def main():
     data = json.loads(PRODUCTS.read_text(encoding="utf-8"))
     gifts = json.loads(GIFTS.read_text(encoding="utf-8"))
+    overrides = json.loads(OVERRIDES.read_text(encoding="utf-8")) if OVERRIDES.exists() else {"products":{}}
     merged = []
     for original in data.get("products", []):
         product = dict(original)
+        catalog_override = (overrides.get("products") or {}).get(str(product.get("id") or ""))
+        if catalog_override:
+            product.update(catalog_override)
         override = (gifts.get("products") or {}).get(str(product.get("id") or ""))
         if override and product.get("sourceKind") == "clover-import":
             product.update(override)
