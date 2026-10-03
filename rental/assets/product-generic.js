@@ -356,6 +356,8 @@
       v.monthly==null?'월요금 상담 확인':'월 '+won(v.monthly),
       v.gift==null?'사은품 상담 확인':'고객사은품 '+won(v.gift)
     ].filter(Boolean).join(' · ');
+    const giftNote=$('#rental-apply-gift-note');
+    if(giftNote)giftNote.hidden=v.gift==null;
     return {v,provider};
   }
   async function openRentalApplication() {
@@ -415,10 +417,15 @@
       const data=await response.json().catch(()=>({}));
       if(!response.ok||!data.ok)throw new Error(data.error||'신청을 접수하지 못했습니다.');
       trackRental('rental_apply_success',{management:current.v.management||'',term:String(current.v.term??'')});
-      status.textContent='신청이 접수되었습니다. 신청번호 '+String(data.receipt?.id||'').slice(0,8)+' · 확인 후 연락드리겠습니다.';
+      status.textContent='';
       form.reset();
       $('#rental-apply-product').textContent=[brandLabel(product.brand),product.name,product.model].filter(Boolean).join(' · ');
       fillRentalApplicationSummary();
+      const receipt=String(data.receipt?.id||'').slice(0,8);
+      const receiptEl=$('#rental-apply-success-receipt');
+      if(receiptEl)receiptEl.textContent=receipt?'신청번호 '+receipt:'';
+      closeDialog($('#rental-apply-dialog'));
+      openDialog($('#rental-apply-success-dialog'));
     }catch(error){
       status.textContent=error.message||'신청을 접수하지 못했습니다. 카카오톡 또는 전화 상담을 이용해 주세요.';
     }finally{submit.disabled=false;}
@@ -539,6 +546,8 @@
     $('#rental-apply-close')?.addEventListener('click',()=>closeDialog($('#rental-apply-dialog')));
     $('#rental-apply-dialog')?.addEventListener('click',event=>{if(event.target===$('#rental-apply-dialog'))closeDialog($('#rental-apply-dialog'));});
     $('#rental-apply-form')?.addEventListener('submit',submitRentalApplication);
+    $('#rental-apply-success-confirm')?.addEventListener('click',()=>closeDialog($('#rental-apply-success-dialog')));
+    $('#rental-apply-success-dialog')?.addEventListener('click',event=>{if(event.target===$('#rental-apply-success-dialog'))closeDialog($('#rental-apply-success-dialog'));});
   }
 
   Promise.all([
