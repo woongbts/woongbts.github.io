@@ -5,6 +5,8 @@
   const won = n => Number(n).toLocaleString('ko-KR') + '원';
   const IMAGE_REV = '20261003-7f78334';
   const RENTAL_ENTRY_KEY = 'wb_rental_entry_v1';
+  const RECENT_KEY = 'wb_rental_recent_v1';
+  let policyGeneratedAt = '';
   const rentalAnalyticsPath = () => '/rental/product/' + encodeURIComponent(String(product?.id || id || 'unknown'));
   function trackRental(type, detail = {}) {
     if (typeof window.woongbiTrackConversion !== 'function') return;
@@ -109,6 +111,55 @@
     '유버스':'유버스'
   }[brand] || brand || '');
   const $ = sel => document.querySelector(sel);
+  const policyMonthText = value => {
+    const m = String(value || '').match(/^(\d{4})-(\d{2})/);
+    return m ? `${m[1]}년 ${Number(m[2])}월 기준` : '최신 정책 기준';
+  };
+  function applyPolicyMonth(value) {
+    policyGeneratedAt = value || policyGeneratedAt;
+    const text = policyMonthText(policyGeneratedAt);
+    document.querySelectorAll('[data-policy-month]').forEach(el => { el.textContent = text; });
+  }
+  function productMetrics(p) {
+    const options = (p.options || []).filter(o => Number.isFinite(Number(o.monthly)));
+    const monthly = options.map(o => Number(o.monthly));
+    const gifts = options.map(o => Number(o.gift)).filter(Number.isFinite);
+    return {minMonthly:monthly.length?Math.min(...monthly):null,maxGift:gifts.length?Math.max(...gifts):null};
+  }
+  function saveRecentProduct(p) {
+    const m = productMetrics(p);
+    const row = {id:p.id,name:p.name,model:p.model||'',brand:brandLabel(p.brand),category:p.category||'',page:p.page||('product.html?id='+encodeURIComponent(p.id)),image:imageCandidatesFor(p)[0]||'',minMonthly:m.minMonthly,maxGift:m.maxGift,at:Date.now()};
+    let list=[];
+    try { list=JSON.parse(localStorage.getItem(RECENT_KEY)||'[]'); } catch (_) {}
+    list=[row,...list.filter(x=>x&&x.id!==row.id)].slice(0,5);
+    try { localStorage.setItem(RECENT_KEY,JSON.stringify(list)); } catch (_) {}
+  }
+  function applyProductSeo(p) {
+    const m=productMetrics(p);
+    const canonical=new URL('product.html?id='+encodeURIComponent(p.id), location.origin + '/rental/').toString();
+    const title=`${brandLabel(p.brand)} ${p.name} 렌탈 | 웅비렌탈`;
+    const desc=[p.model?('모델 '+p.model):'',m.minMonthly!=null?('월 '+won(m.minMonthly)+'부터'):'',m.maxGift!=null?('고객사은품 최대 '+won(m.maxGift)):'','최종 접수 전 최신 조건 확인'].filter(Boolean).join(' · ');
+    document.title=title;
+    $('#product-meta-description')?.setAttribute('content',desc);
+    $('#product-canonical')?.setAttribute('href',canonical);
+    $('#product-og-title')?.setAttribute('content',title);
+    $('#product-og-description')?.setAttribute('content',desc);
+    $('#product-og-url')?.setAttribute('content',canonical);
+    const image=imageCandidatesFor(p)[0];
+    if(image) $('#product-og-image')?.setAttribute('content',new URL(image,location.href).toString());
+    const jsonld={
+      '@context':'https://schema.org','@type':'Product',name:p.name,
+      brand:{'@type':'Brand',name:brandLabel(p.brand)||p.brand||'웅비렌탈'},
+      model:p.model||undefined,category:p.category||undefined,description:p.shortDescription||desc,url:canonical,
+      image:image?[new URL(image,location.href).toString()]:undefined,
+      additionalProperty:[
+        m.minMonthly!=null?{'@type':'PropertyValue',name:'월 렌탈료',value:won(m.minMonthly)+'부터'}:null,
+        m.maxGift!=null?{'@type':'PropertyValue',name:'고객사은품',value:'최대 '+won(m.maxGift)}:null,
+        {'@type':'PropertyValue',name:'정책 기준',value:policyMonthText(policyGeneratedAt)}
+      ].filter(Boolean)
+    };
+    const node=$('#product-jsonld'); if(node) node.textContent=JSON.stringify(jsonld);
+  }
 
   function optionLabel(value) {
     let x = String(value || '').trim();
@@ -232,7 +283,7 @@
     product = (data.products || []).find(p => p.id === id);
     if (!product) throw new Error('product not found');
 
-    document.title = product.name + ' | 웅비렌탈';
+    applyProductSeo(product);
     $('#breadcrumb-model').textContent = product.model || product.name;
     $('#generic-brand').textContent = brandLabel(product.brand) || 'WOONGBI RENTAL';
     $('#generic-title').textContent = product.name;
@@ -292,7 +343,7 @@
     if (product.sourceUrl) {
       $('#generic-source-note').textContent = product.sourceKind === 'clover-import'
         ? '상품 기본정보와 렌탈사별 공개 조건을 바탕으로 정리했습니다. 최종 접수 전 최신 조건을 다시 확인합니다.'
-        : '상품 기본정보는 기존 웅비렌탈 판매자료와 2026년 10월 정책을 기준으로 정리했습니다.';
+        : `상품 기본정보는 기존 웅비렌탈 판매자료와 ${policyMonthText(policyGeneratedAt)} 정책을 기준으로 정리했습니다.`;
     }
 
     const detailImages = (product.detailImages || []).filter(Boolean).slice(0, 24);
@@ -312,6 +363,8 @@
 
     renderManagement();
     render();
+    saveRecentProduct(product);
+    applyProductSeo(product);
 
     trackRental('rental_product_view', {entry:rentalEntryLabel()});
 
@@ -348,6 +401,7 @@
       .catch(() => null)
   ])
     .then(([data, giftData]) => {
+      applyPolicyMonth(giftData?.generatedAt || data?.updatedAt || '');
       const target = (data.products || []).find(p => p.id === id);
       const override = giftData?.products?.[id];
       if (target && override && target.sourceKind === 'clover-import') Object.assign(target, override);
