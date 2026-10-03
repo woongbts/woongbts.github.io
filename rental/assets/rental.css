@@ -447,6 +447,7 @@
 .appliance-rental-detail .selector-step-block .generic-segmented{grid-template-columns:repeat(2,minmax(0,1fr))}
 .appliance-rental-detail .selector-step-block .generic-segmented button{word-break:keep-all;overflow-wrap:anywhere}
 @media(max-width:560px){
+  html,body{max-width:100%;overflow-x:clip}
   .policy-badge{font-size:.69rem}
   .recommend-sort{flex-wrap:nowrap;overflow-x:auto;margin-right:-18px;padding-right:18px;scrollbar-width:none}
   .recommend-sort::-webkit-scrollbar{display:none}

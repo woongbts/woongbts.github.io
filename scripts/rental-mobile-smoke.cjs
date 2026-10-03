@@ -15,11 +15,13 @@ function assert(condition, message) {
   const duplicateIds = await page.locator('#recommendations').count();
   assert(duplicateIds === 1, '추천상품 섹션 ID가 중복되었습니다.');
 
-  const homeOverflow = await page.evaluate(() => ({
-    body: document.body.scrollWidth,
-    viewport: document.documentElement.clientWidth
-  }));
-  assert(homeOverflow.body <= homeOverflow.viewport + 2, '홈 화면에 페이지 전체 가로 넘침이 있습니다.');
+  const homeOverflow = await page.evaluate(() => {
+    window.scrollTo(9999, 0);
+    const x = window.scrollX;
+    window.scrollTo(0, 0);
+    return {x, body:document.body.scrollWidth, viewport:document.documentElement.clientWidth};
+  });
+  assert(homeOverflow.x === 0, '홈 화면이 페이지 전체 단위로 가로 스크롤됩니다.');
 
   await page.locator('[data-recommend-sort="monthly"]').click();
   assert(await page.locator('[data-recommend-sort="monthly"]').getAttribute('aria-pressed') === 'true', '월요금 정렬 버튼이 동작하지 않습니다.');
@@ -44,13 +46,17 @@ function assert(condition, message) {
   const buttonHeights = await page.locator('.selector-step-block button').evaluateAll(els => els.map(el => el.getBoundingClientRect().height));
   assert(buttonHeights.length > 0 && Math.min(...buttonHeights) >= 44, '상세 조건 버튼의 모바일 터치 영역이 작습니다.');
 
-  const detailOverflow = await page.evaluate(() => ({
-    body: document.body.scrollWidth,
-    viewport: document.documentElement.clientWidth,
-    sticky: document.querySelector('.sticky-quote-inner')?.scrollWidth || 0,
-    stickyClient: document.querySelector('.sticky-quote-inner')?.clientWidth || 0
-  }));
-  assert(detailOverflow.body <= detailOverflow.viewport + 2, '상세페이지에 페이지 전체 가로 넘침이 있습니다.');
+  const detailOverflow = await page.evaluate(() => {
+    window.scrollTo(9999, 0);
+    const x = window.scrollX;
+    window.scrollTo(0, 0);
+    return {
+      x,
+      sticky: document.querySelector('.sticky-quote-inner')?.scrollWidth || 0,
+      stickyClient: document.querySelector('.sticky-quote-inner')?.clientWidth || 0
+    };
+  });
+  assert(detailOverflow.x === 0, '상세페이지가 페이지 전체 단위로 가로 스크롤됩니다.');
   assert(detailOverflow.sticky <= detailOverflow.stickyClient + 2, '모바일 하단 견적바가 넘칩니다.');
 
   console.log('Rental mobile smoke test passed.');
