@@ -120,8 +120,12 @@
     const text = policyMonthText(policyGeneratedAt);
     document.querySelectorAll('[data-policy-month]').forEach(el => { el.textContent = text; });
   }
+  function isSellableOption(option) {
+    const text = [option?.managementLabel, option?.sourceOption, option?.care].filter(Boolean).join(' ');
+    return !/(?:^|\s)단종\//.test(text);
+  }
   function productMetrics(p) {
-    const options = (p.options || []).filter(o => Number.isFinite(Number(o.monthly)));
+    const options = (p.options || []).filter(o => isSellableOption(o) && Number.isFinite(Number(o.monthly)));
     const monthly = options.map(o => Number(o.monthly));
     const gifts = options.map(o => Number(o.gift)).filter(Number.isFinite);
     return {minMonthly:monthly.length?Math.min(...monthly):null,maxGift:gifts.length?Math.max(...gifts):null};
@@ -191,18 +195,18 @@
   let state = { management: '', term: '' };
 
   function optionSet() {
-    return (product.options || []).filter(o => o.management === state.management);
+    return (product.options || []).filter(o => isSellableOption(o) && o.management === state.management);
   }
 
   function currentVariant() {
     return (product.options || []).find(o =>
-      o.management === state.management && String(o.term) === String(state.term)
+      isSellableOption(o) && o.management === state.management && String(o.term) === String(state.term)
     );
   }
 
   function renderManagement() {
     const unique = [];
-    (product.options || []).forEach(o => {
+    (product.options || []).filter(isSellableOption).forEach(o => {
       if (!unique.some(x => x.value === o.management)) {
         unique.push({value:o.management, label:optionLabel(o.managementLabel || o.management)});
       }
@@ -303,8 +307,8 @@
     const optionTitle = product.sourceKind === 'clover-import' ? '렌탈사 선택' : optionHeading(product.category);
     $('#generic-option-label').textContent = optionTitle;
     $('#summary-option-label').textContent = optionTitle;
-    $('#summary-management').textContent = [...new Set((product.options || []).map(o => optionLabel(o.managementLabel || o.management)).filter(Boolean))].join(' / ') || '-';
-    $('#summary-terms').textContent = [...new Set((product.options || []).map(o => termLabel(o)).filter(Boolean))].join(' / ') || '-';
+    $('#summary-management').textContent = [...new Set((product.options || []).filter(isSellableOption).map(o => optionLabel(o.managementLabel || o.management)).filter(Boolean))].join(' / ') || '-';
+    $('#summary-terms').textContent = [...new Set((product.options || []).filter(isSellableOption).map(o => termLabel(o)).filter(Boolean))].join(' / ') || '-';
 
     const img = $('#generic-image');
     const art = $('#generic-art');
@@ -356,7 +360,7 @@
       detailSection.hidden = false;
     }
 
-    const first = (product.options || [])[0];
+    const first = (product.options || []).find(isSellableOption);
     if (!first) throw new Error('no options');
     state.management = first.management;
     state.term = String(first.term);
@@ -398,11 +402,16 @@
     }),
     fetch('data/appliance-gift-options.json', {cache:'no-store'})
       .then(r => r.ok ? r.json() : null)
+      .catch(() => null),
+    fetch('data/catalog-overrides.json', {cache:'no-store'})
+      .then(r => r.ok ? r.json() : null)
       .catch(() => null)
   ])
-    .then(([data, giftData]) => {
+    .then(([data, giftData, overrideData]) => {
       applyPolicyMonth(giftData?.generatedAt || data?.updatedAt || '');
       const target = (data.products || []).find(p => p.id === id);
+      const catalogOverride = overrideData?.products?.[id];
+      if (target && catalogOverride) Object.assign(target, catalogOverride);
       const override = giftData?.products?.[id];
       if (target && override && target.sourceKind === 'clover-import') Object.assign(target, override);
       initialize(data);
