@@ -333,3 +333,28 @@
   .catalog-toggle{width:100%}
   .catalog-open-row span{display:block;margin-top:9px;text-align:center}
 }
+
+
+/* Compact mobile category rail · 2026-10-03 */
+@media(max-width:560px){
+  .hero-card{display:none}
+  #categories{padding-top:34px;padding-bottom:30px}
+  .category-grid-all{
+    display:flex!important;
+    grid-template-columns:none!important;
+    gap:10px!important;
+    overflow-x:auto;
+    margin-right:-18px;
+    padding:0 18px 8px 0;
+    scroll-snap-type:x mandatory;
+    scrollbar-width:none;
+  }
+  .category-grid-all::-webkit-scrollbar{display:none}
+  .category-grid-all .category{
+    flex:0 0 42vw;
+    min-height:108px!important;
+    scroll-snap-align:start;
+  }
+  .category-grid-all .category strong{margin-top:12px!important}
+  .recommend-section .section-title-row p{font-size:.9rem}
+}
