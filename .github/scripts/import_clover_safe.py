@@ -74,7 +74,7 @@ def parse_anchor(a,top,page_url):
 
     category=catmap(top,name)
     return {"id":f"clv-{mid}","sourceId":mid,"brand":brand,"name":name,"model":model,
-      "category":category,"rawCategory":top,"color":"","page":href,
+      "category":category,"rawCategory":top,"color":"","page":f"product.html?id=clv-{mid}",
       "image":image,"sourceUrl":href,"tags":[category,top,brand],
       "promo":"클로바렌탈 공개 상품 기준 · 최종 접수 전 최신 조건 확인",
       "shortDescription":f"{brand} {top} 렌탈 상품입니다. 공개된 최저 월 렌탈료를 먼저 확인해 보세요.",
