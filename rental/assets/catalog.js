@@ -24,7 +24,7 @@
     return value;
   };
   const imageCandidatesFor = product => {
-    const raw = [product.image, ...((product.detailImages || []).slice(0, 3))].filter(Boolean);
+    const raw = [product.imageSourceOriginal, product.image, ...((product.detailImages || []).slice(0, 3))].filter(Boolean);
     const candidates = [];
     raw.forEach(src => {
       const value = String(src || '').trim();
@@ -77,7 +77,7 @@
       return '<div class="catalog-image-slot">' + placeholder + '</div>';
     }
     return '<div class="catalog-image-slot">' +
-      '<img class="catalog-product-image" data-product-id="' + product.id + '" alt="' + product.name + '" loading="eager" decoding="async" referrerpolicy="no-referrer">' +
+      '<img class="catalog-product-image" data-product-id="' + product.id + '" alt="' + product.name + '" loading="eager" decoding="async">' +
       placeholder +
       '</div>';
   }
