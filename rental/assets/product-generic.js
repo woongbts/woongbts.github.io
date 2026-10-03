@@ -232,12 +232,21 @@
     render();
   }
 
-  fetch('data/products.json', {cache:'no-store'})
-    .then(r => {
+  Promise.all([
+    fetch('data/products.json', {cache:'no-store'}).then(r => {
       if (!r.ok) throw new Error('data fetch failed');
       return r.json();
+    }),
+    fetch('data/appliance-gift-options.json', {cache:'no-store'})
+      .then(r => r.ok ? r.json() : null)
+      .catch(() => null)
+  ])
+    .then(([data, giftData]) => {
+      const target = (data.products || []).find(p => p.id === id);
+      const override = giftData?.products?.[id];
+      if (target && override && target.sourceKind === 'clover-import') Object.assign(target, override);
+      initialize(data);
     })
-    .then(initialize)
     .catch(() => {
       $('#generic-title').textContent = '상품 정보를 불러오지 못했습니다.';
       $('#generic-model').textContent = '최신 조건은 상담으로 확인해 주세요.';
