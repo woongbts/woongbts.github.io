@@ -167,8 +167,9 @@
 
     $('#summary-brand').textContent = brandLabel(product.brand) || '-';
     $('#summary-category').textContent = product.category || '-';
-    $('#generic-option-label').textContent = optionHeading(product.category);
-    $('#summary-option-label').textContent = optionHeading(product.category);
+    const optionTitle = product.sourceKind === 'clover-import' ? '렌탈사 선택' : optionHeading(product.category);
+    $('#generic-option-label').textContent = optionTitle;
+    $('#summary-option-label').textContent = optionTitle;
     $('#summary-management').textContent = [...new Set((product.options || []).map(o => optionLabel(o.managementLabel || o.management)).filter(Boolean))].join(' / ') || '-';
     $('#summary-terms').textContent = [...new Set((product.options || []).map(o => termLabel(o)).filter(Boolean))].join(' / ') || '-';
 
@@ -207,7 +208,9 @@
     }
 
     if (product.sourceUrl) {
-      $('#generic-source-note').textContent = '상품 기본정보는 기존 웅비렌탈 판매자료와 2026년 10월 정책을 기준으로 정리했습니다.';
+      $('#generic-source-note').textContent = product.sourceKind === 'clover-import'
+        ? '상품 기본정보와 렌탈사별 공개 조건을 바탕으로 정리했습니다. 최종 접수 전 최신 조건을 다시 확인합니다.'
+        : '상품 기본정보는 기존 웅비렌탈 판매자료와 2026년 10월 정책을 기준으로 정리했습니다.';
     }
 
     const detailImages = (product.detailImages || []).filter(Boolean).slice(0, 24);
