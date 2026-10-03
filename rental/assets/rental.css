@@ -358,3 +358,37 @@
   .category-grid-all .category strong{margin-top:12px!important}
   .recommend-section .section-title-row p{font-size:.9rem}
 }
+
+
+/* Internal appliance chooser · 2026-10-03 */
+.appliance-section{padding-top:42px;padding-bottom:44px;background:#f7faf9}
+.appliance-title-row{margin-bottom:20px}
+.appliance-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
+.appliance-category{display:block;min-height:138px;padding:18px;border:1px solid #d7e3e1;border-radius:20px;background:#fff;color:#173f43;text-decoration:none;box-shadow:0 8px 24px rgba(17,56,59,.045);transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease}
+.appliance-category:hover{transform:translateY(-2px);border-color:#9fc2bd;box-shadow:0 12px 28px rgba(17,56,59,.08)}
+.appliance-category span{display:inline-grid;place-items:center;min-width:34px;height:28px;padding:0 8px;border-radius:999px;background:#e7f5f2;color:#0c8178;font-size:.72rem;font-weight:950}
+.appliance-category strong{display:block;margin-top:18px;font-size:1.05rem;letter-spacing:-.035em}
+.appliance-category small{display:block;margin-top:6px;color:#718687;font-size:.76rem;line-height:1.45}
+.appliance-category.active{border-color:#0f8178;background:#f1fbf8;box-shadow:0 10px 28px rgba(15,129,120,.11)}
+@media(max-width:900px){.appliance-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:560px){
+  .appliance-section{padding-top:30px;padding-bottom:32px}
+  .appliance-title-row{margin-bottom:14px}
+  .appliance-grid{
+    display:grid;
+    grid-auto-flow:column;
+    grid-template-rows:repeat(2,112px);
+    grid-auto-columns:46vw;
+    gap:9px;
+    overflow-x:auto;
+    margin-right:-18px;
+    padding:0 18px 8px 0;
+    scroll-snap-type:x mandatory;
+    scrollbar-width:none;
+  }
+  .appliance-grid::-webkit-scrollbar{display:none}
+  .appliance-category{min-height:0;height:112px;padding:13px;scroll-snap-align:start;border-radius:17px}
+  .appliance-category span{height:24px;min-width:30px;font-size:.66rem}
+  .appliance-category strong{margin-top:10px;font-size:.94rem}
+  .appliance-category small{margin-top:4px;font-size:.68rem;line-height:1.35}
+}
