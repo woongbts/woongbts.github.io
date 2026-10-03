@@ -1,0 +1,72 @@
+name: Rental policy freshness
+
+on:
+  schedule:
+    - cron: '30 0 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  policy-watch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check policy month
+        id: freshness
+        shell: bash
+        run: |
+          python3 - <<'PY' >> "$GITHUB_OUTPUT"
+          import json
+          from datetime import datetime
+          from pathlib import Path
+          from zoneinfo import ZoneInfo
+
+          data=json.loads(Path("rental/data/appliance-gift-options.json").read_text(encoding="utf-8"))
+          generated=str(data.get("generatedAt") or "")
+          now=datetime.now(ZoneInfo("Asia/Seoul"))
+          expected=f"{now.year:04d}-{now.month:02d}"
+          actual=generated[:7] if len(generated)>=7 else ""
+          print(f"expected={expected}")
+          print(f"actual={actual}")
+          print(f"generated={generated}")
+          print("stale=true" if actual != expected else "stale=false")
+          PY
+      - name: Open or update stale-policy issue
+        if: steps.freshness.outputs.stale == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          EXPECTED: ${{ steps.freshness.outputs.expected }}
+          ACTUAL: ${{ steps.freshness.outputs.actual }}
+          GENERATED: ${{ steps.freshness.outputs.generated }}
+        shell: bash
+        run: |
+          title='[웅비렌탈] 정책 갱신 필요'
+          issue="$(gh issue list --state open --json number,title --jq '.[] | select(.title=="'"$title"'") | .number' | head -1)"
+          body="웅비렌탈 사은품 정책 기준월이 현재 월과 다릅니다.
+
+          - 현재 필요한 기준월: **$EXPECTED**
+          - 등록된 기준월: **${ACTUAL:-확인 불가}**
+          - 데이터 generatedAt: **${GENERATED:-확인 불가}**
+          - 확인 파일: `rental/data/appliance-gift-options.json`
+
+          최신 정책 반영 후 generatedAt이 현재 월로 갱신되면 이 경고는 자동으로 해제됩니다."
+          if [ -z "$issue" ]; then
+            gh issue create --title "$title" --body "$body"
+          else
+            gh issue comment "$issue" --body "$body"
+          fi
+      - name: Close stale-policy issue when current
+        if: steps.freshness.outputs.stale == 'false'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          EXPECTED: ${{ steps.freshness.outputs.expected }}
+        shell: bash
+        run: |
+          title='[웅비렌탈] 정책 갱신 필요'
+          issue="$(gh issue list --state open --json number,title --jq '.[] | select(.title=="'"$title"'") | .number' | head -1)"
+          if [ -n "$issue" ]; then
+            gh issue close "$issue" --comment "정책 기준월이 $EXPECTED 로 정상화되어 자동으로 닫습니다."
+          fi
