@@ -1,4 +1,22 @@
 /* Cross-link between Woongbi Telecom and Woongbi Rental · 2026-10-03 */
+
+/* Desktop header balance: keep both brands near the edges and give the menu room. */
+@media(min-width:1181px){
+  body:not(.rate-page) .top .nav{
+    width:min(1480px,calc(100% - 32px));
+    gap:12px;
+  }
+  body:not(.rate-page) .top .brand{margin-right:4px}
+  body:not(.rate-page) .top .menu{
+    flex:1 1 auto;
+    min-width:0;
+    justify-content:center;
+    gap:clamp(9px,1vw,16px);
+    font-size:clamp(.78rem,.82vw,.89rem);
+  }
+  body:not(.rate-page) .top .rental-badge{margin-left:4px}
+}
+
 .top .rental-badge{
   display:inline-flex;
   align-items:center;
