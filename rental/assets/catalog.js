@@ -219,7 +219,10 @@
       ? product.options.filter(o => Number.isFinite(Number(o.monthly)))
       : [];
     if (!validOptions.length) return null;
-    const gifts = validOptions.map(o => Number(o.gift)).filter(Number.isFinite);
+    const gifts = validOptions
+      .filter(o => o.gift !== null && o.gift !== undefined && o.gift !== '')
+      .map(o => Number(o.gift))
+      .filter(Number.isFinite);
     const monthly = validOptions.map(o => Number(o.monthly)).filter(Number.isFinite);
     if (!gifts.length || !monthly.length) return null;
     return {
