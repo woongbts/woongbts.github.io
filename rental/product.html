@@ -22,7 +22,7 @@
   <link rel="icon" href="assets/woongbi-rental-icon-32.png?v=20261003-blue3" sizes="32x32" type="image/png">
   <link rel="apple-touch-icon" sizes="180x180" href="assets/woongbi-rental-icon-180.png?v=20261003-blue3">
   <link rel="manifest" href="manifest.webmanifest?v=20261003-blue3">
-<link rel="stylesheet" href="assets/rental.css?v=20261004-iphonefit1">
+<link rel="stylesheet" href="assets/rental.css?v=20261004-success1">
 </head>
 <body>
   <header class="site-header">
@@ -159,6 +159,7 @@
         <small>선택한 상품</small>
         <strong id="rental-apply-product">-</strong>
         <p id="rental-apply-condition">조건을 확인하는 중입니다.</p>
+        <p id="rental-apply-gift-note" class="rental-apply-gift-note" hidden>사은품은 신청계좌로 설치 후 1주일 이내 입금됩니다.</p>
       </div>
 
       <div class="rental-apply-grid">
@@ -194,6 +195,16 @@
     </form>
   </dialog>
 
+  <dialog id="rental-apply-success-dialog" class="rental-apply-success-dialog" aria-labelledby="rental-apply-success-title">
+    <div class="rental-apply-success-card">
+      <div class="rental-apply-success-icon" aria-hidden="true">✓</div>
+      <strong id="rental-apply-success-title">신청이 접수되었습니다</strong>
+      <p>확인 후 연락드리겠습니다</p>
+      <small id="rental-apply-success-receipt"></small>
+      <button id="rental-apply-success-confirm" type="button">확인</button>
+    </div>
+  </dialog>
+
   <footer class="footer">
     <div class="wrap footer-inner"><div><strong>웅비렌탈</strong><span>웅비통신 덕천만덕점</span></div><div><a href="tel:0513437677">051-343-7677</a></div></div>
     <div class="wrap footer-note">상품·요금·프로모션·제휴카드·사은품 조건은 변경될 수 있으며 최종 접수 전 상담을 통해 확인합니다.</div>
@@ -201,6 +212,6 @@
   <script src="/assets/analytics-config.js?v=20260929-2" defer></script>
   <script src="/assets/conversion-tracker.min.js?v=20261004-rental2" defer></script>
   <script src="/assets/site-analytics.min.js?v=20260930-5" defer></script>
-  <script src="assets/product-generic.js?v=20261004-1" defer></script>
+  <script src="assets/product-generic.js?v=20261004-success1" defer></script>
 </body>
 </html>
