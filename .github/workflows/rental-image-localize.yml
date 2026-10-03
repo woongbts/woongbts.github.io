@@ -27,7 +27,7 @@ jobs:
           python - <<'PY'
           import html, io, json, re
           from concurrent.futures import ThreadPoolExecutor, as_completed
-          from urllib.parse import quote, quote_plus, urljoin
+          from urllib.parse import quote, quote_plus, urljoin, urlparse, parse_qs
           from pathlib import Path
           import requests
           from PIL import Image, ImageOps
@@ -198,11 +198,39 @@ jobs:
 
             # First try the exact first/representative image captured from woongbi.vip-rental.com.
             if preferred:
-              im=fetch_img(session,preferred,referer)
-              if im is None:
-                proxy='https://images.weserv.nl/?url='+quote(preferred,safe='')+'&w=1200&output=png&q=92'
-                im=fetch_img(session,proxy,'https://images.weserv.nl/')
-              if im is not None:
+              # Warm the storefront session first because some vshop image endpoints expect cookies.
+              try:
+                session.get(referer,headers={
+                  'User-Agent':headers['User-Agent'],
+                  'Accept':'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
+                  'Accept-Language':headers['Accept-Language'],
+                },timeout=(4,8),allow_redirects=True)
+              except Exception:
+                pass
+
+              preferred_candidates=[preferred]
+              # imagefile.php is a resized wrapper around /_var/rental/vshop/<filename>.
+              # The direct asset often works even when the PHP wrapper blocks server-side clients.
+              try:
+                pu=urlparse(preferred)
+                qs=parse_qs(pu.query)
+                img_path=(qs.get('img') or [''])[0]
+                if img_path.startswith('rental/'):
+                  filename=img_path.split('/',1)[1]
+                  preferred_candidates.extend([
+                    'https://woongbi.vip-rental.com/_var/rental/vshop/'+filename,
+                    'http://woongbi.vip-rental.com/_var/rental/vshop/'+filename,
+                  ])
+              except Exception:
+                pass
+
+              for preferred_url in preferred_candidates:
+                im=fetch_img(session,preferred_url,referer)
+                if im is None:
+                  proxy='https://images.weserv.nl/?url='+quote(preferred_url,safe='')+'&w=1200&output=png&q=92'
+                  im=fetch_img(session,proxy,'https://images.weserv.nl/')
+                if im is None:
+                  continue
                 try:
                   im=ImageOps.exif_transpose(im)
                   if im.mode not in ('RGB','RGBA'):im=im.convert('RGBA' if 'transparency' in im.info else 'RGB')
@@ -210,7 +238,7 @@ jobs:
                   if im.width>=120 and im.height>=120:
                     if im.mode=='RGBA':im.save(dest,'WEBP',quality=88,method=6,lossless=False)
                     else:im.convert('RGB').save(dest,'WEBP',quality=88,method=6)
-                    return {'ok':True,'id':pid,'rel':rel,'from':preferred,'size':[im.width,im.height],'representative':True}
+                    return {'ok':True,'id':pid,'rel':rel,'from':preferred,'fetchedFrom':preferred_url,'size':[im.width,im.height],'representative':True}
                 except Exception:
                   pass
 
