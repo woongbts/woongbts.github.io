@@ -1,169 +1,24 @@
 {
   "generatedAt": "2026-10-03",
+  "mode": "safe-list-only",
   "existingOriginalPreserved": 366,
-  "previousImportedRebuilt": 271,
+  "previousImportedRebuilt": 4,
   "listPagesScanned": 120,
-  "sourceProductsDiscovered": 955,
-  "renderedProducts": 4,
+  "verifiedListProducts": 187,
   "duplicatesSkipped": 0,
-  "newProductsAdded": 4,
-  "totalProductsAfterImport": 370,
+  "newProductsAdded": 184,
+  "totalProductsAfterImport": 550,
   "newByCategory": {
-    "냉장고·김치냉장고": 1,
-    "세탁·건조·의류관리": 3
+    "TV·디지털": 6,
+    "가구·침대": 15,
+    "건강·뷰티": 5,
+    "냉장고·김치냉장고": 27,
+    "레저·자동차": 5,
+    "매트리스·프레임": 5,
+    "세탁·건조·의류관리": 49,
+    "안마의자": 19,
+    "에어컨·청소기": 42,
+    "주방가전": 11
   },
-  "renderErrors": 951,
-  "duplicateExamples": [],
-  "errorExamples": [
-    {
-      "id": "54721",
-      "url": "https://m.clvrental777.com/model/compare.php?model_idx=54721&ca_id=010002",
-      "reason": "missing name or contract prices"
-    },
-    {
-      "id": "47301",
-      "url": "https://m.clvrental777.com/model/compare.php?model_idx=47301&ca_id=006011",
-      "reason": "missing name or contract prices"
-    },
-    {
-      "id": "47296",
-      "url": "https://m.clvrental777.com/model/compare.php?model_idx=47296&ca_id=006011",
-      "reason": "missing name or contract prices"
-    },
-    {
-      "id": "35920",
-      "url": "https://m.clvrental777.com/model/compare.php?model_idx=35920&ca_id=043011",
-      "reason": "missing name or contract prices"
-    },
-    {
-      "id": "18935",
-      "url": "https://m.clvrental777.com/model/compare.php?model_idx=18935&ca_id=005003",
-      "reason": "missing name or contract prices"
-    },
-    {
-      "id": "19153",
-      "url": "https://m.clvrental777.com/model/compare.php?model_idx=19153&ca_id=005001",
-      "reason": "missing name or contract prices"
-    },
-    {
-      "id": "11394",
-      "url": "https://m.clvrental777.com/model/compare.php?model_idx=11394&ca_id=042004",
-      "reason": "missing name or contract prices"
-    },
-    {
-      "id": "26140",
-      "url": "https://m.clvrental777.com/model/compare.php?model_idx=26140&ca_id=005003",
-      "reason": "missing name or contract prices"
-    },
-    {
-      "id": "17750",
-      "url": "https://m.clvrental777.com/model/compare.php?model_idx=17750&ca_id=042044",
-      "reason": "missing name or contract prices"
-    },
-    {
-      "id": "45624",
-      "url": "https://m.clvrental777.com/model/compare.php?model_idx=45624&ca_id=042060",
-      "reason": "missing name or contract prices"
-    },
-    {
-      "id": "11380",
-      "url": "https://m.clvrental777.com/model/compare.php?model_idx=11380&ca_id=042021",
-      "reason": "missing name or contract prices"
-    },
-    {
-      "id": "11401",
-      "url": "https://m.clvrental777.com/model/compare.php?model_idx=11401&ca_id=042028",
-      "reason": "missing name or contract prices"
-    },
-    {
-      "id": "3659",
-      "url": "https://m.clvrental777.com/model/compare.php?model_idx=3659&ca_id=009",
-      "reason": "missing name or contract prices"
-    },
-    {
-      "id": "11214",
-      "url": "https://m.clvrental777.com/model/compare.php?model_idx=11214&ca_id=009003",
-      "reason": "missing name or contract prices"
-    },
-    {
-      "id": "16268",
-      "url": "https://m.clvrental777.com/model/compare.php?model_idx=16268&ca_id=009001",
-      "reason": "missing name or contract prices"
-    },
-    {
-      "id": "47626",
-      "url": "https://m.clvrental777.com/model/compare.php?model_idx=47626&ca_id=004002",
-      "reason": "missing name or contract prices"
-    },
-    {
-      "id": "54711",
-      "url": "https://m.clvrental777.com/model/compare.php?model_idx=54711&ca_id=010002",
-      "reason": "missing name or contract prices"
-    },
-    {
-      "id": "57621",
-      "url": "https://m.clvrental777.com/model/compare.php?model_idx=57621&ca_id=005002",
-      "reason": "missing name or contract prices"
-    },
-    {
-      "id": "35760",
-      "url": "https://m.clvrental777.com/model/compare.php?model_idx=35760&ca_id=043011",
-      "reason": "missing name or contract prices"
-    },
-    {
-      "id": "10731",
-      "url": "https://m.clvrental777.com/model/compare.php?model_idx=10731&ca_id=005003",
-      "reason": "missing name or contract prices"
-    },
-    {
-      "id": "39174",
-      "url": "https://m.clvrental777.com/model/compare.php?model_idx=39174&ca_id=003002",
-      "reason": "missing name or contract prices"
-    },
-    {
-      "id": "60341",
-      "url": "https://m.clvrental777.com/model/compare.php?model_idx=60341&ca_id=006016",
-      "reason": "missing name or contract prices"
-    },
-    {
-      "id": "9715",
-      "url": "https://m.clvrental777.com/model/compare.php?model_idx=9715&ca_id=042021",
-      "reason": "missing name or contract prices"
-    },
-    {
-      "id": "11074",
-      "url": "https://m.clvrental777.com/model/compare.php?model_idx=11074&ca_id=042002",
-      "reason": "missing name or contract prices"
-    },
-    {
-      "id": "61144",
-      "url": "https://m.clvrental777.com/model/compare.php?model_idx=61144&ca_id=003004",
-      "reason": "missing name or contract prices"
-    },
-    {
-      "id": "11045",
-      "url": "https://m.clvrental777.com/model/compare.php?model_idx=11045&ca_id=042005",
-      "reason": "missing name or contract prices"
-    },
-    {
-      "id": "7240",
-      "url": "https://m.clvrental777.com/model/compare.php?model_idx=7240&ca_id=003007",
-      "reason": "missing name or contract prices"
-    },
-    {
-      "id": "11515",
-      "url": "https://m.clvrental777.com/model/compare.php?model_idx=11515&ca_id=042022",
-      "reason": "missing name or contract prices"
-    },
-    {
-      "id": "5513",
-      "url": "https://m.clvrental777.com/model/compare.php?model_idx=5513&ca_id=009",
-      "reason": "missing name or contract prices"
-    },
-    {
-      "id": "47941",
-      "url": "https://m.clvrental777.com/model/compare.php?model_idx=47941&ca_id=004002",
-      "reason": "missing name or contract prices"
-    }
-  ]
+  "duplicateExamples": []
 }
