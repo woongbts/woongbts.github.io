@@ -392,3 +392,36 @@
   .appliance-category strong{margin-top:10px;font-size:.94rem}
   .appliance-category small{margin-top:4px;font-size:.68rem;line-height:1.35}
 }
+
+
+/* Recommendation preference + mobile appliance grid fix · 2026-10-03 */
+.recommend-meta{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:7px}
+.recommend-meta small{margin-bottom:0!important;min-width:0}
+.recommend-preference{flex:0 0 auto;padding:4px 7px;border-radius:999px;background:#e8f5f2;color:#0c8178;font-size:.62rem;font-weight:900;white-space:nowrap}
+.appliance-more-wrap{display:none}
+@media(max-width:560px){
+  .appliance-grid{
+    display:grid!important;
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    grid-auto-flow:row!important;
+    grid-template-rows:none!important;
+    grid-auto-columns:auto!important;
+    gap:9px!important;
+    overflow:visible!important;
+    margin-right:0!important;
+    padding:0!important;
+    scroll-snap-type:none!important;
+  }
+  .appliance-category{
+    width:auto!important;
+    height:108px!important;
+    min-height:108px!important;
+    scroll-snap-align:none!important;
+  }
+  .appliance-category:nth-child(n+7){display:none}
+  .appliance-grid.is-expanded .appliance-category:nth-child(n+7){display:block}
+  .appliance-more-wrap{display:block;margin-top:12px;text-align:center}
+  .appliance-more{width:100%;min-height:44px;border:1px solid #cddcda;border-radius:14px;background:#fff;color:#174246;font:inherit;font-weight:900}
+  .recommend-meta{display:block}
+  .recommend-preference{display:inline-block;margin-top:5px}
+}
