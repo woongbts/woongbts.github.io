@@ -98,8 +98,9 @@
         </div>
 
         <div class="detail-actions">
-          <a class="btn primary" href="http://pf.kakao.com/_nWwNT/chat" target="_blank" rel="noopener noreferrer">이 조건으로 카톡 상담</a>
-          <a class="btn ghost" href="tel:0513437677">전화 상담</a>
+          <a class="btn primary" id="rental-kakao-consult" data-rental-consult href="http://pf.kakao.com/_nWwNT/chat" target="_blank" rel="noopener noreferrer">조건 복사 후 카톡 상담</a>
+          <a class="btn ghost" id="rental-phone-consult" data-rental-phone href="tel:0513437677">전화 상담</a>
+          <p class="consult-copy-help">카톡 상담을 누르면 현재 선택한 상품·렌탈사·계약기간·월요금·사은품이 자동으로 복사됩니다. 카톡창에 붙여넣기만 하세요.</p>
         </div>
       </div>
     </section>
@@ -132,7 +133,7 @@
       <div class="sticky-copy"><span>현재 선택</span><strong id="sticky-selection">조건 선택</strong></div>
       <div class="sticky-price"><span>월</span><strong id="sticky-monthly">-</strong></div>
       <div class="sticky-gift"><span>고객사은품</span><strong id="sticky-gift">-</strong></div>
-      <a href="http://pf.kakao.com/_nWwNT/chat" target="_blank" rel="noopener noreferrer">상담하기</a>
+      <a id="rental-kakao-sticky" data-rental-consult href="http://pf.kakao.com/_nWwNT/chat" target="_blank" rel="noopener noreferrer">상담하기</a>
     </div>
   </div>
 
@@ -140,6 +141,9 @@
     <div class="wrap footer-inner"><div><strong>웅비렌탈</strong><span>웅비통신 덕천만덕점</span></div><div><a href="tel:0513437677">051-343-7677</a></div></div>
     <div class="wrap footer-note">상품·요금·프로모션·제휴카드·사은품 조건은 변경될 수 있으며 최종 접수 전 상담을 통해 확인합니다.</div>
   </footer>
-  <script src="assets/product-generic.js?v=20261003-13" defer></script>
+  <script src="/assets/analytics-config.js?v=20260929-2" defer></script>
+  <script src="/assets/conversion-tracker.min.js?v=20261003-rental1" defer></script>
+  <script src="/assets/site-analytics.min.js?v=20260930-5" defer></script>
+  <script src="assets/product-generic.js?v=20261003-14" defer></script>
 </body>
 </html>
