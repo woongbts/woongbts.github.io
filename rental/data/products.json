@@ -47014,33 +47014,121 @@
         "에어컨·청소기",
         "삼성"
       ],
-      "promo": "클로바렌탈 공개 상품 기준 · 최종 접수 전 최신 조건 확인",
+      "promo": "렌탈사·약정기간별 월요금과 웅비렌탈 사은품을 비교해 보세요.",
       "shortDescription": "삼성 에어컨·청소기 렌탈 상품입니다. 공개된 최저 월 렌탈료를 먼저 확인해 보세요.",
       "highlights": [
         "에어컨·청소기",
         "최저 월 렌탈료 기준",
-        "최종 조건 상담 확인"
+        "최종 조건 상담 확인",
+        "렌탈사별 조건 비교"
       ],
       "manufacturer": "삼성",
-      "rentalCompany": "클로바렌탈몰",
+      "rentalCompany": "렌탈사별 비교",
       "detailImages": [],
       "options": [
         {
-          "key": "clover-min",
-          "management": "clover-lowest",
-          "managementLabel": "최저가 기준",
-          "term": "",
-          "termLabel": "상품별 조건",
+          "key": "clv-104075-60",
+          "management": "supplier-현대유버스",
+          "managementLabel": "현대유버스",
+          "term": 60,
           "monthly": 48400,
-          "card": 23400,
-          "gift": null,
-          "care": "상품별 조건 상담 확인",
-          "sourceOption": "클로바렌탈 공개 최저가"
+          "card": null,
+          "gift": 101640,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "현대유버스"
+        },
+        {
+          "key": "clv-104075-48",
+          "management": "supplier-현대유버스",
+          "managementLabel": "현대유버스",
+          "term": 48,
+          "monthly": 57300,
+          "card": null,
+          "gift": 96264,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "현대유버스"
+        },
+        {
+          "key": "clv-104075-36",
+          "management": "supplier-현대유버스",
+          "managementLabel": "현대유버스",
+          "term": 36,
+          "monthly": 72300,
+          "card": null,
+          "gift": 91098,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "현대유버스"
+        },
+        {
+          "key": "clv-105290-60",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 60,
+          "monthly": 49100,
+          "card": null,
+          "gift": 147300,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
+        },
+        {
+          "key": "clv-105290-48",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 48,
+          "monthly": 57700,
+          "card": null,
+          "gift": 138480,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
+        },
+        {
+          "key": "clv-105290-36",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 36,
+          "monthly": 72600,
+          "card": null,
+          "gift": 130680,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
+        },
+        {
+          "key": "clv-110649-60",
+          "management": "supplier-스마트렌탈",
+          "managementLabel": "스마트렌탈",
+          "term": 60,
+          "monthly": 53900,
+          "card": null,
+          "gift": 145530,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "스마트렌탈"
+        },
+        {
+          "key": "clv-110649-48",
+          "management": "supplier-스마트렌탈",
+          "managementLabel": "스마트렌탈",
+          "term": 48,
+          "monthly": 62500,
+          "card": null,
+          "gift": 135000,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "스마트렌탈"
+        },
+        {
+          "key": "clv-110649-36",
+          "management": "supplier-스마트렌탈",
+          "managementLabel": "스마트렌탈",
+          "term": 36,
+          "monthly": 77900,
+          "card": null,
+          "gift": 126198,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "스마트렌탈"
         }
       ],
       "sourceKind": "clover-import",
       "availability": "active",
-      "giftStatus": "unavailable",
+      "giftStatus": "available",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/251127/UG49Hghcw6FkXhPwsXPqnUtXSW85W9.jpg",
       "importedFrom": "https://m.clvrental777.com/"
     },
@@ -47061,33 +47149,88 @@
         "에어컨·청소기",
         "삼성"
       ],
-      "promo": "클로바렌탈 공개 상품 기준 · 최종 접수 전 최신 조건 확인",
+      "promo": "렌탈사·약정기간별 월요금과 웅비렌탈 사은품을 비교해 보세요.",
       "shortDescription": "삼성 에어컨·청소기 렌탈 상품입니다. 공개된 최저 월 렌탈료를 먼저 확인해 보세요.",
       "highlights": [
         "에어컨·청소기",
         "최저 월 렌탈료 기준",
-        "최종 조건 상담 확인"
+        "최종 조건 상담 확인",
+        "렌탈사별 조건 비교"
       ],
       "manufacturer": "삼성",
-      "rentalCompany": "클로바렌탈몰",
+      "rentalCompany": "렌탈사별 비교",
       "detailImages": [],
       "options": [
         {
-          "key": "clover-min",
-          "management": "clover-lowest",
-          "managementLabel": "최저가 기준",
-          "term": "",
-          "termLabel": "상품별 조건",
+          "key": "clv-105515-60",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 60,
           "monthly": 59100,
-          "card": 46100,
-          "gift": null,
-          "care": "상품별 조건 상담 확인",
-          "sourceOption": "클로바렌탈 공개 최저가"
+          "card": null,
+          "gift": 177300,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
+        },
+        {
+          "key": "clv-105515-48",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 48,
+          "monthly": 69500,
+          "card": null,
+          "gift": 166800,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
+        },
+        {
+          "key": "clv-105515-36",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 36,
+          "monthly": 87400,
+          "card": null,
+          "gift": 157320,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
+        },
+        {
+          "key": "clv-104210-60",
+          "management": "supplier-현대유버스",
+          "managementLabel": "현대유버스",
+          "term": 60,
+          "monthly": 64000,
+          "card": null,
+          "gift": 134400,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "현대유버스"
+        },
+        {
+          "key": "clv-104210-48",
+          "management": "supplier-현대유버스",
+          "managementLabel": "현대유버스",
+          "term": 48,
+          "monthly": 75700,
+          "card": null,
+          "gift": 127176,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "현대유버스"
+        },
+        {
+          "key": "clv-104210-36",
+          "management": "supplier-현대유버스",
+          "managementLabel": "현대유버스",
+          "term": 36,
+          "monthly": 95500,
+          "card": null,
+          "gift": 120330,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "현대유버스"
         }
       ],
       "sourceKind": "clover-import",
       "availability": "active",
-      "giftStatus": "unavailable",
+      "giftStatus": "available",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/251127/1bzACcNYwqGsS2vKs4qLFUM4DvNtnd.jpg",
       "importedFrom": "https://m.clvrental777.com/"
     },
@@ -47108,33 +47251,187 @@
         "에어컨·청소기",
         "삼성"
       ],
-      "promo": "클로바렌탈 공개 상품 기준 · 최종 접수 전 최신 조건 확인",
+      "promo": "렌탈사·약정기간별 월요금과 웅비렌탈 사은품을 비교해 보세요.",
       "shortDescription": "삼성 에어컨·청소기 렌탈 상품입니다. 공개된 최저 월 렌탈료를 먼저 확인해 보세요.",
       "highlights": [
         "에어컨·청소기",
         "최저 월 렌탈료 기준",
-        "최종 조건 상담 확인"
+        "최종 조건 상담 확인",
+        "렌탈사별 조건 비교"
       ],
       "manufacturer": "삼성",
-      "rentalCompany": "클로바렌탈몰",
+      "rentalCompany": "렌탈사별 비교",
       "detailImages": [],
       "options": [
         {
-          "key": "clover-min",
-          "management": "clover-lowest",
-          "managementLabel": "최저가 기준",
-          "term": "",
-          "termLabel": "상품별 조건",
+          "key": "clv-103375-60",
+          "management": "supplier-bs-on",
+          "managementLabel": "BS ON",
+          "term": 60,
           "monthly": 63100,
-          "card": 38100,
-          "gift": null,
-          "care": "상품별 조건 상담 확인",
-          "sourceOption": "클로바렌탈 공개 최저가"
+          "card": null,
+          "gift": 132510,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "BS ON"
+        },
+        {
+          "key": "clv-103375-48",
+          "management": "supplier-bs-on",
+          "managementLabel": "BS ON",
+          "term": 48,
+          "monthly": 73500,
+          "card": null,
+          "gift": 123480,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "BS ON"
+        },
+        {
+          "key": "clv-103375-36",
+          "management": "supplier-bs-on",
+          "managementLabel": "BS ON",
+          "term": 36,
+          "monthly": 91300,
+          "card": null,
+          "gift": 115038,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "BS ON"
+        },
+        {
+          "key": "clv-105600-60",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 60,
+          "monthly": 65500,
+          "card": null,
+          "gift": 196500,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
+        },
+        {
+          "key": "clv-105600-48",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 48,
+          "monthly": 77000,
+          "card": null,
+          "gift": 184800,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
+        },
+        {
+          "key": "clv-105600-36",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 36,
+          "monthly": 96800,
+          "card": null,
+          "gift": 174240,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
+        },
+        {
+          "key": "clv-104595-60",
+          "management": "supplier-현대유버스",
+          "managementLabel": "현대유버스",
+          "term": 60,
+          "monthly": 66400,
+          "card": null,
+          "gift": 139440,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "현대유버스"
+        },
+        {
+          "key": "clv-104595-48",
+          "management": "supplier-현대유버스",
+          "managementLabel": "현대유버스",
+          "term": 48,
+          "monthly": 78600,
+          "card": null,
+          "gift": 132048,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "현대유버스"
+        },
+        {
+          "key": "clv-104595-36",
+          "management": "supplier-현대유버스",
+          "managementLabel": "현대유버스",
+          "term": 36,
+          "monthly": 99100,
+          "card": null,
+          "gift": 124866,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "현대유버스"
+        },
+        {
+          "key": "clv-110959-60",
+          "management": "supplier-스마트렌탈",
+          "managementLabel": "스마트렌탈",
+          "term": 60,
+          "monthly": 72000,
+          "card": null,
+          "gift": 194400,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "스마트렌탈"
+        },
+        {
+          "key": "clv-110959-48",
+          "management": "supplier-스마트렌탈",
+          "managementLabel": "스마트렌탈",
+          "term": 48,
+          "monthly": 83500,
+          "card": null,
+          "gift": 180360,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "스마트렌탈"
+        },
+        {
+          "key": "clv-110959-36",
+          "management": "supplier-스마트렌탈",
+          "managementLabel": "스마트렌탈",
+          "term": 36,
+          "monthly": 104000,
+          "card": null,
+          "gift": 168480,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "스마트렌탈"
+        },
+        {
+          "key": "clv-104965-60",
+          "management": "supplier-lg헬로렌탈",
+          "managementLabel": "LG헬로렌탈",
+          "term": 60,
+          "monthly": 74300,
+          "card": null,
+          "gift": 267480,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "LG헬로렌탈"
+        },
+        {
+          "key": "clv-104965-48",
+          "management": "supplier-lg헬로렌탈",
+          "managementLabel": "LG헬로렌탈",
+          "term": 48,
+          "monthly": 92100,
+          "card": null,
+          "gift": 265248,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "LG헬로렌탈"
+        },
+        {
+          "key": "clv-104965-36",
+          "management": "supplier-lg헬로렌탈",
+          "managementLabel": "LG헬로렌탈",
+          "term": 36,
+          "monthly": 121700,
+          "card": null,
+          "gift": 262872,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "LG헬로렌탈"
         }
       ],
       "sourceKind": "clover-import",
       "availability": "active",
-      "giftStatus": "unavailable",
+      "giftStatus": "available",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/251127/gQMYRFQANZdHXXuFbtMKHh8U3TE1MB.jpg",
       "importedFrom": "https://m.clvrental777.com/"
     },
@@ -47155,33 +47452,121 @@
         "에어컨·청소기",
         "삼성"
       ],
-      "promo": "클로바렌탈 공개 상품 기준 · 최종 접수 전 최신 조건 확인",
+      "promo": "렌탈사·약정기간별 월요금과 웅비렌탈 사은품을 비교해 보세요.",
       "shortDescription": "삼성 에어컨·청소기 렌탈 상품입니다. 공개된 최저 월 렌탈료를 먼저 확인해 보세요.",
       "highlights": [
         "에어컨·청소기",
         "최저 월 렌탈료 기준",
-        "최종 조건 상담 확인"
+        "최종 조건 상담 확인",
+        "렌탈사별 조건 비교"
       ],
       "manufacturer": "삼성",
-      "rentalCompany": "클로바렌탈몰",
+      "rentalCompany": "렌탈사별 비교",
       "detailImages": [],
       "options": [
         {
-          "key": "clover-min",
-          "management": "clover-lowest",
-          "managementLabel": "최저가 기준",
-          "term": "",
-          "termLabel": "상품별 조건",
+          "key": "clv-103725-60",
+          "management": "supplier-bs-on",
+          "managementLabel": "BS ON",
+          "term": 60,
           "monthly": 60200,
-          "card": 35200,
-          "gift": null,
-          "care": "상품별 조건 상담 확인",
-          "sourceOption": "클로바렌탈 공개 최저가"
+          "card": null,
+          "gift": 126420,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "BS ON"
+        },
+        {
+          "key": "clv-103725-48",
+          "management": "supplier-bs-on",
+          "managementLabel": "BS ON",
+          "term": 48,
+          "monthly": 70600,
+          "card": null,
+          "gift": 118608,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "BS ON"
+        },
+        {
+          "key": "clv-103725-36",
+          "management": "supplier-bs-on",
+          "managementLabel": "BS ON",
+          "term": 36,
+          "monthly": 88400,
+          "card": null,
+          "gift": 111384,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "BS ON"
+        },
+        {
+          "key": "clv-105310-60",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 60,
+          "monthly": 61500,
+          "card": null,
+          "gift": 184500,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
+        },
+        {
+          "key": "clv-105310-48",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 48,
+          "monthly": 72400,
+          "card": null,
+          "gift": 173760,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
+        },
+        {
+          "key": "clv-105310-36",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 36,
+          "monthly": 91000,
+          "card": null,
+          "gift": 163800,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
+        },
+        {
+          "key": "clv-110669-60",
+          "management": "supplier-스마트렌탈",
+          "managementLabel": "스마트렌탈",
+          "term": 60,
+          "monthly": 71500,
+          "card": null,
+          "gift": 193050,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "스마트렌탈"
+        },
+        {
+          "key": "clv-110669-48",
+          "management": "supplier-스마트렌탈",
+          "managementLabel": "스마트렌탈",
+          "term": 48,
+          "monthly": 84000,
+          "card": null,
+          "gift": 181440,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "스마트렌탈"
+        },
+        {
+          "key": "clv-110669-36",
+          "management": "supplier-스마트렌탈",
+          "managementLabel": "스마트렌탈",
+          "term": 36,
+          "monthly": 103500,
+          "card": null,
+          "gift": 167670,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "스마트렌탈"
         }
       ],
       "sourceKind": "clover-import",
       "availability": "active",
-      "giftStatus": "unavailable",
+      "giftStatus": "available",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/251202/zgz7pDm3zkkyPmarwPr4p348pkw4wH.jpg",
       "importedFrom": "https://m.clvrental777.com/"
     },
@@ -47202,33 +47587,209 @@
         "에어컨·청소기",
         "LG"
       ],
-      "promo": "클로바렌탈 공개 상품 기준 · 최종 접수 전 최신 조건 확인",
+      "promo": "렌탈사·약정기간별 월요금과 웅비렌탈 사은품을 비교해 보세요.",
       "shortDescription": "LG 에어컨·청소기 렌탈 상품입니다. 공개된 최저 월 렌탈료를 먼저 확인해 보세요.",
       "highlights": [
         "에어컨·청소기",
         "최저 월 렌탈료 기준",
-        "최종 조건 상담 확인"
+        "최종 조건 상담 확인",
+        "렌탈사별 조건 비교"
       ],
       "manufacturer": "LG",
-      "rentalCompany": "클로바렌탈몰",
+      "rentalCompany": "렌탈사별 비교",
       "detailImages": [],
       "options": [
         {
-          "key": "clover-min",
-          "management": "clover-lowest",
-          "managementLabel": "최저가 기준",
-          "term": "",
-          "termLabel": "상품별 조건",
+          "key": "clv-141967-72",
+          "management": "supplier-lg전자구독",
+          "managementLabel": "LG전자구독",
+          "term": 72,
           "monthly": 61900,
-          "card": 19900,
+          "card": null,
           "gift": null,
-          "care": "상품별 조건 상담 확인",
-          "sourceOption": "클로바렌탈 공개 최저가"
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "LG전자구독"
+        },
+        {
+          "key": "clv-141967-72",
+          "management": "supplier-lg전자구독",
+          "managementLabel": "LG전자구독",
+          "term": 72,
+          "monthly": 79900,
+          "card": null,
+          "gift": null,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "LG전자구독"
+        },
+        {
+          "key": "clv-141967-60",
+          "management": "supplier-lg전자구독",
+          "managementLabel": "LG전자구독",
+          "term": 60,
+          "monthly": 70900,
+          "card": null,
+          "gift": null,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "LG전자구독"
+        },
+        {
+          "key": "clv-141967-60",
+          "management": "supplier-lg전자구독",
+          "managementLabel": "LG전자구독",
+          "term": 60,
+          "monthly": 88900,
+          "card": null,
+          "gift": null,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "LG전자구독"
+        },
+        {
+          "key": "clv-141967-48",
+          "management": "supplier-lg전자구독",
+          "managementLabel": "LG전자구독",
+          "term": 48,
+          "monthly": 83900,
+          "card": null,
+          "gift": null,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "LG전자구독"
+        },
+        {
+          "key": "clv-141967-48",
+          "management": "supplier-lg전자구독",
+          "managementLabel": "LG전자구독",
+          "term": 48,
+          "monthly": 101900,
+          "card": null,
+          "gift": null,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "LG전자구독"
+        },
+        {
+          "key": "clv-141967-36",
+          "management": "supplier-lg전자구독",
+          "managementLabel": "LG전자구독",
+          "term": 36,
+          "monthly": 104900,
+          "card": null,
+          "gift": null,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "LG전자구독"
+        },
+        {
+          "key": "clv-141967-36",
+          "management": "supplier-lg전자구독",
+          "managementLabel": "LG전자구독",
+          "term": 36,
+          "monthly": 122900,
+          "card": null,
+          "gift": null,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "LG전자구독"
+        },
+        {
+          "key": "clv-149357-60",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 60,
+          "monthly": 82400,
+          "card": null,
+          "gift": 247200,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
+        },
+        {
+          "key": "clv-149357-48",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 48,
+          "monthly": 96900,
+          "card": null,
+          "gift": 232560,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
+        },
+        {
+          "key": "clv-149357-36",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 36,
+          "monthly": 121800,
+          "card": null,
+          "gift": 219240,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
+        },
+        {
+          "key": "clv-146067-60",
+          "management": "supplier-현대유버스",
+          "managementLabel": "현대유버스",
+          "term": 60,
+          "monthly": 82500,
+          "card": null,
+          "gift": 173250,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "현대유버스"
+        },
+        {
+          "key": "clv-146067-48",
+          "management": "supplier-현대유버스",
+          "managementLabel": "현대유버스",
+          "term": 48,
+          "monthly": 100600,
+          "card": null,
+          "gift": 169008,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "현대유버스"
+        },
+        {
+          "key": "clv-146067-36",
+          "management": "supplier-현대유버스",
+          "managementLabel": "현대유버스",
+          "term": 36,
+          "monthly": 126700,
+          "card": null,
+          "gift": 159642,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "현대유버스"
+        },
+        {
+          "key": "clv-142729-60",
+          "management": "supplier-lg헬로렌탈",
+          "managementLabel": "LG헬로렌탈",
+          "term": 60,
+          "monthly": 86900,
+          "card": null,
+          "gift": 312840,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "LG헬로렌탈"
+        },
+        {
+          "key": "clv-142729-48",
+          "management": "supplier-lg헬로렌탈",
+          "managementLabel": "LG헬로렌탈",
+          "term": 48,
+          "monthly": 105900,
+          "card": null,
+          "gift": 304992,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "LG헬로렌탈"
+        },
+        {
+          "key": "clv-142729-36",
+          "management": "supplier-lg헬로렌탈",
+          "managementLabel": "LG헬로렌탈",
+          "term": 36,
+          "monthly": 137900,
+          "card": null,
+          "gift": 297864,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "LG헬로렌탈"
         }
       ],
       "sourceKind": "clover-import",
       "availability": "active",
-      "giftStatus": "unavailable",
+      "giftStatus": "available",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/260507/KdjQmAZSgKXeCDSmn6K7db4nHssyeC.jpg",
       "importedFrom": "https://m.clvrental777.com/"
     },
@@ -47249,33 +47810,154 @@
         "에어컨·청소기",
         "삼성"
       ],
-      "promo": "클로바렌탈 공개 상품 기준 · 최종 접수 전 최신 조건 확인",
+      "promo": "렌탈사·약정기간별 월요금과 웅비렌탈 사은품을 비교해 보세요.",
       "shortDescription": "삼성 에어컨·청소기 렌탈 상품입니다. 공개된 최저 월 렌탈료를 먼저 확인해 보세요.",
       "highlights": [
         "에어컨·청소기",
         "최저 월 렌탈료 기준",
-        "최종 조건 상담 확인"
+        "최종 조건 상담 확인",
+        "렌탈사별 조건 비교"
       ],
       "manufacturer": "삼성",
-      "rentalCompany": "클로바렌탈몰",
+      "rentalCompany": "렌탈사별 비교",
       "detailImages": [],
       "options": [
         {
-          "key": "clover-min",
-          "management": "clover-lowest",
-          "managementLabel": "최저가 기준",
-          "term": "",
-          "termLabel": "상품별 조건",
+          "key": "clv-107679-60",
+          "management": "supplier-kt가전구독",
+          "managementLabel": "KT가전구독",
+          "term": 60,
           "monthly": 64800,
-          "card": 6800,
-          "gift": null,
-          "care": "상품별 조건 상담 확인",
-          "sourceOption": "클로바렌탈 공개 최저가"
+          "card": null,
+          "gift": 40000,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "KT가전구독"
+        },
+        {
+          "key": "clv-107679-48",
+          "management": "supplier-kt가전구독",
+          "managementLabel": "KT가전구독",
+          "term": 48,
+          "monthly": 79500,
+          "card": null,
+          "gift": 40000,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "KT가전구독"
+        },
+        {
+          "key": "clv-107679-36",
+          "management": "supplier-kt가전구독",
+          "managementLabel": "KT가전구독",
+          "term": 36,
+          "monthly": 104700,
+          "card": null,
+          "gift": 40000,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "KT가전구독"
+        },
+        {
+          "key": "clv-103340-60",
+          "management": "supplier-bs-on",
+          "managementLabel": "BS ON",
+          "term": 60,
+          "monthly": 68100,
+          "card": null,
+          "gift": 143010,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "BS ON"
+        },
+        {
+          "key": "clv-103340-48",
+          "management": "supplier-bs-on",
+          "managementLabel": "BS ON",
+          "term": 48,
+          "monthly": 79100,
+          "card": null,
+          "gift": 132888,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "BS ON"
+        },
+        {
+          "key": "clv-103340-36",
+          "management": "supplier-bs-on",
+          "managementLabel": "BS ON",
+          "term": 36,
+          "monthly": 98300,
+          "card": null,
+          "gift": 123858,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "BS ON"
+        },
+        {
+          "key": "clv-105675-60",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 60,
+          "monthly": 71300,
+          "card": null,
+          "gift": 213900,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
+        },
+        {
+          "key": "clv-105675-48",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 48,
+          "monthly": 83800,
+          "card": null,
+          "gift": 201120,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
+        },
+        {
+          "key": "clv-105675-36",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 36,
+          "monthly": 105400,
+          "card": null,
+          "gift": 189720,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
+        },
+        {
+          "key": "clv-110974-60",
+          "management": "supplier-스마트렌탈",
+          "managementLabel": "스마트렌탈",
+          "term": 60,
+          "monthly": 79000,
+          "card": null,
+          "gift": 213300,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "스마트렌탈"
+        },
+        {
+          "key": "clv-110974-48",
+          "management": "supplier-스마트렌탈",
+          "managementLabel": "스마트렌탈",
+          "term": 48,
+          "monthly": 91000,
+          "card": null,
+          "gift": 196560,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "스마트렌탈"
+        },
+        {
+          "key": "clv-110974-36",
+          "management": "supplier-스마트렌탈",
+          "managementLabel": "스마트렌탈",
+          "term": 36,
+          "monthly": 113000,
+          "card": null,
+          "gift": 183060,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "스마트렌탈"
         }
       ],
       "sourceKind": "clover-import",
       "availability": "active",
-      "giftStatus": "unavailable",
+      "giftStatus": "available",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/251202/nTF349EbUs4sD5AwK1WL7PSJYrcDJf.jpg",
       "importedFrom": "https://m.clvrental777.com/"
     },
@@ -47296,33 +47978,154 @@
         "에어컨·청소기",
         "삼성"
       ],
-      "promo": "클로바렌탈 공개 상품 기준 · 최종 접수 전 최신 조건 확인",
+      "promo": "렌탈사·약정기간별 월요금과 웅비렌탈 사은품을 비교해 보세요.",
       "shortDescription": "삼성 에어컨·청소기 렌탈 상품입니다. 공개된 최저 월 렌탈료를 먼저 확인해 보세요.",
       "highlights": [
         "에어컨·청소기",
         "최저 월 렌탈료 기준",
-        "최종 조건 상담 확인"
+        "최종 조건 상담 확인",
+        "렌탈사별 조건 비교"
       ],
       "manufacturer": "삼성",
-      "rentalCompany": "클로바렌탈몰",
+      "rentalCompany": "렌탈사별 비교",
       "detailImages": [],
       "options": [
         {
-          "key": "clover-min",
-          "management": "clover-lowest",
-          "managementLabel": "최저가 기준",
-          "term": "",
-          "termLabel": "상품별 조건",
+          "key": "clv-105605-60",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 60,
           "monthly": 77600,
-          "card": 64600,
-          "gift": null,
-          "care": "상품별 조건 상담 확인",
-          "sourceOption": "클로바렌탈 공개 최저가"
+          "card": null,
+          "gift": 232800,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
+        },
+        {
+          "key": "clv-105605-48",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 48,
+          "monthly": 91200,
+          "card": null,
+          "gift": 218880,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
+        },
+        {
+          "key": "clv-105605-36",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 36,
+          "monthly": 114700,
+          "card": null,
+          "gift": 206460,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
+        },
+        {
+          "key": "clv-104295-60",
+          "management": "supplier-현대유버스",
+          "managementLabel": "현대유버스",
+          "term": 60,
+          "monthly": 84000,
+          "card": null,
+          "gift": 176400,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "현대유버스"
+        },
+        {
+          "key": "clv-104295-48",
+          "management": "supplier-현대유버스",
+          "managementLabel": "현대유버스",
+          "term": 48,
+          "monthly": 99300,
+          "card": null,
+          "gift": 166824,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "현대유버스"
+        },
+        {
+          "key": "clv-104295-36",
+          "management": "supplier-현대유버스",
+          "managementLabel": "현대유버스",
+          "term": 36,
+          "monthly": 125400,
+          "card": null,
+          "gift": 158004,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "현대유버스"
+        },
+        {
+          "key": "clv-110964-60",
+          "management": "supplier-스마트렌탈",
+          "managementLabel": "스마트렌탈",
+          "term": 60,
+          "monthly": 85500,
+          "card": null,
+          "gift": 230850,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "스마트렌탈"
+        },
+        {
+          "key": "clv-110964-48",
+          "management": "supplier-스마트렌탈",
+          "managementLabel": "스마트렌탈",
+          "term": 48,
+          "monthly": 98900,
+          "card": null,
+          "gift": 213624,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "스마트렌탈"
+        },
+        {
+          "key": "clv-110964-36",
+          "management": "supplier-스마트렌탈",
+          "managementLabel": "스마트렌탈",
+          "term": 36,
+          "monthly": 123000,
+          "card": null,
+          "gift": 199260,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "스마트렌탈"
+        },
+        {
+          "key": "clv-104970-60",
+          "management": "supplier-lg헬로렌탈",
+          "managementLabel": "LG헬로렌탈",
+          "term": 60,
+          "monthly": 87500,
+          "card": null,
+          "gift": 315000,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "LG헬로렌탈"
+        },
+        {
+          "key": "clv-104970-48",
+          "management": "supplier-lg헬로렌탈",
+          "managementLabel": "LG헬로렌탈",
+          "term": 48,
+          "monthly": 107300,
+          "card": null,
+          "gift": 309024,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "LG헬로렌탈"
+        },
+        {
+          "key": "clv-104970-36",
+          "management": "supplier-lg헬로렌탈",
+          "managementLabel": "LG헬로렌탈",
+          "term": 36,
+          "monthly": 140900,
+          "card": null,
+          "gift": 304344,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "LG헬로렌탈"
         }
       ],
       "sourceKind": "clover-import",
       "availability": "active",
-      "giftStatus": "unavailable",
+      "giftStatus": "available",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/251202/XDfMuZKzQ5A5nQZzXehm9b9PBwM2xq.jpg",
       "importedFrom": "https://m.clvrental777.com/"
     },
@@ -47343,33 +48146,88 @@
         "에어컨·청소기",
         "삼성"
       ],
-      "promo": "클로바렌탈 공개 상품 기준 · 최종 접수 전 최신 조건 확인",
+      "promo": "렌탈사·약정기간별 월요금과 웅비렌탈 사은품을 비교해 보세요.",
       "shortDescription": "삼성 에어컨·청소기 렌탈 상품입니다. 공개된 최저 월 렌탈료를 먼저 확인해 보세요.",
       "highlights": [
         "에어컨·청소기",
         "최저 월 렌탈료 기준",
-        "최종 조건 상담 확인"
+        "최종 조건 상담 확인",
+        "렌탈사별 조건 비교"
       ],
       "manufacturer": "삼성",
-      "rentalCompany": "클로바렌탈몰",
+      "rentalCompany": "렌탈사별 비교",
       "detailImages": [],
       "options": [
         {
-          "key": "clover-min",
-          "management": "clover-lowest",
-          "managementLabel": "최저가 기준",
-          "term": "",
-          "termLabel": "상품별 조건",
+          "key": "clv-105520-60",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 60,
           "monthly": 71300,
-          "card": 58300,
-          "gift": null,
-          "care": "상품별 조건 상담 확인",
-          "sourceOption": "클로바렌탈 공개 최저가"
+          "card": null,
+          "gift": 213900,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
+        },
+        {
+          "key": "clv-105520-48",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 48,
+          "monthly": 83800,
+          "card": null,
+          "gift": 201120,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
+        },
+        {
+          "key": "clv-105520-36",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 36,
+          "monthly": 105400,
+          "card": null,
+          "gift": 189720,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
+        },
+        {
+          "key": "clv-104215-60",
+          "management": "supplier-현대유버스",
+          "managementLabel": "현대유버스",
+          "term": 60,
+          "monthly": 77100,
+          "card": null,
+          "gift": 161910,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "현대유버스"
+        },
+        {
+          "key": "clv-104215-48",
+          "management": "supplier-현대유버스",
+          "managementLabel": "현대유버스",
+          "term": 48,
+          "monthly": 91200,
+          "card": null,
+          "gift": 153216,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "현대유버스"
+        },
+        {
+          "key": "clv-104215-36",
+          "management": "supplier-현대유버스",
+          "managementLabel": "현대유버스",
+          "term": 36,
+          "monthly": 115200,
+          "card": null,
+          "gift": 145152,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "현대유버스"
         }
       ],
       "sourceKind": "clover-import",
       "availability": "active",
-      "giftStatus": "unavailable",
+      "giftStatus": "available",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/251202/8LCCLvjKbjltN1exG7l8yUuaKwBzTH.jpg",
       "importedFrom": "https://m.clvrental777.com/"
     },
@@ -47390,33 +48248,121 @@
         "에어컨·청소기",
         "LG"
       ],
-      "promo": "클로바렌탈 공개 상품 기준 · 최종 접수 전 최신 조건 확인",
+      "promo": "렌탈사·약정기간별 월요금과 웅비렌탈 사은품을 비교해 보세요.",
       "shortDescription": "LG 에어컨·청소기 렌탈 상품입니다. 공개된 최저 월 렌탈료를 먼저 확인해 보세요.",
       "highlights": [
         "에어컨·청소기",
         "최저 월 렌탈료 기준",
-        "최종 조건 상담 확인"
+        "최종 조건 상담 확인",
+        "렌탈사별 조건 비교"
       ],
       "manufacturer": "LG",
-      "rentalCompany": "클로바렌탈몰",
+      "rentalCompany": "렌탈사별 비교",
       "detailImages": [],
       "options": [
         {
-          "key": "clover-min",
-          "management": "clover-lowest",
-          "managementLabel": "최저가 기준",
-          "term": "",
-          "termLabel": "상품별 조건",
+          "key": "clv-117169-60",
+          "management": "supplier-스마트렌탈",
+          "managementLabel": "스마트렌탈",
+          "term": 60,
           "monthly": 49900,
-          "card": 24900,
-          "gift": null,
-          "care": "상품별 조건 상담 확인",
-          "sourceOption": "클로바렌탈 공개 최저가"
+          "card": null,
+          "gift": 134730,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "스마트렌탈"
+        },
+        {
+          "key": "clv-117169-48",
+          "management": "supplier-스마트렌탈",
+          "managementLabel": "스마트렌탈",
+          "term": 48,
+          "monthly": 59900,
+          "card": null,
+          "gift": 129384,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "스마트렌탈"
+        },
+        {
+          "key": "clv-117169-36",
+          "management": "supplier-스마트렌탈",
+          "managementLabel": "스마트렌탈",
+          "term": 36,
+          "monthly": 75000,
+          "card": null,
+          "gift": 121500,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "스마트렌탈"
+        },
+        {
+          "key": "clv-41644-60",
+          "management": "supplier-현대유버스",
+          "managementLabel": "현대유버스",
+          "term": 60,
+          "monthly": 55100,
+          "card": null,
+          "gift": 115710,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "현대유버스"
+        },
+        {
+          "key": "clv-41644-48",
+          "management": "supplier-현대유버스",
+          "managementLabel": "현대유버스",
+          "term": 48,
+          "monthly": 67400,
+          "card": null,
+          "gift": 113232,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "현대유버스"
+        },
+        {
+          "key": "clv-41644-36",
+          "management": "supplier-현대유버스",
+          "managementLabel": "현대유버스",
+          "term": 36,
+          "monthly": 84700,
+          "card": null,
+          "gift": 106722,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "현대유버스"
+        },
+        {
+          "key": "clv-150708-60",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 60,
+          "monthly": 59800,
+          "card": null,
+          "gift": 179400,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
+        },
+        {
+          "key": "clv-150708-48",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 48,
+          "monthly": 70300,
+          "card": null,
+          "gift": 168720,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
+        },
+        {
+          "key": "clv-150708-36",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 36,
+          "monthly": 88400,
+          "card": null,
+          "gift": 159120,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
         }
       ],
       "sourceKind": "clover-import",
       "availability": "active",
-      "giftStatus": "unavailable",
+      "giftStatus": "available",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/251202/QRdw7zMMjDaj8RjCppZ7vq4m5WfJWx.jpg",
       "importedFrom": "https://m.clvrental777.com/"
     },
@@ -47437,33 +48383,121 @@
         "에어컨·청소기",
         "LG"
       ],
-      "promo": "클로바렌탈 공개 상품 기준 · 최종 접수 전 최신 조건 확인",
+      "promo": "렌탈사·약정기간별 월요금과 웅비렌탈 사은품을 비교해 보세요.",
       "shortDescription": "LG 에어컨·청소기 렌탈 상품입니다. 공개된 최저 월 렌탈료를 먼저 확인해 보세요.",
       "highlights": [
         "에어컨·청소기",
         "최저 월 렌탈료 기준",
-        "최종 조건 상담 확인"
+        "최종 조건 상담 확인",
+        "렌탈사별 조건 비교"
       ],
       "manufacturer": "LG",
-      "rentalCompany": "클로바렌탈몰",
+      "rentalCompany": "렌탈사별 비교",
       "detailImages": [],
       "options": [
         {
-          "key": "clover-min",
-          "management": "clover-lowest",
-          "managementLabel": "최저가 기준",
-          "term": "",
-          "termLabel": "상품별 조건",
+          "key": "clv-117189-60",
+          "management": "supplier-스마트렌탈",
+          "managementLabel": "스마트렌탈",
+          "term": 60,
           "monthly": 59900,
-          "card": 34900,
-          "gift": null,
-          "care": "상품별 조건 상담 확인",
-          "sourceOption": "클로바렌탈 공개 최저가"
+          "card": null,
+          "gift": 161730,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "스마트렌탈"
+        },
+        {
+          "key": "clv-117189-48",
+          "management": "supplier-스마트렌탈",
+          "managementLabel": "스마트렌탈",
+          "term": 48,
+          "monthly": 69900,
+          "card": null,
+          "gift": 150984,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "스마트렌탈"
+        },
+        {
+          "key": "clv-117189-36",
+          "management": "supplier-스마트렌탈",
+          "managementLabel": "스마트렌탈",
+          "term": 36,
+          "monthly": 87000,
+          "card": null,
+          "gift": 140940,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "스마트렌탈"
+        },
+        {
+          "key": "clv-41665-60",
+          "management": "supplier-현대유버스",
+          "managementLabel": "현대유버스",
+          "term": 60,
+          "monthly": 63300,
+          "card": null,
+          "gift": 132930,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "현대유버스"
+        },
+        {
+          "key": "clv-41665-48",
+          "management": "supplier-현대유버스",
+          "managementLabel": "현대유버스",
+          "term": 48,
+          "monthly": 77300,
+          "card": null,
+          "gift": 129864,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "현대유버스"
+        },
+        {
+          "key": "clv-41665-36",
+          "management": "supplier-현대유버스",
+          "managementLabel": "현대유버스",
+          "term": 36,
+          "monthly": 97300,
+          "card": null,
+          "gift": 122598,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "현대유버스"
+        },
+        {
+          "key": "clv-150728-60",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 60,
+          "monthly": 69000,
+          "card": null,
+          "gift": 207000,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
+        },
+        {
+          "key": "clv-150728-48",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 48,
+          "monthly": 81100,
+          "card": null,
+          "gift": 194640,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
+        },
+        {
+          "key": "clv-150728-36",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 36,
+          "monthly": 102000,
+          "card": null,
+          "gift": 183600,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
         }
       ],
       "sourceKind": "clover-import",
       "availability": "active",
-      "giftStatus": "unavailable",
+      "giftStatus": "available",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/251202/aV7eYuUgCQY1ghc1gKGj3BDXwv6t3b.jpg",
       "importedFrom": "https://m.clvrental777.com/"
     },
@@ -47484,33 +48518,121 @@
         "에어컨·청소기",
         "LG"
       ],
-      "promo": "클로바렌탈 공개 상품 기준 · 최종 접수 전 최신 조건 확인",
+      "promo": "렌탈사·약정기간별 월요금과 웅비렌탈 사은품을 비교해 보세요.",
       "shortDescription": "LG 에어컨·청소기 렌탈 상품입니다. 공개된 최저 월 렌탈료를 먼저 확인해 보세요.",
       "highlights": [
         "에어컨·청소기",
         "최저 월 렌탈료 기준",
-        "최종 조건 상담 확인"
+        "최종 조건 상담 확인",
+        "렌탈사별 조건 비교"
       ],
       "manufacturer": "LG",
-      "rentalCompany": "클로바렌탈몰",
+      "rentalCompany": "렌탈사별 비교",
       "detailImages": [],
       "options": [
         {
-          "key": "clover-min",
-          "management": "clover-lowest",
-          "managementLabel": "최저가 기준",
-          "term": "",
-          "termLabel": "상품별 조건",
+          "key": "clv-117184-60",
+          "management": "supplier-스마트렌탈",
+          "managementLabel": "스마트렌탈",
+          "term": 60,
           "monthly": 62500,
-          "card": 37500,
-          "gift": null,
-          "care": "상품별 조건 상담 확인",
-          "sourceOption": "클로바렌탈 공개 최저가"
+          "card": null,
+          "gift": 168750,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "스마트렌탈"
+        },
+        {
+          "key": "clv-117184-48",
+          "management": "supplier-스마트렌탈",
+          "managementLabel": "스마트렌탈",
+          "term": 48,
+          "monthly": 74500,
+          "card": null,
+          "gift": 160920,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "스마트렌탈"
+        },
+        {
+          "key": "clv-117184-36",
+          "management": "supplier-스마트렌탈",
+          "managementLabel": "스마트렌탈",
+          "term": 36,
+          "monthly": 92900,
+          "card": null,
+          "gift": 150498,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "스마트렌탈"
+        },
+        {
+          "key": "clv-41662-60",
+          "management": "supplier-현대유버스",
+          "managementLabel": "현대유버스",
+          "term": 60,
+          "monthly": 68300,
+          "card": null,
+          "gift": 143430,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "현대유버스"
+        },
+        {
+          "key": "clv-41662-48",
+          "management": "supplier-현대유버스",
+          "managementLabel": "현대유버스",
+          "term": 48,
+          "monthly": 83400,
+          "card": null,
+          "gift": 140112,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "현대유버스"
+        },
+        {
+          "key": "clv-41662-36",
+          "management": "supplier-현대유버스",
+          "managementLabel": "현대유버스",
+          "term": 36,
+          "monthly": 104900,
+          "card": null,
+          "gift": 132174,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "현대유버스"
+        },
+        {
+          "key": "clv-150723-60",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 60,
+          "monthly": 73400,
+          "card": null,
+          "gift": 220200,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
+        },
+        {
+          "key": "clv-150723-48",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 48,
+          "monthly": 86300,
+          "card": null,
+          "gift": 207120,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
+        },
+        {
+          "key": "clv-150723-36",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 36,
+          "monthly": 108500,
+          "card": null,
+          "gift": 195300,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
         }
       ],
       "sourceKind": "clover-import",
       "availability": "active",
-      "giftStatus": "unavailable",
+      "giftStatus": "available",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/251202/FSD3KV7HA4Qm52Awtb7lH8Q2BPHPjq.jpg",
       "importedFrom": "https://m.clvrental777.com/"
     },
@@ -47531,33 +48653,121 @@
         "에어컨·청소기",
         "LG"
       ],
-      "promo": "클로바렌탈 공개 상품 기준 · 최종 접수 전 최신 조건 확인",
+      "promo": "렌탈사·약정기간별 월요금과 웅비렌탈 사은품을 비교해 보세요.",
       "shortDescription": "LG 에어컨·청소기 렌탈 상품입니다. 공개된 최저 월 렌탈료를 먼저 확인해 보세요.",
       "highlights": [
         "에어컨·청소기",
         "최저 월 렌탈료 기준",
-        "최종 조건 상담 확인"
+        "최종 조건 상담 확인",
+        "렌탈사별 조건 비교"
       ],
       "manufacturer": "LG",
-      "rentalCompany": "클로바렌탈몰",
+      "rentalCompany": "렌탈사별 비교",
       "detailImages": [],
       "options": [
         {
-          "key": "clover-min",
-          "management": "clover-lowest",
-          "managementLabel": "최저가 기준",
-          "term": "",
-          "termLabel": "상품별 조건",
+          "key": "clv-117179-60",
+          "management": "supplier-스마트렌탈",
+          "managementLabel": "스마트렌탈",
+          "term": 60,
           "monthly": 65900,
-          "card": 40900,
-          "gift": null,
-          "care": "상품별 조건 상담 확인",
-          "sourceOption": "클로바렌탈 공개 최저가"
+          "card": null,
+          "gift": 177930,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "스마트렌탈"
+        },
+        {
+          "key": "clv-117179-48",
+          "management": "supplier-스마트렌탈",
+          "managementLabel": "스마트렌탈",
+          "term": 48,
+          "monthly": 77500,
+          "card": null,
+          "gift": 167400,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "스마트렌탈"
+        },
+        {
+          "key": "clv-117179-36",
+          "management": "supplier-스마트렌탈",
+          "managementLabel": "스마트렌탈",
+          "term": 36,
+          "monthly": 97500,
+          "card": null,
+          "gift": 157950,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "스마트렌탈"
+        },
+        {
+          "key": "clv-41659-60",
+          "management": "supplier-현대유버스",
+          "managementLabel": "현대유버스",
+          "term": 60,
+          "monthly": 70300,
+          "card": null,
+          "gift": 147630,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "현대유버스"
+        },
+        {
+          "key": "clv-41659-48",
+          "management": "supplier-현대유버스",
+          "managementLabel": "현대유버스",
+          "term": 48,
+          "monthly": 85900,
+          "card": null,
+          "gift": 144312,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "현대유버스"
+        },
+        {
+          "key": "clv-41659-36",
+          "management": "supplier-현대유버스",
+          "managementLabel": "현대유버스",
+          "term": 36,
+          "monthly": 108000,
+          "card": null,
+          "gift": 136080,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "현대유버스"
+        },
+        {
+          "key": "clv-150718-60",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 60,
+          "monthly": 76400,
+          "card": null,
+          "gift": 229200,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
+        },
+        {
+          "key": "clv-150718-48",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 48,
+          "monthly": 89800,
+          "card": null,
+          "gift": 215520,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
+        },
+        {
+          "key": "clv-150718-36",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 36,
+          "monthly": 112900,
+          "card": null,
+          "gift": 203220,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
         }
       ],
       "sourceKind": "clover-import",
       "availability": "active",
-      "giftStatus": "unavailable",
+      "giftStatus": "available",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/251202/5sH4cdpVK2cZNX2E66bAljYSzUpVxP.jpg",
       "importedFrom": "https://m.clvrental777.com/"
     },
@@ -47578,33 +48788,121 @@
         "에어컨·청소기",
         "LG"
       ],
-      "promo": "클로바렌탈 공개 상품 기준 · 최종 접수 전 최신 조건 확인",
+      "promo": "렌탈사·약정기간별 월요금과 웅비렌탈 사은품을 비교해 보세요.",
       "shortDescription": "LG 에어컨·청소기 렌탈 상품입니다. 공개된 최저 월 렌탈료를 먼저 확인해 보세요.",
       "highlights": [
         "에어컨·청소기",
         "최저 월 렌탈료 기준",
-        "최종 조건 상담 확인"
+        "최종 조건 상담 확인",
+        "렌탈사별 조건 비교"
       ],
       "manufacturer": "LG",
-      "rentalCompany": "클로바렌탈몰",
+      "rentalCompany": "렌탈사별 비교",
       "detailImages": [],
       "options": [
         {
-          "key": "clover-min",
-          "management": "clover-lowest",
-          "managementLabel": "최저가 기준",
-          "term": "",
-          "termLabel": "상품별 조건",
+          "key": "clv-117174-60",
+          "management": "supplier-스마트렌탈",
+          "managementLabel": "스마트렌탈",
+          "term": 60,
           "monthly": 68500,
-          "card": 43500,
-          "gift": null,
-          "care": "상품별 조건 상담 확인",
-          "sourceOption": "클로바렌탈 공개 최저가"
+          "card": null,
+          "gift": 184950,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "스마트렌탈"
+        },
+        {
+          "key": "clv-117174-48",
+          "management": "supplier-스마트렌탈",
+          "managementLabel": "스마트렌탈",
+          "term": 48,
+          "monthly": 79900,
+          "card": null,
+          "gift": 172584,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "스마트렌탈"
+        },
+        {
+          "key": "clv-117174-36",
+          "management": "supplier-스마트렌탈",
+          "managementLabel": "스마트렌탈",
+          "term": 36,
+          "monthly": 99000,
+          "card": null,
+          "gift": 160380,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "스마트렌탈"
+        },
+        {
+          "key": "clv-41656-60",
+          "management": "supplier-현대유버스",
+          "managementLabel": "현대유버스",
+          "term": 60,
+          "monthly": 73300,
+          "card": null,
+          "gift": 153930,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "현대유버스"
+        },
+        {
+          "key": "clv-41656-48",
+          "management": "supplier-현대유버스",
+          "managementLabel": "현대유버스",
+          "term": 48,
+          "monthly": 89500,
+          "card": null,
+          "gift": 150360,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "현대유버스"
+        },
+        {
+          "key": "clv-41656-36",
+          "management": "supplier-현대유버스",
+          "managementLabel": "현대유버스",
+          "term": 36,
+          "monthly": 112500,
+          "card": null,
+          "gift": 141750,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "현대유버스"
+        },
+        {
+          "key": "clv-150713-60",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 60,
+          "monthly": 79300,
+          "card": null,
+          "gift": 237900,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
+        },
+        {
+          "key": "clv-150713-48",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 48,
+          "monthly": 93200,
+          "card": null,
+          "gift": 223680,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
+        },
+        {
+          "key": "clv-150713-36",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 36,
+          "monthly": 117200,
+          "card": null,
+          "gift": 210960,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
         }
       ],
       "sourceKind": "clover-import",
       "availability": "active",
-      "giftStatus": "unavailable",
+      "giftStatus": "available",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/251202/2tVnD8XzfMDzDsZrHWkUg5Qj1wf1bM.jpg",
       "importedFrom": "https://m.clvrental777.com/"
     },
@@ -47625,33 +48923,88 @@
         "에어컨·청소기",
         "삼성"
       ],
-      "promo": "클로바렌탈 공개 상품 기준 · 최종 접수 전 최신 조건 확인",
+      "promo": "렌탈사·약정기간별 월요금과 웅비렌탈 사은품을 비교해 보세요.",
       "shortDescription": "삼성 에어컨·청소기 렌탈 상품입니다. 공개된 최저 월 렌탈료를 먼저 확인해 보세요.",
       "highlights": [
         "에어컨·청소기",
         "최저 월 렌탈료 기준",
-        "최종 조건 상담 확인"
+        "최종 조건 상담 확인",
+        "렌탈사별 조건 비교"
       ],
       "manufacturer": "삼성",
-      "rentalCompany": "클로바렌탈몰",
+      "rentalCompany": "렌탈사별 비교",
       "detailImages": [],
       "options": [
         {
-          "key": "clover-min",
-          "management": "clover-lowest",
-          "managementLabel": "최저가 기준",
-          "term": "",
-          "termLabel": "상품별 조건",
+          "key": "clv-41702-60",
+          "management": "supplier-현대유버스",
+          "managementLabel": "현대유버스",
+          "term": 60,
           "monthly": 87800,
-          "card": 62800,
-          "gift": null,
-          "care": "상품별 조건 상담 확인",
-          "sourceOption": "클로바렌탈 공개 최저가"
+          "card": null,
+          "gift": 184380,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "현대유버스"
+        },
+        {
+          "key": "clv-41702-48",
+          "management": "supplier-현대유버스",
+          "managementLabel": "현대유버스",
+          "term": 48,
+          "monthly": 107300,
+          "card": null,
+          "gift": 180264,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "현대유버스"
+        },
+        {
+          "key": "clv-41702-36",
+          "management": "supplier-현대유버스",
+          "managementLabel": "현대유버스",
+          "term": 36,
+          "monthly": 134900,
+          "card": null,
+          "gift": 169974,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "현대유버스"
+        },
+        {
+          "key": "clv-150563-60",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 60,
+          "monthly": 91900,
+          "card": null,
+          "gift": 275700,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
+        },
+        {
+          "key": "clv-150563-48",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 48,
+          "monthly": 108100,
+          "card": null,
+          "gift": 259440,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
+        },
+        {
+          "key": "clv-150563-36",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 36,
+          "monthly": 135900,
+          "card": null,
+          "gift": 244620,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
         }
       ],
       "sourceKind": "clover-import",
       "availability": "active",
-      "giftStatus": "unavailable",
+      "giftStatus": "available",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/230524/12523_12522_fNFAYquqPcyRpvpEWtbytEWEYKRzEf.jpg",
       "importedFrom": "https://m.clvrental777.com/"
     },
@@ -47672,33 +49025,88 @@
         "에어컨·청소기",
         "LG"
       ],
-      "promo": "클로바렌탈 공개 상품 기준 · 최종 접수 전 최신 조건 확인",
+      "promo": "렌탈사·약정기간별 월요금과 웅비렌탈 사은품을 비교해 보세요.",
       "shortDescription": "LG 에어컨·청소기 렌탈 상품입니다. 공개된 최저 월 렌탈료를 먼저 확인해 보세요.",
       "highlights": [
         "에어컨·청소기",
         "최저 월 렌탈료 기준",
-        "최종 조건 상담 확인"
+        "최종 조건 상담 확인",
+        "렌탈사별 조건 비교"
       ],
       "manufacturer": "LG",
-      "rentalCompany": "클로바렌탈몰",
+      "rentalCompany": "렌탈사별 비교",
       "detailImages": [],
       "options": [
         {
-          "key": "clover-min",
-          "management": "clover-lowest",
-          "managementLabel": "최저가 기준",
-          "term": "",
-          "termLabel": "상품별 조건",
+          "key": "clv-140143-60",
+          "management": "supplier-현대유버스",
+          "managementLabel": "현대유버스",
+          "term": 60,
           "monthly": 93500,
-          "card": 68500,
-          "gift": null,
-          "care": "상품별 조건 상담 확인",
-          "sourceOption": "클로바렌탈 공개 최저가"
+          "card": null,
+          "gift": 196350,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "현대유버스"
+        },
+        {
+          "key": "clv-140143-48",
+          "management": "supplier-현대유버스",
+          "managementLabel": "현대유버스",
+          "term": 48,
+          "monthly": 114300,
+          "card": null,
+          "gift": 192024,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "현대유버스"
+        },
+        {
+          "key": "clv-140143-36",
+          "management": "supplier-현대유버스",
+          "managementLabel": "현대유버스",
+          "term": 36,
+          "monthly": 143600,
+          "card": null,
+          "gift": 180936,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "현대유버스"
+        },
+        {
+          "key": "clv-150693-60",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 60,
+          "monthly": 107700,
+          "card": null,
+          "gift": 323100,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
+        },
+        {
+          "key": "clv-150693-48",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 48,
+          "monthly": 126600,
+          "card": null,
+          "gift": 303840,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
+        },
+        {
+          "key": "clv-150693-36",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 36,
+          "monthly": 159200,
+          "card": null,
+          "gift": 286560,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
         }
       ],
       "sourceKind": "clover-import",
       "availability": "active",
-      "giftStatus": "unavailable",
+      "giftStatus": "available",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/220913/jmnxXrRggQnBhyKnpTX7ZlmWmvLSHQ.jpg",
       "importedFrom": "https://m.clvrental777.com/"
     },
@@ -47719,33 +49127,121 @@
         "에어컨·청소기",
         "LG"
       ],
-      "promo": "클로바렌탈 공개 상품 기준 · 최종 접수 전 최신 조건 확인",
+      "promo": "렌탈사·약정기간별 월요금과 웅비렌탈 사은품을 비교해 보세요.",
       "shortDescription": "LG 에어컨·청소기 렌탈 상품입니다. 공개된 최저 월 렌탈료를 먼저 확인해 보세요.",
       "highlights": [
         "에어컨·청소기",
         "최저 월 렌탈료 기준",
-        "최종 조건 상담 확인"
+        "최종 조건 상담 확인",
+        "렌탈사별 조건 비교"
       ],
       "manufacturer": "LG",
-      "rentalCompany": "클로바렌탈몰",
+      "rentalCompany": "렌탈사별 비교",
       "detailImages": [],
       "options": [
         {
-          "key": "clover-min",
-          "management": "clover-lowest",
-          "managementLabel": "최저가 기준",
-          "term": "",
-          "termLabel": "상품별 조건",
+          "key": "clv-117134-60",
+          "management": "supplier-스마트렌탈",
+          "managementLabel": "스마트렌탈",
+          "term": 60,
           "monthly": 99900,
-          "card": 74900,
-          "gift": null,
-          "care": "상품별 조건 상담 확인",
-          "sourceOption": "클로바렌탈 공개 최저가"
+          "card": null,
+          "gift": 269730,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "스마트렌탈"
+        },
+        {
+          "key": "clv-117134-48",
+          "management": "supplier-스마트렌탈",
+          "managementLabel": "스마트렌탈",
+          "term": 48,
+          "monthly": 118000,
+          "card": null,
+          "gift": 254880,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "스마트렌탈"
+        },
+        {
+          "key": "clv-117134-36",
+          "management": "supplier-스마트렌탈",
+          "managementLabel": "스마트렌탈",
+          "term": 36,
+          "monthly": 148500,
+          "card": null,
+          "gift": 240570,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "스마트렌탈"
+        },
+        {
+          "key": "clv-140148-60",
+          "management": "supplier-현대유버스",
+          "managementLabel": "현대유버스",
+          "term": 60,
+          "monthly": 109500,
+          "card": null,
+          "gift": 229950,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "현대유버스"
+        },
+        {
+          "key": "clv-140148-48",
+          "management": "supplier-현대유버스",
+          "managementLabel": "현대유버스",
+          "term": 48,
+          "monthly": 133700,
+          "card": null,
+          "gift": 224616,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "현대유버스"
+        },
+        {
+          "key": "clv-140148-36",
+          "management": "supplier-현대유버스",
+          "managementLabel": "현대유버스",
+          "term": 36,
+          "monthly": 168200,
+          "card": null,
+          "gift": 211932,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "현대유버스"
+        },
+        {
+          "key": "clv-150698-60",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 60,
+          "monthly": 118400,
+          "card": null,
+          "gift": 355200,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
+        },
+        {
+          "key": "clv-150698-48",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 48,
+          "monthly": 139200,
+          "card": null,
+          "gift": 334080,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
+        },
+        {
+          "key": "clv-150698-36",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 36,
+          "monthly": 175000,
+          "card": null,
+          "gift": 315000,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
         }
       ],
       "sourceKind": "clover-import",
       "availability": "active",
-      "giftStatus": "unavailable",
+      "giftStatus": "available",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/230117/SBd1ZaSZlNcvZvtEMaCBH67xYa9Ukf.jpg",
       "importedFrom": "https://m.clvrental777.com/"
     },
@@ -47766,33 +49262,55 @@
         "건강·뷰티",
         "고고런5"
       ],
-      "promo": "클로바렌탈 공개 상품 기준 · 최종 접수 전 최신 조건 확인",
+      "promo": "렌탈사·약정기간별 월요금과 웅비렌탈 사은품을 비교해 보세요.",
       "shortDescription": "고고런5 건강·뷰티 렌탈 상품입니다. 공개된 최저 월 렌탈료를 먼저 확인해 보세요.",
       "highlights": [
         "건강·뷰티",
         "최저 월 렌탈료 기준",
-        "최종 조건 상담 확인"
+        "최종 조건 상담 확인",
+        "렌탈사별 조건 비교"
       ],
       "manufacturer": "고고런5",
-      "rentalCompany": "클로바렌탈몰",
+      "rentalCompany": "렌탈사별 비교",
       "detailImages": [],
       "options": [
         {
-          "key": "clover-min",
-          "management": "clover-lowest",
-          "managementLabel": "최저가 기준",
-          "term": "",
-          "termLabel": "상품별 조건",
+          "key": "clv-7940-60",
+          "management": "supplier-lg헬로렌탈",
+          "managementLabel": "LG헬로렌탈",
+          "term": 60,
           "monthly": 27900,
-          "card": 3900,
-          "gift": null,
-          "care": "상품별 조건 상담 확인",
-          "sourceOption": "클로바렌탈 공개 최저가"
+          "card": null,
+          "gift": 100440,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "LG헬로렌탈"
+        },
+        {
+          "key": "clv-7940-48",
+          "management": "supplier-lg헬로렌탈",
+          "managementLabel": "LG헬로렌탈",
+          "term": 48,
+          "monthly": 31900,
+          "card": null,
+          "gift": 91872,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "LG헬로렌탈"
+        },
+        {
+          "key": "clv-8336-48",
+          "management": "supplier-스마트렌탈",
+          "managementLabel": "스마트렌탈",
+          "term": 48,
+          "monthly": 31900,
+          "card": null,
+          "gift": 68904,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "스마트렌탈"
         }
       ],
       "sourceKind": "clover-import",
       "availability": "active",
-      "giftStatus": "unavailable",
+      "giftStatus": "available",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/250630/QnC3tjDenlE7KyNCXpBXfWbyBHqsfH.jpg",
       "importedFrom": "https://m.clvrental777.com/"
     },
@@ -47813,33 +49331,44 @@
         "건강·뷰티",
         "고고런5"
       ],
-      "promo": "클로바렌탈 공개 상품 기준 · 최종 접수 전 최신 조건 확인",
+      "promo": "렌탈사·약정기간별 월요금과 웅비렌탈 사은품을 비교해 보세요.",
       "shortDescription": "고고런5 건강·뷰티 렌탈 상품입니다. 공개된 최저 월 렌탈료를 먼저 확인해 보세요.",
       "highlights": [
         "건강·뷰티",
         "최저 월 렌탈료 기준",
-        "최종 조건 상담 확인"
+        "최종 조건 상담 확인",
+        "렌탈사별 조건 비교"
       ],
       "manufacturer": "고고런5",
-      "rentalCompany": "클로바렌탈몰",
+      "rentalCompany": "렌탈사별 비교",
       "detailImages": [],
       "options": [
         {
-          "key": "clover-min",
-          "management": "clover-lowest",
-          "managementLabel": "최저가 기준",
-          "term": "",
-          "termLabel": "상품별 조건",
+          "key": "clv-8335-48",
+          "management": "supplier-스마트렌탈",
+          "managementLabel": "스마트렌탈",
+          "term": 48,
           "monthly": 32900,
-          "card": 7900,
-          "gift": null,
-          "care": "상품별 조건 상담 확인",
-          "sourceOption": "클로바렌탈 공개 최저가"
+          "card": null,
+          "gift": 71064,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "스마트렌탈"
+        },
+        {
+          "key": "clv-2011-48",
+          "management": "supplier-lg헬로렌탈",
+          "managementLabel": "LG헬로렌탈",
+          "term": 48,
+          "monthly": 39900,
+          "card": null,
+          "gift": 114912,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "LG헬로렌탈"
         }
       ],
       "sourceKind": "clover-import",
       "availability": "active",
-      "giftStatus": "unavailable",
+      "giftStatus": "available",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/200309/pexFTF78483Xvc6CvBRa6XVELftHml.jpg",
       "importedFrom": "https://m.clvrental777.com/"
     },
@@ -47860,33 +49389,33 @@
         "건강·뷰티",
         "비에스소닉"
       ],
-      "promo": "클로바렌탈 공개 상품 기준 · 최종 접수 전 최신 조건 확인",
+      "promo": "렌탈사·약정기간별 월요금과 웅비렌탈 사은품을 비교해 보세요.",
       "shortDescription": "비에스소닉 건강·뷰티 렌탈 상품입니다. 공개된 최저 월 렌탈료를 먼저 확인해 보세요.",
       "highlights": [
         "건강·뷰티",
         "최저 월 렌탈료 기준",
-        "최종 조건 상담 확인"
+        "최종 조건 상담 확인",
+        "렌탈사별 조건 비교"
       ],
       "manufacturer": "비에스소닉",
-      "rentalCompany": "클로바렌탈몰",
+      "rentalCompany": "렌탈사별 비교",
       "detailImages": [],
       "options": [
         {
-          "key": "clover-min",
-          "management": "clover-lowest",
-          "managementLabel": "최저가 기준",
-          "term": "",
-          "termLabel": "상품별 조건",
+          "key": "clv-2246-48",
+          "management": "supplier-bs-on",
+          "managementLabel": "BS ON",
+          "term": 48,
           "monthly": 49900,
-          "card": 24900,
-          "gift": null,
-          "care": "상품별 조건 상담 확인",
-          "sourceOption": "클로바렌탈 공개 최저가"
+          "card": null,
+          "gift": 83832,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "BS ON"
         }
       ],
       "sourceKind": "clover-import",
       "availability": "active",
-      "giftStatus": "unavailable",
+      "giftStatus": "available",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/251127/ryXbLs4vqfrPHMPj624HQAWmYy9Kq8.jpg",
       "importedFrom": "https://m.clvrental777.com/"
     },
@@ -47907,33 +49436,55 @@
         "건강·뷰티",
         "시어드코리아"
       ],
-      "promo": "클로바렌탈 공개 상품 기준 · 최종 접수 전 최신 조건 확인",
+      "promo": "렌탈사·약정기간별 월요금과 웅비렌탈 사은품을 비교해 보세요.",
       "shortDescription": "시어드코리아 건강·뷰티 렌탈 상품입니다. 공개된 최저 월 렌탈료를 먼저 확인해 보세요.",
       "highlights": [
         "건강·뷰티",
         "최저 월 렌탈료 기준",
-        "최종 조건 상담 확인"
+        "최종 조건 상담 확인",
+        "렌탈사별 조건 비교"
       ],
       "manufacturer": "시어드코리아",
-      "rentalCompany": "클로바렌탈몰",
+      "rentalCompany": "렌탈사별 비교",
       "detailImages": [],
       "options": [
         {
-          "key": "clover-min",
-          "management": "clover-lowest",
-          "managementLabel": "최저가 기준",
-          "term": "",
-          "termLabel": "상품별 조건",
+          "key": "clv-91605-60",
+          "management": "supplier-lg헬로렌탈",
+          "managementLabel": "LG헬로렌탈",
+          "term": 60,
           "monthly": 79700,
-          "card": 55700,
-          "gift": null,
-          "care": "상품별 조건 상담 확인",
-          "sourceOption": "클로바렌탈 공개 최저가"
+          "card": null,
+          "gift": 286920,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "LG헬로렌탈"
+        },
+        {
+          "key": "clv-91605-48",
+          "management": "supplier-lg헬로렌탈",
+          "managementLabel": "LG헬로렌탈",
+          "term": 48,
+          "monthly": 95500,
+          "card": null,
+          "gift": 275040,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "LG헬로렌탈"
+        },
+        {
+          "key": "clv-91605-36",
+          "management": "supplier-lg헬로렌탈",
+          "managementLabel": "LG헬로렌탈",
+          "term": 36,
+          "monthly": 123500,
+          "card": null,
+          "gift": 266760,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "LG헬로렌탈"
         }
       ],
       "sourceKind": "clover-import",
       "availability": "active",
-      "giftStatus": "unavailable",
+      "giftStatus": "available",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/251127/Yst4RYGmmsMvhzVQ4b1uCaJl7sV7EA.jpg",
       "importedFrom": "https://m.clvrental777.com/"
     },
@@ -47954,33 +49505,55 @@
         "건강·뷰티",
         "시어드코리아"
       ],
-      "promo": "클로바렌탈 공개 상품 기준 · 최종 접수 전 최신 조건 확인",
+      "promo": "렌탈사·약정기간별 월요금과 웅비렌탈 사은품을 비교해 보세요.",
       "shortDescription": "시어드코리아 건강·뷰티 렌탈 상품입니다. 공개된 최저 월 렌탈료를 먼저 확인해 보세요.",
       "highlights": [
         "건강·뷰티",
         "최저 월 렌탈료 기준",
-        "최종 조건 상담 확인"
+        "최종 조건 상담 확인",
+        "렌탈사별 조건 비교"
       ],
       "manufacturer": "시어드코리아",
-      "rentalCompany": "클로바렌탈몰",
+      "rentalCompany": "렌탈사별 비교",
       "detailImages": [],
       "options": [
         {
-          "key": "clover-min",
-          "management": "clover-lowest",
-          "managementLabel": "최저가 기준",
-          "term": "",
-          "termLabel": "상품별 조건",
+          "key": "clv-88920-60",
+          "management": "supplier-lg헬로렌탈",
+          "managementLabel": "LG헬로렌탈",
+          "term": 60,
           "monthly": 96200,
-          "card": 72200,
-          "gift": null,
-          "care": "상품별 조건 상담 확인",
-          "sourceOption": "클로바렌탈 공개 최저가"
+          "card": null,
+          "gift": 346320,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "LG헬로렌탈"
+        },
+        {
+          "key": "clv-88920-48",
+          "management": "supplier-lg헬로렌탈",
+          "managementLabel": "LG헬로렌탈",
+          "term": 48,
+          "monthly": 118100,
+          "card": null,
+          "gift": 340128,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "LG헬로렌탈"
+        },
+        {
+          "key": "clv-88920-36",
+          "management": "supplier-lg헬로렌탈",
+          "managementLabel": "LG헬로렌탈",
+          "term": 36,
+          "monthly": 152500,
+          "card": null,
+          "gift": 329400,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "LG헬로렌탈"
         }
       ],
       "sourceKind": "clover-import",
       "availability": "active",
-      "giftStatus": "unavailable",
+      "giftStatus": "available",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/251127/nVjgxyJRzF2jLATBZzMTfcNngyCnxU.jpg",
       "importedFrom": "https://m.clvrental777.com/"
     },
@@ -48001,33 +49574,88 @@
         "건강·뷰티",
         "누하스"
       ],
-      "promo": "클로바렌탈 공개 상품 기준 · 최종 접수 전 최신 조건 확인",
+      "promo": "렌탈사·약정기간별 월요금과 웅비렌탈 사은품을 비교해 보세요.",
       "shortDescription": "누하스 건강·뷰티 렌탈 상품입니다. 공개된 최저 월 렌탈료를 먼저 확인해 보세요.",
       "highlights": [
         "건강·뷰티",
         "최저 월 렌탈료 기준",
-        "최종 조건 상담 확인"
+        "최종 조건 상담 확인",
+        "렌탈사별 조건 비교"
       ],
       "manufacturer": "누하스",
-      "rentalCompany": "클로바렌탈몰",
+      "rentalCompany": "렌탈사별 비교",
       "detailImages": [],
       "options": [
         {
-          "key": "clover-min",
-          "management": "clover-lowest",
-          "managementLabel": "최저가 기준",
-          "term": "",
-          "termLabel": "상품별 조건",
+          "key": "clv-143120-60",
+          "management": "supplier-스마트렌탈",
+          "managementLabel": "스마트렌탈",
+          "term": 60,
           "monthly": 32900,
-          "card": 7900,
-          "gift": null,
-          "care": "상품별 조건 상담 확인",
-          "sourceOption": "클로바렌탈 공개 최저가"
+          "card": null,
+          "gift": 88830,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "스마트렌탈"
+        },
+        {
+          "key": "clv-143120-48",
+          "management": "supplier-스마트렌탈",
+          "managementLabel": "스마트렌탈",
+          "term": 48,
+          "monthly": 39900,
+          "card": null,
+          "gift": 86184,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "스마트렌탈"
+        },
+        {
+          "key": "clv-143120-36",
+          "management": "supplier-스마트렌탈",
+          "managementLabel": "스마트렌탈",
+          "term": 36,
+          "monthly": 51900,
+          "card": null,
+          "gift": 84078,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "스마트렌탈"
+        },
+        {
+          "key": "clv-98581-60",
+          "management": "supplier-lg헬로렌탈",
+          "managementLabel": "LG헬로렌탈",
+          "term": 60,
+          "monthly": 37900,
+          "card": null,
+          "gift": 136440,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "LG헬로렌탈"
+        },
+        {
+          "key": "clv-98581-48",
+          "management": "supplier-lg헬로렌탈",
+          "managementLabel": "LG헬로렌탈",
+          "term": 48,
+          "monthly": 46900,
+          "card": null,
+          "gift": 135072,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "LG헬로렌탈"
+        },
+        {
+          "key": "clv-98581-36",
+          "management": "supplier-lg헬로렌탈",
+          "managementLabel": "LG헬로렌탈",
+          "term": 36,
+          "monthly": 61900,
+          "card": null,
+          "gift": 133704,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "LG헬로렌탈"
         }
       ],
       "sourceKind": "clover-import",
       "availability": "active",
-      "giftStatus": "unavailable",
+      "giftStatus": "available",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/250114/XdlU47ws44qfVxJ3rVRWwEKLT71wwD.jpg",
       "importedFrom": "https://m.clvrental777.com/"
     },
@@ -48048,33 +49676,121 @@
         "건강·뷰티",
         "웰모아"
       ],
-      "promo": "클로바렌탈 공개 상품 기준 · 최종 접수 전 최신 조건 확인",
+      "promo": "렌탈사·약정기간별 월요금과 웅비렌탈 사은품을 비교해 보세요.",
       "shortDescription": "웰모아 건강·뷰티 렌탈 상품입니다. 공개된 최저 월 렌탈료를 먼저 확인해 보세요.",
       "highlights": [
         "건강·뷰티",
         "최저 월 렌탈료 기준",
-        "최종 조건 상담 확인"
+        "최종 조건 상담 확인",
+        "렌탈사별 조건 비교"
       ],
       "manufacturer": "웰모아",
-      "rentalCompany": "클로바렌탈몰",
+      "rentalCompany": "렌탈사별 비교",
       "detailImages": [],
       "options": [
         {
-          "key": "clover-min",
-          "management": "clover-lowest",
-          "managementLabel": "최저가 기준",
-          "term": "",
-          "termLabel": "상품별 조건",
+          "key": "clv-5760-60",
+          "management": "supplier-bs-on",
+          "managementLabel": "BS ON",
+          "term": 60,
           "monthly": 37000,
-          "card": 12000,
-          "gift": null,
-          "care": "상품별 조건 상담 확인",
-          "sourceOption": "클로바렌탈 공개 최저가"
+          "card": null,
+          "gift": 77700,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "BS ON"
+        },
+        {
+          "key": "clv-5760-48",
+          "management": "supplier-bs-on",
+          "managementLabel": "BS ON",
+          "term": 48,
+          "monthly": 44000,
+          "card": null,
+          "gift": 73920,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "BS ON"
+        },
+        {
+          "key": "clv-5760-36",
+          "management": "supplier-bs-on",
+          "managementLabel": "BS ON",
+          "term": 36,
+          "monthly": 55000,
+          "card": null,
+          "gift": 69300,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "BS ON"
+        },
+        {
+          "key": "clv-71634-60",
+          "management": "supplier-현대유버스",
+          "managementLabel": "현대유버스",
+          "term": 60,
+          "monthly": 39600,
+          "card": null,
+          "gift": 83160,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "현대유버스"
+        },
+        {
+          "key": "clv-71634-48",
+          "management": "supplier-현대유버스",
+          "managementLabel": "현대유버스",
+          "term": 48,
+          "monthly": 46800,
+          "card": null,
+          "gift": 78624,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "현대유버스"
+        },
+        {
+          "key": "clv-71634-36",
+          "management": "supplier-현대유버스",
+          "managementLabel": "현대유버스",
+          "term": 36,
+          "monthly": 59100,
+          "card": null,
+          "gift": 74466,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "현대유버스"
+        },
+        {
+          "key": "clv-5273-60",
+          "management": "supplier-lg헬로렌탈",
+          "managementLabel": "LG헬로렌탈",
+          "term": 60,
+          "monthly": 44500,
+          "card": null,
+          "gift": 160200,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "LG헬로렌탈"
+        },
+        {
+          "key": "clv-5273-48",
+          "management": "supplier-lg헬로렌탈",
+          "managementLabel": "LG헬로렌탈",
+          "term": 48,
+          "monthly": 54100,
+          "card": null,
+          "gift": 155808,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "LG헬로렌탈"
+        },
+        {
+          "key": "clv-5273-36",
+          "management": "supplier-lg헬로렌탈",
+          "managementLabel": "LG헬로렌탈",
+          "term": 36,
+          "monthly": 70300,
+          "card": null,
+          "gift": 151848,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "LG헬로렌탈"
         }
       ],
       "sourceKind": "clover-import",
       "availability": "active",
-      "giftStatus": "unavailable",
+      "giftStatus": "available",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/210113/5pZrPKYMD696G6tuvGs9CyM9NatLyW.jpg",
       "importedFrom": "https://m.clvrental777.com/"
     },
@@ -48095,33 +49811,88 @@
         "건강·뷰티",
         "브람스"
       ],
-      "promo": "클로바렌탈 공개 상품 기준 · 최종 접수 전 최신 조건 확인",
+      "promo": "렌탈사·약정기간별 월요금과 웅비렌탈 사은품을 비교해 보세요.",
       "shortDescription": "브람스 건강·뷰티 렌탈 상품입니다. 공개된 최저 월 렌탈료를 먼저 확인해 보세요.",
       "highlights": [
         "건강·뷰티",
         "최저 월 렌탈료 기준",
-        "최종 조건 상담 확인"
+        "최종 조건 상담 확인",
+        "렌탈사별 조건 비교"
       ],
       "manufacturer": "브람스",
-      "rentalCompany": "클로바렌탈몰",
+      "rentalCompany": "렌탈사별 비교",
       "detailImages": [],
       "options": [
         {
-          "key": "clover-min",
-          "management": "clover-lowest",
-          "managementLabel": "최저가 기준",
-          "term": "",
-          "termLabel": "상품별 조건",
+          "key": "clv-28305-60",
+          "management": "supplier-lg헬로렌탈",
+          "managementLabel": "LG헬로렌탈",
+          "term": 60,
           "monthly": 39900,
-          "card": 15900,
-          "gift": null,
-          "care": "상품별 조건 상담 확인",
-          "sourceOption": "클로바렌탈 공개 최저가"
+          "card": null,
+          "gift": 143640,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "LG헬로렌탈"
+        },
+        {
+          "key": "clv-28305-48",
+          "management": "supplier-lg헬로렌탈",
+          "managementLabel": "LG헬로렌탈",
+          "term": 48,
+          "monthly": 47900,
+          "card": null,
+          "gift": 137952,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "LG헬로렌탈"
+        },
+        {
+          "key": "clv-28305-39",
+          "management": "supplier-lg헬로렌탈",
+          "managementLabel": "LG헬로렌탈",
+          "term": 39,
+          "monthly": 57900,
+          "card": null,
+          "gift": 135486,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "LG헬로렌탈"
+        },
+        {
+          "key": "clv-149325-60",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 60,
+          "monthly": 39900,
+          "card": null,
+          "gift": 119700,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
+        },
+        {
+          "key": "clv-149325-48",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 48,
+          "monthly": 46900,
+          "card": null,
+          "gift": 112560,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
+        },
+        {
+          "key": "clv-149325-36",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 36,
+          "monthly": 59000,
+          "card": null,
+          "gift": 106200,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
         }
       ],
       "sourceKind": "clover-import",
       "availability": "active",
-      "giftStatus": "unavailable",
+      "giftStatus": "available",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/230329/8y1gjx1vsj4BAPb43UTnWKHpKKMX7j.jpg",
       "importedFrom": "https://m.clvrental777.com/"
     },
@@ -48142,33 +49913,55 @@
         "건강·뷰티",
         "누하스"
       ],
-      "promo": "클로바렌탈 공개 상품 기준 · 최종 접수 전 최신 조건 확인",
+      "promo": "렌탈사·약정기간별 월요금과 웅비렌탈 사은품을 비교해 보세요.",
       "shortDescription": "누하스 건강·뷰티 렌탈 상품입니다. 공개된 최저 월 렌탈료를 먼저 확인해 보세요.",
       "highlights": [
         "건강·뷰티",
         "최저 월 렌탈료 기준",
-        "최종 조건 상담 확인"
+        "최종 조건 상담 확인",
+        "렌탈사별 조건 비교"
       ],
       "manufacturer": "누하스",
-      "rentalCompany": "클로바렌탈몰",
+      "rentalCompany": "렌탈사별 비교",
       "detailImages": [],
       "options": [
         {
-          "key": "clover-min",
-          "management": "clover-lowest",
-          "managementLabel": "최저가 기준",
-          "term": "",
-          "termLabel": "상품별 조건",
+          "key": "clv-67351-60",
+          "management": "supplier-스마트렌탈",
+          "managementLabel": "스마트렌탈",
+          "term": 60,
           "monthly": 40900,
-          "card": 15900,
-          "gift": null,
-          "care": "상품별 조건 상담 확인",
-          "sourceOption": "클로바렌탈 공개 최저가"
+          "card": null,
+          "gift": 110430,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "스마트렌탈"
+        },
+        {
+          "key": "clv-67351-48",
+          "management": "supplier-스마트렌탈",
+          "managementLabel": "스마트렌탈",
+          "term": 48,
+          "monthly": 49900,
+          "card": null,
+          "gift": 107784,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "스마트렌탈"
+        },
+        {
+          "key": "clv-67351-36",
+          "management": "supplier-스마트렌탈",
+          "managementLabel": "스마트렌탈",
+          "term": 36,
+          "monthly": 64900,
+          "card": null,
+          "gift": 105138,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "스마트렌탈"
         }
       ],
       "sourceKind": "clover-import",
       "availability": "active",
-      "giftStatus": "unavailable",
+      "giftStatus": "available",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/240220/a3KkUD7UlG4TdRVCA6heVyX1Bnz5qB.jpg",
       "importedFrom": "https://m.clvrental777.com/"
     },
@@ -48189,33 +49982,55 @@
         "건강·뷰티",
         "파나소닉"
       ],
-      "promo": "클로바렌탈 공개 상품 기준 · 최종 접수 전 최신 조건 확인",
+      "promo": "렌탈사·약정기간별 월요금과 웅비렌탈 사은품을 비교해 보세요.",
       "shortDescription": "파나소닉 건강·뷰티 렌탈 상품입니다. 공개된 최저 월 렌탈료를 먼저 확인해 보세요.",
       "highlights": [
         "건강·뷰티",
         "최저 월 렌탈료 기준",
-        "최종 조건 상담 확인"
+        "최종 조건 상담 확인",
+        "렌탈사별 조건 비교"
       ],
       "manufacturer": "파나소닉",
-      "rentalCompany": "클로바렌탈몰",
+      "rentalCompany": "렌탈사별 비교",
       "detailImages": [],
       "options": [
         {
-          "key": "clover-min",
-          "management": "clover-lowest",
-          "managementLabel": "최저가 기준",
-          "term": "",
-          "termLabel": "상품별 조건",
+          "key": "clv-77671-60",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 60,
           "monthly": 41400,
-          "card": 28400,
-          "gift": null,
-          "care": "상품별 조건 상담 확인",
-          "sourceOption": "클로바렌탈 공개 최저가"
+          "card": null,
+          "gift": 124200,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
+        },
+        {
+          "key": "clv-77671-48",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 48,
+          "monthly": 48700,
+          "card": null,
+          "gift": 116880,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
+        },
+        {
+          "key": "clv-77671-36",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 36,
+          "monthly": 61300,
+          "card": null,
+          "gift": 110340,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
         }
       ],
       "sourceKind": "clover-import",
       "availability": "active",
-      "giftStatus": "unavailable",
+      "giftStatus": "available",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/251111/qlgbZ1pqySzp2EPtBJRgX4qvCYKxSZ.jpg",
       "importedFrom": "https://m.clvrental777.com/"
     },
@@ -48236,33 +50051,88 @@
         "건강·뷰티",
         "브람스"
       ],
-      "promo": "클로바렌탈 공개 상품 기준 · 최종 접수 전 최신 조건 확인",
+      "promo": "렌탈사·약정기간별 월요금과 웅비렌탈 사은품을 비교해 보세요.",
       "shortDescription": "브람스 건강·뷰티 렌탈 상품입니다. 공개된 최저 월 렌탈료를 먼저 확인해 보세요.",
       "highlights": [
         "건강·뷰티",
         "최저 월 렌탈료 기준",
-        "최종 조건 상담 확인"
+        "최종 조건 상담 확인",
+        "렌탈사별 조건 비교"
       ],
       "manufacturer": "브람스",
-      "rentalCompany": "클로바렌탈몰",
+      "rentalCompany": "렌탈사별 비교",
       "detailImages": [],
       "options": [
         {
-          "key": "clover-min",
-          "management": "clover-lowest",
-          "managementLabel": "최저가 기준",
-          "term": "",
-          "termLabel": "상품별 조건",
+          "key": "clv-127184-60",
+          "management": "supplier-lg헬로렌탈",
+          "managementLabel": "LG헬로렌탈",
+          "term": 60,
           "monthly": 41900,
-          "card": 17900,
-          "gift": null,
-          "care": "상품별 조건 상담 확인",
-          "sourceOption": "클로바렌탈 공개 최저가"
+          "card": null,
+          "gift": 150840,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "LG헬로렌탈"
+        },
+        {
+          "key": "clv-127184-48",
+          "management": "supplier-lg헬로렌탈",
+          "managementLabel": "LG헬로렌탈",
+          "term": 48,
+          "monthly": 51900,
+          "card": null,
+          "gift": 149472,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "LG헬로렌탈"
+        },
+        {
+          "key": "clv-127184-39",
+          "management": "supplier-lg헬로렌탈",
+          "managementLabel": "LG헬로렌탈",
+          "term": 39,
+          "monthly": 62900,
+          "card": null,
+          "gift": 147186,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "LG헬로렌탈"
+        },
+        {
+          "key": "clv-149295-60",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 60,
+          "monthly": 48800,
+          "card": null,
+          "gift": 146400,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
+        },
+        {
+          "key": "clv-149295-48",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 48,
+          "monthly": 57400,
+          "card": null,
+          "gift": 137760,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
+        },
+        {
+          "key": "clv-149295-36",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 36,
+          "monthly": 72200,
+          "card": null,
+          "gift": 129960,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
         }
       ],
       "sourceKind": "clover-import",
       "availability": "active",
-      "giftStatus": "unavailable",
+      "giftStatus": "available",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/251203/KRcyGWdCGjQuGZqyubbm24k85S7yDl.jpg",
       "importedFrom": "https://m.clvrental777.com/"
     },
@@ -48283,33 +50153,55 @@
         "건강·뷰티",
         "브람스"
       ],
-      "promo": "클로바렌탈 공개 상품 기준 · 최종 접수 전 최신 조건 확인",
+      "promo": "렌탈사·약정기간별 월요금과 웅비렌탈 사은품을 비교해 보세요.",
       "shortDescription": "브람스 건강·뷰티 렌탈 상품입니다. 공개된 최저 월 렌탈료를 먼저 확인해 보세요.",
       "highlights": [
         "건강·뷰티",
         "최저 월 렌탈료 기준",
-        "최종 조건 상담 확인"
+        "최종 조건 상담 확인",
+        "렌탈사별 조건 비교"
       ],
       "manufacturer": "브람스",
-      "rentalCompany": "클로바렌탈몰",
+      "rentalCompany": "렌탈사별 비교",
       "detailImages": [],
       "options": [
         {
-          "key": "clover-min",
-          "management": "clover-lowest",
-          "managementLabel": "최저가 기준",
-          "term": "",
-          "termLabel": "상품별 조건",
+          "key": "clv-112534-60",
+          "management": "supplier-lg헬로렌탈",
+          "managementLabel": "LG헬로렌탈",
+          "term": 60,
           "monthly": 44900,
-          "card": 20900,
-          "gift": null,
-          "care": "상품별 조건 상담 확인",
-          "sourceOption": "클로바렌탈 공개 최저가"
+          "card": null,
+          "gift": 161640,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "LG헬로렌탈"
+        },
+        {
+          "key": "clv-112534-48",
+          "management": "supplier-lg헬로렌탈",
+          "managementLabel": "LG헬로렌탈",
+          "term": 48,
+          "monthly": 53900,
+          "card": null,
+          "gift": 155232,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "LG헬로렌탈"
+        },
+        {
+          "key": "clv-112534-39",
+          "management": "supplier-lg헬로렌탈",
+          "managementLabel": "LG헬로렌탈",
+          "term": 39,
+          "monthly": 64900,
+          "card": null,
+          "gift": 151866,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "LG헬로렌탈"
         }
       ],
       "sourceKind": "clover-import",
       "availability": "active",
-      "giftStatus": "unavailable",
+      "giftStatus": "available",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/251111/dJBQFt8Mar7xT13buHMv5ZUvLkhEDR.jpg",
       "importedFrom": "https://m.clvrental777.com/"
     },
@@ -48330,33 +50222,88 @@
         "건강·뷰티",
         "누하스"
       ],
-      "promo": "클로바렌탈 공개 상품 기준 · 최종 접수 전 최신 조건 확인",
+      "promo": "렌탈사·약정기간별 월요금과 웅비렌탈 사은품을 비교해 보세요.",
       "shortDescription": "누하스 건강·뷰티 렌탈 상품입니다. 공개된 최저 월 렌탈료를 먼저 확인해 보세요.",
       "highlights": [
         "건강·뷰티",
         "최저 월 렌탈료 기준",
-        "최종 조건 상담 확인"
+        "최종 조건 상담 확인",
+        "렌탈사별 조건 비교"
       ],
       "manufacturer": "누하스",
-      "rentalCompany": "클로바렌탈몰",
+      "rentalCompany": "렌탈사별 비교",
       "detailImages": [],
       "options": [
         {
-          "key": "clover-min",
-          "management": "clover-lowest",
-          "managementLabel": "최저가 기준",
-          "term": "",
-          "termLabel": "상품별 조건",
+          "key": "clv-150292-60",
+          "management": "supplier-스마트렌탈",
+          "managementLabel": "스마트렌탈",
+          "term": 60,
           "monthly": 49900,
-          "card": 24900,
-          "gift": null,
-          "care": "상품별 조건 상담 확인",
-          "sourceOption": "클로바렌탈 공개 최저가"
+          "card": null,
+          "gift": 134730,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "스마트렌탈"
+        },
+        {
+          "key": "clv-150292-48",
+          "management": "supplier-스마트렌탈",
+          "managementLabel": "스마트렌탈",
+          "term": 48,
+          "monthly": 59900,
+          "card": null,
+          "gift": 129384,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "스마트렌탈"
+        },
+        {
+          "key": "clv-150292-36",
+          "management": "supplier-스마트렌탈",
+          "managementLabel": "스마트렌탈",
+          "term": 36,
+          "monthly": 75900,
+          "card": null,
+          "gift": 122958,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "스마트렌탈"
+        },
+        {
+          "key": "clv-117549-60",
+          "management": "supplier-lg헬로렌탈",
+          "managementLabel": "LG헬로렌탈",
+          "term": 60,
+          "monthly": 54900,
+          "card": null,
+          "gift": 197640,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "LG헬로렌탈"
+        },
+        {
+          "key": "clv-117549-48",
+          "management": "supplier-lg헬로렌탈",
+          "managementLabel": "LG헬로렌탈",
+          "term": 48,
+          "monthly": 65900,
+          "card": null,
+          "gift": 189792,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "LG헬로렌탈"
+        },
+        {
+          "key": "clv-117549-36",
+          "management": "supplier-lg헬로렌탈",
+          "managementLabel": "LG헬로렌탈",
+          "term": 36,
+          "monthly": 84900,
+          "card": null,
+          "gift": 183384,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "LG헬로렌탈"
         }
       ],
       "sourceKind": "clover-import",
       "availability": "active",
-      "giftStatus": "unavailable",
+      "giftStatus": "available",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/240208/aNLxYy89Cl7SVuHCDTlnaqxSDHGJWm.jpg",
       "importedFrom": "https://m.clvrental777.com/"
     },
@@ -48377,33 +50324,88 @@
         "건강·뷰티",
         "브람스"
       ],
-      "promo": "클로바렌탈 공개 상품 기준 · 최종 접수 전 최신 조건 확인",
+      "promo": "렌탈사·약정기간별 월요금과 웅비렌탈 사은품을 비교해 보세요.",
       "shortDescription": "브람스 건강·뷰티 렌탈 상품입니다. 공개된 최저 월 렌탈료를 먼저 확인해 보세요.",
       "highlights": [
         "건강·뷰티",
         "최저 월 렌탈료 기준",
-        "최종 조건 상담 확인"
+        "최종 조건 상담 확인",
+        "렌탈사별 조건 비교"
       ],
       "manufacturer": "브람스",
-      "rentalCompany": "클로바렌탈몰",
+      "rentalCompany": "렌탈사별 비교",
       "detailImages": [],
       "options": [
         {
-          "key": "clover-min",
-          "management": "clover-lowest",
-          "managementLabel": "최저가 기준",
-          "term": "",
-          "termLabel": "상품별 조건",
+          "key": "clv-149330-60",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 60,
           "monthly": 51700,
-          "card": 38700,
-          "gift": null,
-          "care": "상품별 조건 상담 확인",
-          "sourceOption": "클로바렌탈 공개 최저가"
+          "card": null,
+          "gift": 155100,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
+        },
+        {
+          "key": "clv-149330-48",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 48,
+          "monthly": 60800,
+          "card": null,
+          "gift": 145920,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
+        },
+        {
+          "key": "clv-149330-36",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 36,
+          "monthly": 76500,
+          "card": null,
+          "gift": 137700,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
+        },
+        {
+          "key": "clv-21714-60",
+          "management": "supplier-lg헬로렌탈",
+          "managementLabel": "LG헬로렌탈",
+          "term": 60,
+          "monthly": 51900,
+          "card": null,
+          "gift": 186840,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "LG헬로렌탈"
+        },
+        {
+          "key": "clv-21714-48",
+          "management": "supplier-lg헬로렌탈",
+          "managementLabel": "LG헬로렌탈",
+          "term": 48,
+          "monthly": 62900,
+          "card": null,
+          "gift": 181152,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "LG헬로렌탈"
+        },
+        {
+          "key": "clv-21714-39",
+          "management": "supplier-lg헬로렌탈",
+          "managementLabel": "LG헬로렌탈",
+          "term": 39,
+          "monthly": 75900,
+          "card": null,
+          "gift": 177606,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "LG헬로렌탈"
         }
       ],
       "sourceKind": "clover-import",
       "availability": "active",
-      "giftStatus": "unavailable",
+      "giftStatus": "available",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/220822/98NKMPJ9QFwswzTjkjuwgL3MHdH6P6.jpg",
       "importedFrom": "https://m.clvrental777.com/"
     },
@@ -48424,33 +50426,55 @@
         "건강·뷰티",
         "리쏘"
       ],
-      "promo": "클로바렌탈 공개 상품 기준 · 최종 접수 전 최신 조건 확인",
+      "promo": "렌탈사·약정기간별 월요금과 웅비렌탈 사은품을 비교해 보세요.",
       "shortDescription": "리쏘 건강·뷰티 렌탈 상품입니다. 공개된 최저 월 렌탈료를 먼저 확인해 보세요.",
       "highlights": [
         "건강·뷰티",
         "최저 월 렌탈료 기준",
-        "최종 조건 상담 확인"
+        "최종 조건 상담 확인",
+        "렌탈사별 조건 비교"
       ],
       "manufacturer": "리쏘",
-      "rentalCompany": "클로바렌탈몰",
+      "rentalCompany": "렌탈사별 비교",
       "detailImages": [],
       "options": [
         {
-          "key": "clover-min",
-          "management": "clover-lowest",
-          "managementLabel": "최저가 기준",
-          "term": "",
-          "termLabel": "상품별 조건",
+          "key": "clv-98586-60",
+          "management": "supplier-lg헬로렌탈",
+          "managementLabel": "LG헬로렌탈",
+          "term": 60,
           "monthly": 53900,
-          "card": 29900,
-          "gift": null,
-          "care": "상품별 조건 상담 확인",
-          "sourceOption": "클로바렌탈 공개 최저가"
+          "card": null,
+          "gift": 194040,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "LG헬로렌탈"
+        },
+        {
+          "key": "clv-98586-48",
+          "management": "supplier-lg헬로렌탈",
+          "managementLabel": "LG헬로렌탈",
+          "term": 48,
+          "monthly": 65900,
+          "card": null,
+          "gift": 189792,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "LG헬로렌탈"
+        },
+        {
+          "key": "clv-98586-39",
+          "management": "supplier-lg헬로렌탈",
+          "managementLabel": "LG헬로렌탈",
+          "term": 39,
+          "monthly": 78900,
+          "card": null,
+          "gift": 184626,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "LG헬로렌탈"
         }
       ],
       "sourceKind": "clover-import",
       "availability": "active",
-      "giftStatus": "unavailable",
+      "giftStatus": "available",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/251111/C5WtjSbDLVL6JZhbzCy7Rdu4KeqvG5.jpg",
       "importedFrom": "https://m.clvrental777.com/"
     },
@@ -48471,33 +50495,55 @@
         "건강·뷰티",
         "코지마"
       ],
-      "promo": "클로바렌탈 공개 상품 기준 · 최종 접수 전 최신 조건 확인",
+      "promo": "렌탈사·약정기간별 월요금과 웅비렌탈 사은품을 비교해 보세요.",
       "shortDescription": "코지마 건강·뷰티 렌탈 상품입니다. 공개된 최저 월 렌탈료를 먼저 확인해 보세요.",
       "highlights": [
         "건강·뷰티",
         "최저 월 렌탈료 기준",
-        "최종 조건 상담 확인"
+        "최종 조건 상담 확인",
+        "렌탈사별 조건 비교"
       ],
       "manufacturer": "코지마",
-      "rentalCompany": "클로바렌탈몰",
+      "rentalCompany": "렌탈사별 비교",
       "detailImages": [],
       "options": [
         {
-          "key": "clover-min",
-          "management": "clover-lowest",
-          "managementLabel": "최저가 기준",
-          "term": "",
-          "termLabel": "상품별 조건",
+          "key": "clv-70980-60",
+          "management": "supplier-lg헬로렌탈",
+          "managementLabel": "LG헬로렌탈",
+          "term": 60,
           "monthly": 69900,
-          "card": 45900,
-          "gift": null,
-          "care": "상품별 조건 상담 확인",
-          "sourceOption": "클로바렌탈 공개 최저가"
+          "card": null,
+          "gift": 251640,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "LG헬로렌탈"
+        },
+        {
+          "key": "clv-70980-48",
+          "management": "supplier-lg헬로렌탈",
+          "managementLabel": "LG헬로렌탈",
+          "term": 48,
+          "monthly": 84900,
+          "card": null,
+          "gift": 244512,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "LG헬로렌탈"
+        },
+        {
+          "key": "clv-70980-39",
+          "management": "supplier-lg헬로렌탈",
+          "managementLabel": "LG헬로렌탈",
+          "term": 39,
+          "monthly": 101900,
+          "card": null,
+          "gift": 238446,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "LG헬로렌탈"
         }
       ],
       "sourceKind": "clover-import",
       "availability": "active",
-      "giftStatus": "unavailable",
+      "giftStatus": "available",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/251111/VKMbtMU6VnGYZ8VTcKjCWfCU2vVb4S.jpg",
       "importedFrom": "https://m.clvrental777.com/"
     },
@@ -48518,33 +50564,77 @@
         "건강·뷰티",
         "파나소닉"
       ],
-      "promo": "클로바렌탈 공개 상품 기준 · 최종 접수 전 최신 조건 확인",
+      "promo": "렌탈사·약정기간별 월요금과 웅비렌탈 사은품을 비교해 보세요.",
       "shortDescription": "파나소닉 건강·뷰티 렌탈 상품입니다. 공개된 최저 월 렌탈료를 먼저 확인해 보세요.",
       "highlights": [
         "건강·뷰티",
         "최저 월 렌탈료 기준",
-        "최종 조건 상담 확인"
+        "최종 조건 상담 확인",
+        "렌탈사별 조건 비교"
       ],
       "manufacturer": "파나소닉",
-      "rentalCompany": "클로바렌탈몰",
+      "rentalCompany": "렌탈사별 비교",
       "detailImages": [],
       "options": [
         {
-          "key": "clover-min",
-          "management": "clover-lowest",
-          "managementLabel": "최저가 기준",
-          "term": "",
-          "termLabel": "상품별 조건",
+          "key": "clv-74880-60",
+          "management": "supplier-lg헬로렌탈",
+          "managementLabel": "LG헬로렌탈",
+          "term": 60,
           "monthly": 71000,
-          "card": 47000,
-          "gift": null,
-          "care": "상품별 조건 상담 확인",
-          "sourceOption": "클로바렌탈 공개 최저가"
+          "card": null,
+          "gift": 255600,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "LG헬로렌탈"
+        },
+        {
+          "key": "clv-74880-48",
+          "management": "supplier-lg헬로렌탈",
+          "managementLabel": "LG헬로렌탈",
+          "term": 48,
+          "monthly": 87000,
+          "card": null,
+          "gift": 250560,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "LG헬로렌탈"
+        },
+        {
+          "key": "clv-77656-60",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 60,
+          "monthly": 78200,
+          "card": null,
+          "gift": 234600,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
+        },
+        {
+          "key": "clv-77656-48",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 48,
+          "monthly": 91900,
+          "card": null,
+          "gift": 220560,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
+        },
+        {
+          "key": "clv-77656-36",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 36,
+          "monthly": 115600,
+          "card": null,
+          "gift": 208080,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
         }
       ],
       "sourceKind": "clover-import",
       "availability": "active",
-      "giftStatus": "unavailable",
+      "giftStatus": "available",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/251111/F3Um4ZFNh5QhUwWnsBkEUJdpMpYGJp.jpg",
       "importedFrom": "https://m.clvrental777.com/"
     },
@@ -48565,33 +50655,55 @@
         "건강·뷰티",
         "코지마"
       ],
-      "promo": "클로바렌탈 공개 상품 기준 · 최종 접수 전 최신 조건 확인",
+      "promo": "렌탈사·약정기간별 월요금과 웅비렌탈 사은품을 비교해 보세요.",
       "shortDescription": "코지마 건강·뷰티 렌탈 상품입니다. 공개된 최저 월 렌탈료를 먼저 확인해 보세요.",
       "highlights": [
         "건강·뷰티",
         "최저 월 렌탈료 기준",
-        "최종 조건 상담 확인"
+        "최종 조건 상담 확인",
+        "렌탈사별 조건 비교"
       ],
       "manufacturer": "코지마",
-      "rentalCompany": "클로바렌탈몰",
+      "rentalCompany": "렌탈사별 비교",
       "detailImages": [],
       "options": [
         {
-          "key": "clover-min",
-          "management": "clover-lowest",
-          "managementLabel": "최저가 기준",
-          "term": "",
-          "termLabel": "상품별 조건",
+          "key": "clv-46635-60",
+          "management": "supplier-lg헬로렌탈",
+          "managementLabel": "LG헬로렌탈",
+          "term": 60,
           "monthly": 87900,
-          "card": 63900,
-          "gift": null,
-          "care": "상품별 조건 상담 확인",
-          "sourceOption": "클로바렌탈 공개 최저가"
+          "card": null,
+          "gift": 316440,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "LG헬로렌탈"
+        },
+        {
+          "key": "clv-46635-48",
+          "management": "supplier-lg헬로렌탈",
+          "managementLabel": "LG헬로렌탈",
+          "term": 48,
+          "monthly": 106900,
+          "card": null,
+          "gift": 307872,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "LG헬로렌탈"
+        },
+        {
+          "key": "clv-46635-39",
+          "management": "supplier-lg헬로렌탈",
+          "managementLabel": "LG헬로렌탈",
+          "term": 39,
+          "monthly": 128900,
+          "card": null,
+          "gift": 301626,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "LG헬로렌탈"
         }
       ],
       "sourceKind": "clover-import",
       "availability": "active",
-      "giftStatus": "unavailable",
+      "giftStatus": "available",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/230831/xp72D3Zq7D51ZDELVM52M4nXWzTGb7.jpg",
       "importedFrom": "https://m.clvrental777.com/"
     },
@@ -48612,33 +50724,55 @@
         "건강·뷰티",
         "코지마"
       ],
-      "promo": "클로바렌탈 공개 상품 기준 · 최종 접수 전 최신 조건 확인",
+      "promo": "렌탈사·약정기간별 월요금과 웅비렌탈 사은품을 비교해 보세요.",
       "shortDescription": "코지마 건강·뷰티 렌탈 상품입니다. 공개된 최저 월 렌탈료를 먼저 확인해 보세요.",
       "highlights": [
         "건강·뷰티",
         "최저 월 렌탈료 기준",
-        "최종 조건 상담 확인"
+        "최종 조건 상담 확인",
+        "렌탈사별 조건 비교"
       ],
       "manufacturer": "코지마",
-      "rentalCompany": "클로바렌탈몰",
+      "rentalCompany": "렌탈사별 비교",
       "detailImages": [],
       "options": [
         {
-          "key": "clover-min",
-          "management": "clover-lowest",
-          "managementLabel": "최저가 기준",
-          "term": "",
-          "termLabel": "상품별 조건",
+          "key": "clv-1943-60",
+          "management": "supplier-lg헬로렌탈",
+          "managementLabel": "LG헬로렌탈",
+          "term": 60,
           "monthly": 91900,
-          "card": 67900,
-          "gift": null,
-          "care": "상품별 조건 상담 확인",
-          "sourceOption": "클로바렌탈 공개 최저가"
+          "card": null,
+          "gift": 330840,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "LG헬로렌탈"
+        },
+        {
+          "key": "clv-1943-48",
+          "management": "supplier-lg헬로렌탈",
+          "managementLabel": "LG헬로렌탈",
+          "term": 48,
+          "monthly": 110900,
+          "card": null,
+          "gift": 319392,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "LG헬로렌탈"
+        },
+        {
+          "key": "clv-1943-39",
+          "management": "supplier-lg헬로렌탈",
+          "managementLabel": "LG헬로렌탈",
+          "term": 39,
+          "monthly": 133900,
+          "card": null,
+          "gift": 313326,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "LG헬로렌탈"
         }
       ],
       "sourceKind": "clover-import",
       "availability": "active",
-      "giftStatus": "unavailable",
+      "giftStatus": "available",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/251112/V64w1LbKQx8rFWRpFMjcSHXQm8p46v.jpg",
       "importedFrom": "https://m.clvrental777.com/"
     },
@@ -48659,33 +50793,44 @@
         "건강·뷰티",
         "파나소닉"
       ],
-      "promo": "클로바렌탈 공개 상품 기준 · 최종 접수 전 최신 조건 확인",
+      "promo": "렌탈사·약정기간별 월요금과 웅비렌탈 사은품을 비교해 보세요.",
       "shortDescription": "파나소닉 건강·뷰티 렌탈 상품입니다. 공개된 최저 월 렌탈료를 먼저 확인해 보세요.",
       "highlights": [
         "건강·뷰티",
         "최저 월 렌탈료 기준",
-        "최종 조건 상담 확인"
+        "최종 조건 상담 확인",
+        "렌탈사별 조건 비교"
       ],
       "manufacturer": "파나소닉",
-      "rentalCompany": "클로바렌탈몰",
+      "rentalCompany": "렌탈사별 비교",
       "detailImages": [],
       "options": [
         {
-          "key": "clover-min",
-          "management": "clover-lowest",
-          "managementLabel": "최저가 기준",
-          "term": "",
-          "termLabel": "상품별 조건",
+          "key": "clv-25070-60",
+          "management": "supplier-lg헬로렌탈",
+          "managementLabel": "LG헬로렌탈",
+          "term": 60,
           "monthly": 149900,
-          "card": 125900,
-          "gift": null,
-          "care": "상품별 조건 상담 확인",
-          "sourceOption": "클로바렌탈 공개 최저가"
+          "card": null,
+          "gift": 539640,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "LG헬로렌탈"
+        },
+        {
+          "key": "clv-25070-48",
+          "management": "supplier-lg헬로렌탈",
+          "managementLabel": "LG헬로렌탈",
+          "term": 48,
+          "monthly": 181900,
+          "card": null,
+          "gift": 523872,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "LG헬로렌탈"
         }
       ],
       "sourceKind": "clover-import",
       "availability": "active",
-      "giftStatus": "unavailable",
+      "giftStatus": "available",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/251111/BD6aFk2Tu67xsP2Mep2GR8C74Suc3W.jpg",
       "importedFrom": "https://m.clvrental777.com/"
     },
@@ -48706,33 +50851,110 @@
         "건강·뷰티",
         "코지마"
       ],
-      "promo": "클로바렌탈 공개 상품 기준 · 최종 접수 전 최신 조건 확인",
+      "promo": "렌탈사·약정기간별 월요금과 웅비렌탈 사은품을 비교해 보세요.",
       "shortDescription": "코지마 건강·뷰티 렌탈 상품입니다. 공개된 최저 월 렌탈료를 먼저 확인해 보세요.",
       "highlights": [
         "건강·뷰티",
         "최저 월 렌탈료 기준",
-        "최종 조건 상담 확인"
+        "최종 조건 상담 확인",
+        "렌탈사별 조건 비교"
       ],
       "manufacturer": "코지마",
-      "rentalCompany": "클로바렌탈몰",
+      "rentalCompany": "렌탈사별 비교",
       "detailImages": [],
       "options": [
         {
-          "key": "clover-min",
-          "management": "clover-lowest",
-          "managementLabel": "최저가 기준",
-          "term": "",
-          "termLabel": "상품별 조건",
+          "key": "clv-31517-60",
+          "management": "supplier-bs-on",
+          "managementLabel": "BS ON",
+          "term": 60,
           "monthly": 156000,
-          "card": 131000,
-          "gift": null,
-          "care": "상품별 조건 상담 확인",
-          "sourceOption": "클로바렌탈 공개 최저가"
+          "card": null,
+          "gift": 327600,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "BS ON"
+        },
+        {
+          "key": "clv-31517-48",
+          "management": "supplier-bs-on",
+          "managementLabel": "BS ON",
+          "term": 48,
+          "monthly": 169000,
+          "card": null,
+          "gift": 283920,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "BS ON"
+        },
+        {
+          "key": "clv-31517-36",
+          "management": "supplier-bs-on",
+          "managementLabel": "BS ON",
+          "term": 36,
+          "monthly": 198800,
+          "card": null,
+          "gift": 250488,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "BS ON"
+        },
+        {
+          "key": "clv-61272-60",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 60,
+          "monthly": 156000,
+          "card": null,
+          "gift": 468000,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
+        },
+        {
+          "key": "clv-61272-48",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 48,
+          "monthly": 186200,
+          "card": null,
+          "gift": 446880,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
+        },
+        {
+          "key": "clv-61272-36",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 36,
+          "monthly": 237400,
+          "card": null,
+          "gift": 427320,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
+        },
+        {
+          "key": "clv-61272-24",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 24,
+          "monthly": 341300,
+          "card": null,
+          "gift": 409560,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
+        },
+        {
+          "key": "clv-61272-12",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 12,
+          "monthly": 655400,
+          "card": null,
+          "gift": 393240,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
         }
       ],
       "sourceKind": "clover-import",
       "availability": "active",
-      "giftStatus": "unavailable",
+      "giftStatus": "available",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/251111/7wMXNPQCknL86SMjp8uKM45XTkLMlA.jpg",
       "importedFrom": "https://m.clvrental777.com/"
     },
@@ -48753,33 +50975,110 @@
         "건강·뷰티",
         "코지마"
       ],
-      "promo": "클로바렌탈 공개 상품 기준 · 최종 접수 전 최신 조건 확인",
+      "promo": "렌탈사·약정기간별 월요금과 웅비렌탈 사은품을 비교해 보세요.",
       "shortDescription": "코지마 건강·뷰티 렌탈 상품입니다. 공개된 최저 월 렌탈료를 먼저 확인해 보세요.",
       "highlights": [
         "건강·뷰티",
         "최저 월 렌탈료 기준",
-        "최종 조건 상담 확인"
+        "최종 조건 상담 확인",
+        "렌탈사별 조건 비교"
       ],
       "manufacturer": "코지마",
-      "rentalCompany": "클로바렌탈몰",
+      "rentalCompany": "렌탈사별 비교",
       "detailImages": [],
       "options": [
         {
-          "key": "clover-min",
-          "management": "clover-lowest",
-          "managementLabel": "최저가 기준",
-          "term": "",
-          "termLabel": "상품별 조건",
+          "key": "clv-25079-60",
+          "management": "supplier-lg헬로렌탈",
+          "managementLabel": "LG헬로렌탈",
+          "term": 60,
           "monthly": 170900,
-          "card": 146900,
-          "gift": null,
-          "care": "상품별 조건 상담 확인",
-          "sourceOption": "클로바렌탈 공개 최저가"
+          "card": null,
+          "gift": 615240,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "LG헬로렌탈"
+        },
+        {
+          "key": "clv-25079-48",
+          "management": "supplier-lg헬로렌탈",
+          "managementLabel": "LG헬로렌탈",
+          "term": 48,
+          "monthly": 207900,
+          "card": null,
+          "gift": 598752,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "LG헬로렌탈"
+        },
+        {
+          "key": "clv-25079-39",
+          "management": "supplier-lg헬로렌탈",
+          "managementLabel": "LG헬로렌탈",
+          "term": 39,
+          "monthly": 250900,
+          "card": null,
+          "gift": 587106,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "LG헬로렌탈"
+        },
+        {
+          "key": "clv-61264-60",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 60,
+          "monthly": 172000,
+          "card": null,
+          "gift": 516000,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
+        },
+        {
+          "key": "clv-61264-48",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 48,
+          "monthly": 205300,
+          "card": null,
+          "gift": 492720,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
+        },
+        {
+          "key": "clv-61264-36",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 36,
+          "monthly": 261800,
+          "card": null,
+          "gift": 471240,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
+        },
+        {
+          "key": "clv-61264-24",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 24,
+          "monthly": 376300,
+          "card": null,
+          "gift": 451560,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
+        },
+        {
+          "key": "clv-61264-12",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 12,
+          "monthly": 722600,
+          "card": null,
+          "gift": 433560,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
         }
       ],
       "sourceKind": "clover-import",
       "availability": "active",
-      "giftStatus": "unavailable",
+      "giftStatus": "available",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/251111/5mSLEMyEsjvbCkZej6UjcT48ut3ZdZ.jpg",
       "importedFrom": "https://m.clvrental777.com/"
     },
@@ -48800,33 +51099,44 @@
         "건강·뷰티",
         "파나소닉"
       ],
-      "promo": "클로바렌탈 공개 상품 기준 · 최종 접수 전 최신 조건 확인",
+      "promo": "렌탈사·약정기간별 월요금과 웅비렌탈 사은품을 비교해 보세요.",
       "shortDescription": "파나소닉 건강·뷰티 렌탈 상품입니다. 공개된 최저 월 렌탈료를 먼저 확인해 보세요.",
       "highlights": [
         "건강·뷰티",
         "최저 월 렌탈료 기준",
-        "최종 조건 상담 확인"
+        "최종 조건 상담 확인",
+        "렌탈사별 조건 비교"
       ],
       "manufacturer": "파나소닉",
-      "rentalCompany": "클로바렌탈몰",
+      "rentalCompany": "렌탈사별 비교",
       "detailImages": [],
       "options": [
         {
-          "key": "clover-min",
-          "management": "clover-lowest",
-          "managementLabel": "최저가 기준",
-          "term": "",
-          "termLabel": "상품별 조건",
+          "key": "clv-25069-60",
+          "management": "supplier-lg헬로렌탈",
+          "managementLabel": "LG헬로렌탈",
+          "term": 60,
           "monthly": 180000,
-          "card": 156000,
-          "gift": null,
-          "care": "상품별 조건 상담 확인",
-          "sourceOption": "클로바렌탈 공개 최저가"
+          "card": null,
+          "gift": 648000,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "LG헬로렌탈"
+        },
+        {
+          "key": "clv-25069-48",
+          "management": "supplier-lg헬로렌탈",
+          "managementLabel": "LG헬로렌탈",
+          "term": 48,
+          "monthly": 219000,
+          "card": null,
+          "gift": 630720,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "LG헬로렌탈"
         }
       ],
       "sourceKind": "clover-import",
       "availability": "active",
-      "giftStatus": "unavailable",
+      "giftStatus": "available",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/251111/dvxFvmGUAw7Dg4g34Tm2Sb4lu7K2EA.jpg",
       "importedFrom": "https://m.clvrental777.com/"
     },
@@ -48847,33 +51157,44 @@
         "건강·뷰티",
         "파나소닉"
       ],
-      "promo": "클로바렌탈 공개 상품 기준 · 최종 접수 전 최신 조건 확인",
+      "promo": "렌탈사·약정기간별 월요금과 웅비렌탈 사은품을 비교해 보세요.",
       "shortDescription": "파나소닉 건강·뷰티 렌탈 상품입니다. 공개된 최저 월 렌탈료를 먼저 확인해 보세요.",
       "highlights": [
         "건강·뷰티",
         "최저 월 렌탈료 기준",
-        "최종 조건 상담 확인"
+        "최종 조건 상담 확인",
+        "렌탈사별 조건 비교"
       ],
       "manufacturer": "파나소닉",
-      "rentalCompany": "클로바렌탈몰",
+      "rentalCompany": "렌탈사별 비교",
       "detailImages": [],
       "options": [
         {
-          "key": "clover-min",
-          "management": "clover-lowest",
-          "managementLabel": "최저가 기준",
-          "term": "",
-          "termLabel": "상품별 조건",
+          "key": "clv-25068-60",
+          "management": "supplier-lg헬로렌탈",
+          "managementLabel": "LG헬로렌탈",
+          "term": 60,
           "monthly": 219900,
-          "card": 195900,
-          "gift": null,
-          "care": "상품별 조건 상담 확인",
-          "sourceOption": "클로바렌탈 공개 최저가"
+          "card": null,
+          "gift": 791640,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "LG헬로렌탈"
+        },
+        {
+          "key": "clv-25068-48",
+          "management": "supplier-lg헬로렌탈",
+          "managementLabel": "LG헬로렌탈",
+          "term": 48,
+          "monthly": 265900,
+          "card": null,
+          "gift": 765792,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "LG헬로렌탈"
         }
       ],
       "sourceKind": "clover-import",
       "availability": "active",
-      "giftStatus": "unavailable",
+      "giftStatus": "available",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/251111/ecUqhT7Mu9AR1upsDhbqgdb1ztyAxC.jpg",
       "importedFrom": "https://m.clvrental777.com/"
     },
@@ -48894,33 +51215,385 @@
         "가구·침대",
         "인홈"
       ],
-      "promo": "클로바렌탈 공개 상품 기준 · 최종 접수 전 최신 조건 확인",
+      "promo": "렌탈사·약정기간별 월요금과 웅비렌탈 사은품을 비교해 보세요.",
       "shortDescription": "인홈 가구·침대 렌탈 상품입니다. 공개된 최저 월 렌탈료를 먼저 확인해 보세요.",
       "highlights": [
         "가구·침대",
         "최저 월 렌탈료 기준",
-        "최종 조건 상담 확인"
+        "최종 조건 상담 확인",
+        "렌탈사별 조건 비교"
       ],
       "manufacturer": "인홈",
-      "rentalCompany": "클로바렌탈몰",
+      "rentalCompany": "렌탈사별 비교",
       "detailImages": [],
       "options": [
         {
-          "key": "clover-min",
-          "management": "clover-lowest",
-          "managementLabel": "최저가 기준",
-          "term": "",
-          "termLabel": "상품별 조건",
+          "key": "clv-62373-60",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 60,
+          "monthly": 18000,
+          "card": null,
+          "gift": 54000,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
+        },
+        {
+          "key": "clv-62373-60",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 60,
+          "monthly": 20000,
+          "card": null,
+          "gift": 60000,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
+        },
+        {
+          "key": "clv-62373-60",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 60,
           "monthly": 16000,
-          "card": 3000,
-          "gift": null,
-          "care": "상품별 조건 상담 확인",
-          "sourceOption": "클로바렌탈 공개 최저가"
+          "card": null,
+          "gift": 48000,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
+        },
+        {
+          "key": "clv-62373-48",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 48,
+          "monthly": 21400,
+          "card": null,
+          "gift": 51360,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
+        },
+        {
+          "key": "clv-62373-48",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 48,
+          "monthly": 23800,
+          "card": null,
+          "gift": 57120,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
+        },
+        {
+          "key": "clv-62373-48",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 48,
+          "monthly": 19000,
+          "card": null,
+          "gift": 45600,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
+        },
+        {
+          "key": "clv-62373-36",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 36,
+          "monthly": 27400,
+          "card": null,
+          "gift": 49320,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
+        },
+        {
+          "key": "clv-62373-36",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 36,
+          "monthly": 30400,
+          "card": null,
+          "gift": 54720,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
+        },
+        {
+          "key": "clv-62373-36",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 36,
+          "monthly": 24300,
+          "card": null,
+          "gift": 43740,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
+        },
+        {
+          "key": "clv-62373-24",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 24,
+          "monthly": 39300,
+          "card": null,
+          "gift": 47160,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
+        },
+        {
+          "key": "clv-62373-24",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 24,
+          "monthly": 43700,
+          "card": null,
+          "gift": 52440,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
+        },
+        {
+          "key": "clv-62373-24",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 24,
+          "monthly": 35000,
+          "card": null,
+          "gift": 42000,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
+        },
+        {
+          "key": "clv-62373-12",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 12,
+          "monthly": 75600,
+          "card": null,
+          "gift": 45360,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
+        },
+        {
+          "key": "clv-62373-12",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 12,
+          "monthly": 84000,
+          "card": null,
+          "gift": 50400,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
+        },
+        {
+          "key": "clv-62373-12",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 12,
+          "monthly": 67200,
+          "card": null,
+          "gift": 40320,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
+        },
+        {
+          "key": "clv-128769-60",
+          "management": "supplier-스마트렌탈",
+          "managementLabel": "스마트렌탈",
+          "term": 60,
+          "monthly": 23200,
+          "card": null,
+          "gift": 62640,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "스마트렌탈"
+        },
+        {
+          "key": "clv-128769-60",
+          "management": "supplier-스마트렌탈",
+          "managementLabel": "스마트렌탈",
+          "term": 60,
+          "monthly": 20900,
+          "card": null,
+          "gift": 56430,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "스마트렌탈"
+        },
+        {
+          "key": "clv-128769-60",
+          "management": "supplier-스마트렌탈",
+          "managementLabel": "스마트렌탈",
+          "term": 60,
+          "monthly": 25100,
+          "card": null,
+          "gift": 67770,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "스마트렌탈"
+        },
+        {
+          "key": "clv-128769-48",
+          "management": "supplier-스마트렌탈",
+          "managementLabel": "스마트렌탈",
+          "term": 48,
+          "monthly": 26800,
+          "card": null,
+          "gift": 57888,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "스마트렌탈"
+        },
+        {
+          "key": "clv-128769-48",
+          "management": "supplier-스마트렌탈",
+          "managementLabel": "스마트렌탈",
+          "term": 48,
+          "monthly": 24100,
+          "card": null,
+          "gift": 52056,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "스마트렌탈"
+        },
+        {
+          "key": "clv-128769-48",
+          "management": "supplier-스마트렌탈",
+          "managementLabel": "스마트렌탈",
+          "term": 48,
+          "monthly": 28900,
+          "card": null,
+          "gift": 62424,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "스마트렌탈"
+        },
+        {
+          "key": "clv-128769-36",
+          "management": "supplier-스마트렌탈",
+          "managementLabel": "스마트렌탈",
+          "term": 36,
+          "monthly": 33100,
+          "card": null,
+          "gift": 53622,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "스마트렌탈"
+        },
+        {
+          "key": "clv-128769-36",
+          "management": "supplier-스마트렌탈",
+          "managementLabel": "스마트렌탈",
+          "term": 36,
+          "monthly": 29700,
+          "card": null,
+          "gift": 48114,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "스마트렌탈"
+        },
+        {
+          "key": "clv-128769-36",
+          "management": "supplier-스마트렌탈",
+          "managementLabel": "스마트렌탈",
+          "term": 36,
+          "monthly": 35700,
+          "card": null,
+          "gift": 57834,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "스마트렌탈"
+        },
+        {
+          "key": "clv-72019-60",
+          "management": "supplier-현대유버스",
+          "managementLabel": "현대유버스",
+          "term": 60,
+          "monthly": 26600,
+          "card": null,
+          "gift": 55860,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "현대유버스"
+        },
+        {
+          "key": "clv-72019-60",
+          "management": "supplier-현대유버스",
+          "managementLabel": "현대유버스",
+          "term": 60,
+          "monthly": 24100,
+          "card": null,
+          "gift": 50610,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "현대유버스"
+        },
+        {
+          "key": "clv-72019-60",
+          "management": "supplier-현대유버스",
+          "managementLabel": "현대유버스",
+          "term": 60,
+          "monthly": 28500,
+          "card": null,
+          "gift": 59850,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "현대유버스"
+        },
+        {
+          "key": "clv-72019-48",
+          "management": "supplier-현대유버스",
+          "managementLabel": "현대유버스",
+          "term": 48,
+          "monthly": 31400,
+          "card": null,
+          "gift": 52752,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "현대유버스"
+        },
+        {
+          "key": "clv-72019-48",
+          "management": "supplier-현대유버스",
+          "managementLabel": "현대유버스",
+          "term": 48,
+          "monthly": 28500,
+          "card": null,
+          "gift": 47880,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "현대유버스"
+        },
+        {
+          "key": "clv-72019-48",
+          "management": "supplier-현대유버스",
+          "managementLabel": "현대유버스",
+          "term": 48,
+          "monthly": 33700,
+          "card": null,
+          "gift": 56616,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "현대유버스"
+        },
+        {
+          "key": "clv-72019-36",
+          "management": "supplier-현대유버스",
+          "managementLabel": "현대유버스",
+          "term": 36,
+          "monthly": 39600,
+          "card": null,
+          "gift": 49896,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "현대유버스"
+        },
+        {
+          "key": "clv-72019-36",
+          "management": "supplier-현대유버스",
+          "managementLabel": "현대유버스",
+          "term": 36,
+          "monthly": 35900,
+          "card": null,
+          "gift": 45234,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "현대유버스"
+        },
+        {
+          "key": "clv-72019-36",
+          "management": "supplier-현대유버스",
+          "managementLabel": "현대유버스",
+          "term": 36,
+          "monthly": 42500,
+          "card": null,
+          "gift": 53550,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "현대유버스"
         }
       ],
       "sourceKind": "clover-import",
       "availability": "active",
-      "giftStatus": "unavailable",
+      "giftStatus": "available",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/230421/11825_VKWKLgkWKpfnSKKCY79KNP6GrsJ8ja.jpg",
       "importedFrom": "https://m.clvrental777.com/"
     },
@@ -48941,33 +51614,385 @@
         "가구·침대",
         "인홈"
       ],
-      "promo": "클로바렌탈 공개 상품 기준 · 최종 접수 전 최신 조건 확인",
+      "promo": "렌탈사·약정기간별 월요금과 웅비렌탈 사은품을 비교해 보세요.",
       "shortDescription": "인홈 가구·침대 렌탈 상품입니다. 공개된 최저 월 렌탈료를 먼저 확인해 보세요.",
       "highlights": [
         "가구·침대",
         "최저 월 렌탈료 기준",
-        "최종 조건 상담 확인"
+        "최종 조건 상담 확인",
+        "렌탈사별 조건 비교"
       ],
       "manufacturer": "인홈",
-      "rentalCompany": "클로바렌탈몰",
+      "rentalCompany": "렌탈사별 비교",
       "detailImages": [],
       "options": [
         {
-          "key": "clover-min",
-          "management": "clover-lowest",
-          "managementLabel": "최저가 기준",
-          "term": "",
-          "termLabel": "상품별 조건",
+          "key": "clv-62457-60",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 60,
+          "monthly": 30000,
+          "card": null,
+          "gift": 90000,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
+        },
+        {
+          "key": "clv-62457-60",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 60,
+          "monthly": 34000,
+          "card": null,
+          "gift": 102000,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
+        },
+        {
+          "key": "clv-62457-60",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 60,
           "monthly": 26000,
-          "card": 13000,
-          "gift": null,
-          "care": "상품별 조건 상담 확인",
-          "sourceOption": "클로바렌탈 공개 최저가"
+          "card": null,
+          "gift": 78000,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
+        },
+        {
+          "key": "clv-62457-48",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 48,
+          "monthly": 35800,
+          "card": null,
+          "gift": 85920,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
+        },
+        {
+          "key": "clv-62457-48",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 48,
+          "monthly": 40500,
+          "card": null,
+          "gift": 97200,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
+        },
+        {
+          "key": "clv-62457-48",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 48,
+          "monthly": 31000,
+          "card": null,
+          "gift": 74400,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
+        },
+        {
+          "key": "clv-62457-36",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 36,
+          "monthly": 45600,
+          "card": null,
+          "gift": 82080,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
+        },
+        {
+          "key": "clv-62457-36",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 36,
+          "monthly": 51700,
+          "card": null,
+          "gift": 93060,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
+        },
+        {
+          "key": "clv-62457-36",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 36,
+          "monthly": 39500,
+          "card": null,
+          "gift": 71100,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
+        },
+        {
+          "key": "clv-62457-24",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 24,
+          "monthly": 65600,
+          "card": null,
+          "gift": 78720,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
+        },
+        {
+          "key": "clv-62457-24",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 24,
+          "monthly": 74400,
+          "card": null,
+          "gift": 89280,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
+        },
+        {
+          "key": "clv-62457-24",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 24,
+          "monthly": 56900,
+          "card": null,
+          "gift": 68280,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
+        },
+        {
+          "key": "clv-62457-12",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 12,
+          "monthly": 126000,
+          "card": null,
+          "gift": 75600,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
+        },
+        {
+          "key": "clv-62457-12",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 12,
+          "monthly": 142800,
+          "card": null,
+          "gift": 85680,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
+        },
+        {
+          "key": "clv-62457-12",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 12,
+          "monthly": 109200,
+          "card": null,
+          "gift": 65520,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
+        },
+        {
+          "key": "clv-128814-60",
+          "management": "supplier-스마트렌탈",
+          "managementLabel": "스마트렌탈",
+          "term": 60,
+          "monthly": 40100,
+          "card": null,
+          "gift": 108270,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "스마트렌탈"
+        },
+        {
+          "key": "clv-128814-60",
+          "management": "supplier-스마트렌탈",
+          "managementLabel": "스마트렌탈",
+          "term": 60,
+          "monthly": 35800,
+          "card": null,
+          "gift": 96660,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "스마트렌탈"
+        },
+        {
+          "key": "clv-128814-60",
+          "management": "supplier-스마트렌탈",
+          "managementLabel": "스마트렌탈",
+          "term": 60,
+          "monthly": 43900,
+          "card": null,
+          "gift": 118530,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "스마트렌탈"
+        },
+        {
+          "key": "clv-128814-48",
+          "management": "supplier-스마트렌탈",
+          "managementLabel": "스마트렌탈",
+          "term": 48,
+          "monthly": 46200,
+          "card": null,
+          "gift": 99792,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "스마트렌탈"
+        },
+        {
+          "key": "clv-128814-48",
+          "management": "supplier-스마트렌탈",
+          "managementLabel": "스마트렌탈",
+          "term": 48,
+          "monthly": 41300,
+          "card": null,
+          "gift": 89208,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "스마트렌탈"
+        },
+        {
+          "key": "clv-128814-48",
+          "management": "supplier-스마트렌탈",
+          "managementLabel": "스마트렌탈",
+          "term": 48,
+          "monthly": 50600,
+          "card": null,
+          "gift": 109296,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "스마트렌탈"
+        },
+        {
+          "key": "clv-128814-36",
+          "management": "supplier-스마트렌탈",
+          "managementLabel": "스마트렌탈",
+          "term": 36,
+          "monthly": 57200,
+          "card": null,
+          "gift": 92664,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "스마트렌탈"
+        },
+        {
+          "key": "clv-128814-36",
+          "management": "supplier-스마트렌탈",
+          "managementLabel": "스마트렌탈",
+          "term": 36,
+          "monthly": 51000,
+          "card": null,
+          "gift": 82620,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "스마트렌탈"
+        },
+        {
+          "key": "clv-128814-36",
+          "management": "supplier-스마트렌탈",
+          "managementLabel": "스마트렌탈",
+          "term": 36,
+          "monthly": 62500,
+          "card": null,
+          "gift": 101250,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "스마트렌탈"
+        },
+        {
+          "key": "clv-72124-60",
+          "management": "supplier-현대유버스",
+          "managementLabel": "현대유버스",
+          "term": 60,
+          "monthly": 44200,
+          "card": null,
+          "gift": 92820,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "현대유버스"
+        },
+        {
+          "key": "clv-72124-60",
+          "management": "supplier-현대유버스",
+          "managementLabel": "현대유버스",
+          "term": 60,
+          "monthly": 39600,
+          "card": null,
+          "gift": 83160,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "현대유버스"
+        },
+        {
+          "key": "clv-72124-60",
+          "management": "supplier-현대유버스",
+          "managementLabel": "현대유버스",
+          "term": 60,
+          "monthly": 48100,
+          "card": null,
+          "gift": 101010,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "현대유버스"
+        },
+        {
+          "key": "clv-72124-48",
+          "management": "supplier-현대유버스",
+          "managementLabel": "현대유버스",
+          "term": 48,
+          "monthly": 52300,
+          "card": null,
+          "gift": 87864,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "현대유버스"
+        },
+        {
+          "key": "clv-72124-48",
+          "management": "supplier-현대유버스",
+          "managementLabel": "현대유버스",
+          "term": 48,
+          "monthly": 46900,
+          "card": null,
+          "gift": 78792,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "현대유버스"
+        },
+        {
+          "key": "clv-72124-48",
+          "management": "supplier-현대유버스",
+          "managementLabel": "현대유버스",
+          "term": 48,
+          "monthly": 56900,
+          "card": null,
+          "gift": 95592,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "현대유버스"
+        },
+        {
+          "key": "clv-72124-36",
+          "management": "supplier-현대유버스",
+          "managementLabel": "현대유버스",
+          "term": 36,
+          "monthly": 65800,
+          "card": null,
+          "gift": 82908,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "현대유버스"
+        },
+        {
+          "key": "clv-72124-36",
+          "management": "supplier-현대유버스",
+          "managementLabel": "현대유버스",
+          "term": 36,
+          "monthly": 59100,
+          "card": null,
+          "gift": 74466,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "현대유버스"
+        },
+        {
+          "key": "clv-72124-36",
+          "management": "supplier-현대유버스",
+          "managementLabel": "현대유버스",
+          "term": 36,
+          "monthly": 71700,
+          "card": null,
+          "gift": 90342,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "현대유버스"
         }
       ],
       "sourceKind": "clover-import",
       "availability": "active",
-      "giftStatus": "unavailable",
+      "giftStatus": "available",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/230412/JxwEhU1YBNR1frlylvvAlketd6DW6P.jpg",
       "importedFrom": "https://m.clvrental777.com/"
     },
@@ -48988,33 +52013,385 @@
         "가구·침대",
         "인홈"
       ],
-      "promo": "클로바렌탈 공개 상품 기준 · 최종 접수 전 최신 조건 확인",
+      "promo": "렌탈사·약정기간별 월요금과 웅비렌탈 사은품을 비교해 보세요.",
       "shortDescription": "인홈 가구·침대 렌탈 상품입니다. 공개된 최저 월 렌탈료를 먼저 확인해 보세요.",
       "highlights": [
         "가구·침대",
         "최저 월 렌탈료 기준",
-        "최종 조건 상담 확인"
+        "최종 조건 상담 확인",
+        "렌탈사별 조건 비교"
       ],
       "manufacturer": "인홈",
-      "rentalCompany": "클로바렌탈몰",
+      "rentalCompany": "렌탈사별 비교",
       "detailImages": [],
       "options": [
         {
-          "key": "clover-min",
-          "management": "clover-lowest",
-          "managementLabel": "최저가 기준",
-          "term": "",
-          "termLabel": "상품별 조건",
+          "key": "clv-62397-60",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 60,
+          "monthly": 30000,
+          "card": null,
+          "gift": 90000,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
+        },
+        {
+          "key": "clv-62397-60",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 60,
+          "monthly": 32000,
+          "card": null,
+          "gift": 96000,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
+        },
+        {
+          "key": "clv-62397-60",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 60,
           "monthly": 28000,
-          "card": 15000,
-          "gift": null,
-          "care": "상품별 조건 상담 확인",
-          "sourceOption": "클로바렌탈 공개 최저가"
+          "card": null,
+          "gift": 84000,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
+        },
+        {
+          "key": "clv-62397-48",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 48,
+          "monthly": 35800,
+          "card": null,
+          "gift": 85920,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
+        },
+        {
+          "key": "clv-62397-48",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 48,
+          "monthly": 38100,
+          "card": null,
+          "gift": 91440,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
+        },
+        {
+          "key": "clv-62397-48",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 48,
+          "monthly": 33400,
+          "card": null,
+          "gift": 80160,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
+        },
+        {
+          "key": "clv-62397-36",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 36,
+          "monthly": 45600,
+          "card": null,
+          "gift": 82080,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
+        },
+        {
+          "key": "clv-62397-36",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 36,
+          "monthly": 48700,
+          "card": null,
+          "gift": 87660,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
+        },
+        {
+          "key": "clv-62397-36",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 36,
+          "monthly": 42600,
+          "card": null,
+          "gift": 76680,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
+        },
+        {
+          "key": "clv-62397-24",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 24,
+          "monthly": 65600,
+          "card": null,
+          "gift": 78720,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
+        },
+        {
+          "key": "clv-62397-24",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 24,
+          "monthly": 70000,
+          "card": null,
+          "gift": 84000,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
+        },
+        {
+          "key": "clv-62397-24",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 24,
+          "monthly": 61200,
+          "card": null,
+          "gift": 73440,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
+        },
+        {
+          "key": "clv-62397-12",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 12,
+          "monthly": 126000,
+          "card": null,
+          "gift": 75600,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
+        },
+        {
+          "key": "clv-62397-12",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 12,
+          "monthly": 134400,
+          "card": null,
+          "gift": 80640,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
+        },
+        {
+          "key": "clv-62397-12",
+          "management": "supplier-이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 12,
+          "monthly": 117600,
+          "card": null,
+          "gift": 70560,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "이니렌탈"
+        },
+        {
+          "key": "clv-128779-60",
+          "management": "supplier-스마트렌탈",
+          "managementLabel": "스마트렌탈",
+          "term": 60,
+          "monthly": 35300,
+          "card": null,
+          "gift": 95310,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "스마트렌탈"
+        },
+        {
+          "key": "clv-128779-60",
+          "management": "supplier-스마트렌탈",
+          "managementLabel": "스마트렌탈",
+          "term": 60,
+          "monthly": 36200,
+          "card": null,
+          "gift": 97740,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "스마트렌탈"
+        },
+        {
+          "key": "clv-128779-60",
+          "management": "supplier-스마트렌탈",
+          "managementLabel": "스마트렌탈",
+          "term": 60,
+          "monthly": 37200,
+          "card": null,
+          "gift": 100440,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "스마트렌탈"
+        },
+        {
+          "key": "clv-128779-48",
+          "management": "supplier-스마트렌탈",
+          "managementLabel": "스마트렌탈",
+          "term": 48,
+          "monthly": 40700,
+          "card": null,
+          "gift": 87912,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "스마트렌탈"
+        },
+        {
+          "key": "clv-128779-48",
+          "management": "supplier-스마트렌탈",
+          "managementLabel": "스마트렌탈",
+          "term": 48,
+          "monthly": 41700,
+          "card": null,
+          "gift": 90072,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "스마트렌탈"
+        },
+        {
+          "key": "clv-128779-48",
+          "management": "supplier-스마트렌탈",
+          "managementLabel": "스마트렌탈",
+          "term": 48,
+          "monthly": 42800,
+          "card": null,
+          "gift": 92448,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "스마트렌탈"
+        },
+        {
+          "key": "clv-128779-36",
+          "management": "supplier-스마트렌탈",
+          "managementLabel": "스마트렌탈",
+          "term": 36,
+          "monthly": 50300,
+          "card": null,
+          "gift": 81486,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "스마트렌탈"
+        },
+        {
+          "key": "clv-128779-36",
+          "management": "supplier-스마트렌탈",
+          "managementLabel": "스마트렌탈",
+          "term": 36,
+          "monthly": 51500,
+          "card": null,
+          "gift": 83430,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "스마트렌탈"
+        },
+        {
+          "key": "clv-128779-36",
+          "management": "supplier-스마트렌탈",
+          "managementLabel": "스마트렌탈",
+          "term": 36,
+          "monthly": 52900,
+          "card": null,
+          "gift": 85698,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "스마트렌탈"
+        },
+        {
+          "key": "clv-72049-60",
+          "management": "supplier-현대유버스",
+          "managementLabel": "현대유버스",
+          "term": 60,
+          "monthly": 39800,
+          "card": null,
+          "gift": 83580,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "현대유버스"
+        },
+        {
+          "key": "clv-72049-60",
+          "management": "supplier-현대유버스",
+          "managementLabel": "현대유버스",
+          "term": 60,
+          "monthly": 40900,
+          "card": null,
+          "gift": 85890,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "현대유버스"
+        },
+        {
+          "key": "clv-72049-60",
+          "management": "supplier-현대유버스",
+          "managementLabel": "현대유버스",
+          "term": 60,
+          "monthly": 42300,
+          "card": null,
+          "gift": 88830,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "현대유버스"
+        },
+        {
+          "key": "clv-72049-48",
+          "management": "supplier-현대유버스",
+          "managementLabel": "현대유버스",
+          "term": 48,
+          "monthly": 47100,
+          "card": null,
+          "gift": 79128,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "현대유버스"
+        },
+        {
+          "key": "clv-72049-48",
+          "management": "supplier-현대유버스",
+          "managementLabel": "현대유버스",
+          "term": 48,
+          "monthly": 48400,
+          "card": null,
+          "gift": 81312,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "현대유버스"
+        },
+        {
+          "key": "clv-72049-48",
+          "management": "supplier-현대유버스",
+          "managementLabel": "현대유버스",
+          "term": 48,
+          "monthly": 50000,
+          "card": null,
+          "gift": 84000,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "현대유버스"
+        },
+        {
+          "key": "clv-72049-36",
+          "management": "supplier-현대유버스",
+          "managementLabel": "현대유버스",
+          "term": 36,
+          "monthly": 59400,
+          "card": null,
+          "gift": 74844,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "현대유버스"
+        },
+        {
+          "key": "clv-72049-36",
+          "management": "supplier-현대유버스",
+          "managementLabel": "현대유버스",
+          "term": 36,
+          "monthly": 61000,
+          "card": null,
+          "gift": 76860,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "현대유버스"
+        },
+        {
+          "key": "clv-72049-36",
+          "management": "supplier-현대유버스",
+          "managementLabel": "현대유버스",
+          "term": 36,
+          "monthly": 63000,
+          "card": null,
+          "gift": 79380,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "현대유버스"
         }
       ],
       "sourceKind": "clover-import",
       "availability": "active",
-      "giftStatus": "unavailable",
+      "giftStatus": "available",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/230412/FH6gwkbWxLAtJuzBq2K7zywjWNgfFY.jpg",
       "importedFrom": "https://m.clvrental777.com/"
     },
@@ -49035,33 +52412,99 @@
         "가구·침대",
         "라클라우드"
       ],
-      "promo": "클로바렌탈 공개 상품 기준 · 최종 접수 전 최신 조건 확인",
+      "promo": "렌탈사·약정기간별 월요금과 웅비렌탈 사은품을 비교해 보세요.",
       "shortDescription": "라클라우드 가구·침대 렌탈 상품입니다. 공개된 최저 월 렌탈료를 먼저 확인해 보세요.",
       "highlights": [
         "가구·침대",
         "최저 월 렌탈료 기준",
-        "최종 조건 상담 확인"
+        "최종 조건 상담 확인",
+        "렌탈사별 조건 비교"
       ],
       "manufacturer": "라클라우드",
-      "rentalCompany": "클로바렌탈몰",
+      "rentalCompany": "렌탈사별 비교",
       "detailImages": [],
       "options": [
         {
-          "key": "clover-min",
-          "management": "clover-lowest",
-          "managementLabel": "최저가 기준",
-          "term": "",
-          "termLabel": "상품별 조건",
+          "key": "clv-128939-60",
+          "management": "supplier-스마트렌탈",
+          "managementLabel": "스마트렌탈",
+          "term": 60,
           "monthly": 55000,
-          "card": 30000,
-          "gift": null,
-          "care": "상품별 조건 상담 확인",
-          "sourceOption": "클로바렌탈 공개 최저가"
+          "card": null,
+          "gift": 148500,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "스마트렌탈"
+        },
+        {
+          "key": "clv-128939-48",
+          "management": "supplier-스마트렌탈",
+          "managementLabel": "스마트렌탈",
+          "term": 48,
+          "monthly": 64500,
+          "card": null,
+          "gift": 139320,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "스마트렌탈"
+        },
+        {
+          "key": "clv-128939-36",
+          "management": "supplier-스마트렌탈",
+          "managementLabel": "스마트렌탈",
+          "term": 36,
+          "monthly": 79500,
+          "card": null,
+          "gift": 128790,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "스마트렌탈"
+        },
+        {
+          "key": "clv-145546-60",
+          "management": "supplier-현대유버스",
+          "managementLabel": "현대유버스",
+          "term": 60,
+          "monthly": 56200,
+          "card": null,
+          "gift": 118020,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "현대유버스"
+        },
+        {
+          "key": "clv-145546-48",
+          "management": "supplier-현대유버스",
+          "managementLabel": "현대유버스",
+          "term": 48,
+          "monthly": 68700,
+          "card": null,
+          "gift": 115416,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "현대유버스"
+        },
+        {
+          "key": "clv-145546-36",
+          "management": "supplier-현대유버스",
+          "managementLabel": "현대유버스",
+          "term": 36,
+          "monthly": 86400,
+          "card": null,
+          "gift": 108864,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "현대유버스"
+        },
+        {
+          "key": "clv-108754-48",
+          "management": "supplier-bs-on",
+          "managementLabel": "BS ON",
+          "term": 48,
+          "monthly": 62000,
+          "card": null,
+          "gift": 104160,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "BS ON"
         }
       ],
       "sourceKind": "clover-import",
       "availability": "active",
-      "giftStatus": "unavailable",
+      "giftStatus": "available",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/250526/u73pxP1qDdjztuAeKvPhewsMVqSaKm.jpg",
       "importedFrom": "https://m.clvrental777.com/"
     },
@@ -49082,33 +52525,99 @@
         "가구·침대",
         "라클라우드"
       ],
-      "promo": "클로바렌탈 공개 상품 기준 · 최종 접수 전 최신 조건 확인",
+      "promo": "렌탈사·약정기간별 월요금과 웅비렌탈 사은품을 비교해 보세요.",
       "shortDescription": "라클라우드 가구·침대 렌탈 상품입니다. 공개된 최저 월 렌탈료를 먼저 확인해 보세요.",
       "highlights": [
         "가구·침대",
         "최저 월 렌탈료 기준",
-        "최종 조건 상담 확인"
+        "최종 조건 상담 확인",
+        "렌탈사별 조건 비교"
       ],
       "manufacturer": "라클라우드",
-      "rentalCompany": "클로바렌탈몰",
+      "rentalCompany": "렌탈사별 비교",
       "detailImages": [],
       "options": [
         {
-          "key": "clover-min",
-          "management": "clover-lowest",
-          "managementLabel": "최저가 기준",
-          "term": "",
-          "termLabel": "상품별 조건",
+          "key": "clv-128944-60",
+          "management": "supplier-스마트렌탈",
+          "managementLabel": "스마트렌탈",
+          "term": 60,
           "monthly": 61500,
-          "card": 36500,
-          "gift": null,
-          "care": "상품별 조건 상담 확인",
-          "sourceOption": "클로바렌탈 공개 최저가"
+          "card": null,
+          "gift": 166050,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "스마트렌탈"
+        },
+        {
+          "key": "clv-128944-48",
+          "management": "supplier-스마트렌탈",
+          "managementLabel": "스마트렌탈",
+          "term": 48,
+          "monthly": 72000,
+          "card": null,
+          "gift": 155520,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "스마트렌탈"
+        },
+        {
+          "key": "clv-128944-36",
+          "management": "supplier-스마트렌탈",
+          "managementLabel": "스마트렌탈",
+          "term": 36,
+          "monthly": 88500,
+          "card": null,
+          "gift": 143370,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "스마트렌탈"
+        },
+        {
+          "key": "clv-145551-60",
+          "management": "supplier-현대유버스",
+          "managementLabel": "현대유버스",
+          "term": 60,
+          "monthly": 62800,
+          "card": null,
+          "gift": 131880,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "현대유버스"
+        },
+        {
+          "key": "clv-145551-48",
+          "management": "supplier-현대유버스",
+          "managementLabel": "현대유버스",
+          "term": 48,
+          "monthly": 76700,
+          "card": null,
+          "gift": 128856,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "현대유버스"
+        },
+        {
+          "key": "clv-145551-36",
+          "management": "supplier-현대유버스",
+          "managementLabel": "현대유버스",
+          "term": 36,
+          "monthly": 96500,
+          "card": null,
+          "gift": 121590,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "현대유버스"
+        },
+        {
+          "key": "clv-108764-48",
+          "management": "supplier-bs-on",
+          "managementLabel": "BS ON",
+          "term": 48,
+          "monthly": 69000,
+          "card": null,
+          "gift": 115920,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "BS ON"
         }
       ],
       "sourceKind": "clover-import",
       "availability": "active",
-      "giftStatus": "unavailable",
+      "giftStatus": "available",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/250526/Shdfsh2TB9QLZt4hSdGUSDnNSdcrFL.jpg",
       "importedFrom": "https://m.clvrental777.com/"
     },
