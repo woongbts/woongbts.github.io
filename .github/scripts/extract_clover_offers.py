@@ -59,17 +59,25 @@ def extract(item):
 def main():
     data=json.loads(PRODUCTS.read_text(encoding="utf-8"))
     items=[p for p in data.get("products",[]) if p.get("sourceKind")=="clover-import"]
-    results={}
-    with ThreadPoolExecutor(max_workers=12) as ex:
-        futs={ex.submit(extract,p):p for p in items}
+    previous={}
+    if OUT.exists():
+        try:
+            previous=json.loads(OUT.read_text(encoding="utf-8")).get("items",{})
+        except Exception:
+            previous={}
+    results={k:v for k,v in previous.items() if isinstance(v,dict) and v.get("ok")}
+    pending=[p for p in items if not results.get(p.get("id"),{}).get("ok")]
+    with ThreadPoolExecutor(max_workers=8) as ex:
+        futs={ex.submit(extract,p):p for p in pending}
         done=0
         for fut in as_completed(futs):
             pid,res=fut.result()
-            results[pid]=res
+            if res.get("ok") or pid not in results:
+                results[pid]=res
             done+=1
-            if done%25==0:print("done",done,"/",len(items),flush=True)
+            if done%25==0:print("done",done,"/",len(pending),flush=True)
     ok=sum(1 for v in results.values() if v.get("ok"))
-    offers=sum(len(v.get("offers") or []) for v in results.values())
+    offers=sum(len(v.get("offers") or []) for v in results.values() if v.get("ok"))
     out={
         "generatedAt":"2026-10-03",
         "source":"m.clvrental777.com public comparison pages",
