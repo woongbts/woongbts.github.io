@@ -5,6 +5,9 @@ on:
     branches: [main]
     paths:
       - 'rental/**'
+      - 'assets/analytics-config.js'
+      - 'assets/conversion-tracker.min.js'
+      - 'assets/site-analytics.min.js'
       - 'scripts/rental-mobile-smoke.cjs'
       - '.github/workflows/rental-mobile-smoke.yml'
   workflow_dispatch:
