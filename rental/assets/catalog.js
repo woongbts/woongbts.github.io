@@ -158,7 +158,7 @@
           <ul class="catalog-highlights">${highlights}</ul>
           <div class="catalog-prices">
             <div><small>월 렌탈료</small><strong>${minMonthly == null ? '상담 확인' : won(minMonthly) + '부터'}</strong></div>
-            <div class="gift"><small>웅비렌탈 사은품</small><strong>${maxGift == null ? '상담 확인' : '최대 ' + won(maxGift)}</strong></div>
+            <div class="gift"><small>고객사은품</small><strong>${maxGift == null ? '상담 확인' : '최대 ' + won(maxGift)}</strong></div>
           </div>
           <p class="promo">${product.promo || '최신 프로모션 상담 확인'}</p>
           <p class="catalog-meta">${managements || '상세 조건 확인'}</p>
@@ -236,7 +236,7 @@
           <h3>${product.name}</h3>
           <div class="recommend-prices">
             <span>월 ${minMonthly == null ? '상담 확인' : won(minMonthly) + '부터'}</span>
-            <strong>${maxGift == null ? '사은품 상담 확인' : '사은품 최대 ' + won(maxGift)}</strong>
+            <strong>${maxGift == null ? '고객사은품 상담 확인' : '고객사은품 최대 ' + won(maxGift)}</strong>
           </div>
           <a class="recommend-link" href="${product.page || '#'}">조건 보기 →</a>
         </div>
