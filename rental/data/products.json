@@ -28109,6 +28109,2403 @@
       "imageRepresentative": true,
       "imageRepresentativeSource": "https://dxjqoz29v7d9l.cloudfront.net/product-thumbnail/CO21-T-1.png",
       "imageRepresentativeMethod": "original"
+    },
+    {
+      "id": "clv-23052",
+      "sourceId": "23052",
+      "brand": "레이윙",
+      "name": "디스커버리 엔트리 PAS구동 접이식 전기자전거 월 렌탈료 25,700 원 카드할인시 12,700 원",
+      "model": "다이렉트",
+      "category": "레저·자동차",
+      "rawCategory": "레저·자동차",
+      "color": "",
+      "page": "https://m.clvrental777.com/model/compare.php?model_idx=23052&ca_id=010",
+      "image": "https://storage.bilrigo.com/data/thumbnails/240524/jy9FwcetDTz4QMAyLURwffUWtWuRYQ.jpg",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=23052&ca_id=010",
+      "tags": [
+        "레저·자동차",
+        "레저·자동차",
+        "레이윙"
+      ],
+      "promo": "클로바렌탈 공개 상품 기준 · 최종 접수 전 최신 조건 확인",
+      "shortDescription": "레이윙 레저·자동차 렌탈 상품입니다. 공개된 최저 월 렌탈료를 먼저 확인해 보세요.",
+      "highlights": [
+        "레저·자동차",
+        "최저 월 렌탈료 기준",
+        "최종 조건 상담 확인"
+      ],
+      "manufacturer": "레이윙",
+      "rentalCompany": "클로바렌탈몰",
+      "detailImages": [],
+      "options": [
+        {
+          "key": "clover-min",
+          "management": "clover-lowest",
+          "managementLabel": "최저가 기준",
+          "term": "",
+          "termLabel": "상품별 조건",
+          "monthly": 25700,
+          "card": 12700,
+          "gift": null,
+          "care": "상품별 조건 상담 확인",
+          "sourceOption": "클로바렌탈 공개 최저가"
+        }
+      ],
+      "sourceKind": "clover-import",
+      "availability": "active",
+      "giftStatus": "unavailable",
+      "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/240524/jy9FwcetDTz4QMAyLURwffUWtWuRYQ.jpg",
+      "importedFrom": "https://m.clvrental777.com/"
+    },
+    {
+      "id": "clv-13528",
+      "sourceId": "13528",
+      "brand": "모토벨로",
+      "name": "TX7 36V 5.2Ah 접이식 전기자전거 월 렌탈료 24,900 원 카드할인시 0 원",
+      "model": "",
+      "category": "레저·자동차",
+      "rawCategory": "레저·자동차",
+      "color": "",
+      "page": "https://m.clvrental777.com/model/compare.php?model_idx=13528&ca_id=010",
+      "image": "https://storage.bilrigo.com/data/thumbnails/230713/dlGxsrrMYvb5m24cVAZeRHFfqADTPU.jpg",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=13528&ca_id=010",
+      "tags": [
+        "레저·자동차",
+        "레저·자동차",
+        "모토벨로"
+      ],
+      "promo": "클로바렌탈 공개 상품 기준 · 최종 접수 전 최신 조건 확인",
+      "shortDescription": "모토벨로 레저·자동차 렌탈 상품입니다. 공개된 최저 월 렌탈료를 먼저 확인해 보세요.",
+      "highlights": [
+        "레저·자동차",
+        "최저 월 렌탈료 기준",
+        "최종 조건 상담 확인"
+      ],
+      "manufacturer": "모토벨로",
+      "rentalCompany": "클로바렌탈몰",
+      "detailImages": [],
+      "options": [
+        {
+          "key": "clover-min",
+          "management": "clover-lowest",
+          "managementLabel": "최저가 기준",
+          "term": "",
+          "termLabel": "상품별 조건",
+          "monthly": 24900,
+          "card": 0,
+          "gift": null,
+          "care": "상품별 조건 상담 확인",
+          "sourceOption": "클로바렌탈 공개 최저가"
+        }
+      ],
+      "sourceKind": "clover-import",
+      "availability": "active",
+      "giftStatus": "unavailable",
+      "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/230713/dlGxsrrMYvb5m24cVAZeRHFfqADTPU.jpg",
+      "importedFrom": "https://m.clvrental777.com/"
+    },
+    {
+      "id": "clv-5733",
+      "sourceId": "5733",
+      "brand": "롤랜드",
+      "name": "베이직 포터블 디지털 전자 피아노 (블랙) 월 렌탈료 33,900 원 카드할인시 8,900 원",
+      "model": "",
+      "category": "레저·자동차",
+      "rawCategory": "레저·자동차",
+      "color": "",
+      "page": "https://m.clvrental777.com/model/compare.php?model_idx=5733&ca_id=010",
+      "image": "https://storage.bilrigo.com/data/thumbnails/211026/HJ9TpBlPaN2rCfSBs5yD2d3nbNuVb6.jpg",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=5733&ca_id=010",
+      "tags": [
+        "레저·자동차",
+        "레저·자동차",
+        "롤랜드"
+      ],
+      "promo": "클로바렌탈 공개 상품 기준 · 최종 접수 전 최신 조건 확인",
+      "shortDescription": "롤랜드 레저·자동차 렌탈 상품입니다. 공개된 최저 월 렌탈료를 먼저 확인해 보세요.",
+      "highlights": [
+        "레저·자동차",
+        "최저 월 렌탈료 기준",
+        "최종 조건 상담 확인"
+      ],
+      "manufacturer": "롤랜드",
+      "rentalCompany": "클로바렌탈몰",
+      "detailImages": [],
+      "options": [
+        {
+          "key": "clover-min",
+          "management": "clover-lowest",
+          "managementLabel": "최저가 기준",
+          "term": "",
+          "termLabel": "상품별 조건",
+          "monthly": 33900,
+          "card": 8900,
+          "gift": null,
+          "care": "상품별 조건 상담 확인",
+          "sourceOption": "클로바렌탈 공개 최저가"
+        }
+      ],
+      "sourceKind": "clover-import",
+      "availability": "active",
+      "giftStatus": "unavailable",
+      "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/211026/HJ9TpBlPaN2rCfSBs5yD2d3nbNuVb6.jpg",
+      "importedFrom": "https://m.clvrental777.com/"
+    },
+    {
+      "id": "clv-8081",
+      "sourceId": "8081",
+      "brand": "아이캠퍼",
+      "name": "Skycamp 2.0 R 월 렌탈료 72,900 원 카드할인시 47,900 원",
+      "model": "",
+      "category": "레저·자동차",
+      "rawCategory": "레저·자동차",
+      "color": "",
+      "page": "https://m.clvrental777.com/model/compare.php?model_idx=8081&ca_id=010",
+      "image": "https://storage.bilrigo.com/data/thumbnails/220526/mlcGJ8qnHZHg6pAAA5KzlJkTjXR3GS.jpg",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=8081&ca_id=010",
+      "tags": [
+        "레저·자동차",
+        "레저·자동차",
+        "아이캠퍼"
+      ],
+      "promo": "클로바렌탈 공개 상품 기준 · 최종 접수 전 최신 조건 확인",
+      "shortDescription": "아이캠퍼 레저·자동차 렌탈 상품입니다. 공개된 최저 월 렌탈료를 먼저 확인해 보세요.",
+      "highlights": [
+        "레저·자동차",
+        "최저 월 렌탈료 기준",
+        "최종 조건 상담 확인"
+      ],
+      "manufacturer": "아이캠퍼",
+      "rentalCompany": "클로바렌탈몰",
+      "detailImages": [],
+      "options": [
+        {
+          "key": "clover-min",
+          "management": "clover-lowest",
+          "managementLabel": "최저가 기준",
+          "term": "",
+          "termLabel": "상품별 조건",
+          "monthly": 72900,
+          "card": 47900,
+          "gift": null,
+          "care": "상품별 조건 상담 확인",
+          "sourceOption": "클로바렌탈 공개 최저가"
+        }
+      ],
+      "sourceKind": "clover-import",
+      "availability": "active",
+      "giftStatus": "unavailable",
+      "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/220526/mlcGJ8qnHZHg6pAAA5KzlJkTjXR3GS.jpg",
+      "importedFrom": "https://m.clvrental777.com/"
+    },
+    {
+      "id": "clv-23052",
+      "sourceId": "23052",
+      "brand": "레이윙",
+      "name": "디스커버리 엔트리 PAS구동 접이식 전기자전거",
+      "model": "PAS20e10",
+      "category": "레저·자동차",
+      "rawCategory": "레저·자동차",
+      "color": "",
+      "page": "https://m.clvrental777.com/model/compare.php?model_idx=23052&ca_id=010",
+      "image": "https://storage.bilrigo.com/data/thumbnails/240524/jy9FwcetDTz4QMAyLURwffUWtWuRYQ.jpg",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=23052&ca_id=010",
+      "tags": [
+        "레저·자동차",
+        "레저·자동차",
+        "레이윙"
+      ],
+      "promo": "클로바렌탈 공개 상품 기준 · 최종 접수 전 최신 조건 확인",
+      "shortDescription": "레이윙 레저·자동차 렌탈 상품입니다. 공개된 최저 월 렌탈료를 먼저 확인해 보세요.",
+      "highlights": [
+        "레저·자동차",
+        "최저 월 렌탈료 기준",
+        "최종 조건 상담 확인"
+      ],
+      "manufacturer": "레이윙",
+      "rentalCompany": "클로바렌탈몰",
+      "detailImages": [],
+      "options": [
+        {
+          "key": "clover-min",
+          "management": "clover-lowest",
+          "managementLabel": "최저가 기준",
+          "term": "",
+          "termLabel": "상품별 조건",
+          "monthly": 25700,
+          "card": 12700,
+          "gift": null,
+          "care": "상품별 조건 상담 확인",
+          "sourceOption": "클로바렌탈 공개 최저가"
+        }
+      ],
+      "sourceKind": "clover-import",
+      "availability": "active",
+      "giftStatus": "unavailable",
+      "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/240524/jy9FwcetDTz4QMAyLURwffUWtWuRYQ.jpg",
+      "importedFrom": "https://m.clvrental777.com/"
+    },
+    {
+      "id": "clv-13528",
+      "sourceId": "13528",
+      "brand": "모토벨로",
+      "name": "TX7 36V 5.2Ah 접이식 전기자전거",
+      "model": "",
+      "category": "레저·자동차",
+      "rawCategory": "레저·자동차",
+      "color": "",
+      "page": "https://m.clvrental777.com/model/compare.php?model_idx=13528&ca_id=010",
+      "image": "https://storage.bilrigo.com/data/thumbnails/240524/jy9FwcetDTz4QMAyLURwffUWtWuRYQ.jpg",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=13528&ca_id=010",
+      "tags": [
+        "레저·자동차",
+        "레저·자동차",
+        "모토벨로"
+      ],
+      "promo": "클로바렌탈 공개 상품 기준 · 최종 접수 전 최신 조건 확인",
+      "shortDescription": "모토벨로 레저·자동차 렌탈 상품입니다. 공개된 최저 월 렌탈료를 먼저 확인해 보세요.",
+      "highlights": [
+        "레저·자동차",
+        "최저 월 렌탈료 기준",
+        "최종 조건 상담 확인"
+      ],
+      "manufacturer": "모토벨로",
+      "rentalCompany": "클로바렌탈몰",
+      "detailImages": [],
+      "options": [
+        {
+          "key": "clover-min",
+          "management": "clover-lowest",
+          "managementLabel": "최저가 기준",
+          "term": "",
+          "termLabel": "상품별 조건",
+          "monthly": 25700,
+          "card": 12700,
+          "gift": null,
+          "care": "상품별 조건 상담 확인",
+          "sourceOption": "클로바렌탈 공개 최저가"
+        }
+      ],
+      "sourceKind": "clover-import",
+      "availability": "active",
+      "giftStatus": "unavailable",
+      "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/240524/jy9FwcetDTz4QMAyLURwffUWtWuRYQ.jpg",
+      "importedFrom": "https://m.clvrental777.com/"
+    },
+    {
+      "id": "clv-5733",
+      "sourceId": "5733",
+      "brand": "롤랜드",
+      "name": "베이직 포터블 디지털 전자 피아노 (블랙)",
+      "model": "FP-10-BK",
+      "category": "레저·자동차",
+      "rawCategory": "레저·자동차",
+      "color": "",
+      "page": "https://m.clvrental777.com/model/compare.php?model_idx=5733&ca_id=010",
+      "image": "https://storage.bilrigo.com/data/thumbnails/240524/jy9FwcetDTz4QMAyLURwffUWtWuRYQ.jpg",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=5733&ca_id=010",
+      "tags": [
+        "레저·자동차",
+        "레저·자동차",
+        "롤랜드"
+      ],
+      "promo": "클로바렌탈 공개 상품 기준 · 최종 접수 전 최신 조건 확인",
+      "shortDescription": "롤랜드 레저·자동차 렌탈 상품입니다. 공개된 최저 월 렌탈료를 먼저 확인해 보세요.",
+      "highlights": [
+        "레저·자동차",
+        "최저 월 렌탈료 기준",
+        "최종 조건 상담 확인"
+      ],
+      "manufacturer": "롤랜드",
+      "rentalCompany": "클로바렌탈몰",
+      "detailImages": [],
+      "options": [
+        {
+          "key": "clover-min",
+          "management": "clover-lowest",
+          "managementLabel": "최저가 기준",
+          "term": "",
+          "termLabel": "상품별 조건",
+          "monthly": 25700,
+          "card": 12700,
+          "gift": null,
+          "care": "상품별 조건 상담 확인",
+          "sourceOption": "클로바렌탈 공개 최저가"
+        }
+      ],
+      "sourceKind": "clover-import",
+      "availability": "active",
+      "giftStatus": "unavailable",
+      "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/240524/jy9FwcetDTz4QMAyLURwffUWtWuRYQ.jpg",
+      "importedFrom": "https://m.clvrental777.com/"
+    },
+    {
+      "id": "clv-8081",
+      "sourceId": "8081",
+      "brand": "아이캠퍼",
+      "name": "Skycamp 2.0 R",
+      "model": "",
+      "category": "레저·자동차",
+      "rawCategory": "레저·자동차",
+      "color": "",
+      "page": "https://m.clvrental777.com/model/compare.php?model_idx=8081&ca_id=010",
+      "image": "https://storage.bilrigo.com/data/thumbnails/240524/jy9FwcetDTz4QMAyLURwffUWtWuRYQ.jpg",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=8081&ca_id=010",
+      "tags": [
+        "레저·자동차",
+        "레저·자동차",
+        "아이캠퍼"
+      ],
+      "promo": "클로바렌탈 공개 상품 기준 · 최종 접수 전 최신 조건 확인",
+      "shortDescription": "아이캠퍼 레저·자동차 렌탈 상품입니다. 공개된 최저 월 렌탈료를 먼저 확인해 보세요.",
+      "highlights": [
+        "레저·자동차",
+        "최저 월 렌탈료 기준",
+        "최종 조건 상담 확인"
+      ],
+      "manufacturer": "아이캠퍼",
+      "rentalCompany": "클로바렌탈몰",
+      "detailImages": [],
+      "options": [
+        {
+          "key": "clover-min",
+          "management": "clover-lowest",
+          "managementLabel": "최저가 기준",
+          "term": "",
+          "termLabel": "상품별 조건",
+          "monthly": 25700,
+          "card": 12700,
+          "gift": null,
+          "care": "상품별 조건 상담 확인",
+          "sourceOption": "클로바렌탈 공개 최저가"
+        }
+      ],
+      "sourceKind": "clover-import",
+      "availability": "active",
+      "giftStatus": "unavailable",
+      "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/240524/jy9FwcetDTz4QMAyLURwffUWtWuRYQ.jpg",
+      "importedFrom": "https://m.clvrental777.com/"
+    },
+    {
+      "id": "clv-7024",
+      "sourceId": "7024",
+      "brand": "롤랜드",
+      "name": "디지털 피아노 FP-30X (화이트)",
+      "model": "FP-30X_WA",
+      "category": "레저·자동차",
+      "rawCategory": "레저·자동차",
+      "color": "",
+      "page": "https://m.clvrental777.com/model/compare.php?model_idx=7024&ca_id=010",
+      "image": "https://storage.bilrigo.com/data/thumbnails/240524/jy9FwcetDTz4QMAyLURwffUWtWuRYQ.jpg",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=7024&ca_id=010",
+      "tags": [
+        "레저·자동차",
+        "레저·자동차",
+        "롤랜드"
+      ],
+      "promo": "클로바렌탈 공개 상품 기준 · 최종 접수 전 최신 조건 확인",
+      "shortDescription": "롤랜드 레저·자동차 렌탈 상품입니다. 공개된 최저 월 렌탈료를 먼저 확인해 보세요.",
+      "highlights": [
+        "레저·자동차",
+        "최저 월 렌탈료 기준",
+        "최종 조건 상담 확인"
+      ],
+      "manufacturer": "롤랜드",
+      "rentalCompany": "클로바렌탈몰",
+      "detailImages": [],
+      "options": [
+        {
+          "key": "clover-min",
+          "management": "clover-lowest",
+          "managementLabel": "최저가 기준",
+          "term": "",
+          "termLabel": "상품별 조건",
+          "monthly": 25700,
+          "card": 12700,
+          "gift": null,
+          "care": "상품별 조건 상담 확인",
+          "sourceOption": "클로바렌탈 공개 최저가"
+        }
+      ],
+      "sourceKind": "clover-import",
+      "availability": "active",
+      "giftStatus": "unavailable",
+      "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/240524/jy9FwcetDTz4QMAyLURwffUWtWuRYQ.jpg",
+      "importedFrom": "https://m.clvrental777.com/"
+    },
+    {
+      "id": "clv-7023",
+      "sourceId": "7023",
+      "brand": "롤랜드",
+      "name": "디지털 피아노 FP-30X (블랙)",
+      "model": "FP-30X_BK",
+      "category": "레저·자동차",
+      "rawCategory": "레저·자동차",
+      "color": "",
+      "page": "https://m.clvrental777.com/model/compare.php?model_idx=7023&ca_id=010",
+      "image": "https://storage.bilrigo.com/data/thumbnails/240524/jy9FwcetDTz4QMAyLURwffUWtWuRYQ.jpg",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=7023&ca_id=010",
+      "tags": [
+        "레저·자동차",
+        "레저·자동차",
+        "롤랜드"
+      ],
+      "promo": "클로바렌탈 공개 상품 기준 · 최종 접수 전 최신 조건 확인",
+      "shortDescription": "롤랜드 레저·자동차 렌탈 상품입니다. 공개된 최저 월 렌탈료를 먼저 확인해 보세요.",
+      "highlights": [
+        "레저·자동차",
+        "최저 월 렌탈료 기준",
+        "최종 조건 상담 확인"
+      ],
+      "manufacturer": "롤랜드",
+      "rentalCompany": "클로바렌탈몰",
+      "detailImages": [],
+      "options": [
+        {
+          "key": "clover-min",
+          "management": "clover-lowest",
+          "managementLabel": "최저가 기준",
+          "term": "",
+          "termLabel": "상품별 조건",
+          "monthly": 25700,
+          "card": 12700,
+          "gift": null,
+          "care": "상품별 조건 상담 확인",
+          "sourceOption": "클로바렌탈 공개 최저가"
+        }
+      ],
+      "sourceKind": "clover-import",
+      "availability": "active",
+      "giftStatus": "unavailable",
+      "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/240524/jy9FwcetDTz4QMAyLURwffUWtWuRYQ.jpg",
+      "importedFrom": "https://m.clvrental777.com/"
+    },
+    {
+      "id": "clv-10998",
+      "sourceId": "10998",
+      "brand": "셀렉프로",
+      "name": "차량용 청소기 (화이트)",
+      "model": "A3-PRO_W",
+      "category": "레저·자동차",
+      "rawCategory": "레저·자동차",
+      "color": "",
+      "page": "https://m.clvrental777.com/model/compare.php?model_idx=10998&ca_id=010",
+      "image": "https://storage.bilrigo.com/data/thumbnails/240524/jy9FwcetDTz4QMAyLURwffUWtWuRYQ.jpg",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=10998&ca_id=010",
+      "tags": [
+        "레저·자동차",
+        "레저·자동차",
+        "셀렉프로"
+      ],
+      "promo": "클로바렌탈 공개 상품 기준 · 최종 접수 전 최신 조건 확인",
+      "shortDescription": "셀렉프로 레저·자동차 렌탈 상품입니다. 공개된 최저 월 렌탈료를 먼저 확인해 보세요.",
+      "highlights": [
+        "레저·자동차",
+        "최저 월 렌탈료 기준",
+        "최종 조건 상담 확인"
+      ],
+      "manufacturer": "셀렉프로",
+      "rentalCompany": "클로바렌탈몰",
+      "detailImages": [],
+      "options": [
+        {
+          "key": "clover-min",
+          "management": "clover-lowest",
+          "managementLabel": "최저가 기준",
+          "term": "",
+          "termLabel": "상품별 조건",
+          "monthly": 25700,
+          "card": 12700,
+          "gift": null,
+          "care": "상품별 조건 상담 확인",
+          "sourceOption": "클로바렌탈 공개 최저가"
+        }
+      ],
+      "sourceKind": "clover-import",
+      "availability": "active",
+      "giftStatus": "unavailable",
+      "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/240524/jy9FwcetDTz4QMAyLURwffUWtWuRYQ.jpg",
+      "importedFrom": "https://m.clvrental777.com/"
+    },
+    {
+      "id": "clv-10997",
+      "sourceId": "10997",
+      "brand": "셀렉프로",
+      "name": "차량용 청소기 (네이비)",
+      "model": "A3-PRO_N",
+      "category": "레저·자동차",
+      "rawCategory": "레저·자동차",
+      "color": "",
+      "page": "https://m.clvrental777.com/model/compare.php?model_idx=10997&ca_id=010",
+      "image": "https://storage.bilrigo.com/data/thumbnails/240524/jy9FwcetDTz4QMAyLURwffUWtWuRYQ.jpg",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=10997&ca_id=010",
+      "tags": [
+        "레저·자동차",
+        "레저·자동차",
+        "셀렉프로"
+      ],
+      "promo": "클로바렌탈 공개 상품 기준 · 최종 접수 전 최신 조건 확인",
+      "shortDescription": "셀렉프로 레저·자동차 렌탈 상품입니다. 공개된 최저 월 렌탈료를 먼저 확인해 보세요.",
+      "highlights": [
+        "레저·자동차",
+        "최저 월 렌탈료 기준",
+        "최종 조건 상담 확인"
+      ],
+      "manufacturer": "셀렉프로",
+      "rentalCompany": "클로바렌탈몰",
+      "detailImages": [],
+      "options": [
+        {
+          "key": "clover-min",
+          "management": "clover-lowest",
+          "managementLabel": "최저가 기준",
+          "term": "",
+          "termLabel": "상품별 조건",
+          "monthly": 25700,
+          "card": 12700,
+          "gift": null,
+          "care": "상품별 조건 상담 확인",
+          "sourceOption": "클로바렌탈 공개 최저가"
+        }
+      ],
+      "sourceKind": "clover-import",
+      "availability": "active",
+      "giftStatus": "unavailable",
+      "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/240524/jy9FwcetDTz4QMAyLURwffUWtWuRYQ.jpg",
+      "importedFrom": "https://m.clvrental777.com/"
+    },
+    {
+      "id": "clv-10996",
+      "sourceId": "10996",
+      "brand": "셀렉프로",
+      "name": "차량용 청소기 (화이트) + 차량용 청소기 (네이비)",
+      "model": "A3-PRO(SET)",
+      "category": "레저·자동차",
+      "rawCategory": "레저·자동차",
+      "color": "",
+      "page": "https://m.clvrental777.com/model/compare.php?model_idx=10996&ca_id=010",
+      "image": "https://storage.bilrigo.com/data/thumbnails/240524/jy9FwcetDTz4QMAyLURwffUWtWuRYQ.jpg",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=10996&ca_id=010",
+      "tags": [
+        "레저·자동차",
+        "레저·자동차",
+        "셀렉프로"
+      ],
+      "promo": "클로바렌탈 공개 상품 기준 · 최종 접수 전 최신 조건 확인",
+      "shortDescription": "셀렉프로 레저·자동차 렌탈 상품입니다. 공개된 최저 월 렌탈료를 먼저 확인해 보세요.",
+      "highlights": [
+        "레저·자동차",
+        "최저 월 렌탈료 기준",
+        "최종 조건 상담 확인"
+      ],
+      "manufacturer": "셀렉프로",
+      "rentalCompany": "클로바렌탈몰",
+      "detailImages": [],
+      "options": [
+        {
+          "key": "clover-min",
+          "management": "clover-lowest",
+          "managementLabel": "최저가 기준",
+          "term": "",
+          "termLabel": "상품별 조건",
+          "monthly": 25700,
+          "card": 12700,
+          "gift": null,
+          "care": "상품별 조건 상담 확인",
+          "sourceOption": "클로바렌탈 공개 최저가"
+        }
+      ],
+      "sourceKind": "clover-import",
+      "availability": "active",
+      "giftStatus": "unavailable",
+      "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/240524/jy9FwcetDTz4QMAyLURwffUWtWuRYQ.jpg",
+      "importedFrom": "https://m.clvrental777.com/"
+    },
+    {
+      "id": "clv-13509",
+      "sourceId": "13509",
+      "brand": "모토벨로",
+      "name": "A9 프로 48V 15Ah 전동스쿠터 (블랙)",
+      "model": "",
+      "category": "레저·자동차",
+      "rawCategory": "레저·자동차",
+      "color": "",
+      "page": "https://m.clvrental777.com/model/compare.php?model_idx=13509&ca_id=010",
+      "image": "https://storage.bilrigo.com/data/thumbnails/240524/jy9FwcetDTz4QMAyLURwffUWtWuRYQ.jpg",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=13509&ca_id=010",
+      "tags": [
+        "레저·자동차",
+        "레저·자동차",
+        "모토벨로"
+      ],
+      "promo": "클로바렌탈 공개 상품 기준 · 최종 접수 전 최신 조건 확인",
+      "shortDescription": "모토벨로 레저·자동차 렌탈 상품입니다. 공개된 최저 월 렌탈료를 먼저 확인해 보세요.",
+      "highlights": [
+        "레저·자동차",
+        "최저 월 렌탈료 기준",
+        "최종 조건 상담 확인"
+      ],
+      "manufacturer": "모토벨로",
+      "rentalCompany": "클로바렌탈몰",
+      "detailImages": [],
+      "options": [
+        {
+          "key": "clover-min",
+          "management": "clover-lowest",
+          "managementLabel": "최저가 기준",
+          "term": "",
+          "termLabel": "상품별 조건",
+          "monthly": 25700,
+          "card": 12700,
+          "gift": null,
+          "care": "상품별 조건 상담 확인",
+          "sourceOption": "클로바렌탈 공개 최저가"
+        }
+      ],
+      "sourceKind": "clover-import",
+      "availability": "active",
+      "giftStatus": "unavailable",
+      "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/240524/jy9FwcetDTz4QMAyLURwffUWtWuRYQ.jpg",
+      "importedFrom": "https://m.clvrental777.com/"
+    },
+    {
+      "id": "clv-12648",
+      "sourceId": "12648",
+      "brand": "레이윙",
+      "name": "디스커버리 와일드 S20 28A 전기 전동스쿠터",
+      "model": "S20_28A",
+      "category": "레저·자동차",
+      "rawCategory": "레저·자동차",
+      "color": "",
+      "page": "https://m.clvrental777.com/model/compare.php?model_idx=12648&ca_id=010",
+      "image": "https://storage.bilrigo.com/data/thumbnails/240524/jy9FwcetDTz4QMAyLURwffUWtWuRYQ.jpg",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=12648&ca_id=010",
+      "tags": [
+        "레저·자동차",
+        "레저·자동차",
+        "레이윙"
+      ],
+      "promo": "클로바렌탈 공개 상품 기준 · 최종 접수 전 최신 조건 확인",
+      "shortDescription": "레이윙 레저·자동차 렌탈 상품입니다. 공개된 최저 월 렌탈료를 먼저 확인해 보세요.",
+      "highlights": [
+        "레저·자동차",
+        "최저 월 렌탈료 기준",
+        "최종 조건 상담 확인"
+      ],
+      "manufacturer": "레이윙",
+      "rentalCompany": "클로바렌탈몰",
+      "detailImages": [],
+      "options": [
+        {
+          "key": "clover-min",
+          "management": "clover-lowest",
+          "managementLabel": "최저가 기준",
+          "term": "",
+          "termLabel": "상품별 조건",
+          "monthly": 25700,
+          "card": 12700,
+          "gift": null,
+          "care": "상품별 조건 상담 확인",
+          "sourceOption": "클로바렌탈 공개 최저가"
+        }
+      ],
+      "sourceKind": "clover-import",
+      "availability": "active",
+      "giftStatus": "unavailable",
+      "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/240524/jy9FwcetDTz4QMAyLURwffUWtWuRYQ.jpg",
+      "importedFrom": "https://m.clvrental777.com/"
+    },
+    {
+      "id": "clv-12646",
+      "sourceId": "12646",
+      "brand": "레이윙",
+      "name": "디스커버리 와일드 S20 16A 전기 전동스쿠터",
+      "model": "S20_16A",
+      "category": "레저·자동차",
+      "rawCategory": "레저·자동차",
+      "color": "",
+      "page": "https://m.clvrental777.com/model/compare.php?model_idx=12646&ca_id=010",
+      "image": "https://storage.bilrigo.com/data/thumbnails/240524/jy9FwcetDTz4QMAyLURwffUWtWuRYQ.jpg",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=12646&ca_id=010",
+      "tags": [
+        "레저·자동차",
+        "레저·자동차",
+        "레이윙"
+      ],
+      "promo": "클로바렌탈 공개 상품 기준 · 최종 접수 전 최신 조건 확인",
+      "shortDescription": "레이윙 레저·자동차 렌탈 상품입니다. 공개된 최저 월 렌탈료를 먼저 확인해 보세요.",
+      "highlights": [
+        "레저·자동차",
+        "최저 월 렌탈료 기준",
+        "최종 조건 상담 확인"
+      ],
+      "manufacturer": "레이윙",
+      "rentalCompany": "클로바렌탈몰",
+      "detailImages": [],
+      "options": [
+        {
+          "key": "clover-min",
+          "management": "clover-lowest",
+          "managementLabel": "최저가 기준",
+          "term": "",
+          "termLabel": "상품별 조건",
+          "monthly": 25700,
+          "card": 12700,
+          "gift": null,
+          "care": "상품별 조건 상담 확인",
+          "sourceOption": "클로바렌탈 공개 최저가"
+        }
+      ],
+      "sourceKind": "clover-import",
+      "availability": "active",
+      "giftStatus": "unavailable",
+      "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/240524/jy9FwcetDTz4QMAyLURwffUWtWuRYQ.jpg",
+      "importedFrom": "https://m.clvrental777.com/"
+    },
+    {
+      "id": "clv-36320",
+      "sourceId": "36320",
+      "brand": "삼성",
+      "name": "AI Q9000 2in1 에어컨 17평형+6평형 (화이트) 월 렌탈료 54,000 원 카드할인시 30,000 원",
+      "model": "",
+      "category": "에어컨·청소기",
+      "rawCategory": "에어컨·청소기",
+      "color": "",
+      "page": "https://m.clvrental777.com/model/compare.php?model_idx=36320&ca_id=043",
+      "image": "https://storage.bilrigo.com/data/thumbnails/251202/KDtjLS3ptJBURAYWjn47ge3Rvgx9wB.jpg",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=36320&ca_id=043",
+      "tags": [
+        "에어컨·청소기",
+        "에어컨·청소기",
+        "삼성"
+      ],
+      "promo": "클로바렌탈 공개 상품 기준 · 최종 접수 전 최신 조건 확인",
+      "shortDescription": "삼성 에어컨·청소기 렌탈 상품입니다. 공개된 최저 월 렌탈료를 먼저 확인해 보세요.",
+      "highlights": [
+        "에어컨·청소기",
+        "최저 월 렌탈료 기준",
+        "최종 조건 상담 확인"
+      ],
+      "manufacturer": "삼성",
+      "rentalCompany": "클로바렌탈몰",
+      "detailImages": [],
+      "options": [
+        {
+          "key": "clover-min",
+          "management": "clover-lowest",
+          "managementLabel": "최저가 기준",
+          "term": "",
+          "termLabel": "상품별 조건",
+          "monthly": 54000,
+          "card": 30000,
+          "gift": null,
+          "care": "상품별 조건 상담 확인",
+          "sourceOption": "클로바렌탈 공개 최저가"
+        }
+      ],
+      "sourceKind": "clover-import",
+      "availability": "active",
+      "giftStatus": "unavailable",
+      "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/251202/KDtjLS3ptJBURAYWjn47ge3Rvgx9wB.jpg",
+      "importedFrom": "https://m.clvrental777.com/"
+    },
+    {
+      "id": "clv-58159",
+      "sourceId": "58159",
+      "brand": "LG",
+      "name": "휘센 AI 오브제컬렉션 위너 1시리즈 2in1 에어컨 18평형+6평형 (크림 화이트) 월 렌탈료 64,500 원 카드할인시 39,500 원",
+      "model": "",
+      "category": "에어컨·청소기",
+      "rawCategory": "에어컨·청소기",
+      "color": "",
+      "page": "https://m.clvrental777.com/model/compare.php?model_idx=58159&ca_id=043",
+      "image": "https://storage.bilrigo.com/data/thumbnails/260608/3xLSHvGx7b9kXp4g1KdELXgX6qMppM.jpg",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=58159&ca_id=043",
+      "tags": [
+        "에어컨·청소기",
+        "에어컨·청소기",
+        "LG"
+      ],
+      "promo": "클로바렌탈 공개 상품 기준 · 최종 접수 전 최신 조건 확인",
+      "shortDescription": "LG 에어컨·청소기 렌탈 상품입니다. 공개된 최저 월 렌탈료를 먼저 확인해 보세요.",
+      "highlights": [
+        "에어컨·청소기",
+        "최저 월 렌탈료 기준",
+        "최종 조건 상담 확인"
+      ],
+      "manufacturer": "LG",
+      "rentalCompany": "클로바렌탈몰",
+      "detailImages": [],
+      "options": [
+        {
+          "key": "clover-min",
+          "management": "clover-lowest",
+          "managementLabel": "최저가 기준",
+          "term": "",
+          "termLabel": "상품별 조건",
+          "monthly": 64500,
+          "card": 39500,
+          "gift": null,
+          "care": "상품별 조건 상담 확인",
+          "sourceOption": "클로바렌탈 공개 최저가"
+        }
+      ],
+      "sourceKind": "clover-import",
+      "availability": "active",
+      "giftStatus": "unavailable",
+      "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/260608/3xLSHvGx7b9kXp4g1KdELXgX6qMppM.jpg",
+      "importedFrom": "https://m.clvrental777.com/"
+    },
+    {
+      "id": "clv-55935",
+      "sourceId": "55935",
+      "brand": "삼성",
+      "name": "[현장] 비스포크 AI 2in1 에어컨 17평형+6평형 (메탈 화이트) 월 렌탈료 66,900 원 카드할인시 42,900 원",
+      "model": "",
+      "category": "에어컨·청소기",
+      "rawCategory": "에어컨·청소기",
+      "color": "",
+      "page": "https://m.clvrental777.com/model/compare.php?model_idx=55935&ca_id=043",
+      "image": "https://storage.bilrigo.com/data/thumbnails/260608/3xLSHvGx7b9kXp4g1KdELXgX6qMppM.jpg",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=55935&ca_id=043",
+      "tags": [
+        "에어컨·청소기",
+        "에어컨·청소기",
+        "삼성"
+      ],
+      "promo": "클로바렌탈 공개 상품 기준 · 최종 접수 전 최신 조건 확인",
+      "shortDescription": "삼성 에어컨·청소기 렌탈 상품입니다. 공개된 최저 월 렌탈료를 먼저 확인해 보세요.",
+      "highlights": [
+        "에어컨·청소기",
+        "최저 월 렌탈료 기준",
+        "최종 조건 상담 확인"
+      ],
+      "manufacturer": "삼성",
+      "rentalCompany": "클로바렌탈몰",
+      "detailImages": [],
+      "options": [
+        {
+          "key": "clover-min",
+          "management": "clover-lowest",
+          "managementLabel": "최저가 기준",
+          "term": "",
+          "termLabel": "상품별 조건",
+          "monthly": 64500,
+          "card": 39500,
+          "gift": null,
+          "care": "상품별 조건 상담 확인",
+          "sourceOption": "클로바렌탈 공개 최저가"
+        }
+      ],
+      "sourceKind": "clover-import",
+      "availability": "active",
+      "giftStatus": "unavailable",
+      "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/260608/3xLSHvGx7b9kXp4g1KdELXgX6qMppM.jpg",
+      "importedFrom": "https://m.clvrental777.com/"
+    },
+    {
+      "id": "clv-35750",
+      "sourceId": "35750",
+      "brand": "삼성",
+      "name": "Q9000 스탠드 에어컨 17평형 (화이트) 월 렌탈료 40,800 원 카드할인시 16,800 원",
+      "model": "",
+      "category": "에어컨·청소기",
+      "rawCategory": "에어컨·청소기",
+      "color": "",
+      "page": "https://m.clvrental777.com/model/compare.php?model_idx=35750&ca_id=043",
+      "image": "https://storage.bilrigo.com/data/thumbnails/251127/btbkvqbD9hF8PDSMLtWejbSPajHj95.jpg",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=35750&ca_id=043",
+      "tags": [
+        "에어컨·청소기",
+        "에어컨·청소기",
+        "삼성"
+      ],
+      "promo": "클로바렌탈 공개 상품 기준 · 최종 접수 전 최신 조건 확인",
+      "shortDescription": "삼성 에어컨·청소기 렌탈 상품입니다. 공개된 최저 월 렌탈료를 먼저 확인해 보세요.",
+      "highlights": [
+        "에어컨·청소기",
+        "최저 월 렌탈료 기준",
+        "최종 조건 상담 확인"
+      ],
+      "manufacturer": "삼성",
+      "rentalCompany": "클로바렌탈몰",
+      "detailImages": [],
+      "options": [
+        {
+          "key": "clover-min",
+          "management": "clover-lowest",
+          "managementLabel": "최저가 기준",
+          "term": "",
+          "termLabel": "상품별 조건",
+          "monthly": 40800,
+          "card": 16800,
+          "gift": null,
+          "care": "상품별 조건 상담 확인",
+          "sourceOption": "클로바렌탈 공개 최저가"
+        }
+      ],
+      "sourceKind": "clover-import",
+      "availability": "active",
+      "giftStatus": "unavailable",
+      "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/251127/btbkvqbD9hF8PDSMLtWejbSPajHj95.jpg",
+      "importedFrom": "https://m.clvrental777.com/"
+    },
+    {
+      "id": "clv-35755",
+      "sourceId": "35755",
+      "brand": "삼성",
+      "name": "Q9000 스탠드 에어컨 19평형 (화이트) 월 렌탈료 52,800 원 카드할인시 27,800 원",
+      "model": "",
+      "category": "에어컨·청소기",
+      "rawCategory": "에어컨·청소기",
+      "color": "",
+      "page": "https://m.clvrental777.com/model/compare.php?model_idx=35755&ca_id=043",
+      "image": "https://storage.bilrigo.com/data/thumbnails/251127/btbkvqbD9hF8PDSMLtWejbSPajHj95.jpg",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=35755&ca_id=043",
+      "tags": [
+        "에어컨·청소기",
+        "에어컨·청소기",
+        "삼성"
+      ],
+      "promo": "클로바렌탈 공개 상품 기준 · 최종 접수 전 최신 조건 확인",
+      "shortDescription": "삼성 에어컨·청소기 렌탈 상품입니다. 공개된 최저 월 렌탈료를 먼저 확인해 보세요.",
+      "highlights": [
+        "에어컨·청소기",
+        "최저 월 렌탈료 기준",
+        "최종 조건 상담 확인"
+      ],
+      "manufacturer": "삼성",
+      "rentalCompany": "클로바렌탈몰",
+      "detailImages": [],
+      "options": [
+        {
+          "key": "clover-min",
+          "management": "clover-lowest",
+          "managementLabel": "최저가 기준",
+          "term": "",
+          "termLabel": "상품별 조건",
+          "monthly": 40800,
+          "card": 16800,
+          "gift": null,
+          "care": "상품별 조건 상담 확인",
+          "sourceOption": "클로바렌탈 공개 최저가"
+        }
+      ],
+      "sourceKind": "clover-import",
+      "availability": "active",
+      "giftStatus": "unavailable",
+      "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/251127/btbkvqbD9hF8PDSMLtWejbSPajHj95.jpg",
+      "importedFrom": "https://m.clvrental777.com/"
+    },
+    {
+      "id": "clv-35925",
+      "sourceId": "35925",
+      "brand": "삼성",
+      "name": "AI Q9000 스탠드 에어컨 19평형 (화이트/베이지) 월 렌탈료 52,800 원 카드할인시 27,800 원",
+      "model": "",
+      "category": "에어컨·청소기",
+      "rawCategory": "에어컨·청소기",
+      "color": "",
+      "page": "https://m.clvrental777.com/model/compare.php?model_idx=35925&ca_id=043",
+      "image": "https://storage.bilrigo.com/data/thumbnails/251127/aDk1PSQqsngWE6LRmecvHv5l1aZZWX.jpg",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=35925&ca_id=043",
+      "tags": [
+        "에어컨·청소기",
+        "에어컨·청소기",
+        "삼성"
+      ],
+      "promo": "클로바렌탈 공개 상품 기준 · 최종 접수 전 최신 조건 확인",
+      "shortDescription": "삼성 에어컨·청소기 렌탈 상품입니다. 공개된 최저 월 렌탈료를 먼저 확인해 보세요.",
+      "highlights": [
+        "에어컨·청소기",
+        "최저 월 렌탈료 기준",
+        "최종 조건 상담 확인"
+      ],
+      "manufacturer": "삼성",
+      "rentalCompany": "클로바렌탈몰",
+      "detailImages": [],
+      "options": [
+        {
+          "key": "clover-min",
+          "management": "clover-lowest",
+          "managementLabel": "최저가 기준",
+          "term": "",
+          "termLabel": "상품별 조건",
+          "monthly": 52800,
+          "card": 27800,
+          "gift": null,
+          "care": "상품별 조건 상담 확인",
+          "sourceOption": "클로바렌탈 공개 최저가"
+        }
+      ],
+      "sourceKind": "clover-import",
+      "availability": "active",
+      "giftStatus": "unavailable",
+      "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/251127/aDk1PSQqsngWE6LRmecvHv5l1aZZWX.jpg",
+      "importedFrom": "https://m.clvrental777.com/"
+    },
+    {
+      "id": "clv-35765",
+      "sourceId": "35765",
+      "brand": "삼성",
+      "name": "비스포크 AI 스탠드 에어컨 17평형 (메탈 화이트) 월 렌탈료 54,200 원 카드할인시 0 원",
+      "model": "",
+      "category": "에어컨·청소기",
+      "rawCategory": "에어컨·청소기",
+      "color": "",
+      "page": "https://m.clvrental777.com/model/compare.php?model_idx=35765&ca_id=043",
+      "image": "https://storage.bilrigo.com/data/thumbnails/251127/aDk1PSQqsngWE6LRmecvHv5l1aZZWX.jpg",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=35765&ca_id=043",
+      "tags": [
+        "에어컨·청소기",
+        "에어컨·청소기",
+        "삼성"
+      ],
+      "promo": "클로바렌탈 공개 상품 기준 · 최종 접수 전 최신 조건 확인",
+      "shortDescription": "삼성 에어컨·청소기 렌탈 상품입니다. 공개된 최저 월 렌탈료를 먼저 확인해 보세요.",
+      "highlights": [
+        "에어컨·청소기",
+        "최저 월 렌탈료 기준",
+        "최종 조건 상담 확인"
+      ],
+      "manufacturer": "삼성",
+      "rentalCompany": "클로바렌탈몰",
+      "detailImages": [],
+      "options": [
+        {
+          "key": "clover-min",
+          "management": "clover-lowest",
+          "managementLabel": "최저가 기준",
+          "term": "",
+          "termLabel": "상품별 조건",
+          "monthly": 52800,
+          "card": 27800,
+          "gift": null,
+          "care": "상품별 조건 상담 확인",
+          "sourceOption": "클로바렌탈 공개 최저가"
+        }
+      ],
+      "sourceKind": "clover-import",
+      "availability": "active",
+      "giftStatus": "unavailable",
+      "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/251127/aDk1PSQqsngWE6LRmecvHv5l1aZZWX.jpg",
+      "importedFrom": "https://m.clvrental777.com/"
+    },
+    {
+      "id": "clv-21916",
+      "sourceId": "21916",
+      "brand": "삼성",
+      "name": "벽걸이 에어컨 6평형 (화이트) 월 렌탈료 18,300 원 카드할인시 0 원",
+      "model": "",
+      "category": "에어컨·청소기",
+      "rawCategory": "에어컨·청소기",
+      "color": "",
+      "page": "https://m.clvrental777.com/model/compare.php?model_idx=21916&ca_id=043",
+      "image": "https://storage.bilrigo.com/data/thumbnails/251128/fbuZxY51yM6dGp56ZAjCzUxncz2p8T.jpg",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=21916&ca_id=043",
+      "tags": [
+        "에어컨·청소기",
+        "에어컨·청소기",
+        "삼성"
+      ],
+      "promo": "클로바렌탈 공개 상품 기준 · 최종 접수 전 최신 조건 확인",
+      "shortDescription": "삼성 에어컨·청소기 렌탈 상품입니다. 공개된 최저 월 렌탈료를 먼저 확인해 보세요.",
+      "highlights": [
+        "에어컨·청소기",
+        "최저 월 렌탈료 기준",
+        "최종 조건 상담 확인"
+      ],
+      "manufacturer": "삼성",
+      "rentalCompany": "클로바렌탈몰",
+      "detailImages": [],
+      "options": [
+        {
+          "key": "clover-min",
+          "management": "clover-lowest",
+          "managementLabel": "최저가 기준",
+          "term": "",
+          "termLabel": "상품별 조건",
+          "monthly": 18300,
+          "card": 0,
+          "gift": null,
+          "care": "상품별 조건 상담 확인",
+          "sourceOption": "클로바렌탈 공개 최저가"
+        }
+      ],
+      "sourceKind": "clover-import",
+      "availability": "active",
+      "giftStatus": "unavailable",
+      "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/251128/fbuZxY51yM6dGp56ZAjCzUxncz2p8T.jpg",
+      "importedFrom": "https://m.clvrental777.com/"
+    },
+    {
+      "id": "clv-55590",
+      "sourceId": "55590",
+      "brand": "삼성",
+      "name": "비스포크 AI 무풍콤보 갤러리 프로 청정 2in1 에어컨 19평형+6평형 (에센셜 화이트/에센셜 화이트) 월 렌탈료 118,100 원 카드할인시 105,100 원",
+      "model": "",
+      "category": "에어컨·청소기",
+      "rawCategory": "에어컨·청소기",
+      "color": "",
+      "page": "https://m.clvrental777.com/model/compare.php?model_idx=55590&ca_id=043",
+      "image": "https://storage.bilrigo.com/data/thumbnails/260317/qbuA3XyMzCvnTVcz7wTdHkfGVXPlYx.jpg",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=55590&ca_id=043",
+      "tags": [
+        "에어컨·청소기",
+        "에어컨·청소기",
+        "삼성"
+      ],
+      "promo": "클로바렌탈 공개 상품 기준 · 최종 접수 전 최신 조건 확인",
+      "shortDescription": "삼성 에어컨·청소기 렌탈 상품입니다. 공개된 최저 월 렌탈료를 먼저 확인해 보세요.",
+      "highlights": [
+        "에어컨·청소기",
+        "최저 월 렌탈료 기준",
+        "최종 조건 상담 확인"
+      ],
+      "manufacturer": "삼성",
+      "rentalCompany": "클로바렌탈몰",
+      "detailImages": [],
+      "options": [
+        {
+          "key": "clover-min",
+          "management": "clover-lowest",
+          "managementLabel": "최저가 기준",
+          "term": "",
+          "termLabel": "상품별 조건",
+          "monthly": 118100,
+          "card": 105100,
+          "gift": null,
+          "care": "상품별 조건 상담 확인",
+          "sourceOption": "클로바렌탈 공개 최저가"
+        }
+      ],
+      "sourceKind": "clover-import",
+      "availability": "active",
+      "giftStatus": "unavailable",
+      "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/260317/qbuA3XyMzCvnTVcz7wTdHkfGVXPlYx.jpg",
+      "importedFrom": "https://m.clvrental777.com/"
+    },
+    {
+      "id": "clv-55543",
+      "sourceId": "55543",
+      "brand": "삼성",
+      "name": "비스포크 AI 무풍콤보 갤러리 프로 청정 스탠드 에어컨 17평형 (에센셜 화이트/에센셜 화이트) 월 렌탈료 95,900 원 카드할인시 71,900 원",
+      "model": "",
+      "category": "에어컨·청소기",
+      "rawCategory": "에어컨·청소기",
+      "color": "",
+      "page": "https://m.clvrental777.com/model/compare.php?model_idx=55543&ca_id=043",
+      "image": "https://storage.bilrigo.com/data/thumbnails/260317/ja72z6szfK5BMayjwsDgNKPD39pqun.jpg",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=55543&ca_id=043",
+      "tags": [
+        "에어컨·청소기",
+        "에어컨·청소기",
+        "삼성"
+      ],
+      "promo": "클로바렌탈 공개 상품 기준 · 최종 접수 전 최신 조건 확인",
+      "shortDescription": "삼성 에어컨·청소기 렌탈 상품입니다. 공개된 최저 월 렌탈료를 먼저 확인해 보세요.",
+      "highlights": [
+        "에어컨·청소기",
+        "최저 월 렌탈료 기준",
+        "최종 조건 상담 확인"
+      ],
+      "manufacturer": "삼성",
+      "rentalCompany": "클로바렌탈몰",
+      "detailImages": [],
+      "options": [
+        {
+          "key": "clover-min",
+          "management": "clover-lowest",
+          "managementLabel": "최저가 기준",
+          "term": "",
+          "termLabel": "상품별 조건",
+          "monthly": 95900,
+          "card": 71900,
+          "gift": null,
+          "care": "상품별 조건 상담 확인",
+          "sourceOption": "클로바렌탈 공개 최저가"
+        }
+      ],
+      "sourceKind": "clover-import",
+      "availability": "active",
+      "giftStatus": "unavailable",
+      "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/260317/ja72z6szfK5BMayjwsDgNKPD39pqun.jpg",
+      "importedFrom": "https://m.clvrental777.com/"
+    },
+    {
+      "id": "clv-18652",
+      "sourceId": "18652",
+      "brand": "LG",
+      "name": "휘센 벽걸이 에어컨 11평형 (화이트) 월 렌탈료 44,800 원 카드할인시 19,800 원",
+      "model": "",
+      "category": "에어컨·청소기",
+      "rawCategory": "에어컨·청소기",
+      "color": "",
+      "page": "https://m.clvrental777.com/model/compare.php?model_idx=18652&ca_id=043",
+      "image": "https://storage.bilrigo.com/data/thumbnails/260317/ja72z6szfK5BMayjwsDgNKPD39pqun.jpg",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=18652&ca_id=043",
+      "tags": [
+        "에어컨·청소기",
+        "에어컨·청소기",
+        "LG"
+      ],
+      "promo": "클로바렌탈 공개 상품 기준 · 최종 접수 전 최신 조건 확인",
+      "shortDescription": "LG 에어컨·청소기 렌탈 상품입니다. 공개된 최저 월 렌탈료를 먼저 확인해 보세요.",
+      "highlights": [
+        "에어컨·청소기",
+        "최저 월 렌탈료 기준",
+        "최종 조건 상담 확인"
+      ],
+      "manufacturer": "LG",
+      "rentalCompany": "클로바렌탈몰",
+      "detailImages": [],
+      "options": [
+        {
+          "key": "clover-min",
+          "management": "clover-lowest",
+          "managementLabel": "최저가 기준",
+          "term": "",
+          "termLabel": "상품별 조건",
+          "monthly": 95900,
+          "card": 71900,
+          "gift": null,
+          "care": "상품별 조건 상담 확인",
+          "sourceOption": "클로바렌탈 공개 최저가"
+        }
+      ],
+      "sourceKind": "clover-import",
+      "availability": "active",
+      "giftStatus": "unavailable",
+      "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/260317/ja72z6szfK5BMayjwsDgNKPD39pqun.jpg",
+      "importedFrom": "https://m.clvrental777.com/"
+    },
+    {
+      "id": "clv-18656",
+      "sourceId": "18656",
+      "brand": "LG",
+      "name": "휘센 벽걸이 에어컨 13평형 (화이트) 월 렌탈료 46,900 원 카드할인시 21,900 원",
+      "model": "",
+      "category": "에어컨·청소기",
+      "rawCategory": "에어컨·청소기",
+      "color": "",
+      "page": "https://m.clvrental777.com/model/compare.php?model_idx=18656&ca_id=043",
+      "image": "https://storage.bilrigo.com/data/thumbnails/251128/4KQDCywnXJRVAALrcbScP2EKBdfuGd.jpg",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=18656&ca_id=043",
+      "tags": [
+        "에어컨·청소기",
+        "에어컨·청소기",
+        "LG"
+      ],
+      "promo": "클로바렌탈 공개 상품 기준 · 최종 접수 전 최신 조건 확인",
+      "shortDescription": "LG 에어컨·청소기 렌탈 상품입니다. 공개된 최저 월 렌탈료를 먼저 확인해 보세요.",
+      "highlights": [
+        "에어컨·청소기",
+        "최저 월 렌탈료 기준",
+        "최종 조건 상담 확인"
+      ],
+      "manufacturer": "LG",
+      "rentalCompany": "클로바렌탈몰",
+      "detailImages": [],
+      "options": [
+        {
+          "key": "clover-min",
+          "management": "clover-lowest",
+          "managementLabel": "최저가 기준",
+          "term": "",
+          "termLabel": "상품별 조건",
+          "monthly": 46900,
+          "card": 21900,
+          "gift": null,
+          "care": "상품별 조건 상담 확인",
+          "sourceOption": "클로바렌탈 공개 최저가"
+        }
+      ],
+      "sourceKind": "clover-import",
+      "availability": "active",
+      "giftStatus": "unavailable",
+      "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/251128/4KQDCywnXJRVAALrcbScP2EKBdfuGd.jpg",
+      "importedFrom": "https://m.clvrental777.com/"
+    },
+    {
+      "id": "clv-6816",
+      "sourceId": "6816",
+      "brand": "LG",
+      "name": "휘센 스탠드 에어컨 25평형 단상 월 렌탈료 55,400 원 카드할인시 30,400 원",
+      "model": "",
+      "category": "에어컨·청소기",
+      "rawCategory": "에어컨·청소기",
+      "color": "",
+      "page": "https://m.clvrental777.com/model/compare.php?model_idx=6816&ca_id=043",
+      "image": "https://storage.bilrigo.com/data/thumbnails/251128/4KQDCywnXJRVAALrcbScP2EKBdfuGd.jpg",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=6816&ca_id=043",
+      "tags": [
+        "에어컨·청소기",
+        "에어컨·청소기",
+        "LG"
+      ],
+      "promo": "클로바렌탈 공개 상품 기준 · 최종 접수 전 최신 조건 확인",
+      "shortDescription": "LG 에어컨·청소기 렌탈 상품입니다. 공개된 최저 월 렌탈료를 먼저 확인해 보세요.",
+      "highlights": [
+        "에어컨·청소기",
+        "최저 월 렌탈료 기준",
+        "최종 조건 상담 확인"
+      ],
+      "manufacturer": "LG",
+      "rentalCompany": "클로바렌탈몰",
+      "detailImages": [],
+      "options": [
+        {
+          "key": "clover-min",
+          "management": "clover-lowest",
+          "managementLabel": "최저가 기준",
+          "term": "",
+          "termLabel": "상품별 조건",
+          "monthly": 46900,
+          "card": 21900,
+          "gift": null,
+          "care": "상품별 조건 상담 확인",
+          "sourceOption": "클로바렌탈 공개 최저가"
+        }
+      ],
+      "sourceKind": "clover-import",
+      "availability": "active",
+      "giftStatus": "unavailable",
+      "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/251128/4KQDCywnXJRVAALrcbScP2EKBdfuGd.jpg",
+      "importedFrom": "https://m.clvrental777.com/"
+    },
+    {
+      "id": "clv-12617",
+      "sourceId": "12617",
+      "brand": "위닉스",
+      "name": "격자형 창문형 에어컨 6평형 (화이트)",
+      "model": "EWNE067-PWK",
+      "category": "에어컨·청소기",
+      "rawCategory": "에어컨·청소기",
+      "color": "",
+      "page": "https://m.clvrental777.com/model/compare.php?model_idx=12617&ca_id=043",
+      "image": "https://storage.bilrigo.com/data/thumbnails/230525/HASmXDvn9BeTBStr6tpHEFUy8skZLK.jpg",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=12617&ca_id=043",
+      "tags": [
+        "에어컨·청소기",
+        "에어컨·청소기",
+        "위닉스"
+      ],
+      "promo": "클로바렌탈 공개 상품 기준 · 최종 접수 전 최신 조건 확인",
+      "shortDescription": "위닉스 에어컨·청소기 렌탈 상품입니다. 공개된 최저 월 렌탈료를 먼저 확인해 보세요.",
+      "highlights": [
+        "에어컨·청소기",
+        "최저 월 렌탈료 기준",
+        "최종 조건 상담 확인"
+      ],
+      "manufacturer": "위닉스",
+      "rentalCompany": "클로바렌탈몰",
+      "detailImages": [],
+      "options": [
+        {
+          "key": "clover-min",
+          "management": "clover-lowest",
+          "managementLabel": "최저가 기준",
+          "term": "",
+          "termLabel": "상품별 조건",
+          "monthly": 22300,
+          "card": 9300,
+          "gift": null,
+          "care": "상품별 조건 상담 확인",
+          "sourceOption": "클로바렌탈 공개 최저가"
+        }
+      ],
+      "sourceKind": "clover-import",
+      "availability": "active",
+      "giftStatus": "unavailable",
+      "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/230525/HASmXDvn9BeTBStr6tpHEFUy8skZLK.jpg",
+      "importedFrom": "https://m.clvrental777.com/"
+    },
+    {
+      "id": "clv-36320",
+      "sourceId": "36320",
+      "brand": "삼성",
+      "name": "AI Q9000 2in1 에어컨 17평형+6평형 (화이트)",
+      "model": "AF60F17D11WRS",
+      "category": "에어컨·청소기",
+      "rawCategory": "에어컨·청소기",
+      "color": "",
+      "page": "https://m.clvrental777.com/model/compare.php?model_idx=36320&ca_id=043",
+      "image": "https://storage.bilrigo.com/data/thumbnails/230525/HASmXDvn9BeTBStr6tpHEFUy8skZLK.jpg",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=36320&ca_id=043",
+      "tags": [
+        "에어컨·청소기",
+        "에어컨·청소기",
+        "삼성"
+      ],
+      "promo": "클로바렌탈 공개 상품 기준 · 최종 접수 전 최신 조건 확인",
+      "shortDescription": "삼성 에어컨·청소기 렌탈 상품입니다. 공개된 최저 월 렌탈료를 먼저 확인해 보세요.",
+      "highlights": [
+        "에어컨·청소기",
+        "최저 월 렌탈료 기준",
+        "최종 조건 상담 확인"
+      ],
+      "manufacturer": "삼성",
+      "rentalCompany": "클로바렌탈몰",
+      "detailImages": [],
+      "options": [
+        {
+          "key": "clover-min",
+          "management": "clover-lowest",
+          "managementLabel": "최저가 기준",
+          "term": "",
+          "termLabel": "상품별 조건",
+          "monthly": 22300,
+          "card": 9300,
+          "gift": null,
+          "care": "상품별 조건 상담 확인",
+          "sourceOption": "클로바렌탈 공개 최저가"
+        }
+      ],
+      "sourceKind": "clover-import",
+      "availability": "active",
+      "giftStatus": "unavailable",
+      "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/230525/HASmXDvn9BeTBStr6tpHEFUy8skZLK.jpg",
+      "importedFrom": "https://m.clvrental777.com/"
+    },
+    {
+      "id": "clv-36310",
+      "sourceId": "36310",
+      "brand": "삼성",
+      "name": "AI Q9000 2in1 에어컨 17평형+6평형 (화이트/그레이)",
+      "model": "AF60F17D11GRS",
+      "category": "에어컨·청소기",
+      "rawCategory": "에어컨·청소기",
+      "color": "",
+      "page": "https://m.clvrental777.com/model/compare.php?model_idx=36310&ca_id=043",
+      "image": "https://storage.bilrigo.com/data/thumbnails/230525/HASmXDvn9BeTBStr6tpHEFUy8skZLK.jpg",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=36310&ca_id=043",
+      "tags": [
+        "에어컨·청소기",
+        "에어컨·청소기",
+        "삼성"
+      ],
+      "promo": "클로바렌탈 공개 상품 기준 · 최종 접수 전 최신 조건 확인",
+      "shortDescription": "삼성 에어컨·청소기 렌탈 상품입니다. 공개된 최저 월 렌탈료를 먼저 확인해 보세요.",
+      "highlights": [
+        "에어컨·청소기",
+        "최저 월 렌탈료 기준",
+        "최종 조건 상담 확인"
+      ],
+      "manufacturer": "삼성",
+      "rentalCompany": "클로바렌탈몰",
+      "detailImages": [],
+      "options": [
+        {
+          "key": "clover-min",
+          "management": "clover-lowest",
+          "managementLabel": "최저가 기준",
+          "term": "",
+          "termLabel": "상품별 조건",
+          "monthly": 22300,
+          "card": 9300,
+          "gift": null,
+          "care": "상품별 조건 상담 확인",
+          "sourceOption": "클로바렌탈 공개 최저가"
+        }
+      ],
+      "sourceKind": "clover-import",
+      "availability": "active",
+      "giftStatus": "unavailable",
+      "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/230525/HASmXDvn9BeTBStr6tpHEFUy8skZLK.jpg",
+      "importedFrom": "https://m.clvrental777.com/"
+    },
+    {
+      "id": "clv-35940",
+      "sourceId": "35940",
+      "brand": "삼성",
+      "name": "AI Q9000 2in1 에어컨 19평형+6평형 (화이트)",
+      "model": "AF60F19D11WRS",
+      "category": "에어컨·청소기",
+      "rawCategory": "에어컨·청소기",
+      "color": "",
+      "page": "https://m.clvrental777.com/model/compare.php?model_idx=35940&ca_id=043",
+      "image": "https://storage.bilrigo.com/data/thumbnails/230525/HASmXDvn9BeTBStr6tpHEFUy8skZLK.jpg",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=35940&ca_id=043",
+      "tags": [
+        "에어컨·청소기",
+        "에어컨·청소기",
+        "삼성"
+      ],
+      "promo": "클로바렌탈 공개 상품 기준 · 최종 접수 전 최신 조건 확인",
+      "shortDescription": "삼성 에어컨·청소기 렌탈 상품입니다. 공개된 최저 월 렌탈료를 먼저 확인해 보세요.",
+      "highlights": [
+        "에어컨·청소기",
+        "최저 월 렌탈료 기준",
+        "최종 조건 상담 확인"
+      ],
+      "manufacturer": "삼성",
+      "rentalCompany": "클로바렌탈몰",
+      "detailImages": [],
+      "options": [
+        {
+          "key": "clover-min",
+          "management": "clover-lowest",
+          "managementLabel": "최저가 기준",
+          "term": "",
+          "termLabel": "상품별 조건",
+          "monthly": 22300,
+          "card": 9300,
+          "gift": null,
+          "care": "상품별 조건 상담 확인",
+          "sourceOption": "클로바렌탈 공개 최저가"
+        }
+      ],
+      "sourceKind": "clover-import",
+      "availability": "active",
+      "giftStatus": "unavailable",
+      "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/230525/HASmXDvn9BeTBStr6tpHEFUy8skZLK.jpg",
+      "importedFrom": "https://m.clvrental777.com/"
+    },
+    {
+      "id": "clv-36295",
+      "sourceId": "36295",
+      "brand": "삼성",
+      "name": "AI Q9000 2in1 에어컨 17평형+6평형 (화이트/베이지)",
+      "model": "AF60F17D11BRS",
+      "category": "에어컨·청소기",
+      "rawCategory": "에어컨·청소기",
+      "color": "",
+      "page": "https://m.clvrental777.com/model/compare.php?model_idx=36295&ca_id=043",
+      "image": "https://storage.bilrigo.com/data/thumbnails/230525/HASmXDvn9BeTBStr6tpHEFUy8skZLK.jpg",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=36295&ca_id=043",
+      "tags": [
+        "에어컨·청소기",
+        "에어컨·청소기",
+        "삼성"
+      ],
+      "promo": "클로바렌탈 공개 상품 기준 · 최종 접수 전 최신 조건 확인",
+      "shortDescription": "삼성 에어컨·청소기 렌탈 상품입니다. 공개된 최저 월 렌탈료를 먼저 확인해 보세요.",
+      "highlights": [
+        "에어컨·청소기",
+        "최저 월 렌탈료 기준",
+        "최종 조건 상담 확인"
+      ],
+      "manufacturer": "삼성",
+      "rentalCompany": "클로바렌탈몰",
+      "detailImages": [],
+      "options": [
+        {
+          "key": "clover-min",
+          "management": "clover-lowest",
+          "managementLabel": "최저가 기준",
+          "term": "",
+          "termLabel": "상품별 조건",
+          "monthly": 22300,
+          "card": 9300,
+          "gift": null,
+          "care": "상품별 조건 상담 확인",
+          "sourceOption": "클로바렌탈 공개 최저가"
+        }
+      ],
+      "sourceKind": "clover-import",
+      "availability": "active",
+      "giftStatus": "unavailable",
+      "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/230525/HASmXDvn9BeTBStr6tpHEFUy8skZLK.jpg",
+      "importedFrom": "https://m.clvrental777.com/"
+    },
+    {
+      "id": "clv-57567",
+      "sourceId": "57567",
+      "brand": "LG",
+      "name": "휘센 AI 오브제컬렉션 뷰II 1시리즈 2in1 에어컨 18평형+6평형 (에센스 화이트)",
+      "model": "FQ18GU1EA2",
+      "category": "에어컨·청소기",
+      "rawCategory": "에어컨·청소기",
+      "color": "",
+      "page": "https://m.clvrental777.com/model/compare.php?model_idx=57567&ca_id=043",
+      "image": "https://storage.bilrigo.com/data/thumbnails/230525/HASmXDvn9BeTBStr6tpHEFUy8skZLK.jpg",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=57567&ca_id=043",
+      "tags": [
+        "에어컨·청소기",
+        "에어컨·청소기",
+        "LG"
+      ],
+      "promo": "클로바렌탈 공개 상품 기준 · 최종 접수 전 최신 조건 확인",
+      "shortDescription": "LG 에어컨·청소기 렌탈 상품입니다. 공개된 최저 월 렌탈료를 먼저 확인해 보세요.",
+      "highlights": [
+        "에어컨·청소기",
+        "최저 월 렌탈료 기준",
+        "최종 조건 상담 확인"
+      ],
+      "manufacturer": "LG",
+      "rentalCompany": "클로바렌탈몰",
+      "detailImages": [],
+      "options": [
+        {
+          "key": "clover-min",
+          "management": "clover-lowest",
+          "managementLabel": "최저가 기준",
+          "term": "",
+          "termLabel": "상품별 조건",
+          "monthly": 22300,
+          "card": 9300,
+          "gift": null,
+          "care": "상품별 조건 상담 확인",
+          "sourceOption": "클로바렌탈 공개 최저가"
+        }
+      ],
+      "sourceKind": "clover-import",
+      "availability": "active",
+      "giftStatus": "unavailable",
+      "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/230525/HASmXDvn9BeTBStr6tpHEFUy8skZLK.jpg",
+      "importedFrom": "https://m.clvrental777.com/"
+    },
+    {
+      "id": "clv-39209",
+      "sourceId": "39209",
+      "brand": "라클라우드",
+      "name": "시에스타 호텔식 침대 프레임+매트리스 세트 (SS) (네추럴 오크) 월 렌탈료 43,800 원 카드할인시 18,800 원",
+      "model": "사은품",
+      "category": "매트리스·프레임",
+      "rawCategory": "가구·침대",
+      "color": "",
+      "page": "https://m.clvrental777.com/model/compare.php?model_idx=39209&ca_id=003",
+      "image": "https://storage.bilrigo.com/data/thumbnails/250526/CAW6LPBhTUM3kcxnp4VLkYXveqxpyB.jpg",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=39209&ca_id=003",
+      "tags": [
+        "매트리스·프레임",
+        "가구·침대",
+        "라클라우드"
+      ],
+      "promo": "클로바렌탈 공개 상품 기준 · 최종 접수 전 최신 조건 확인",
+      "shortDescription": "라클라우드 가구·침대 렌탈 상품입니다. 공개된 최저 월 렌탈료를 먼저 확인해 보세요.",
+      "highlights": [
+        "가구·침대",
+        "최저 월 렌탈료 기준",
+        "최종 조건 상담 확인"
+      ],
+      "manufacturer": "라클라우드",
+      "rentalCompany": "클로바렌탈몰",
+      "detailImages": [],
+      "options": [
+        {
+          "key": "clover-min",
+          "management": "clover-lowest",
+          "managementLabel": "최저가 기준",
+          "term": "",
+          "termLabel": "상품별 조건",
+          "monthly": 43800,
+          "card": 18800,
+          "gift": null,
+          "care": "상품별 조건 상담 확인",
+          "sourceOption": "클로바렌탈 공개 최저가"
+        }
+      ],
+      "sourceKind": "clover-import",
+      "availability": "active",
+      "giftStatus": "unavailable",
+      "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/250526/CAW6LPBhTUM3kcxnp4VLkYXveqxpyB.jpg",
+      "importedFrom": "https://m.clvrental777.com/"
+    },
+    {
+      "id": "clv-12811",
+      "sourceId": "12811",
+      "brand": "퍼니챗",
+      "name": "샤르니 조야원단 3인용 패브릭 직선형 스윙소파 (핑크/아이보리) 월 렌탈료 24,000 원 카드할인시 11,000 원",
+      "model": "",
+      "category": "가구·침대",
+      "rawCategory": "가구·침대",
+      "color": "",
+      "page": "https://m.clvrental777.com/model/compare.php?model_idx=12811&ca_id=003",
+      "image": "https://storage.bilrigo.com/data/thumbnails/250526/CAW6LPBhTUM3kcxnp4VLkYXveqxpyB.jpg",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=12811&ca_id=003",
+      "tags": [
+        "가구·침대",
+        "가구·침대",
+        "퍼니챗"
+      ],
+      "promo": "클로바렌탈 공개 상품 기준 · 최종 접수 전 최신 조건 확인",
+      "shortDescription": "퍼니챗 가구·침대 렌탈 상품입니다. 공개된 최저 월 렌탈료를 먼저 확인해 보세요.",
+      "highlights": [
+        "가구·침대",
+        "최저 월 렌탈료 기준",
+        "최종 조건 상담 확인"
+      ],
+      "manufacturer": "퍼니챗",
+      "rentalCompany": "클로바렌탈몰",
+      "detailImages": [],
+      "options": [
+        {
+          "key": "clover-min",
+          "management": "clover-lowest",
+          "managementLabel": "최저가 기준",
+          "term": "",
+          "termLabel": "상품별 조건",
+          "monthly": 43800,
+          "card": 18800,
+          "gift": null,
+          "care": "상품별 조건 상담 확인",
+          "sourceOption": "클로바렌탈 공개 최저가"
+        }
+      ],
+      "sourceKind": "clover-import",
+      "availability": "active",
+      "giftStatus": "unavailable",
+      "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/250526/CAW6LPBhTUM3kcxnp4VLkYXveqxpyB.jpg",
+      "importedFrom": "https://m.clvrental777.com/"
+    },
+    {
+      "id": "clv-12810",
+      "sourceId": "12810",
+      "brand": "퍼니챗",
+      "name": "샤르니 조야원단 4인용 패브릭 직선형 스윙소파 (올 아이보리) 월 렌탈료 29,000 원 카드할인시 16,000 원",
+      "model": "",
+      "category": "가구·침대",
+      "rawCategory": "가구·침대",
+      "color": "",
+      "page": "https://m.clvrental777.com/model/compare.php?model_idx=12810&ca_id=003",
+      "image": "https://storage.bilrigo.com/data/thumbnails/230607/zs4SHxzMJLra3y6ULZRH14tqyFUWJX.jpg",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=12810&ca_id=003",
+      "tags": [
+        "가구·침대",
+        "가구·침대",
+        "퍼니챗"
+      ],
+      "promo": "클로바렌탈 공개 상품 기준 · 최종 접수 전 최신 조건 확인",
+      "shortDescription": "퍼니챗 가구·침대 렌탈 상품입니다. 공개된 최저 월 렌탈료를 먼저 확인해 보세요.",
+      "highlights": [
+        "가구·침대",
+        "최저 월 렌탈료 기준",
+        "최종 조건 상담 확인"
+      ],
+      "manufacturer": "퍼니챗",
+      "rentalCompany": "클로바렌탈몰",
+      "detailImages": [],
+      "options": [
+        {
+          "key": "clover-min",
+          "management": "clover-lowest",
+          "managementLabel": "최저가 기준",
+          "term": "",
+          "termLabel": "상품별 조건",
+          "monthly": 29000,
+          "card": 16000,
+          "gift": null,
+          "care": "상품별 조건 상담 확인",
+          "sourceOption": "클로바렌탈 공개 최저가"
+        }
+      ],
+      "sourceKind": "clover-import",
+      "availability": "active",
+      "giftStatus": "unavailable",
+      "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/230607/zs4SHxzMJLra3y6ULZRH14tqyFUWJX.jpg",
+      "importedFrom": "https://m.clvrental777.com/"
+    },
+    {
+      "id": "clv-12809",
+      "sourceId": "12809",
+      "brand": "퍼니챗",
+      "name": "샤르니 조야원단 4인용 패브릭 직선형 스윙소파 (핑크/아이보리) 월 렌탈료 29,000 원 카드할인시 16,000 원",
+      "model": "",
+      "category": "가구·침대",
+      "rawCategory": "가구·침대",
+      "color": "",
+      "page": "https://m.clvrental777.com/model/compare.php?model_idx=12809&ca_id=003",
+      "image": "https://storage.bilrigo.com/data/thumbnails/230607/zs4SHxzMJLra3y6ULZRH14tqyFUWJX.jpg",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=12809&ca_id=003",
+      "tags": [
+        "가구·침대",
+        "가구·침대",
+        "퍼니챗"
+      ],
+      "promo": "클로바렌탈 공개 상품 기준 · 최종 접수 전 최신 조건 확인",
+      "shortDescription": "퍼니챗 가구·침대 렌탈 상품입니다. 공개된 최저 월 렌탈료를 먼저 확인해 보세요.",
+      "highlights": [
+        "가구·침대",
+        "최저 월 렌탈료 기준",
+        "최종 조건 상담 확인"
+      ],
+      "manufacturer": "퍼니챗",
+      "rentalCompany": "클로바렌탈몰",
+      "detailImages": [],
+      "options": [
+        {
+          "key": "clover-min",
+          "management": "clover-lowest",
+          "managementLabel": "최저가 기준",
+          "term": "",
+          "termLabel": "상품별 조건",
+          "monthly": 29000,
+          "card": 16000,
+          "gift": null,
+          "care": "상품별 조건 상담 확인",
+          "sourceOption": "클로바렌탈 공개 최저가"
+        }
+      ],
+      "sourceKind": "clover-import",
+      "availability": "active",
+      "giftStatus": "unavailable",
+      "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/230607/zs4SHxzMJLra3y6ULZRH14tqyFUWJX.jpg",
+      "importedFrom": "https://m.clvrental777.com/"
+    },
+    {
+      "id": "clv-39209",
+      "sourceId": "39209",
+      "brand": "라클라우드",
+      "name": "시에스타 호텔식 침대 프레임+매트리스 세트 (SS) (네추럴 오크)",
+      "model": "",
+      "category": "매트리스·프레임",
+      "rawCategory": "가구·침대",
+      "color": "",
+      "page": "https://m.clvrental777.com/model/compare.php?model_idx=39209&ca_id=003",
+      "image": "https://storage.bilrigo.com/data/thumbnails/250526/CAW6LPBhTUM3kcxnp4VLkYXveqxpyB.jpg",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=39209&ca_id=003",
+      "tags": [
+        "매트리스·프레임",
+        "가구·침대",
+        "라클라우드"
+      ],
+      "promo": "클로바렌탈 공개 상품 기준 · 최종 접수 전 최신 조건 확인",
+      "shortDescription": "라클라우드 가구·침대 렌탈 상품입니다. 공개된 최저 월 렌탈료를 먼저 확인해 보세요.",
+      "highlights": [
+        "가구·침대",
+        "최저 월 렌탈료 기준",
+        "최종 조건 상담 확인"
+      ],
+      "manufacturer": "라클라우드",
+      "rentalCompany": "클로바렌탈몰",
+      "detailImages": [],
+      "options": [
+        {
+          "key": "clover-min",
+          "management": "clover-lowest",
+          "managementLabel": "최저가 기준",
+          "term": "",
+          "termLabel": "상품별 조건",
+          "monthly": 43800,
+          "card": 18800,
+          "gift": null,
+          "care": "상품별 조건 상담 확인",
+          "sourceOption": "클로바렌탈 공개 최저가"
+        }
+      ],
+      "sourceKind": "clover-import",
+      "availability": "active",
+      "giftStatus": "unavailable",
+      "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/250526/CAW6LPBhTUM3kcxnp4VLkYXveqxpyB.jpg",
+      "importedFrom": "https://m.clvrental777.com/"
+    },
+    {
+      "id": "clv-39214",
+      "sourceId": "39214",
+      "brand": "라클라우드",
+      "name": "시에스타 호텔식 침대 프레임+매트리스+패널 세트 (트윈) (네추럴 브라운)",
+      "model": "",
+      "category": "매트리스·프레임",
+      "rawCategory": "가구·침대",
+      "color": "",
+      "page": "https://m.clvrental777.com/model/compare.php?model_idx=39214&ca_id=003",
+      "image": "https://storage.bilrigo.com/data/thumbnails/250526/CAW6LPBhTUM3kcxnp4VLkYXveqxpyB.jpg",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=39214&ca_id=003",
+      "tags": [
+        "매트리스·프레임",
+        "가구·침대",
+        "라클라우드"
+      ],
+      "promo": "클로바렌탈 공개 상품 기준 · 최종 접수 전 최신 조건 확인",
+      "shortDescription": "라클라우드 가구·침대 렌탈 상품입니다. 공개된 최저 월 렌탈료를 먼저 확인해 보세요.",
+      "highlights": [
+        "가구·침대",
+        "최저 월 렌탈료 기준",
+        "최종 조건 상담 확인"
+      ],
+      "manufacturer": "라클라우드",
+      "rentalCompany": "클로바렌탈몰",
+      "detailImages": [],
+      "options": [
+        {
+          "key": "clover-min",
+          "management": "clover-lowest",
+          "managementLabel": "최저가 기준",
+          "term": "",
+          "termLabel": "상품별 조건",
+          "monthly": 43800,
+          "card": 18800,
+          "gift": null,
+          "care": "상품별 조건 상담 확인",
+          "sourceOption": "클로바렌탈 공개 최저가"
+        }
+      ],
+      "sourceKind": "clover-import",
+      "availability": "active",
+      "giftStatus": "unavailable",
+      "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/250526/CAW6LPBhTUM3kcxnp4VLkYXveqxpyB.jpg",
+      "importedFrom": "https://m.clvrental777.com/"
+    },
+    {
+      "id": "clv-12811",
+      "sourceId": "12811",
+      "brand": "퍼니챗",
+      "name": "샤르니 조야원단 3인용 패브릭 직선형 스윙소파 (핑크/아이보리)",
+      "model": "",
+      "category": "가구·침대",
+      "rawCategory": "가구·침대",
+      "color": "",
+      "page": "https://m.clvrental777.com/model/compare.php?model_idx=12811&ca_id=003",
+      "image": "https://storage.bilrigo.com/data/thumbnails/250526/CAW6LPBhTUM3kcxnp4VLkYXveqxpyB.jpg",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=12811&ca_id=003",
+      "tags": [
+        "가구·침대",
+        "가구·침대",
+        "퍼니챗"
+      ],
+      "promo": "클로바렌탈 공개 상품 기준 · 최종 접수 전 최신 조건 확인",
+      "shortDescription": "퍼니챗 가구·침대 렌탈 상품입니다. 공개된 최저 월 렌탈료를 먼저 확인해 보세요.",
+      "highlights": [
+        "가구·침대",
+        "최저 월 렌탈료 기준",
+        "최종 조건 상담 확인"
+      ],
+      "manufacturer": "퍼니챗",
+      "rentalCompany": "클로바렌탈몰",
+      "detailImages": [],
+      "options": [
+        {
+          "key": "clover-min",
+          "management": "clover-lowest",
+          "managementLabel": "최저가 기준",
+          "term": "",
+          "termLabel": "상품별 조건",
+          "monthly": 43800,
+          "card": 18800,
+          "gift": null,
+          "care": "상품별 조건 상담 확인",
+          "sourceOption": "클로바렌탈 공개 최저가"
+        }
+      ],
+      "sourceKind": "clover-import",
+      "availability": "active",
+      "giftStatus": "unavailable",
+      "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/250526/CAW6LPBhTUM3kcxnp4VLkYXveqxpyB.jpg",
+      "importedFrom": "https://m.clvrental777.com/"
+    },
+    {
+      "id": "clv-12807",
+      "sourceId": "12807",
+      "brand": "퍼니챗",
+      "name": "샤르니 조야원단 4인용 패브릭 코너형 스윙소파 (올 아이보리)",
+      "model": "",
+      "category": "가구·침대",
+      "rawCategory": "가구·침대",
+      "color": "",
+      "page": "https://m.clvrental777.com/model/compare.php?model_idx=12807&ca_id=003",
+      "image": "https://storage.bilrigo.com/data/thumbnails/250526/CAW6LPBhTUM3kcxnp4VLkYXveqxpyB.jpg",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=12807&ca_id=003",
+      "tags": [
+        "가구·침대",
+        "가구·침대",
+        "퍼니챗"
+      ],
+      "promo": "클로바렌탈 공개 상품 기준 · 최종 접수 전 최신 조건 확인",
+      "shortDescription": "퍼니챗 가구·침대 렌탈 상품입니다. 공개된 최저 월 렌탈료를 먼저 확인해 보세요.",
+      "highlights": [
+        "가구·침대",
+        "최저 월 렌탈료 기준",
+        "최종 조건 상담 확인"
+      ],
+      "manufacturer": "퍼니챗",
+      "rentalCompany": "클로바렌탈몰",
+      "detailImages": [],
+      "options": [
+        {
+          "key": "clover-min",
+          "management": "clover-lowest",
+          "managementLabel": "최저가 기준",
+          "term": "",
+          "termLabel": "상품별 조건",
+          "monthly": 43800,
+          "card": 18800,
+          "gift": null,
+          "care": "상품별 조건 상담 확인",
+          "sourceOption": "클로바렌탈 공개 최저가"
+        }
+      ],
+      "sourceKind": "clover-import",
+      "availability": "active",
+      "giftStatus": "unavailable",
+      "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/250526/CAW6LPBhTUM3kcxnp4VLkYXveqxpyB.jpg",
+      "importedFrom": "https://m.clvrental777.com/"
+    },
+    {
+      "id": "clv-12797",
+      "sourceId": "12797",
+      "brand": "퍼니챗",
+      "name": "샤르니 조야원단 6인용 패브릭 코너형 스윙소파 (올 아이보리)",
+      "model": "",
+      "category": "가구·침대",
+      "rawCategory": "가구·침대",
+      "color": "",
+      "page": "https://m.clvrental777.com/model/compare.php?model_idx=12797&ca_id=003",
+      "image": "https://storage.bilrigo.com/data/thumbnails/250526/CAW6LPBhTUM3kcxnp4VLkYXveqxpyB.jpg",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=12797&ca_id=003",
+      "tags": [
+        "가구·침대",
+        "가구·침대",
+        "퍼니챗"
+      ],
+      "promo": "클로바렌탈 공개 상품 기준 · 최종 접수 전 최신 조건 확인",
+      "shortDescription": "퍼니챗 가구·침대 렌탈 상품입니다. 공개된 최저 월 렌탈료를 먼저 확인해 보세요.",
+      "highlights": [
+        "가구·침대",
+        "최저 월 렌탈료 기준",
+        "최종 조건 상담 확인"
+      ],
+      "manufacturer": "퍼니챗",
+      "rentalCompany": "클로바렌탈몰",
+      "detailImages": [],
+      "options": [
+        {
+          "key": "clover-min",
+          "management": "clover-lowest",
+          "managementLabel": "최저가 기준",
+          "term": "",
+          "termLabel": "상품별 조건",
+          "monthly": 43800,
+          "card": 18800,
+          "gift": null,
+          "care": "상품별 조건 상담 확인",
+          "sourceOption": "클로바렌탈 공개 최저가"
+        }
+      ],
+      "sourceKind": "clover-import",
+      "availability": "active",
+      "giftStatus": "unavailable",
+      "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/250526/CAW6LPBhTUM3kcxnp4VLkYXveqxpyB.jpg",
+      "importedFrom": "https://m.clvrental777.com/"
+    },
+    {
+      "id": "clv-11828",
+      "sourceId": "11828",
+      "brand": "인홈",
+      "name": "라온 LED 저상형 침대 SS",
+      "model": "",
+      "category": "가구·침대",
+      "rawCategory": "가구·침대",
+      "color": "",
+      "page": "https://m.clvrental777.com/model/compare.php?model_idx=11828&ca_id=003",
+      "image": "https://storage.bilrigo.com/data/thumbnails/250526/CAW6LPBhTUM3kcxnp4VLkYXveqxpyB.jpg",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=11828&ca_id=003",
+      "tags": [
+        "가구·침대",
+        "가구·침대",
+        "인홈"
+      ],
+      "promo": "클로바렌탈 공개 상품 기준 · 최종 접수 전 최신 조건 확인",
+      "shortDescription": "인홈 가구·침대 렌탈 상품입니다. 공개된 최저 월 렌탈료를 먼저 확인해 보세요.",
+      "highlights": [
+        "가구·침대",
+        "최저 월 렌탈료 기준",
+        "최종 조건 상담 확인"
+      ],
+      "manufacturer": "인홈",
+      "rentalCompany": "클로바렌탈몰",
+      "detailImages": [],
+      "options": [
+        {
+          "key": "clover-min",
+          "management": "clover-lowest",
+          "managementLabel": "최저가 기준",
+          "term": "",
+          "termLabel": "상품별 조건",
+          "monthly": 43800,
+          "card": 18800,
+          "gift": null,
+          "care": "상품별 조건 상담 확인",
+          "sourceOption": "클로바렌탈 공개 최저가"
+        }
+      ],
+      "sourceKind": "clover-import",
+      "availability": "active",
+      "giftStatus": "unavailable",
+      "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/250526/CAW6LPBhTUM3kcxnp4VLkYXveqxpyB.jpg",
+      "importedFrom": "https://m.clvrental777.com/"
+    },
+    {
+      "id": "clv-11538",
+      "sourceId": "11538",
+      "brand": "인홈",
+      "name": "라온 슬림형 저상형 침대 SS + SS",
+      "model": "",
+      "category": "가구·침대",
+      "rawCategory": "가구·침대",
+      "color": "",
+      "page": "https://m.clvrental777.com/model/compare.php?model_idx=11538&ca_id=003",
+      "image": "https://storage.bilrigo.com/data/thumbnails/250526/CAW6LPBhTUM3kcxnp4VLkYXveqxpyB.jpg",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=11538&ca_id=003",
+      "tags": [
+        "가구·침대",
+        "가구·침대",
+        "인홈"
+      ],
+      "promo": "클로바렌탈 공개 상품 기준 · 최종 접수 전 최신 조건 확인",
+      "shortDescription": "인홈 가구·침대 렌탈 상품입니다. 공개된 최저 월 렌탈료를 먼저 확인해 보세요.",
+      "highlights": [
+        "가구·침대",
+        "최저 월 렌탈료 기준",
+        "최종 조건 상담 확인"
+      ],
+      "manufacturer": "인홈",
+      "rentalCompany": "클로바렌탈몰",
+      "detailImages": [],
+      "options": [
+        {
+          "key": "clover-min",
+          "management": "clover-lowest",
+          "managementLabel": "최저가 기준",
+          "term": "",
+          "termLabel": "상품별 조건",
+          "monthly": 43800,
+          "card": 18800,
+          "gift": null,
+          "care": "상품별 조건 상담 확인",
+          "sourceOption": "클로바렌탈 공개 최저가"
+        }
+      ],
+      "sourceKind": "clover-import",
+      "availability": "active",
+      "giftStatus": "unavailable",
+      "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/250526/CAW6LPBhTUM3kcxnp4VLkYXveqxpyB.jpg",
+      "importedFrom": "https://m.clvrental777.com/"
+    },
+    {
+      "id": "clv-7831",
+      "sourceId": "7831",
+      "brand": "핸슨소파",
+      "name": "카프리 리클라이너소파 1인용",
+      "model": "",
+      "category": "가구·침대",
+      "rawCategory": "가구·침대",
+      "color": "",
+      "page": "https://m.clvrental777.com/model/compare.php?model_idx=7831&ca_id=003",
+      "image": "https://storage.bilrigo.com/data/thumbnails/250526/CAW6LPBhTUM3kcxnp4VLkYXveqxpyB.jpg",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=7831&ca_id=003",
+      "tags": [
+        "가구·침대",
+        "가구·침대",
+        "핸슨소파"
+      ],
+      "promo": "클로바렌탈 공개 상품 기준 · 최종 접수 전 최신 조건 확인",
+      "shortDescription": "핸슨소파 가구·침대 렌탈 상품입니다. 공개된 최저 월 렌탈료를 먼저 확인해 보세요.",
+      "highlights": [
+        "가구·침대",
+        "최저 월 렌탈료 기준",
+        "최종 조건 상담 확인"
+      ],
+      "manufacturer": "핸슨소파",
+      "rentalCompany": "클로바렌탈몰",
+      "detailImages": [],
+      "options": [
+        {
+          "key": "clover-min",
+          "management": "clover-lowest",
+          "managementLabel": "최저가 기준",
+          "term": "",
+          "termLabel": "상품별 조건",
+          "monthly": 43800,
+          "card": 18800,
+          "gift": null,
+          "care": "상품별 조건 상담 확인",
+          "sourceOption": "클로바렌탈 공개 최저가"
+        }
+      ],
+      "sourceKind": "clover-import",
+      "availability": "active",
+      "giftStatus": "unavailable",
+      "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/250526/CAW6LPBhTUM3kcxnp4VLkYXveqxpyB.jpg",
+      "importedFrom": "https://m.clvrental777.com/"
+    },
+    {
+      "id": "clv-7830",
+      "sourceId": "7830",
+      "brand": "핸슨소파",
+      "name": "니스 스윙체어 1인용",
+      "model": "",
+      "category": "가구·침대",
+      "rawCategory": "가구·침대",
+      "color": "",
+      "page": "https://m.clvrental777.com/model/compare.php?model_idx=7830&ca_id=003",
+      "image": "https://storage.bilrigo.com/data/thumbnails/250526/CAW6LPBhTUM3kcxnp4VLkYXveqxpyB.jpg",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=7830&ca_id=003",
+      "tags": [
+        "가구·침대",
+        "가구·침대",
+        "핸슨소파"
+      ],
+      "promo": "클로바렌탈 공개 상품 기준 · 최종 접수 전 최신 조건 확인",
+      "shortDescription": "핸슨소파 가구·침대 렌탈 상품입니다. 공개된 최저 월 렌탈료를 먼저 확인해 보세요.",
+      "highlights": [
+        "가구·침대",
+        "최저 월 렌탈료 기준",
+        "최종 조건 상담 확인"
+      ],
+      "manufacturer": "핸슨소파",
+      "rentalCompany": "클로바렌탈몰",
+      "detailImages": [],
+      "options": [
+        {
+          "key": "clover-min",
+          "management": "clover-lowest",
+          "managementLabel": "최저가 기준",
+          "term": "",
+          "termLabel": "상품별 조건",
+          "monthly": 43800,
+          "card": 18800,
+          "gift": null,
+          "care": "상품별 조건 상담 확인",
+          "sourceOption": "클로바렌탈 공개 최저가"
+        }
+      ],
+      "sourceKind": "clover-import",
+      "availability": "active",
+      "giftStatus": "unavailable",
+      "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/250526/CAW6LPBhTUM3kcxnp4VLkYXveqxpyB.jpg",
+      "importedFrom": "https://m.clvrental777.com/"
+    },
+    {
+      "id": "clv-7829",
+      "sourceId": "7829",
+      "brand": "핸슨소파",
+      "name": "로디 리클라이너소파 1인용",
+      "model": "",
+      "category": "가구·침대",
+      "rawCategory": "가구·침대",
+      "color": "",
+      "page": "https://m.clvrental777.com/model/compare.php?model_idx=7829&ca_id=003",
+      "image": "https://storage.bilrigo.com/data/thumbnails/250526/CAW6LPBhTUM3kcxnp4VLkYXveqxpyB.jpg",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=7829&ca_id=003",
+      "tags": [
+        "가구·침대",
+        "가구·침대",
+        "핸슨소파"
+      ],
+      "promo": "클로바렌탈 공개 상품 기준 · 최종 접수 전 최신 조건 확인",
+      "shortDescription": "핸슨소파 가구·침대 렌탈 상품입니다. 공개된 최저 월 렌탈료를 먼저 확인해 보세요.",
+      "highlights": [
+        "가구·침대",
+        "최저 월 렌탈료 기준",
+        "최종 조건 상담 확인"
+      ],
+      "manufacturer": "핸슨소파",
+      "rentalCompany": "클로바렌탈몰",
+      "detailImages": [],
+      "options": [
+        {
+          "key": "clover-min",
+          "management": "clover-lowest",
+          "managementLabel": "최저가 기준",
+          "term": "",
+          "termLabel": "상품별 조건",
+          "monthly": 43800,
+          "card": 18800,
+          "gift": null,
+          "care": "상품별 조건 상담 확인",
+          "sourceOption": "클로바렌탈 공개 최저가"
+        }
+      ],
+      "sourceKind": "clover-import",
+      "availability": "active",
+      "giftStatus": "unavailable",
+      "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/250526/CAW6LPBhTUM3kcxnp4VLkYXveqxpyB.jpg",
+      "importedFrom": "https://m.clvrental777.com/"
+    },
+    {
+      "id": "clv-7828",
+      "sourceId": "7828",
+      "brand": "핸슨소파",
+      "name": "에그 스윙체어 1인용",
+      "model": "",
+      "category": "가구·침대",
+      "rawCategory": "가구·침대",
+      "color": "",
+      "page": "https://m.clvrental777.com/model/compare.php?model_idx=7828&ca_id=003",
+      "image": "https://storage.bilrigo.com/data/thumbnails/250526/CAW6LPBhTUM3kcxnp4VLkYXveqxpyB.jpg",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=7828&ca_id=003",
+      "tags": [
+        "가구·침대",
+        "가구·침대",
+        "핸슨소파"
+      ],
+      "promo": "클로바렌탈 공개 상품 기준 · 최종 접수 전 최신 조건 확인",
+      "shortDescription": "핸슨소파 가구·침대 렌탈 상품입니다. 공개된 최저 월 렌탈료를 먼저 확인해 보세요.",
+      "highlights": [
+        "가구·침대",
+        "최저 월 렌탈료 기준",
+        "최종 조건 상담 확인"
+      ],
+      "manufacturer": "핸슨소파",
+      "rentalCompany": "클로바렌탈몰",
+      "detailImages": [],
+      "options": [
+        {
+          "key": "clover-min",
+          "management": "clover-lowest",
+          "managementLabel": "최저가 기준",
+          "term": "",
+          "termLabel": "상품별 조건",
+          "monthly": 43800,
+          "card": 18800,
+          "gift": null,
+          "care": "상품별 조건 상담 확인",
+          "sourceOption": "클로바렌탈 공개 최저가"
+        }
+      ],
+      "sourceKind": "clover-import",
+      "availability": "active",
+      "giftStatus": "unavailable",
+      "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/250526/CAW6LPBhTUM3kcxnp4VLkYXveqxpyB.jpg",
+      "importedFrom": "https://m.clvrental777.com/"
+    },
+    {
+      "id": "clv-7826",
+      "sourceId": "7826",
+      "brand": "핸슨소파",
+      "name": "브루클린 리클라이너소파 4인용",
+      "model": "",
+      "category": "가구·침대",
+      "rawCategory": "가구·침대",
+      "color": "",
+      "page": "https://m.clvrental777.com/model/compare.php?model_idx=7826&ca_id=003",
+      "image": "https://storage.bilrigo.com/data/thumbnails/250526/CAW6LPBhTUM3kcxnp4VLkYXveqxpyB.jpg",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=7826&ca_id=003",
+      "tags": [
+        "가구·침대",
+        "가구·침대",
+        "핸슨소파"
+      ],
+      "promo": "클로바렌탈 공개 상품 기준 · 최종 접수 전 최신 조건 확인",
+      "shortDescription": "핸슨소파 가구·침대 렌탈 상품입니다. 공개된 최저 월 렌탈료를 먼저 확인해 보세요.",
+      "highlights": [
+        "가구·침대",
+        "최저 월 렌탈료 기준",
+        "최종 조건 상담 확인"
+      ],
+      "manufacturer": "핸슨소파",
+      "rentalCompany": "클로바렌탈몰",
+      "detailImages": [],
+      "options": [
+        {
+          "key": "clover-min",
+          "management": "clover-lowest",
+          "managementLabel": "최저가 기준",
+          "term": "",
+          "termLabel": "상품별 조건",
+          "monthly": 43800,
+          "card": 18800,
+          "gift": null,
+          "care": "상품별 조건 상담 확인",
+          "sourceOption": "클로바렌탈 공개 최저가"
+        }
+      ],
+      "sourceKind": "clover-import",
+      "availability": "active",
+      "giftStatus": "unavailable",
+      "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/250526/CAW6LPBhTUM3kcxnp4VLkYXveqxpyB.jpg",
+      "importedFrom": "https://m.clvrental777.com/"
     }
   ]
 }

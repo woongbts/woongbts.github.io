@@ -2,114 +2,15 @@
   "generatedAt": "2026-10-03",
   "existingOriginalPreserved": 366,
   "previousImportedRebuilt": 0,
-  "productCandidates": 125,
-  "parsedProducts": 0,
+  "listProductsParsed": 67,
   "duplicatesSkipped": 0,
-  "newProductsAdded": 0,
-  "totalProductsAfterImport": 366,
-  "newByCategory": {},
-  "parseErrors": 125,
-  "duplicateExamples": [],
-  "errorExamples": [
-    {
-      "id": "10132",
-      "url": "https://m.clvrental777.com/model/compare.php?model_idx=10132&ca_id=075",
-      "reason": "price"
-    },
-    {
-      "id": "9930",
-      "url": "https://m.clvrental777.com/model/compare.php?model_idx=9930&ca_id=075",
-      "reason": "price"
-    },
-    {
-      "id": "42814",
-      "url": "https://m.clvrental777.com/model/compare.php?model_idx=42814&ca_id=075",
-      "reason": "price"
-    },
-    {
-      "id": "16092",
-      "url": "https://m.clvrental777.com/model/compare.php?model_idx=16092&ca_id=075",
-      "reason": "price"
-    },
-    {
-      "id": "16080",
-      "url": "https://m.clvrental777.com/model/compare.php?model_idx=16080&ca_id=075",
-      "reason": "price"
-    },
-    {
-      "id": "31846",
-      "url": "https://m.clvrental777.com/model/compare.php?model_idx=31846&ca_id=075",
-      "reason": "price"
-    },
-    {
-      "id": "60577",
-      "url": "https://m.clvrental777.com/model/compare.php?model_idx=60577&ca_id=075",
-      "reason": "price"
-    },
-    {
-      "id": "39704",
-      "url": "https://m.clvrental777.com/model/compare.php?model_idx=39704&ca_id=075",
-      "reason": "price"
-    },
-    {
-      "id": "57534",
-      "url": "https://m.clvrental777.com/model/compare.php?model_idx=57534&ca_id=075",
-      "reason": "price"
-    },
-    {
-      "id": "56151",
-      "url": "https://m.clvrental777.com/model/compare.php?model_idx=56151&ca_id=008",
-      "reason": "price"
-    },
-    {
-      "id": "9077",
-      "url": "https://m.clvrental777.com/model/compare.php?model_idx=9077&ca_id=008",
-      "reason": "price"
-    },
-    {
-      "id": "56156",
-      "url": "https://m.clvrental777.com/model/compare.php?model_idx=56156&ca_id=008",
-      "reason": "price"
-    },
-    {
-      "id": "9080",
-      "url": "https://m.clvrental777.com/model/compare.php?model_idx=9080&ca_id=008",
-      "reason": "price"
-    },
-    {
-      "id": "9103",
-      "url": "https://m.clvrental777.com/model/compare.php?model_idx=9103&ca_id=008",
-      "reason": "price"
-    },
-    {
-      "id": "5104",
-      "url": "https://m.clvrental777.com/model/compare.php?model_idx=5104&ca_id=008",
-      "reason": "price"
-    },
-    {
-      "id": "9098",
-      "url": "https://m.clvrental777.com/model/compare.php?model_idx=9098&ca_id=008",
-      "reason": "price"
-    },
-    {
-      "id": "9101",
-      "url": "https://m.clvrental777.com/model/compare.php?model_idx=9101&ca_id=008",
-      "reason": "price"
-    },
-    {
-      "id": "9099",
-      "url": "https://m.clvrental777.com/model/compare.php?model_idx=9099&ca_id=008",
-      "reason": "price"
-    },
-    {
-      "id": "9089",
-      "url": "https://m.clvrental777.com/model/compare.php?model_idx=9089&ca_id=008",
-      "reason": "price"
-    },
-    {
-      "id": "9087",
-      "url": "https://m.clvrental777.com/model/compare.php?model_idx=9087&ca_id=008",
-      "reason": "price"
-    }
-  ]
+  "newProductsAdded": 51,
+  "totalProductsAfterImport": 417,
+  "newByCategory": {
+    "가구·침대": 13,
+    "레저·자동차": 16,
+    "매트리스·프레임": 3,
+    "에어컨·청소기": 19
+  },
+  "duplicateExamples": []
 }
