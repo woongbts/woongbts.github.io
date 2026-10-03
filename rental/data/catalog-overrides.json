@@ -1,0 +1,24 @@
+{
+  "generatedAt": "2026-10-03",
+  "reason": "Customer-facing corrections for source catalog conditions that cannot be safely inferred from grouped/retired options.",
+  "products": {
+    "clover-1353": {
+      "name": "BEREX 프라임 매트리스 (라지킹)",
+      "shortDescription": "라지킹 · BEREX 프라임 특징을 갖춘 매트리스 제품입니다.",
+      "options": [
+        {
+          "key": "large-king-60",
+          "management": "large-king-totalcare",
+          "managementLabel": "토탈케어 · 라지킹",
+          "term": 60,
+          "monthly": 49900,
+          "card": null,
+          "gift": 210000,
+          "care": "라지킹 · 60개월",
+          "giftPolicyMonth": "2026-10",
+          "sourceOption": "토탈케어(라지킹)60"
+        }
+      ]
+    }
+  }
+}
