@@ -61,7 +61,7 @@ function assert(condition, message) {
   assert(await page.locator('#compare-bar').count() === 1, '상품 비교담기 바가 표시되지 않습니다.');
   await page.locator('#open-compare').click();
   assert(await page.locator('#compare-modal.open').count() === 1, '상품 비교 모달이 열리지 않습니다.');
-  await page.locator('[data-close-compare]').first().click();
+  await page.locator('.compare-close').click();
   const firstActionHeight = await page.locator('.catalog-card .product-actions .btn').first().evaluate(el => el.getBoundingClientRect().height);
   assert(firstActionHeight >= 44, '모바일 상품 버튼 높이가 44px 미만입니다.');
 
