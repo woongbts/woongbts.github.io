@@ -144,6 +144,13 @@ function assert(condition, message) {
   });
   assert(detailOverflow.x === 0, '상세페이지가 페이지 전체 단위로 가로 스크롤됩니다.');
   assert(detailOverflow.sticky <= detailOverflow.stickyClient + 2, '모바일 하단 견적바가 넘칩니다.');
+  const stickyPriceBox = await page.locator('.sticky-price').boundingBox();
+  const stickyApplyBox = await page.locator('#rental-apply-sticky').boundingBox();
+  const stickyConsultBox = await page.locator('#rental-kakao-sticky').boundingBox();
+  const viewport = page.viewportSize();
+  assert(stickyPriceBox && stickyPriceBox.x >= 0 && stickyPriceBox.x + stickyPriceBox.width <= viewport.width, '월요금 영역이 모바일 화면 밖으로 잘립니다.');
+  assert(stickyApplyBox && stickyApplyBox.x >= 0 && stickyApplyBox.x + stickyApplyBox.width <= viewport.width, '신청하기 버튼이 모바일 화면 밖으로 잘립니다.');
+  assert(stickyConsultBox && stickyConsultBox.x >= 0 && stickyConsultBox.x + stickyConsultBox.width <= viewport.width, '상담하기 버튼이 모바일 화면 밖으로 잘립니다.');
 
   console.log('Rental mobile smoke test passed.');
   await browser.close();
