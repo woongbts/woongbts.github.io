@@ -105,12 +105,18 @@ function assert(condition, message) {
   await page.locator('#rental-apply-issuer').fill('테스트은행');
   await page.locator('#rental-processing-ack').check();
   await page.locator('#rental-third-party-consent').check();
+  const giftDepositNote = await page.locator('#rental-apply-gift-note').textContent();
+  assert(giftDepositNote.includes('설치 후 1주일 이내 입금'), '사은품 입금 안내가 없습니다.');
   await page.locator('#rental-apply-submit').click();
-  await page.waitForFunction(() => document.querySelector('#rental-apply-status')?.textContent?.includes('신청이 접수되었습니다'));
+  await page.waitForSelector('#rental-apply-success-dialog[open]');
+  assert(await page.locator('#rental-apply-dialog[open]').count() === 0, '신청 성공 후 입력창이 닫히지 않습니다.');
+  const successTitle = await page.locator('#rental-apply-success-title').textContent();
+  const successMessage = await page.locator('#rental-apply-success-dialog p').textContent();
+  assert(successTitle.includes('신청이 접수되었습니다') && successMessage.includes('확인 후 연락드리겠습니다'), '신청 완료 팝업 문구가 올바르지 않습니다.');
   const applySuccess = await page.evaluate(() => JSON.parse(localStorage.getItem('wb_conversion_events_v1') || '[]').some(x => x.type === 'rental_apply_success'));
   assert(applySuccess, '렌탈 신청 성공 전환 이벤트가 기록되지 않았습니다.');
-  await page.locator('#rental-apply-close').click();
-  assert(await page.locator('#rental-apply-dialog[open]').count() === 0, '온라인 신청창이 닫히지 않습니다.');
+  await page.locator('#rental-apply-success-confirm').click();
+  assert(await page.locator('#rental-apply-success-dialog[open]').count() === 0, '신청 완료 팝업이 확인 버튼으로 닫히지 않습니다.');
 
 
   const analyticsReady = await page.evaluate(() => typeof window.woongbiTrackConversion === 'function');
