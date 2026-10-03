@@ -12,6 +12,21 @@ function assert(condition, message) {
   page.on('request', req => {
     if (/\/rental\/data\/products\.json(?:\?|$)/.test(req.url())) fullCatalogRequests += 1;
   });
+  await page.route('https://woongbi-consent.woongbts.workers.dev/api/rental-application-policy', async route => {
+    const origin='http://127.0.0.1:4173';
+    if(route.request().method()==='OPTIONS') return route.fulfill({status:204,headers:{'access-control-allow-origin':origin,'access-control-allow-methods':'GET, POST, OPTIONS','access-control-allow-headers':'content-type'}});
+    return route.fulfill({status:200,contentType:'application/json',headers:{'access-control-allow-origin':origin},body:JSON.stringify({ok:true,policy:{
+      version:'WB-RENTAL-APPLICATION-TEST',purpose:'렌탈 신청 접수 및 계약 진행',
+      items:{required:'성명, 연락처, 설치주소',optional:'이메일, 문의사항'},retention:'최대 90일',refusal:'온라인 신청은 필수정보가 필요합니다.',
+      payment_notice:'계좌번호·카드번호 전체는 수집하지 않습니다.',
+      third_party:{purpose:'렌탈 계약 진행',items:'신청정보',retention:'처리 목적 달성 시까지',refusal:'동의하지 않으면 온라인 신청이 어렵습니다.'}
+    }})});
+  });
+  await page.route('https://woongbi-consent.woongbts.workers.dev/api/rental-application', async route => {
+    const origin='http://127.0.0.1:4173';
+    if(route.request().method()==='OPTIONS') return route.fulfill({status:204,headers:{'access-control-allow-origin':origin,'access-control-allow-methods':'GET, POST, OPTIONS','access-control-allow-headers':'content-type'}});
+    return route.fulfill({status:200,contentType:'application/json',headers:{'access-control-allow-origin':origin},body:JSON.stringify({ok:true,receipt:{id:'00000000-test',submitted_at:new Date().toISOString(),status:'접수완료'}})});
+  });
   await page.addInitScript(() => {
     try {
       Object.defineProperty(navigator, 'clipboard', {
@@ -77,6 +92,24 @@ function assert(condition, message) {
   assert(canonical && canonical.includes('id=clv-10316'), '상품 canonical URL이 상품별로 갱신되지 않았습니다.');
   const jsonLd = await page.locator('#product-jsonld').textContent();
   assert(jsonLd && jsonLd.includes('"Product"'), '상품 구조화 데이터가 생성되지 않았습니다.');
+
+  await page.locator('#rental-apply-open').click();
+  assert(await page.locator('#rental-apply-dialog[open]').count() === 1, '온라인 렌탈 신청창이 열리지 않습니다.');
+  await page.waitForFunction(() => document.querySelector('#rental-processing-policy')?.textContent?.includes('최대 90일'));
+  const paymentWarning = await page.locator('.rental-billing p').textContent();
+  assert(paymentWarning.includes('계좌번호') && paymentWarning.includes('카드번호'), '결제정보 전체번호 미수집 안내가 없습니다.');
+  await page.locator('#rental-apply-name').fill('테스트고객');
+  await page.locator('#rental-apply-phone').fill('01012345678');
+  await page.locator('#rental-apply-address').fill('부산광역시 테스트 주소');
+  await page.locator('input[name="billing_method"][value="bank"]').check();
+  await page.locator('#rental-apply-issuer').fill('테스트은행');
+  await page.locator('#rental-processing-ack').check();
+  await page.locator('#rental-third-party-consent').check();
+  await page.locator('#rental-apply-submit').click();
+  await page.waitForFunction(() => document.querySelector('#rental-apply-status')?.textContent?.includes('신청이 접수되었습니다'));
+  const applySuccess = await page.evaluate(() => JSON.parse(localStorage.getItem('wb_conversion_events_v1') || '[]').some(x => x.type === 'rental_apply_success'));
+  assert(applySuccess, '렌탈 신청 성공 전환 이벤트가 기록되지 않았습니다.');
+
 
   const analyticsReady = await page.evaluate(() => typeof window.woongbiTrackConversion === 'function');
   assert(analyticsReady, '렌탈 전환 추적기가 로드되지 않았습니다.');
