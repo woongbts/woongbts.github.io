@@ -91,6 +91,7 @@ def main():
     data=json.loads(DATA.read_text(encoding="utf-8"))
     original=[p for p in data.get("products",[]) if p.get("sourceKind")!="clover-import"]
     prior=[p for p in data.get("products",[]) if p.get("sourceKind")=="clover-import"]
+    prior_by_id={p.get("id"):p for p in prior if p.get("id")}
     em={nm(p.get("model")) for p in original if nm(p.get("model"))}
     en={nn((p.get("brand") or "")+" "+(p.get("name") or "")) for p in original}
     found={};seen_pages=set()
@@ -120,7 +121,14 @@ def main():
             dups.append({"model":p.get("model"),"name":p.get("name")});continue
         if (mk and mk in seenm) or nk in seenn:continue
         if mk:seenm.add(mk)
-        seenn.add(nk);added.append(p)
+        seenn.add(nk)
+        prev=prior_by_id.get(p.get("id"))
+        if prev and prev.get("giftStatus")=="customer-gift-calculated":
+            p["options"]=prev.get("options",p.get("options",[]))
+            p["rentalCompany"]=prev.get("rentalCompany",p.get("rentalCompany"))
+            p["giftStatus"]=prev.get("giftStatus")
+            p["promo"]=prev.get("promo",p.get("promo"))
+        added.append(p)
     data["products"]=original+added;data["updatedAt"]="2026-10-03"
     DATA.write_text(json.dumps(data,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
     by={}
