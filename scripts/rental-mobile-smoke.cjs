@@ -8,6 +8,10 @@ function assert(condition, message) {
   const browser = await chromium.launch({headless:true});
   const context = await browser.newContext({...devices['iPhone 14']});
   const page = await context.newPage();
+  let fullCatalogRequests = 0;
+  page.on('request', req => {
+    if (/\/rental\/data\/products\.json(?:\?|$)/.test(req.url())) fullCatalogRequests += 1;
+  });
   await page.addInitScript(() => {
     try {
       Object.defineProperty(navigator, 'clipboard', {
@@ -19,6 +23,12 @@ function assert(condition, message) {
 
   await page.goto('http://127.0.0.1:4173/rental/', {waitUntil:'domcontentloaded'});
   await page.waitForSelector('.recommend-card', {timeout:15000});
+
+  assert(fullCatalogRequests === 0, '첫 화면에서 전체 products.json을 미리 불러오고 있습니다.');
+  const policyText = await page.locator('[data-policy-month]').first().textContent();
+  assert(/\d{4}년 \d{1,2}월 기준/.test(policyText || ''), '정책 기준월 자동 표시가 동작하지 않습니다.');
+  const mattressTile = await page.locator('[data-category-link="매트리스·프레임"]').count();
+  assert(mattressTile === 1, '매트리스·프레임 카테고리가 없습니다.');
 
   const duplicateIds = await page.locator('#recommendations').count();
   assert(duplicateIds === 1, '추천상품 섹션 ID가 중복되었습니다.');
@@ -39,6 +49,19 @@ function assert(condition, message) {
 
   await page.locator('#catalog-toggle').click();
   await page.waitForSelector('.catalog-card');
+  assert(fullCatalogRequests >= 1, '전체 상품 열기 후 products.json이 로드되지 않았습니다.');
+
+  await page.locator('[data-category-link="매트리스·프레임"]').click();
+  await page.waitForFunction(() => document.querySelector('#category-filter')?.value === '매트리스·프레임');
+  await page.waitForTimeout(80);
+  const cowayMattress = await page.locator('.catalog-card').filter({hasText:'BEREX'}).count();
+  assert(cowayMattress >= 1, '코웨이 BEREX 매트리스가 매트리스 카테고리에 표시되지 않습니다.');
+
+  await page.locator('.catalog-card [data-compare-product]').first().click();
+  assert(await page.locator('#compare-bar').count() === 1, '상품 비교담기 바가 표시되지 않습니다.');
+  await page.locator('#open-compare').click();
+  assert(await page.locator('#compare-modal.open').count() === 1, '상품 비교 모달이 열리지 않습니다.');
+  await page.locator('[data-close-compare]').first().click();
   const firstActionHeight = await page.locator('.catalog-card .product-actions .btn').first().evaluate(el => el.getBoundingClientRect().height);
   assert(firstActionHeight >= 44, '모바일 상품 버튼 높이가 44px 미만입니다.');
 
@@ -47,6 +70,13 @@ function assert(condition, message) {
     const el = document.querySelector('#monthly-fee');
     return el && el.textContent && el.textContent !== '-';
   }, null, {timeout:15000});
+
+  const recentStored = await page.evaluate(() => JSON.parse(localStorage.getItem('wb_rental_recent_v1') || '[]').some(x => x.id === 'clv-10316'));
+  assert(recentStored, '최근 본 상품 저장이 동작하지 않습니다.');
+  const canonical = await page.locator('#product-canonical').getAttribute('href');
+  assert(canonical && canonical.includes('id=clv-10316'), '상품 canonical URL이 상품별로 갱신되지 않았습니다.');
+  const jsonLd = await page.locator('#product-jsonld').textContent();
+  assert(jsonLd && jsonLd.includes('"Product"'), '상품 구조화 데이터가 생성되지 않았습니다.');
 
   const analyticsReady = await page.evaluate(() => typeof window.woongbiTrackConversion === 'function');
   assert(analyticsReady, '렌탈 전환 추적기가 로드되지 않았습니다.');
