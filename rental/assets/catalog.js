@@ -16,7 +16,7 @@
   let products = [];
 
   const won = n => Number(n).toLocaleString('ko-KR') + '원';
-  const IMAGE_REV = '20261003-14861115';
+  const IMAGE_REV = '20261003-representative-1';
   const localImageUrl = src => {
     const value = String(src || '').trim();
     if (!value) return '';
