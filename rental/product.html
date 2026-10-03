@@ -22,7 +22,7 @@
   <link rel="icon" href="assets/woongbi-rental-icon-32.png?v=20261003-blue3" sizes="32x32" type="image/png">
   <link rel="apple-touch-icon" sizes="180x180" href="assets/woongbi-rental-icon-180.png?v=20261003-blue3">
   <link rel="manifest" href="manifest.webmanifest?v=20261003-blue3">
-<link rel="stylesheet" href="assets/rental.css?v=20261003-14">
+<link rel="stylesheet" href="assets/rental.css?v=20261004-1">
 </head>
 <body>
   <header class="site-header">
@@ -107,9 +107,10 @@
         </div>
 
         <div class="detail-actions">
+          <button class="btn apply" id="rental-apply-open" type="button">온라인 신청하기</button>
           <a class="btn primary" id="rental-kakao-consult" data-rental-consult href="http://pf.kakao.com/_nWwNT/chat" target="_blank" rel="noopener noreferrer">조건 복사 후 카톡 상담</a>
           <a class="btn ghost" id="rental-phone-consult" data-rental-phone href="tel:0513437677">전화 상담</a>
-          <p class="consult-copy-help">카톡 상담을 누르면 현재 선택한 상품·렌탈사·계약기간·월요금·사은품이 자동으로 복사됩니다. 카톡창에 붙여넣기만 하세요.</p>
+          <p class="consult-copy-help">온라인 신청은 선택한 조건을 그대로 불러옵니다. 계좌번호·카드번호 전체는 받지 않으며, 실제 결제정보는 계약 단계에서 렌탈사 공식 절차로 입력합니다.</p>
         </div>
       </div>
     </section>
@@ -142,17 +143,64 @@
       <div class="sticky-copy"><span>현재 선택</span><strong id="sticky-selection">조건 선택</strong></div>
       <div class="sticky-price"><span>월</span><strong id="sticky-monthly">-</strong></div>
       <div class="sticky-gift"><span>고객사은품</span><strong id="sticky-gift">-</strong></div>
+      <button id="rental-apply-sticky" type="button">신청하기</button>
       <a id="rental-kakao-sticky" data-rental-consult href="http://pf.kakao.com/_nWwNT/chat" target="_blank" rel="noopener noreferrer">상담하기</a>
     </div>
   </div>
+
+  <dialog id="rental-apply-dialog" class="rental-apply-dialog">
+    <form id="rental-apply-form" class="rental-apply-form">
+      <div class="rental-apply-head">
+        <div><span>웅비렌탈</span><strong>온라인 신청하기</strong></div>
+        <button type="button" id="rental-apply-close" aria-label="신청서 닫기">×</button>
+      </div>
+
+      <div class="rental-apply-summary" id="rental-apply-summary">
+        <small>선택한 상품</small>
+        <strong id="rental-apply-product">-</strong>
+        <p id="rental-apply-condition">조건을 확인하는 중입니다.</p>
+      </div>
+
+      <div class="rental-apply-grid">
+        <label>성명 <em>필수</em><input id="rental-apply-name" name="name" autocomplete="name" maxlength="40" required></label>
+        <label>연락처 <em>필수</em><input id="rental-apply-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="010-1234-5678" maxlength="20" required></label>
+        <label>이메일주소 <span>선택</span><input id="rental-apply-email" name="email" type="email" autocomplete="email" maxlength="160" placeholder="example@email.com"></label>
+        <label class="wide">설치주소 <em>필수</em><input id="rental-apply-address" name="install_address" autocomplete="street-address" maxlength="300" placeholder="설치할 주소를 입력하세요" required></label>
+      </div>
+
+      <fieldset class="rental-billing">
+        <legend>자동이체 정보 <em>필수</em></legend>
+        <div class="rental-billing-methods">
+          <label><input type="radio" name="billing_method" value="bank" required> 계좌 자동이체</label>
+          <label><input type="radio" name="billing_method" value="card" required> 카드 자동이체</label>
+        </div>
+        <label>은행 / 카드사명<input id="rental-apply-issuer" name="billing_issuer" maxlength="40" placeholder="예: 국민은행 / 현대카드" required></label>
+        <p>계좌번호·카드번호·유효기간·CVC·비밀번호는 입력하지 마세요. 실제 결제정보는 계약 단계에서 해당 렌탈사의 공식 절차로 입력합니다.</p>
+      </fieldset>
+
+      <label class="rental-inquiry-label">문의사항 <span>선택</span><textarea id="rental-apply-inquiry" name="inquiry" rows="4" maxlength="1000" placeholder="설치 희망일, 추가 문의사항 등을 남겨주세요."></textarea></label>
+
+      <section class="rental-consent-box">
+        <label class="rental-consent-check"><input id="rental-processing-ack" type="checkbox" required> <span><b>개인정보 처리 안내를 확인했습니다.</b><small>온라인 신청 접수·상담·설치 및 계약 진행을 위해 필요한 정보를 처리합니다.</small></span></label>
+        <details><summary>개인정보 처리 안내 보기</summary><div id="rental-processing-policy">안내를 불러오는 중입니다.</div></details>
+
+        <label class="rental-consent-check"><input id="rental-third-party-consent" type="checkbox" required> <span><b>[필수] 선택한 렌탈사에 신청정보 제공 동의</b><small id="rental-third-party-label">제공받는 자를 확인하는 중입니다.</small></span></label>
+        <details><summary>제3자 제공 안내 보기</summary><div id="rental-third-party-policy">안내를 불러오는 중입니다.</div></details>
+        <p class="rental-marketing-note">이 신청은 광고성 문자·카카오톡·전화 수신동의와 별개이며, 마케팅 동의를 자동으로 만들지 않습니다.</p>
+      </section>
+
+      <p id="rental-apply-status" class="rental-apply-status" role="status"></p>
+      <button id="rental-apply-submit" class="btn apply rental-apply-submit" type="submit">신청 접수하기</button>
+    </form>
+  </dialog>
 
   <footer class="footer">
     <div class="wrap footer-inner"><div><strong>웅비렌탈</strong><span>웅비통신 덕천만덕점</span></div><div><a href="tel:0513437677">051-343-7677</a></div></div>
     <div class="wrap footer-note">상품·요금·프로모션·제휴카드·사은품 조건은 변경될 수 있으며 최종 접수 전 상담을 통해 확인합니다.</div>
   </footer>
   <script src="/assets/analytics-config.js?v=20260929-2" defer></script>
-  <script src="/assets/conversion-tracker.min.js?v=20261003-rental1" defer></script>
+  <script src="/assets/conversion-tracker.min.js?v=20261004-rental2" defer></script>
   <script src="/assets/site-analytics.min.js?v=20260930-5" defer></script>
-  <script src="assets/product-generic.js?v=20261003-16" defer></script>
+  <script src="assets/product-generic.js?v=20261004-1" defer></script>
 </body>
 </html>
