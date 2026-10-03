@@ -10,3 +10,4 @@ Retry: image proxy fallback
 Retry: verified override pages
 Retry: exact final sources
 Retry: six final verified direct sources
+Retry: accessible mirror CDN sources for final four
