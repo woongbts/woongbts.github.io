@@ -1,0 +1,31 @@
+name: Extract Clover rental offers
+
+on:
+  push:
+    paths:
+      - 'rental/.clover-offers-trigger'
+
+permissions:
+  contents: write
+
+jobs:
+  extract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Extract public rental-company offers
+        run: python .github/scripts/extract_clover_offers.py
+      - name: Commit extracted offer data
+        run: |
+          git config user.name "woongbi-catalog-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add rental/data/clover-offers.json
+          git commit -m "Extract Clover rental-company offers" || exit 0
+          git pull --rebase origin main
+          git push
