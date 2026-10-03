@@ -531,3 +531,35 @@
   .sticky-price strong{font-size:1.18rem!important;white-space:nowrap}
   #rental-apply-sticky,.sticky-quote a{padding:8px 10px!important}
 }
+
+
+/* iPhone sticky action bar fit + safe area · 2026-10-04 */
+.product-page{padding-bottom:calc(82px + env(safe-area-inset-bottom,0px))}
+.sticky-quote{
+  padding-left:max(10px,env(safe-area-inset-left,0px));
+  padding-right:max(10px,env(safe-area-inset-right,0px));
+  padding-bottom:calc(8px + env(safe-area-inset-bottom,0px));
+}
+@media(max-width:560px){
+  .sticky-quote{padding-top:7px}
+  .sticky-quote-inner{
+    width:100%!important;
+    grid-template-columns:minmax(108px,1fr) minmax(78px,auto) minmax(78px,auto)!important;
+    gap:7px!important;
+  }
+  .sticky-price{min-width:0!important;padding-left:4px}
+  .sticky-price span{font-size:.72rem!important;line-height:1.1}
+  .sticky-price strong{
+    font-size:1.12rem!important;
+    line-height:1.12!important;
+    white-space:nowrap!important;
+    overflow:visible;
+  }
+  #rental-apply-sticky,.sticky-quote a{
+    min-width:0!important;
+    width:100%;
+    min-height:44px;
+    padding:8px 8px!important;
+    white-space:nowrap;
+  }
+}
