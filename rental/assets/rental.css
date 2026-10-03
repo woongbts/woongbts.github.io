@@ -468,3 +468,10 @@
   .sticky-price strong,.sticky-gift strong{font-size:.76rem!important;white-space:nowrap}
   .sticky-quote a{grid-column:3!important;grid-row:1!important;min-height:44px;padding:8px 12px}
 }
+
+
+/* Rental consultation handoff · 2026-10-03 */
+.consult-copy-help{flex:1 0 100%;margin:8px 0 0;color:#738587;font-size:.72rem;line-height:1.55}
+.rental-consult-toast{position:fixed;left:50%;bottom:84px;z-index:120;max-width:min(90vw,430px);transform:translate(-50%,16px);padding:11px 14px;border-radius:13px;background:#102f33;color:#fff;box-shadow:0 12px 34px rgba(12,42,45,.2);font-size:.78rem;font-weight:850;line-height:1.45;opacity:0;pointer-events:none;transition:opacity .18s ease,transform .18s ease}
+.rental-consult-toast.show{opacity:1;transform:translate(-50%,0)}
+@media(max-width:560px){.consult-copy-help{font-size:.7rem}.rental-consult-toast{bottom:82px;font-size:.75rem}}
