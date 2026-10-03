@@ -17,6 +17,8 @@
   const recommendSort = document.getElementById('recommend-sort');
   const applianceMore = document.getElementById('appliance-more');
   const applianceGrid = document.querySelector('.appliance-grid');
+  const recentSection = document.getElementById('recently-viewed');
+  const recentGrid = document.getElementById('recent-grid');
 
   const PAGE_SIZE = window.matchMedia('(max-width:560px)').matches ? 8 : 12;
   const RECOMMEND_CATEGORIES = ['정수기','공기청정기','비데·연수기','안마의자','매트리스·프레임'];
@@ -24,6 +26,11 @@
   let recommendSortMode = 'recommend';
   const state = { query: '', brand: '', category: '', feature: '', limit: PAGE_SIZE };
   let products = [];
+  let catalogLoaded = false;
+  let catalogLoading = null;
+  let filtersReady = false;
+  const RECENT_KEY = 'wb_rental_recent_v1';
+  const COMPARE_KEY = 'wb_rental_compare_v1';
 
   const won = n => Number(n).toLocaleString('ko-KR') + '원';
   const IMAGE_REV = '20261003-7f78334';
@@ -39,6 +46,14 @@
       product_id: product?.id || '',
       analyticsPath: product ? rentalAnalyticsPath(product) : '/rental/'
     });
+  }
+  const policyMonthText = value => {
+    const m = String(value || '').match(/^(\d{4})-(\d{2})/);
+    return m ? `${m[1]}년 ${Number(m[2])}월 기준` : '최신 정책 기준';
+  };
+  function applyPolicyMonth(value) {
+    const text = policyMonthText(value);
+    document.querySelectorAll('[data-policy-month]').forEach(el => { el.textContent = text; });
   }
   const localImageUrl = src => {
     const value = String(src || '').trim();
@@ -177,6 +192,7 @@
           </div>
           <p class="promo">${product.promo || '최신 프로모션 상담 확인'}</p>
           <p class="catalog-meta">${managements || '상세 조건 확인'}</p>
+          <button class="compare-toggle" type="button" data-compare-product="${product.id}">비교담기</button>
           <div class="product-actions">
             <a class="btn primary" data-rental-product-id="${product.id}" data-rental-entry="catalog" href="${product.page || '#'}">조건별 금액 보기</a>
             <a class="btn ghost" href="http://pf.kakao.com/_nWwNT/chat" target="_blank" rel="noopener noreferrer">바로 상담</a>
@@ -253,7 +269,7 @@
             <span>월 ${minMonthly == null ? '상담 확인' : won(minMonthly) + '부터'}</span>
             <strong>${maxGift == null ? '고객사은품 상담 확인' : '고객사은품 최대 ' + won(maxGift)}</strong>
           </div>
-          <a class="recommend-link" data-rental-product-id="${product.id}" data-rental-entry="recommend" href="${product.page || '#'}">조건 보기 →</a>
+          <div class="recommend-actions"><a class="recommend-link" data-rental-product-id="${product.id}" data-rental-entry="recommend" href="${product.page || '#'}">조건 보기 →</a><button class="compare-toggle small" type="button" data-compare-product="${product.id}">비교담기</button></div>
         </div>
       </article>
     `;
@@ -349,6 +365,66 @@
     }
 
     recommendGrid.innerHTML = selected.map(recommendationCard).join('');
+  }
+
+
+  function summaryFor(product) {
+    const m = recommendationMetrics(product) || {};
+    return {
+      id:product.id,name:product.name,model:product.model||'',brand:brandLabel(product.brand),
+      category:product.category||'',page:product.page||('#'),image:imageCandidatesFor(product)[0]||'',
+      minMonthly:m.minMonthly??null,maxGift:m.maxGift??null,
+      terms:[...new Set((product.options||[]).map(o=>String(o.term||'')).filter(Boolean))],
+      highlights:(product.highlights||[]).slice(0,3)
+    };
+  }
+  function loadCompareIds(){try{return JSON.parse(localStorage.getItem(COMPARE_KEY)||'[]').filter(Boolean).slice(0,3)}catch(_){return[]}}
+  function saveCompareIds(ids){try{localStorage.setItem(COMPARE_KEY,JSON.stringify(ids.slice(0,3)))}catch(_){}}
+  function productById(id){return products.find(p=>String(p.id)===String(id))}
+  function updateCompareUi(){
+    const ids=loadCompareIds();
+    document.querySelectorAll('[data-compare-product]').forEach(btn=>{
+      const active=ids.includes(btn.dataset.compareProduct);
+      btn.classList.toggle('active',active); btn.textContent=active?'비교담김':'비교담기';
+    });
+    let bar=document.getElementById('compare-bar');
+    if(!ids.length){bar?.remove();return}
+    if(!bar){bar=document.createElement('div');bar.id='compare-bar';bar.className='compare-bar';document.body.appendChild(bar)}
+    const names=ids.map(id=>productById(id)?.name||id);
+    bar.innerHTML='<div><small>비교 '+ids.length+'/3</small><strong>'+names.map(x=>String(x).replace(/</g,'&lt;')).join(' · ')+'</strong></div><button type="button" id="open-compare">비교하기</button><button type="button" id="clear-compare" aria-label="비교목록 비우기">×</button>';
+  }
+  function toggleCompare(id){
+    let ids=loadCompareIds();
+    if(ids.includes(id)) ids=ids.filter(x=>x!==id);
+    else if(ids.length<3) ids.push(id);
+    else { alert('비교는 최대 3개까지 담을 수 있습니다.'); return; }
+    saveCompareIds(ids); updateCompareUi();
+  }
+  function openCompareModal(){
+    const rows=loadCompareIds().map(productById).filter(Boolean);
+    if(!rows.length)return;
+    let modal=document.getElementById('compare-modal');
+    if(!modal){modal=document.createElement('div');modal.id='compare-modal';modal.className='compare-modal';document.body.appendChild(modal)}
+    const cell=(p,key)=>{
+      const m=recommendationMetrics(p)||{};
+      if(key==='brand')return brandLabel(p.brand)||'-';
+      if(key==='monthly')return m.minMonthly==null?'상담 확인':won(m.minMonthly)+'부터';
+      if(key==='gift')return m.maxGift==null?'상담 확인':'최대 '+won(m.maxGift);
+      if(key==='term')return [...new Set((p.options||[]).map(o=>o.term).filter(Boolean))].map(x=>x+'개월').join(' / ')||'-';
+      if(key==='feature')return (p.highlights||[]).slice(0,3).join(' · ')||p.category||'-';
+      return '-';
+    };
+    const head=rows.map(p=>'<th>'+p.name+'</th>').join('');
+    const tr=(label,key)=>'<tr><th>'+label+'</th>'+rows.map(p=>'<td>'+cell(p,key)+'</td>').join('')+'</tr>';
+    modal.innerHTML='<div class="compare-backdrop" data-close-compare></div><section class="compare-panel" role="dialog" aria-modal="true" aria-label="렌탈상품 비교"><button class="compare-close" data-close-compare type="button">×</button><p class="eyebrow dark">상품 비교</p><h2>최대 3개까지 한눈에 비교하세요.</h2><div class="compare-table-wrap"><table><thead><tr><th>항목</th>'+head+'</tr></thead><tbody>'+tr('브랜드','brand')+tr('월 렌탈료','monthly')+tr('고객사은품','gift')+tr('계약기간','term')+tr('주요 특징','feature')+'</tbody></table></div><div class="compare-links">'+rows.map(p=>'<a class="btn primary" href="'+(p.page||'#')+'">'+p.name+' 조건 보기</a>').join('')+'</div></section>';
+    modal.classList.add('open');
+  }
+  function renderRecent(){
+    if(!recentSection||!recentGrid)return;
+    let list=[];try{list=JSON.parse(localStorage.getItem(RECENT_KEY)||'[]')}catch(_){}
+    list=(Array.isArray(list)?list:[]).slice(0,5);
+    recentSection.hidden=!list.length;
+    recentGrid.innerHTML=list.map(p=>'<article class="recent-card"><a href="'+(p.page||'#')+'">'+(p.image?'<img src="'+p.image+'" alt="" loading="lazy">':'<span class="recent-fallback">W</span>')+'<div><small>'+((p.brand||'')+(p.model?' · '+p.model:'')).replace(/</g,'&lt;')+'</small><strong>'+String(p.name||'상품').replace(/</g,'&lt;')+'</strong><span>'+(p.minMonthly!=null?'월 '+won(p.minMonthly)+'부터':'월요금 상담 확인')+' · '+(p.maxGift!=null?'사은품 최대 '+won(p.maxGift):'사은품 상담 확인')+'</span></div></a></article>').join('');
   }
 
   function openCatalog(scrollIntoView = false) {
@@ -463,11 +539,12 @@
 
   function handleDirectSectionHash() {
     const hash = window.location.hash || '';
-    if (hash === '#products') openCatalog();
     if (hash === '#recommendations') recommendCategory = '정수기';
   }
 
   function setupFilters() {
+    if (filtersReady) return;
+    filtersReady = true;
     const activeProducts = products.filter(p => p.availability !== 'inactive');
     const brands = [...new Set(activeProducts.map(p => p.brand).filter(Boolean))].sort((a,b) => a.localeCompare(b, 'ko'));
     const categories = [...new Set(activeProducts.map(p => p.category).filter(Boolean))].sort((a,b) => a.localeCompare(b, 'ko'));
@@ -509,88 +586,87 @@
       resetAndRender();
     });
 
-    const shortcutLinks = [...document.querySelectorAll('[data-category-link]')];
-    const categoryCounts = products.reduce((acc, product) => {
-      acc[product.category] = (acc[product.category] || 0) + 1;
-      return acc;
-    }, {});
-    shortcutLinks.forEach(link => {
-      link.hidden = !categoryCounts[link.dataset.categoryLink];
-    });
-
-    const syncShortcutActive = () => {
-      shortcutLinks.forEach(link => link.classList.toggle('active', link.dataset.categoryLink === state.category));
-    };
-
-    shortcutLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        openCatalog();
-        state.category = link.dataset.categoryLink || '';
-        if (categoryFilter) categoryFilter.value = state.category;
-        syncShortcutActive();
-        resetAndRender();
-      });
-    });
-
-    syncShortcutActive();
 
     moreBtn?.addEventListener('click', () => {
       state.limit += PAGE_SIZE;
       render();
     });
 
-    catalogToggle?.addEventListener('click', () => {
-      if (catalogPanel?.hidden) {
-        openCatalog();
-        trackRental('rental_catalog_open', null, {entry:'catalog'});
-      } else closeCatalog();
-    });
-
-    document.addEventListener('click', event => {
-      const link = event.target.closest('[data-rental-product-id]');
-      if (!link) return;
-      const productId = String(link.dataset.rentalProductId || '');
-      const entry = String(link.dataset.rentalEntry || 'catalog');
-      const target = products.find(p => String(p.id) === productId);
-      if (!target) return;
-      rememberRentalEntry(entry);
-      trackRental(entry === 'recommend' ? 'rental_recommend_click' : 'rental_catalog_product_click', target, {entry});
-    });
-
-    applianceMore?.addEventListener('click', () => {
-      const expanded = applianceGrid?.classList.toggle('is-expanded');
-      applianceMore.setAttribute('aria-expanded', expanded ? 'true' : 'false');
-      applianceMore.textContent = expanded ? '품목 접기' : '다른 품목 4개 보기';
-    });
   }
 
-  Promise.all([
-    fetch('data/products.json', {cache:'no-store'}).then(r => {
-      if (!r.ok) throw new Error('catalog fetch failed');
-      return r.json();
-    }),
-    fetch('data/appliance-gift-options.json', {cache:'no-store'})
-      .then(r => r.ok ? r.json() : null)
-      .catch(() => null)
-  ])
-    .then(([data, giftData]) => {
-      products = Array.isArray(data.products)
-        ? data.products.filter(p => p.availability !== 'inactive' && !/접수불가|접수중지/.test(String(p.name || '')))
-        : [];
-      const overrides = giftData?.products || {};
-      products.forEach(product => {
-        const override = overrides[product.id];
-        if (override && product.sourceKind === 'clover-import') Object.assign(product, override);
-      });
-      handleDirectSectionHash();
+  async function loadFullCatalog() {
+    if (catalogLoaded) return products;
+    if (catalogLoading) return catalogLoading;
+    catalogLoading = Promise.all([
+      fetch('data/products.json', {cache:'no-store'}).then(r => { if(!r.ok) throw new Error('catalog fetch failed'); return r.json(); }),
+      fetch('data/appliance-gift-options.json', {cache:'no-store'}).then(r => r.ok ? r.json() : null).catch(()=>null)
+    ]).then(([data,giftData]) => {
+      products = Array.isArray(data.products) ? data.products.filter(p=>p.availability!=='inactive'&&!/접수불가|접수중지/.test(String(p.name||''))) : [];
+      const overrides=giftData?.products||{};
+      products.forEach(p=>{const ov=overrides[p.id];if(ov&&p.sourceKind==='clover-import')Object.assign(p,ov)});
+      applyPolicyMonth(giftData?.generatedAt||data?.updatedAt||'');
+      catalogLoaded=true;
       setupFilters();
-      renderRecommendations();
       render();
-    })
-    .catch(() => {
-      grid.innerHTML = '<p class="catalog-error">상품 정보를 불러오지 못했습니다. 잠시 후 다시 확인해 주세요.</p>';
-      grid.removeAttribute('aria-busy');
-      if (count) count.textContent = '';
-      if (moreBtn) moreBtn.hidden = true;
+      renderRecommendations();
+      updateCompareUi();
+      return products;
+    }).catch(error=>{
+      grid.innerHTML='<p class="catalog-error">상품 정보를 불러오지 못했습니다. 잠시 후 다시 확인해 주세요.</p>';
+      grid.removeAttribute('aria-busy'); throw error;
+    }).finally(()=>{catalogLoading=null});
+    return catalogLoading;
+  }
+
+  catalogToggle?.addEventListener('click', async () => {
+    if (catalogPanel?.hidden) {
+      await loadFullCatalog();
+      openCatalog();
+      trackRental('rental_catalog_open', null, {entry:'catalog'});
+    } else closeCatalog();
+  });
+  document.querySelectorAll('[data-category-link]').forEach(link=>{
+    link.addEventListener('click', async event=>{
+      event.preventDefault();
+      await loadFullCatalog();
+      state.category=link.dataset.categoryLink||'';
+      if(categoryFilter)categoryFilter.value=state.category;
+      document.querySelectorAll('[data-category-link]').forEach(x=>x.classList.toggle('active',x.dataset.categoryLink===state.category));
+      openCatalog(true); resetAndRender();
     });
+  });
+  applianceMore?.addEventListener('click', () => {
+    const expanded=applianceGrid?.classList.toggle('is-expanded');
+    applianceMore.setAttribute('aria-expanded',expanded?'true':'false');
+    const hiddenCount=Math.max(0,(applianceGrid?.children.length||0)-6);
+    applianceMore.textContent=expanded?'품목 접기':`다른 품목 ${hiddenCount}개 보기`;
+  });
+  if(applianceMore){const hiddenCount=Math.max(0,(applianceGrid?.children.length||0)-6);applianceMore.textContent=`다른 품목 ${hiddenCount}개 보기`}
+
+  document.addEventListener('click', event => {
+    const compareBtn=event.target.closest('[data-compare-product]');
+    if(compareBtn){event.preventDefault();toggleCompare(String(compareBtn.dataset.compareProduct||''));return}
+    if(event.target.closest('#open-compare')){openCompareModal();return}
+    if(event.target.closest('#clear-compare')){saveCompareIds([]);updateCompareUi();return}
+    if(event.target.closest('[data-close-compare]')){document.getElementById('compare-modal')?.classList.remove('open');return}
+    const link=event.target.closest('[data-rental-product-id]');
+    if(!link)return;
+    const productId=String(link.dataset.rentalProductId||''),entry=String(link.dataset.rentalEntry||'catalog');
+    const target=productById(productId);if(!target)return;
+    rememberRentalEntry(entry);
+    trackRental(entry==='recommend'?'rental_recommend_click':'rental_catalog_product_click',target,{entry});
+  });
+
+  fetch('data/featured.json',{cache:'no-store'})
+    .then(r=>{if(!r.ok)throw new Error('featured fetch failed');return r.json()})
+    .then(data=>{
+      products=Array.isArray(data.products)?data.products:[];
+      applyPolicyMonth(data.generatedAt||'');
+      handleDirectSectionHash();
+      renderRecommendations();
+      renderRecent();
+      updateCompareUi();
+      if(location.hash==='#products') return loadFullCatalog().then(()=>openCatalog());
+    })
+    .catch(()=>loadFullCatalog().then(()=>{renderRecent();updateCompareUi();if(location.hash==='#products')openCatalog()}));
 })();
