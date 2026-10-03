@@ -14,6 +14,8 @@
   const catalogPanel = document.getElementById('catalog-panel');
   const recommendTabs = document.getElementById('recommend-tabs');
   const recommendGrid = document.getElementById('recommend-grid');
+  const applianceMore = document.getElementById('appliance-more');
+  const applianceGrid = document.querySelector('.appliance-grid');
 
   const PAGE_SIZE = window.matchMedia('(max-width:560px)').matches ? 8 : 12;
   const RECOMMEND_CATEGORIES = ['정수기','공기청정기','비데·연수기','안마의자','매트리스·프레임'];
@@ -169,27 +171,57 @@
     `;
   }
 
-  function recommendationScore(product) {
+  const BRAND_PREFERENCE = [
+    {rank:1, label:'고객선호 1순위', test:b => /coway|코웨이/i.test(b)},
+    {rank:2, label:'고객선호 2순위', test:b => /퓨리케어|lg/i.test(b)},
+    {rank:3, label:'고객선호 3순위', test:b => /sk매직|sk magic/i.test(b)},
+    {rank:4, label:'고객선호 4순위', test:b => /cuckoo|쿠쿠/i.test(b)}
+  ];
+
+  function brandPreference(product) {
+    const brand = String(product.brand || '');
+    return BRAND_PREFERENCE.find(x => x.test(brand)) || {rank:99, label:''};
+  }
+
+  function recommendationMetrics(product) {
     const validOptions = Array.isArray(product.options)
       ? product.options.filter(o => Number.isFinite(Number(o.monthly)))
       : [];
-    if (!validOptions.length) return -1;
+    if (!validOptions.length) return null;
     const gifts = validOptions.map(o => Number(o.gift)).filter(Number.isFinite);
-    if (!gifts.length) return -1;
     const monthly = validOptions.map(o => Number(o.monthly)).filter(Number.isFinite);
-    const maxGift = Math.max(...gifts);
-    const maxMonthly = monthly.length ? Math.max(...monthly) : 0;
-    return maxGift * 2 + maxMonthly * 0.9;
+    if (!gifts.length || !monthly.length) return null;
+    return {
+      maxGift: Math.max(...gifts),
+      minMonthly: Math.min(...monthly)
+    };
+  }
+
+  function monthlyComfortLimit(category) {
+    return ({
+      '정수기':45000,
+      '공기청정기':40000,
+      '비데·연수기':30000,
+      '안마의자':120000,
+      '매트리스·프레임':65000
+    }[category] || 50000);
+  }
+
+  function recommendationScore(product) {
+    const m = recommendationMetrics(product);
+    if (!m) return -1;
+    const limit = monthlyComfortLimit(product.category);
+    const over = Math.max(0, m.minMonthly - limit);
+    // High gift is rewarded, while a high monthly fee is penalized more strongly
+    // once it crosses a comfortable price band for that product category.
+    return m.maxGift - (m.minMonthly * 1.55) - (over * 4.5);
   }
 
   function recommendationCard(product) {
-    const validOptions = Array.isArray(product.options)
-      ? product.options.filter(o => Number.isFinite(Number(o.monthly)))
-      : [];
-    const monthly = validOptions.map(o => Number(o.monthly)).filter(Number.isFinite);
-    const gifts = validOptions.map(o => Number(o.gift)).filter(Number.isFinite);
-    const minMonthly = monthly.length ? Math.min(...monthly) : null;
-    const maxGift = gifts.length ? Math.max(...gifts) : null;
+    const m = recommendationMetrics(product);
+    const minMonthly = m?.minMonthly ?? null;
+    const maxGift = m?.maxGift ?? null;
+    const preference = brandPreference(product);
     const image = imageCandidatesFor(product)[0] || '';
     return `
       <article class="recommend-card">
@@ -197,7 +229,10 @@
           ${image ? '<img src="' + image + '" alt="' + product.name + '" loading="lazy">' : '<span class="recommend-fallback">W</span>'}
         </a>
         <div class="recommend-body">
-          <small>${brandLabel(product.brand)} · ${product.model || product.category || ''}</small>
+          <div class="recommend-meta">
+            <small>${brandLabel(product.brand)} · ${product.model || product.category || ''}</small>
+            ${preference.rank < 99 ? '<span class="recommend-preference">' + preference.label + '</span>' : ''}
+          </div>
           <h3>${product.name}</h3>
           <div class="recommend-prices">
             <span>월 ${minMonthly == null ? '상담 확인' : won(minMonthly) + '부터'}</span>
@@ -230,10 +265,37 @@
       });
     });
 
-    const selected = products
-      .filter(p => p.category === recommendCategory && p.availability !== 'inactive' && recommendationScore(p) >= 0)
-      .sort((a,b) => recommendationScore(b) - recommendationScore(a))
-      .slice(0,4);
+    const candidates = products
+      .filter(p => p.category === recommendCategory && p.availability !== 'inactive')
+      .filter(p => !/단종|접수불가|접수중지/.test(String(p.name || '')))
+      .filter(p => recommendationScore(p) >= 0);
+
+    const selected = [];
+    const preferredGroups = BRAND_PREFERENCE.map(pref => ({
+      pref,
+      items: candidates
+        .filter(p => pref.test(String(p.brand || '')))
+        .sort((a,b) => recommendationScore(b) - recommendationScore(a))
+    }));
+
+    // Show one strong-value option from each preferred brand in the requested order.
+    preferredGroups.forEach(group => {
+      if (selected.length >= 4) return;
+      if (group.items.length) selected.push(group.items[0]);
+    });
+
+    // If a preferred brand is missing in this category, fill with the best remaining value picks.
+    if (selected.length < 4) {
+      candidates
+        .filter(p => !selected.includes(p))
+        .sort((a,b) => {
+          const brandDiff = brandPreference(a).rank - brandPreference(b).rank;
+          return brandDiff || (recommendationScore(b) - recommendationScore(a));
+        })
+        .forEach(p => {
+          if (selected.length < 4) selected.push(p);
+        });
+    }
 
     recommendGrid.innerHTML = selected.map(recommendationCard).join('');
   }
@@ -429,6 +491,12 @@
     catalogToggle?.addEventListener('click', () => {
       if (catalogPanel?.hidden) openCatalog();
       else closeCatalog();
+    });
+
+    applianceMore?.addEventListener('click', () => {
+      const expanded = applianceGrid?.classList.toggle('is-expanded');
+      applianceMore.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+      applianceMore.textContent = expanded ? '품목 접기' : '다른 품목 4개 보기';
     });
   }
 
