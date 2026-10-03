@@ -1,0 +1,33 @@
+name: Build rental icon assets
+
+on:
+  push:
+    paths:
+      - 'rental/.icon-refresh-trigger'
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install image tools
+        run: python -m pip install --disable-pip-version-check cairosvg pillow
+      - name: Build icon PNGs
+        run: python .github/scripts/build_rental_icon.py
+      - name: Commit icon assets
+        run: |
+          git config user.name "woongbi-icon-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add rental/assets/woongbi-rental-icon-32.png rental/assets/woongbi-rental-icon-180.png rental/assets/woongbi-rental-icon-192.png rental/assets/woongbi-rental-icon-512.png rental/assets/favicon.ico
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Regenerate blue Woongbi Rental icon assets"
+          git pull --rebase origin main
+          git push
