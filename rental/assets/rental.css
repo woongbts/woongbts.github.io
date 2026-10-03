@@ -563,3 +563,21 @@
     white-space:nowrap;
   }
 }
+
+
+/* Rental application success popup · 2026-10-04 */
+.rental-apply-gift-note{margin:10px 0 0!important;padding:10px 12px;border-radius:11px;background:#fff7e7;color:#8b5a17!important;font-size:.75rem!important;font-weight:900;line-height:1.5}
+.rental-apply-success-dialog{width:min(420px,calc(100% - 32px));padding:0;border:0;border-radius:24px;background:transparent;overflow:visible}
+.rental-apply-success-dialog::backdrop{background:rgba(6,26,29,.68);backdrop-filter:blur(4px)}
+.rental-apply-success-card{padding:30px 24px 24px;border-radius:24px;background:#fff;text-align:center;box-shadow:0 28px 90px rgba(5,35,38,.3)}
+.rental-apply-success-icon{width:64px;height:64px;margin:0 auto 16px;display:grid;place-items:center;border-radius:50%;background:#e6f6f2;color:#0f7f73;font-size:2rem;font-weight:1000}
+.rental-apply-success-card strong{display:block;font-size:1.5rem;letter-spacing:-.035em;color:#163d40}
+.rental-apply-success-card p{margin:10px 0 0;color:#607879;font-size:1rem;font-weight:800}
+.rental-apply-success-card small{display:block;margin-top:14px;color:#8a9898;font-size:.74rem}
+.rental-apply-success-card button{width:100%;min-height:50px;margin-top:22px;border:0;border-radius:13px;background:#0f7f73;color:#fff;font:inherit;font-size:.95rem;font-weight:950;cursor:pointer}
+@media(max-width:560px){
+  .rental-apply-success-dialog{width:calc(100% - 28px);border-radius:22px}
+  .rental-apply-success-card{padding:28px 20px 20px}
+  .rental-apply-success-card strong{font-size:1.35rem}
+  .rental-apply-success-card p{font-size:.95rem}
+}
