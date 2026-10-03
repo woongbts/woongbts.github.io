@@ -348,6 +348,12 @@
     render();
   }
 
+  function handleDirectSectionHash() {
+    const hash = window.location.hash || '';
+    if (hash === '#products') openCatalog();
+    if (hash === '#recommendations') recommendCategory = '정수기';
+  }
+
   function setupFilters() {
     const activeProducts = products.filter(p => p.availability !== 'inactive');
     const brands = [...new Set(activeProducts.map(p => p.brand).filter(Boolean))].sort((a,b) => a.localeCompare(b, 'ko'));
@@ -435,6 +441,7 @@
       products = Array.isArray(data.products)
         ? data.products.filter(p => p.availability !== 'inactive' && !/접수불가|접수중지/.test(String(p.name || '')))
         : [];
+      handleDirectSectionHash();
       setupFilters();
       renderRecommendations();
       render();
