@@ -1,26 +1,8 @@
 {
   "generatedAt": "2026-10-03",
   "visibleProducts": 294,
-  "localizedOrExisting": 293,
-  "failed": 1,
-  "changedProducts": 11,
-  "failures": [
-    {
-      "ok": false,
-      "id": "clover-254",
-      "brand": "현대큐밍",
-      "name": "럭셔리 매트리스SET_슈퍼싱글",
-      "model": "HLM1950SE0(화이트/미드 브라운)",
-      "sourceUrl": "https://woongbi.vip-rental.com/categ/1061/254",
-      "candidates": [
-        "https://www.daonhomesys.com/site_data/shop_product_mst/1589253661_kTq2Z1vJ_6001.jpg",
-        "https://www.hdquming.com/uploadImage/images/000045/20210419160513500_53FTWGFT.jpeg",
-        "https://www.hdquming.com/uploadImage/images/000045/20210419160528971_14FBZ3LN.jpeg",
-        "https://www.hdquming.com/uploadImage/images/000045/20210419160536578_IL4ATYZU.jpeg",
-        "https://www.hdquming.com/uploadImage/images/000046/20210419160543347_2JF3BSIA.jpeg"
-      ],
-      "pageImages": [],
-      "searched": []
-    }
-  ]
+  "localizedOrExisting": 294,
+  "failed": 0,
+  "changedProducts": 12,
+  "failures": []
 }
