@@ -138,7 +138,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/260613101406_1.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/260613101406_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/260613101406_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/260613101406_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2251",
@@ -248,7 +251,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/260506141127_1.jpg",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/260506141127_1.jpg"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/260506141127_1.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/260506141127_1.jpg",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2196",
@@ -353,7 +359,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250517102434_1.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250517102434_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250517102434_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250517102434_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2223",
@@ -452,7 +461,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/251011095049_1.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/251011095049_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/251011095049_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/251011095049_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2226",
@@ -522,7 +534,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/251011103848_1.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/251011103848_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/251011103848_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/251011103848_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2250",
@@ -632,7 +647,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/260506112823_1.jpg",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/260506112823_1.jpg"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/260506112823_1.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/260506112823_1.jpg",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2203",
@@ -705,7 +723,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250613172743_1.jpg",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250613172743_1.jpg"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250613172743_1.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250613172743_1.jpg",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2202",
@@ -807,7 +828,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/0.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/0.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/0.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/0.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2104",
@@ -917,7 +941,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250306181121_3.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250306181121_3.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250306181121_3.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250306181121_3.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2105",
@@ -1027,7 +1054,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/240909101702_1.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/240909101702_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/240909101702_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/240909101702_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2150",
@@ -1131,7 +1161,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/g000068821_2_480x480_1.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/g000068821_2_480x480_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/g000068821_2_480x480_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/g000068821_2_480x480_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-1759",
@@ -1206,7 +1239,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231102152215_1_1.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231102152215_1_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231102152215_1_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231102152215_1_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2060",
@@ -1315,7 +1351,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231102182425_1.gif",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231102182425_1.gif"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231102182425_1.gif",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231102182425_1.gif",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2059",
@@ -1425,7 +1464,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/g000067179_21_480x480.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/g000067179_21_480x480.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/g000067179_21_480x480.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/g000067179_21_480x480.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2058",
@@ -1534,7 +1576,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231102180438_1.gif",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231102180438_1.gif"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231102180438_1.gif",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231102180438_1.gif",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-1675",
@@ -1752,7 +1797,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231006105538_1.jpg",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231006105538_1.jpg"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231006105538_1.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231006105538_1.jpg",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2121",
@@ -1852,7 +1900,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/acl20c1askwh_1.jpg",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/acl20c1askwh_1.jpg"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/acl20c1askwh_1.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/acl20c1askwh_1.jpg",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-1856",
@@ -1909,7 +1960,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230830172730_1.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230830172730_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230830172730_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230830172730_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2168",
@@ -1977,7 +2031,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/g000068762_57_480x480.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/g000068762_57_480x480.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/g000068762_57_480x480.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/g000068762_57_480x480.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2244",
@@ -2053,7 +2110,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/67.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/67.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/67.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/67.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-1594",
@@ -2119,7 +2179,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231207125414_1.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231207125414_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231207125414_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231207125414_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2154",
@@ -2184,7 +2247,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/g000065040_3_480x480.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/g000065040_3_480x480.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/g000065040_3_480x480.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/g000065040_3_480x480.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-1934",
@@ -2257,7 +2323,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/g000066592_11_480x480.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/g000066592_11_480x480.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/g000066592_11_480x480.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/g000066592_11_480x480.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-165",
@@ -2410,7 +2479,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/251011101408_1.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/251011101408_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/251011101408_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/251011101408_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2225",
@@ -2484,7 +2556,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/251011102240_1.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/251011102240_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/251011102240_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/251011102240_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2174",
@@ -2561,7 +2636,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250318181956_1.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250318181956_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250318181956_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250318181956_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-1779",
@@ -2641,7 +2719,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231102161949_2_1.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231102161949_2_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231102161949_2_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231102161949_2_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-95",
@@ -2749,7 +2830,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/g000020604_7_480x480.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/g000020604_7_480x480.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/g000020604_7_480x480.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/g000020604_7_480x480.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2167",
@@ -2826,7 +2910,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/g000068961_2_480x480.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/g000068961_2_480x480.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/g000068961_2_480x480.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/g000068961_2_480x480.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-1805",
@@ -3204,7 +3291,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/260807133930_1.jpg",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/260807133930_1.jpg"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/260807133930_1.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/260807133930_1.jpg",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2173",
@@ -3287,7 +3377,10 @@
       "sourceKind": "clover-public",
       "availability": "active",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250312165453_1.jpg",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250312165453_1.jpg"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250312165453_1.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250312165453_1.jpg",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2201",
@@ -3451,7 +3544,10 @@
       "sourceKind": "clover-public",
       "availability": "active",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/101302_sjq5cns9jtchkqakbe854bvhy7pjdv.jpg",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/101302_sjq5cns9jtchkqakbe854bvhy7pjdv.jpg"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/101302_sjq5cns9jtchkqakbe854bvhy7pjdv.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/101302_sjq5cns9jtchkqakbe854bvhy7pjdv.jpg",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-1810",
@@ -3544,7 +3640,10 @@
       "sourceKind": "clover-public",
       "availability": "active",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230830173442_1.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230830173442_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230830173442_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230830173442_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-1809",
@@ -3637,7 +3736,10 @@
       "sourceKind": "clover-public",
       "availability": "active",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230830173549_1.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230830173549_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230830173549_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230830173549_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2258",
@@ -3699,7 +3801,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/666.jpg",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/666.jpg"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/666.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/666.jpg",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2242",
@@ -3760,7 +3865,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/251224105352_1.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/251224105352_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/251224105352_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/251224105352_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2230",
@@ -3846,7 +3954,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/251113160835_1.jpg",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/251113160835_1.jpg"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/251113160835_1.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/251113160835_1.jpg",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2231",
@@ -3931,7 +4042,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/251113162812_1.jpg",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/251113162812_1.jpg"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/251113162812_1.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/251113162812_1.jpg",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2211",
@@ -4099,7 +4213,10 @@
       "sourceKind": "clover-public",
       "availability": "active",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250723160626_1.jpg",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250723160626_1.jpg"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250723160626_1.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250723160626_1.jpg",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-1927",
@@ -4313,7 +4430,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/wd120mcb_1_1.jpg",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/wd120mcb_1_1.jpg"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/wd120mcb_1_1.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/wd120mcb_1_1.jpg",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-1775",
@@ -4502,7 +4622,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/wu903as_1_1.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/wu903as_1_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/wu903as_1_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/wu903as_1_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-1588",
@@ -4563,7 +4686,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/wu823as.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/wu823as.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/wu823as.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/wu823as.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-1760",
@@ -4813,7 +4939,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231113115939_1_1.gif",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231113115939_1_1.gif"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231113115939_1_1.gif",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231113115939_1_1.gif",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2184",
@@ -4892,7 +5021,10 @@
       "sourceKind": "clover-public",
       "availability": "active",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250321143639_1.jpg",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250321143639_1.jpg"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250321143639_1.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250321143639_1.jpg",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2019",
@@ -5139,7 +5271,10 @@
       "sourceKind": "clover-public",
       "availability": "active",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/4.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/4.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/4.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/4.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2020",
@@ -5805,7 +5940,10 @@
       "sourceKind": "clover-public",
       "availability": "active",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/260108172032_1.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/260108172032_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/260108172032_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/260108172032_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-1969",
@@ -6042,7 +6180,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/wu503a_1_1.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/wu503a_1_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/wu503a_1_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/wu503a_1_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-1821",
@@ -6128,7 +6269,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/wu503a_1_1.gif",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/wu503a_1_1.gif"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/wu503a_1_1.gif",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/wu503a_1_1.gif",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2118",
@@ -6211,7 +6355,10 @@
       "sourceKind": "clover-public",
       "availability": "active",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/240527143131_1.jpg",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/240527143131_1.jpg"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/240527143131_1.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/240527143131_1.jpg",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2172",
@@ -6270,7 +6417,10 @@
       "sourceKind": "clover-public",
       "availability": "active",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/97846_dn18wv6bwmvretfzen3ckemdsslzem.jpg",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/97846_dn18wv6bwmvretfzen3ckemdsslzem.jpg"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/97846_dn18wv6bwmvretfzen3ckemdsslzem.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/97846_dn18wv6bwmvretfzen3ckemdsslzem.jpg",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2227",
@@ -6331,7 +6481,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/251106111819_1.jpg",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/251106111819_1.jpg"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/251106111819_1.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/251106111819_1.jpg",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2228",
@@ -6392,7 +6545,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/251106112611_1.jpg",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/251106112611_1.jpg"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/251106112611_1.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/251106112611_1.jpg",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-1970",
@@ -7451,7 +7607,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/251119112530_1.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/251119112530_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/251119112530_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/251119112530_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2215",
@@ -7535,7 +7694,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250823095537_1.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250823095537_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250823095537_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250823095537_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2214",
@@ -7705,7 +7867,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250624134539_1.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250624134539_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250624134539_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250624134539_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2195",
@@ -7765,7 +7930,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250517100410_1.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250517100410_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250517100410_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250517100410_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2186",
@@ -8102,7 +8270,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231017173335_1.gif",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231017173335_1.gif"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231017173335_1.gif",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231017173335_1.gif",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2030",
@@ -8319,7 +8490,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230629150108_1.gif",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230629150108_1.gif"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230629150108_1.gif",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230629150108_1.gif",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-1679",
@@ -8814,7 +8988,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/260922102759_1.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/260922102759_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/260922102759_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/260922102759_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "chpi-7430n",
@@ -8987,7 +9164,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://cdn.rentre.kr/product-thumbnail/76a9f09a6e2e45aeaf1b245dc920f9fc.png",
-      "imageLocalizedFrom": "https://cdn.rentre.kr/product-thumbnail/76a9f09a6e2e45aeaf1b245dc920f9fc.png"
+      "imageLocalizedFrom": "https://cdn.rentre.kr/product-thumbnail/76a9f09a6e2e45aeaf1b245dc920f9fc.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://cdn.rentre.kr/product-thumbnail/76a9f09a6e2e45aeaf1b245dc920f9fc.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "chpi-7420n",
@@ -9116,7 +9296,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://m.coway-mall.kr/web/product/extra/big/202508/d0789fe9a45c82952ca4bdc60e21a5d2.jpg",
-      "imageLocalizedFrom": "https://m.coway-mall.kr/web/product/extra/big/202508/d0789fe9a45c82952ca4bdc60e21a5d2.jpg"
+      "imageLocalizedFrom": "https://m.coway-mall.kr/web/product/extra/big/202508/d0789fe9a45c82952ca4bdc60e21a5d2.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://m.coway-mall.kr/web/product/extra/big/202508/d0789fe9a45c82952ca4bdc60e21a5d2.jpg",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2208",
@@ -9179,7 +9362,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250714132654_1.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250714132654_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250714132654_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250714132654_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2209",
@@ -9603,7 +9789,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://miso-customer-public.s3.ap-northeast-2.amazonaws.com/rental_img/20240322_purifier/COWAY/COWAYP29/COWAYP29_MAIN_5.png",
-      "imageLocalizedFrom": "https://miso-customer-public.s3.ap-northeast-2.amazonaws.com/rental_img/20240322_purifier/COWAY/COWAYP29/COWAYP29_MAIN_5.png"
+      "imageLocalizedFrom": "https://miso-customer-public.s3.ap-northeast-2.amazonaws.com/rental_img/20240322_purifier/COWAY/COWAYP29/COWAYP29_MAIN_5.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://miso-customer-public.s3.ap-northeast-2.amazonaws.com/rental_img/20240322_purifier/COWAY/COWAYP29/COWAYP29_MAIN_5.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2194",
@@ -9688,7 +9877,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250516170700_1.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250516170700_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250516170700_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250516170700_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2247",
@@ -9746,7 +9938,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/260309175120_1.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/260309175120_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/260309175120_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/260309175120_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2239",
@@ -9808,7 +10003,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/251205133636_1.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/251205133636_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/251205133636_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/251205133636_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2222",
@@ -10041,7 +10239,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250418173814_1.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250418173814_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250418173814_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250418173814_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2255",
@@ -10126,7 +10327,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/260613103621_1.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/260613103621_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/260613103621_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/260613103621_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-1579",
@@ -10495,7 +10699,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://m.renters.co.kr/web/product/medium/202102/aa2fb5f52292b5c3564eb2ef4137eb8d.jpg",
-      "imageLocalizedFrom": "https://m.renters.co.kr/web/product/medium/202102/aa2fb5f52292b5c3564eb2ef4137eb8d.jpg"
+      "imageLocalizedFrom": "https://m.renters.co.kr/web/product/medium/202102/aa2fb5f52292b5c3564eb2ef4137eb8d.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://m.renters.co.kr/web/product/medium/202102/aa2fb5f52292b5c3564eb2ef4137eb8d.jpg",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-1915",
@@ -10667,7 +10874,10 @@
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/chp-6340l_1_1.png",
       "imageSearchSource": "https://coway.speedgabia.com/pictures/13aa3217b.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/chp-6340l_1_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/chp-6340l_1_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/chp-6340l_1_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-1932",
@@ -10811,7 +11021,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/chpi-5810l_1_1.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/chpi-5810l_1_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/chpi-5810l_1_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/chpi-5810l_1_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-1916",
@@ -11071,7 +11284,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/p-6320l_1_1.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/p-6320l_1_1.png"
+      "imageLocalizedFrom": "https://gw.alicdn.com/imgextra/i1/754272513/T2vVK6Xv8XXXXXXXXX_!!754272513.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://gw.alicdn.com/imgextra/i1/754272513/T2vVK6Xv8XXXXXXXXX_!!754272513.jpg",
+      "imageRepresentativeMethod": "search"
     },
     {
       "id": "clover-181",
@@ -11346,7 +11562,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/chpi-620l_1_1.gif",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/chpi-620l_1_1.gif"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/chpi-620l_1_1.gif",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/chpi-620l_1_1.gif",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-1882",
@@ -11978,7 +12197,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230629103659_1.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230629103659_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230629103659_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230629103659_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-1879",
@@ -12493,7 +12715,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/260613104836_1.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/260613104836_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/260613104836_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/260613104836_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2233",
@@ -13456,7 +13681,10 @@
       "sourceKind": "clover-public",
       "availability": "active",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/200224064042_87.jpg",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/200224064042_87.jpg"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/200224064042_87.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/200224064042_87.jpg",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-1897",
@@ -13518,7 +13746,10 @@
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/id0101_4554_attimg_org.png",
       "imageSearchSource": "https://ljjlove369.cafe24.com/web/product/bidet%28Thum%29/BAS39-A%28s%29.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/id0101_4554_attimg_org.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/id0101_4554_attimg_org.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/id0101_4554_attimg_org.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2086",
@@ -14384,7 +14615,10 @@
       "imagePageUrl": "https://coway-mall.kr/product/fad-01s-%EC%BD%94%EC%9B%A8%EC%9D%B4-%EC%9D%98%EB%A5%98%EC%B2%AD%EC%A0%95%EA%B8%B0-%EB%8D%94%EB%B8%94%EC%BC%80%EC%96%B4%EA%B3%A0%EA%B8%89%ED%98%95/566/",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/id0101_3717_attimg_org.png",
       "imageSearchSource": "https://coway-mall.kr/web/product/small/202105/d252592e0c91858ba470fe98b85a9d64.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/id0101_3717_attimg_org.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/id0101_3717_attimg_org.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/id0101_3717_attimg_org.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-436",
@@ -14969,7 +15203,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/23.jpg",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/23.jpg"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/23.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/23.jpg",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-1799",
@@ -15107,7 +15344,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/20250823_102129.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/20250823_102129.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/20250823_102129.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/20250823_102129.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2145",
@@ -15169,7 +15409,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250311181425_1.jpg",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250311181425_1.jpg"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250311181425_1.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250311181425_1.jpg",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2170",
@@ -15229,7 +15472,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/1.jpg",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/1.jpg"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/1.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/1.jpg",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2151",
@@ -15404,7 +15650,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/260207103228_1.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/260207103228_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/260207103228_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/260207103228_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2217",
@@ -15720,7 +15969,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/0.jpg",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/0.jpg"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/0.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/0.jpg",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2152",
@@ -15837,7 +16089,10 @@
       "sourceKind": "clover-public",
       "availability": "active",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250827160157_1.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250827160157_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250827160157_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250827160157_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2241",
@@ -15897,7 +16152,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/251209111040_1.jpg",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/251209111040_1.jpg"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/251209111040_1.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/251209111040_1.jpg",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2057",
@@ -16274,7 +16532,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231101155712_1_1.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231101155712_1_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231101155712_1_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231101155712_1_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2260",
@@ -16332,7 +16593,10 @@
       "sourceKind": "clover-public",
       "availability": "active",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/56.jpg",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/56.jpg"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/56.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/56.jpg",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2246",
@@ -16404,7 +16668,10 @@
       "sourceKind": "clover-public",
       "availability": "active",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/77.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/77.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/77.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/77.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2234",
@@ -16462,7 +16729,10 @@
       "sourceKind": "clover-public",
       "availability": "active",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/251119163222_1.jpg",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/251119163222_1.jpg"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/251119163222_1.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/251119163222_1.jpg",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2128",
@@ -16592,7 +16862,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/251208162433_1.jpg",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/251208162433_1.jpg"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/251208162433_1.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/251208162433_1.jpg",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2127",
@@ -16650,7 +16923,10 @@
       "imagePageUrl": "https://wells.chunghonice.kr/shop/2021120116171973",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/ap-20h7560_4.jpg",
       "imageSearchSource": "https://goyang21.or.kr/data/item/2021120116171973/7I2464Sk7J281.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/ap-20h7560_4.jpg"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/ap-20h7560_4.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/ap-20h7560_4.jpg",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2130",
@@ -16732,7 +17008,10 @@
       "availability": "active",
       "imagePageUrl": "https://www.directcenter.co.kr/user/product_detail?category_no=10&product_no=202402-1105",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/ap-10h4052_1.jpg",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/ap-10h4052_1.jpg"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/ap-10h4052_1.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/ap-10h4052_1.jpg",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2132",
@@ -16792,7 +17071,10 @@
       "imagePageUrl": "https://goyang21.or.kr/shop/2021120116171974",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/20240529_112736_047_1.jpg",
       "imageSearchSource": "https://goyang21.or.kr/data/item/2021120116171974/A600S7I2464Sk7J28.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/20240529_112736_047_1.jpg"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/20240529_112736_047_1.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/20240529_112736_047_1.jpg",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-1623",
@@ -17083,7 +17365,10 @@
       "sourceKind": "clover-public",
       "availability": "active",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/200224065058_450.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/200224065058_450.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/200224065058_450.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/200224065058_450.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-1686",
@@ -18762,7 +19047,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/aaaaaaaaaaa.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/aaaaaaaaaaa.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/aaaaaaaaaaa.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/aaaaaaaaaaa.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-1691",
@@ -18885,7 +19173,10 @@
       "availability": "active",
       "imagePageUrl": "https://www.hyundai-rentalcare.co.kr/user/product_detail?product_no=202405-1215",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/hqpi73cg0e_1_1.jpg",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/hqpi73cg0e_1_1.jpg"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/hqpi73cg0e_1_1.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/hqpi73cg0e_1_1.jpg",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2166",
@@ -18965,7 +19256,10 @@
       "sourceKind": "clover-public",
       "availability": "active",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250218101934_1.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250218101934_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250218101934_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250218101934_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2257",
@@ -19057,7 +19351,10 @@
       "sourceKind": "clover-public",
       "availability": "active",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/22.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/22.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/22.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/22.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2111",
@@ -19245,7 +19542,10 @@
       "availability": "active",
       "imagePageUrl": "https://hyundai.wwizrental.kr/rental/goods/405/%ED%98%84%EB%8C%80%ED%81%90%EB%B0%8D-%EB%94%9C%EB%9D%BC%EC%9D%B4%ED%8A%B8-%EC%95%84%EC%9D%B4-%EB%AC%B4%EC%A0%84%EC%9B%90-%EC%A7%81%EC%88%98-%EC%A0%95%EC%88%98%EA%B8%B0",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/hqpm15cg0e_1_1.gif",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/hqpm15cg0e_1_1.gif"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/hqpm15cg0e_1_1.gif",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/hqpm15cg0e_1_1.gif",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-1784",
@@ -19672,7 +19972,10 @@
       "sourceKind": "clover-public",
       "availability": "active",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231114100837_1_1.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231114100837_1_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231114100837_1_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231114100837_1_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-1719",
@@ -19749,7 +20052,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231114100558_1_1.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231114100558_1_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231114100558_1_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231114100558_1_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-681",
@@ -19902,7 +20208,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/240910153719_1.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/240910153719_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/240910153719_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/240910153719_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2235",
@@ -20412,7 +20721,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231114104729_1.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231114104729_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231114104729_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231114104729_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-679",
@@ -20503,7 +20815,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231114093753_1_1.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231114093753_1_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231114093753_1_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231114093753_1_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-241",
@@ -20587,7 +20902,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/922afa51b5ebea1ff5ab1c89582b7beb.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/922afa51b5ebea1ff5ab1c89582b7beb.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/922afa51b5ebea1ff5ab1c89582b7beb.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/922afa51b5ebea1ff5ab1c89582b7beb.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-1898",
@@ -20787,7 +21105,10 @@
       "sourceKind": "clover-public",
       "availability": "active",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/416b18a67f3ff19b9c48ca317fe7bb73.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/416b18a67f3ff19b9c48ca317fe7bb73.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/416b18a67f3ff19b9c48ca317fe7bb73.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/416b18a67f3ff19b9c48ca317fe7bb73.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-1737",
@@ -20942,7 +21263,10 @@
       "sourceKind": "clover-public",
       "availability": "active",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/200224065521_463.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/200224065521_463.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/200224065521_463.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/200224065521_463.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-257",
@@ -21198,7 +21522,10 @@
       "sourceKind": "clover-public",
       "availability": "active",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/200224065521_435.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/200224065521_435.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/200224065521_435.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/200224065521_435.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-271",
@@ -21327,7 +21654,10 @@
       "sourceKind": "clover-public",
       "availability": "active",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/200224065521_419.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/200224065521_419.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/200224065521_419.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/200224065521_419.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-275",
@@ -21665,7 +21995,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://contents.lotteon.com/itemimage/20260429111206/LO/26/50/75/17/38/_2/65/07/51/73/9/LO2650751738_2650751739_1.jpg/dims/resizef/554X554/format/webp/optimize",
-      "imageLocalizedFrom": "https://contents.lotteon.com/itemimage/20260429111206/LO/26/50/75/17/38/_2/65/07/51/73/9/LO2650751738_2650751739_1.jpg/dims/resizef/554X554/format/webp/optimize"
+      "imageLocalizedFrom": "https://contents.lotteon.com/itemimage/20260429111206/LO/26/50/75/17/38/_2/65/07/51/73/9/LO2650751738_2650751739_1.jpg/dims/resizef/554X554/format/webp/optimize",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://contents.lotteon.com/itemimage/20260429111206/LO/26/50/75/17/38/_2/65/07/51/73/9/LO2650751738_2650751739_1.jpg/dims/resizef/554X554/format/webp/optimize",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-1769",
@@ -21766,7 +22099,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/260527111340_1.jpg",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/260527111340_1.jpg"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/260527111340_1.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/260527111340_1.jpg",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2249",
@@ -22146,7 +22482,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/251121133504_1.jpg",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/251121133504_1.jpg"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/251121133504_1.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/251121133504_1.jpg",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2219",
@@ -22333,7 +22672,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250520144816_1.jpg",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250520144816_1.jpg"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250520144816_1.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250520144816_1.jpg",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2159",
@@ -22425,7 +22767,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/95397cca-e757-4785-be64-cc1b2bbc9858.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/95397cca-e757-4785-be64-cc1b2bbc9858.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/95397cca-e757-4785-be64-cc1b2bbc9858.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/95397cca-e757-4785-be64-cc1b2bbc9858.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2158",
@@ -22622,7 +22967,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/251121140604_1.jpg",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/251121140604_1.jpg"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/251121140604_1.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/251121140604_1.jpg",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-1908",
@@ -22881,7 +23229,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230703152617_1.jpg",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230703152617_1.jpg"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230703152617_1.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230703152617_1.jpg",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2067",
@@ -23154,7 +23505,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/260514162426_1.jpg",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/260514162426_1.jpg"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/260514162426_1.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/260514162426_1.jpg",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2147",
@@ -23218,7 +23572,10 @@
       "giftStatus": "matched",
       "imagePageUrl": "https://www.cuckoo.co.kr/rental/productView?idx=445",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/cp-acsr1620sw_1_1.jpg",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/cp-acsr1620sw_1_1.jpg"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/cp-acsr1620sw_1_1.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/cp-acsr1620sw_1_1.jpg",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2099",
@@ -23279,7 +23636,10 @@
       "giftStatus": "matched",
       "imagePageUrl": "https://www.honeyrental.kr/product/%EC%BF%A0%EC%BF%A0-%EB%83%89%EC%98%A8%EC%A0%95%EC%88%98%EA%B8%B0-%EB%A0%8C%ED%83%88-cp-f603-%EB%AF%B8%EB%84%A4%EB%9E%84-%EC%9B%8C%ED%84%B0-%EB%93%B1%EB%A1%9D%EB%B9%84%C2%B7%EC%84%A4%EC%B9%98%EB%B9%84-%EB%A9%B4%EC%A0%9C-%EC%95%BD%EC%A0%95356%EB%85%84/2925/",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/240520143016_1_1.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/240520143016_1_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/240520143016_1_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/240520143016_1_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-1774",
@@ -23720,7 +24080,10 @@
       "giftStatus": "matched",
       "imagePageUrl": "https://www.cuckoo.co.kr/rental/productView?idx=438",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231106142158_1_1.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231106142158_1_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231106142158_1_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231106142158_1_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2063",
@@ -23806,7 +24169,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/cp-w601_1.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/cp-w601_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/cp-w601_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/cp-w601_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2016",
@@ -23892,7 +24258,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/cp-w602.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/cp-w602.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/cp-w602.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/cp-w602.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2141",
@@ -23954,7 +24323,10 @@
       "giftStatus": "matched",
       "imagePageUrl": "https://www.cuckoo.co.kr/rental/productView?cateUid=14&idx=314&page=1&sort=1",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/240911111434_1.jpg",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/240911111434_1.jpg"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/240911111434_1.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/240911111434_1.jpg",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2142",
@@ -24016,7 +24388,10 @@
       "giftStatus": "matched",
       "imagePageUrl": "https://www.cuckoo.co.kr/rental/productView?idx=327",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/cp-wrp602sw_1_1.jpg",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/cp-wrp602sw_1_1.jpg"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/cp-wrp602sw_1_1.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/cp-wrp602sw_1_1.jpg",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-1599",
@@ -24078,7 +24453,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231103142909_1_1.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231103142909_1_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231103142909_1_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231103142909_1_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2064",
@@ -24139,7 +24517,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/240911113020_1.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/240911113020_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/240911113020_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/240911113020_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-1802",
@@ -24203,7 +24584,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/220707142930_1.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/220707142930_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/220707142930_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/220707142930_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-1705",
@@ -24291,7 +24675,10 @@
       "giftStatus": "matched",
       "imagePageUrl": "https://www.cuckoo-store.co.kr/user/product_detail?product_no=202012-0057",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/1988111144_y17luhbj_ac-n25w10fws_1.jpg",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/1988111144_y17luhbj_ac-n25w10fws_1.jpg"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/1988111144_y17luhbj_ac-n25w10fws_1.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/1988111144_y17luhbj_ac-n25w10fws_1.jpg",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-1721",
@@ -24377,7 +24764,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/661910538_t07935yw_ac-20t20fwh_1.jpg",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/661910538_t07935yw_ac-20t20fwh_1.jpg"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/661910538_t07935yw_ac-20t20fwh_1.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/661910538_t07935yw_ac-20t20fwh_1.jpg",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-1720",
@@ -24518,7 +24908,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/thumb-cbte1021w_560_400x400.jpg",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/thumb-cbte1021w_560_400x400.jpg"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/thumb-cbte1021w_560_400x400.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/thumb-cbte1021w_560_400x400.jpg",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-1906",
@@ -24604,7 +24997,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/661910538_u2jxxfdt_ac-14r20fnw_1.jpg",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/661910538_u2jxxfdt_ac-14r20fnw_1.jpg"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/661910538_u2jxxfdt_ac-14r20fnw_1.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/661910538_u2jxxfdt_ac-14r20fnw_1.jpg",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2175",
@@ -24690,7 +25086,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/6.jpg",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/6.jpg"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/6.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/6.jpg",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2176",
@@ -24781,7 +25180,10 @@
       "sourceKind": "clover-public",
       "availability": "active",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250319135043_1.jpg",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250319135043_1.jpg"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250319135043_1.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250319135043_1.jpg",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2177",
@@ -24864,7 +25266,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/8.jpg",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/8.jpg"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/8.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/8.jpg",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2178",
@@ -24950,7 +25355,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250319150039_1.jpg",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250319150039_1.jpg"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250319150039_1.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250319150039_1.jpg",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2179",
@@ -25035,7 +25443,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250319152912_1.jpg",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250319152912_1.jpg"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250319152912_1.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250319152912_1.jpg",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-1907",
@@ -25185,7 +25596,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231103144955_1_1.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231103144955_1_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231103144955_1_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231103144955_1_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2144",
@@ -25247,7 +25661,10 @@
       "giftStatus": "matched",
       "imagePageUrl": "https://www.cuckoo.co.kr/rental/productView?idx=389",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/ac-09aa10fwh_1.jpg",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/ac-09aa10fwh_1.jpg"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/ac-09aa10fwh_1.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/ac-09aa10fwh_1.jpg",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-1656",
@@ -25337,7 +25754,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/220707151827_1.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/220707151827_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/220707151827_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/220707151827_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-1657",
@@ -25423,7 +25843,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/220707151019_1.jpg",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/220707151019_1.jpg"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/220707151019_1.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/220707151019_1.jpg",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-481",
@@ -25484,7 +25907,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/a.jpg",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/a.jpg"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/a.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/a.jpg",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-500",
@@ -25535,7 +25961,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/0k.jpg",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/0k.jpg"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/0k.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/0k.jpg",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-516",
@@ -25800,7 +26229,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/3a7506e644b22.jpg",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/3a7506e644b22.jpg"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/3a7506e644b22.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/3a7506e644b22.jpg",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2108",
@@ -25859,7 +26291,10 @@
       "giftStatus": "matched",
       "imagePageUrl": "https://www.cuckoo.co.kr/rental/productView?idx=300",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/5cf1d450a2ae5.jpg",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/5cf1d450a2ae5.jpg"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/5cf1d450a2ae5.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/5cf1d450a2ae5.jpg",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2109",
@@ -26154,7 +26589,10 @@
       "giftStatus": "matched",
       "imagePageUrl": "https://ruhensus.com/whp-2000/",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/00.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/00.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/00.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/00.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2097",
@@ -26214,7 +26652,10 @@
       "giftStatus": "matched",
       "imagePageUrl": "https://ruhensus.com/whp-3900/",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/240206181836_1.jpg",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/240206181836_1.jpg"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/240206181836_1.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/240206181836_1.jpg",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-726",
@@ -26422,7 +26863,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/whp-2500_1_1.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/whp-2500_1_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/whp-2500_1_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/whp-2500_1_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-1752",
@@ -26511,7 +26955,10 @@
       "imagePageUrl": "https://rental.lghellovision.net/",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/whp-3020_1_1.png",
       "imageSearchSource": "https://rentalcdn.lghellovision.net/uploads/product/Vo1PkqTIfh.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/whp-3020_1_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/whp-3020_1_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/whp-3020_1_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-1753",
@@ -26599,7 +27046,10 @@
       "giftStatus": "matched",
       "imagePageUrl": "https://www.ruhens.co.kr/product/view.php?PNO=19",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/whp-3030_1_1.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/whp-3030_1_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/whp-3030_1_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/whp-3030_1_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2094",
@@ -26684,7 +27134,10 @@
       "giftStatus": "matched",
       "imagePageUrl": "https://www.ruhens.co.kr/product/view.php?PNO=108",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/202305311113496476ad5d9182e.jpg",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/202305311113496476ad5d9182e.jpg"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/202305311113496476ad5d9182e.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/202305311113496476ad5d9182e.jpg",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-711",
@@ -26744,7 +27197,10 @@
       "giftStatus": "matched",
       "imagePageUrl": "https://www.ruhens.co.kr/product/view.php?PNO=11",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/whp-2200_1_1.jpg",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/whp-2200_1_1.jpg"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/whp-2200_1_1.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/whp-2200_1_1.jpg",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-728",
@@ -26792,7 +27248,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250313101042_1.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250313101042_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250313101042_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250313101042_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2180",
@@ -27081,7 +27540,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250319173115_1.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250319173115_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250319173115_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250319173115_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-1401",
@@ -27144,7 +27606,10 @@
       "giftStatus": "matched",
       "imagePageUrl": "https://www.ubusmall.com/prd/view.html?goods_code=HR202306-151722&s_menu1_no=1&s_menu2_no=81",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231114120006_1_1.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231114120006_1_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231114120006_1_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231114120006_1_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-1405",
@@ -27228,7 +27693,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231114130923_1_1.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231114130923_1_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231114130923_1_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231114130923_1_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2037",
@@ -27375,7 +27843,10 @@
       "giftStatus": "matched",
       "imagePageUrl": "https://m.billigo.kr/shop/view.php?ca_id=&index_no=4861",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231114115855_1_1.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231114115855_1_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231114115855_1_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231114115855_1_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2039",
@@ -27438,7 +27909,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/260507095525_1.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/260507095525_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/260507095525_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/260507095525_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-1417",
@@ -27505,7 +27979,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/kakaotalk_20250319_174930828.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/kakaotalk_20250319_174930828.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/kakaotalk_20250319_174930828.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/kakaotalk_20250319_174930828.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "cp-7211n-v2",
@@ -27628,7 +28105,10 @@
       ],
       "giftStatus": "matched",
       "imageSourceOriginal": "https://dxjqoz29v7d9l.cloudfront.net/product-thumbnail/CO21-T-1.png",
-      "imageLocalizedFrom": "https://dxjqoz29v7d9l.cloudfront.net/product-thumbnail/CO21-T-1.png"
+      "imageLocalizedFrom": "https://dxjqoz29v7d9l.cloudfront.net/product-thumbnail/CO21-T-1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://dxjqoz29v7d9l.cloudfront.net/product-thumbnail/CO21-T-1.png",
+      "imageRepresentativeMethod": "original"
     }
   ]
 }
