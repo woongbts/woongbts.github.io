@@ -7,6 +7,7 @@ on:
       - 'rental/data/products.json'
       - 'rental/data/appliance-gift-options.json'
       - 'scripts/build-rental-featured.py'
+      - '.github/workflows/rental-featured-refresh.yml'
   workflow_dispatch:
 
 permissions:
