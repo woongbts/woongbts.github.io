@@ -8,6 +8,7 @@ from urllib.parse import quote
 
 ROOT = Path(__file__).resolve().parents[2]
 SITEMAP = ROOT / "sitemap.xml"
+RENTAL_SITEMAP = ROOT / "rental/sitemap.xml"
 PRODUCTS = ROOT / "rental/data/products.json"
 
 STATIC = {
@@ -56,6 +57,15 @@ def main():
       rows.append(entry(f"https://woongbts.github.io/rental/product.html?id={pid}",product_date,"weekly","0.6"))
     rows.append("</urlset>")
     SITEMAP.write_text("\n".join(rows)+"\n",encoding="utf-8")
+
+    rental_rows=['<?xml version="1.0" encoding="UTF-8"?>','<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
+    rental_rows.append(entry("https://woongbts.github.io/rental/",latest_date(STATIC["https://woongbts.github.io/rental/"]),"daily","0.9"))
+    for p in sorted(products,key=lambda x:str(x.get("id") or "")):
+      pid=quote(str(p.get("id") or ""),safe="-_")
+      if not pid: continue
+      rental_rows.append(entry(f"https://woongbts.github.io/rental/product.html?id={pid}",product_date,"weekly","0.6"))
+    rental_rows.append("</urlset>")
+    RENTAL_SITEMAP.write_text("\n".join(rental_rows)+"\n",encoding="utf-8")
 
 if __name__=="__main__":
     main()
