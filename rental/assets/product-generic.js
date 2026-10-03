@@ -97,11 +97,20 @@
     });
   }
 
+  function termLabel(option) {
+    if (!option) return '상품별 조건';
+    if (option.termLabel) return option.termLabel;
+    const term = String(option.term ?? '').trim();
+    return term ? term + '개월' : '상품별 조건';
+  }
+
   function renderTerms() {
-    const terms = [...new Set(optionSet().map(o => String(o.term)))];
-    termBox.innerHTML = terms.map(term =>
-      '<button type="button" data-value="' + term + '">' + term + '개월</button>'
-    ).join('');
+    const options = optionSet();
+    const terms = [...new Set(options.map(o => String(o.term ?? '')))];
+    termBox.innerHTML = terms.map(term => {
+      const option = options.find(o => String(o.term ?? '') === term);
+      return '<button type="button" data-value="' + term + '">' + termLabel(option) + '</button>';
+    }).join('');
     termBox.classList.toggle('single', terms.length === 1);
 
     termBox.querySelectorAll('button').forEach(btn => {
@@ -127,7 +136,7 @@
     $('#monthly-fee').textContent = v.monthly == null ? '상담 확인' : won(v.monthly);
     $('#gift-fee').textContent = v.gift == null ? '상담 확인' : won(v.gift);
     $('#care-cycle').textContent = v.care || '상담 확인';
-    $('#sticky-selection').textContent = optionLabel(v.managementLabel || v.management) + ' · ' + v.term + '개월';
+    $('#sticky-selection').textContent = optionLabel(v.managementLabel || v.management) + ' · ' + termLabel(v);
     $('#sticky-monthly').textContent = v.monthly == null ? '상담 확인' : won(v.monthly);
     $('#sticky-gift').textContent = v.gift == null ? '상담 확인' : won(v.gift);
 
@@ -161,7 +170,7 @@
     $('#generic-option-label').textContent = optionHeading(product.category);
     $('#summary-option-label').textContent = optionHeading(product.category);
     $('#summary-management').textContent = [...new Set((product.options || []).map(o => optionLabel(o.managementLabel || o.management)).filter(Boolean))].join(' / ') || '-';
-    $('#summary-terms').textContent = [...new Set((product.options || []).map(o => o.term).filter(Boolean))].sort((a,b)=>a-b).map(x => x + '개월').join(' / ') || '-';
+    $('#summary-terms').textContent = [...new Set((product.options || []).map(o => termLabel(o)).filter(Boolean))].join(' / ') || '-';
 
     const img = $('#generic-image');
     const art = $('#generic-art');
