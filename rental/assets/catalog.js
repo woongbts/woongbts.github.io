@@ -10,8 +10,14 @@
   const featureFilters = document.getElementById('feature-filters');
   const count = document.getElementById('catalog-count');
   const moreBtn = document.getElementById('catalog-more');
+  const catalogToggle = document.getElementById('catalog-toggle');
+  const catalogPanel = document.getElementById('catalog-panel');
+  const recommendTabs = document.getElementById('recommend-tabs');
+  const recommendGrid = document.getElementById('recommend-grid');
 
-  const PAGE_SIZE = 24;
+  const PAGE_SIZE = 12;
+  const RECOMMEND_CATEGORIES = ['정수기','공기청정기','비데·연수기','안마의자','매트리스·프레임'];
+  let recommendCategory = '정수기';
   const state = { query: '', brand: '', category: '', feature: '', limit: PAGE_SIZE };
   let products = [];
 
@@ -163,6 +169,96 @@
     `;
   }
 
+  function recommendationScore(product) {
+    const validOptions = Array.isArray(product.options)
+      ? product.options.filter(o => Number.isFinite(Number(o.monthly)))
+      : [];
+    if (!validOptions.length) return -1;
+    const gifts = validOptions.map(o => Number(o.gift)).filter(Number.isFinite);
+    if (!gifts.length) return -1;
+    const monthly = validOptions.map(o => Number(o.monthly)).filter(Number.isFinite);
+    const maxGift = Math.max(...gifts);
+    const maxMonthly = monthly.length ? Math.max(...monthly) : 0;
+    return maxGift + maxMonthly * 1.35;
+  }
+
+  function recommendationCard(product) {
+    const validOptions = Array.isArray(product.options)
+      ? product.options.filter(o => Number.isFinite(Number(o.monthly)))
+      : [];
+    const monthly = validOptions.map(o => Number(o.monthly)).filter(Number.isFinite);
+    const gifts = validOptions.map(o => Number(o.gift)).filter(Number.isFinite);
+    const minMonthly = monthly.length ? Math.min(...monthly) : null;
+    const maxGift = gifts.length ? Math.max(...gifts) : null;
+    const image = imageCandidatesFor(product)[0] || '';
+    return `
+      <article class="recommend-card">
+        <a class="recommend-image" href="${product.page || '#'}">
+          ${image ? '<img src="' + image + '" alt="' + product.name + '" loading="lazy">' : '<span class="recommend-fallback">W</span>'}
+        </a>
+        <div class="recommend-body">
+          <small>${brandLabel(product.brand)} · ${product.model || product.category || ''}</small>
+          <h3>${product.name}</h3>
+          <div class="recommend-prices">
+            <span>월 ${minMonthly == null ? '상담 확인' : won(minMonthly) + '부터'}</span>
+            <strong>${maxGift == null ? '사은품 상담 확인' : '사은품 최대 ' + won(maxGift)}</strong>
+          </div>
+          <a class="recommend-link" href="${product.page || '#'}">조건 보기 →</a>
+        </div>
+      </article>
+    `;
+  }
+
+  function renderRecommendations() {
+    if (!recommendTabs || !recommendGrid) return;
+    const available = RECOMMEND_CATEGORIES.filter(category =>
+      products.some(p => p.category === category && p.availability !== 'inactive' && recommendationScore(p) >= 0)
+    );
+    if (!available.length) {
+      recommendTabs.hidden = true;
+      recommendGrid.innerHTML = '';
+      return;
+    }
+    if (!available.includes(recommendCategory)) recommendCategory = available[0];
+    recommendTabs.innerHTML = available.map(category =>
+      '<button type="button" role="tab" aria-selected="' + (category === recommendCategory ? 'true' : 'false') + '" class="' + (category === recommendCategory ? 'active' : '') + '" data-recommend-category="' + category + '">' + category + '</button>'
+    ).join('');
+    recommendTabs.querySelectorAll('button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        recommendCategory = btn.dataset.recommendCategory || available[0];
+        renderRecommendations();
+      });
+    });
+
+    const selected = products
+      .filter(p => p.category === recommendCategory && p.availability !== 'inactive' && recommendationScore(p) >= 0)
+      .sort((a,b) => recommendationScore(b) - recommendationScore(a))
+      .slice(0,4);
+
+    recommendGrid.innerHTML = selected.map(recommendationCard).join('');
+  }
+
+  function openCatalog(scrollIntoView = false) {
+    if (!catalogPanel) return;
+    catalogPanel.hidden = false;
+    if (catalogToggle) {
+      catalogToggle.setAttribute('aria-expanded','true');
+      catalogToggle.textContent = '전체 상품 닫기';
+    }
+    if (scrollIntoView) {
+      requestAnimationFrame(() => document.getElementById('products')?.scrollIntoView({behavior:'smooth',block:'start'}));
+    }
+  }
+
+  function closeCatalog() {
+    if (!catalogPanel) return;
+    catalogPanel.hidden = true;
+    if (catalogToggle) {
+      catalogToggle.setAttribute('aria-expanded','false');
+      catalogToggle.textContent = '전체 상품 열기';
+    }
+  }
+
   function normalizeText(value) {
     return String(value || '').toLowerCase().replace(/\s+/g, ' ').trim();
   }
@@ -309,6 +405,7 @@
 
     shortcutLinks.forEach(link => {
       link.addEventListener('click', () => {
+        openCatalog();
         state.category = link.dataset.categoryLink || '';
         if (categoryFilter) categoryFilter.value = state.category;
         syncShortcutActive();
@@ -322,6 +419,11 @@
       state.limit += PAGE_SIZE;
       render();
     });
+
+    catalogToggle?.addEventListener('click', () => {
+      if (catalogPanel?.hidden) openCatalog();
+      else closeCatalog();
+    });
   }
 
   fetch('data/products.json', {cache:'no-store'})
@@ -334,6 +436,7 @@
         ? data.products.filter(p => p.availability !== 'inactive' && !/접수불가|접수중지/.test(String(p.name || '')))
         : [];
       setupFilters();
+      renderRecommendations();
       render();
     })
     .catch(() => {
