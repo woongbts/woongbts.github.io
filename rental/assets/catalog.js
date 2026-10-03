@@ -16,6 +16,28 @@
   let products = [];
 
   const won = n => Number(n).toLocaleString('ko-KR') + '원';
+  const IMAGE_REV = '20261003-14861115';
+  const localImageUrl = src => {
+    const value = String(src || '').trim();
+    if (!value) return '';
+    if (value.startsWith('assets/product-images/')) return '/rental/' + value + '?v=' + IMAGE_REV;
+    return value;
+  };
+  const imageCandidatesFor = product => {
+    const raw = [product.image, ...((product.detailImages || []).slice(0, 3))].filter(Boolean);
+    const candidates = [];
+    raw.forEach(src => {
+      const value = String(src || '').trim();
+      if (!value) return;
+      const resolved = localImageUrl(value);
+      if (resolved && !candidates.includes(resolved)) candidates.push(resolved);
+      if (value.startsWith('assets/product-images/')) {
+        const mirror = 'https://raw.githubusercontent.com/woongbts/woongbts.github.io/main/rental/' + value + '?v=' + IMAGE_REV;
+        if (!candidates.includes(mirror)) candidates.push(mirror);
+      }
+    });
+    return candidates;
+  };
   const brandLabel = brand => ({
     'COWAY':'코웨이',
     'CUCKOO':'쿠쿠',
@@ -55,7 +77,7 @@
       return '<div class="catalog-image-slot">' + placeholder + '</div>';
     }
     return '<div class="catalog-image-slot">' +
-      '<img class="catalog-product-image" data-product-id="' + product.id + '" alt="' + product.name + '" loading="lazy" referrerpolicy="no-referrer">' +
+      '<img class="catalog-product-image" data-product-id="' + product.id + '" alt="' + product.name + '" loading="eager" decoding="async" referrerpolicy="no-referrer">' +
       placeholder +
       '</div>';
   }
@@ -66,10 +88,7 @@
       const placeholder = img.nextElementSibling;
       if (!product) return;
 
-      const candidates = [...new Set([
-        product.image,
-        ...((product.detailImages || []).slice(0, 3))
-      ].filter(Boolean))];
+      const candidates = imageCandidatesFor(product);
 
       let index = 0;
       const showPlaceholder = () => {
