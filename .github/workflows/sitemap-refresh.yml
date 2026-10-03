@@ -10,6 +10,13 @@ on:
       - 'manduk-mobile.html'
       - 'links.html'
       - 'privacy.html'
+      - 'rental/index.html'
+      - 'rental/product.html'
+      - 'rental/assets/catalog.js'
+      - 'rental/assets/product-generic.js'
+      - 'rental/assets/rental.css'
+      - 'rental/data/products.json'
+      - 'rental/data/appliance-gift-options.json'
       - 'assets/**'
       - 'data/**'
       - '.github/scripts/update_sitemap.py'
@@ -44,5 +51,6 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add sitemap.xml
-          git commit -m 'Refresh sitemap lastmod dates'
+          git commit -m 'Refresh sitemap and rental product URLs'
+          git pull --rebase origin main
           git push
