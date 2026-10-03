@@ -289,3 +289,5 @@
   .nav-home-link strong{font-size:1.08rem}
   .nav-home-link small{display:block;font-size:.52rem}
 }
+
+.brand img.brand-mark{display:block;object-fit:cover;background:transparent;color:transparent}
