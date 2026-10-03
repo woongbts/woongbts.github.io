@@ -91,6 +91,20 @@
     {key:'large', label:'대용량', test:text => /대용량/.test(text)}
   ];
 
+  function isSellableOption(option) {
+    const text = [option?.managementLabel, option?.sourceOption, option?.care].filter(Boolean).join(' ');
+    return !/(?:^|\s)단종\//.test(text);
+  }
+
+  function applyCatalogOverrides(list, overrideData) {
+    const overrides = overrideData?.products || {};
+    list.forEach(product => {
+      const override = overrides[product.id];
+      if (override) Object.assign(product, override);
+    });
+    return list;
+  }
+
   function optionLabel(value) {
     let x = String(value || '').trim();
     if (!x) return '';
@@ -162,7 +176,7 @@
   }
 
   function renderProduct(product) {
-    const validOptions = Array.isArray(product.options) ? product.options.filter(o => Number.isFinite(Number(o.monthly))) : [];
+    const validOptions = Array.isArray(product.options) ? product.options.filter(o => isSellableOption(o) && Number.isFinite(Number(o.monthly))) : [];
     const monthlyValues = validOptions.map(o => Number(o.monthly));
     const giftValues = validOptions
       .filter(o => o.gift !== null && o.gift !== undefined && o.gift !== '')
@@ -216,7 +230,7 @@
 
   function recommendationMetrics(product) {
     const validOptions = Array.isArray(product.options)
-      ? product.options.filter(o => Number.isFinite(Number(o.monthly)))
+      ? product.options.filter(o => isSellableOption(o) && Number.isFinite(Number(o.monthly)))
       : [];
     if (!validOptions.length) return null;
     const gifts = validOptions
@@ -602,9 +616,11 @@
     if (catalogLoading) return catalogLoading;
     catalogLoading = Promise.all([
       fetch('data/products.json', {cache:'no-store'}).then(r => { if(!r.ok) throw new Error('catalog fetch failed'); return r.json(); }),
-      fetch('data/appliance-gift-options.json', {cache:'no-store'}).then(r => r.ok ? r.json() : null).catch(()=>null)
-    ]).then(([data,giftData]) => {
+      fetch('data/appliance-gift-options.json', {cache:'no-store'}).then(r => r.ok ? r.json() : null).catch(()=>null),
+      fetch('data/catalog-overrides.json', {cache:'no-store'}).then(r => r.ok ? r.json() : null).catch(()=>null)
+    ]).then(([data,giftData,overrideData]) => {
       products = Array.isArray(data.products) ? data.products.filter(p=>p.availability!=='inactive'&&!/접수불가|접수중지/.test(String(p.name||''))) : [];
+      applyCatalogOverrides(products, overrideData);
       const overrides=giftData?.products||{};
       products.forEach(p=>{const ov=overrides[p.id];if(ov&&p.sourceKind==='clover-import')Object.assign(p,ov)});
       applyPolicyMonth(giftData?.generatedAt||data?.updatedAt||'');
@@ -660,10 +676,13 @@
     trackRental(entry==='recommend'?'rental_recommend_click':'rental_catalog_product_click',target,{entry});
   });
 
-  fetch('data/featured.json',{cache:'no-store'})
-    .then(r=>{if(!r.ok)throw new Error('featured fetch failed');return r.json()})
-    .then(data=>{
+  Promise.all([
+    fetch('data/featured.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error('featured fetch failed');return r.json()}),
+    fetch('data/catalog-overrides.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).catch(()=>null)
+  ])
+    .then(([data,overrideData])=>{
       products=Array.isArray(data.products)?data.products:[];
+      applyCatalogOverrides(products, overrideData);
       applyPolicyMonth(data.generatedAt||'');
       handleDirectSectionHash();
       renderRecommendations();
