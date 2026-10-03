@@ -1,16 +1,28 @@
 {
   "generatedAt": "2026-10-03",
   "existingOriginalPreserved": 366,
-  "previousImportedRebuilt": 0,
-  "listProductsParsed": 67,
-  "duplicatesSkipped": 0,
-  "newProductsAdded": 51,
-  "totalProductsAfterImport": 417,
+  "previousImportedRebuilt": 51,
+  "listPagesScanned": 152,
+  "listProductsParsed": 405,
+  "duplicatesSkipped": 1,
+  "newProductsAdded": 253,
+  "totalProductsAfterImport": 619,
   "newByCategory": {
-    "가구·침대": 13,
+    "TV·디지털": 10,
+    "가구·침대": 34,
+    "건강·뷰티": 16,
+    "냉장고·김치냉장고": 28,
     "레저·자동차": 16,
-    "매트리스·프레임": 3,
-    "에어컨·청소기": 19
+    "매트리스·프레임": 4,
+    "세탁·건조·의류관리": 54,
+    "안마의자": 19,
+    "에어컨·청소기": 55,
+    "주방가전": 17
   },
-  "duplicateExamples": []
+  "duplicateExamples": [
+    {
+      "model": "SC5MBR60S",
+      "name": "오브제컬렉션 뉴 스타일러 대용량 (샌드 베이지)"
+    }
+  ]
 }
