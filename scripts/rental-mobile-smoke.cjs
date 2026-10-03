@@ -109,6 +109,8 @@ function assert(condition, message) {
   await page.waitForFunction(() => document.querySelector('#rental-apply-status')?.textContent?.includes('신청이 접수되었습니다'));
   const applySuccess = await page.evaluate(() => JSON.parse(localStorage.getItem('wb_conversion_events_v1') || '[]').some(x => x.type === 'rental_apply_success'));
   assert(applySuccess, '렌탈 신청 성공 전환 이벤트가 기록되지 않았습니다.');
+  await page.locator('#rental-apply-close').click();
+  assert(await page.locator('#rental-apply-dialog[open]').count() === 0, '온라인 신청창이 닫히지 않습니다.');
 
 
   const analyticsReady = await page.evaluate(() => typeof window.woongbiTrackConversion === 'function');
