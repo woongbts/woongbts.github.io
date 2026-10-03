@@ -12,3 +12,4 @@ Retry: exact final sources
 Retry: six final verified direct sources
 Retry: accessible mirror CDN sources for final four
 Retry: final Hyundai same-series fallback image
+Refresh: use original Woongbi Rental representative thumbnails for all active products
