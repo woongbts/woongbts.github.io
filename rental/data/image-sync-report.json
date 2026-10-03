@@ -2,6 +2,8 @@
   "generatedAt": "2026-10-03",
   "visibleProducts": 294,
   "localizedOrExisting": 294,
+  "representativeOriginal": 6,
+  "preservedFallback": 288,
   "failed": 0,
   "changedProducts": 12,
   "failures": []
