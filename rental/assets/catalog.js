@@ -27,6 +27,19 @@
 
   const won = n => Number(n).toLocaleString('ko-KR') + '원';
   const IMAGE_REV = '20261003-7f78334';
+  const RENTAL_ENTRY_KEY = 'wb_rental_entry_v1';
+  const rentalAnalyticsPath = product => '/rental/product/' + encodeURIComponent(String(product?.id || 'unknown'));
+  function rememberRentalEntry(entry) {
+    try { sessionStorage.setItem(RENTAL_ENTRY_KEY, entry); } catch (_) {}
+  }
+  function trackRental(type, product, detail = {}) {
+    if (typeof window.woongbiTrackConversion !== 'function') return;
+    window.woongbiTrackConversion(type, {
+      ...detail,
+      product_id: product?.id || '',
+      analyticsPath: product ? rentalAnalyticsPath(product) : '/rental/'
+    });
+  }
   const localImageUrl = src => {
     const value = String(src || '').trim();
     if (!value) return '';
@@ -148,7 +161,7 @@
 
     return `
       <article class="catalog-card">
-        <a class="catalog-visual" href="${product.page || '#'}" aria-label="${product.name} 상세보기">
+        <a class="catalog-visual" data-rental-product-id="${product.id}" data-rental-entry="catalog" href="${product.page || '#'}" aria-label="${product.name} 상세보기">
           <span class="brand-label">${brandLabel(product.brand)}</span>
           ${visual(product)}
         </a>
@@ -165,7 +178,7 @@
           <p class="promo">${product.promo || '최신 프로모션 상담 확인'}</p>
           <p class="catalog-meta">${managements || '상세 조건 확인'}</p>
           <div class="product-actions">
-            <a class="btn primary" href="${product.page || '#'}">조건별 금액 보기</a>
+            <a class="btn primary" data-rental-product-id="${product.id}" data-rental-entry="catalog" href="${product.page || '#'}">조건별 금액 보기</a>
             <a class="btn ghost" href="http://pf.kakao.com/_nWwNT/chat" target="_blank" rel="noopener noreferrer">바로 상담</a>
           </div>
         </div>
@@ -227,7 +240,7 @@
     const image = imageCandidatesFor(product)[0] || '';
     return `
       <article class="recommend-card">
-        <a class="recommend-image" href="${product.page || '#'}">
+        <a class="recommend-image" data-rental-product-id="${product.id}" data-rental-entry="recommend" href="${product.page || '#'}">
           ${image ? '<img src="' + image + '" alt="' + product.name + '" loading="lazy">' : '<span class="recommend-fallback">W</span>'}
         </a>
         <div class="recommend-body">
@@ -240,7 +253,7 @@
             <span>월 ${minMonthly == null ? '상담 확인' : won(minMonthly) + '부터'}</span>
             <strong>${maxGift == null ? '고객사은품 상담 확인' : '고객사은품 최대 ' + won(maxGift)}</strong>
           </div>
-          <a class="recommend-link" href="${product.page || '#'}">조건 보기 →</a>
+          <a class="recommend-link" data-rental-product-id="${product.id}" data-rental-entry="recommend" href="${product.page || '#'}">조건 보기 →</a>
         </div>
       </article>
     `;
@@ -527,8 +540,21 @@
     });
 
     catalogToggle?.addEventListener('click', () => {
-      if (catalogPanel?.hidden) openCatalog();
-      else closeCatalog();
+      if (catalogPanel?.hidden) {
+        openCatalog();
+        trackRental('rental_catalog_open', null, {entry:'catalog'});
+      } else closeCatalog();
+    });
+
+    document.addEventListener('click', event => {
+      const link = event.target.closest('[data-rental-product-id]');
+      if (!link) return;
+      const productId = String(link.dataset.rentalProductId || '');
+      const entry = String(link.dataset.rentalEntry || 'catalog');
+      const target = products.find(p => String(p.id) === productId);
+      if (!target) return;
+      rememberRentalEntry(entry);
+      trackRental(entry === 'recommend' ? 'rental_recommend_click' : 'rental_catalog_product_click', target, {entry});
     });
 
     applianceMore?.addEventListener('click', () => {
