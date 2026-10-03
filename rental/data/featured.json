@@ -1,0 +1,5185 @@
+{
+  "generatedAt": "2026-10-03",
+  "categories": [
+    "정수기",
+    "공기청정기",
+    "비데·연수기",
+    "안마의자",
+    "매트리스·프레임"
+  ],
+  "products": [
+    {
+      "id": "chp-7220n",
+      "brand": "COWAY",
+      "name": "아이콘3 냉온정수기",
+      "model": "CHP-7220N",
+      "category": "정수기",
+      "page": "product.html?id=chp-7220n",
+      "image": "assets/product-images/chp-7220n.webp",
+      "imageSourceOriginal": "https://miso-customer-public.s3.ap-northeast-2.amazonaws.com/rental_img/20240322_purifier/COWAY/COWAYP29/COWAYP29_MAIN_5.png",
+      "detailImages": [
+        "https://storage.bilrigo.com/data/editor/2602/70bb5da94ac44a03e2b670708f08c71e_1770863722_274.jpg"
+      ],
+      "availability": "active",
+      "sourceKind": "clover-public",
+      "options": [
+        {
+          "key": "visit-36",
+          "management": "visit",
+          "managementLabel": "방문관리",
+          "term": 36,
+          "monthly": 38900,
+          "card": null,
+          "gift": 205000,
+          "care": "방문관리 · 4개월",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "visit-60",
+          "management": "visit",
+          "managementLabel": "방문관리",
+          "term": 60,
+          "monthly": 35900,
+          "card": null,
+          "gift": 250000,
+          "care": "방문관리 · 4개월",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "visit-72",
+          "management": "visit",
+          "managementLabel": "방문관리",
+          "term": 72,
+          "monthly": 33900,
+          "card": null,
+          "gift": 285000,
+          "care": "방문관리 · 4개월",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "visit-84",
+          "management": "visit",
+          "managementLabel": "방문관리",
+          "term": 84,
+          "monthly": 31900,
+          "card": null,
+          "gift": 285000,
+          "care": "방문관리 · 4개월",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "self-36",
+          "management": "self",
+          "managementLabel": "자가관리",
+          "term": 36,
+          "monthly": 35900,
+          "card": null,
+          "gift": 190000,
+          "care": "자가관리",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "self-60",
+          "management": "self",
+          "managementLabel": "자가관리",
+          "term": 60,
+          "monthly": 32900,
+          "card": null,
+          "gift": 235000,
+          "care": "자가관리",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "self-72",
+          "management": "self",
+          "managementLabel": "자가관리",
+          "term": 72,
+          "monthly": 30900,
+          "card": null,
+          "gift": 265000,
+          "care": "자가관리",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "self-84",
+          "management": "self",
+          "managementLabel": "자가관리",
+          "term": 84,
+          "monthly": 28900,
+          "card": null,
+          "gift": 265000,
+          "care": "자가관리",
+          "giftPolicyMonth": "2026-10"
+        }
+      ],
+      "highlights": [
+        "냉수·온수·정수",
+        "초소형 슬림 디자인",
+        "방문관리 / 자가관리"
+      ]
+    },
+    {
+      "id": "clover-2248",
+      "brand": "청호나이스",
+      "name": "THE M 얼음 냉온정수기",
+      "model": "WI-37C90720N",
+      "category": "정수기",
+      "page": "product.html?id=clover-2248",
+      "image": "assets/product-images/clover-2248.webp",
+      "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/23.jpg",
+      "detailImages": [
+        "https://chungho.co.kr/newch/uploads/0_01[3].jpg"
+      ],
+      "availability": "active",
+      "sourceKind": "clover-public",
+      "options": [
+        {
+          "key": "visit-option-36",
+          "management": "visit-option",
+          "managementLabel": "방문형",
+          "term": 36,
+          "monthly": 53900,
+          "card": null,
+          "gift": 155000,
+          "care": "방문형",
+          "sourceOption": "(방문형)36",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "visit-option-60",
+          "management": "visit-option",
+          "managementLabel": "방문형",
+          "term": 60,
+          "monthly": 46900,
+          "card": null,
+          "gift": 305000,
+          "care": "방문형",
+          "sourceOption": "(방문형)60",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "self-option-36",
+          "management": "self-option",
+          "managementLabel": "셀프형",
+          "term": 36,
+          "monthly": 50900,
+          "card": null,
+          "gift": 150000,
+          "care": "셀프형",
+          "sourceOption": "(셀프형)36",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "self-option-60",
+          "management": "self-option",
+          "managementLabel": "셀프형",
+          "term": 60,
+          "monthly": 43900,
+          "card": null,
+          "gift": 295000,
+          "care": "셀프형",
+          "sourceOption": "(셀프형)60",
+          "giftPolicyMonth": "2026-10"
+        }
+      ],
+      "highlights": [
+        "얼음 기능",
+        "냉수·온수",
+        "THE M 얼음"
+      ]
+    },
+    {
+      "id": "clover-2097",
+      "brand": "루헨스",
+      "name": "대용량 업소용 정수기",
+      "model": "WHP-3900",
+      "category": "정수기",
+      "page": "product.html?id=clover-2097",
+      "image": "assets/product-images/clover-2097.webp",
+      "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/240206181836_1.jpg",
+      "detailImages": [
+        "https://woongbi.vip-rental.com/_var/rental/vshop/94b1148b_(1).jpg"
+      ],
+      "availability": "active",
+      "sourceKind": "clover-public",
+      "options": [
+        {
+          "key": "standard-option-36",
+          "management": "standard-option",
+          "managementLabel": "기본 조건",
+          "term": 36,
+          "monthly": 37900,
+          "card": null,
+          "gift": 190000,
+          "care": "기본 조건",
+          "sourceOption": "36",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "standard-option-48",
+          "management": "standard-option",
+          "managementLabel": "기본 조건",
+          "term": 48,
+          "monthly": 33900,
+          "card": null,
+          "gift": 270000,
+          "care": "기본 조건",
+          "sourceOption": "48",
+          "giftPolicyMonth": "2026-10"
+        }
+      ],
+      "highlights": [
+        "대용량",
+        "대용량 업소용",
+        "36개월 / 48개월"
+      ]
+    },
+    {
+      "id": "chpi-7430n",
+      "brand": "COWAY",
+      "name": "아이콘 얼음냉온정수기 미니",
+      "model": "CHPI-7430N",
+      "category": "정수기",
+      "page": "product.html?id=chpi-7430n",
+      "image": "assets/product-images/chpi-7430n.webp",
+      "imageSourceOriginal": "https://cdn.rentre.kr/product-thumbnail/76a9f09a6e2e45aeaf1b245dc920f9fc.png",
+      "detailImages": [
+        "https://storage.bilrigo.com/data/editor/2507/11d561a208dda6754723f5896d0ee30d_1753334475_1731.jpg"
+      ],
+      "availability": "active",
+      "sourceKind": "clover-public",
+      "options": [
+        {
+          "key": "visit2-36",
+          "management": "visit2",
+          "managementLabel": "방문관리 2개월",
+          "term": 36,
+          "monthly": 52900,
+          "card": null,
+          "gift": 215000,
+          "care": "방문관리 · 2개월",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "visit2-60",
+          "management": "visit2",
+          "managementLabel": "방문관리 2개월",
+          "term": 60,
+          "monthly": 49900,
+          "card": null,
+          "gift": 240000,
+          "care": "방문관리 · 2개월",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "visit2-72",
+          "management": "visit2",
+          "managementLabel": "방문관리 2개월",
+          "term": 72,
+          "monthly": 47900,
+          "card": null,
+          "gift": 280000,
+          "care": "방문관리 · 2개월",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "visit2-84",
+          "management": "visit2",
+          "managementLabel": "방문관리 2개월",
+          "term": 84,
+          "monthly": 45900,
+          "card": null,
+          "gift": 280000,
+          "care": "방문관리 · 2개월",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "visit4-36",
+          "management": "visit4",
+          "managementLabel": "방문관리 4개월",
+          "term": 36,
+          "monthly": 49900,
+          "card": null,
+          "gift": 215000,
+          "care": "방문관리 · 4개월",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "visit4-60",
+          "management": "visit4",
+          "managementLabel": "방문관리 4개월",
+          "term": 60,
+          "monthly": 46900,
+          "card": null,
+          "gift": 240000,
+          "care": "방문관리 · 4개월",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "visit4-72",
+          "management": "visit4",
+          "managementLabel": "방문관리 4개월",
+          "term": 72,
+          "monthly": 44900,
+          "card": null,
+          "gift": 275000,
+          "care": "방문관리 · 4개월",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "visit4-84",
+          "management": "visit4",
+          "managementLabel": "방문관리 4개월",
+          "term": 84,
+          "monthly": 42900,
+          "card": null,
+          "gift": 275000,
+          "care": "방문관리 · 4개월",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "self-36",
+          "management": "self",
+          "managementLabel": "자가관리",
+          "term": 36,
+          "monthly": 47900,
+          "card": null,
+          "gift": 210000,
+          "care": "자가관리 · 4개월 필터",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "self-60",
+          "management": "self",
+          "managementLabel": "자가관리",
+          "term": 60,
+          "monthly": 44900,
+          "card": null,
+          "gift": 230000,
+          "care": "자가관리 · 4개월 필터",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "self-72",
+          "management": "self",
+          "managementLabel": "자가관리",
+          "term": 72,
+          "monthly": 42900,
+          "card": null,
+          "gift": 270000,
+          "care": "자가관리 · 4개월 필터",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "self-84",
+          "management": "self",
+          "managementLabel": "자가관리",
+          "term": 84,
+          "monthly": 40900,
+          "card": null,
+          "gift": 270000,
+          "care": "자가관리 · 4개월 필터",
+          "giftPolicyMonth": "2026-10"
+        }
+      ],
+      "highlights": [
+        "얼음·냉수·온수",
+        "방문 2개월 / 4개월",
+        "자가관리 선택 가능"
+      ]
+    },
+    {
+      "id": "cp-aqs100ewh",
+      "brand": "CUCKOO",
+      "name": "제로 100 미니 얼음 냉온정수기",
+      "model": "CP-AQS100EWH",
+      "category": "정수기",
+      "page": "product-cp-aqs100ewh.html",
+      "image": "assets/product-images/cp-aqs100ewh.webp",
+      "imageSourceOriginal": "https://contents.lotteon.com/itemimage/20260429111206/LO/26/50/75/17/38/_2/65/07/51/73/9/LO2650751738_2650751739_1.jpg/dims/resizef/554X554/format/webp/optimize",
+      "detailImages": [
+        "https://gi.esmplus.com/cuckoohs/spec/CP-AQS100EWH/01.jpg"
+      ],
+      "availability": "active",
+      "sourceKind": "clover-public",
+      "options": [
+        {
+          "key": "visit-36",
+          "management": "visit",
+          "managementLabel": "방문관리",
+          "term": 36,
+          "monthly": 51900,
+          "card": 38900,
+          "gift": 205000,
+          "care": "방문형 4개월",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "visit-60",
+          "management": "visit",
+          "managementLabel": "방문관리",
+          "term": 60,
+          "monthly": 44900,
+          "card": 31900,
+          "gift": 280000,
+          "care": "방문형 4개월",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "self-36",
+          "management": "self",
+          "managementLabel": "셀프관리",
+          "term": 36,
+          "monthly": 48900,
+          "card": 35900,
+          "gift": 190000,
+          "care": "셀프형 12개월",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "self-60",
+          "management": "self",
+          "managementLabel": "셀프관리",
+          "term": 60,
+          "monthly": 42900,
+          "card": 29900,
+          "gift": 265000,
+          "care": "셀프형 12개월",
+          "giftPolicyMonth": "2026-10"
+        }
+      ],
+      "highlights": [
+        "얼음·냉수·온수·정수",
+        "방문관리 / 셀프관리",
+        "초슬림 19cm 디자인"
+      ]
+    },
+    {
+      "id": "clover-2251",
+      "brand": "SK매직",
+      "name": "MEGA ICE 얼음냉온정수기",
+      "model": "WPUIAC506",
+      "category": "정수기",
+      "page": "product.html?id=clover-2251",
+      "image": "assets/product-images/clover-2251.webp",
+      "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/260506141127_1.jpg",
+      "detailImages": [
+        "https://static.skmagic.com/image/editor/goods_desc/202604/1777424053687684.png"
+      ],
+      "availability": "active",
+      "sourceKind": "clover-public",
+      "options": [
+        {
+          "key": "visit-option-36",
+          "management": "visit-option",
+          "managementLabel": "방문형",
+          "term": 36,
+          "monthly": 56900,
+          "card": null,
+          "gift": 215000,
+          "care": "방문형",
+          "sourceOption": "(방문형)36",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "visit-option-60",
+          "management": "visit-option",
+          "managementLabel": "방문형",
+          "term": 60,
+          "monthly": 53900,
+          "card": null,
+          "gift": 330000,
+          "care": "방문형",
+          "sourceOption": "(방문형)60",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "self-option-36",
+          "management": "self-option",
+          "managementLabel": "셀프형",
+          "term": 36,
+          "monthly": 55900,
+          "card": null,
+          "gift": 215000,
+          "care": "셀프형",
+          "sourceOption": "(셀프형)36",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "self-option-60",
+          "management": "self-option",
+          "managementLabel": "셀프형",
+          "term": 60,
+          "monthly": 52900,
+          "card": null,
+          "gift": 330000,
+          "care": "셀프형",
+          "sourceOption": "(셀프형)60",
+          "giftPolicyMonth": "2026-10"
+        }
+      ],
+      "highlights": [
+        "얼음 기능",
+        "냉수·온수",
+        "MEGA ICE"
+      ]
+    },
+    {
+      "id": "clover-679",
+      "brand": "현대큐밍",
+      "name": "더슬림 미니_정수전용(무전원)",
+      "model": "P-M15CB",
+      "category": "정수기",
+      "page": "product.html?id=clover-679",
+      "image": "assets/product-images/clover-679.webp",
+      "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231114093753_1_1.png",
+      "detailImages": [
+        "https://hdquming.com/web/upload/NNEditor/20220830/copy-1661826305-1.jpeg"
+      ],
+      "availability": "active",
+      "sourceKind": "clover-public",
+      "options": [
+        {
+          "key": "visit-option-36",
+          "management": "visit-option",
+          "managementLabel": "방문형",
+          "term": 36,
+          "monthly": 18900,
+          "card": null,
+          "gift": 20000,
+          "care": "방문형",
+          "sourceOption": "(방문형)36",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "self-option-36",
+          "management": "self-option",
+          "managementLabel": "셀프형",
+          "term": 36,
+          "monthly": 14900,
+          "card": null,
+          "gift": 10000,
+          "care": "셀프형",
+          "sourceOption": "(셀프형)36",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "visit-option-60",
+          "management": "visit-option",
+          "managementLabel": "방문형",
+          "term": 60,
+          "monthly": 16900,
+          "card": null,
+          "gift": 5000,
+          "care": "방문형",
+          "sourceOption": "(방문형)60",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "self-option-60",
+          "management": "self-option",
+          "managementLabel": "셀프형",
+          "term": 60,
+          "monthly": 12900,
+          "card": null,
+          "gift": null,
+          "care": "셀프형",
+          "sourceOption": "(셀프형)60"
+        }
+      ],
+      "highlights": [
+        "미니 사이즈",
+        "슬림 디자인",
+        "무전원"
+      ]
+    },
+    {
+      "id": "clover-1702",
+      "brand": "CUCKOO",
+      "name": "혼족 직수정수기 (정수전용)",
+      "model": "CP-U011(W/B)",
+      "category": "정수기",
+      "page": "product.html?id=clover-1702",
+      "image": "assets/product-images/clover-1702.webp",
+      "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/cp-u011_1.gif",
+      "detailImages": [
+        "https://ai.esmplus.com/cuckoohs1/cuckoo/rental/spec/CP-U011B.jpg"
+      ],
+      "availability": "active",
+      "sourceKind": "clover-public",
+      "options": [
+        {
+          "key": "visit-option-36",
+          "management": "visit-option",
+          "managementLabel": "방문형",
+          "term": 36,
+          "monthly": 18900,
+          "card": null,
+          "gift": 40000,
+          "care": "방문형",
+          "sourceOption": "(방문형)36",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "visit-option-60",
+          "management": "visit-option",
+          "managementLabel": "방문형",
+          "term": 60,
+          "monthly": 14900,
+          "card": null,
+          "gift": 65000,
+          "care": "방문형",
+          "sourceOption": "(방문형)60",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "self-option-36",
+          "management": "self-option",
+          "managementLabel": "셀프형",
+          "term": 36,
+          "monthly": 16900,
+          "card": null,
+          "gift": 35000,
+          "care": "셀프형",
+          "sourceOption": "(셀프형)36",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "self-option-60",
+          "management": "self-option",
+          "managementLabel": "셀프형",
+          "term": 60,
+          "monthly": 12900,
+          "card": null,
+          "gift": 55000,
+          "care": "셀프형",
+          "sourceOption": "(셀프형)60",
+          "giftPolicyMonth": "2026-10"
+        }
+      ],
+      "highlights": [
+        "직수형",
+        "정수 전용",
+        "혼족 직수"
+      ]
+    },
+    {
+      "id": "clover-581",
+      "brand": "청호나이스",
+      "name": "일반정수기 S",
+      "model": "WP-40C60000M",
+      "category": "정수기",
+      "page": "product.html?id=clover-581",
+      "image": "assets/product-images/clover-581.webp",
+      "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231101165724_1_1.png",
+      "detailImages": [
+        "https://shop-phinf.pstatic.net/20230404_111/1680587171841BtSHe_JPEG/%EC%B2%AD%ED%98%B8-%EC%9D%B4%EA%B3%BC%EC%88%98-%EC%9D%BC%EB%B0%98%EC%A0%95%EC%88%98%EA%B8%B0S.jpg?type=w860"
+      ],
+      "availability": "active",
+      "sourceKind": "clover-public",
+      "options": [
+        {
+          "key": "standard-option-36",
+          "management": "standard-option",
+          "managementLabel": "기본 조건",
+          "term": 36,
+          "monthly": 19900,
+          "card": null,
+          "gift": 80000,
+          "care": "기본 조건",
+          "sourceOption": "36",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "standard-option-60",
+          "management": "standard-option",
+          "managementLabel": "기본 조건",
+          "term": 60,
+          "monthly": 13900,
+          "card": null,
+          "gift": 70000,
+          "care": "기본 조건",
+          "sourceOption": "60",
+          "giftPolicyMonth": "2026-10"
+        }
+      ],
+      "highlights": [
+        "36개월 / 60개월"
+      ]
+    },
+    {
+      "id": "clover-2065",
+      "brand": "CUCKOO",
+      "name": "인스퓨어 직수 정수기 (무전원 빌트인 언더싱크)",
+      "model": "CP-AD011UGW",
+      "category": "정수기",
+      "page": "product.html?id=clover-2065",
+      "image": "assets/product-images/clover-2065.webp",
+      "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231103144955_1_1.png",
+      "detailImages": [
+        "https://gi.esmplus.com/cuckoohs/spec/CP-AD011UGW.jpg"
+      ],
+      "availability": "active",
+      "sourceKind": "clover-public",
+      "options": [
+        {
+          "key": "self-option-36",
+          "management": "self-option",
+          "managementLabel": "셀프형",
+          "term": 36,
+          "monthly": 16900,
+          "card": null,
+          "gift": 35000,
+          "care": "셀프형",
+          "sourceOption": "(셀프형)36",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "self-option-60",
+          "management": "self-option",
+          "managementLabel": "셀프형",
+          "term": 60,
+          "monthly": 13900,
+          "card": null,
+          "gift": 60000,
+          "care": "셀프형",
+          "sourceOption": "(셀프형)60",
+          "giftPolicyMonth": "2026-10"
+        }
+      ],
+      "highlights": [
+        "직수형",
+        "무전원",
+        "빌트인"
+      ]
+    },
+    {
+      "id": "clover-2096",
+      "brand": "루헨스",
+      "name": "냉온 정수기_냉온",
+      "model": "WHP-2000/WHP-2000S",
+      "category": "정수기",
+      "page": "product.html?id=clover-2096",
+      "image": "assets/product-images/clover-2096.webp",
+      "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/00.png",
+      "detailImages": [
+        "https://woongbi.vip-rental.com/_var/rental/vshop/20001595990259.jpg"
+      ],
+      "availability": "active",
+      "sourceKind": "clover-public",
+      "options": [
+        {
+          "key": "standard-option-36",
+          "management": "standard-option",
+          "managementLabel": "기본 조건",
+          "term": 36,
+          "monthly": 18900,
+          "card": null,
+          "gift": 25000,
+          "care": "기본 조건",
+          "sourceOption": "36",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "standard-option-48",
+          "management": "standard-option",
+          "managementLabel": "기본 조건",
+          "term": 48,
+          "monthly": 16900,
+          "card": null,
+          "gift": 35000,
+          "care": "기본 조건",
+          "sourceOption": "48",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "standard-option-60",
+          "management": "standard-option",
+          "managementLabel": "기본 조건",
+          "term": 60,
+          "monthly": 14900,
+          "card": null,
+          "gift": 35000,
+          "care": "기본 조건",
+          "sourceOption": "60",
+          "giftPolicyMonth": "2026-10"
+        }
+      ],
+      "highlights": [
+        "냉수·온수",
+        "36개월 / 48개월 / 60개월"
+      ]
+    },
+    {
+      "id": "clover-2147",
+      "brand": "CUCKOO",
+      "name": "지하수 얼음정수기",
+      "model": "CP-ACSR1620SW",
+      "category": "정수기",
+      "page": "product.html?id=clover-2147",
+      "image": "assets/product-images/clover-2147.webp",
+      "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/cp-acsr1620sw_1_1.jpg",
+      "detailImages": [
+        "https://woongbi.vip-rental.com/_var/rental/vshop/cp-acsr1620sw_1.jpg"
+      ],
+      "availability": "active",
+      "sourceKind": "clover-public",
+      "options": [
+        {
+          "key": "visit-option-36",
+          "management": "visit-option",
+          "managementLabel": "방문형",
+          "term": 36,
+          "monthly": 63900,
+          "card": null,
+          "gift": 250000,
+          "care": "방문형",
+          "sourceOption": "(방문형)36",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "visit-option-60",
+          "management": "visit-option",
+          "managementLabel": "방문형",
+          "term": 60,
+          "monthly": 58900,
+          "card": null,
+          "gift": 355000,
+          "care": "방문형",
+          "sourceOption": "(방문형)60",
+          "giftPolicyMonth": "2026-10"
+        }
+      ],
+      "highlights": [
+        "얼음 기능",
+        "지하수 대응",
+        "지하수 얼음"
+      ]
+    },
+    {
+      "id": "clover-1829",
+      "brand": "CUCKOO",
+      "name": "대용량 얼음냉온정수기 (방문관리전용)",
+      "model": "CP-ACS1610SNW",
+      "category": "정수기",
+      "page": "product.html?id=clover-1829",
+      "image": "assets/product-images/clover-1829.webp",
+      "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231106142158_1_1.png",
+      "detailImages": [
+        "https://woongbi.vip-rental.com/_var/rental/vshop/240910181855_1.jpg"
+      ],
+      "availability": "active",
+      "sourceKind": "clover-public",
+      "options": [
+        {
+          "key": "visit-option-36",
+          "management": "visit-option",
+          "managementLabel": "방문형",
+          "term": 36,
+          "monthly": 62900,
+          "card": null,
+          "gift": 245000,
+          "care": "방문형",
+          "sourceOption": "(방문형)36",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "visit-option-60",
+          "management": "visit-option",
+          "managementLabel": "방문형",
+          "term": 60,
+          "monthly": 57900,
+          "card": null,
+          "gift": 350000,
+          "care": "방문형",
+          "sourceOption": "(방문형)60",
+          "giftPolicyMonth": "2026-10"
+        }
+      ],
+      "highlights": [
+        "대용량",
+        "얼음 기능",
+        "방문관리"
+      ]
+    },
+    {
+      "id": "clover-2259",
+      "brand": "LG퓨리케어",
+      "name": "LG 퓨리케어 AI 오브제컬렉션 냉동얼음정수기",
+      "model": "WD724R(K/H/E)",
+      "category": "정수기",
+      "page": "product.html?id=clover-2259",
+      "image": "assets/product-images/clover-2259.webp",
+      "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/260807133930_1.jpg",
+      "detailImages": [
+        "https://storage.bilrigo.com/data/editor/2607/26d5fadc6b5db75aeb305fdaea531391_1784507697_5157.jpg"
+      ],
+      "availability": "active",
+      "sourceKind": "clover-public",
+      "options": [
+        {
+          "key": "visit-option-60",
+          "management": "visit-option",
+          "managementLabel": "방문형",
+          "term": 60,
+          "monthly": 57900,
+          "card": null,
+          "gift": 315000,
+          "care": "방문형",
+          "sourceOption": "(방문형)60",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "visit-option-72",
+          "management": "visit-option",
+          "managementLabel": "방문형",
+          "term": 72,
+          "monthly": 53900,
+          "card": null,
+          "gift": 315000,
+          "care": "방문형",
+          "sourceOption": "(방문형)72",
+          "giftPolicyMonth": "2026-10"
+        }
+      ],
+      "highlights": [
+        "얼음 기능",
+        "방문관리",
+        "60개월 / 72개월"
+      ]
+    },
+    {
+      "id": "clover-2242",
+      "brand": "LG퓨리케어",
+      "name": "퓨리케어 오브제컬렉션 얼음정수기",
+      "model": "WD722R(K/H/E)",
+      "category": "정수기",
+      "page": "product.html?id=clover-2242",
+      "image": "assets/product-images/clover-2242.webp",
+      "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/251224105352_1.png",
+      "detailImages": [
+        "https://storage.bilrigo.com/data/editor/2512/38c99a3ae4d1f7ed9051466b18bcdab7_1766383970_0816.jpg"
+      ],
+      "availability": "active",
+      "sourceKind": "clover-public",
+      "options": [
+        {
+          "key": "visit-option-60",
+          "management": "visit-option",
+          "managementLabel": "방문형",
+          "term": 60,
+          "monthly": 55900,
+          "card": null,
+          "gift": 315000,
+          "care": "방문형",
+          "sourceOption": "(방문형)60",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "visit-option-72",
+          "management": "visit-option",
+          "managementLabel": "방문형",
+          "term": 72,
+          "monthly": 51900,
+          "card": null,
+          "gift": 315000,
+          "care": "방문형",
+          "sourceOption": "(방문형)72",
+          "giftPolicyMonth": "2026-10"
+        }
+      ],
+      "highlights": [
+        "얼음 기능",
+        "퓨리케어 오브제컬렉션 얼음",
+        "방문관리"
+      ]
+    },
+    {
+      "id": "clover-2254",
+      "brand": "SK매직",
+      "name": "MEGA ICE 얼음냉온정수기 mini",
+      "model": "WPUIAC606",
+      "category": "정수기",
+      "page": "product.html?id=clover-2254",
+      "image": "assets/product-images/clover-2254.webp",
+      "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/260613101406_1.png",
+      "detailImages": [
+        "https://static.skmagic.com/image/editor/goods_prom/202605/1779759404289781.png"
+      ],
+      "availability": "active",
+      "sourceKind": "clover-public",
+      "options": [
+        {
+          "key": "visit-option-36",
+          "management": "visit-option",
+          "managementLabel": "방문형",
+          "term": 36,
+          "monthly": 48900,
+          "card": null,
+          "gift": 175000,
+          "care": "방문형",
+          "sourceOption": "(방문형)36",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "visit-option-60",
+          "management": "visit-option",
+          "managementLabel": "방문형",
+          "term": 60,
+          "monthly": 45900,
+          "card": null,
+          "gift": 275000,
+          "care": "방문형",
+          "sourceOption": "(방문형)60",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "self-option-36",
+          "management": "self-option",
+          "managementLabel": "셀프형",
+          "term": 36,
+          "monthly": 46900,
+          "card": null,
+          "gift": 180000,
+          "care": "셀프형",
+          "sourceOption": "(셀프형)36",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "self-option-60",
+          "management": "self-option",
+          "managementLabel": "셀프형",
+          "term": 60,
+          "monthly": 44900,
+          "card": null,
+          "gift": 275000,
+          "care": "셀프형",
+          "sourceOption": "(셀프형)60",
+          "giftPolicyMonth": "2026-10"
+        }
+      ],
+      "highlights": [
+        "미니 사이즈",
+        "얼음 기능",
+        "냉수·온수"
+      ]
+    },
+    {
+      "id": "clover-2201",
+      "brand": "LG퓨리케어",
+      "name": "LG 퓨리케어 360˚ 공기청정기 플러스 + 무빙휠 세트 100㎡ 2등급",
+      "model": "AS305DWWAM",
+      "category": "공기청정기",
+      "page": "product.html?id=clover-2201",
+      "image": "assets/product-images/clover-2201.webp",
+      "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/videoframe_1545.png",
+      "detailImages": [
+        "https://woongbi.vip-rental.com/_var/rental/vshop/250530172233_1.jpg"
+      ],
+      "availability": "active",
+      "sourceKind": "clover-public",
+      "options": [
+        {
+          "key": "visit-option-48",
+          "management": "visit-option",
+          "managementLabel": "방문형",
+          "term": 48,
+          "monthly": 50900,
+          "card": null,
+          "gift": null,
+          "care": "방문형",
+          "sourceOption": "(방문형)48"
+        },
+        {
+          "key": "visit-option-60",
+          "management": "visit-option",
+          "managementLabel": "방문형",
+          "term": 60,
+          "monthly": 44900,
+          "card": null,
+          "gift": null,
+          "care": "방문형",
+          "sourceOption": "(방문형)60"
+        },
+        {
+          "key": "self-option-48",
+          "management": "self-option",
+          "managementLabel": "셀프형",
+          "term": 48,
+          "monthly": 45900,
+          "card": null,
+          "gift": 145000,
+          "care": "셀프형",
+          "sourceOption": "(셀프형)48",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "self-option-60",
+          "management": "self-option",
+          "managementLabel": "셀프형",
+          "term": 60,
+          "monthly": 39900,
+          "card": null,
+          "gift": 225000,
+          "care": "셀프형",
+          "sourceOption": "(셀프형)60",
+          "giftPolicyMonth": "2026-10"
+        }
+      ],
+      "highlights": [
+        "퓨리케어 360˚",
+        "방문관리 / 셀프관리",
+        "48개월 / 60개월"
+      ]
+    },
+    {
+      "id": "clover-2030",
+      "brand": "COWAY",
+      "name": "노블 공기청정기2_16평형",
+      "model": "AP-1623M",
+      "category": "공기청정기",
+      "page": "product.html?id=clover-2030",
+      "image": "assets/product-images/clover-2030.webp",
+      "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231017155108_1.gif",
+      "detailImages": [
+        "https://productinfo.cowaystatic.com/2_product-detail/2_aircare/AP-1623M/AP-1623M_detail_01.jpg"
+      ],
+      "availability": "active",
+      "sourceKind": "clover-public",
+      "options": [
+        {
+          "key": "visit-option-36",
+          "management": "visit-option",
+          "managementLabel": "방문형",
+          "term": 36,
+          "monthly": 37900,
+          "card": null,
+          "gift": 210000,
+          "care": "방문형",
+          "sourceOption": "(방문형)36",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "visit-option-60",
+          "management": "visit-option",
+          "managementLabel": "방문형",
+          "term": 60,
+          "monthly": 35900,
+          "card": null,
+          "gift": 210000,
+          "care": "방문형",
+          "sourceOption": "(방문형)60",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "self-option-36",
+          "management": "self-option",
+          "managementLabel": "셀프형",
+          "term": 36,
+          "monthly": 34900,
+          "card": null,
+          "gift": 195000,
+          "care": "셀프형",
+          "sourceOption": "(셀프형)36",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "self-option-60",
+          "management": "self-option",
+          "managementLabel": "셀프형",
+          "term": 60,
+          "monthly": 32900,
+          "card": null,
+          "gift": 195000,
+          "care": "셀프형",
+          "sourceOption": "(셀프형)60",
+          "giftPolicyMonth": "2026-10"
+        }
+      ],
+      "highlights": [
+        "16평형",
+        "방문관리 / 셀프관리",
+        "36개월 / 60개월"
+      ]
+    },
+    {
+      "id": "clover-2158",
+      "brand": "CUCKOO",
+      "name": "쿠쿠 대용량 공기청정기",
+      "model": "AC-40AB10FNW",
+      "category": "공기청정기",
+      "page": "product.html?id=clover-2158",
+      "image": "assets/product-images/clover-2158.webp",
+      "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/351b697b-c6ef-410e-a201-35d33d2806ef.jpg",
+      "detailImages": [
+        "https://gi.esmplus.com/cuckoohs/spec/AC-40AB10FNW/01.jpg"
+      ],
+      "availability": "active",
+      "sourceKind": "clover-public",
+      "options": [
+        {
+          "key": "visit-option-36",
+          "management": "visit-option",
+          "managementLabel": "방문형",
+          "term": 36,
+          "monthly": 49900,
+          "card": null,
+          "gift": 175000,
+          "care": "방문형",
+          "sourceOption": "(방문형)36",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "self-option-36",
+          "management": "self-option",
+          "managementLabel": "셀프형",
+          "term": 36,
+          "monthly": 47900,
+          "card": null,
+          "gift": 165000,
+          "care": "셀프형",
+          "sourceOption": "(셀프형)36",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "visit-option-60",
+          "management": "visit-option",
+          "managementLabel": "방문형",
+          "term": 60,
+          "monthly": 42900,
+          "card": null,
+          "gift": 225000,
+          "care": "방문형",
+          "sourceOption": "(방문형)60",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "self-option-60",
+          "management": "self-option",
+          "managementLabel": "셀프형",
+          "term": 60,
+          "monthly": 40900,
+          "card": null,
+          "gift": 215000,
+          "care": "셀프형",
+          "sourceOption": "(셀프형)60",
+          "giftPolicyMonth": "2026-10"
+        }
+      ],
+      "highlights": [
+        "대용량",
+        "방문관리 / 셀프관리",
+        "36개월 / 60개월"
+      ]
+    },
+    {
+      "id": "clover-2031",
+      "brand": "COWAY",
+      "name": "노블 공기청정기2_20평형",
+      "model": "AP-2023K",
+      "category": "공기청정기",
+      "page": "product.html?id=clover-2031",
+      "image": "assets/product-images/clover-2031.webp",
+      "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231017173335_1.gif",
+      "detailImages": [
+        "https://productinfo.cowaystatic.com/2_product-detail/2_aircare/AP-2023K/AP-2023K_detail_01.jpg"
+      ],
+      "availability": "active",
+      "sourceKind": "clover-public",
+      "options": [
+        {
+          "key": "visit-option-36",
+          "management": "visit-option",
+          "managementLabel": "방문형",
+          "term": 36,
+          "monthly": 39900,
+          "card": null,
+          "gift": 210000,
+          "care": "방문형",
+          "sourceOption": "(방문형)36",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "visit-option-60",
+          "management": "visit-option",
+          "managementLabel": "방문형",
+          "term": 60,
+          "monthly": 37900,
+          "card": null,
+          "gift": 210000,
+          "care": "방문형",
+          "sourceOption": "(방문형)60",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "self-option-36",
+          "management": "self-option",
+          "managementLabel": "셀프형",
+          "term": 36,
+          "monthly": 37900,
+          "card": null,
+          "gift": 210000,
+          "care": "셀프형",
+          "sourceOption": "(셀프형)36",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "self-option-60",
+          "management": "self-option",
+          "managementLabel": "셀프형",
+          "term": 60,
+          "monthly": 35900,
+          "card": null,
+          "gift": 210000,
+          "care": "셀프형",
+          "sourceOption": "(셀프형)60",
+          "giftPolicyMonth": "2026-10"
+        }
+      ],
+      "highlights": [
+        "20평형",
+        "방문관리 / 셀프관리",
+        "36개월 / 60개월"
+      ]
+    },
+    {
+      "id": "clover-1883",
+      "brand": "COWAY",
+      "name": "듀얼클린 제습공기청정기_10평형",
+      "model": "APD-1023A",
+      "category": "공기청정기",
+      "page": "product.html?id=clover-1883",
+      "image": "assets/product-images/clover-1883.webp",
+      "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/id0105_4569_attimg_org.png",
+      "detailImages": [
+        "https://productinfo.cowaystatic.com/2_product-detail/2_aircare/APD-1023A/APD-1023A_detail_01.jpg"
+      ],
+      "availability": "active",
+      "sourceKind": "clover-public",
+      "options": [
+        {
+          "key": "visit-option-36",
+          "management": "visit-option",
+          "managementLabel": "방문형",
+          "term": 36,
+          "monthly": 38900,
+          "card": null,
+          "gift": 205000,
+          "care": "방문형",
+          "sourceOption": "(방문형)36",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "visit-option-60",
+          "management": "visit-option",
+          "managementLabel": "방문형",
+          "term": 60,
+          "monthly": 37901,
+          "card": null,
+          "gift": null,
+          "care": "방문형",
+          "sourceOption": "(방문형)60"
+        },
+        {
+          "key": "self-option-36",
+          "management": "self-option",
+          "managementLabel": "셀프형",
+          "term": 36,
+          "monthly": 36900,
+          "card": null,
+          "gift": 195000,
+          "care": "셀프형",
+          "sourceOption": "(셀프형)36",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "self-option-60",
+          "management": "self-option",
+          "managementLabel": "셀프형",
+          "term": 60,
+          "monthly": 35900,
+          "card": null,
+          "gift": 210000,
+          "care": "셀프형",
+          "sourceOption": "(셀프형)60",
+          "giftPolicyMonth": "2026-10"
+        }
+      ],
+      "highlights": [
+        "10평형",
+        "제습 기능",
+        "듀얼클린 제습"
+      ]
+    },
+    {
+      "id": "clover-2232",
+      "brand": "COWAY",
+      "name": "히티브 온풍 공기청정기 5평형",
+      "model": "APH-0525F",
+      "category": "공기청정기",
+      "page": "product.html?id=clover-2232",
+      "image": "assets/product-images/clover-2232.webp",
+      "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/251119112530_1.png",
+      "detailImages": [
+        "https://clvrental777.com/data/editor/2511/7e0a9dee99807148c80f9a9e578b009b_1763449668_2727.jpg"
+      ],
+      "availability": "active",
+      "sourceKind": "clover-public",
+      "options": [
+        {
+          "key": "visit-option-36",
+          "management": "visit-option",
+          "managementLabel": "방문형",
+          "term": 36,
+          "monthly": 35900,
+          "card": null,
+          "gift": 195000,
+          "care": "방문형",
+          "sourceOption": "(방문형)36",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "visit-option-60",
+          "management": "visit-option",
+          "managementLabel": "방문형",
+          "term": 60,
+          "monthly": 31400,
+          "card": null,
+          "gift": 195000,
+          "care": "방문형",
+          "sourceOption": "(방문형)60",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "self-option-36",
+          "management": "self-option",
+          "managementLabel": "셀프형",
+          "term": 36,
+          "monthly": 32900,
+          "card": null,
+          "gift": 190000,
+          "care": "셀프형",
+          "sourceOption": "(셀프형)36",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "self-option-60",
+          "management": "self-option",
+          "managementLabel": "셀프형",
+          "term": 60,
+          "monthly": 28400,
+          "card": null,
+          "gift": 190000,
+          "care": "셀프형",
+          "sourceOption": "(셀프형)60",
+          "giftPolicyMonth": "2026-10"
+        }
+      ],
+      "highlights": [
+        "5평형",
+        "온풍 기능",
+        "히티브 온풍"
+      ]
+    },
+    {
+      "id": "clover-2168",
+      "brand": "SK매직",
+      "name": "코어 360˚ 공기청정기_13평형",
+      "model": "ACL131T0CJDG",
+      "category": "공기청정기",
+      "page": "product.html?id=clover-2168",
+      "image": "assets/product-images/clover-2168.webp",
+      "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/g000068762_57_480x480.png",
+      "detailImages": [
+        "https://static.skmagic.com/image/editor/goods_desc/202412/1735619125917146.jpg"
+      ],
+      "availability": "active",
+      "sourceKind": "clover-public",
+      "options": [
+        {
+          "key": "visit-option-36",
+          "management": "visit-option",
+          "managementLabel": "방문형",
+          "term": 36,
+          "monthly": 16900,
+          "card": null,
+          "gift": 10000,
+          "care": "방문형",
+          "sourceOption": "(방문형)36",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "visit-option-60",
+          "management": "visit-option",
+          "managementLabel": "방문형",
+          "term": 60,
+          "monthly": 12900,
+          "card": null,
+          "gift": 5000,
+          "care": "방문형",
+          "sourceOption": "(방문형)60",
+          "giftPolicyMonth": "2026-10"
+        }
+      ],
+      "highlights": [
+        "13평형",
+        "코어 360˚",
+        "방문관리"
+      ]
+    },
+    {
+      "id": "clover-1907",
+      "brand": "CUCKOO",
+      "name": "인스퓨어 프리미엄 공기청정기 브릭_12평형",
+      "model": "AC-12R10FNW",
+      "category": "공기청정기",
+      "page": "product.html?id=clover-1907",
+      "image": "assets/product-images/clover-1907.webp",
+      "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/661910538_cwn9mait_ac-12r10fnw_1.jpg",
+      "detailImages": [
+        "https://clvrental777.com/data/editor/2304/c6f05e78380f8737d1db3625a9ce4b32_1681866646_7189.jpg"
+      ],
+      "availability": "active",
+      "sourceKind": "clover-public",
+      "options": [
+        {
+          "key": "visit-option-36",
+          "management": "visit-option",
+          "managementLabel": "방문형",
+          "term": 36,
+          "monthly": 22900,
+          "card": null,
+          "gift": 70000,
+          "care": "방문형",
+          "sourceOption": "(방문형)36",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "visit-option-60",
+          "management": "visit-option",
+          "managementLabel": "방문형",
+          "term": 60,
+          "monthly": 16900,
+          "card": null,
+          "gift": 85000,
+          "care": "방문형",
+          "sourceOption": "(방문형)60",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "self-option-36",
+          "management": "self-option",
+          "managementLabel": "셀프형",
+          "term": 36,
+          "monthly": 20900,
+          "card": null,
+          "gift": 60000,
+          "care": "셀프형",
+          "sourceOption": "(셀프형)36",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "self-option-60",
+          "management": "self-option",
+          "managementLabel": "셀프형",
+          "term": 60,
+          "monthly": 14900,
+          "card": null,
+          "gift": 70000,
+          "care": "셀프형",
+          "sourceOption": "(셀프형)60",
+          "giftPolicyMonth": "2026-10"
+        }
+      ],
+      "highlights": [
+        "12평형",
+        "인스퓨어 프리미엄",
+        "방문관리 / 셀프관리"
+      ]
+    },
+    {
+      "id": "clover-2235",
+      "brand": "현대큐밍",
+      "name": "더케어 큐브 공기청정기 11평형",
+      "model": "A-C102W",
+      "category": "공기청정기",
+      "page": "product.html?id=clover-2235",
+      "image": "assets/product-images/clover-2235.webp",
+      "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/251119171208_1.png",
+      "detailImages": [
+        "https://hdquming.com/web/upload/NNEditor/20250701/A-C101W0J_EB8D94ECBC80EC96B4-ED8190EBB88C_pc_EBB380EAB2BDECA084.jpg"
+      ],
+      "availability": "active",
+      "sourceKind": "clover-public",
+      "options": [
+        {
+          "key": "visit-option-36",
+          "management": "visit-option",
+          "managementLabel": "방문형",
+          "term": 36,
+          "monthly": 19900,
+          "card": null,
+          "gift": null,
+          "care": "방문형",
+          "sourceOption": "(방문형)36"
+        },
+        {
+          "key": "self-option-36",
+          "management": "self-option",
+          "managementLabel": "셀프형",
+          "term": 36,
+          "monthly": 16900,
+          "card": null,
+          "gift": 10000,
+          "care": "셀프형",
+          "sourceOption": "(셀프형)36",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "visit-option-60",
+          "management": "visit-option",
+          "managementLabel": "방문형",
+          "term": 60,
+          "monthly": 18900,
+          "card": null,
+          "gift": 10000,
+          "care": "방문형",
+          "sourceOption": "(방문형)60",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "self-option-60",
+          "management": "self-option",
+          "managementLabel": "셀프형",
+          "term": 60,
+          "monthly": 15900,
+          "card": null,
+          "gift": null,
+          "care": "셀프형",
+          "sourceOption": "(셀프형)60"
+        }
+      ],
+      "highlights": [
+        "11평형",
+        "더케어 큐브",
+        "방문관리 / 셀프관리"
+      ]
+    },
+    {
+      "id": "clover-1906",
+      "brand": "CUCKOO",
+      "name": "인스퓨어 프리미엄 공기청정기 브릭_14평형",
+      "model": "AC-14R10FNW",
+      "category": "공기청정기",
+      "page": "product.html?id=clover-1906",
+      "image": "assets/product-images/clover-1906.webp",
+      "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/661910538_u2jxxfdt_ac-14r20fnw_1.jpg",
+      "detailImages": [
+        "https://ai.esmplus.com/cuckoohs1/cuckoo/rental/spec/AC-14R10FNW.jpg"
+      ],
+      "availability": "active",
+      "sourceKind": "clover-public",
+      "options": [
+        {
+          "key": "visit-option-36",
+          "management": "visit-option",
+          "managementLabel": "방문형",
+          "term": 36,
+          "monthly": 23900,
+          "card": null,
+          "gift": 75000,
+          "care": "방문형",
+          "sourceOption": "(방문형)36",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "visit-option-60",
+          "management": "visit-option",
+          "managementLabel": "방문형",
+          "term": 60,
+          "monthly": 17900,
+          "card": null,
+          "gift": 90000,
+          "care": "방문형",
+          "sourceOption": "(방문형)60",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "self-option-36",
+          "management": "self-option",
+          "managementLabel": "셀프형",
+          "term": 36,
+          "monthly": 21900,
+          "card": null,
+          "gift": 65000,
+          "care": "셀프형",
+          "sourceOption": "(셀프형)36",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "self-option-60",
+          "management": "self-option",
+          "managementLabel": "셀프형",
+          "term": 60,
+          "monthly": 15900,
+          "card": null,
+          "gift": 80000,
+          "care": "셀프형",
+          "sourceOption": "(셀프형)60",
+          "giftPolicyMonth": "2026-10"
+        }
+      ],
+      "highlights": [
+        "14평형",
+        "인스퓨어 프리미엄",
+        "방문관리 / 셀프관리"
+      ]
+    },
+    {
+      "id": "clover-1720",
+      "brand": "CUCKOO",
+      "name": "인스퓨어 T8700 공기청정기_16평형",
+      "model": "AC-17T10FWH",
+      "category": "공기청정기",
+      "page": "product.html?id=clover-1720",
+      "image": "assets/product-images/clover-1720.webp",
+      "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/661910538_ztouanqc_ac-17t20fwh_1.jpg",
+      "detailImages": [
+        "https://cdnbestcuckoo.ecn.cdn.infralab.net/detail/product/air/AC-17T10FWH_detail.jpg"
+      ],
+      "availability": "active",
+      "sourceKind": "clover-public",
+      "options": [
+        {
+          "key": "visit-option-36",
+          "management": "visit-option",
+          "managementLabel": "방문형",
+          "term": 36,
+          "monthly": 26900,
+          "card": null,
+          "gift": 90000,
+          "care": "방문형",
+          "sourceOption": "(방문형)36",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "self-option-36",
+          "management": "self-option",
+          "managementLabel": "셀프형",
+          "term": 36,
+          "monthly": 23900,
+          "card": null,
+          "gift": 75000,
+          "care": "셀프형",
+          "sourceOption": "(셀프형)36",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "visit-option-60",
+          "management": "visit-option",
+          "managementLabel": "방문형",
+          "term": 60,
+          "monthly": 19900,
+          "card": null,
+          "gift": 105000,
+          "care": "방문형",
+          "sourceOption": "(방문형)60",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "self-option-60",
+          "management": "self-option",
+          "managementLabel": "셀프형",
+          "term": 60,
+          "monthly": 17900,
+          "card": null,
+          "gift": 90000,
+          "care": "셀프형",
+          "sourceOption": "(셀프형)60",
+          "giftPolicyMonth": "2026-10"
+        }
+      ],
+      "highlights": [
+        "16평형",
+        "인스퓨어 T8700",
+        "방문관리 / 셀프관리"
+      ]
+    },
+    {
+      "id": "clover-2186",
+      "brand": "COWAY",
+      "name": "노블 공기청정기2 (133㎡)",
+      "model": "AP-4025D",
+      "category": "공기청정기",
+      "page": "product.html?id=clover-2186",
+      "image": "assets/product-images/clover-2186.webp",
+      "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250325103511_1.png",
+      "detailImages": [
+        "https://clvrental777.com/data/editor/2503/412a2f9356f9898d272d20523769aadc_1741240383_904.jpg"
+      ],
+      "availability": "active",
+      "sourceKind": "clover-public",
+      "options": [
+        {
+          "key": "visit-option-36",
+          "management": "visit-option",
+          "managementLabel": "방문형",
+          "term": 36,
+          "monthly": 61900,
+          "card": null,
+          "gift": 235000,
+          "care": "방문형",
+          "sourceOption": "(방문형)36",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "visit-option-60",
+          "management": "visit-option",
+          "managementLabel": "방문형",
+          "term": 60,
+          "monthly": 58900,
+          "card": null,
+          "gift": 235000,
+          "care": "방문형",
+          "sourceOption": "(방문형)60",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "self-option-36",
+          "management": "self-option",
+          "managementLabel": "셀프형",
+          "term": 36,
+          "monthly": 58901,
+          "card": null,
+          "gift": null,
+          "care": "셀프형",
+          "sourceOption": "(셀프형)36"
+        },
+        {
+          "key": "self-option-60",
+          "management": "self-option",
+          "managementLabel": "셀프형",
+          "term": 60,
+          "monthly": 55900,
+          "card": null,
+          "gift": 235000,
+          "care": "셀프형",
+          "sourceOption": "(셀프형)60",
+          "giftPolicyMonth": "2026-10"
+        }
+      ],
+      "highlights": [
+        "방문관리 / 셀프관리",
+        "36개월 / 60개월"
+      ]
+    },
+    {
+      "id": "clover-2161",
+      "brand": "COWAY",
+      "name": "노블 공기청정기2 (100㎡)",
+      "model": "AP-3024H",
+      "category": "공기청정기",
+      "page": "product.html?id=clover-2161",
+      "image": "assets/product-images/clover-2161.webp",
+      "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250208115358_1.png",
+      "detailImages": [
+        "https://clvrental777.com/data/editor/2501/1c5d8af0bcfdf8132fd6cfc6c1355b81_1736499708_2142.jpg"
+      ],
+      "availability": "active",
+      "sourceKind": "clover-public",
+      "options": [
+        {
+          "key": "visit-option-36",
+          "management": "visit-option",
+          "managementLabel": "방문형",
+          "term": 36,
+          "monthly": 57900,
+          "card": null,
+          "gift": 225000,
+          "care": "방문형",
+          "sourceOption": "(방문형)36",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "visit-option-60",
+          "management": "visit-option",
+          "managementLabel": "방문형",
+          "term": 60,
+          "monthly": 54900,
+          "card": null,
+          "gift": 225000,
+          "care": "방문형",
+          "sourceOption": "(방문형)60",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "self-option-36",
+          "management": "self-option",
+          "managementLabel": "셀프형",
+          "term": 36,
+          "monthly": 54900,
+          "card": null,
+          "gift": 225000,
+          "care": "셀프형",
+          "sourceOption": "(셀프형)36",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "self-option-60",
+          "management": "self-option",
+          "managementLabel": "셀프형",
+          "term": 60,
+          "monthly": 51900,
+          "card": null,
+          "gift": 225000,
+          "care": "셀프형",
+          "sourceOption": "(셀프형)60",
+          "giftPolicyMonth": "2026-10"
+        }
+      ],
+      "highlights": [
+        "방문관리 / 셀프관리",
+        "36개월 / 60개월"
+      ]
+    },
+    {
+      "id": "clover-1756",
+      "brand": "COWAY",
+      "name": "노블 공기청정기_30평형 (IoCare형)",
+      "model": "AP-3021D",
+      "category": "공기청정기",
+      "page": "product.html?id=clover-1756",
+      "image": "assets/product-images/clover-1756.webp",
+      "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230629150108_1.gif",
+      "detailImages": [
+        "https://productinfo.cowaystatic.com/2_product-detail/2_aircare/AP-3021D/AP-3021D_detail_01.jpg"
+      ],
+      "availability": "active",
+      "sourceKind": "clover-public",
+      "options": [
+        {
+          "key": "visit-option-36",
+          "management": "visit-option",
+          "managementLabel": "방문관리",
+          "term": 36,
+          "monthly": 57900,
+          "card": null,
+          "gift": 225000,
+          "care": "방문관리",
+          "sourceOption": "(방문관리)36",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "visit-option-60",
+          "management": "visit-option",
+          "managementLabel": "방문관리",
+          "term": 60,
+          "monthly": 54900,
+          "card": null,
+          "gift": 225000,
+          "care": "방문관리",
+          "sourceOption": "(방문관리)60",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "self-option-36",
+          "management": "self-option",
+          "managementLabel": "자가관리",
+          "term": 36,
+          "monthly": 54900,
+          "card": null,
+          "gift": 225000,
+          "care": "자가관리",
+          "sourceOption": "(자가관리)36",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "self-option-60",
+          "management": "self-option",
+          "managementLabel": "자가관리",
+          "term": 60,
+          "monthly": 51900,
+          "card": null,
+          "gift": 225000,
+          "care": "자가관리",
+          "sourceOption": "(자가관리)60",
+          "giftPolicyMonth": "2026-10"
+        }
+      ],
+      "highlights": [
+        "30평형",
+        "방문관리 / 셀프관리",
+        "36개월 / 60개월"
+      ]
+    },
+    {
+      "id": "clover-312",
+      "brand": "COWAY",
+      "name": "콰트로파워 공기청정기_30평형",
+      "model": "AP-3018B",
+      "category": "공기청정기",
+      "page": "product.html?id=clover-312",
+      "image": "assets/product-images/clover-312.webp",
+      "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/id0105_1844_attimg_org.png",
+      "detailImages": [
+        "https://productinfo.cowaystatic.com/2_product-detail/2_aircare/AP-3018B/AP-3018B_detail_01.jpg"
+      ],
+      "availability": "active",
+      "sourceKind": "clover-public",
+      "options": [
+        {
+          "key": "standard-option-36",
+          "management": "standard-option",
+          "managementLabel": "기본 조건",
+          "term": 36,
+          "monthly": 55900,
+          "card": null,
+          "gift": 225000,
+          "care": "기본 조건",
+          "sourceOption": "36",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "standard-option-60",
+          "management": "standard-option",
+          "managementLabel": "기본 조건",
+          "term": 60,
+          "monthly": 53900,
+          "card": null,
+          "gift": 225000,
+          "care": "기본 조건",
+          "sourceOption": "60",
+          "giftPolicyMonth": "2026-10"
+        }
+      ],
+      "highlights": [
+        "30평형",
+        "콰트로파워",
+        "36개월 / 60개월"
+      ]
+    },
+    {
+      "id": "clover-2173",
+      "brand": "LG퓨리케어",
+      "name": "퓨리케어 360도 공기청정기 19평형",
+      "model": "AS195DWWA",
+      "category": "공기청정기",
+      "page": "product.html?id=clover-2173",
+      "image": "assets/product-images/clover-2173.webp",
+      "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250312165453_1.jpg",
+      "detailImages": [
+        "https://clvrental777.com/data/editor/2502/06116b48ea4f768197fb6732ad36e995_1739954297_188.jpg"
+      ],
+      "availability": "active",
+      "sourceKind": "clover-public",
+      "options": [
+        {
+          "key": "visit-option-48",
+          "management": "visit-option",
+          "managementLabel": "방문형",
+          "term": 48,
+          "monthly": 37900,
+          "card": null,
+          "gift": 145000,
+          "care": "방문형",
+          "sourceOption": "(방문형)48",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "visit-option-60",
+          "management": "visit-option",
+          "managementLabel": "방문형",
+          "term": 60,
+          "monthly": 33900,
+          "card": null,
+          "gift": null,
+          "care": "방문형",
+          "sourceOption": "(방문형)60"
+        },
+        {
+          "key": "self-option-48",
+          "management": "self-option",
+          "managementLabel": "셀프형",
+          "term": 48,
+          "monthly": 32900,
+          "card": null,
+          "gift": null,
+          "care": "셀프형",
+          "sourceOption": "(셀프형)48"
+        },
+        {
+          "key": "self-option-60",
+          "management": "self-option",
+          "managementLabel": "셀프형",
+          "term": 60,
+          "monthly": 28900,
+          "card": null,
+          "gift": null,
+          "care": "셀프형",
+          "sourceOption": "(셀프형)60"
+        }
+      ],
+      "highlights": [
+        "19평형",
+        "퓨리케어 360도",
+        "방문관리 / 셀프관리"
+      ]
+    },
+    {
+      "id": "clover-1856",
+      "brand": "SK매직",
+      "name": "AI 공기청정기 ACL300VA_30평형",
+      "model": "ACL300VA",
+      "category": "공기청정기",
+      "page": "product.html?id=clover-1856",
+      "image": "assets/product-images/clover-1856.webp",
+      "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230830172730_1.png",
+      "detailImages": [
+        "https://static.skmagic.com/image/editor/goods_desc/202107/1626930857794912.jpg"
+      ],
+      "availability": "active",
+      "sourceKind": "clover-public",
+      "options": [
+        {
+          "key": "visit-option-36",
+          "management": "visit-option",
+          "managementLabel": "방문형",
+          "term": 36,
+          "monthly": 49900,
+          "card": null,
+          "gift": 220000,
+          "care": "방문형",
+          "sourceOption": "(방문형)36",
+          "giftPolicyMonth": "2026-10"
+        }
+      ],
+      "highlights": [
+        "30평형",
+        "방문관리",
+        "36개월"
+      ]
+    },
+    {
+      "id": "clover-2059",
+      "brand": "SK매직",
+      "name": "올클린 디아트 펫 공기청정기_22평형_펫 전용 (할인프로모션)",
+      "model": "ACL22P1",
+      "category": "공기청정기",
+      "page": "product.html?id=clover-2059",
+      "image": "assets/product-images/clover-2059.webp",
+      "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/g000067179_21_480x480.png",
+      "detailImages": [
+        "https://static.skmagic.com/image/editor/goods_desc/202310/1698648378369304.gif"
+      ],
+      "availability": "active",
+      "sourceKind": "clover-public",
+      "options": [
+        {
+          "key": "visit-option-36",
+          "management": "visit-option",
+          "managementLabel": "방문형",
+          "term": 36,
+          "monthly": 41900,
+          "card": null,
+          "gift": 110000,
+          "care": "방문형",
+          "sourceOption": "(방문형)36",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "visit-option-60",
+          "management": "visit-option",
+          "managementLabel": "방문형",
+          "term": 60,
+          "monthly": 33900,
+          "card": null,
+          "gift": 145000,
+          "care": "방문형",
+          "sourceOption": "(방문형)60",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "self-option-36",
+          "management": "self-option",
+          "managementLabel": "셀프형",
+          "term": 36,
+          "monthly": 38900,
+          "card": null,
+          "gift": 90000,
+          "care": "셀프형",
+          "sourceOption": "(셀프형)36",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "self-option-60",
+          "management": "self-option",
+          "managementLabel": "셀프형",
+          "term": 60,
+          "monthly": 30900,
+          "card": null,
+          "gift": 115000,
+          "care": "셀프형",
+          "sourceOption": "(셀프형)60",
+          "giftPolicyMonth": "2026-10"
+        }
+      ],
+      "highlights": [
+        "22평형",
+        "펫 케어",
+        "올클린 디아트 펫"
+      ]
+    },
+    {
+      "id": "clover-2237",
+      "brand": "CUCKOO",
+      "name": "인스퓨어 ULTRA 공기청정기",
+      "model": "AC-35U20FWGE",
+      "category": "공기청정기",
+      "page": "product.html?id=clover-2237",
+      "image": "assets/product-images/clover-2237.webp",
+      "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/251121140604_1.jpg",
+      "detailImages": [
+        "https://gi.esmplus.com/cuckoohs/spec/AC-35U20FWGE/01.jpg"
+      ],
+      "availability": "active",
+      "sourceKind": "clover-public",
+      "options": [
+        {
+          "key": "visit-option-36",
+          "management": "visit-option",
+          "managementLabel": "방문형",
+          "term": 36,
+          "monthly": 39900,
+          "card": null,
+          "gift": 145000,
+          "care": "방문형",
+          "sourceOption": "(방문형)36",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "self-option-36",
+          "management": "self-option",
+          "managementLabel": "셀프형",
+          "term": 36,
+          "monthly": 37900,
+          "card": null,
+          "gift": 135000,
+          "care": "셀프형",
+          "sourceOption": "(셀프형)36",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "visit-option-60",
+          "management": "visit-option",
+          "managementLabel": "방문형",
+          "term": 60,
+          "monthly": 32900,
+          "card": null,
+          "gift": 195000,
+          "care": "방문형",
+          "sourceOption": "(방문형)60",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "self-option-60",
+          "management": "self-option",
+          "managementLabel": "셀프형",
+          "term": 60,
+          "monthly": 30900,
+          "card": null,
+          "gift": 185000,
+          "care": "셀프형",
+          "sourceOption": "(셀프형)60",
+          "giftPolicyMonth": "2026-10"
+        }
+      ],
+      "highlights": [
+        "인스퓨어 ULTRA",
+        "방문관리 / 셀프관리",
+        "36개월 / 60개월"
+      ]
+    },
+    {
+      "id": "clover-2181",
+      "brand": "루헨스",
+      "name": "퍼펙트 클린 비데 리모컨형",
+      "model": "WHB-5410",
+      "category": "비데·연수기",
+      "page": "product.html?id=clover-2181",
+      "image": "assets/product-images/clover-2181.webp",
+      "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250319170555_1.png",
+      "detailImages": [
+        "https://ruhens.co.kr/FileData/edtImg/07fcc4d0_"
+      ],
+      "availability": "active",
+      "sourceKind": "clover-public",
+      "options": [
+        {
+          "key": "visit-option-36",
+          "management": "visit-option",
+          "managementLabel": "방문형",
+          "term": 36,
+          "monthly": 22900,
+          "card": null,
+          "gift": 105000,
+          "care": "방문형",
+          "sourceOption": "(방문형)36",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "self-option-36",
+          "management": "self-option",
+          "managementLabel": "셀프형",
+          "term": 36,
+          "monthly": 19900,
+          "card": null,
+          "gift": 105000,
+          "care": "셀프형",
+          "sourceOption": "(셀프형)36",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "visit-option-60",
+          "management": "visit-option",
+          "managementLabel": "방문형",
+          "term": 60,
+          "monthly": 18900,
+          "card": null,
+          "gift": 190000,
+          "care": "방문형",
+          "sourceOption": "(방문형)60",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "self-option-48",
+          "management": "self-option",
+          "managementLabel": "셀프형",
+          "term": 48,
+          "monthly": 17900,
+          "card": null,
+          "gift": 125000,
+          "care": "셀프형",
+          "sourceOption": "(셀프형)48",
+          "giftPolicyMonth": "2026-10"
+        }
+      ],
+      "highlights": [
+        "리모컨",
+        "퍼펙트 클린",
+        "방문관리 / 셀프관리"
+      ]
+    },
+    {
+      "id": "clover-1894",
+      "brand": "COWAY",
+      "name": "스킨플러스 연수기(일반형)",
+      "model": "BB16-A",
+      "category": "비데·연수기",
+      "page": "product.html?id=clover-1894",
+      "image": "assets/product-images/clover-1894.webp",
+      "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230630132757_1.gif",
+      "detailImages": [
+        "https://productinfo.cowaystatic.com/2_product-detail/3_bodycare/BB16-A/BB16-A_detail_01.jpg"
+      ],
+      "availability": "active",
+      "sourceKind": "clover-public",
+      "options": [
+        {
+          "key": "visit-option-36",
+          "management": "visit-option",
+          "managementLabel": "방문관리",
+          "term": 36,
+          "monthly": 35400,
+          "card": null,
+          "gift": 200000,
+          "care": "방문관리",
+          "sourceOption": "(방문관리)36",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "visit-option-60",
+          "management": "visit-option",
+          "managementLabel": "방문관리",
+          "term": 60,
+          "monthly": 33400,
+          "card": null,
+          "gift": 200000,
+          "care": "방문관리",
+          "sourceOption": "(방문관리)60",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "self-option-36",
+          "management": "self-option",
+          "managementLabel": "자가관리",
+          "term": 36,
+          "monthly": 31400,
+          "card": null,
+          "gift": 190000,
+          "care": "자가관리",
+          "sourceOption": "(자가관리)36",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "self-option-60",
+          "management": "self-option",
+          "managementLabel": "자가관리",
+          "term": 60,
+          "monthly": 29400,
+          "card": null,
+          "gift": 190000,
+          "care": "자가관리",
+          "sourceOption": "(자가관리)60",
+          "giftPolicyMonth": "2026-10"
+        }
+      ],
+      "highlights": [
+        "스킨플러스",
+        "방문관리 / 셀프관리",
+        "36개월 / 60개월"
+      ]
+    },
+    {
+      "id": "clover-2086",
+      "brand": "COWAY",
+      "name": "더블케어 플러스 비데 2",
+      "model": "BAS38-C",
+      "category": "비데·연수기",
+      "page": "product.html?id=clover-2086",
+      "image": "assets/product-images/clover-2086.webp",
+      "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231215113740_1.png",
+      "detailImages": [
+        "https://clvrental777.com/data/editor/2501/3ab2dc556d418ba172ebaa22a33f884c_1735796914_7675.jpg"
+      ],
+      "availability": "active",
+      "sourceKind": "clover-public",
+      "options": [
+        {
+          "key": "visit-option-36",
+          "management": "visit-option",
+          "managementLabel": "방문형",
+          "term": 36,
+          "monthly": 29900,
+          "card": null,
+          "gift": 195000,
+          "care": "방문형",
+          "sourceOption": "(방문형)36",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "visit-option-60",
+          "management": "visit-option",
+          "managementLabel": "방문형",
+          "term": 60,
+          "monthly": 28400,
+          "card": null,
+          "gift": 195000,
+          "care": "방문형",
+          "sourceOption": "(방문형)60",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "self-option-36",
+          "management": "self-option",
+          "managementLabel": "셀프형",
+          "term": 36,
+          "monthly": 27900,
+          "card": null,
+          "gift": 190000,
+          "care": "셀프형",
+          "sourceOption": "(셀프형)36",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "self-option-60",
+          "management": "self-option",
+          "managementLabel": "셀프형",
+          "term": 60,
+          "monthly": 26400,
+          "card": null,
+          "gift": 190000,
+          "care": "셀프형",
+          "sourceOption": "(셀프형)60",
+          "giftPolicyMonth": "2026-10"
+        }
+      ],
+      "highlights": [
+        "더블케어 플러스",
+        "방문관리 / 셀프관리",
+        "36개월 / 60개월"
+      ]
+    },
+    {
+      "id": "clover-441",
+      "brand": "COWAY",
+      "name": "연수기(BB15-A)_스탠드형/벽걸이형 겸용",
+      "model": "BB15-A",
+      "category": "비데·연수기",
+      "page": "product.html?id=clover-441",
+      "image": "assets/product-images/clover-441.webp",
+      "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230630131528_1.png",
+      "detailImages": [
+        "https://productinfo.cowaystatic.com/2_product-detail/3_bodycare/BB15-A/BB15-A_detail_01.jpg"
+      ],
+      "availability": "active",
+      "sourceKind": "clover-public",
+      "options": [
+        {
+          "key": "standard-option-36",
+          "management": "standard-option",
+          "managementLabel": "기본 조건",
+          "term": 36,
+          "monthly": 30400,
+          "card": null,
+          "gift": 190000,
+          "care": "기본 조건",
+          "sourceOption": "36",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "standard-option-60",
+          "management": "standard-option",
+          "managementLabel": "기본 조건",
+          "term": 60,
+          "monthly": 28400,
+          "card": null,
+          "gift": 190000,
+          "care": "기본 조건",
+          "sourceOption": "60",
+          "giftPolicyMonth": "2026-10"
+        }
+      ],
+      "highlights": [
+        "벽걸이형",
+        "스탠드형",
+        "36개월 / 60개월"
+      ]
+    },
+    {
+      "id": "clover-1782",
+      "brand": "COWAY",
+      "name": "더블케어 비데 2",
+      "model": "BAS37-C",
+      "category": "비데·연수기",
+      "page": "product.html?id=clover-1782",
+      "image": "assets/product-images/clover-1782.webp",
+      "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250318140315_1.png",
+      "detailImages": [
+        "https://clvrental777.com/data/editor/2501/3ab2dc556d418ba172ebaa22a33f884c_1735796802_3719.jpg"
+      ],
+      "availability": "active",
+      "sourceKind": "clover-public",
+      "options": [
+        {
+          "key": "visit-option-36",
+          "management": "visit-option",
+          "managementLabel": "방문형",
+          "term": 36,
+          "monthly": 28900,
+          "card": null,
+          "gift": 185000,
+          "care": "방문형",
+          "sourceOption": "(방문형)36",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "visit-option-60",
+          "management": "visit-option",
+          "managementLabel": "방문형",
+          "term": 60,
+          "monthly": 27400,
+          "card": null,
+          "gift": 185000,
+          "care": "방문형",
+          "sourceOption": "(방문형)60",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "self-option-36",
+          "management": "self-option",
+          "managementLabel": "셀프형",
+          "term": 36,
+          "monthly": 26900,
+          "card": null,
+          "gift": 185000,
+          "care": "셀프형",
+          "sourceOption": "(셀프형)36",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "self-option-60",
+          "management": "self-option",
+          "managementLabel": "셀프형",
+          "term": 60,
+          "monthly": 25400,
+          "card": null,
+          "gift": 185000,
+          "care": "셀프형",
+          "sourceOption": "(셀프형)60",
+          "giftPolicyMonth": "2026-10"
+        }
+      ],
+      "highlights": [
+        "더블케어",
+        "방문관리 / 셀프관리",
+        "36개월 / 60개월"
+      ]
+    },
+    {
+      "id": "clover-2233",
+      "brand": "COWAY",
+      "name": "슬리믹 비데",
+      "model": "BAS49-A",
+      "category": "비데·연수기",
+      "page": "product.html?id=clover-2233",
+      "image": "assets/product-images/clover-2233.webp",
+      "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/251119142552_1.png",
+      "detailImages": [
+        "https://clvrental777.com/data/editor/2511/3ddabb0a7e556021e79f33081e98f254_1762161213_4192.jpg"
+      ],
+      "availability": "active",
+      "sourceKind": "clover-public",
+      "options": [
+        {
+          "key": "visit-option-36",
+          "management": "visit-option",
+          "managementLabel": "방문형",
+          "term": 36,
+          "monthly": 26900,
+          "card": null,
+          "gift": 180000,
+          "care": "방문형",
+          "sourceOption": "(방문형)36",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "visit-option-60",
+          "management": "visit-option",
+          "managementLabel": "방문형",
+          "term": 60,
+          "monthly": 24900,
+          "card": null,
+          "gift": 180000,
+          "care": "방문형",
+          "sourceOption": "(방문형)60",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "self-option-36",
+          "management": "self-option",
+          "managementLabel": "셀프형",
+          "term": 36,
+          "monthly": 24901,
+          "card": null,
+          "gift": null,
+          "care": "셀프형",
+          "sourceOption": "(셀프형)36"
+        },
+        {
+          "key": "self-option-60",
+          "management": "self-option",
+          "managementLabel": "셀프형",
+          "term": 60,
+          "monthly": 22900,
+          "card": null,
+          "gift": 170000,
+          "care": "셀프형",
+          "sourceOption": "(셀프형)60",
+          "giftPolicyMonth": "2026-10"
+        }
+      ],
+      "highlights": [
+        "슬리믹",
+        "방문관리 / 셀프관리",
+        "36개월 / 60개월"
+      ]
+    },
+    {
+      "id": "clover-2179",
+      "brand": "CUCKOO",
+      "name": "인스퓨어 비데",
+      "model": "CBT-L1031W",
+      "category": "비데·연수기",
+      "page": "product.html?id=clover-2179",
+      "image": "assets/product-images/clover-2179.webp",
+      "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250319152912_1.jpg",
+      "detailImages": [
+        "https://ai.esmplus.com/cuckoohs1/cuckoo/rental/spec/CBT-L1031W.jpg"
+      ],
+      "availability": "active",
+      "sourceKind": "clover-public",
+      "options": [
+        {
+          "key": "visit-option-36",
+          "management": "visit-option",
+          "managementLabel": "방문형",
+          "term": 36,
+          "monthly": 15900,
+          "card": null,
+          "gift": 30000,
+          "care": "방문형",
+          "sourceOption": "(방문형)36",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "self-option-36",
+          "management": "self-option",
+          "managementLabel": "셀프형",
+          "term": 36,
+          "monthly": 11900,
+          "card": null,
+          "gift": 15000,
+          "care": "셀프형",
+          "sourceOption": "(셀프형)36",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "visit-option-60",
+          "management": "visit-option",
+          "managementLabel": "방문형",
+          "term": 60,
+          "monthly": 13900,
+          "card": null,
+          "gift": 70000,
+          "care": "방문형",
+          "sourceOption": "(방문형)60",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "self-option-60",
+          "management": "self-option",
+          "managementLabel": "셀프형",
+          "term": 60,
+          "monthly": 9900,
+          "card": null,
+          "gift": 45000,
+          "care": "셀프형",
+          "sourceOption": "(셀프형)60",
+          "giftPolicyMonth": "2026-10"
+        }
+      ],
+      "highlights": [
+        "인스퓨어",
+        "방문관리 / 셀프관리",
+        "36개월 / 60개월"
+      ]
+    },
+    {
+      "id": "clover-481",
+      "brand": "CUCKOO",
+      "name": "인스퓨어 Easy 필터 비데",
+      "model": "CBT-G1031W",
+      "category": "비데·연수기",
+      "page": "product.html?id=clover-481",
+      "image": "assets/product-images/clover-481.webp",
+      "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/a.jpg",
+      "detailImages": [
+        "https://cdn.imweb.me/upload/S201801235a66b2e64d01e/a7efd6a252163.jpeg"
+      ],
+      "availability": "active",
+      "sourceKind": "clover-public",
+      "options": [
+        {
+          "key": "visit-option-36",
+          "management": "visit-option",
+          "managementLabel": "방문형",
+          "term": 36,
+          "monthly": 14900,
+          "card": null,
+          "gift": 25000,
+          "care": "방문형",
+          "sourceOption": "(방문형)36",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "self-option-36",
+          "management": "self-option",
+          "managementLabel": "셀프형",
+          "term": 36,
+          "monthly": 10900,
+          "card": null,
+          "gift": 15000,
+          "care": "셀프형",
+          "sourceOption": "(셀프형)36",
+          "giftPolicyMonth": "2026-10"
+        }
+      ],
+      "highlights": [
+        "인스퓨어 Easy 필터",
+        "방문관리 / 셀프관리",
+        "36개월"
+      ]
+    },
+    {
+      "id": "clover-1656",
+      "brand": "CUCKOO",
+      "name": "인스퓨어 Easy 필터 방수 비데",
+      "model": "CBT-G3031W",
+      "category": "비데·연수기",
+      "page": "product.html?id=clover-1656",
+      "image": "assets/product-images/clover-1656.webp",
+      "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/220707151827_1.png",
+      "detailImages": [
+        "https://www.cuckoo.co.kr/upload_cuckoo/_bo_mall/product/content/CBT-G3031W_01.jpg"
+      ],
+      "availability": "active",
+      "sourceKind": "clover-public",
+      "options": [
+        {
+          "key": "visit-option-36",
+          "management": "visit-option",
+          "managementLabel": "방문형",
+          "term": 36,
+          "monthly": 16900,
+          "card": null,
+          "gift": 35000,
+          "care": "방문형",
+          "sourceOption": "(방문형)36",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "visit-option-48",
+          "management": "visit-option",
+          "managementLabel": "방문형",
+          "term": 48,
+          "monthly": 15900,
+          "card": null,
+          "gift": 50000,
+          "care": "방문형",
+          "sourceOption": "(방문형)48",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "self-option-36",
+          "management": "self-option",
+          "managementLabel": "셀프형",
+          "term": 36,
+          "monthly": 13900,
+          "card": null,
+          "gift": 25000,
+          "care": "셀프형",
+          "sourceOption": "(셀프형)36",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "self-option-48",
+          "management": "self-option",
+          "managementLabel": "셀프형",
+          "term": 48,
+          "monthly": 12900,
+          "card": null,
+          "gift": 35000,
+          "care": "셀프형",
+          "sourceOption": "(셀프형)48",
+          "giftPolicyMonth": "2026-10"
+        }
+      ],
+      "highlights": [
+        "인스퓨어 Easy 필터 방수",
+        "방문관리 / 셀프관리",
+        "36개월 / 48개월"
+      ]
+    },
+    {
+      "id": "clover-1624",
+      "brand": "청호나이스",
+      "name": "에어버블 비데",
+      "model": "BD-35D51",
+      "category": "비데·연수기",
+      "page": "product.html?id=clover-1624",
+      "image": "assets/product-images/clover-1624.webp",
+      "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/200814151912_1.png",
+      "detailImages": [
+        "https://www.chungho.co.kr/uploads//img_smart//20200331132322823746.jpg"
+      ],
+      "availability": "active",
+      "sourceKind": "clover-public",
+      "options": [
+        {
+          "key": "standard-option-36",
+          "management": "standard-option",
+          "managementLabel": "기본 조건",
+          "term": 36,
+          "monthly": 15900,
+          "card": null,
+          "gift": 40000,
+          "care": "기본 조건",
+          "sourceOption": "36",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "standard-option-48",
+          "management": "standard-option",
+          "managementLabel": "기본 조건",
+          "term": 48,
+          "monthly": 13900,
+          "card": null,
+          "gift": 40000,
+          "care": "기본 조건",
+          "sourceOption": "48",
+          "giftPolicyMonth": "2026-10"
+        }
+      ],
+      "highlights": [
+        "에어버블",
+        "36개월 / 48개월"
+      ]
+    },
+    {
+      "id": "clover-2183",
+      "brand": "루헨스",
+      "name": "퍼펙트 클린 비데",
+      "model": "WHB-5400",
+      "category": "비데·연수기",
+      "page": "product.html?id=clover-2183",
+      "image": "assets/product-images/clover-2183.webp",
+      "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250319173115_1.png",
+      "detailImages": [
+        "https://ruhens.co.kr/FileData/edtImg/666845e7_"
+      ],
+      "availability": "active",
+      "sourceKind": "clover-public",
+      "options": [
+        {
+          "key": "visit-option-36",
+          "management": "visit-option",
+          "managementLabel": "방문형",
+          "term": 36,
+          "monthly": 21900,
+          "card": null,
+          "gift": 105000,
+          "care": "방문형",
+          "sourceOption": "(방문형)36",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "self-option-36",
+          "management": "self-option",
+          "managementLabel": "셀프형",
+          "term": 36,
+          "monthly": 18900,
+          "card": null,
+          "gift": 105000,
+          "care": "셀프형",
+          "sourceOption": "(셀프형)36",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "visit-option-60",
+          "management": "visit-option",
+          "managementLabel": "방문형",
+          "term": 60,
+          "monthly": 17900,
+          "card": null,
+          "gift": null,
+          "care": "방문형",
+          "sourceOption": "(방문형)60"
+        },
+        {
+          "key": "self-option-60",
+          "management": "self-option",
+          "managementLabel": "셀프형",
+          "term": 60,
+          "monthly": 13900,
+          "card": null,
+          "gift": 105000,
+          "care": "셀프형",
+          "sourceOption": "(셀프형)60",
+          "giftPolicyMonth": "2026-10"
+        }
+      ],
+      "highlights": [
+        "퍼펙트 클린",
+        "방문관리 / 셀프관리",
+        "36개월 / 60개월"
+      ]
+    },
+    {
+      "id": "clover-1895",
+      "brand": "COWAY",
+      "name": "스킨플러스 연수기(수전일체형)",
+      "model": "BB17-A",
+      "category": "비데·연수기",
+      "page": "product.html?id=clover-1895",
+      "image": "assets/product-images/clover-1895.webp",
+      "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230630133346_1.gif",
+      "detailImages": [
+        "https://productinfo.cowaystatic.com/2_product-detail/3_bodycare/BB17-A/BB17-A_detail_01.jpg"
+      ],
+      "availability": "active",
+      "sourceKind": "clover-public",
+      "options": [
+        {
+          "key": "visit-option-36",
+          "management": "visit-option",
+          "managementLabel": "방문관리",
+          "term": 36,
+          "monthly": 38400,
+          "card": null,
+          "gift": 205000,
+          "care": "방문관리",
+          "sourceOption": "(방문관리)36",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "visit-option-60",
+          "management": "visit-option",
+          "managementLabel": "방문관리",
+          "term": 60,
+          "monthly": 36400,
+          "card": null,
+          "gift": 205000,
+          "care": "방문관리",
+          "sourceOption": "(방문관리)60",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "self-option-36",
+          "management": "self-option",
+          "managementLabel": "자가관리",
+          "term": 36,
+          "monthly": 34400,
+          "card": null,
+          "gift": 195000,
+          "care": "자가관리",
+          "sourceOption": "(자가관리)36",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "self-option-60",
+          "management": "self-option",
+          "managementLabel": "자가관리",
+          "term": 60,
+          "monthly": 32400,
+          "card": null,
+          "gift": 195000,
+          "care": "자가관리",
+          "sourceOption": "(자가관리)60",
+          "giftPolicyMonth": "2026-10"
+        }
+      ],
+      "highlights": [
+        "스킨플러스",
+        "방문관리 / 셀프관리",
+        "36개월 / 60개월"
+      ]
+    },
+    {
+      "id": "clover-2256",
+      "brand": "COWAY",
+      "name": "더매너 비데 플러스",
+      "model": "BAS51-A",
+      "category": "비데·연수기",
+      "page": "product.html?id=clover-2256",
+      "image": "assets/product-images/clover-2256.webp",
+      "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/260613104836_1.png",
+      "detailImages": [
+        "https://storage.bilrigo.com/data/editor/2604/bab21a40e6e73a2a0641a6d4acd2d920_1777526111_0243.jpg"
+      ],
+      "availability": "active",
+      "sourceKind": "clover-public",
+      "options": [
+        {
+          "key": "visit-option-36",
+          "management": "visit-option",
+          "managementLabel": "방문형",
+          "term": 36,
+          "monthly": 34900,
+          "card": null,
+          "gift": 195000,
+          "care": "방문형",
+          "sourceOption": "(방문형)36",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "visit-option-60",
+          "management": "visit-option",
+          "managementLabel": "방문형",
+          "term": 60,
+          "monthly": 32900,
+          "card": null,
+          "gift": 195000,
+          "care": "방문형",
+          "sourceOption": "(방문형)60",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "self-option-36",
+          "management": "self-option",
+          "managementLabel": "셀프형",
+          "term": 36,
+          "monthly": 32901,
+          "card": null,
+          "gift": null,
+          "care": "셀프형",
+          "sourceOption": "(셀프형)36"
+        },
+        {
+          "key": "self-option-60",
+          "management": "self-option",
+          "managementLabel": "셀프형",
+          "term": 60,
+          "monthly": 30900,
+          "card": null,
+          "gift": 195000,
+          "care": "셀프형",
+          "sourceOption": "(셀프형)60",
+          "giftPolicyMonth": "2026-10"
+        }
+      ],
+      "highlights": [
+        "더매너",
+        "방문관리 / 셀프관리",
+        "36개월 / 60개월"
+      ]
+    },
+    {
+      "id": "clover-2244",
+      "brand": "SK매직",
+      "name": "올클린 케어 비데",
+      "model": "BIDS51DR15WH",
+      "category": "비데·연수기",
+      "page": "product.html?id=clover-2244",
+      "image": "assets/product-images/clover-2244.webp",
+      "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/67.png",
+      "detailImages": [
+        "https://static.skmagic.com/image/editor/goods_desc/202511/1764135827975103.jpg"
+      ],
+      "availability": "active",
+      "sourceKind": "clover-public",
+      "options": [
+        {
+          "key": "standard-option-36",
+          "management": "standard-option",
+          "managementLabel": "기본 조건",
+          "term": 36,
+          "monthly": 26900,
+          "card": null,
+          "gift": 100000,
+          "care": "기본 조건",
+          "sourceOption": "36",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "standard-option-60",
+          "management": "standard-option",
+          "managementLabel": "기본 조건",
+          "term": 60,
+          "monthly": 23900,
+          "card": null,
+          "gift": 95000,
+          "care": "기본 조건",
+          "sourceOption": "60",
+          "giftPolicyMonth": "2026-10"
+        }
+      ],
+      "highlights": [
+        "올클린 케어",
+        "36개월 / 60개월"
+      ]
+    },
+    {
+      "id": "clover-1860",
+      "brand": "SK매직",
+      "name": "파워업 항균 에코 비데_저수압용",
+      "model": "BID096PR46WH",
+      "category": "비데·연수기",
+      "page": "product.html?id=clover-1860",
+      "image": "assets/product-images/clover-1860.webp",
+      "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/g000020604_7_480x480.png",
+      "detailImages": [
+        "https://static.skmagic.com/image/editor/goods_desc/202004/1588041002068964.jpg"
+      ],
+      "availability": "active",
+      "sourceKind": "clover-public",
+      "options": [
+        {
+          "key": "visit-option-36",
+          "management": "visit-option",
+          "managementLabel": "방문형",
+          "term": 36,
+          "monthly": 23900,
+          "card": null,
+          "gift": 80000,
+          "care": "방문형",
+          "sourceOption": "(방문형)36",
+          "giftPolicyMonth": "2026-10"
+        }
+      ],
+      "highlights": [
+        "저수압 대응",
+        "항균 케어",
+        "파워업 항균 에코"
+      ]
+    },
+    {
+      "id": "clover-2175",
+      "brand": "CUCKOO",
+      "name": "인스퓨어 슈퍼슬림 리모컨 비데",
+      "model": "CBT-PFF31RW",
+      "category": "비데·연수기",
+      "page": "product.html?id=clover-2175",
+      "image": "assets/product-images/clover-2175.webp",
+      "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/6.jpg",
+      "detailImages": [
+        "https://ai.esmplus.com/cuckoohs1/cuckoo/rental/spec/CBT-PFF31RW.jpg"
+      ],
+      "availability": "active",
+      "sourceKind": "clover-public",
+      "options": [
+        {
+          "key": "visit-option-36",
+          "management": "visit-option",
+          "managementLabel": "방문형",
+          "term": 36,
+          "monthly": 19900,
+          "card": null,
+          "gift": 45000,
+          "care": "방문형",
+          "sourceOption": "(방문형)36",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "self-option-36",
+          "management": "self-option",
+          "managementLabel": "셀프형",
+          "term": 36,
+          "monthly": 16900,
+          "card": null,
+          "gift": 35000,
+          "care": "셀프형",
+          "sourceOption": "(셀프형)36",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "visit-option-60",
+          "management": "visit-option",
+          "managementLabel": "방문형",
+          "term": 60,
+          "monthly": 17900,
+          "card": null,
+          "gift": 105000,
+          "care": "방문형",
+          "sourceOption": "(방문형)60",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "self-option-60",
+          "management": "self-option",
+          "managementLabel": "셀프형",
+          "term": 60,
+          "monthly": 14900,
+          "card": null,
+          "gift": 85000,
+          "care": "셀프형",
+          "sourceOption": "(셀프형)60",
+          "giftPolicyMonth": "2026-10"
+        }
+      ],
+      "highlights": [
+        "슬림 디자인",
+        "리모컨",
+        "인스퓨어 슈퍼슬림 리모컨"
+      ]
+    },
+    {
+      "id": "clover-2178",
+      "brand": "CUCKOO",
+      "name": "도기&노즐 자동살균 방수비데",
+      "model": "CBT-KFFS31RW",
+      "category": "비데·연수기",
+      "page": "product.html?id=clover-2178",
+      "image": "assets/product-images/clover-2178.webp",
+      "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250319150039_1.jpg",
+      "detailImages": [
+        "https://gi.esmplus.com/cuckoohs/spec/CBT-KFFS31RW.jpg"
+      ],
+      "availability": "active",
+      "sourceKind": "clover-public",
+      "options": [
+        {
+          "key": "visit-option-36",
+          "management": "visit-option",
+          "managementLabel": "방문형",
+          "term": 36,
+          "monthly": 19900,
+          "card": null,
+          "gift": 45000,
+          "care": "방문형",
+          "sourceOption": "(방문형)36",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "self-option-36",
+          "management": "self-option",
+          "managementLabel": "셀프형",
+          "term": 36,
+          "monthly": 16900,
+          "card": null,
+          "gift": 35000,
+          "care": "셀프형",
+          "sourceOption": "(셀프형)36",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "visit-option-60",
+          "management": "visit-option",
+          "managementLabel": "방문형",
+          "term": 60,
+          "monthly": 17900,
+          "card": null,
+          "gift": 105000,
+          "care": "방문형",
+          "sourceOption": "(방문형)60",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "self-option-60",
+          "management": "self-option",
+          "managementLabel": "셀프형",
+          "term": 60,
+          "monthly": 14900,
+          "card": null,
+          "gift": 85000,
+          "care": "셀프형",
+          "sourceOption": "(셀프형)60",
+          "giftPolicyMonth": "2026-10"
+        }
+      ],
+      "highlights": [
+        "살균 기능",
+        "도기&노즐 자동살균 방수",
+        "방문관리 / 셀프관리"
+      ]
+    },
+    {
+      "id": "clv-801",
+      "brand": "코지마",
+      "name": "안마의자 마스터",
+      "model": "",
+      "category": "안마의자",
+      "page": "product.html?id=clv-801",
+      "image": "https://storage.bilrigo.com/data/thumbnails/251112/V64w1LbKQx8rFWRpFMjcSHXQm8p46v.jpg",
+      "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/251112/V64w1LbKQx8rFWRpFMjcSHXQm8p46v.jpg",
+      "detailImages": [],
+      "availability": "active",
+      "sourceKind": "clover-import",
+      "options": [
+        {
+          "key": "LG헬로렌탈-60",
+          "management": "LG헬로렌탈",
+          "managementLabel": "LG헬로렌탈",
+          "term": 60,
+          "monthly": 91900,
+          "card": null,
+          "gift": 330840,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "공개 월 렌탈료 기준"
+        },
+        {
+          "key": "LG헬로렌탈-48",
+          "management": "LG헬로렌탈",
+          "managementLabel": "LG헬로렌탈",
+          "term": 48,
+          "monthly": 110900,
+          "card": null,
+          "gift": 319392,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "공개 월 렌탈료 기준"
+        },
+        {
+          "key": "LG헬로렌탈-39",
+          "management": "LG헬로렌탈",
+          "managementLabel": "LG헬로렌탈",
+          "term": 39,
+          "monthly": 133900,
+          "card": null,
+          "gift": 313326,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "공개 월 렌탈료 기준"
+        }
+      ],
+      "highlights": [
+        "건강·뷰티",
+        "렌탈사별 조건 비교",
+        "렌탈사별 월요금 비교"
+      ]
+    },
+    {
+      "id": "clv-15521",
+      "brand": "코지마",
+      "name": "안마의자 더블모션 (웜그레이/블랙)",
+      "model": "",
+      "category": "안마의자",
+      "page": "product.html?id=clv-15521",
+      "image": "https://storage.bilrigo.com/data/thumbnails/230831/xp72D3Zq7D51ZDELVM52M4nXWzTGb7.jpg",
+      "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/230831/xp72D3Zq7D51ZDELVM52M4nXWzTGb7.jpg",
+      "detailImages": [],
+      "availability": "active",
+      "sourceKind": "clover-import",
+      "options": [
+        {
+          "key": "LG헬로렌탈-60",
+          "management": "LG헬로렌탈",
+          "managementLabel": "LG헬로렌탈",
+          "term": 60,
+          "monthly": 87900,
+          "card": null,
+          "gift": 316440,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "공개 월 렌탈료 기준"
+        },
+        {
+          "key": "LG헬로렌탈-48",
+          "management": "LG헬로렌탈",
+          "managementLabel": "LG헬로렌탈",
+          "term": 48,
+          "monthly": 106900,
+          "card": null,
+          "gift": 307872,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "공개 월 렌탈료 기준"
+        },
+        {
+          "key": "LG헬로렌탈-39",
+          "management": "LG헬로렌탈",
+          "managementLabel": "LG헬로렌탈",
+          "term": 39,
+          "monthly": 128900,
+          "card": null,
+          "gift": 301626,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "공개 월 렌탈료 기준"
+        }
+      ],
+      "highlights": [
+        "건강·뷰티",
+        "렌탈사별 조건 비교",
+        "렌탈사별 월요금 비교"
+      ]
+    },
+    {
+      "id": "clv-10410",
+      "brand": "파나소닉",
+      "name": "안마의자 EP-MAF1 (베이지)",
+      "model": "",
+      "category": "안마의자",
+      "page": "product.html?id=clv-10410",
+      "image": "https://storage.bilrigo.com/data/thumbnails/251111/BD6aFk2Tu67xsP2Mep2GR8C74Suc3W.jpg",
+      "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/251111/BD6aFk2Tu67xsP2Mep2GR8C74Suc3W.jpg",
+      "detailImages": [],
+      "availability": "active",
+      "sourceKind": "clover-import",
+      "options": [
+        {
+          "key": "LG헬로렌탈-60",
+          "management": "LG헬로렌탈",
+          "managementLabel": "LG헬로렌탈",
+          "term": 60,
+          "monthly": 149900,
+          "card": null,
+          "gift": 539640,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "공개 월 렌탈료 기준"
+        },
+        {
+          "key": "LG헬로렌탈-48",
+          "management": "LG헬로렌탈",
+          "managementLabel": "LG헬로렌탈",
+          "term": 48,
+          "monthly": 181900,
+          "card": null,
+          "gift": 523872,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "공개 월 렌탈료 기준"
+        }
+      ],
+      "highlights": [
+        "건강·뷰티",
+        "렌탈사별 조건 비교",
+        "렌탈사별 월요금 비교"
+      ]
+    },
+    {
+      "id": "clover-2108",
+      "brand": "CUCKOO",
+      "name": "쿠쿠 리네이처 고급형",
+      "model": "CMS-E410CP",
+      "category": "안마의자",
+      "page": "product.html?id=clover-2108",
+      "image": "assets/product-images/clover-2108.webp",
+      "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/5cf1d450a2ae5.jpg",
+      "detailImages": [
+        "https://woongbi.vip-rental.com/_var/rental/vshop/5cf1d450a2ae5.png"
+      ],
+      "availability": "active",
+      "sourceKind": "clover-public",
+      "options": [
+        {
+          "key": "standard-option-48",
+          "management": "standard-option",
+          "managementLabel": "기본 조건",
+          "term": 48,
+          "monthly": 99900,
+          "card": null,
+          "gift": 290000,
+          "care": "기본 조건",
+          "sourceOption": "48",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "standard-option-60",
+          "management": "standard-option",
+          "managementLabel": "기본 조건",
+          "term": 60,
+          "monthly": 82900,
+          "card": null,
+          "gift": 300000,
+          "care": "기본 조건",
+          "sourceOption": "60",
+          "giftPolicyMonth": "2026-10"
+        }
+      ],
+      "highlights": [
+        "48개월 / 60개월"
+      ]
+    },
+    {
+      "id": "clv-21610",
+      "brand": "파나소닉",
+      "name": "안마의자 EP-MA22 (그린)",
+      "model": "",
+      "category": "안마의자",
+      "page": "product.html?id=clv-21610",
+      "image": "https://storage.bilrigo.com/data/thumbnails/251111/F3Um4ZFNh5QhUwWnsBkEUJdpMpYGJp.jpg",
+      "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/251111/F3Um4ZFNh5QhUwWnsBkEUJdpMpYGJp.jpg",
+      "detailImages": [],
+      "availability": "active",
+      "sourceKind": "clover-import",
+      "options": [
+        {
+          "key": "LG헬로렌탈-60",
+          "management": "LG헬로렌탈",
+          "managementLabel": "LG헬로렌탈",
+          "term": 60,
+          "monthly": 71000,
+          "card": null,
+          "gift": 255600,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "공개 월 렌탈료 기준"
+        },
+        {
+          "key": "LG헬로렌탈-48",
+          "management": "LG헬로렌탈",
+          "managementLabel": "LG헬로렌탈",
+          "term": 48,
+          "monthly": 87000,
+          "card": null,
+          "gift": 250560,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "공개 월 렌탈료 기준"
+        },
+        {
+          "key": "이니렌탈-60",
+          "management": "이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 60,
+          "monthly": 78200,
+          "card": null,
+          "gift": 234600,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "공개 월 렌탈료 기준"
+        },
+        {
+          "key": "이니렌탈-48",
+          "management": "이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 48,
+          "monthly": 91900,
+          "card": null,
+          "gift": 220560,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "공개 월 렌탈료 기준"
+        },
+        {
+          "key": "이니렌탈-36",
+          "management": "이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 36,
+          "monthly": 115600,
+          "card": null,
+          "gift": 208080,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "공개 월 렌탈료 기준"
+        }
+      ],
+      "highlights": [
+        "건강·뷰티",
+        "렌탈사별 조건 비교",
+        "렌탈사별 월요금 비교"
+      ]
+    },
+    {
+      "id": "clv-20604",
+      "brand": "코지마",
+      "name": "안마의자 코지더블 (베이지)",
+      "model": "",
+      "category": "안마의자",
+      "page": "product.html?id=clv-20604",
+      "image": "https://storage.bilrigo.com/data/thumbnails/251111/VKMbtMU6VnGYZ8VTcKjCWfCU2vVb4S.jpg",
+      "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/251111/VKMbtMU6VnGYZ8VTcKjCWfCU2vVb4S.jpg",
+      "detailImages": [],
+      "availability": "active",
+      "sourceKind": "clover-import",
+      "options": [
+        {
+          "key": "LG헬로렌탈-60",
+          "management": "LG헬로렌탈",
+          "managementLabel": "LG헬로렌탈",
+          "term": 60,
+          "monthly": 69900,
+          "card": null,
+          "gift": 251640,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "공개 월 렌탈료 기준"
+        },
+        {
+          "key": "LG헬로렌탈-48",
+          "management": "LG헬로렌탈",
+          "managementLabel": "LG헬로렌탈",
+          "term": 48,
+          "monthly": 84900,
+          "card": null,
+          "gift": 244512,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "공개 월 렌탈료 기준"
+        },
+        {
+          "key": "LG헬로렌탈-39",
+          "management": "LG헬로렌탈",
+          "managementLabel": "LG헬로렌탈",
+          "term": 39,
+          "monthly": 101900,
+          "card": null,
+          "gift": 238446,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "공개 월 렌탈료 기준"
+        }
+      ],
+      "highlights": [
+        "건강·뷰티",
+        "렌탈사별 조건 비교",
+        "렌탈사별 월요금 비교"
+      ]
+    },
+    {
+      "id": "clv-32371",
+      "brand": "누하스",
+      "name": "뉴클래식 패브릭 안마의자 (파우더블루)",
+      "model": "",
+      "category": "안마의자",
+      "page": "product.html?id=clv-32371",
+      "image": "https://storage.bilrigo.com/data/thumbnails/250114/XdlU47ws44qfVxJ3rVRWwEKLT71wwD.jpg",
+      "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/250114/XdlU47ws44qfVxJ3rVRWwEKLT71wwD.jpg",
+      "detailImages": [],
+      "availability": "active",
+      "sourceKind": "clover-import",
+      "options": [
+        {
+          "key": "스마트렌탈-60",
+          "management": "스마트렌탈",
+          "managementLabel": "스마트렌탈",
+          "term": 60,
+          "monthly": 32900,
+          "card": null,
+          "gift": 88830,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "공개 월 렌탈료 기준"
+        },
+        {
+          "key": "스마트렌탈-48",
+          "management": "스마트렌탈",
+          "managementLabel": "스마트렌탈",
+          "term": 48,
+          "monthly": 39900,
+          "card": null,
+          "gift": 86184,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "공개 월 렌탈료 기준"
+        },
+        {
+          "key": "스마트렌탈-36",
+          "management": "스마트렌탈",
+          "managementLabel": "스마트렌탈",
+          "term": 36,
+          "monthly": 51900,
+          "card": null,
+          "gift": 84078,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "공개 월 렌탈료 기준"
+        },
+        {
+          "key": "LG헬로렌탈-60",
+          "management": "LG헬로렌탈",
+          "managementLabel": "LG헬로렌탈",
+          "term": 60,
+          "monthly": 37900,
+          "card": null,
+          "gift": 136440,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "공개 월 렌탈료 기준"
+        },
+        {
+          "key": "LG헬로렌탈-48",
+          "management": "LG헬로렌탈",
+          "managementLabel": "LG헬로렌탈",
+          "term": 48,
+          "monthly": 46900,
+          "card": null,
+          "gift": 135072,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "공개 월 렌탈료 기준"
+        },
+        {
+          "key": "LG헬로렌탈-36",
+          "management": "LG헬로렌탈",
+          "managementLabel": "LG헬로렌탈",
+          "term": 36,
+          "monthly": 61900,
+          "card": null,
+          "gift": 133704,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "공개 월 렌탈료 기준"
+        }
+      ],
+      "highlights": [
+        "건강·뷰티",
+        "렌탈사별 조건 비교",
+        "렌탈사별 월요금 비교"
+      ]
+    },
+    {
+      "id": "clv-3402",
+      "brand": "웰모아",
+      "name": "안마의자 아토 (딥브라운)",
+      "model": "",
+      "category": "안마의자",
+      "page": "product.html?id=clv-3402",
+      "image": "https://storage.bilrigo.com/data/thumbnails/210113/5pZrPKYMD696G6tuvGs9CyM9NatLyW.jpg",
+      "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/210113/5pZrPKYMD696G6tuvGs9CyM9NatLyW.jpg",
+      "detailImages": [],
+      "availability": "active",
+      "sourceKind": "clover-import",
+      "options": [
+        {
+          "key": "BS ON-60",
+          "management": "BS ON",
+          "managementLabel": "BS ON",
+          "term": 60,
+          "monthly": 37000,
+          "card": null,
+          "gift": 77700,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "공개 월 렌탈료 기준"
+        },
+        {
+          "key": "BS ON-48",
+          "management": "BS ON",
+          "managementLabel": "BS ON",
+          "term": 48,
+          "monthly": 44000,
+          "card": null,
+          "gift": 73920,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "공개 월 렌탈료 기준"
+        },
+        {
+          "key": "BS ON-36",
+          "management": "BS ON",
+          "managementLabel": "BS ON",
+          "term": 36,
+          "monthly": 55000,
+          "card": null,
+          "gift": 69300,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "공개 월 렌탈료 기준"
+        },
+        {
+          "key": "현대유버스-60",
+          "management": "현대유버스",
+          "managementLabel": "현대유버스",
+          "term": 60,
+          "monthly": 39600,
+          "card": null,
+          "gift": 83160,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "공개 월 렌탈료 기준"
+        },
+        {
+          "key": "현대유버스-48",
+          "management": "현대유버스",
+          "managementLabel": "현대유버스",
+          "term": 48,
+          "monthly": 46800,
+          "card": null,
+          "gift": 78624,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "공개 월 렌탈료 기준"
+        },
+        {
+          "key": "현대유버스-36",
+          "management": "현대유버스",
+          "managementLabel": "현대유버스",
+          "term": 36,
+          "monthly": 59100,
+          "card": null,
+          "gift": 74466,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "공개 월 렌탈료 기준"
+        },
+        {
+          "key": "LG헬로렌탈-60",
+          "management": "LG헬로렌탈",
+          "managementLabel": "LG헬로렌탈",
+          "term": 60,
+          "monthly": 44500,
+          "card": null,
+          "gift": 160200,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "공개 월 렌탈료 기준"
+        },
+        {
+          "key": "LG헬로렌탈-48",
+          "management": "LG헬로렌탈",
+          "managementLabel": "LG헬로렌탈",
+          "term": 48,
+          "monthly": 54100,
+          "card": null,
+          "gift": 155808,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "공개 월 렌탈료 기준"
+        },
+        {
+          "key": "LG헬로렌탈-36",
+          "management": "LG헬로렌탈",
+          "managementLabel": "LG헬로렌탈",
+          "term": 36,
+          "monthly": 70300,
+          "card": null,
+          "gift": 151848,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "공개 월 렌탈료 기준"
+        }
+      ],
+      "highlights": [
+        "건강·뷰티",
+        "렌탈사별 조건 비교",
+        "렌탈사별 월요금 비교"
+      ]
+    },
+    {
+      "id": "clv-10950",
+      "brand": "브람스",
+      "name": "안마의자 루시",
+      "model": "",
+      "category": "안마의자",
+      "page": "product.html?id=clv-10950",
+      "image": "https://storage.bilrigo.com/data/thumbnails/230329/8y1gjx1vsj4BAPb43UTnWKHpKKMX7j.jpg",
+      "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/230329/8y1gjx1vsj4BAPb43UTnWKHpKKMX7j.jpg",
+      "detailImages": [],
+      "availability": "active",
+      "sourceKind": "clover-import",
+      "options": [
+        {
+          "key": "LG헬로렌탈-60",
+          "management": "LG헬로렌탈",
+          "managementLabel": "LG헬로렌탈",
+          "term": 60,
+          "monthly": 39900,
+          "card": null,
+          "gift": 143640,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "공개 월 렌탈료 기준"
+        },
+        {
+          "key": "LG헬로렌탈-48",
+          "management": "LG헬로렌탈",
+          "managementLabel": "LG헬로렌탈",
+          "term": 48,
+          "monthly": 47900,
+          "card": null,
+          "gift": 137952,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "공개 월 렌탈료 기준"
+        },
+        {
+          "key": "LG헬로렌탈-39",
+          "management": "LG헬로렌탈",
+          "managementLabel": "LG헬로렌탈",
+          "term": 39,
+          "monthly": 57900,
+          "card": null,
+          "gift": 135486,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "공개 월 렌탈료 기준"
+        },
+        {
+          "key": "이니렌탈-60",
+          "management": "이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 60,
+          "monthly": 39900,
+          "card": null,
+          "gift": 119700,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "공개 월 렌탈료 기준"
+        },
+        {
+          "key": "이니렌탈-48",
+          "management": "이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 48,
+          "monthly": 46900,
+          "card": null,
+          "gift": 112560,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "공개 월 렌탈료 기준"
+        },
+        {
+          "key": "이니렌탈-36",
+          "management": "이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 36,
+          "monthly": 59000,
+          "card": null,
+          "gift": 106200,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "공개 월 렌탈료 기준"
+        }
+      ],
+      "highlights": [
+        "건강·뷰티",
+        "렌탈사별 조건 비교",
+        "렌탈사별 월요금 비교"
+      ]
+    },
+    {
+      "id": "clv-19158",
+      "brand": "누하스",
+      "name": "뉴클래식 가죽 안마의자 (엘더화이트)",
+      "model": "",
+      "category": "안마의자",
+      "page": "product.html?id=clv-19158",
+      "image": "https://storage.bilrigo.com/data/thumbnails/240220/a3KkUD7UlG4TdRVCA6heVyX1Bnz5qB.jpg",
+      "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/240220/a3KkUD7UlG4TdRVCA6heVyX1Bnz5qB.jpg",
+      "detailImages": [],
+      "availability": "active",
+      "sourceKind": "clover-import",
+      "options": [
+        {
+          "key": "스마트렌탈-60",
+          "management": "스마트렌탈",
+          "managementLabel": "스마트렌탈",
+          "term": 60,
+          "monthly": 40900,
+          "card": null,
+          "gift": 110430,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "공개 월 렌탈료 기준"
+        },
+        {
+          "key": "스마트렌탈-48",
+          "management": "스마트렌탈",
+          "managementLabel": "스마트렌탈",
+          "term": 48,
+          "monthly": 49900,
+          "card": null,
+          "gift": 107784,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "공개 월 렌탈료 기준"
+        },
+        {
+          "key": "스마트렌탈-36",
+          "management": "스마트렌탈",
+          "managementLabel": "스마트렌탈",
+          "term": 36,
+          "monthly": 64900,
+          "card": null,
+          "gift": 105138,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "공개 월 렌탈료 기준"
+        }
+      ],
+      "highlights": [
+        "건강·뷰티",
+        "렌탈사별 조건 비교",
+        "렌탈사별 월요금 비교"
+      ]
+    },
+    {
+      "id": "clv-10402",
+      "brand": "파나소닉",
+      "name": "안마의자 EP-MA05 (민트화이트)",
+      "model": "",
+      "category": "안마의자",
+      "page": "product.html?id=clv-10402",
+      "image": "https://storage.bilrigo.com/data/thumbnails/251111/qlgbZ1pqySzp2EPtBJRgX4qvCYKxSZ.jpg",
+      "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/251111/qlgbZ1pqySzp2EPtBJRgX4qvCYKxSZ.jpg",
+      "detailImages": [],
+      "availability": "active",
+      "sourceKind": "clover-import",
+      "options": [
+        {
+          "key": "이니렌탈-60",
+          "management": "이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 60,
+          "monthly": 41400,
+          "card": null,
+          "gift": 124200,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "공개 월 렌탈료 기준"
+        },
+        {
+          "key": "이니렌탈-48",
+          "management": "이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 48,
+          "monthly": 48700,
+          "card": null,
+          "gift": 116880,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "공개 월 렌탈료 기준"
+        },
+        {
+          "key": "이니렌탈-36",
+          "management": "이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 36,
+          "monthly": 61300,
+          "card": null,
+          "gift": 110340,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "공개 월 렌탈료 기준"
+        }
+      ],
+      "highlights": [
+        "건강·뷰티",
+        "렌탈사별 조건 비교",
+        "렌탈사별 월요금 비교"
+      ]
+    },
+    {
+      "id": "clv-10412",
+      "brand": "파나소닉",
+      "name": "안마의자 리얼프로 EP-MAK1 (블랙)",
+      "model": "",
+      "category": "안마의자",
+      "page": "product.html?id=clv-10412",
+      "image": "https://storage.bilrigo.com/data/thumbnails/251111/ecUqhT7Mu9AR1upsDhbqgdb1ztyAxC.jpg",
+      "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/251111/ecUqhT7Mu9AR1upsDhbqgdb1ztyAxC.jpg",
+      "detailImages": [],
+      "availability": "active",
+      "sourceKind": "clover-import",
+      "options": [
+        {
+          "key": "LG헬로렌탈-60",
+          "management": "LG헬로렌탈",
+          "managementLabel": "LG헬로렌탈",
+          "term": 60,
+          "monthly": 219900,
+          "card": null,
+          "gift": 791640,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "공개 월 렌탈료 기준"
+        },
+        {
+          "key": "LG헬로렌탈-48",
+          "management": "LG헬로렌탈",
+          "managementLabel": "LG헬로렌탈",
+          "term": 48,
+          "monthly": 265900,
+          "card": null,
+          "gift": 765792,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "공개 월 렌탈료 기준"
+        }
+      ],
+      "highlights": [
+        "건강·뷰티",
+        "렌탈사별 조건 비교",
+        "렌탈사별 월요금 비교"
+      ]
+    },
+    {
+      "id": "clv-10411",
+      "brand": "파나소닉",
+      "name": "안마의자 리얼프로 EP-MAJ7 (아이보리)",
+      "model": "",
+      "category": "안마의자",
+      "page": "product.html?id=clv-10411",
+      "image": "https://storage.bilrigo.com/data/thumbnails/251111/dvxFvmGUAw7Dg4g34Tm2Sb4lu7K2EA.jpg",
+      "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/251111/dvxFvmGUAw7Dg4g34Tm2Sb4lu7K2EA.jpg",
+      "detailImages": [],
+      "availability": "active",
+      "sourceKind": "clover-import",
+      "options": [
+        {
+          "key": "LG헬로렌탈-60",
+          "management": "LG헬로렌탈",
+          "managementLabel": "LG헬로렌탈",
+          "term": 60,
+          "monthly": 180000,
+          "card": null,
+          "gift": 648000,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "공개 월 렌탈료 기준"
+        },
+        {
+          "key": "LG헬로렌탈-48",
+          "management": "LG헬로렌탈",
+          "managementLabel": "LG헬로렌탈",
+          "term": 48,
+          "monthly": 219000,
+          "card": null,
+          "gift": 630720,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "공개 월 렌탈료 기준"
+        }
+      ],
+      "highlights": [
+        "건강·뷰티",
+        "렌탈사별 조건 비교",
+        "렌탈사별 월요금 비교"
+      ]
+    },
+    {
+      "id": "clv-10401",
+      "brand": "코지마",
+      "name": "안마의자 뉴에라",
+      "model": "",
+      "category": "안마의자",
+      "page": "product.html?id=clv-10401",
+      "image": "https://storage.bilrigo.com/data/thumbnails/251111/5mSLEMyEsjvbCkZej6UjcT48ut3ZdZ.jpg",
+      "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/251111/5mSLEMyEsjvbCkZej6UjcT48ut3ZdZ.jpg",
+      "detailImages": [],
+      "availability": "active",
+      "sourceKind": "clover-import",
+      "options": [
+        {
+          "key": "LG헬로렌탈-60",
+          "management": "LG헬로렌탈",
+          "managementLabel": "LG헬로렌탈",
+          "term": 60,
+          "monthly": 170900,
+          "card": null,
+          "gift": 615240,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "공개 월 렌탈료 기준"
+        },
+        {
+          "key": "LG헬로렌탈-48",
+          "management": "LG헬로렌탈",
+          "managementLabel": "LG헬로렌탈",
+          "term": 48,
+          "monthly": 207900,
+          "card": null,
+          "gift": 598752,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "공개 월 렌탈료 기준"
+        },
+        {
+          "key": "LG헬로렌탈-39",
+          "management": "LG헬로렌탈",
+          "managementLabel": "LG헬로렌탈",
+          "term": 39,
+          "monthly": 250900,
+          "card": null,
+          "gift": 587106,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "공개 월 렌탈료 기준"
+        },
+        {
+          "key": "이니렌탈-60",
+          "management": "이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 60,
+          "monthly": 172000,
+          "card": null,
+          "gift": 516000,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "공개 월 렌탈료 기준"
+        },
+        {
+          "key": "이니렌탈-48",
+          "management": "이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 48,
+          "monthly": 205300,
+          "card": null,
+          "gift": 492720,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "공개 월 렌탈료 기준"
+        },
+        {
+          "key": "이니렌탈-36",
+          "management": "이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 36,
+          "monthly": 261800,
+          "card": null,
+          "gift": 471240,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "공개 월 렌탈료 기준"
+        },
+        {
+          "key": "이니렌탈-24",
+          "management": "이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 24,
+          "monthly": 376300,
+          "card": null,
+          "gift": 451560,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "공개 월 렌탈료 기준"
+        },
+        {
+          "key": "이니렌탈-12",
+          "management": "이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 12,
+          "monthly": 722600,
+          "card": null,
+          "gift": 433560,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "공개 월 렌탈료 기준"
+        }
+      ],
+      "highlights": [
+        "건강·뷰티",
+        "렌탈사별 조건 비교",
+        "렌탈사별 월요금 비교"
+      ]
+    },
+    {
+      "id": "clv-4267",
+      "brand": "코지마",
+      "name": "안마의자 레전드 시그니쳐",
+      "model": "",
+      "category": "안마의자",
+      "page": "product.html?id=clv-4267",
+      "image": "https://storage.bilrigo.com/data/thumbnails/251111/7wMXNPQCknL86SMjp8uKM45XTkLMlA.jpg",
+      "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/251111/7wMXNPQCknL86SMjp8uKM45XTkLMlA.jpg",
+      "detailImages": [],
+      "availability": "active",
+      "sourceKind": "clover-import",
+      "options": [
+        {
+          "key": "BS ON-60",
+          "management": "BS ON",
+          "managementLabel": "BS ON",
+          "term": 60,
+          "monthly": 156000,
+          "card": null,
+          "gift": 327600,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "공개 월 렌탈료 기준"
+        },
+        {
+          "key": "BS ON-48",
+          "management": "BS ON",
+          "managementLabel": "BS ON",
+          "term": 48,
+          "monthly": 169000,
+          "card": null,
+          "gift": 283920,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "공개 월 렌탈료 기준"
+        },
+        {
+          "key": "BS ON-36",
+          "management": "BS ON",
+          "managementLabel": "BS ON",
+          "term": 36,
+          "monthly": 198800,
+          "card": null,
+          "gift": 250488,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "공개 월 렌탈료 기준"
+        },
+        {
+          "key": "이니렌탈-60",
+          "management": "이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 60,
+          "monthly": 156000,
+          "card": null,
+          "gift": 468000,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "공개 월 렌탈료 기준"
+        },
+        {
+          "key": "이니렌탈-48",
+          "management": "이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 48,
+          "monthly": 186200,
+          "card": null,
+          "gift": 446880,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "공개 월 렌탈료 기준"
+        },
+        {
+          "key": "이니렌탈-36",
+          "management": "이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 36,
+          "monthly": 237400,
+          "card": null,
+          "gift": 427320,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "공개 월 렌탈료 기준"
+        },
+        {
+          "key": "이니렌탈-24",
+          "management": "이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 24,
+          "monthly": 341300,
+          "card": null,
+          "gift": 409560,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "공개 월 렌탈료 기준"
+        },
+        {
+          "key": "이니렌탈-12",
+          "management": "이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 12,
+          "monthly": 655400,
+          "card": null,
+          "gift": 393240,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "공개 월 렌탈료 기준"
+        }
+      ],
+      "highlights": [
+        "건강·뷰티",
+        "렌탈사별 조건 비교",
+        "렌탈사별 월요금 비교"
+      ]
+    },
+    {
+      "id": "clover-1971",
+      "brand": "LG퓨리케어",
+      "name": "힐링미 오브제컬렉션 안마의자_아르테(셀프전용)",
+      "model": "MH21(BB/RR)",
+      "category": "안마의자",
+      "page": "product.html?id=clover-1971",
+      "image": "assets/product-images/clover-1971.webp",
+      "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230824095010_1.gif",
+      "detailImages": [
+        "https://clvrental777.com/data/editor/2310/8a81df5e648e92d98dbf73b5d343d996_1697096748_4371.jpg"
+      ],
+      "availability": "active",
+      "sourceKind": "clover-public",
+      "options": [
+        {
+          "key": "visit-option-48",
+          "management": "visit-option",
+          "managementLabel": "방문형",
+          "term": 48,
+          "monthly": 74900,
+          "card": null,
+          "gift": 36300,
+          "care": "방문형",
+          "sourceOption": "(방문형)48",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "visit-option-60",
+          "management": "visit-option",
+          "managementLabel": "방문형",
+          "term": 60,
+          "monthly": 60900,
+          "card": null,
+          "gift": 29500,
+          "care": "방문형",
+          "sourceOption": "(방문형)60",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "visit-option-72",
+          "management": "visit-option",
+          "managementLabel": "방문형",
+          "term": 72,
+          "monthly": 50900,
+          "card": null,
+          "gift": null,
+          "care": "방문형",
+          "sourceOption": "(방문형)72"
+        }
+      ],
+      "highlights": [
+        "힐링미 오브제컬렉션",
+        "방문관리",
+        "48개월 / 60개월 / 72개월"
+      ]
+    },
+    {
+      "id": "clover-1969",
+      "brand": "LG퓨리케어",
+      "name": "힐링미 안마의자_파타야",
+      "model": "MH65CC",
+      "category": "안마의자",
+      "page": "product.html?id=clover-1969",
+      "image": "assets/product-images/clover-1969.webp",
+      "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230823181743_1.png",
+      "detailImages": [
+        "https://clvrental777.com/data/editor/2312/c44c5410dc8433dc177d27afe3adaced_1702952328_7353.jpg"
+      ],
+      "availability": "active",
+      "sourceKind": "clover-public",
+      "options": [
+        {
+          "key": "visit-option-48",
+          "management": "visit-option",
+          "managementLabel": "방문형",
+          "term": 48,
+          "monthly": 80900,
+          "card": null,
+          "gift": 39200,
+          "care": "방문형",
+          "sourceOption": "(방문형)48",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "visit-option-60",
+          "management": "visit-option",
+          "managementLabel": "방문형",
+          "term": 60,
+          "monthly": 68900,
+          "card": null,
+          "gift": 33400,
+          "care": "방문형",
+          "sourceOption": "(방문형)60",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "visit-option-72",
+          "management": "visit-option",
+          "managementLabel": "방문형",
+          "term": 72,
+          "monthly": 60900,
+          "card": null,
+          "gift": 29500,
+          "care": "방문형",
+          "sourceOption": "(방문형)72",
+          "giftPolicyMonth": "2026-10"
+        }
+      ],
+      "highlights": [
+        "힐링미",
+        "방문관리",
+        "48개월 / 60개월 / 72개월"
+      ]
+    },
+    {
+      "id": "clover-2106",
+      "brand": "CUCKOO",
+      "name": "쿠쿠 리네이처",
+      "model": "CMS-D10SLGB",
+      "category": "안마의자",
+      "page": "product.html?id=clover-2106",
+      "image": "assets/product-images/clover-2106.webp",
+      "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/3a7506e644b22.jpg",
+      "detailImages": [
+        "https://woongbi.vip-rental.com/_var/rental/vshop/cbc5f8f6d4909.png"
+      ],
+      "availability": "active",
+      "sourceKind": "clover-public",
+      "options": [
+        {
+          "key": "standard-option-60",
+          "management": "standard-option",
+          "managementLabel": "기본 조건",
+          "term": 60,
+          "monthly": 49900,
+          "card": null,
+          "gift": 170000,
+          "care": "기본 조건",
+          "sourceOption": "60",
+          "giftPolicyMonth": "2026-10"
+        }
+      ],
+      "highlights": [
+        "60개월"
+      ]
+    },
+    {
+      "id": "clover-1651",
+      "brand": "COWAY",
+      "name": "BEREX 하이브리드 4 매트리스",
+      "model": "CM(SS/Q/K)-PR04(M/H)-V2",
+      "category": "매트리스·프레임",
+      "page": "product.html?id=clover-1651",
+      "image": "assets/product-images/clover-1651.webp",
+      "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230630114033_1.gif",
+      "detailImages": [
+        "https://woongbi.vip-rental.com/_var/rental/vshop/cmk-pr04_01.jpg"
+      ],
+      "availability": "active",
+      "sourceKind": "clover-public",
+      "options": [
+        {
+          "key": "standard-option-60",
+          "management": "standard-option",
+          "managementLabel": "토탈케어(킹",
+          "term": 60,
+          "monthly": 53900,
+          "card": null,
+          "gift": 220000,
+          "care": "토탈케어(킹",
+          "sourceOption": "토탈케어(킹)60",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "standard-option-84",
+          "management": "standard-option",
+          "managementLabel": "토탈케어(킹",
+          "term": 84,
+          "monthly": 45900,
+          "card": null,
+          "gift": 235000,
+          "care": "토탈케어(킹",
+          "sourceOption": "토탈케어(킹)84",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "standard-option-60",
+          "management": "standard-option",
+          "managementLabel": "토탈케어(퀸",
+          "term": 60,
+          "monthly": 46900,
+          "card": null,
+          "gift": 210000,
+          "care": "토탈케어(퀸",
+          "sourceOption": "토탈케어(퀸)60",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "standard-option-84",
+          "management": "standard-option",
+          "managementLabel": "토탈케어(퀸",
+          "term": 84,
+          "monthly": 38900,
+          "card": null,
+          "gift": 225000,
+          "care": "토탈케어(퀸",
+          "sourceOption": "토탈케어(퀸)84",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "standard-option-60",
+          "management": "standard-option",
+          "managementLabel": "토탈케어(싱글",
+          "term": 60,
+          "monthly": 43900,
+          "card": null,
+          "gift": 210000,
+          "care": "토탈케어(싱글",
+          "sourceOption": "토탈케어(싱글)60",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "standard-option-84",
+          "management": "standard-option",
+          "managementLabel": "토탈케어(싱글",
+          "term": 84,
+          "monthly": 35900,
+          "card": null,
+          "gift": 225000,
+          "care": "토탈케어(싱글",
+          "sourceOption": "토탈케어(싱글)84",
+          "giftPolicyMonth": "2026-10"
+        }
+      ],
+      "highlights": [
+        "하이브리드 매트리스",
+        "BEREX 하이브리드 4",
+        "60개월 / 84개월"
+      ]
+    },
+    {
+      "id": "clover-252",
+      "brand": "현대큐밍",
+      "name": "럭셔리 매트리스_슈퍼싱글",
+      "model": "HLM1950SE0(화이트)",
+      "category": "매트리스·프레임",
+      "page": "product.html?id=clover-252",
+      "image": "assets/product-images/clover-252.webp",
+      "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/200224065521_468.png",
+      "detailImages": [
+        "http://www.hyundairentalcare.co.kr/HTML/images/products/gallery/HLM1950SE0/product_image01.jpg"
+      ],
+      "availability": "active",
+      "sourceKind": "clover-public",
+      "options": [
+        {
+          "key": "standard-option-72",
+          "management": "standard-option",
+          "managementLabel": "기본 조건",
+          "term": 72,
+          "monthly": 28900,
+          "card": null,
+          "gift": 205000,
+          "care": "기본 조건",
+          "sourceOption": "72",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "standard-option-60",
+          "management": "standard-option",
+          "managementLabel": "기본 조건",
+          "term": 60,
+          "monthly": 32900,
+          "card": null,
+          "gift": null,
+          "care": "기본 조건",
+          "sourceOption": "60"
+        }
+      ],
+      "highlights": [
+        "슈퍼싱글",
+        "럭셔리",
+        "60개월 / 72개월"
+      ]
+    },
+    {
+      "id": "clover-1324",
+      "brand": "COWAY",
+      "name": "BEREX 더블체인지 매트리스",
+      "model": "CM(SS/Q/K)-SL01",
+      "category": "매트리스·프레임",
+      "page": "product.html?id=clover-1324",
+      "image": "assets/product-images/clover-1324.webp",
+      "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230630110632_1.gif",
+      "detailImages": [
+        "https://woongbi.vip-rental.com/_var/rental/vshop/230406152945_1.jpg"
+      ],
+      "availability": "active",
+      "sourceKind": "clover-public",
+      "options": [
+        {
+          "key": "standard-option-60",
+          "management": "standard-option",
+          "managementLabel": "토탈케어(킹",
+          "term": 60,
+          "monthly": 46900,
+          "card": null,
+          "gift": 210000,
+          "care": "토탈케어(킹",
+          "sourceOption": "토탈케어(킹)60",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "standard-option-60",
+          "management": "standard-option",
+          "managementLabel": "토탈케어(퀸",
+          "term": 60,
+          "monthly": 40900,
+          "card": null,
+          "gift": null,
+          "care": "토탈케어(퀸",
+          "sourceOption": "토탈케어(퀸)60"
+        },
+        {
+          "key": "standard-option-60",
+          "management": "standard-option",
+          "managementLabel": "토탈케어(슈퍼싱글",
+          "term": 60,
+          "monthly": 34900,
+          "card": null,
+          "gift": null,
+          "care": "토탈케어(슈퍼싱글",
+          "sourceOption": "토탈케어(슈퍼싱글)60"
+        }
+      ],
+      "highlights": [
+        "BEREX 더블체인지",
+        "60개월"
+      ]
+    },
+    {
+      "id": "clover-1371",
+      "brand": "COWAY",
+      "name": "BEREX 하이브리드 3 매트리스",
+      "model": "CM(SS/Q/K)-PR03",
+      "category": "매트리스·프레임",
+      "page": "product.html?id=clover-1371",
+      "image": "assets/product-images/clover-1371.webp",
+      "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230630112613_1.gif",
+      "detailImages": [
+        "https://woongbi.vip-rental.com/_var/rental/vshop/230406152835_1.jpg"
+      ],
+      "availability": "active",
+      "sourceKind": "clover-public",
+      "options": [
+        {
+          "key": "standard-option-60",
+          "management": "standard-option",
+          "managementLabel": "토탈케어(킹",
+          "term": 60,
+          "monthly": 53900,
+          "card": null,
+          "gift": 220000,
+          "care": "토탈케어(킹",
+          "sourceOption": "토탈케어(킹)60",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "standard-option-60",
+          "management": "standard-option",
+          "managementLabel": "토탈케어(퀸",
+          "term": 60,
+          "monthly": 46900,
+          "card": null,
+          "gift": 210000,
+          "care": "토탈케어(퀸",
+          "sourceOption": "토탈케어(퀸)60",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "standard-option-60",
+          "management": "standard-option",
+          "managementLabel": "토탈케어(슈퍼싱글",
+          "term": 60,
+          "monthly": 43900,
+          "card": null,
+          "gift": 210000,
+          "care": "토탈케어(슈퍼싱글",
+          "sourceOption": "토탈케어(슈퍼싱글)60",
+          "giftPolicyMonth": "2026-10"
+        }
+      ],
+      "highlights": [
+        "하이브리드 매트리스",
+        "BEREX 하이브리드 3",
+        "60개월"
+      ]
+    },
+    {
+      "id": "clover-1886",
+      "brand": "COWAY",
+      "name": "일체형 BEREX 원바디 2 매트리스",
+      "model": "CMSS-OB03",
+      "category": "매트리스·프레임",
+      "page": "product.html?id=clover-1886",
+      "image": "assets/product-images/clover-1886.webp",
+      "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230629155907_1.gif",
+      "detailImages": [
+        "https://woongbi.vip-rental.com/_var/rental/vshop/cmss-ob03_01.jpg"
+      ],
+      "availability": "active",
+      "sourceKind": "clover-public",
+      "options": [
+        {
+          "key": "standard-option-84",
+          "management": "standard-option",
+          "managementLabel": "토탈케어(퀸",
+          "term": 84,
+          "monthly": 32900,
+          "card": null,
+          "gift": 195000,
+          "care": "토탈케어(퀸",
+          "sourceOption": "토탈케어(퀸)84",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "standard-option-84",
+          "management": "standard-option",
+          "managementLabel": "토탈케어(슈퍼싱글",
+          "term": 84,
+          "monthly": 27900,
+          "card": null,
+          "gift": 195000,
+          "care": "토탈케어(슈퍼싱글",
+          "sourceOption": "토탈케어(슈퍼싱글)84",
+          "giftPolicyMonth": "2026-10"
+        }
+      ],
+      "highlights": [
+        "일체형 BEREX 원바디 2",
+        "84개월"
+      ]
+    },
+    {
+      "id": "clover-1304",
+      "brand": "COWAY",
+      "name": "BEREX 모던 싱글 프레임",
+      "model": "CFS-W02",
+      "category": "매트리스·프레임",
+      "page": "product.html?id=clover-1304",
+      "image": "assets/product-images/clover-1304.webp",
+      "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/id0101_1635_attimg_org.png",
+      "detailImages": [
+        "https://woongbi.vip-rental.com/_var/rental/vshop/cfs-w02_01.jpg"
+      ],
+      "availability": "active",
+      "sourceKind": "clover-public",
+      "options": [
+        {
+          "key": "standard-option-60",
+          "management": "standard-option",
+          "managementLabel": "기본 조건",
+          "term": 60,
+          "monthly": 22900,
+          "card": null,
+          "gift": 165000,
+          "care": "기본 조건",
+          "sourceOption": "60",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "standard-option-84",
+          "management": "standard-option",
+          "managementLabel": "기본 조건",
+          "term": 84,
+          "monthly": 17900,
+          "card": null,
+          "gift": 175000,
+          "care": "기본 조건",
+          "sourceOption": "84",
+          "giftPolicyMonth": "2026-10"
+        }
+      ],
+      "highlights": [
+        "BEREX 모던 싱글",
+        "60개월 / 84개월"
+      ]
+    },
+    {
+      "id": "clover-1341",
+      "brand": "COWAY",
+      "name": "BEREX 원목 프레임",
+      "model": "CF(SS/Q/K)-TM09",
+      "category": "매트리스·프레임",
+      "page": "product.html?id=clover-1341",
+      "image": "assets/product-images/clover-1341.webp",
+      "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/200224064042_87.jpg",
+      "detailImages": [
+        "http://rentalplanner.kr/web/upload/NNEditor/20200122/CFQ-TM09N_PP01_shop1_133859.jpg"
+      ],
+      "availability": "active",
+      "sourceKind": "clover-public",
+      "options": [
+        {
+          "key": "standard-k-60",
+          "management": "standard-k",
+          "managementLabel": "킹(K",
+          "term": 60,
+          "monthly": 28900,
+          "card": null,
+          "gift": 170000,
+          "care": "킹(K",
+          "sourceOption": "킹(K)60",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "standard-q-60",
+          "management": "standard-q",
+          "managementLabel": "퀸(Q",
+          "term": 60,
+          "monthly": 26900,
+          "card": null,
+          "gift": 170000,
+          "care": "퀸(Q",
+          "sourceOption": "퀸(Q)60",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "standard-ss-60",
+          "management": "standard-ss",
+          "managementLabel": "슈퍼싱글(SS",
+          "term": 60,
+          "monthly": 24900,
+          "card": null,
+          "gift": 165000,
+          "care": "슈퍼싱글(SS",
+          "sourceOption": "슈퍼싱글(SS)60",
+          "giftPolicyMonth": "2026-10"
+        }
+      ],
+      "highlights": [
+        "BEREX 원목",
+        "60개월"
+      ]
+    },
+    {
+      "id": "clover-2185",
+      "brand": "COWAY",
+      "name": "BEREX 엘리트 매트리스",
+      "model": "CM(S/SS/Q)-ST01EH",
+      "category": "매트리스·프레임",
+      "page": "product.html?id=clover-2185",
+      "image": "assets/product-images/clover-2185.webp",
+      "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250324141509_1.png",
+      "detailImages": [
+        "https://clvrental777.com/data/editor/2405/8f83c6a54db683c59dedd053986c517c_1715565791_2592.jpg"
+      ],
+      "availability": "active",
+      "sourceKind": "clover-public",
+      "options": [
+        {
+          "key": "standard-option-60",
+          "management": "standard-option",
+          "managementLabel": "토탈케어(퀸",
+          "term": 60,
+          "monthly": 34900,
+          "card": null,
+          "gift": 170000,
+          "care": "토탈케어(퀸",
+          "sourceOption": "토탈케어(퀸)60",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "standard-option-60",
+          "management": "standard-option",
+          "managementLabel": "토탈케어(슈퍼싱글",
+          "term": 60,
+          "monthly": 29900,
+          "card": null,
+          "gift": 170000,
+          "care": "토탈케어(슈퍼싱글",
+          "sourceOption": "토탈케어(슈퍼싱글)60",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "standard-option-60",
+          "management": "standard-option",
+          "managementLabel": "토탈케어(싱글",
+          "term": 60,
+          "monthly": 25900,
+          "card": null,
+          "gift": 170000,
+          "care": "토탈케어(싱글",
+          "sourceOption": "토탈케어(싱글)60",
+          "giftPolicyMonth": "2026-10"
+        }
+      ],
+      "highlights": [
+        "BEREX 엘리트",
+        "60개월"
+      ]
+    },
+    {
+      "id": "clover-1890",
+      "brand": "COWAY",
+      "name": "BEREX 마이 프레임 기본형 (플랫/볼륨)",
+      "model": "CF(SS/Q/K)-FP01",
+      "category": "매트리스·프레임",
+      "page": "product.html?id=clover-1890",
+      "image": "assets/product-images/clover-1890.webp",
+      "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230630105625_1.gif",
+      "detailImages": [
+        "https://woongbi.vip-rental.com/_var/rental/vshop/230630104236_1.jpg"
+      ],
+      "availability": "active",
+      "sourceKind": "clover-public",
+      "options": [
+        {
+          "key": "standard-k-60",
+          "management": "standard-k",
+          "managementLabel": "킹(K",
+          "term": 60,
+          "monthly": 31900,
+          "card": null,
+          "gift": 180000,
+          "care": "킹(K",
+          "sourceOption": "킹(K)60",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "standard-q-60",
+          "management": "standard-q",
+          "managementLabel": "퀸(Q",
+          "term": 60,
+          "monthly": 29900,
+          "card": null,
+          "gift": 170000,
+          "care": "퀸(Q",
+          "sourceOption": "퀸(Q)60",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "standard-ss-60",
+          "management": "standard-ss",
+          "managementLabel": "슈퍼싱글(SS",
+          "term": 60,
+          "monthly": 27900,
+          "card": null,
+          "gift": 170000,
+          "care": "슈퍼싱글(SS",
+          "sourceOption": "슈퍼싱글(SS)60",
+          "giftPolicyMonth": "2026-10"
+        }
+      ],
+      "highlights": [
+        "BEREX 마이",
+        "60개월"
+      ]
+    },
+    {
+      "id": "clv-39214",
+      "brand": "라클라우드",
+      "name": "시에스타 호텔식 침대 프레임+매트리스+패널 세트 (트윈) (네추럴 브라운)",
+      "model": "",
+      "category": "매트리스·프레임",
+      "page": "product.html?id=clv-39214",
+      "image": "https://storage.bilrigo.com/data/thumbnails/250418/Ce4SfjtGSRA6YE2ALBbLMC4mwJ3vXB.jpg",
+      "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/250418/Ce4SfjtGSRA6YE2ALBbLMC4mwJ3vXB.jpg",
+      "detailImages": [],
+      "availability": "active",
+      "sourceKind": "clover-import",
+      "options": [
+        {
+          "key": "이니렌탈-60",
+          "management": "이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 60,
+          "monthly": 82500,
+          "card": null,
+          "gift": 247500,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "공개 월 렌탈료 기준"
+        },
+        {
+          "key": "이니렌탈-48",
+          "management": "이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 48,
+          "monthly": 98400,
+          "card": null,
+          "gift": 236160,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "공개 월 렌탈료 기준"
+        },
+        {
+          "key": "이니렌탈-36",
+          "management": "이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 36,
+          "monthly": 125500,
+          "card": null,
+          "gift": 225900,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "공개 월 렌탈료 기준"
+        },
+        {
+          "key": "이니렌탈-24",
+          "management": "이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 24,
+          "monthly": 180500,
+          "card": null,
+          "gift": 216600,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "공개 월 렌탈료 기준"
+        },
+        {
+          "key": "이니렌탈-12",
+          "management": "이니렌탈",
+          "managementLabel": "이니렌탈",
+          "term": 12,
+          "monthly": 346600,
+          "card": null,
+          "gift": 207960,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "공개 월 렌탈료 기준"
+        },
+        {
+          "key": "스마트렌탈-60",
+          "management": "스마트렌탈",
+          "managementLabel": "스마트렌탈",
+          "term": 60,
+          "monthly": 83500,
+          "card": null,
+          "gift": 225450,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "공개 월 렌탈료 기준"
+        },
+        {
+          "key": "스마트렌탈-48",
+          "management": "스마트렌탈",
+          "managementLabel": "스마트렌탈",
+          "term": 48,
+          "monthly": 97500,
+          "card": null,
+          "gift": 210600,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "공개 월 렌탈료 기준"
+        },
+        {
+          "key": "스마트렌탈-36",
+          "management": "스마트렌탈",
+          "managementLabel": "스마트렌탈",
+          "term": 36,
+          "monthly": 120000,
+          "card": null,
+          "gift": 194400,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "공개 월 렌탈료 기준"
+        },
+        {
+          "key": "현대유버스-60",
+          "management": "현대유버스",
+          "managementLabel": "현대유버스",
+          "term": 60,
+          "monthly": 85800,
+          "card": null,
+          "gift": 180180,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "공개 월 렌탈료 기준"
+        },
+        {
+          "key": "현대유버스-48",
+          "management": "현대유버스",
+          "managementLabel": "현대유버스",
+          "term": 48,
+          "monthly": 104800,
+          "card": null,
+          "gift": 176064,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "공개 월 렌탈료 기준"
+        },
+        {
+          "key": "현대유버스-36",
+          "management": "현대유버스",
+          "managementLabel": "현대유버스",
+          "term": 36,
+          "monthly": 131800,
+          "card": null,
+          "gift": 166068,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "공개 월 렌탈료 기준"
+        },
+        {
+          "key": "BS ON-48",
+          "management": "BS ON",
+          "managementLabel": "BS ON",
+          "term": 48,
+          "monthly": 92000,
+          "card": null,
+          "gift": 154560,
+          "care": "렌탈사별 조건 상담 확인",
+          "sourceOption": "공개 월 렌탈료 기준"
+        }
+      ],
+      "highlights": [
+        "가구·침대",
+        "렌탈사별 조건 비교",
+        "렌탈사별 월요금 비교"
+      ]
+    }
+  ]
+}
