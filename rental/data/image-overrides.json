@@ -30,7 +30,8 @@
     "imagePageUrl": "https://ib.cowaymall.co.kr/shop/400086"
   },
   "clover-674": {
-    "imagePageUrl": "https://www.coway-on.kr/user/product_detail?category_no=20&product_no=201911-0112"
+    "imagePageUrl": "https://coway-mall.kr/product/fad-01s-%EC%BD%94%EC%9B%A8%EC%9D%B4-%EC%9D%98%EB%A5%98%EC%B2%AD%EC%A0%95%EA%B8%B0-%EB%8D%94%EB%B8%94%EC%BC%80%EC%96%B4%EA%B3%A0%EA%B8%89%ED%98%95/566/",
+    "image": "https://coway-mall.kr/web/product/small/202105/d252592e0c91858ba470fe98b85a9d64.png"
   },
   "clover-436": {
     "imagePageUrl": "https://thefirst.cowaymall.co.kr/shop/200011"
@@ -39,7 +40,8 @@
     "imagePageUrl": "https://www.roku-chungho.co.kr/user/product_detail?product_no=202306-1190"
   },
   "clover-2128": {
-    "imagePageUrl": "https://www.roku-chungho.co.kr/user/product_detail?category_no=10&product_no=202404-1119"
+    "imagePageUrl": "https://miso.kr/rental/air_purifier/AP-15H5170",
+    "image": "https://miso-customer-public.s3.ap-northeast-2.amazonaws.com/rental_img/20240625_airpurifier/CHUNGHO/CHUNGHOA7/CHUNGHOA5_MAIN_1.png"
   },
   "clover-2127": {
     "imagePageUrl": "https://wells.chunghonice.kr/shop/2021120116171973",
@@ -87,10 +89,11 @@
   },
   "clover-2093": {
     "imagePageUrl": "https://www.ruhens.co.kr/product/view.php?PNO=109",
-    "image": "https://www.ruhens.co.kr/FileData/product/20241015112708670dd2fc8388f.png"
+    "image": "https://www.ruhens.co.kr/FileData/product/20241015113232670dd4409169f.png"
   },
   "clover-1752": {
-    "imagePageUrl": "https://ruhens.co.kr/product/view.php?PNO=20"
+    "imagePageUrl": "https://ruhens.co.kr/product/view.php?PNO=20",
+    "image": "https://ruhens.co.kr/FileData/product/20241015141301670df9dddd57a.png"
   },
   "clover-1753": {
     "imagePageUrl": "https://www.ruhens.co.kr/product/view.php?PNO=19"
@@ -111,13 +114,15 @@
     "imagePageUrl": "https://m.xn--o39at6k1oeg4tvkk6gf.com/model/view.php?ca_id=003010&index_no=27199"
   },
   "clover-257": {
-    "imagePageUrl": "https://www.hyundairentalmall.com/shop/largeimage.php?ca_id=4040&it_id=1546586320&no=1"
+    "imagePageUrl": "https://www.hyundairentalmall.com/shop/item.php?ca_id=4040&it_id=1546586320&page=1",
+    "image": "https://www.hyundairentalmall.com/shop/largeimage.php?ca_id=4040&it_id=1546586320&no=1"
   },
   "clover-271": {
     "imagePageUrl": "https://test1.rental-shop.net/html/dh_product/prod_list/?cate_no=5-133-386"
   },
   "clover-254": {
-    "imagePageUrl": "https://www.hyundai-rental.co.kr/user/product_detail?product_no=202004-0234"
+    "imagePageUrl": "https://www.hyundairentalmall.com/shop/item.php?ca_id=4040&it_id=1546586017&page=1",
+    "image": "https://www.hyundairentalmall.com/shop/largeimage.php?ca_id=4040&it_id=1546586017&no=1"
   },
   "clover-2099": {
     "imagePageUrl": "https://www.honeyrental.kr/product/%EC%BF%A0%EC%BF%A0-%EB%83%89%EC%98%A8%EC%A0%95%EC%88%98%EA%B8%B0-%EB%A0%8C%ED%83%88-cp-f603-%EB%AF%B8%EB%84%A4%EB%9E%84-%EC%9B%8C%ED%84%B0-%EB%93%B1%EB%A1%9D%EB%B9%84%C2%B7%EC%84%A4%EC%B9%98%EB%B9%84-%EB%A9%B4%EC%A0%9C-%EC%95%BD%EC%A0%95356%EB%85%84/2925/"
