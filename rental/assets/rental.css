@@ -475,3 +475,29 @@
 .rental-consult-toast{position:fixed;left:50%;bottom:84px;z-index:120;max-width:min(90vw,430px);transform:translate(-50%,16px);padding:11px 14px;border-radius:13px;background:#102f33;color:#fff;box-shadow:0 12px 34px rgba(12,42,45,.2);font-size:.78rem;font-weight:850;line-height:1.45;opacity:0;pointer-events:none;transition:opacity .18s ease,transform .18s ease}
 .rental-consult-toast.show{opacity:1;transform:translate(-50%,0)}
 @media(max-width:560px){.consult-copy-help{font-size:.7rem}.rental-consult-toast{bottom:82px;font-size:.75rem}}
+
+
+/* Rental compare and recent · 2026-10-03 */
+.compare-toggle{margin-top:10px;min-height:36px;padding:7px 11px;border:1px solid #cfdedc;border-radius:10px;background:#fff;color:#315b5d;font:inherit;font-size:.75rem;font-weight:900;cursor:pointer}
+.compare-toggle.active{background:#e7f5f2;border-color:#78b9b1;color:#0a746c}
+.compare-toggle.small{margin:0;min-height:32px;font-size:.7rem}
+.recommend-actions{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:13px}
+.recommend-actions .recommend-link{margin-top:0}
+.recent-section{padding-top:46px;padding-bottom:48px;background:#fff}
+.recent-title-row{margin-bottom:18px}
+.recent-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:11px}
+.recent-card{border:1px solid var(--line);border-radius:17px;background:#fff;overflow:hidden}
+.recent-card a{display:block;text-decoration:none}
+.recent-card img,.recent-fallback{width:100%;height:130px;object-fit:contain;background:#f7faf9;display:grid;place-items:center}
+.recent-fallback{font-size:2rem;font-weight:950;color:#9db0af}
+.recent-card div{padding:12px}
+.recent-card small,.recent-card strong,.recent-card span{display:block}
+.recent-card small{color:#7c8d8e;font-size:.66rem}
+.recent-card strong{margin-top:4px;font-size:.86rem;line-height:1.35}
+.recent-card span{margin-top:7px;color:#5e7475;font-size:.69rem;line-height:1.4}
+.compare-bar{position:fixed;left:50%;bottom:76px;z-index:75;width:min(760px,calc(100% - 24px));transform:translateX(-50%);display:grid;grid-template-columns:1fr auto auto;align-items:center;gap:10px;padding:11px 12px;border:1px solid #c8d9d7;border-radius:16px;background:rgba(255,255,255,.97);backdrop-filter:blur(12px);box-shadow:0 13px 38px rgba(15,48,51,.18)}
+.compare-bar small,.compare-bar strong{display:block}.compare-bar small{font-size:.65rem;color:#798b8c}.compare-bar strong{margin-top:2px;font-size:.78rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.compare-bar button{min-height:39px;border:0;border-radius:10px;background:var(--ink);color:#fff;font:inherit;font-size:.76rem;font-weight:900;padding:7px 12px;cursor:pointer}.compare-bar #clear-compare{width:38px;padding:0;background:#eef3f2;color:#51696b;font-size:1.1rem}
+.compare-modal{position:fixed;inset:0;z-index:140;display:none;align-items:center;justify-content:center;padding:18px}.compare-modal.open{display:flex}.compare-backdrop{position:absolute;inset:0;background:rgba(8,29,32,.66);backdrop-filter:blur(3px)}.compare-panel{position:relative;z-index:1;width:min(980px,100%);max-height:90vh;overflow:auto;background:#fff;border-radius:24px;padding:26px;box-shadow:0 30px 90px rgba(0,0,0,.28)}.compare-panel h2{margin:0 0 18px;font-size:1.55rem}.compare-close{position:absolute;right:14px;top:14px;width:38px;height:38px;border:0;border-radius:50%;background:#edf3f2;font-size:1.25rem;cursor:pointer}.compare-table-wrap{overflow-x:auto}.compare-panel table{width:100%;border-collapse:collapse;min-width:640px}.compare-panel th,.compare-panel td{padding:12px;border-bottom:1px solid #e3ebea;text-align:left;vertical-align:top;font-size:.78rem}.compare-panel thead th{background:#f6faf9;font-size:.82rem}.compare-panel tbody th{width:105px;color:#647b7c}.compare-links{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}
+@media(max-width:900px){.recent-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:560px){.recent-grid{display:flex;overflow-x:auto;gap:10px;margin-right:-12px;padding-right:12px;scrollbar-width:none}.recent-grid::-webkit-scrollbar{display:none}.recent-card{flex:0 0 62vw}.compare-bar{bottom:72px;grid-template-columns:1fr auto;padding:9px 10px}.compare-bar #clear-compare{display:none}.compare-bar strong{max-width:55vw}.compare-panel{padding:20px 14px;border-radius:19px}.compare-panel h2{font-size:1.25rem}}
