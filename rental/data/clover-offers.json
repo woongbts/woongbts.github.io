@@ -2,8 +2,8 @@
   "generatedAt": "2026-10-03",
   "source": "m.clvrental777.com public comparison pages",
   "importedProducts": 184,
-  "productsWithOffers": 177,
-  "offerRows": 1649,
+  "productsWithOffers": 184,
+  "offerRows": 1696,
   "items": {
     "clv-13528": {
       "ok": true,
@@ -12787,40 +12787,383 @@
       ],
       "reason": ""
     },
+    "clv-12794": {
+      "ok": true,
+      "url": "https://m.clvrental777.com/model/compare.php?model_idx=12794&ca_id=003005",
+      "offers": [
+        {
+          "indexNo": "71994",
+          "companyName": "현대유버스",
+          "sellerCode": "AP-100020",
+          "term": 60,
+          "monthly": 48700
+        },
+        {
+          "indexNo": "71994",
+          "companyName": "현대유버스",
+          "sellerCode": "AP-100020",
+          "term": 48,
+          "monthly": 57500
+        },
+        {
+          "indexNo": "71994",
+          "companyName": "현대유버스",
+          "sellerCode": "AP-100020",
+          "term": 36,
+          "monthly": 72600
+        }
+      ],
+      "reason": ""
+    },
     "clv-39214": {
-      "ok": false,
-      "reason": "fetch-failed",
-      "url": "https://m.clvrental777.com/model/compare.php?model_idx=39214&ca_id=003002"
+      "ok": true,
+      "url": "https://m.clvrental777.com/model/compare.php?model_idx=39214&ca_id=003002",
+      "offers": [
+        {
+          "indexNo": "136181",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 60,
+          "monthly": 82500
+        },
+        {
+          "indexNo": "136181",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 48,
+          "monthly": 98400
+        },
+        {
+          "indexNo": "136181",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 36,
+          "monthly": 125500
+        },
+        {
+          "indexNo": "136181",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 24,
+          "monthly": 180500
+        },
+        {
+          "indexNo": "136181",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 12,
+          "monthly": 346600
+        },
+        {
+          "indexNo": "128919",
+          "companyName": "스마트렌탈",
+          "sellerCode": "AP-100004",
+          "term": 60,
+          "monthly": 83500
+        },
+        {
+          "indexNo": "128919",
+          "companyName": "스마트렌탈",
+          "sellerCode": "AP-100004",
+          "term": 48,
+          "monthly": 97500
+        },
+        {
+          "indexNo": "128919",
+          "companyName": "스마트렌탈",
+          "sellerCode": "AP-100004",
+          "term": 36,
+          "monthly": 120000
+        },
+        {
+          "indexNo": "145526",
+          "companyName": "현대유버스",
+          "sellerCode": "AP-100020",
+          "term": 60,
+          "monthly": 85800
+        },
+        {
+          "indexNo": "145526",
+          "companyName": "현대유버스",
+          "sellerCode": "AP-100020",
+          "term": 48,
+          "monthly": 104800
+        },
+        {
+          "indexNo": "145526",
+          "companyName": "현대유버스",
+          "sellerCode": "AP-100020",
+          "term": 36,
+          "monthly": 131800
+        },
+        {
+          "indexNo": "108724",
+          "companyName": "BS ON",
+          "sellerCode": "AP-100009",
+          "term": 48,
+          "monthly": 92000
+        }
+      ],
+      "reason": ""
     },
     "clv-5901": {
-      "ok": false,
-      "reason": "fetch-failed",
-      "url": "https://m.clvrental777.com/model/compare.php?model_idx=5901&ca_id=003002"
-    },
-    "clv-11858": {
-      "ok": false,
-      "reason": "fetch-failed",
-      "url": "https://m.clvrental777.com/model/compare.php?model_idx=11858&ca_id=003002"
-    },
-    "clv-11857": {
-      "ok": false,
-      "reason": "fetch-failed",
-      "url": "https://m.clvrental777.com/model/compare.php?model_idx=11857&ca_id=003002"
-    },
-    "clv-12827": {
-      "ok": false,
-      "reason": "fetch-failed",
-      "url": "https://m.clvrental777.com/model/compare.php?model_idx=12827&ca_id=003005"
+      "ok": true,
+      "url": "https://m.clvrental777.com/model/compare.php?model_idx=5901&ca_id=003002",
+      "offers": [
+        {
+          "indexNo": "10537",
+          "companyName": "BS ON",
+          "sellerCode": "AP-100009",
+          "term": 60,
+          "monthly": 83000
+        },
+        {
+          "indexNo": "10537",
+          "companyName": "BS ON",
+          "sellerCode": "AP-100009",
+          "term": 60,
+          "monthly": 75000
+        },
+        {
+          "indexNo": "10537",
+          "companyName": "BS ON",
+          "sellerCode": "AP-100009",
+          "term": 60,
+          "monthly": 70000
+        },
+        {
+          "indexNo": "10537",
+          "companyName": "BS ON",
+          "sellerCode": "AP-100009",
+          "term": 60,
+          "monthly": 65000
+        },
+        {
+          "indexNo": "10537",
+          "companyName": "BS ON",
+          "sellerCode": "AP-100009",
+          "term": 48,
+          "monthly": 98000
+        },
+        {
+          "indexNo": "10537",
+          "companyName": "BS ON",
+          "sellerCode": "AP-100009",
+          "term": 48,
+          "monthly": 89000
+        },
+        {
+          "indexNo": "10537",
+          "companyName": "BS ON",
+          "sellerCode": "AP-100009",
+          "term": 48,
+          "monthly": 82000
+        },
+        {
+          "indexNo": "10537",
+          "companyName": "BS ON",
+          "sellerCode": "AP-100009",
+          "term": 48,
+          "monthly": 76000
+        }
+      ],
+      "reason": ""
     },
     "clv-12804": {
-      "ok": false,
-      "reason": "fetch-failed",
-      "url": "https://m.clvrental777.com/model/compare.php?model_idx=12804&ca_id=003005"
+      "ok": true,
+      "url": "https://m.clvrental777.com/model/compare.php?model_idx=12804&ca_id=003005",
+      "offers": [
+        {
+          "indexNo": "71974",
+          "companyName": "현대유버스",
+          "sellerCode": "AP-100020",
+          "term": 60,
+          "monthly": 32300
+        },
+        {
+          "indexNo": "71974",
+          "companyName": "현대유버스",
+          "sellerCode": "AP-100020",
+          "term": 48,
+          "monthly": 38200
+        },
+        {
+          "indexNo": "71974",
+          "companyName": "현대유버스",
+          "sellerCode": "AP-100020",
+          "term": 36,
+          "monthly": 48300
+        }
+      ],
+      "reason": ""
     },
-    "clv-12794": {
-      "ok": false,
-      "reason": "fetch-failed",
-      "url": "https://m.clvrental777.com/model/compare.php?model_idx=12794&ca_id=003005"
+    "clv-11857": {
+      "ok": true,
+      "url": "https://m.clvrental777.com/model/compare.php?model_idx=11857&ca_id=003002",
+      "offers": [
+        {
+          "indexNo": "62318",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 60,
+          "monthly": 81100
+        },
+        {
+          "indexNo": "62318",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 48,
+          "monthly": 96800
+        },
+        {
+          "indexNo": "62318",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 36,
+          "monthly": 123400
+        },
+        {
+          "indexNo": "62318",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 24,
+          "monthly": 177400
+        },
+        {
+          "indexNo": "62318",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 12,
+          "monthly": 340700
+        },
+        {
+          "indexNo": "72264",
+          "companyName": "현대유버스",
+          "sellerCode": "AP-100020",
+          "term": 60,
+          "monthly": 89900
+        },
+        {
+          "indexNo": "72264",
+          "companyName": "현대유버스",
+          "sellerCode": "AP-100020",
+          "term": 48,
+          "monthly": 106200
+        },
+        {
+          "indexNo": "72264",
+          "companyName": "현대유버스",
+          "sellerCode": "AP-100020",
+          "term": 36,
+          "monthly": 134200
+        },
+        {
+          "indexNo": "39307",
+          "companyName": "BS ON",
+          "sellerCode": "AP-100009",
+          "term": 48,
+          "monthly": 97000
+        }
+      ],
+      "reason": ""
+    },
+    "clv-11858": {
+      "ok": true,
+      "url": "https://m.clvrental777.com/model/compare.php?model_idx=11858&ca_id=003002",
+      "offers": [
+        {
+          "indexNo": "62265",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 60,
+          "monthly": 47600
+        },
+        {
+          "indexNo": "62265",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 48,
+          "monthly": 56800
+        },
+        {
+          "indexNo": "62265",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 36,
+          "monthly": 72400
+        },
+        {
+          "indexNo": "62265",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 24,
+          "monthly": 104100
+        },
+        {
+          "indexNo": "62265",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 12,
+          "monthly": 200000
+        },
+        {
+          "indexNo": "72259",
+          "companyName": "현대유버스",
+          "sellerCode": "AP-100020",
+          "term": 60,
+          "monthly": 53800
+        },
+        {
+          "indexNo": "72259",
+          "companyName": "현대유버스",
+          "sellerCode": "AP-100020",
+          "term": 48,
+          "monthly": 63600
+        },
+        {
+          "indexNo": "72259",
+          "companyName": "현대유버스",
+          "sellerCode": "AP-100020",
+          "term": 36,
+          "monthly": 80300
+        },
+        {
+          "indexNo": "39304",
+          "companyName": "BS ON",
+          "sellerCode": "AP-100009",
+          "term": 48,
+          "monthly": 58000
+        }
+      ],
+      "reason": ""
+    },
+    "clv-12827": {
+      "ok": true,
+      "url": "https://m.clvrental777.com/model/compare.php?model_idx=12827&ca_id=003005",
+      "offers": [
+        {
+          "indexNo": "71939",
+          "companyName": "현대유버스",
+          "sellerCode": "AP-100020",
+          "term": 60,
+          "monthly": 30800
+        },
+        {
+          "indexNo": "71939",
+          "companyName": "현대유버스",
+          "sellerCode": "AP-100020",
+          "term": 48,
+          "monthly": 36500
+        },
+        {
+          "indexNo": "71939",
+          "companyName": "현대유버스",
+          "sellerCode": "AP-100020",
+          "term": 36,
+          "monthly": 46000
+        }
+      ],
+      "reason": ""
     }
   }
 }
