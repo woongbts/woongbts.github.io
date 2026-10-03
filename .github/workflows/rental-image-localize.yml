@@ -183,16 +183,47 @@ jobs:
             if not pid:return {'ok':False,'id':'','reason':'no-id'}
             rel=f'assets/product-images/{pid}.webp'
             dest=root/'rental'/rel
-            if dest.exists() and dest.stat().st_size>1500:
-              return {'ok':True,'id':pid,'rel':rel,'from':p.get('imageLocalizedFrom'),'existing':True}
+            preferred=str(p.get('imageSourceOriginal') or '').strip()
+            current_from=str(p.get('imageLocalizedFrom') or '').strip()
 
-            original=p.get('image')
+            # The original Woongbi Rental catalog thumbnail is the authoritative hero image.
+            # Reuse a local file only when it was already localized from that exact source.
+            if dest.exists() and dest.stat().st_size>1500 and preferred and current_from==preferred:
+              return {'ok':True,'id':pid,'rel':rel,'from':current_from,'existing':True,'representative':True}
+            if dest.exists() and dest.stat().st_size>1500 and not preferred:
+              return {'ok':True,'id':pid,'rel':rel,'from':current_from,'existing':True}
+
+            session=requests.Session()
+            referer=p.get('sourceUrl') or 'https://woongbi.vip-rental.com/'
+
+            # First try the exact first/representative image captured from woongbi.vip-rental.com.
+            if preferred:
+              im=fetch_img(session,preferred,referer)
+              if im is None:
+                proxy='https://images.weserv.nl/?url='+quote(preferred,safe='')+'&w=1200&output=png&q=92'
+                im=fetch_img(session,proxy,'https://images.weserv.nl/')
+              if im is not None:
+                try:
+                  im=ImageOps.exif_transpose(im)
+                  if im.mode not in ('RGB','RGBA'):im=im.convert('RGBA' if 'transparency' in im.info else 'RGB')
+                  im.thumbnail((1000,1000),Image.Resampling.LANCZOS)
+                  if im.width>=120 and im.height>=120:
+                    if im.mode=='RGBA':im.save(dest,'WEBP',quality=88,method=6,lossless=False)
+                    else:im.convert('RGB').save(dest,'WEBP',quality=88,method=6)
+                    return {'ok':True,'id':pid,'rel':rel,'from':preferred,'size':[im.width,im.height],'representative':True}
+                except Exception:
+                  pass
+
+              # If a previous image exists, preserve it rather than replacing it with a detail/banner
+              # image when the authoritative representative source is temporarily unavailable.
+              if dest.exists() and dest.stat().st_size>1500:
+                return {'ok':True,'id':pid,'rel':rel,'from':current_from,'existing':True,'representative':False,'preferredFailed':True}
+
+            original=p.get('imageSearchSource') or p.get('image')
             cand=[]
             if original and not str(original).startswith('assets/'):cand.append(original)
             cand.extend([x for x in (p.get('detailImages') or []) if x])
             seen=set();cand=[x for x in cand if not (x in seen or seen.add(x))]
-            session=requests.Session()
-            referer=p.get('sourceUrl') or 'https://woongbi.vip-rental.com/'
             best=None;best_url=None;best_score=-10000
             for priority,url in enumerate(cand[:8]):
               im=fetch_img(session,url,referer)
@@ -270,7 +301,9 @@ jobs:
 
           data['updatedAt']='2026-10-03'
           data_path.write_text(json.dumps(data,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
-          report={'generatedAt':'2026-10-03','visibleProducts':len(targets),'localizedOrExisting':len(ok),'failed':len(fail),'changedProducts':changed,'failures':fail}
+          representative=sum(1 for r in ok if r.get('representative'))
+          preserved=sum(1 for r in ok if r.get('preferredFailed'))
+          report={'generatedAt':'2026-10-03','visibleProducts':len(targets),'localizedOrExisting':len(ok),'representativeOriginal':representative,'preservedFallback':preserved,'failed':len(fail),'changedProducts':changed,'failures':fail}
           report_path.write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
           print(json.dumps({k:v for k,v in report.items() if k!='failures'},ensure_ascii=False),flush=True)
           PY
