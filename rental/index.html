@@ -5,11 +5,14 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="description" content="웅비렌탈 - 정수기·생활가전 렌탈 조건과 월요금, 사은품을 쉽고 깔끔하게 비교하세요.">
   <title>웅비렌탈 | 렌탈도 싸면서 깔끔하게</title>
-    <meta name="theme-color" content="#168FD1">\n  <meta name="apple-mobile-web-app-capable" content="yes">\n  <meta name="apple-mobile-web-app-title" content="웅비렌탈">\n  <meta name="application-name" content="웅비렌탈">
+    <meta name="theme-color" content="#168FD1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="웅비렌탈">
+  <meta name="application-name" content="웅비렌탈">
   <link rel="icon" href="assets/woongbi-rental-mark.svg?v=20261003-blue" type="image/svg+xml">
   <link rel="apple-touch-icon" sizes="180x180" href="assets/woongbi-rental-icon-180.png?v=20261003-blue">
   <link rel="manifest" href="manifest.webmanifest?v=20261003-blue">
-<link rel="stylesheet" href="assets/rental.css?v=20261003-7">
+<link rel="stylesheet" href="assets/rental.css?v=20261003-8">
   <style id="catalog-mobile-critical">
     @media (max-width:560px){
       .catalog-card{display:block!important}
@@ -91,6 +94,18 @@
       </div>
     </section>
 
+    <section class="section recommend-section" id="recommend">
+      <div class="wrap">
+        <p class="eyebrow dark">웅비 추천</p>
+        <div class="section-title-row recommend-title-row">
+          <h2>혜택 좋은 상품만 먼저 빠르게 보세요.</h2>
+          <p>사은품 규모와 월요금, 상품 구성을 함께 보고 카테고리별로 추렸습니다.</p>
+        </div>
+        <div id="recommend-tabs" class="recommend-tabs" role="tablist" aria-label="추천 상품 카테고리"></div>
+        <div id="recommend-grid" class="recommend-grid" aria-live="polite"></div>
+      </div>
+    </section>
+
     <section class="section" id="categories">
       <div class="wrap">
         <p class="eyebrow dark">제품 카테고리</p>
@@ -125,6 +140,11 @@
           <p>기존 웅비렌탈 공개 카탈로그를 기준으로 상품을 모았으며, 월요금과 사은품은 확인된 조건부터 순차 반영합니다.</p>
         </div>
 
+        <div class="catalog-open-row">
+          <button id="catalog-toggle" class="btn primary catalog-toggle" type="button" aria-expanded="false" aria-controls="catalog-panel">전체 상품 열기</button>
+          <span>원할 때만 전체 카탈로그를 펼쳐보세요.</span>
+        </div>
+        <div id="catalog-panel" class="catalog-panel" hidden>
         <div class="catalog-tools" aria-label="상품 검색 및 필터">
           <label class="catalog-search">
             <span>상품 검색</span>
@@ -144,6 +164,7 @@
         </div>
         <div id="product-grid" class="catalog-grid" aria-busy="true"><p class="catalog-loading">상품 정보를 불러오는 중입니다.</p></div>
         <div class="catalog-more-wrap"><button id="catalog-more" class="btn ghost catalog-more" type="button" hidden>상품 더보기</button></div>
+        </div>
       </div>
     </section>
 
@@ -181,6 +202,6 @@
     </div>
     <div class="wrap footer-note">상품·요금·프로모션·제휴카드·사은품 조건은 변경될 수 있으며 최종 접수 전 상담을 통해 확인합니다.</div>
   </footer>
-  <script src="assets/catalog.js?v=20261003-11" defer></script>
+  <script src="assets/catalog.js?v=20261003-12" defer></script>
 </body>
 </html>
