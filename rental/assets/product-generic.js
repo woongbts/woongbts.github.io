@@ -3,9 +3,9 @@
 
   const id = new URLSearchParams(location.search).get('id');
   const won = n => Number(n).toLocaleString('ko-KR') + '원';
-  const IMAGE_REV = '20261003-representative-1';
+  const IMAGE_REV = '20261003-7f78334';
   const imageCandidatesFor = product => {
-    const raw = [product.imageSourceOriginal, product.image, ...((product.detailImages || []).slice(0, 3))].filter(Boolean);
+    const raw = [product.image, product.imageSourceOriginal, ...((product.detailImages || []).slice(0, 3))].filter(Boolean);
     const candidates = [];
     raw.forEach(src => {
       const value = String(src || '').trim();
