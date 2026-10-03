@@ -2,8 +2,8 @@
   "generatedAt": "2026-10-03",
   "source": "m.clvrental777.com public comparison pages",
   "importedProducts": 184,
-  "productsWithOffers": 132,
-  "offerRows": 1285,
+  "productsWithOffers": 177,
+  "offerRows": 1649,
   "items": {
     "clv-13528": {
       "ok": true,
@@ -9925,234 +9925,2877 @@
       "reason": ""
     },
     "clv-36335": {
-      "ok": false,
-      "reason": "fetch-failed",
-      "url": "https://m.clvrental777.com/model/compare.php?model_idx=36335&ca_id=043002"
-    },
-    "clv-35970": {
-      "ok": false,
-      "reason": "fetch-failed",
-      "url": "https://m.clvrental777.com/model/compare.php?model_idx=35970&ca_id=043002"
-    },
-    "clv-36295": {
-      "ok": false,
-      "reason": "fetch-failed",
-      "url": "https://m.clvrental777.com/model/compare.php?model_idx=36295&ca_id=043003"
+      "ok": true,
+      "url": "https://m.clvrental777.com/model/compare.php?model_idx=36335&ca_id=043002",
+      "offers": [
+        {
+          "indexNo": "104075",
+          "companyName": "현대유버스",
+          "sellerCode": "AP-100020",
+          "term": 60,
+          "monthly": 48400
+        },
+        {
+          "indexNo": "104075",
+          "companyName": "현대유버스",
+          "sellerCode": "AP-100020",
+          "term": 48,
+          "monthly": 57300
+        },
+        {
+          "indexNo": "104075",
+          "companyName": "현대유버스",
+          "sellerCode": "AP-100020",
+          "term": 36,
+          "monthly": 72300
+        },
+        {
+          "indexNo": "105290",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 60,
+          "monthly": 49100
+        },
+        {
+          "indexNo": "105290",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 48,
+          "monthly": 57700
+        },
+        {
+          "indexNo": "105290",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 36,
+          "monthly": 72600
+        },
+        {
+          "indexNo": "110649",
+          "companyName": "스마트렌탈",
+          "sellerCode": "AP-100004",
+          "term": 60,
+          "monthly": 53900
+        },
+        {
+          "indexNo": "110649",
+          "companyName": "스마트렌탈",
+          "sellerCode": "AP-100004",
+          "term": 48,
+          "monthly": 62500
+        },
+        {
+          "indexNo": "110649",
+          "companyName": "스마트렌탈",
+          "sellerCode": "AP-100004",
+          "term": 36,
+          "monthly": 77900
+        }
+      ],
+      "reason": ""
     },
     "clv-35775": {
-      "ok": false,
-      "reason": "fetch-failed",
-      "url": "https://m.clvrental777.com/model/compare.php?model_idx=35775&ca_id=043002"
-    },
-    "clv-57567": {
-      "ok": false,
-      "reason": "fetch-failed",
-      "url": "https://m.clvrental777.com/model/compare.php?model_idx=57567&ca_id=043003"
+      "ok": true,
+      "url": "https://m.clvrental777.com/model/compare.php?model_idx=35775&ca_id=043002",
+      "offers": [
+        {
+          "indexNo": "103375",
+          "companyName": "BS ON",
+          "sellerCode": "AP-100009",
+          "term": 60,
+          "monthly": 63100
+        },
+        {
+          "indexNo": "103375",
+          "companyName": "BS ON",
+          "sellerCode": "AP-100009",
+          "term": 48,
+          "monthly": 73500
+        },
+        {
+          "indexNo": "103375",
+          "companyName": "BS ON",
+          "sellerCode": "AP-100009",
+          "term": 36,
+          "monthly": 91300
+        },
+        {
+          "indexNo": "105600",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 60,
+          "monthly": 65500
+        },
+        {
+          "indexNo": "105600",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 48,
+          "monthly": 77000
+        },
+        {
+          "indexNo": "105600",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 36,
+          "monthly": 96800
+        },
+        {
+          "indexNo": "104595",
+          "companyName": "현대유버스",
+          "sellerCode": "AP-100020",
+          "term": 60,
+          "monthly": 66400
+        },
+        {
+          "indexNo": "104595",
+          "companyName": "현대유버스",
+          "sellerCode": "AP-100020",
+          "term": 48,
+          "monthly": 78600
+        },
+        {
+          "indexNo": "104595",
+          "companyName": "현대유버스",
+          "sellerCode": "AP-100020",
+          "term": 36,
+          "monthly": 99100
+        },
+        {
+          "indexNo": "110959",
+          "companyName": "스마트렌탈",
+          "sellerCode": "AP-100004",
+          "term": 60,
+          "monthly": 72000
+        },
+        {
+          "indexNo": "110959",
+          "companyName": "스마트렌탈",
+          "sellerCode": "AP-100004",
+          "term": 48,
+          "monthly": 83500
+        },
+        {
+          "indexNo": "110959",
+          "companyName": "스마트렌탈",
+          "sellerCode": "AP-100004",
+          "term": 36,
+          "monthly": 104000
+        },
+        {
+          "indexNo": "104965",
+          "companyName": "LG헬로렌탈",
+          "sellerCode": "AP-100003",
+          "term": 60,
+          "monthly": 74300
+        },
+        {
+          "indexNo": "104965",
+          "companyName": "LG헬로렌탈",
+          "sellerCode": "AP-100003",
+          "term": 48,
+          "monthly": 92100
+        },
+        {
+          "indexNo": "104965",
+          "companyName": "LG헬로렌탈",
+          "sellerCode": "AP-100003",
+          "term": 36,
+          "monthly": 121700
+        }
+      ],
+      "reason": ""
     },
     "clv-35760": {
-      "ok": false,
-      "reason": "fetch-failed",
-      "url": "https://m.clvrental777.com/model/compare.php?model_idx=35760&ca_id=043003"
+      "ok": true,
+      "url": "https://m.clvrental777.com/model/compare.php?model_idx=35760&ca_id=043003",
+      "offers": [
+        {
+          "indexNo": "107679",
+          "companyName": "KT가전구독",
+          "sellerCode": "AP-100056",
+          "term": 60,
+          "monthly": 64800
+        },
+        {
+          "indexNo": "107679",
+          "companyName": "KT가전구독",
+          "sellerCode": "AP-100056",
+          "term": 48,
+          "monthly": 79500
+        },
+        {
+          "indexNo": "107679",
+          "companyName": "KT가전구독",
+          "sellerCode": "AP-100056",
+          "term": 36,
+          "monthly": 104700
+        },
+        {
+          "indexNo": "103340",
+          "companyName": "BS ON",
+          "sellerCode": "AP-100009",
+          "term": 60,
+          "monthly": 68100
+        },
+        {
+          "indexNo": "103340",
+          "companyName": "BS ON",
+          "sellerCode": "AP-100009",
+          "term": 48,
+          "monthly": 79100
+        },
+        {
+          "indexNo": "103340",
+          "companyName": "BS ON",
+          "sellerCode": "AP-100009",
+          "term": 36,
+          "monthly": 98300
+        },
+        {
+          "indexNo": "105675",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 60,
+          "monthly": 71300
+        },
+        {
+          "indexNo": "105675",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 48,
+          "monthly": 83800
+        },
+        {
+          "indexNo": "105675",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 36,
+          "monthly": 105400
+        },
+        {
+          "indexNo": "110974",
+          "companyName": "스마트렌탈",
+          "sellerCode": "AP-100004",
+          "term": 60,
+          "monthly": 79000
+        },
+        {
+          "indexNo": "110974",
+          "companyName": "스마트렌탈",
+          "sellerCode": "AP-100004",
+          "term": 48,
+          "monthly": 91000
+        },
+        {
+          "indexNo": "110974",
+          "companyName": "스마트렌탈",
+          "sellerCode": "AP-100004",
+          "term": 36,
+          "monthly": 113000
+        }
+      ],
+      "reason": ""
     },
     "clv-35770": {
-      "ok": false,
-      "reason": "fetch-failed",
-      "url": "https://m.clvrental777.com/model/compare.php?model_idx=35770&ca_id=043003"
+      "ok": true,
+      "url": "https://m.clvrental777.com/model/compare.php?model_idx=35770&ca_id=043003",
+      "offers": [
+        {
+          "indexNo": "105605",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 60,
+          "monthly": 77600
+        },
+        {
+          "indexNo": "105605",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 48,
+          "monthly": 91200
+        },
+        {
+          "indexNo": "105605",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 36,
+          "monthly": 114700
+        },
+        {
+          "indexNo": "104295",
+          "companyName": "현대유버스",
+          "sellerCode": "AP-100020",
+          "term": 60,
+          "monthly": 84000
+        },
+        {
+          "indexNo": "104295",
+          "companyName": "현대유버스",
+          "sellerCode": "AP-100020",
+          "term": 48,
+          "monthly": 99300
+        },
+        {
+          "indexNo": "104295",
+          "companyName": "현대유버스",
+          "sellerCode": "AP-100020",
+          "term": 36,
+          "monthly": 125400
+        },
+        {
+          "indexNo": "110964",
+          "companyName": "스마트렌탈",
+          "sellerCode": "AP-100004",
+          "term": 60,
+          "monthly": 85500
+        },
+        {
+          "indexNo": "110964",
+          "companyName": "스마트렌탈",
+          "sellerCode": "AP-100004",
+          "term": 48,
+          "monthly": 98900
+        },
+        {
+          "indexNo": "110964",
+          "companyName": "스마트렌탈",
+          "sellerCode": "AP-100004",
+          "term": 36,
+          "monthly": 123000
+        },
+        {
+          "indexNo": "104970",
+          "companyName": "LG헬로렌탈",
+          "sellerCode": "AP-100003",
+          "term": 60,
+          "monthly": 87500
+        },
+        {
+          "indexNo": "104970",
+          "companyName": "LG헬로렌탈",
+          "sellerCode": "AP-100003",
+          "term": 48,
+          "monthly": 107300
+        },
+        {
+          "indexNo": "104970",
+          "companyName": "LG헬로렌탈",
+          "sellerCode": "AP-100003",
+          "term": 36,
+          "monthly": 140900
+        }
+      ],
+      "reason": ""
     },
-    "clv-35965": {
-      "ok": false,
-      "reason": "fetch-failed",
-      "url": "https://m.clvrental777.com/model/compare.php?model_idx=35965&ca_id=043003"
+    "clv-35970": {
+      "ok": true,
+      "url": "https://m.clvrental777.com/model/compare.php?model_idx=35970&ca_id=043002",
+      "offers": [
+        {
+          "indexNo": "105515",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 60,
+          "monthly": 59100
+        },
+        {
+          "indexNo": "105515",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 48,
+          "monthly": 69500
+        },
+        {
+          "indexNo": "105515",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 36,
+          "monthly": 87400
+        },
+        {
+          "indexNo": "104210",
+          "companyName": "현대유버스",
+          "sellerCode": "AP-100020",
+          "term": 60,
+          "monthly": 64000
+        },
+        {
+          "indexNo": "104210",
+          "companyName": "현대유버스",
+          "sellerCode": "AP-100020",
+          "term": 48,
+          "monthly": 75700
+        },
+        {
+          "indexNo": "104210",
+          "companyName": "현대유버스",
+          "sellerCode": "AP-100020",
+          "term": 36,
+          "monthly": 95500
+        }
+      ],
+      "reason": ""
     },
-    "clv-4655": {
-      "ok": false,
-      "reason": "fetch-failed",
-      "url": "https://m.clvrental777.com/model/compare.php?model_idx=4655&ca_id=043009"
+    "clv-36295": {
+      "ok": true,
+      "url": "https://m.clvrental777.com/model/compare.php?model_idx=36295&ca_id=043003",
+      "offers": [
+        {
+          "indexNo": "103725",
+          "companyName": "BS ON",
+          "sellerCode": "AP-100009",
+          "term": 60,
+          "monthly": 60200
+        },
+        {
+          "indexNo": "103725",
+          "companyName": "BS ON",
+          "sellerCode": "AP-100009",
+          "term": 48,
+          "monthly": 70600
+        },
+        {
+          "indexNo": "103725",
+          "companyName": "BS ON",
+          "sellerCode": "AP-100009",
+          "term": 36,
+          "monthly": 88400
+        },
+        {
+          "indexNo": "105310",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 60,
+          "monthly": 61500
+        },
+        {
+          "indexNo": "105310",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 48,
+          "monthly": 72400
+        },
+        {
+          "indexNo": "105310",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 36,
+          "monthly": 91000
+        },
+        {
+          "indexNo": "110669",
+          "companyName": "스마트렌탈",
+          "sellerCode": "AP-100004",
+          "term": 60,
+          "monthly": 71500
+        },
+        {
+          "indexNo": "110669",
+          "companyName": "스마트렌탈",
+          "sellerCode": "AP-100004",
+          "term": 48,
+          "monthly": 84000
+        },
+        {
+          "indexNo": "110669",
+          "companyName": "스마트렌탈",
+          "sellerCode": "AP-100004",
+          "term": 36,
+          "monthly": 103500
+        }
+      ],
+      "reason": ""
     },
-    "clv-6818": {
-      "ok": false,
-      "reason": "fetch-failed",
-      "url": "https://m.clvrental777.com/model/compare.php?model_idx=6818&ca_id=043009"
+    "clv-57567": {
+      "ok": true,
+      "url": "https://m.clvrental777.com/model/compare.php?model_idx=57567&ca_id=043003",
+      "offers": [
+        {
+          "indexNo": "141967",
+          "companyName": "LG전자구독",
+          "sellerCode": "AP-100010",
+          "term": 72,
+          "monthly": 61900
+        },
+        {
+          "indexNo": "141967",
+          "companyName": "LG전자구독",
+          "sellerCode": "AP-100010",
+          "term": 72,
+          "monthly": 79900
+        },
+        {
+          "indexNo": "141967",
+          "companyName": "LG전자구독",
+          "sellerCode": "AP-100010",
+          "term": 60,
+          "monthly": 70900
+        },
+        {
+          "indexNo": "141967",
+          "companyName": "LG전자구독",
+          "sellerCode": "AP-100010",
+          "term": 60,
+          "monthly": 88900
+        },
+        {
+          "indexNo": "141967",
+          "companyName": "LG전자구독",
+          "sellerCode": "AP-100010",
+          "term": 48,
+          "monthly": 83900
+        },
+        {
+          "indexNo": "141967",
+          "companyName": "LG전자구독",
+          "sellerCode": "AP-100010",
+          "term": 48,
+          "monthly": 101900
+        },
+        {
+          "indexNo": "141967",
+          "companyName": "LG전자구독",
+          "sellerCode": "AP-100010",
+          "term": 36,
+          "monthly": 104900
+        },
+        {
+          "indexNo": "141967",
+          "companyName": "LG전자구독",
+          "sellerCode": "AP-100010",
+          "term": 36,
+          "monthly": 122900
+        },
+        {
+          "indexNo": "149357",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 60,
+          "monthly": 82400
+        },
+        {
+          "indexNo": "149357",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 48,
+          "monthly": 96900
+        },
+        {
+          "indexNo": "149357",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 36,
+          "monthly": 121800
+        },
+        {
+          "indexNo": "146067",
+          "companyName": "현대유버스",
+          "sellerCode": "AP-100020",
+          "term": 60,
+          "monthly": 82500
+        },
+        {
+          "indexNo": "146067",
+          "companyName": "현대유버스",
+          "sellerCode": "AP-100020",
+          "term": 48,
+          "monthly": 100600
+        },
+        {
+          "indexNo": "146067",
+          "companyName": "현대유버스",
+          "sellerCode": "AP-100020",
+          "term": 36,
+          "monthly": 126700
+        },
+        {
+          "indexNo": "142729",
+          "companyName": "LG헬로렌탈",
+          "sellerCode": "AP-100003",
+          "term": 60,
+          "monthly": 86900
+        },
+        {
+          "indexNo": "142729",
+          "companyName": "LG헬로렌탈",
+          "sellerCode": "AP-100003",
+          "term": 48,
+          "monthly": 105900
+        },
+        {
+          "indexNo": "142729",
+          "companyName": "LG헬로렌탈",
+          "sellerCode": "AP-100003",
+          "term": 36,
+          "monthly": 137900
+        }
+      ],
+      "reason": ""
     },
     "clv-4998": {
-      "ok": false,
-      "reason": "fetch-failed",
-      "url": "https://m.clvrental777.com/model/compare.php?model_idx=4998&ca_id=043009"
+      "ok": true,
+      "url": "https://m.clvrental777.com/model/compare.php?model_idx=4998&ca_id=043009",
+      "offers": [
+        {
+          "indexNo": "117184",
+          "companyName": "스마트렌탈",
+          "sellerCode": "AP-100004",
+          "term": 60,
+          "monthly": 62500
+        },
+        {
+          "indexNo": "117184",
+          "companyName": "스마트렌탈",
+          "sellerCode": "AP-100004",
+          "term": 48,
+          "monthly": 74500
+        },
+        {
+          "indexNo": "117184",
+          "companyName": "스마트렌탈",
+          "sellerCode": "AP-100004",
+          "term": 36,
+          "monthly": 92900
+        },
+        {
+          "indexNo": "41662",
+          "companyName": "현대유버스",
+          "sellerCode": "AP-100020",
+          "term": 60,
+          "monthly": 68300
+        },
+        {
+          "indexNo": "41662",
+          "companyName": "현대유버스",
+          "sellerCode": "AP-100020",
+          "term": 48,
+          "monthly": 83400
+        },
+        {
+          "indexNo": "41662",
+          "companyName": "현대유버스",
+          "sellerCode": "AP-100020",
+          "term": 36,
+          "monthly": 104900
+        },
+        {
+          "indexNo": "150723",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 60,
+          "monthly": 73400
+        },
+        {
+          "indexNo": "150723",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 48,
+          "monthly": 86300
+        },
+        {
+          "indexNo": "150723",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 36,
+          "monthly": 108500
+        }
+      ],
+      "reason": ""
     },
-    "clv-5000": {
-      "ok": false,
-      "reason": "fetch-failed",
-      "url": "https://m.clvrental777.com/model/compare.php?model_idx=5000&ca_id=043009"
+    "clv-6818": {
+      "ok": true,
+      "url": "https://m.clvrental777.com/model/compare.php?model_idx=6818&ca_id=043009",
+      "offers": [
+        {
+          "indexNo": "117169",
+          "companyName": "스마트렌탈",
+          "sellerCode": "AP-100004",
+          "term": 60,
+          "monthly": 49900
+        },
+        {
+          "indexNo": "117169",
+          "companyName": "스마트렌탈",
+          "sellerCode": "AP-100004",
+          "term": 48,
+          "monthly": 59900
+        },
+        {
+          "indexNo": "117169",
+          "companyName": "스마트렌탈",
+          "sellerCode": "AP-100004",
+          "term": 36,
+          "monthly": 75000
+        },
+        {
+          "indexNo": "41644",
+          "companyName": "현대유버스",
+          "sellerCode": "AP-100020",
+          "term": 60,
+          "monthly": 55100
+        },
+        {
+          "indexNo": "41644",
+          "companyName": "현대유버스",
+          "sellerCode": "AP-100020",
+          "term": 48,
+          "monthly": 67400
+        },
+        {
+          "indexNo": "41644",
+          "companyName": "현대유버스",
+          "sellerCode": "AP-100020",
+          "term": 36,
+          "monthly": 84700
+        },
+        {
+          "indexNo": "150708",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 60,
+          "monthly": 59800
+        },
+        {
+          "indexNo": "150708",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 48,
+          "monthly": 70300
+        },
+        {
+          "indexNo": "150708",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 36,
+          "monthly": 88400
+        }
+      ],
+      "reason": ""
     },
-    "clv-4999": {
-      "ok": false,
-      "reason": "fetch-failed",
-      "url": "https://m.clvrental777.com/model/compare.php?model_idx=4999&ca_id=043009"
+    "clv-4655": {
+      "ok": true,
+      "url": "https://m.clvrental777.com/model/compare.php?model_idx=4655&ca_id=043009",
+      "offers": [
+        {
+          "indexNo": "117189",
+          "companyName": "스마트렌탈",
+          "sellerCode": "AP-100004",
+          "term": 60,
+          "monthly": 59900
+        },
+        {
+          "indexNo": "117189",
+          "companyName": "스마트렌탈",
+          "sellerCode": "AP-100004",
+          "term": 48,
+          "monthly": 69900
+        },
+        {
+          "indexNo": "117189",
+          "companyName": "스마트렌탈",
+          "sellerCode": "AP-100004",
+          "term": 36,
+          "monthly": 87000
+        },
+        {
+          "indexNo": "41665",
+          "companyName": "현대유버스",
+          "sellerCode": "AP-100020",
+          "term": 60,
+          "monthly": 63300
+        },
+        {
+          "indexNo": "41665",
+          "companyName": "현대유버스",
+          "sellerCode": "AP-100020",
+          "term": 48,
+          "monthly": 77300
+        },
+        {
+          "indexNo": "41665",
+          "companyName": "현대유버스",
+          "sellerCode": "AP-100020",
+          "term": 36,
+          "monthly": 97300
+        },
+        {
+          "indexNo": "150728",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 60,
+          "monthly": 69000
+        },
+        {
+          "indexNo": "150728",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 48,
+          "monthly": 81100
+        },
+        {
+          "indexNo": "150728",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 36,
+          "monthly": 102000
+        }
+      ],
+      "reason": ""
     },
     "clv-12523": {
-      "ok": false,
-      "reason": "fetch-failed",
-      "url": "https://m.clvrental777.com/model/compare.php?model_idx=12523&ca_id=043009"
+      "ok": true,
+      "url": "https://m.clvrental777.com/model/compare.php?model_idx=12523&ca_id=043009",
+      "offers": [
+        {
+          "indexNo": "41702",
+          "companyName": "현대유버스",
+          "sellerCode": "AP-100020",
+          "term": 60,
+          "monthly": 87800
+        },
+        {
+          "indexNo": "41702",
+          "companyName": "현대유버스",
+          "sellerCode": "AP-100020",
+          "term": 48,
+          "monthly": 107300
+        },
+        {
+          "indexNo": "41702",
+          "companyName": "현대유버스",
+          "sellerCode": "AP-100020",
+          "term": 36,
+          "monthly": 134900
+        },
+        {
+          "indexNo": "150563",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 60,
+          "monthly": 91900
+        },
+        {
+          "indexNo": "150563",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 48,
+          "monthly": 108100
+        },
+        {
+          "indexNo": "150563",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 36,
+          "monthly": 135900
+        }
+      ],
+      "reason": ""
     },
     "clv-36540": {
-      "ok": false,
-      "reason": "fetch-failed",
-      "url": "https://m.clvrental777.com/model/compare.php?model_idx=36540&ca_id=043009"
+      "ok": true,
+      "url": "https://m.clvrental777.com/model/compare.php?model_idx=36540&ca_id=043009",
+      "offers": [
+        {
+          "indexNo": "140143",
+          "companyName": "현대유버스",
+          "sellerCode": "AP-100020",
+          "term": 60,
+          "monthly": 93500
+        },
+        {
+          "indexNo": "140143",
+          "companyName": "현대유버스",
+          "sellerCode": "AP-100020",
+          "term": 48,
+          "monthly": 114300
+        },
+        {
+          "indexNo": "140143",
+          "companyName": "현대유버스",
+          "sellerCode": "AP-100020",
+          "term": 36,
+          "monthly": 143600
+        },
+        {
+          "indexNo": "150693",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 60,
+          "monthly": 107700
+        },
+        {
+          "indexNo": "150693",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 48,
+          "monthly": 126600
+        },
+        {
+          "indexNo": "150693",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 36,
+          "monthly": 159200
+        }
+      ],
+      "reason": ""
     },
-    "clv-36535": {
-      "ok": false,
-      "reason": "fetch-failed",
-      "url": "https://m.clvrental777.com/model/compare.php?model_idx=36535&ca_id=043009"
+    "clv-5000": {
+      "ok": true,
+      "url": "https://m.clvrental777.com/model/compare.php?model_idx=5000&ca_id=043009",
+      "offers": [
+        {
+          "indexNo": "117174",
+          "companyName": "스마트렌탈",
+          "sellerCode": "AP-100004",
+          "term": 60,
+          "monthly": 68500
+        },
+        {
+          "indexNo": "117174",
+          "companyName": "스마트렌탈",
+          "sellerCode": "AP-100004",
+          "term": 48,
+          "monthly": 79900
+        },
+        {
+          "indexNo": "117174",
+          "companyName": "스마트렌탈",
+          "sellerCode": "AP-100004",
+          "term": 36,
+          "monthly": 99000
+        },
+        {
+          "indexNo": "41656",
+          "companyName": "현대유버스",
+          "sellerCode": "AP-100020",
+          "term": 60,
+          "monthly": 73300
+        },
+        {
+          "indexNo": "41656",
+          "companyName": "현대유버스",
+          "sellerCode": "AP-100020",
+          "term": 48,
+          "monthly": 89500
+        },
+        {
+          "indexNo": "41656",
+          "companyName": "현대유버스",
+          "sellerCode": "AP-100020",
+          "term": 36,
+          "monthly": 112500
+        },
+        {
+          "indexNo": "150713",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 60,
+          "monthly": 79300
+        },
+        {
+          "indexNo": "150713",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 48,
+          "monthly": 93200
+        },
+        {
+          "indexNo": "150713",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 36,
+          "monthly": 117200
+        }
+      ],
+      "reason": ""
+    },
+    "clv-4999": {
+      "ok": true,
+      "url": "https://m.clvrental777.com/model/compare.php?model_idx=4999&ca_id=043009",
+      "offers": [
+        {
+          "indexNo": "117179",
+          "companyName": "스마트렌탈",
+          "sellerCode": "AP-100004",
+          "term": 60,
+          "monthly": 65900
+        },
+        {
+          "indexNo": "117179",
+          "companyName": "스마트렌탈",
+          "sellerCode": "AP-100004",
+          "term": 48,
+          "monthly": 77500
+        },
+        {
+          "indexNo": "117179",
+          "companyName": "스마트렌탈",
+          "sellerCode": "AP-100004",
+          "term": 36,
+          "monthly": 97500
+        },
+        {
+          "indexNo": "41659",
+          "companyName": "현대유버스",
+          "sellerCode": "AP-100020",
+          "term": 60,
+          "monthly": 70300
+        },
+        {
+          "indexNo": "41659",
+          "companyName": "현대유버스",
+          "sellerCode": "AP-100020",
+          "term": 48,
+          "monthly": 85900
+        },
+        {
+          "indexNo": "41659",
+          "companyName": "현대유버스",
+          "sellerCode": "AP-100020",
+          "term": 36,
+          "monthly": 108000
+        },
+        {
+          "indexNo": "150718",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 60,
+          "monthly": 76400
+        },
+        {
+          "indexNo": "150718",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 48,
+          "monthly": 89800
+        },
+        {
+          "indexNo": "150718",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 36,
+          "monthly": 112900
+        }
+      ],
+      "reason": ""
+    },
+    "clv-35965": {
+      "ok": true,
+      "url": "https://m.clvrental777.com/model/compare.php?model_idx=35965&ca_id=043003",
+      "offers": [
+        {
+          "indexNo": "105520",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 60,
+          "monthly": 71300
+        },
+        {
+          "indexNo": "105520",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 48,
+          "monthly": 83800
+        },
+        {
+          "indexNo": "105520",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 36,
+          "monthly": 105400
+        },
+        {
+          "indexNo": "104215",
+          "companyName": "현대유버스",
+          "sellerCode": "AP-100020",
+          "term": 60,
+          "monthly": 77100
+        },
+        {
+          "indexNo": "104215",
+          "companyName": "현대유버스",
+          "sellerCode": "AP-100020",
+          "term": 48,
+          "monthly": 91200
+        },
+        {
+          "indexNo": "104215",
+          "companyName": "현대유버스",
+          "sellerCode": "AP-100020",
+          "term": 36,
+          "monthly": 115200
+        }
+      ],
+      "reason": ""
     },
     "clv-1456": {
-      "ok": false,
-      "reason": "fetch-failed",
-      "url": "https://m.clvrental777.com/model/compare.php?model_idx=1456&ca_id=005003"
+      "ok": true,
+      "url": "https://m.clvrental777.com/model/compare.php?model_idx=1456&ca_id=005003",
+      "offers": [
+        {
+          "indexNo": "8335",
+          "companyName": "스마트렌탈",
+          "sellerCode": "AP-100004",
+          "term": 48,
+          "monthly": 32900
+        },
+        {
+          "indexNo": "2011",
+          "companyName": "LG헬로렌탈",
+          "sellerCode": "AP-100003",
+          "term": 48,
+          "monthly": 39900
+        }
+      ],
+      "reason": ""
     },
-    "clv-773": {
-      "ok": false,
-      "reason": "fetch-failed",
-      "url": "https://m.clvrental777.com/model/compare.php?model_idx=773&ca_id=005003"
-    },
-    "clv-1618": {
-      "ok": false,
-      "reason": "fetch-failed",
-      "url": "https://m.clvrental777.com/model/compare.php?model_idx=1618&ca_id=005003"
+    "clv-36535": {
+      "ok": true,
+      "url": "https://m.clvrental777.com/model/compare.php?model_idx=36535&ca_id=043009",
+      "offers": [
+        {
+          "indexNo": "117134",
+          "companyName": "스마트렌탈",
+          "sellerCode": "AP-100004",
+          "term": 60,
+          "monthly": 99900
+        },
+        {
+          "indexNo": "117134",
+          "companyName": "스마트렌탈",
+          "sellerCode": "AP-100004",
+          "term": 48,
+          "monthly": 118000
+        },
+        {
+          "indexNo": "117134",
+          "companyName": "스마트렌탈",
+          "sellerCode": "AP-100004",
+          "term": 36,
+          "monthly": 148500
+        },
+        {
+          "indexNo": "140148",
+          "companyName": "현대유버스",
+          "sellerCode": "AP-100020",
+          "term": 60,
+          "monthly": 109500
+        },
+        {
+          "indexNo": "140148",
+          "companyName": "현대유버스",
+          "sellerCode": "AP-100020",
+          "term": 48,
+          "monthly": 133700
+        },
+        {
+          "indexNo": "140148",
+          "companyName": "현대유버스",
+          "sellerCode": "AP-100020",
+          "term": 36,
+          "monthly": 168200
+        },
+        {
+          "indexNo": "150698",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 60,
+          "monthly": 118400
+        },
+        {
+          "indexNo": "150698",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 48,
+          "monthly": 139200
+        },
+        {
+          "indexNo": "150698",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 36,
+          "monthly": 175000
+        }
+      ],
+      "reason": ""
     },
     "clv-25660": {
-      "ok": false,
-      "reason": "fetch-failed",
-      "url": "https://m.clvrental777.com/model/compare.php?model_idx=25660&ca_id=005003"
-    },
-    "clv-27715": {
-      "ok": false,
-      "reason": "fetch-failed",
-      "url": "https://m.clvrental777.com/model/compare.php?model_idx=27715&ca_id=005003"
+      "ok": true,
+      "url": "https://m.clvrental777.com/model/compare.php?model_idx=25660&ca_id=005003",
+      "offers": [
+        {
+          "indexNo": "88920",
+          "companyName": "LG헬로렌탈",
+          "sellerCode": "AP-100003",
+          "term": 60,
+          "monthly": 96200
+        },
+        {
+          "indexNo": "88920",
+          "companyName": "LG헬로렌탈",
+          "sellerCode": "AP-100003",
+          "term": 48,
+          "monthly": 118100
+        },
+        {
+          "indexNo": "88920",
+          "companyName": "LG헬로렌탈",
+          "sellerCode": "AP-100003",
+          "term": 36,
+          "monthly": 152500
+        }
+      ],
+      "reason": ""
     },
     "clv-32371": {
-      "ok": false,
-      "reason": "fetch-failed",
-      "url": "https://m.clvrental777.com/model/compare.php?model_idx=32371&ca_id=005001"
+      "ok": true,
+      "url": "https://m.clvrental777.com/model/compare.php?model_idx=32371&ca_id=005001",
+      "offers": [
+        {
+          "indexNo": "143120",
+          "companyName": "스마트렌탈",
+          "sellerCode": "AP-100004",
+          "term": 60,
+          "monthly": 32900
+        },
+        {
+          "indexNo": "143120",
+          "companyName": "스마트렌탈",
+          "sellerCode": "AP-100004",
+          "term": 48,
+          "monthly": 39900
+        },
+        {
+          "indexNo": "143120",
+          "companyName": "스마트렌탈",
+          "sellerCode": "AP-100004",
+          "term": 36,
+          "monthly": 51900
+        },
+        {
+          "indexNo": "98581",
+          "companyName": "LG헬로렌탈",
+          "sellerCode": "AP-100003",
+          "term": 60,
+          "monthly": 37900
+        },
+        {
+          "indexNo": "98581",
+          "companyName": "LG헬로렌탈",
+          "sellerCode": "AP-100003",
+          "term": 48,
+          "monthly": 46900
+        },
+        {
+          "indexNo": "98581",
+          "companyName": "LG헬로렌탈",
+          "sellerCode": "AP-100003",
+          "term": 36,
+          "monthly": 61900
+        }
+      ],
+      "reason": ""
     },
-    "clv-10950": {
-      "ok": false,
-      "reason": "fetch-failed",
-      "url": "https://m.clvrental777.com/model/compare.php?model_idx=10950&ca_id=005001"
+    "clv-27715": {
+      "ok": true,
+      "url": "https://m.clvrental777.com/model/compare.php?model_idx=27715&ca_id=005003",
+      "offers": [
+        {
+          "indexNo": "91605",
+          "companyName": "LG헬로렌탈",
+          "sellerCode": "AP-100003",
+          "term": 60,
+          "monthly": 79700
+        },
+        {
+          "indexNo": "91605",
+          "companyName": "LG헬로렌탈",
+          "sellerCode": "AP-100003",
+          "term": 48,
+          "monthly": 95500
+        },
+        {
+          "indexNo": "91605",
+          "companyName": "LG헬로렌탈",
+          "sellerCode": "AP-100003",
+          "term": 36,
+          "monthly": 123500
+        }
+      ],
+      "reason": ""
     },
     "clv-3402": {
-      "ok": false,
-      "reason": "fetch-failed",
-      "url": "https://m.clvrental777.com/model/compare.php?model_idx=3402&ca_id=005001"
-    },
-    "clv-19158": {
-      "ok": false,
-      "reason": "fetch-failed",
-      "url": "https://m.clvrental777.com/model/compare.php?model_idx=19158&ca_id=005001"
+      "ok": true,
+      "url": "https://m.clvrental777.com/model/compare.php?model_idx=3402&ca_id=005001",
+      "offers": [
+        {
+          "indexNo": "5760",
+          "companyName": "BS ON",
+          "sellerCode": "AP-100009",
+          "term": 60,
+          "monthly": 37000
+        },
+        {
+          "indexNo": "5760",
+          "companyName": "BS ON",
+          "sellerCode": "AP-100009",
+          "term": 48,
+          "monthly": 44000
+        },
+        {
+          "indexNo": "5760",
+          "companyName": "BS ON",
+          "sellerCode": "AP-100009",
+          "term": 36,
+          "monthly": 55000
+        },
+        {
+          "indexNo": "71634",
+          "companyName": "현대유버스",
+          "sellerCode": "AP-100020",
+          "term": 60,
+          "monthly": 39600
+        },
+        {
+          "indexNo": "71634",
+          "companyName": "현대유버스",
+          "sellerCode": "AP-100020",
+          "term": 48,
+          "monthly": 46800
+        },
+        {
+          "indexNo": "71634",
+          "companyName": "현대유버스",
+          "sellerCode": "AP-100020",
+          "term": 36,
+          "monthly": 59100
+        },
+        {
+          "indexNo": "5273",
+          "companyName": "LG헬로렌탈",
+          "sellerCode": "AP-100003",
+          "term": 60,
+          "monthly": 44500
+        },
+        {
+          "indexNo": "5273",
+          "companyName": "LG헬로렌탈",
+          "sellerCode": "AP-100003",
+          "term": 48,
+          "monthly": 54100
+        },
+        {
+          "indexNo": "5273",
+          "companyName": "LG헬로렌탈",
+          "sellerCode": "AP-100003",
+          "term": 36,
+          "monthly": 70300
+        }
+      ],
+      "reason": ""
     },
     "clv-10402": {
-      "ok": false,
-      "reason": "fetch-failed",
-      "url": "https://m.clvrental777.com/model/compare.php?model_idx=10402&ca_id=005001"
+      "ok": true,
+      "url": "https://m.clvrental777.com/model/compare.php?model_idx=10402&ca_id=005001",
+      "offers": [
+        {
+          "indexNo": "77671",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 60,
+          "monthly": 41400
+        },
+        {
+          "indexNo": "77671",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 48,
+          "monthly": 48700
+        },
+        {
+          "indexNo": "77671",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 36,
+          "monthly": 61300
+        }
+      ],
+      "reason": ""
     },
     "clv-51064": {
-      "ok": false,
-      "reason": "fetch-failed",
-      "url": "https://m.clvrental777.com/model/compare.php?model_idx=51064&ca_id=005001"
+      "ok": true,
+      "url": "https://m.clvrental777.com/model/compare.php?model_idx=51064&ca_id=005001",
+      "offers": [
+        {
+          "indexNo": "127184",
+          "companyName": "LG헬로렌탈",
+          "sellerCode": "AP-100003",
+          "term": 60,
+          "monthly": 41900
+        },
+        {
+          "indexNo": "127184",
+          "companyName": "LG헬로렌탈",
+          "sellerCode": "AP-100003",
+          "term": 48,
+          "monthly": 51900
+        },
+        {
+          "indexNo": "127184",
+          "companyName": "LG헬로렌탈",
+          "sellerCode": "AP-100003",
+          "term": 39,
+          "monthly": 62900
+        },
+        {
+          "indexNo": "149295",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 60,
+          "monthly": 48800
+        },
+        {
+          "indexNo": "149295",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 48,
+          "monthly": 57400
+        },
+        {
+          "indexNo": "149295",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 36,
+          "monthly": 72200
+        }
+      ],
+      "reason": ""
+    },
+    "clv-1618": {
+      "ok": true,
+      "url": "https://m.clvrental777.com/model/compare.php?model_idx=1618&ca_id=005003",
+      "offers": [
+        {
+          "indexNo": "2246",
+          "companyName": "BS ON",
+          "sellerCode": "AP-100009",
+          "term": 48,
+          "monthly": 49900
+        }
+      ],
+      "reason": ""
     },
     "clv-41629": {
-      "ok": false,
-      "reason": "fetch-failed",
-      "url": "https://m.clvrental777.com/model/compare.php?model_idx=41629&ca_id=005001"
+      "ok": true,
+      "url": "https://m.clvrental777.com/model/compare.php?model_idx=41629&ca_id=005001",
+      "offers": [
+        {
+          "indexNo": "112534",
+          "companyName": "LG헬로렌탈",
+          "sellerCode": "AP-100003",
+          "term": 60,
+          "monthly": 44900
+        },
+        {
+          "indexNo": "112534",
+          "companyName": "LG헬로렌탈",
+          "sellerCode": "AP-100003",
+          "term": 48,
+          "monthly": 53900
+        },
+        {
+          "indexNo": "112534",
+          "companyName": "LG헬로렌탈",
+          "sellerCode": "AP-100003",
+          "term": 39,
+          "monthly": 64900
+        }
+      ],
+      "reason": ""
+    },
+    "clv-10950": {
+      "ok": true,
+      "url": "https://m.clvrental777.com/model/compare.php?model_idx=10950&ca_id=005001",
+      "offers": [
+        {
+          "indexNo": "28305",
+          "companyName": "LG헬로렌탈",
+          "sellerCode": "AP-100003",
+          "term": 60,
+          "monthly": 39900
+        },
+        {
+          "indexNo": "28305",
+          "companyName": "LG헬로렌탈",
+          "sellerCode": "AP-100003",
+          "term": 48,
+          "monthly": 47900
+        },
+        {
+          "indexNo": "28305",
+          "companyName": "LG헬로렌탈",
+          "sellerCode": "AP-100003",
+          "term": 39,
+          "monthly": 57900
+        },
+        {
+          "indexNo": "149325",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 60,
+          "monthly": 39900
+        },
+        {
+          "indexNo": "149325",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 48,
+          "monthly": 46900
+        },
+        {
+          "indexNo": "149325",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 36,
+          "monthly": 59000
+        }
+      ],
+      "reason": ""
+    },
+    "clv-19158": {
+      "ok": true,
+      "url": "https://m.clvrental777.com/model/compare.php?model_idx=19158&ca_id=005001",
+      "offers": [
+        {
+          "indexNo": "67351",
+          "companyName": "스마트렌탈",
+          "sellerCode": "AP-100004",
+          "term": 60,
+          "monthly": 40900
+        },
+        {
+          "indexNo": "67351",
+          "companyName": "스마트렌탈",
+          "sellerCode": "AP-100004",
+          "term": 48,
+          "monthly": 49900
+        },
+        {
+          "indexNo": "67351",
+          "companyName": "스마트렌탈",
+          "sellerCode": "AP-100004",
+          "term": 36,
+          "monthly": 64900
+        }
+      ],
+      "reason": ""
     },
     "clv-18889": {
-      "ok": false,
-      "reason": "fetch-failed",
-      "url": "https://m.clvrental777.com/model/compare.php?model_idx=18889&ca_id=005001"
+      "ok": true,
+      "url": "https://m.clvrental777.com/model/compare.php?model_idx=18889&ca_id=005001",
+      "offers": [
+        {
+          "indexNo": "150292",
+          "companyName": "스마트렌탈",
+          "sellerCode": "AP-100004",
+          "term": 60,
+          "monthly": 49900
+        },
+        {
+          "indexNo": "150292",
+          "companyName": "스마트렌탈",
+          "sellerCode": "AP-100004",
+          "term": 48,
+          "monthly": 59900
+        },
+        {
+          "indexNo": "150292",
+          "companyName": "스마트렌탈",
+          "sellerCode": "AP-100004",
+          "term": 36,
+          "monthly": 75900
+        },
+        {
+          "indexNo": "117549",
+          "companyName": "LG헬로렌탈",
+          "sellerCode": "AP-100003",
+          "term": 60,
+          "monthly": 54900
+        },
+        {
+          "indexNo": "117549",
+          "companyName": "LG헬로렌탈",
+          "sellerCode": "AP-100003",
+          "term": 48,
+          "monthly": 65900
+        },
+        {
+          "indexNo": "117549",
+          "companyName": "LG헬로렌탈",
+          "sellerCode": "AP-100003",
+          "term": 36,
+          "monthly": 84900
+        }
+      ],
+      "reason": ""
     },
-    "clv-8932": {
-      "ok": false,
-      "reason": "fetch-failed",
-      "url": "https://m.clvrental777.com/model/compare.php?model_idx=8932&ca_id=005001"
-    },
-    "clv-20604": {
-      "ok": false,
-      "reason": "fetch-failed",
-      "url": "https://m.clvrental777.com/model/compare.php?model_idx=20604&ca_id=005001"
-    },
-    "clv-32366": {
-      "ok": false,
-      "reason": "fetch-failed",
-      "url": "https://m.clvrental777.com/model/compare.php?model_idx=32366&ca_id=005001"
-    },
-    "clv-21610": {
-      "ok": false,
-      "reason": "fetch-failed",
-      "url": "https://m.clvrental777.com/model/compare.php?model_idx=21610&ca_id=005001"
+    "clv-773": {
+      "ok": true,
+      "url": "https://m.clvrental777.com/model/compare.php?model_idx=773&ca_id=005003",
+      "offers": [
+        {
+          "indexNo": "7940",
+          "companyName": "LG헬로렌탈",
+          "sellerCode": "AP-100003",
+          "term": 60,
+          "monthly": 27900
+        },
+        {
+          "indexNo": "7940",
+          "companyName": "LG헬로렌탈",
+          "sellerCode": "AP-100003",
+          "term": 48,
+          "monthly": 31900
+        },
+        {
+          "indexNo": "8336",
+          "companyName": "스마트렌탈",
+          "sellerCode": "AP-100004",
+          "term": 48,
+          "monthly": 31900
+        }
+      ],
+      "reason": ""
     },
     "clv-801": {
-      "ok": false,
-      "reason": "fetch-failed",
-      "url": "https://m.clvrental777.com/model/compare.php?model_idx=801&ca_id=005001"
+      "ok": true,
+      "url": "https://m.clvrental777.com/model/compare.php?model_idx=801&ca_id=005001",
+      "offers": [
+        {
+          "indexNo": "1943",
+          "companyName": "LG헬로렌탈",
+          "sellerCode": "AP-100003",
+          "term": 60,
+          "monthly": 91900
+        },
+        {
+          "indexNo": "1943",
+          "companyName": "LG헬로렌탈",
+          "sellerCode": "AP-100003",
+          "term": 48,
+          "monthly": 110900
+        },
+        {
+          "indexNo": "1943",
+          "companyName": "LG헬로렌탈",
+          "sellerCode": "AP-100003",
+          "term": 39,
+          "monthly": 133900
+        }
+      ],
+      "reason": ""
+    },
+    "clv-8932": {
+      "ok": true,
+      "url": "https://m.clvrental777.com/model/compare.php?model_idx=8932&ca_id=005001",
+      "offers": [
+        {
+          "indexNo": "149330",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 60,
+          "monthly": 51700
+        },
+        {
+          "indexNo": "149330",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 48,
+          "monthly": 60800
+        },
+        {
+          "indexNo": "149330",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 36,
+          "monthly": 76500
+        },
+        {
+          "indexNo": "21714",
+          "companyName": "LG헬로렌탈",
+          "sellerCode": "AP-100003",
+          "term": 60,
+          "monthly": 51900
+        },
+        {
+          "indexNo": "21714",
+          "companyName": "LG헬로렌탈",
+          "sellerCode": "AP-100003",
+          "term": 48,
+          "monthly": 62900
+        },
+        {
+          "indexNo": "21714",
+          "companyName": "LG헬로렌탈",
+          "sellerCode": "AP-100003",
+          "term": 39,
+          "monthly": 75900
+        }
+      ],
+      "reason": ""
+    },
+    "clv-32366": {
+      "ok": true,
+      "url": "https://m.clvrental777.com/model/compare.php?model_idx=32366&ca_id=005001",
+      "offers": [
+        {
+          "indexNo": "98586",
+          "companyName": "LG헬로렌탈",
+          "sellerCode": "AP-100003",
+          "term": 60,
+          "monthly": 53900
+        },
+        {
+          "indexNo": "98586",
+          "companyName": "LG헬로렌탈",
+          "sellerCode": "AP-100003",
+          "term": 48,
+          "monthly": 65900
+        },
+        {
+          "indexNo": "98586",
+          "companyName": "LG헬로렌탈",
+          "sellerCode": "AP-100003",
+          "term": 39,
+          "monthly": 78900
+        }
+      ],
+      "reason": ""
+    },
+    "clv-21610": {
+      "ok": true,
+      "url": "https://m.clvrental777.com/model/compare.php?model_idx=21610&ca_id=005001",
+      "offers": [
+        {
+          "indexNo": "74880",
+          "companyName": "LG헬로렌탈",
+          "sellerCode": "AP-100003",
+          "term": 60,
+          "monthly": 71000
+        },
+        {
+          "indexNo": "74880",
+          "companyName": "LG헬로렌탈",
+          "sellerCode": "AP-100003",
+          "term": 48,
+          "monthly": 87000
+        },
+        {
+          "indexNo": "77656",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 60,
+          "monthly": 78200
+        },
+        {
+          "indexNo": "77656",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 48,
+          "monthly": 91900
+        },
+        {
+          "indexNo": "77656",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 36,
+          "monthly": 115600
+        }
+      ],
+      "reason": ""
     },
     "clv-15521": {
-      "ok": false,
-      "reason": "fetch-failed",
-      "url": "https://m.clvrental777.com/model/compare.php?model_idx=15521&ca_id=005001"
+      "ok": true,
+      "url": "https://m.clvrental777.com/model/compare.php?model_idx=15521&ca_id=005001",
+      "offers": [
+        {
+          "indexNo": "46635",
+          "companyName": "LG헬로렌탈",
+          "sellerCode": "AP-100003",
+          "term": 60,
+          "monthly": 87900
+        },
+        {
+          "indexNo": "46635",
+          "companyName": "LG헬로렌탈",
+          "sellerCode": "AP-100003",
+          "term": 48,
+          "monthly": 106900
+        },
+        {
+          "indexNo": "46635",
+          "companyName": "LG헬로렌탈",
+          "sellerCode": "AP-100003",
+          "term": 39,
+          "monthly": 128900
+        }
+      ],
+      "reason": ""
     },
     "clv-10410": {
-      "ok": false,
-      "reason": "fetch-failed",
-      "url": "https://m.clvrental777.com/model/compare.php?model_idx=10410&ca_id=005001"
+      "ok": true,
+      "url": "https://m.clvrental777.com/model/compare.php?model_idx=10410&ca_id=005001",
+      "offers": [
+        {
+          "indexNo": "25070",
+          "companyName": "LG헬로렌탈",
+          "sellerCode": "AP-100003",
+          "term": 60,
+          "monthly": 149900
+        },
+        {
+          "indexNo": "25070",
+          "companyName": "LG헬로렌탈",
+          "sellerCode": "AP-100003",
+          "term": 48,
+          "monthly": 181900
+        }
+      ],
+      "reason": ""
+    },
+    "clv-20604": {
+      "ok": true,
+      "url": "https://m.clvrental777.com/model/compare.php?model_idx=20604&ca_id=005001",
+      "offers": [
+        {
+          "indexNo": "70980",
+          "companyName": "LG헬로렌탈",
+          "sellerCode": "AP-100003",
+          "term": 60,
+          "monthly": 69900
+        },
+        {
+          "indexNo": "70980",
+          "companyName": "LG헬로렌탈",
+          "sellerCode": "AP-100003",
+          "term": 48,
+          "monthly": 84900
+        },
+        {
+          "indexNo": "70980",
+          "companyName": "LG헬로렌탈",
+          "sellerCode": "AP-100003",
+          "term": 39,
+          "monthly": 101900
+        }
+      ],
+      "reason": ""
     },
     "clv-4267": {
-      "ok": false,
-      "reason": "fetch-failed",
-      "url": "https://m.clvrental777.com/model/compare.php?model_idx=4267&ca_id=005001"
-    },
-    "clv-10401": {
-      "ok": false,
-      "reason": "fetch-failed",
-      "url": "https://m.clvrental777.com/model/compare.php?model_idx=10401&ca_id=005001"
+      "ok": true,
+      "url": "https://m.clvrental777.com/model/compare.php?model_idx=4267&ca_id=005001",
+      "offers": [
+        {
+          "indexNo": "31517",
+          "companyName": "BS ON",
+          "sellerCode": "AP-100009",
+          "term": 60,
+          "monthly": 156000
+        },
+        {
+          "indexNo": "31517",
+          "companyName": "BS ON",
+          "sellerCode": "AP-100009",
+          "term": 48,
+          "monthly": 169000
+        },
+        {
+          "indexNo": "31517",
+          "companyName": "BS ON",
+          "sellerCode": "AP-100009",
+          "term": 36,
+          "monthly": 198800
+        },
+        {
+          "indexNo": "61272",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 60,
+          "monthly": 156000
+        },
+        {
+          "indexNo": "61272",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 48,
+          "monthly": 186200
+        },
+        {
+          "indexNo": "61272",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 36,
+          "monthly": 237400
+        },
+        {
+          "indexNo": "61272",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 24,
+          "monthly": 341300
+        },
+        {
+          "indexNo": "61272",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 12,
+          "monthly": 655400
+        }
+      ],
+      "reason": ""
     },
     "clv-10411": {
-      "ok": false,
-      "reason": "fetch-failed",
-      "url": "https://m.clvrental777.com/model/compare.php?model_idx=10411&ca_id=005001"
-    },
-    "clv-10412": {
-      "ok": false,
-      "reason": "fetch-failed",
-      "url": "https://m.clvrental777.com/model/compare.php?model_idx=10412&ca_id=005001"
-    },
-    "clv-11552": {
-      "ok": false,
-      "reason": "fetch-failed",
-      "url": "https://m.clvrental777.com/model/compare.php?model_idx=11552&ca_id=003002"
-    },
-    "clv-11825": {
-      "ok": false,
-      "reason": "fetch-failed",
-      "url": "https://m.clvrental777.com/model/compare.php?model_idx=11825&ca_id=003002"
+      "ok": true,
+      "url": "https://m.clvrental777.com/model/compare.php?model_idx=10411&ca_id=005001",
+      "offers": [
+        {
+          "indexNo": "25069",
+          "companyName": "LG헬로렌탈",
+          "sellerCode": "AP-100003",
+          "term": 60,
+          "monthly": 180000
+        },
+        {
+          "indexNo": "25069",
+          "companyName": "LG헬로렌탈",
+          "sellerCode": "AP-100003",
+          "term": 48,
+          "monthly": 219000
+        }
+      ],
+      "reason": ""
     },
     "clv-11537": {
-      "ok": false,
-      "reason": "fetch-failed",
-      "url": "https://m.clvrental777.com/model/compare.php?model_idx=11537&ca_id=003002"
+      "ok": true,
+      "url": "https://m.clvrental777.com/model/compare.php?model_idx=11537&ca_id=003002",
+      "offers": [
+        {
+          "indexNo": "62457",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 60,
+          "monthly": 30000
+        },
+        {
+          "indexNo": "62457",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 60,
+          "monthly": 34000
+        },
+        {
+          "indexNo": "62457",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 60,
+          "monthly": 26000
+        },
+        {
+          "indexNo": "62457",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 48,
+          "monthly": 35800
+        },
+        {
+          "indexNo": "62457",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 48,
+          "monthly": 40500
+        },
+        {
+          "indexNo": "62457",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 48,
+          "monthly": 31000
+        },
+        {
+          "indexNo": "62457",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 36,
+          "monthly": 45600
+        },
+        {
+          "indexNo": "62457",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 36,
+          "monthly": 51700
+        },
+        {
+          "indexNo": "62457",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 36,
+          "monthly": 39500
+        },
+        {
+          "indexNo": "62457",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 24,
+          "monthly": 65600
+        },
+        {
+          "indexNo": "62457",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 24,
+          "monthly": 74400
+        },
+        {
+          "indexNo": "62457",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 24,
+          "monthly": 56900
+        },
+        {
+          "indexNo": "62457",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 12,
+          "monthly": 126000
+        },
+        {
+          "indexNo": "62457",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 12,
+          "monthly": 142800
+        },
+        {
+          "indexNo": "62457",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 12,
+          "monthly": 109200
+        },
+        {
+          "indexNo": "128814",
+          "companyName": "스마트렌탈",
+          "sellerCode": "AP-100004",
+          "term": 60,
+          "monthly": 40100
+        },
+        {
+          "indexNo": "128814",
+          "companyName": "스마트렌탈",
+          "sellerCode": "AP-100004",
+          "term": 60,
+          "monthly": 35800
+        },
+        {
+          "indexNo": "128814",
+          "companyName": "스마트렌탈",
+          "sellerCode": "AP-100004",
+          "term": 60,
+          "monthly": 43900
+        },
+        {
+          "indexNo": "128814",
+          "companyName": "스마트렌탈",
+          "sellerCode": "AP-100004",
+          "term": 48,
+          "monthly": 46200
+        },
+        {
+          "indexNo": "128814",
+          "companyName": "스마트렌탈",
+          "sellerCode": "AP-100004",
+          "term": 48,
+          "monthly": 41300
+        },
+        {
+          "indexNo": "128814",
+          "companyName": "스마트렌탈",
+          "sellerCode": "AP-100004",
+          "term": 48,
+          "monthly": 50600
+        },
+        {
+          "indexNo": "128814",
+          "companyName": "스마트렌탈",
+          "sellerCode": "AP-100004",
+          "term": 36,
+          "monthly": 57200
+        },
+        {
+          "indexNo": "128814",
+          "companyName": "스마트렌탈",
+          "sellerCode": "AP-100004",
+          "term": 36,
+          "monthly": 51000
+        },
+        {
+          "indexNo": "128814",
+          "companyName": "스마트렌탈",
+          "sellerCode": "AP-100004",
+          "term": 36,
+          "monthly": 62500
+        },
+        {
+          "indexNo": "72124",
+          "companyName": "현대유버스",
+          "sellerCode": "AP-100020",
+          "term": 60,
+          "monthly": 44200
+        },
+        {
+          "indexNo": "72124",
+          "companyName": "현대유버스",
+          "sellerCode": "AP-100020",
+          "term": 60,
+          "monthly": 39600
+        },
+        {
+          "indexNo": "72124",
+          "companyName": "현대유버스",
+          "sellerCode": "AP-100020",
+          "term": 60,
+          "monthly": 48100
+        },
+        {
+          "indexNo": "72124",
+          "companyName": "현대유버스",
+          "sellerCode": "AP-100020",
+          "term": 48,
+          "monthly": 52300
+        },
+        {
+          "indexNo": "72124",
+          "companyName": "현대유버스",
+          "sellerCode": "AP-100020",
+          "term": 48,
+          "monthly": 46900
+        },
+        {
+          "indexNo": "72124",
+          "companyName": "현대유버스",
+          "sellerCode": "AP-100020",
+          "term": 48,
+          "monthly": 56900
+        },
+        {
+          "indexNo": "72124",
+          "companyName": "현대유버스",
+          "sellerCode": "AP-100020",
+          "term": 36,
+          "monthly": 65800
+        },
+        {
+          "indexNo": "72124",
+          "companyName": "현대유버스",
+          "sellerCode": "AP-100020",
+          "term": 36,
+          "monthly": 59100
+        },
+        {
+          "indexNo": "72124",
+          "companyName": "현대유버스",
+          "sellerCode": "AP-100020",
+          "term": 36,
+          "monthly": 71700
+        }
+      ],
+      "reason": ""
+    },
+    "clv-10401": {
+      "ok": true,
+      "url": "https://m.clvrental777.com/model/compare.php?model_idx=10401&ca_id=005001",
+      "offers": [
+        {
+          "indexNo": "25079",
+          "companyName": "LG헬로렌탈",
+          "sellerCode": "AP-100003",
+          "term": 60,
+          "monthly": 170900
+        },
+        {
+          "indexNo": "25079",
+          "companyName": "LG헬로렌탈",
+          "sellerCode": "AP-100003",
+          "term": 48,
+          "monthly": 207900
+        },
+        {
+          "indexNo": "25079",
+          "companyName": "LG헬로렌탈",
+          "sellerCode": "AP-100003",
+          "term": 39,
+          "monthly": 250900
+        },
+        {
+          "indexNo": "61264",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 60,
+          "monthly": 172000
+        },
+        {
+          "indexNo": "61264",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 48,
+          "monthly": 205300
+        },
+        {
+          "indexNo": "61264",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 36,
+          "monthly": 261800
+        },
+        {
+          "indexNo": "61264",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 24,
+          "monthly": 376300
+        },
+        {
+          "indexNo": "61264",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 12,
+          "monthly": 722600
+        }
+      ],
+      "reason": ""
+    },
+    "clv-10412": {
+      "ok": true,
+      "url": "https://m.clvrental777.com/model/compare.php?model_idx=10412&ca_id=005001",
+      "offers": [
+        {
+          "indexNo": "25068",
+          "companyName": "LG헬로렌탈",
+          "sellerCode": "AP-100003",
+          "term": 60,
+          "monthly": 219900
+        },
+        {
+          "indexNo": "25068",
+          "companyName": "LG헬로렌탈",
+          "sellerCode": "AP-100003",
+          "term": 48,
+          "monthly": 265900
+        }
+      ],
+      "reason": ""
     },
     "clv-39174": {
-      "ok": false,
-      "reason": "fetch-failed",
-      "url": "https://m.clvrental777.com/model/compare.php?model_idx=39174&ca_id=003002"
+      "ok": true,
+      "url": "https://m.clvrental777.com/model/compare.php?model_idx=39174&ca_id=003002",
+      "offers": [
+        {
+          "indexNo": "128944",
+          "companyName": "스마트렌탈",
+          "sellerCode": "AP-100004",
+          "term": 60,
+          "monthly": 61500
+        },
+        {
+          "indexNo": "128944",
+          "companyName": "스마트렌탈",
+          "sellerCode": "AP-100004",
+          "term": 48,
+          "monthly": 72000
+        },
+        {
+          "indexNo": "128944",
+          "companyName": "스마트렌탈",
+          "sellerCode": "AP-100004",
+          "term": 36,
+          "monthly": 88500
+        },
+        {
+          "indexNo": "145551",
+          "companyName": "현대유버스",
+          "sellerCode": "AP-100020",
+          "term": 60,
+          "monthly": 62800
+        },
+        {
+          "indexNo": "145551",
+          "companyName": "현대유버스",
+          "sellerCode": "AP-100020",
+          "term": 48,
+          "monthly": 76700
+        },
+        {
+          "indexNo": "145551",
+          "companyName": "현대유버스",
+          "sellerCode": "AP-100020",
+          "term": 36,
+          "monthly": 96500
+        },
+        {
+          "indexNo": "108764",
+          "companyName": "BS ON",
+          "sellerCode": "AP-100009",
+          "term": 48,
+          "monthly": 69000
+        }
+      ],
+      "reason": ""
+    },
+    "clv-11825": {
+      "ok": true,
+      "url": "https://m.clvrental777.com/model/compare.php?model_idx=11825&ca_id=003002",
+      "offers": [
+        {
+          "indexNo": "62373",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 60,
+          "monthly": 18000
+        },
+        {
+          "indexNo": "62373",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 60,
+          "monthly": 20000
+        },
+        {
+          "indexNo": "62373",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 60,
+          "monthly": 16000
+        },
+        {
+          "indexNo": "62373",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 48,
+          "monthly": 21400
+        },
+        {
+          "indexNo": "62373",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 48,
+          "monthly": 23800
+        },
+        {
+          "indexNo": "62373",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 48,
+          "monthly": 19000
+        },
+        {
+          "indexNo": "62373",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 36,
+          "monthly": 27400
+        },
+        {
+          "indexNo": "62373",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 36,
+          "monthly": 30400
+        },
+        {
+          "indexNo": "62373",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 36,
+          "monthly": 24300
+        },
+        {
+          "indexNo": "62373",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 24,
+          "monthly": 39300
+        },
+        {
+          "indexNo": "62373",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 24,
+          "monthly": 43700
+        },
+        {
+          "indexNo": "62373",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 24,
+          "monthly": 35000
+        },
+        {
+          "indexNo": "62373",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 12,
+          "monthly": 75600
+        },
+        {
+          "indexNo": "62373",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 12,
+          "monthly": 84000
+        },
+        {
+          "indexNo": "62373",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 12,
+          "monthly": 67200
+        },
+        {
+          "indexNo": "128769",
+          "companyName": "스마트렌탈",
+          "sellerCode": "AP-100004",
+          "term": 60,
+          "monthly": 23200
+        },
+        {
+          "indexNo": "128769",
+          "companyName": "스마트렌탈",
+          "sellerCode": "AP-100004",
+          "term": 60,
+          "monthly": 20900
+        },
+        {
+          "indexNo": "128769",
+          "companyName": "스마트렌탈",
+          "sellerCode": "AP-100004",
+          "term": 60,
+          "monthly": 25100
+        },
+        {
+          "indexNo": "128769",
+          "companyName": "스마트렌탈",
+          "sellerCode": "AP-100004",
+          "term": 48,
+          "monthly": 26800
+        },
+        {
+          "indexNo": "128769",
+          "companyName": "스마트렌탈",
+          "sellerCode": "AP-100004",
+          "term": 48,
+          "monthly": 24100
+        },
+        {
+          "indexNo": "128769",
+          "companyName": "스마트렌탈",
+          "sellerCode": "AP-100004",
+          "term": 48,
+          "monthly": 28900
+        },
+        {
+          "indexNo": "128769",
+          "companyName": "스마트렌탈",
+          "sellerCode": "AP-100004",
+          "term": 36,
+          "monthly": 33100
+        },
+        {
+          "indexNo": "128769",
+          "companyName": "스마트렌탈",
+          "sellerCode": "AP-100004",
+          "term": 36,
+          "monthly": 29700
+        },
+        {
+          "indexNo": "128769",
+          "companyName": "스마트렌탈",
+          "sellerCode": "AP-100004",
+          "term": 36,
+          "monthly": 35700
+        },
+        {
+          "indexNo": "72019",
+          "companyName": "현대유버스",
+          "sellerCode": "AP-100020",
+          "term": 60,
+          "monthly": 26600
+        },
+        {
+          "indexNo": "72019",
+          "companyName": "현대유버스",
+          "sellerCode": "AP-100020",
+          "term": 60,
+          "monthly": 24100
+        },
+        {
+          "indexNo": "72019",
+          "companyName": "현대유버스",
+          "sellerCode": "AP-100020",
+          "term": 60,
+          "monthly": 28500
+        },
+        {
+          "indexNo": "72019",
+          "companyName": "현대유버스",
+          "sellerCode": "AP-100020",
+          "term": 48,
+          "monthly": 31400
+        },
+        {
+          "indexNo": "72019",
+          "companyName": "현대유버스",
+          "sellerCode": "AP-100020",
+          "term": 48,
+          "monthly": 28500
+        },
+        {
+          "indexNo": "72019",
+          "companyName": "현대유버스",
+          "sellerCode": "AP-100020",
+          "term": 48,
+          "monthly": 33700
+        },
+        {
+          "indexNo": "72019",
+          "companyName": "현대유버스",
+          "sellerCode": "AP-100020",
+          "term": 36,
+          "monthly": 39600
+        },
+        {
+          "indexNo": "72019",
+          "companyName": "현대유버스",
+          "sellerCode": "AP-100020",
+          "term": 36,
+          "monthly": 35900
+        },
+        {
+          "indexNo": "72019",
+          "companyName": "현대유버스",
+          "sellerCode": "AP-100020",
+          "term": 36,
+          "monthly": 42500
+        }
+      ],
+      "reason": ""
     },
     "clv-39184": {
-      "ok": false,
-      "reason": "fetch-failed",
-      "url": "https://m.clvrental777.com/model/compare.php?model_idx=39184&ca_id=003002"
+      "ok": true,
+      "url": "https://m.clvrental777.com/model/compare.php?model_idx=39184&ca_id=003002",
+      "offers": [
+        {
+          "indexNo": "128939",
+          "companyName": "스마트렌탈",
+          "sellerCode": "AP-100004",
+          "term": 60,
+          "monthly": 55000
+        },
+        {
+          "indexNo": "128939",
+          "companyName": "스마트렌탈",
+          "sellerCode": "AP-100004",
+          "term": 48,
+          "monthly": 64500
+        },
+        {
+          "indexNo": "128939",
+          "companyName": "스마트렌탈",
+          "sellerCode": "AP-100004",
+          "term": 36,
+          "monthly": 79500
+        },
+        {
+          "indexNo": "145546",
+          "companyName": "현대유버스",
+          "sellerCode": "AP-100020",
+          "term": 60,
+          "monthly": 56200
+        },
+        {
+          "indexNo": "145546",
+          "companyName": "현대유버스",
+          "sellerCode": "AP-100020",
+          "term": 48,
+          "monthly": 68700
+        },
+        {
+          "indexNo": "145546",
+          "companyName": "현대유버스",
+          "sellerCode": "AP-100020",
+          "term": 36,
+          "monthly": 86400
+        },
+        {
+          "indexNo": "108754",
+          "companyName": "BS ON",
+          "sellerCode": "AP-100009",
+          "term": 48,
+          "monthly": 62000
+        }
+      ],
+      "reason": ""
+    },
+    "clv-11552": {
+      "ok": true,
+      "url": "https://m.clvrental777.com/model/compare.php?model_idx=11552&ca_id=003002",
+      "offers": [
+        {
+          "indexNo": "62397",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 60,
+          "monthly": 30000
+        },
+        {
+          "indexNo": "62397",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 60,
+          "monthly": 32000
+        },
+        {
+          "indexNo": "62397",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 60,
+          "monthly": 28000
+        },
+        {
+          "indexNo": "62397",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 48,
+          "monthly": 35800
+        },
+        {
+          "indexNo": "62397",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 48,
+          "monthly": 38100
+        },
+        {
+          "indexNo": "62397",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 48,
+          "monthly": 33400
+        },
+        {
+          "indexNo": "62397",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 36,
+          "monthly": 45600
+        },
+        {
+          "indexNo": "62397",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 36,
+          "monthly": 48700
+        },
+        {
+          "indexNo": "62397",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 36,
+          "monthly": 42600
+        },
+        {
+          "indexNo": "62397",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 24,
+          "monthly": 65600
+        },
+        {
+          "indexNo": "62397",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 24,
+          "monthly": 70000
+        },
+        {
+          "indexNo": "62397",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 24,
+          "monthly": 61200
+        },
+        {
+          "indexNo": "62397",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 12,
+          "monthly": 126000
+        },
+        {
+          "indexNo": "62397",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 12,
+          "monthly": 134400
+        },
+        {
+          "indexNo": "62397",
+          "companyName": "이니렌탈",
+          "sellerCode": "AP-100036",
+          "term": 12,
+          "monthly": 117600
+        },
+        {
+          "indexNo": "128779",
+          "companyName": "스마트렌탈",
+          "sellerCode": "AP-100004",
+          "term": 60,
+          "monthly": 35300
+        },
+        {
+          "indexNo": "128779",
+          "companyName": "스마트렌탈",
+          "sellerCode": "AP-100004",
+          "term": 60,
+          "monthly": 36200
+        },
+        {
+          "indexNo": "128779",
+          "companyName": "스마트렌탈",
+          "sellerCode": "AP-100004",
+          "term": 60,
+          "monthly": 37200
+        },
+        {
+          "indexNo": "128779",
+          "companyName": "스마트렌탈",
+          "sellerCode": "AP-100004",
+          "term": 48,
+          "monthly": 40700
+        },
+        {
+          "indexNo": "128779",
+          "companyName": "스마트렌탈",
+          "sellerCode": "AP-100004",
+          "term": 48,
+          "monthly": 41700
+        },
+        {
+          "indexNo": "128779",
+          "companyName": "스마트렌탈",
+          "sellerCode": "AP-100004",
+          "term": 48,
+          "monthly": 42800
+        },
+        {
+          "indexNo": "128779",
+          "companyName": "스마트렌탈",
+          "sellerCode": "AP-100004",
+          "term": 36,
+          "monthly": 50300
+        },
+        {
+          "indexNo": "128779",
+          "companyName": "스마트렌탈",
+          "sellerCode": "AP-100004",
+          "term": 36,
+          "monthly": 51500
+        },
+        {
+          "indexNo": "128779",
+          "companyName": "스마트렌탈",
+          "sellerCode": "AP-100004",
+          "term": 36,
+          "monthly": 52900
+        },
+        {
+          "indexNo": "72049",
+          "companyName": "현대유버스",
+          "sellerCode": "AP-100020",
+          "term": 60,
+          "monthly": 39800
+        },
+        {
+          "indexNo": "72049",
+          "companyName": "현대유버스",
+          "sellerCode": "AP-100020",
+          "term": 60,
+          "monthly": 40900
+        },
+        {
+          "indexNo": "72049",
+          "companyName": "현대유버스",
+          "sellerCode": "AP-100020",
+          "term": 60,
+          "monthly": 42300
+        },
+        {
+          "indexNo": "72049",
+          "companyName": "현대유버스",
+          "sellerCode": "AP-100020",
+          "term": 48,
+          "monthly": 47100
+        },
+        {
+          "indexNo": "72049",
+          "companyName": "현대유버스",
+          "sellerCode": "AP-100020",
+          "term": 48,
+          "monthly": 48400
+        },
+        {
+          "indexNo": "72049",
+          "companyName": "현대유버스",
+          "sellerCode": "AP-100020",
+          "term": 48,
+          "monthly": 50000
+        },
+        {
+          "indexNo": "72049",
+          "companyName": "현대유버스",
+          "sellerCode": "AP-100020",
+          "term": 36,
+          "monthly": 59400
+        },
+        {
+          "indexNo": "72049",
+          "companyName": "현대유버스",
+          "sellerCode": "AP-100020",
+          "term": 36,
+          "monthly": 61000
+        },
+        {
+          "indexNo": "72049",
+          "companyName": "현대유버스",
+          "sellerCode": "AP-100020",
+          "term": 36,
+          "monthly": 63000
+        }
+      ],
+      "reason": ""
     },
     "clv-39214": {
       "ok": false,
       "reason": "fetch-failed",
       "url": "https://m.clvrental777.com/model/compare.php?model_idx=39214&ca_id=003002"
+    },
+    "clv-5901": {
+      "ok": false,
+      "reason": "fetch-failed",
+      "url": "https://m.clvrental777.com/model/compare.php?model_idx=5901&ca_id=003002"
     },
     "clv-11858": {
       "ok": false,
@@ -10163,11 +12806,6 @@
       "ok": false,
       "reason": "fetch-failed",
       "url": "https://m.clvrental777.com/model/compare.php?model_idx=11857&ca_id=003002"
-    },
-    "clv-5901": {
-      "ok": false,
-      "reason": "fetch-failed",
-      "url": "https://m.clvrental777.com/model/compare.php?model_idx=5901&ca_id=003002"
     },
     "clv-12827": {
       "ok": false,
