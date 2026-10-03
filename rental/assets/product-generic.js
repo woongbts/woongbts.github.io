@@ -4,6 +4,83 @@
   const id = new URLSearchParams(location.search).get('id');
   const won = n => Number(n).toLocaleString('ko-KR') + '원';
   const IMAGE_REV = '20261003-7f78334';
+  const RENTAL_ENTRY_KEY = 'wb_rental_entry_v1';
+  const rentalAnalyticsPath = () => '/rental/product/' + encodeURIComponent(String(product?.id || id || 'unknown'));
+  function trackRental(type, detail = {}) {
+    if (typeof window.woongbiTrackConversion !== 'function') return;
+    window.woongbiTrackConversion(type, {
+      ...detail,
+      product_id: product?.id || id || '',
+      analyticsPath: rentalAnalyticsPath()
+    });
+  }
+  function rentalEntryLabel() {
+    let entry = 'direct';
+    try { entry = sessionStorage.getItem(RENTAL_ENTRY_KEY) || 'direct'; } catch (_) {}
+    return ({recommend:'추천상품',catalog:'전체상품',direct:'직접 상세페이지'})[entry] || entry;
+  }
+  function copyTextFallback(text) {
+    try {
+      const area = document.createElement('textarea');
+      area.value = text;
+      area.setAttribute('readonly','');
+      area.style.position = 'fixed';
+      area.style.opacity = '0';
+      document.body.appendChild(area);
+      area.select();
+      const ok = document.execCommand('copy');
+      area.remove();
+      return ok;
+    } catch (_) { return false; }
+  }
+  function showConsultToast(message) {
+    let toast = document.getElementById('rental-consult-toast');
+    if (!toast) {
+      toast = document.createElement('div');
+      toast.id = 'rental-consult-toast';
+      toast.className = 'rental-consult-toast';
+      toast.setAttribute('role','status');
+      toast.setAttribute('aria-live','polite');
+      document.body.appendChild(toast);
+    }
+    toast.textContent = message;
+    toast.classList.add('show');
+    clearTimeout(showConsultToast.timer);
+    showConsultToast.timer = setTimeout(() => toast.classList.remove('show'), 2600);
+  }
+  function consultMessage() {
+    const v = currentVariant();
+    if (!product || !v) return '';
+    const link = new URL(location.href);
+    link.hash = '';
+    return [
+      '[웅비렌탈 상담]',
+      '상품: ' + product.name,
+      product.model ? '모델: ' + product.model : '',
+      '렌탈사/옵션: ' + optionLabel(v.managementLabel || v.management),
+      '계약기간: ' + termLabel(v),
+      '월 렌탈료: ' + (v.monthly == null ? '상담 확인' : won(v.monthly)),
+      '고객사은품: ' + (v.gift == null ? '상담 확인' : won(v.gift)),
+      '확인 경로: ' + rentalEntryLabel(),
+      '상품 링크: ' + link.toString(),
+      '※ 최종 접수 전 최신 정책을 다시 확인해 주세요.'
+    ].filter(Boolean).join('\n');
+  }
+  function copyConsultMessage() {
+    const message = consultMessage();
+    if (!message) return;
+    if (navigator.clipboard?.writeText) {
+      navigator.clipboard.writeText(message)
+        .then(() => showConsultToast('선택조건이 복사됐어요. 카톡창에 붙여넣기만 하세요.'))
+        .catch(() => {
+          const ok = copyTextFallback(message);
+          showConsultToast(ok ? '선택조건이 복사됐어요. 카톡창에 붙여넣기만 하세요.' : '카톡이 열리면 상품명과 선택조건을 보내주세요.');
+        });
+    } else {
+      const ok = copyTextFallback(message);
+      showConsultToast(ok ? '선택조건이 복사됐어요. 카톡창에 붙여넣기만 하세요.' : '카톡이 열리면 상품명과 선택조건을 보내주세요.');
+    }
+  }
   const imageCandidatesFor = product => {
     const raw = [product.image, product.imageSourceOriginal, ...((product.detailImages || []).slice(0, 3))].filter(Boolean);
     const candidates = [];
@@ -93,6 +170,7 @@
           state.term = options.length ? String(options[0].term) : '';
         }
         render();
+        trackRental('rental_option_select', {management:state.management});
       });
     });
   }
@@ -117,6 +195,7 @@
       btn.addEventListener('click', () => {
         state.term = btn.dataset.value;
         render();
+        trackRental('rental_term_select', {term:String(state.term)});
       });
     });
   }
@@ -233,6 +312,30 @@
 
     renderManagement();
     render();
+
+    trackRental('rental_product_view', {entry:rentalEntryLabel()});
+
+    document.querySelectorAll('[data-rental-consult]').forEach(link => {
+      link.addEventListener('click', () => {
+        const v = currentVariant();
+        copyConsultMessage();
+        trackRental('rental_kakao_click', {
+          entry:rentalEntryLabel(),
+          management:v?.management || '',
+          term:String(v?.term ?? '')
+        });
+      });
+    });
+    document.querySelectorAll('[data-rental-phone]').forEach(link => {
+      link.addEventListener('click', () => {
+        const v = currentVariant();
+        trackRental('rental_phone_click', {
+          entry:rentalEntryLabel(),
+          management:v?.management || '',
+          term:String(v?.term ?? '')
+        });
+      });
+    });
   }
 
   Promise.all([
