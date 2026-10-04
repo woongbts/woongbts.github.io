@@ -84,7 +84,10 @@ function assert(condition, message) {
   const aiEvents = await page.evaluate(() => JSON.parse(localStorage.getItem('wb_conversion_events_v1') || '[]').map(x => x.type));
   assert(aiEvents.includes('rental_ai_open') && aiEvents.includes('rental_ai_recommend') && aiEvents.includes('rental_ai_compare') && aiEvents.includes('rental_ai_kakao'), 'AI 전환 이벤트 기록이 누락되었습니다.');
   await page.locator('#ai-recommend-close').click();
-  if (await page.locator('#clear-compare').count()) await page.locator('#clear-compare').click();
+  await page.evaluate(() => {
+    localStorage.removeItem('wb_rental_compare_v1');
+    document.getElementById('compare-bar')?.remove();
+  });
 
   await page.locator('[data-recommend-sort="monthly"]').click();
   assert(await page.locator('[data-recommend-sort="monthly"]').getAttribute('aria-pressed') === 'true', '월요금 정렬 버튼이 동작하지 않습니다.');
