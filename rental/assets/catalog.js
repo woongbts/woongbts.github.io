@@ -61,6 +61,7 @@
     if (value.startsWith('assets/product-images/')) return '/rental/' + value + '?v=' + IMAGE_REV;
     return value;
   };
+  const productHref = product => product?.id ? 'product/' + encodeURIComponent(String(product.id)) + '/' : (product?.page || '#');
   const imageCandidatesFor = product => {
     const raw = [product.image, product.imageSourceOriginal, ...((product.detailImages || []).slice(0, 3))].filter(Boolean);
     const candidates = [];
@@ -190,7 +191,7 @@
 
     return `
       <article class="catalog-card">
-        <a class="catalog-visual" data-rental-product-id="${product.id}" data-rental-entry="catalog" href="${product.page || '#'}" aria-label="${product.name} 상세보기">
+        <a class="catalog-visual" data-rental-product-id="${product.id}" data-rental-entry="catalog" href="${productHref(product)}" aria-label="${product.name} 상세보기">
           <span class="brand-label">${brandLabel(product.brand)}</span>
           ${visual(product)}
         </a>
@@ -208,7 +209,7 @@
           <p class="catalog-meta">${managements || '상세 조건 확인'}</p>
           <button class="compare-toggle" type="button" data-compare-product="${product.id}">비교담기</button>
           <div class="product-actions">
-            <a class="btn primary" data-rental-product-id="${product.id}" data-rental-entry="catalog" href="${product.page || '#'}">조건별 금액 보기</a>
+            <a class="btn primary" data-rental-product-id="${product.id}" data-rental-entry="catalog" href="${productHref(product)}">조건별 금액 보기</a>
             <a class="btn ghost" href="http://pf.kakao.com/_nWwNT/chat" target="_blank" rel="noopener noreferrer">바로 상담</a>
           </div>
         </div>
@@ -273,7 +274,7 @@
     const image = imageCandidatesFor(product)[0] || '';
     return `
       <article class="recommend-card">
-        <a class="recommend-image" data-rental-product-id="${product.id}" data-rental-entry="recommend" href="${product.page || '#'}">
+        <a class="recommend-image" data-rental-product-id="${product.id}" data-rental-entry="recommend" href="${productHref(product)}">
           ${image ? '<img src="' + image + '" alt="' + product.name + '" loading="lazy">' : '<span class="recommend-fallback">W</span>'}
         </a>
         <div class="recommend-body">
@@ -286,7 +287,7 @@
             <span>월 ${minMonthly == null ? '상담 확인' : won(minMonthly) + '부터'}</span>
             <strong>${maxGift == null ? '고객사은품 상담 확인' : '고객사은품 최대 ' + won(maxGift)}</strong>
           </div>
-          <div class="recommend-actions"><a class="recommend-link" data-rental-product-id="${product.id}" data-rental-entry="recommend" href="${product.page || '#'}">조건 보기 →</a><button class="compare-toggle small" type="button" data-compare-product="${product.id}">비교담기</button></div>
+          <div class="recommend-actions"><a class="recommend-link" data-rental-product-id="${product.id}" data-rental-entry="recommend" href="${productHref(product)}">조건 보기 →</a><button class="compare-toggle small" type="button" data-compare-product="${product.id}">비교담기</button></div>
         </div>
       </article>
     `;
@@ -389,7 +390,7 @@
     const m = recommendationMetrics(product) || {};
     return {
       id:product.id,name:product.name,model:product.model||'',brand:brandLabel(product.brand),
-      category:product.category||'',page:product.page||('#'),image:imageCandidatesFor(product)[0]||'',
+      category:product.category||'',page:productHref(product),image:imageCandidatesFor(product)[0]||'',
       minMonthly:m.minMonthly??null,maxGift:m.maxGift??null,
       terms:[...new Set((product.options||[]).map(o=>String(o.term||'')).filter(Boolean))],
       highlights:(product.highlights||[]).slice(0,3)
@@ -433,7 +434,7 @@
     };
     const head=rows.map(p=>'<th>'+p.name+'</th>').join('');
     const tr=(label,key)=>'<tr><th>'+label+'</th>'+rows.map(p=>'<td>'+cell(p,key)+'</td>').join('')+'</tr>';
-    modal.innerHTML='<div class="compare-backdrop" data-close-compare></div><section class="compare-panel" role="dialog" aria-modal="true" aria-label="렌탈상품 비교"><button class="compare-close" data-close-compare type="button">×</button><p class="eyebrow dark">상품 비교</p><h2>최대 3개까지 한눈에 비교하세요.</h2><div class="compare-table-wrap"><table><thead><tr><th>항목</th>'+head+'</tr></thead><tbody>'+tr('브랜드','brand')+tr('월 렌탈료','monthly')+tr('고객사은품','gift')+tr('계약기간','term')+tr('주요 특징','feature')+'</tbody></table></div><div class="compare-links">'+rows.map(p=>'<a class="btn primary" href="'+(p.page||'#')+'">'+p.name+' 조건 보기</a>').join('')+'</div></section>';
+    modal.innerHTML='<div class="compare-backdrop" data-close-compare></div><section class="compare-panel" role="dialog" aria-modal="true" aria-label="렌탈상품 비교"><button class="compare-close" data-close-compare type="button">×</button><p class="eyebrow dark">상품 비교</p><h2>최대 3개까지 한눈에 비교하세요.</h2><div class="compare-table-wrap"><table><thead><tr><th>항목</th>'+head+'</tr></thead><tbody>'+tr('브랜드','brand')+tr('월 렌탈료','monthly')+tr('고객사은품','gift')+tr('계약기간','term')+tr('주요 특징','feature')+'</tbody></table></div><div class="compare-links">'+rows.map(p=>'<a class="btn primary" href="'+productHref(p)+'">'+p.name+' 조건 보기</a>').join('')+'</div></section>';
     modal.classList.add('open');
   }
   function renderRecent(){
@@ -441,7 +442,7 @@
     let list=[];try{list=JSON.parse(localStorage.getItem(RECENT_KEY)||'[]')}catch(_){}
     list=(Array.isArray(list)?list:[]).slice(0,5);
     recentSection.hidden=!list.length;
-    recentGrid.innerHTML=list.map(p=>'<article class="recent-card"><a href="'+(p.page||'#')+'">'+(p.image?'<img src="'+p.image+'" alt="" loading="lazy">':'<span class="recent-fallback">W</span>')+'<div><small>'+((p.brand||'')+(p.model?' · '+p.model:'')).replace(/</g,'&lt;')+'</small><strong>'+String(p.name||'상품').replace(/</g,'&lt;')+'</strong><span>'+(p.minMonthly!=null?'월 '+won(p.minMonthly)+'부터':'월요금 상담 확인')+' · '+(p.maxGift!=null?'사은품 최대 '+won(p.maxGift):'사은품 상담 확인')+'</span></div></a></article>').join('');
+    recentGrid.innerHTML=list.map(p=>'<article class="recent-card"><a href="'+(p.id?('product/'+encodeURIComponent(String(p.id))+'/'):(p.page||'#'))+'">'+(p.image?'<img src="'+p.image+'" alt="" loading="lazy">':'<span class="recent-fallback">W</span>')+'<div><small>'+((p.brand||'')+(p.model?' · '+p.model:'')).replace(/</g,'&lt;')+'</small><strong>'+String(p.name||'상품').replace(/</g,'&lt;')+'</strong><span>'+(p.minMonthly!=null?'월 '+won(p.minMonthly)+'부터':'월요금 상담 확인')+' · '+(p.maxGift!=null?'사은품 최대 '+won(p.maxGift):'사은품 상담 확인')+'</span></div></a></article>').join('');
   }
 
   function openCatalog(scrollIntoView = false) {
