@@ -929,7 +929,7 @@
     let rows = [];
     try { rows = JSON.parse(localStorage.getItem('wb_conversion_events_v1') || '[]'); } catch (_) {}
     const today = new Date().toISOString().slice(0,10);
-    const aiRows = rows.filter(row => String(row?.type || '').startsWith('rental_ai_'));
+    const aiRows = rows.filter(row => /^(rental_ai_|rental_quote_)/.test(String(row?.type || '')));
     const todays = aiRows.filter(row => String(row?.at || '').slice(0,10) === today);
     const countBy = key => todays.reduce((acc,row) => {
       const value = String(row?.detail?.[key] || 'unknown');
