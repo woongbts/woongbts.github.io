@@ -611,3 +611,6 @@
   .rental-trust-box{padding:20px}.rental-trust-steps{grid-template-columns:1fr}.rental-trust-steps article{display:grid;grid-template-columns:auto 1fr;column-gap:10px;align-items:center}.rental-trust-steps strong{margin-top:0}.rental-trust-steps small{grid-column:2}
   .product-trust-mini{display:grid;grid-template-columns:1fr}.product-trust-mini b{text-align:center}
 }
+
+/* Rental form abuse guard · 2026-10-04 */
+.rental-honeypot{position:absolute!important;left:-10000px!important;top:auto!important;width:1px!important;height:1px!important;overflow:hidden!important;opacity:0!important;pointer-events:none!important}
