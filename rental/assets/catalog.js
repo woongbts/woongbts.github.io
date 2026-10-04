@@ -640,12 +640,12 @@
 
   window.woongbiRentalCompare = {
     async toggle(id) {
-      await loadFullCatalog();
       toggleCompare(String(id || ''));
       return loadCompareIds();
     },
     async open() {
       await loadFullCatalog();
+      updateCompareUi();
       openCompareModal();
       return loadCompareIds();
     },
