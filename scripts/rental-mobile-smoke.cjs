@@ -67,6 +67,7 @@ function assert(condition, message) {
   assert(await page.locator('#trust').count() === 1, '웅비렌탈 안심 상담 섹션이 없습니다.');
   const guideHref = await page.locator('#rental-guides a[href="water-purifier/"]').getAttribute('href');
   assert(guideHref === 'water-purifier/', '정수기 SEO 가이드 링크가 올바르지 않습니다.');
+  assert(await page.locator('.rental-card-guide-box a[href="cards/"]').count() === 1, '메인 제휴카드 비교 링크가 없습니다.');
 
 
   // AI 추천: 필수조건, 정책 기준, 비교담기, 카카오 상담, 신청 링크를 모바일에서 검증합니다.
@@ -132,6 +133,12 @@ function assert(condition, message) {
   const categoryAiHref = await page.locator('.category-hero-actions .primary').getAttribute('href');
   assert(categoryAiHref && categoryAiHref.includes('ai=1') && categoryAiHref.includes('cat='), '카테고리 페이지 AI 추천 연결이 없습니다.');
 
+  await page.goto('http://127.0.0.1:4173/rental/cards/', {waitUntil:'domcontentloaded'});
+  await page.waitForSelector('.affiliate-card');
+  assert(await page.locator('#card-provider-tabs button').count() >= 8, '제휴카드 렌탈사 탭이 충분히 표시되지 않습니다.');
+  const cardPageText = await page.locator('#affiliate-cards').textContent();
+  assert(cardPageText.includes('코웨이') && cardPageText.includes('전월') && cardPageText.includes('할인'), '제휴카드 비교 정보가 표시되지 않습니다.');
+
   await page.goto('http://127.0.0.1:4173/rental/', {waitUntil:'domcontentloaded'});
   await page.waitForSelector('.recommend-card', {timeout:15000});
   await page.locator('[data-recommend-sort="monthly"]').click();
@@ -183,6 +190,11 @@ function assert(condition, message) {
   const freshnessText = await page.locator('#product-freshness').textContent();
   assert(/최근 정책 확인 \d{4}\.\d{2}\.\d{2}/.test(freshnessText || ''), '상품 정책 확인일 표시가 없습니다.');
   assert(await page.locator('.product-trust-section').count() === 1, '상품 상세 안심 상담 영역이 없습니다.');
+  const generatedDescription = await page.locator('#generic-description').textContent();
+  assert(generatedDescription && generatedDescription.includes('비교'), '웅비렌탈 자체 상품 설명이 생성되지 않았습니다.');
+  assert(await page.locator('#generic-recommend-audience span').count() >= 1, '이런 분께 추천 영역이 생성되지 않았습니다.');
+  const cardPreviewCount = await page.locator('#affiliate-card-preview article').count();
+  assert(cardPreviewCount >= 1 || await page.locator('#affiliate-card-section[hidden]').count() === 1, '상품별 제휴카드 미리보기 상태가 올바르지 않습니다.');
   const jsonLd = await page.locator('#product-jsonld').textContent();
   assert(jsonLd && jsonLd.includes('"Product"'), '상품 구조화 데이터가 생성되지 않았습니다.');
 
@@ -215,6 +227,8 @@ function assert(condition, message) {
   assert(successTitle.includes('신청이 접수되었습니다') && successMessage.includes('확인 후 연락드리겠습니다'), '신청 완료 팝업 문구가 올바르지 않습니다.');
   const applySuccess = await page.evaluate(() => JSON.parse(localStorage.getItem('wb_conversion_events_v1') || '[]').some(x => x.type === 'rental_apply_success'));
   assert(applySuccess, '렌탈 신청 성공 전환 이벤트가 기록되지 않았습니다.');
+  const crmSaved = await page.evaluate(() => JSON.parse(localStorage.getItem('wb_rental_crm_v1') || '[]')[0] || null);
+  assert(crmSaved && crmSaved.id && crmSaved.status === '접수' && !('phone' in crmSaved) && !('name' in crmSaved), '개인정보 없는 CRM 신청상태 저장이 동작하지 않습니다.');
   await page.locator('#rental-apply-success-confirm').click();
   assert(await page.locator('#rental-apply-success-dialog[open]').count() === 0, '신청 완료 팝업이 확인 버튼으로 닫히지 않습니다.');
 
@@ -262,6 +276,11 @@ function assert(condition, message) {
   assert(await page.locator('meta[name="robots"]').getAttribute('content') === 'noindex,nofollow,noarchive', '운영자 대시보드가 검색 차단되지 않았습니다.');
   await page.waitForSelector('#ops-kpis .ops-kpi');
   assert(await page.locator('#ops-funnel .ops-stage').count() === 6, '운영자 대시보드 전환 퍼널이 표시되지 않습니다.');
+  assert(await page.locator('#ops-crm .ops-crm-row').count() >= 1, '운영자 대시보드 CRM 진행상태가 표시되지 않습니다.');
+  await page.locator('#ops-crm select').first().selectOption('상담중');
+  const crmStatus = await page.evaluate(() => JSON.parse(localStorage.getItem('wb_rental_crm_v1') || '[]')[0]?.status || '');
+  assert(crmStatus === '상담중', 'CRM 진행상태 변경이 저장되지 않습니다.');
+  assert(await page.locator('#ops-verification .ops-list-row').count() >= 3, '상품 데이터 확인상태가 표시되지 않습니다.');
 
   // 작은 모바일 화면에서도 AI 모달이 가로로 넘치지 않는지 추가 점검합니다.
   const compactContext = await browser.newContext({viewport:{width:375,height:667},isMobile:true,hasTouch:true});
