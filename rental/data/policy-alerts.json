@@ -1,0 +1,10 @@
+{
+  "schema": 1,
+  "generatedAt": "2026-10-04T08:20:50.347606+00:00",
+  "sourcePolicyDate": "2026-10-03",
+  "previousFingerprint": "",
+  "currentFingerprint": "d4466a0a85606aa78ddab76472da10f6913808101e5ecdeebd72aca1041fe522",
+  "alertCount": 0,
+  "alerts": [],
+  "status": "baseline"
+}
