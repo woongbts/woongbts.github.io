@@ -5,6 +5,10 @@
   const escapeHtml = v => String(v ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
   const events = () => read('wb_conversion_events_v1',[]);
   const feedback = () => read('wb_rental_ai_feedback_v1',[]);
+  const CRM_KEY='wb_rental_crm_v1';
+  const crmRows=()=>read(CRM_KEY,[]);
+  const crmStatuses=['접수','상담중','계약완료','설치완료','사은품지급완료','취소'];
+  function saveCrm(rows){try{localStorage.setItem(CRM_KEY,JSON.stringify(rows.slice(0,100)))}catch(_){}}
   const sourceOf = row => row?.source || row?.detail?.source || row?.acquisition?.source || row?.attribution?.utm_source || row?.attribution?.src || 'direct';
   const count = (rows,type) => rows.filter(x=>x.type===type).length;
   const pct = (a,b) => b ? Math.round(a/b*100) : 0;
@@ -86,6 +90,23 @@
     $('#ops-products').innerHTML=lines.length?lines.map(([k,v])=>'<div class="ops-list-row"><span title="'+escapeHtml(k)+'">'+escapeHtml(k)+'</span><b>'+v+'</b></div>').join(''):'<div class="ops-empty">아직 상품 이벤트가 없습니다.</div>';
   }
 
+  function renderCrm(){
+    const rows=crmRows();
+    if(!rows.length){$('#ops-crm').innerHTML='<div class="ops-empty">이 브라우저에서 접수된 렌탈 신청이 아직 없습니다.</div>';return}
+    $('#ops-crm').innerHTML=rows.map(row=>{
+      const options=crmStatuses.map(status=>'<option value="'+status+'" '+(row.status===status?'selected':'')+'>'+status+'</option>').join('');
+      return '<article class="ops-crm-row"><div><small>'+escapeHtml(String(row.created_at||'').slice(0,10))+' · '+escapeHtml(row.source||'direct')+'</small><strong>'+escapeHtml(row.product_name||row.product_id||'상품')+'</strong><span>신청번호 '+escapeHtml(row.id||'')+' · '+escapeHtml(row.management||'')+(row.term?' · '+escapeHtml(row.term)+'개월':'')+'</span></div><select data-crm-id="'+escapeHtml(row.id||'')+'">'+options+'</select></article>';
+    }).join('');
+  }
+  function updateCrmStatus(id,status){
+    const rows=crmRows().map(row=>String(row.id)===String(id)?{...row,status,updated_at:new Date().toISOString()}:row);
+    saveCrm(rows);renderCrm();
+  }
+  function clearCompletedCrm(){
+    const rows=crmRows().filter(row=>!['사은품지급완료','취소'].includes(row.status));
+    saveCrm(rows);renderCrm();
+  }
+
   function renderPolicy(report){
     $('#ops-policy-date').textContent=report.sourcePolicyDate?('기준 '+report.sourcePolicyDate):'변경 리포트';
     const alerts=Array.isArray(report.alerts)?report.alerts:[];
@@ -130,12 +151,14 @@
   async function render(){
     const rows=events().slice(-500);
     const [report,gift]=await Promise.all([policyData(),giftData()]);
-    renderKpis(rows);renderFunnel(rows);renderSources(rows);renderAi(rows);renderProducts(rows);renderPolicy(report);renderSystem(rows,report,gift);
+    renderKpis(rows);renderFunnel(rows);renderSources(rows);renderAi(rows);renderProducts(rows);renderCrm();renderPolicy(report);renderSystem(rows,report,gift);
     const dates=rows.map(x=>String(x.at||'').slice(0,10)).filter(Boolean);
     $('#ops-period').textContent=dates.length?(dates[0]+' ~ '+dates[dates.length-1]):'이 브라우저';
   }
 
   $('#ops-refresh')?.addEventListener('click',render);
   $('#ops-export')?.addEventListener('click',exportCsv);
+  $('#ops-crm')?.addEventListener('change',event=>{const select=event.target.closest('[data-crm-id]');if(select)updateCrmStatus(select.dataset.crmId,select.value);});
+  $('#ops-crm-clear')?.addEventListener('click',clearCompletedCrm);
   render();
 })();
