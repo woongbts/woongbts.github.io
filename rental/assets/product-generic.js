@@ -328,7 +328,7 @@
     if(note)note.textContent=[
       example.card?.name||'제휴카드',
       '전월 '+Math.round(example.spend/10000)+'만원',
-      won(example.discount)+' 할인',
+      (example.promo?'프로모션 ':'기본 ')+won(example.discount)+' 할인',
       example.promo?'프로모션 조건 확인':''
     ].filter(Boolean).join(' · ');
   }
