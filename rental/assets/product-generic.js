@@ -1,7 +1,15 @@
 (() => {
   'use strict';
 
-  const id = new URLSearchParams(location.search).get('id');
+  const params = new URLSearchParams(location.search);
+  const cleanMatch = location.pathname.match(/^\/rental\/product\/([^/]+)\/?$/);
+  let cleanId = '';
+  try { cleanId = cleanMatch ? decodeURIComponent(cleanMatch[1]) : ''; } catch (_) { cleanId = cleanMatch?.[1] || ''; }
+  const id = params.get('id') || cleanId;
+  const preferredManagement = params.get('mgmt') || '';
+  const preferredTerm = params.get('term') || '';
+  const autoApplyRequested = params.get('apply') === '1';
+  const aiEntryRequested = params.get('from') === 'ai';
   const won = n => Number(n).toLocaleString('ko-KR') + '원';
   const IMAGE_REV = '20261003-7f78334';
   const RENTAL_ENTRY_KEY = 'wb_rental_entry_v1';
@@ -21,7 +29,7 @@
   function rentalEntryLabel() {
     let entry = 'direct';
     try { entry = sessionStorage.getItem(RENTAL_ENTRY_KEY) || 'direct'; } catch (_) {}
-    return ({recommend:'추천상품',catalog:'전체상품',direct:'직접 상세페이지'})[entry] || entry;
+    return ({recommend:'추천상품',catalog:'전체상품',ai:'AI 추천',direct:'직접 상세페이지'})[entry] || entry;
   }
   function copyTextFallback(text) {
     try {
@@ -134,7 +142,7 @@
   }
   function saveRecentProduct(p) {
     const m = productMetrics(p);
-    const row = {id:p.id,name:p.name,model:p.model||'',brand:brandLabel(p.brand),category:p.category||'',page:p.page||('product.html?id='+encodeURIComponent(p.id)),image:imageCandidatesFor(p)[0]||'',minMonthly:m.minMonthly,maxGift:m.maxGift,at:Date.now()};
+    const row = {id:p.id,name:p.name,model:p.model||'',brand:brandLabel(p.brand),category:p.category||'',page:'product/'+encodeURIComponent(p.id)+'/',image:imageCandidatesFor(p)[0]||'',minMonthly:m.minMonthly,maxGift:m.maxGift,at:Date.now()};
     let list=[];
     try { list=JSON.parse(localStorage.getItem(RECENT_KEY)||'[]'); } catch (_) {}
     list=[row,...list.filter(x=>x&&x.id!==row.id)].slice(0,5);
@@ -142,7 +150,7 @@
   }
   function applyProductSeo(p) {
     const m=productMetrics(p);
-    const canonical=new URL('product.html?id='+encodeURIComponent(p.id), location.origin + '/rental/').toString();
+    const canonical=new URL('product/'+encodeURIComponent(p.id)+'/', location.origin + '/rental/').toString();
     const title=`${brandLabel(p.brand)} ${p.name} 렌탈 | 웅비렌탈`;
     const desc=[p.model?('모델 '+p.model):'',m.minMonthly!=null?('월 '+won(m.minMonthly)+'부터'):'',m.maxGift!=null?('고객사은품 최대 '+won(m.maxGift)):'','최종 접수 전 최신 조건 확인'].filter(Boolean).join(' · ');
     document.title=title;
@@ -510,17 +518,29 @@
       detailSection.hidden = false;
     }
 
-    const first = (product.options || []).find(isSellableOption);
+    const preferred = (product.options || []).find(o =>
+      isSellableOption(o)
+      && (!preferredManagement || o.management === preferredManagement)
+      && (!preferredTerm || String(o.term) === String(preferredTerm))
+    );
+    const first = preferred || (product.options || []).find(isSellableOption);
     if (!first) throw new Error('no options');
     state.management = first.management;
     state.term = String(first.term);
+
+    if (aiEntryRequested) {
+      try { sessionStorage.setItem(RENTAL_ENTRY_KEY, 'ai'); } catch (_) {}
+    }
 
     renderManagement();
     render();
     saveRecentProduct(product);
     applyProductSeo(product);
 
-    trackRental('rental_product_view', {entry:rentalEntryLabel()});
+    trackRental('rental_product_view', {
+      entry:rentalEntryLabel(),
+      preselected:Boolean(preferredManagement || preferredTerm)
+    });
 
     document.querySelectorAll('[data-rental-consult]').forEach(link => {
       link.addEventListener('click', () => {
@@ -550,6 +570,10 @@
     $('#rental-apply-form')?.addEventListener('submit',submitRentalApplication);
     $('#rental-apply-success-confirm')?.addEventListener('click',()=>closeDialog($('#rental-apply-success-dialog')));
     $('#rental-apply-success-dialog')?.addEventListener('click',event=>{if(event.target===$('#rental-apply-success-dialog'))closeDialog($('#rental-apply-success-dialog'));});
+
+    if (autoApplyRequested) {
+      requestAnimationFrame(() => openRentalApplication());
+    }
   }
 
   Promise.all([
