@@ -357,7 +357,9 @@
       v.gift==null?'사은품 상담 확인':'고객사은품 '+won(v.gift)
     ].filter(Boolean).join(' · ');
     const giftNote=$('#rental-apply-gift-note');
+    const giftReturnNote=$('#rental-apply-gift-return-note');
     if(giftNote)giftNote.hidden=v.gift==null;
+    if(giftReturnNote)giftReturnNote.hidden=v.gift==null;
     return {v,provider};
   }
   async function openRentalApplication() {
