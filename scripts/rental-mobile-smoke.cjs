@@ -33,6 +33,10 @@ function assert(condition, message) {
         configurable: true,
         value: { writeText: async text => sessionStorage.setItem('wb_test_clipboard', String(text)) }
       });
+      Object.defineProperty(navigator, 'share', {
+        configurable: true,
+        value: async data => sessionStorage.setItem('wb_test_share', JSON.stringify(data || {}))
+      });
     } catch (_) {}
   });
 
@@ -55,6 +59,10 @@ function assert(condition, message) {
     return {x, body:document.body.scrollWidth, viewport:document.documentElement.clientWidth};
   });
   assert(homeOverflow.x === 0, '홈 화면이 페이지 전체 단위로 가로 스크롤됩니다.');
+  assert(await page.locator('#rental-guides').count() === 1, '렌탈 카테고리 가이드 섹션이 없습니다.');
+  assert(await page.locator('#trust').count() === 1, '웅비렌탈 안심 상담 섹션이 없습니다.');
+  const guideHref = await page.locator('#rental-guides a[href="water-purifier/"]').getAttribute('href');
+  assert(guideHref === 'water-purifier/', '정수기 SEO 가이드 링크가 올바르지 않습니다.');
 
 
   // AI 추천: 필수조건, 정책 기준, 비교담기, 카카오 상담, 신청 링크를 모바일에서 검증합니다.
@@ -76,19 +84,52 @@ function assert(condition, message) {
   assert(applyHref && /\/rental\/product\/[^/]+\/\?/.test(applyHref) && /mgmt=/.test(applyHref) && /term=/.test(applyHref) && /apply=1/.test(applyHref), 'AI 추천 신청 링크가 선택 조건을 이어주지 못합니다.');
   await page.locator('[data-ai-compare]').first().click();
   assert(await page.locator('[data-ai-compare].active').count() >= 1, 'AI 추천 결과 비교담기가 동작하지 않습니다.');
+  await page.locator('[data-ai-quote]').first().click();
+  await page.waitForSelector('#ai-quote-dialog[open]');
+  const quoteText = await page.locator('#ai-quote-content').textContent();
+  assert(quoteText.includes('한눈견적') && quoteText.includes('월 렌탈료') && quoteText.includes('12개월 이내'), '한눈견적 카드 내용이 올바르지 않습니다.');
+  await page.locator('[data-ai-quote-copy]').first().click();
+  await page.waitForTimeout(50);
+  const quoteCopied = await page.evaluate(() => sessionStorage.getItem('wb_test_clipboard') || '');
+  assert(quoteCopied.includes('[웅비렌탈 한눈견적]') && quoteCopied.includes('고객사은품:'), '한눈견적 복사가 동작하지 않습니다.');
+  await page.locator('.ai-quote-close').click();
+
+  await page.locator('[data-ai-share]').click();
+  await page.waitForTimeout(50);
+  const sharedData = await page.evaluate(() => JSON.parse(sessionStorage.getItem('wb_test_share') || '{}'));
+  assert(sharedData.url && /[?&]ai=1/.test(sharedData.url) && /[?&]cat=/.test(sharedData.url), 'AI 추천 공유 링크가 조건을 포함하지 않습니다.');
+
+  await page.locator('[data-ai-feedback="up"]').click();
+  assert(await page.locator('[data-ai-feedback="up"].active').count() === 1, 'AI 추천 피드백이 반영되지 않습니다.');
   await page.locator('[data-ai-kakao]').evaluate(el => el.addEventListener('click', e => e.preventDefault()));
   await page.locator('[data-ai-kakao]').click();
   await page.waitForTimeout(80);
   const aiCopied = await page.evaluate(() => sessionStorage.getItem('wb_test_clipboard') || '');
   assert(aiCopied.includes('[웅비렌탈 AI 추천 상담]') && aiCopied.includes('추천 결과'), 'AI 추천 카카오 상담 복사가 동작하지 않습니다.');
   const aiEvents = await page.evaluate(() => JSON.parse(localStorage.getItem('wb_conversion_events_v1') || '[]').map(x => x.type));
-  assert(aiEvents.includes('rental_ai_open') && aiEvents.includes('rental_ai_recommend') && aiEvents.includes('rental_ai_compare') && aiEvents.includes('rental_ai_kakao'), 'AI 전환 이벤트 기록이 누락되었습니다.');
+  assert(aiEvents.includes('rental_ai_open') && aiEvents.includes('rental_ai_recommend') && aiEvents.includes('rental_ai_compare') && aiEvents.includes('rental_ai_kakao') && aiEvents.includes('rental_ai_share') && aiEvents.includes('rental_ai_feedback') && aiEvents.includes('rental_quote_open') && aiEvents.includes('rental_quote_share'), 'AI 전환 이벤트 기록이 누락되었습니다.');
   await page.locator('#ai-recommend-close').click();
   await page.evaluate(() => {
     localStorage.removeItem('wb_rental_compare_v1');
     document.getElementById('compare-bar')?.remove();
   });
+  const sharedUrl = await page.evaluate(() => JSON.parse(sessionStorage.getItem('wb_test_share') || '{}').url || '');
+  await page.goto(sharedUrl, {waitUntil:'domcontentloaded'});
+  await page.waitForSelector('#ai-recommend-dialog[open]');
+  await page.waitForSelector('.ai-result-card');
+  const sharedStatus = await page.locator('#ai-recommend-status').textContent();
+  assert(sharedStatus.includes('공유된 추천 조건'), '공유된 AI 추천 링크가 같은 조건으로 복원되지 않습니다.');
+  await page.locator('#ai-recommend-close').click();
 
+  await page.goto('http://127.0.0.1:4173/rental/water-purifier/', {waitUntil:'domcontentloaded'});
+  const categoryCanonical = await page.locator('link[rel="canonical"]').getAttribute('href');
+  assert(categoryCanonical === 'https://woongbts.github.io/rental/water-purifier/', '정수기 카테고리 canonical이 올바르지 않습니다.');
+  assert(await page.locator('.category-product').count() >= 1, '정수기 카테고리 SEO 페이지에 상품이 없습니다.');
+  const categoryAiHref = await page.locator('.category-hero-actions .primary').getAttribute('href');
+  assert(categoryAiHref && categoryAiHref.includes('ai=1') && categoryAiHref.includes('cat='), '카테고리 페이지 AI 추천 연결이 없습니다.');
+
+  await page.goto('http://127.0.0.1:4173/rental/', {waitUntil:'domcontentloaded'});
+  await page.waitForSelector('.recommend-card', {timeout:15000});
   await page.locator('[data-recommend-sort="monthly"]').click();
   assert(await page.locator('[data-recommend-sort="monthly"]').getAttribute('aria-pressed') === 'true', '월요금 정렬 버튼이 동작하지 않습니다.');
   await page.locator('[data-recommend-sort="gift"]').click();
@@ -135,6 +176,9 @@ function assert(condition, message) {
   assert(recentStored, '최근 본 상품 저장이 동작하지 않습니다.');
   const canonical = await page.locator('#product-canonical').getAttribute('href');
   assert(canonical && canonical.includes('/rental/product/clv-10316/'), '상품 canonical URL이 깨끗한 상품 경로로 갱신되지 않았습니다.');
+  const freshnessText = await page.locator('#product-freshness').textContent();
+  assert(/최근 정책 확인 \d{4}\.\d{2}\.\d{2}/.test(freshnessText || ''), '상품 정책 확인일 표시가 없습니다.');
+  assert(await page.locator('.product-trust-section').count() === 1, '상품 상세 안심 상담 영역이 없습니다.');
   const jsonLd = await page.locator('#product-jsonld').textContent();
   assert(jsonLd && jsonLd.includes('"Product"'), '상품 구조화 데이터가 생성되지 않았습니다.');
 
