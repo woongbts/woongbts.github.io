@@ -156,6 +156,7 @@ function assert(condition, message) {
   await page.locator('[data-recommend-sort="gift"]').click();
   assert(await page.locator('[data-recommend-sort="gift"]').getAttribute('aria-pressed') === 'true', '사은품 정렬 버튼이 동작하지 않습니다.');
   await page.locator('[data-recommend-sort="recommend"]').click();
+  assert(await page.locator('.recommend-preference').count() === 0, '고객 선호 순위 라벨이 추천상품에 노출됩니다.');
 
   await page.locator('#catalog-toggle').click();
   await page.waitForSelector('.catalog-card');
