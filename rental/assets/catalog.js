@@ -270,7 +270,6 @@
     const m = recommendationMetrics(product);
     const minMonthly = m?.minMonthly ?? null;
     const maxGift = m?.maxGift ?? null;
-    const preference = brandPreference(product);
     const image = imageCandidatesFor(product)[0] || '';
     return `
       <article class="recommend-card">
@@ -280,7 +279,6 @@
         <div class="recommend-body">
           <div class="recommend-meta">
             <small>${brandLabel(product.brand)} · ${product.model || product.category || ''}</small>
-            ${preference.rank < 99 ? '<span class="recommend-preference">' + preference.label + '</span>' : ''}
           </div>
           <h3>${product.name}</h3>
           <div class="recommend-prices">
