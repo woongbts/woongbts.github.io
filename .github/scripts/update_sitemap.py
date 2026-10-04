@@ -11,6 +11,23 @@ SITEMAP = ROOT / "sitemap.xml"
 RENTAL_SITEMAP = ROOT / "rental/sitemap.xml"
 PRODUCTS = ROOT / "rental/data/products.json"
 
+CATEGORY_SLUGS = {
+  "정수기":"water-purifier",
+  "공기청정기":"air-purifier",
+  "비데·연수기":"bidet",
+  "매트리스·프레임":"mattress",
+  "안마의자":"massage-chair",
+  "세탁·건조·의류관리":"laundry",
+  "냉장고·김치냉장고":"refrigerator",
+  "TV·디지털":"tv-digital",
+  "에어컨·청소기":"aircon-cleaner",
+  "주방가전":"kitchen-appliance",
+  "생활가전":"home-appliance",
+  "건강·뷰티":"health-beauty",
+  "가구·침대":"furniture-bed",
+  "레저·자동차":"leisure-auto",
+}
+
 STATIC = {
     "https://woongbts.github.io/": ["index.html","assets/site-pro.css","assets/readability-20260921.css","assets/ai-chat.min.js","assets/analytics-config.js","assets/conversion-tracker.min.js","assets/site-analytics.min.js"],
     "https://woongbts.github.io/rates.html": ["rates.html","assets/rates.min.js","assets/rates.css","assets/conversion-tracker.min.js","sw.js","data/catalog.json","data/plans.json","data/supports.json","data/mvno-postpaid.json","data/prepaid.json","data/internet.json"],
@@ -51,6 +68,12 @@ def main():
       p for p in data.get("products",[])
       if p.get("availability")!="inactive" and not re.search(r"접수불가|접수중지|단종",str(p.get("name") or ""))
     ]
+    categories=sorted({str(p.get("category") or "") for p in products if p.get("category") in CATEGORY_SLUGS})
+    category_date=latest_date(["rental/data/products.json","rental/data/appliance-gift-options.json","rental/assets/category.css","scripts/build-rental-category-pages.py"])
+    for category in categories:
+      slug=CATEGORY_SLUGS[category]
+      if not (ROOT/f"rental/{slug}/index.html").exists(): continue
+      rows.append(entry(f"https://woongbts.github.io/rental/{slug}/",category_date,"weekly","0.75"))
     for p in sorted(products,key=lambda x:str(x.get("id") or "")):
       pid=quote(str(p.get("id") or ""),safe="-_")
       if not pid: continue
@@ -60,6 +83,10 @@ def main():
 
     rental_rows=['<?xml version="1.0" encoding="UTF-8"?>','<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
     rental_rows.append(entry("https://woongbts.github.io/rental/",latest_date(STATIC["https://woongbts.github.io/rental/"]),"daily","0.9"))
+    for category in categories:
+      slug=CATEGORY_SLUGS[category]
+      if not (ROOT/f"rental/{slug}/index.html").exists(): continue
+      rental_rows.append(entry(f"https://woongbts.github.io/rental/{slug}/",category_date,"weekly","0.75"))
     for p in sorted(products,key=lambda x:str(x.get("id") or "")):
       pid=quote(str(p.get("id") or ""),safe="-_")
       if not pid: continue
