@@ -171,6 +171,7 @@
       return products;
     }).catch(error => {
       status.textContent = error.message || '상품 데이터를 불러오지 못했습니다.';
+      renderFallback(status.textContent);
       throw error;
     }).finally(() => {
       loadPromise = null;
@@ -499,6 +500,216 @@
     });
   }
 
+  function renderFallback(message) {
+    results.innerHTML =
+      '<div class="ai-fallback">' +
+        '<strong>' + escapeHtml(message || 'AI 추천 데이터를 잠시 불러오지 못했습니다.') + '</strong>' +
+        '<p>추천상품을 직접 보거나 카카오톡·전화로 바로 상담할 수 있어요.</p>' +
+        '<div><button type="button" data-ai-fallback-close>추천상품 보기</button>' +
+        '<a href="' + KAKAO_CHAT_URL + '" target="_blank" rel="noopener noreferrer">카톡 상담</a>' +
+        '<a href="tel:0513437677">전화 상담</a></div>' +
+      '</div>';
+  }
+
+  function currentCriteria() {
+    return {
+      category: categorySelect.value,
+      budget: Number(budgetSelect.value) || 0,
+      brand: brandSelect.value,
+      management: managementSelect.value,
+      query: preferenceInput.value.trim(),
+      strictBudget: budgetStrict?.checked === true,
+      strictBrand: brandStrict?.checked === true,
+      strictManagement: managementStrict?.checked === true,
+      mustFeatures: mustFeatureInputs.filter(input => input.checked).map(input => input.dataset.aiMustFeature).filter(Boolean)
+    };
+  }
+
+  function buildShareUrl(criteria) {
+    const u = new URL('/rental/', location.origin);
+    u.searchParams.set('ai','1');
+    if (criteria.category) u.searchParams.set('cat',criteria.category);
+    if (criteria.budget) u.searchParams.set('budget',String(criteria.budget));
+    if (criteria.brand) u.searchParams.set('brand',criteria.brand);
+    if (criteria.management) u.searchParams.set('mgmt',criteria.management);
+    if (criteria.strictBudget) u.searchParams.set('sb','1');
+    if (criteria.strictBrand) u.searchParams.set('sbr','1');
+    if (criteria.strictManagement) u.searchParams.set('sm','1');
+    if (criteria.mustFeatures?.length) u.searchParams.set('feat',criteria.mustFeatures.join(','));
+    if (criteria.query) u.searchParams.set('q',criteria.query.slice(0,120));
+    return u.toString();
+  }
+
+  function criteriaFromUrl() {
+    const p = new URLSearchParams(location.search);
+    if (p.get('ai') !== '1') return null;
+    return {
+      category:p.get('cat') || '정수기',
+      budget:Number(p.get('budget')) || 0,
+      brand:p.get('brand') || '',
+      management:p.get('mgmt') || '',
+      query:(p.get('q') || '').slice(0,120),
+      strictBudget:p.get('sb') === '1',
+      strictBrand:p.get('sbr') === '1',
+      strictManagement:p.get('sm') === '1',
+      mustFeatures:(p.get('feat') || '').split(',').filter(key => FEATURE_DEFS[key])
+    };
+  }
+
+  function applyCriteriaToForm(criteria) {
+    if (criteria.category && [...categorySelect.options].some(o => o.value === criteria.category)) categorySelect.value = criteria.category;
+    setupBrands();
+    if (criteria.budget && [...budgetSelect.options].some(o => Number(o.value) === Number(criteria.budget))) budgetSelect.value = String(criteria.budget);
+    if (criteria.brand && [...brandSelect.options].some(o => o.value === criteria.brand)) brandSelect.value = criteria.brand;
+    if (criteria.management && [...managementSelect.options].some(o => o.value === criteria.management)) managementSelect.value = criteria.management;
+    preferenceInput.value = criteria.query || '';
+    if (budgetStrict) budgetStrict.checked = Boolean(criteria.strictBudget);
+    if (brandStrict) brandStrict.checked = Boolean(criteria.strictBrand);
+    if (managementStrict) managementStrict.checked = Boolean(criteria.strictManagement);
+    mustFeatureInputs.forEach(input => { input.checked = (criteria.mustFeatures || []).includes(input.dataset.aiMustFeature); });
+    updateStrictControlState();
+  }
+
+  async function shareRecommendation() {
+    if (!lastCriteria || !lastItems.length) return;
+    const url = buildShareUrl(lastCriteria);
+    const title = '웅비렌탈 AI 추천 결과';
+    const text = '웅비렌탈에서 조건에 맞는 렌탈 상품 ' + lastItems.length + '개를 추천받았습니다.';
+    try {
+      if (navigator.share) {
+        await navigator.share({title,text,url});
+        status.textContent = '추천 결과를 공유했습니다.';
+      } else if (navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText(url);
+        status.textContent = '추천 링크가 복사되었습니다. 카톡에 붙여넣어 주세요.';
+      } else {
+        fallbackCopy(url);
+        status.textContent = '추천 링크가 복사되었습니다.';
+      }
+      trackAi('rental_ai_share', {
+        category:lastCriteria.category,
+        result_count:lastItems.length,
+        analyticsPath:'/rental/ai/' + encodeURIComponent(String(lastCriteria.category || 'all')) + '/share'
+      });
+    } catch (_) {
+      status.textContent = '공유를 취소했거나 링크를 복사하지 못했습니다.';
+    }
+  }
+
+  function quoteText(item) {
+    const p = item.product;
+    const management = item.option.managementLabel || item.option.care || item.option.management || '';
+    const term = Number(item.option.term) ? Number(item.option.term) + '개월' : '계약기간 상담 확인';
+    return [
+      '[웅비렌탈 한눈견적]',
+      brandLabel(p.brand) + ' ' + p.name,
+      p.model ? '모델: ' + p.model : '',
+      '조건: ' + [management,term].filter(Boolean).join(' · '),
+      '월 렌탈료: ' + won(item.monthly),
+      '고객사은품: ' + (item.gift == null ? '상담 확인' : won(item.gift)),
+      '정책 기준: ' + policyMonthText(policyGeneratedAt),
+      '※ 설치 후 12개월 이내 미납·정지 또는 해지 시 사은품 금액 반환',
+      '상품: ' + new URL(productUrl(p,item.option,false), location.origin).toString()
+    ].filter(Boolean).join('\n');
+  }
+
+  function ensureQuoteDialog() {
+    let quote = document.getElementById('ai-quote-dialog');
+    if (quote) return quote;
+    quote = document.createElement('dialog');
+    quote.id = 'ai-quote-dialog';
+    quote.className = 'ai-quote-dialog';
+    quote.innerHTML =
+      '<div class="ai-quote-shell">' +
+        '<button class="ai-quote-close" type="button" aria-label="견적 닫기">×</button>' +
+        '<div id="ai-quote-content"></div>' +
+      '</div>';
+    document.body.appendChild(quote);
+    quote.querySelector('.ai-quote-close')?.addEventListener('click',()=>quote.close());
+    quote.addEventListener('click',event=>{if(event.target===quote)quote.close();});
+    return quote;
+  }
+
+  function openQuote(productId) {
+    const item = lastItems.find(x => String(x.product.id) === String(productId));
+    if (!item) return;
+    const p = item.product;
+    const management = item.option.managementLabel || item.option.care || item.option.management || '';
+    const term = Number(item.option.term) ? Number(item.option.term) + '개월' : '상담 확인';
+    const quote = ensureQuoteDialog();
+    quote.querySelector('#ai-quote-content').innerHTML =
+      '<article class="ai-quote-card">' +
+        '<div class="ai-quote-brand"><span>WOONGBI RENTAL</span><b>한눈견적</b></div>' +
+        '<small>' + escapeHtml(policyMonthText(policyGeneratedAt)) + '</small>' +
+        '<h2>' + escapeHtml(brandLabel(p.brand) + ' ' + p.name) + '</h2>' +
+        '<p>' + escapeHtml(p.model || p.category || '') + '</p>' +
+        '<div class="ai-quote-grid">' +
+          '<div><span>관리·옵션</span><strong>' + escapeHtml(management || '상담 확인') + '</strong></div>' +
+          '<div><span>계약기간</span><strong>' + escapeHtml(term) + '</strong></div>' +
+          '<div><span>월 렌탈료</span><strong>' + escapeHtml(won(item.monthly)) + '</strong></div>' +
+          '<div><span>고객사은품</span><strong>' + (item.gift == null ? '상담 확인' : escapeHtml(won(item.gift))) + '</strong></div>' +
+        '</div>' +
+        '<div class="ai-quote-return">※ 설치 후 12개월 이내 미납·정지 또는 해지 시 사은품 금액을 반환해 주셔야 합니다.</div>' +
+        '<div class="ai-quote-actions">' +
+          '<button type="button" data-ai-quote-copy="' + escapeHtml(p.id) + '">견적 내용 복사</button>' +
+          '<button type="button" data-ai-quote-share="' + escapeHtml(p.id) + '">견적 공유</button>' +
+          '<a href="' + escapeHtml(productUrl(p,item.option,true)) + '" data-ai-apply="' + escapeHtml(p.id) + '">이 조건으로 신청</a>' +
+        '</div>' +
+        '<p class="ai-quote-foot">실제 접수 전 최신 정책을 다시 확인합니다.</p>' +
+      '</article>';
+    if (typeof quote.showModal === 'function') quote.showModal(); else quote.setAttribute('open','');
+    trackAi('rental_quote_open', {
+      category:lastCriteria?.category || p.category || '',
+      product_id:p.id,
+      analyticsPath:'/rental/product/' + encodeURIComponent(String(p.id))
+    });
+  }
+
+  async function shareQuote(productId) {
+    const item = lastItems.find(x => String(x.product.id) === String(productId));
+    if (!item) return;
+    const text = quoteText(item);
+    const url = new URL(productUrl(item.product,item.option,false), location.origin).toString();
+    try {
+      if (navigator.share) await navigator.share({title:'웅비렌탈 한눈견적',text,url});
+      else if (navigator.clipboard?.writeText) await navigator.clipboard.writeText(text + '\n' + url);
+      else fallbackCopy(text + '\n' + url);
+      status.textContent = navigator.share ? '견적을 공유했습니다.' : '견적 내용이 복사되었습니다.';
+      trackAi('rental_quote_share', {
+        category:lastCriteria?.category || item.product.category || '',
+        product_id:item.product.id,
+        analyticsPath:'/rental/product/' + encodeURIComponent(String(item.product.id))
+      });
+    } catch (_) {
+      status.textContent = '견적 공유를 취소했거나 복사하지 못했습니다.';
+    }
+  }
+
+  function recordFeedback(value) {
+    if (!lastCriteria || !lastItems.length) return;
+    const payload = {
+      value,
+      category:lastCriteria.category || '',
+      products:lastItems.map(x=>x.product.id).slice(0,3),
+      at:new Date().toISOString()
+    };
+    try {
+      const rows = JSON.parse(localStorage.getItem('wb_rental_ai_feedback_v1') || '[]');
+      rows.push(payload);
+      localStorage.setItem('wb_rental_ai_feedback_v1',JSON.stringify(rows.slice(-50)));
+    } catch (_) {}
+    document.querySelectorAll('[data-ai-feedback]').forEach(btn=>{
+      btn.disabled=true;
+      if(btn.dataset.aiFeedback===value)btn.classList.add('active');
+    });
+    status.textContent = value === 'up' ? '도움이 됐다는 의견 고맙습니다.' : '의견을 반영해 추천 방식을 계속 다듬겠습니다.';
+    trackAi('rental_ai_feedback', {
+      category:lastCriteria.category,
+      value,
+      analyticsPath:'/rental/ai/' + encodeURIComponent(String(lastCriteria.category || 'all')) + '/feedback/' + value
+    });
+  }
+
   function renderResults(items, criteria) {
     lastCriteria = criteria;
     lastItems = items;
@@ -533,15 +744,21 @@
             '<div class="ai-result-actions">' +
               '<a class="ai-result-link" href="' + escapeHtml(detailUrl) + '" data-ai-product="' + escapeHtml(p.id) + '">조건 자세히 보기</a>' +
               '<a class="ai-apply-link" href="' + escapeHtml(applyUrl) + '" data-ai-apply="' + escapeHtml(p.id) + '">이 조건으로 신청</a>' +
+              '<button class="ai-quote-btn" type="button" data-ai-quote="' + escapeHtml(p.id) + '">한눈견적</button>' +
               '<button class="ai-compare-btn" type="button" data-ai-compare="' + escapeHtml(p.id) + '" aria-pressed="false">비교담기</button>' +
             '</div>' +
           '</div>' +
         '</article>';
       }).join('') +
+      '<div class="ai-result-sharebar">' +
+        '<button type="button" data-ai-share>추천 결과 링크 공유</button>' +
+        '<span>같은 조건과 TOP 3를 링크로 다시 열 수 있어요.</span>' +
+      '</div>' +
       '<div class="ai-result-consult">' +
         '<div><strong>이 추천 그대로 상담할까요?</strong><span>추천 조건과 TOP 3가 복사됩니다.</span></div>' +
         '<a class="ai-kakao-consult" data-ai-kakao href="' + KAKAO_CHAT_URL + '" target="_blank" rel="noopener noreferrer">이 조건으로 카톡 상담</a>' +
       '</div>' +
+      '<div class="ai-feedback"><span>추천이 도움됐나요?</span><button type="button" data-ai-feedback="up">👍 도움됐어요</button><button type="button" data-ai-feedback="down">👎 조건이 안 맞아요</button></div>' +
       '<p class="ai-result-note">' + escapeHtml(policyMonthText(policyGeneratedAt)) + '의 등록 상품·월요금·사은품 데이터를 비교한 결과입니다. 실제 접수 전 최신 정책을 다시 확인합니다.</p>';
 
     updateAiCompareButtons();
@@ -600,17 +817,7 @@
     event.preventDefault();
     try {
       await loadProducts();
-      const criteria = {
-        category: categorySelect.value,
-        budget: Number(budgetSelect.value) || 0,
-        brand: brandSelect.value,
-        management: managementSelect.value,
-        query: preferenceInput.value.trim(),
-        strictBudget: budgetStrict?.checked === true,
-        strictBrand: brandStrict?.checked === true,
-        strictManagement: managementStrict?.checked === true,
-        mustFeatures: mustFeatureInputs.filter(input => input.checked).map(input => input.dataset.aiMustFeature).filter(Boolean)
-      };
+      const criteria = currentCriteria();
       status.textContent = '조건을 분석해 가장 잘 맞는 상품을 고르는 중입니다.';
       const items = recommend(criteria);
       renderResults(items, criteria);
@@ -618,10 +825,39 @@
       results.scrollIntoView({ behavior: 'smooth', block: 'start' });
     } catch (error) {
       status.textContent = error.message || '추천 중 오류가 발생했습니다.';
+      renderFallback(status.textContent);
     }
   });
 
   results.addEventListener('click', event => {
+    const fallbackClose = event.target.closest('[data-ai-fallback-close]');
+    if (fallbackClose) {
+      closeDialog();
+      document.getElementById('recommendations')?.scrollIntoView({behavior:'smooth',block:'start'});
+      return;
+    }
+
+    const shareButton = event.target.closest('[data-ai-share]');
+    if (shareButton) {
+      event.preventDefault();
+      shareRecommendation();
+      return;
+    }
+
+    const feedbackButton = event.target.closest('[data-ai-feedback]');
+    if (feedbackButton) {
+      event.preventDefault();
+      recordFeedback(feedbackButton.dataset.aiFeedback || 'down');
+      return;
+    }
+
+    const quoteButton = event.target.closest('[data-ai-quote]');
+    if (quoteButton) {
+      event.preventDefault();
+      openQuote(quoteButton.dataset.aiQuote || '');
+      return;
+    }
+
     const compareButton = event.target.closest('[data-ai-compare]');
     if (compareButton) {
       event.preventDefault();
@@ -672,6 +908,23 @@
     });
   });
 
+  document.addEventListener('click', event => {
+    const copyButton = event.target.closest('[data-ai-quote-copy]');
+    if (copyButton) {
+      const item = lastItems.find(x => String(x.product.id) === String(copyButton.dataset.aiQuoteCopy || ''));
+      if (!item) return;
+      const text = quoteText(item);
+      if (navigator.clipboard?.writeText) navigator.clipboard.writeText(text).then(()=>{status.textContent='견적 내용이 복사되었습니다.';}).catch(()=>fallbackCopy(text));
+      else fallbackCopy(text);
+      trackAi('rental_quote_share',{category:lastCriteria?.category || item.product.category || '',product_id:item.product.id,analyticsPath:'/rental/product/'+encodeURIComponent(String(item.product.id))});
+      return;
+    }
+    const shareButton = event.target.closest('[data-ai-quote-share]');
+    if (shareButton) {
+      shareQuote(shareButton.dataset.aiQuoteShare || '');
+    }
+  });
+
   window.woongbiRentalAiStats = () => {
     let rows = [];
     try { rows = JSON.parse(localStorage.getItem('wb_conversion_events_v1') || '[]'); } catch (_) {}
@@ -689,9 +942,13 @@
       opens:todays.filter(x => x.type === 'rental_ai_open').length,
       recommendations:todays.filter(x => x.type === 'rental_ai_recommend').length,
       productClicks:todays.filter(x => x.type === 'rental_ai_product_click').length,
+      quotes:todays.filter(x => x.type === 'rental_quote_open').length,
+      shares:todays.filter(x => x.type === 'rental_ai_share').length,
       compares:todays.filter(x => x.type === 'rental_ai_compare').length,
       kakao:todays.filter(x => x.type === 'rental_ai_kakao').length,
       applies:todays.filter(x => x.type === 'rental_ai_apply').length,
+      feedbackUp:todays.filter(x => x.type === 'rental_ai_feedback' && x.detail?.value === 'up').length,
+      feedbackDown:todays.filter(x => x.type === 'rental_ai_feedback' && x.detail?.value === 'down').length,
       categories:countBy('category'),
       products:countBy('product_id')
     };
@@ -710,12 +967,31 @@
     const top = obj => Object.entries(obj || {}).filter(([key]) => key !== 'unknown').sort((a,b) => b[1]-a[1]).slice(0,3);
     panel.innerHTML =
       '<div><strong>AI 추천 테스트 통계</strong><small>이 브라우저 · ' + escapeHtml(stats.date) + '</small></div>' +
-      '<p>열기 <b>' + stats.opens + '</b> · 추천 <b>' + stats.recommendations + '</b> · 상품클릭 <b>' + stats.productClicks + '</b> · 비교 <b>' + stats.compares + '</b> · 카톡 <b>' + stats.kakao + '</b> · 신청 <b>' + stats.applies + '</b></p>' +
+      '<p>열기 <b>' + stats.opens + '</b> → 추천 <b>' + stats.recommendations + '</b> → 상세 <b>' + stats.productClicks + '</b> / 견적 <b>' + stats.quotes + '</b> → 카톡 <b>' + stats.kakao + '</b> / 신청 <b>' + stats.applies + '</b></p>' +
+      '<p class="ai-local-stats-sub">추천전환 ' + (stats.opens ? Math.round(stats.recommendations / stats.opens * 100) : 0) + '% · 상담/신청 ' + (stats.recommendations ? Math.round((stats.kakao + stats.applies) / stats.recommendations * 100) : 0) + '% · 공유 ' + stats.shares + ' · 👍 ' + stats.feedbackUp + ' / 👎 ' + stats.feedbackDown + '</p>' +
       '<p class="ai-local-stats-sub">품목 ' + escapeHtml(top(stats.categories).map(([k,v]) => k + ' ' + v).join(' · ') || '기록 없음') + '</p>' +
       '<button type="button" aria-label="통계창 닫기">×</button>';
     panel.querySelector('button')?.addEventListener('click', () => panel.remove(), {once:true});
   }
 
+  async function restoreSharedRecommendation() {
+    const criteria = criteriaFromUrl();
+    if (!criteria) return;
+    openDialog();
+    try {
+      await loadProducts();
+      applyCriteriaToForm(criteria);
+      const normalized = currentCriteria();
+      const items = recommend(normalized);
+      renderResults(items, normalized);
+      status.textContent = items.length ? '공유된 추천 조건을 다시 열었습니다.' : '공유된 조건과 정확히 맞는 상품이 없습니다.';
+      trackAi('rental_ai_share_open',{category:normalized.category,result_count:items.length,analyticsPath:'/rental/ai/'+encodeURIComponent(String(normalized.category || 'all'))+'/shared'});
+    } catch (error) {
+      renderFallback(error.message || '공유된 추천 결과를 불러오지 못했습니다.');
+    }
+  }
+
   renderLocalStatsPanel();
   window.addEventListener('woongbi:conversion', () => setTimeout(renderLocalStatsPanel, 0));
+  restoreSharedRecommendation();
 })();
