@@ -1,0 +1,441 @@
+{
+  "checkedAt": "2026-10-04",
+  "notice": "제휴카드 할인은 카드사·렌탈사 정책 및 신규발급 프로모션에 따라 달라질 수 있습니다. 카드 발급·자동납부 등록 전 카드사와 렌탈사에서 최종 확인해 주세요.",
+  "providers": [
+    {
+      "id": "coway",
+      "name": "코웨이",
+      "aliases": [
+        "COWAY",
+        "코웨이"
+      ],
+      "cards": [
+        {
+          "name": "코웨이 ICON 우리카드",
+          "annualFee": "25,000원",
+          "tiers": [
+            {
+              "spend": 300000,
+              "discount": 13000
+            },
+            {
+              "spend": 800000,
+              "discount": 17000
+            },
+            {
+              "spend": 1500000,
+              "discount": 23000
+            }
+          ]
+        },
+        {
+          "name": "마이 코웨이 하나카드",
+          "annualFee": "25,000원",
+          "tiers": [
+            {
+              "spend": 300000,
+              "discount": 13000
+            },
+            {
+              "spend": 800000,
+              "discount": 18000
+            },
+            {
+              "spend": 1500000,
+              "discount": 25000
+            }
+          ]
+        },
+        {
+          "name": "코웨이 NH 올원카드",
+          "annualFee": "국내 10,000원 / 해외 12,000원",
+          "tiers": [
+            {
+              "spend": 300000,
+              "discount": 10000
+            },
+            {
+              "spend": 1000000,
+              "discount": 15000
+            },
+            {
+              "spend": 2000000,
+              "discount": 30000
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "skmagic",
+      "name": "SK매직",
+      "aliases": [
+        "SK매직",
+        "SK MAGIC",
+        "SK인텔릭스"
+      ],
+      "cards": [
+        {
+          "name": "SK인텔릭스 현대카드",
+          "annualFee": "20,000원",
+          "promo": true,
+          "tiers": [
+            {
+              "spend": 400000,
+              "discount": 13000
+            },
+            {
+              "spend": 800000,
+              "discount": 16000
+            },
+            {
+              "spend": 1200000,
+              "discount": 19000
+            }
+          ]
+        },
+        {
+          "name": "SK인텔릭스 우리카드",
+          "annualFee": "15,000원",
+          "promo": true,
+          "tiers": [
+            {
+              "spend": 300000,
+              "discount": 22000
+            },
+            {
+              "spend": 700000,
+              "discount": 22000
+            },
+            {
+              "spend": 1200000,
+              "discount": 25000
+            }
+          ]
+        },
+        {
+          "name": "SK인텔릭스 삼성카드",
+          "annualFee": "15,000원",
+          "promo": true,
+          "maxDiscount": 24000,
+          "tiers": []
+        }
+      ]
+    },
+    {
+      "id": "cuckoo",
+      "name": "쿠쿠",
+      "aliases": [
+        "CUCKOO",
+        "쿠쿠",
+        "쿠쿠전자"
+      ],
+      "cards": [
+        {
+          "name": "쿠쿠 현대카드",
+          "annualFee": "20,000원",
+          "promo": true,
+          "tiers": [
+            {
+              "spend": 400000,
+              "discount": 13000
+            },
+            {
+              "spend": 800000,
+              "discount": 16000
+            },
+            {
+              "spend": 1200000,
+              "discount": 19000
+            }
+          ]
+        },
+        {
+          "name": "쿠쿠 우리카드",
+          "annualFee": "15,000원",
+          "promo": true,
+          "tiers": [
+            {
+              "spend": 300000,
+              "discount": 20000
+            },
+            {
+              "spend": 700000,
+              "discount": 22000
+            },
+            {
+              "spend": 1200000,
+              "discount": 25000
+            }
+          ]
+        },
+        {
+          "name": "쿠쿠 삼성카드",
+          "annualFee": "15,000원",
+          "promo": true,
+          "tiers": [
+            {
+              "spend": 300000,
+              "discount": 20000
+            },
+            {
+              "spend": 700000,
+              "discount": 22000
+            },
+            {
+              "spend": 1200000,
+              "discount": 24000
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "chungho",
+      "name": "청호나이스",
+      "aliases": [
+        "청호나이스",
+        "청호"
+      ],
+      "cards": [
+        {
+          "name": "청호나이스 현대카드",
+          "annualFee": "20,000원",
+          "tiers": [
+            {
+              "spend": 400000,
+              "discount": 8000
+            },
+            {
+              "spend": 800000,
+              "discount": 12000
+            },
+            {
+              "spend": 1200000,
+              "discount": 16000
+            }
+          ]
+        },
+        {
+          "name": "청호나이스 신한카드",
+          "annualFee": "15,000원",
+          "tiers": [
+            {
+              "spend": 300000,
+              "discount": 12000
+            },
+            {
+              "spend": 700000,
+              "discount": 16000
+            },
+            {
+              "spend": 1500000,
+              "discount": 30000
+            }
+          ]
+        },
+        {
+          "name": "청호나이스 삼성카드",
+          "annualFee": "15,000원",
+          "tiers": [
+            {
+              "spend": 300000,
+              "discount": 7000
+            },
+            {
+              "spend": 700000,
+              "discount": 10000
+            },
+            {
+              "spend": 1200000,
+              "discount": 13000
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hyundai-qming",
+      "name": "현대큐밍",
+      "aliases": [
+        "현대큐밍",
+        "현대렌탈케어"
+      ],
+      "cards": [
+        {
+          "name": "현대큐밍 우리카드",
+          "annualFee": "20,000원",
+          "tiers": [
+            {
+              "spend": 300000,
+              "discount": 10000
+            },
+            {
+              "spend": 700000,
+              "discount": 15000
+            },
+            {
+              "spend": 1500000,
+              "discount": 20000
+            }
+          ]
+        },
+        {
+          "name": "현대큐밍 하나카드",
+          "annualFee": "18,000원",
+          "tiers": [
+            {
+              "spend": 300000,
+              "discount": 13000
+            }
+          ]
+        },
+        {
+          "name": "현대큐밍 신한카드",
+          "annualFee": "국내 18,000원 / 해외 21,000원",
+          "tiers": [
+            {
+              "spend": 300000,
+              "discount": 15000
+            },
+            {
+              "spend": 700000,
+              "discount": 15000
+            },
+            {
+              "spend": 1200000,
+              "discount": 20000
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ubus",
+      "name": "유버스(현대미래)",
+      "aliases": [
+        "유버스",
+        "UBUS",
+        "현대유버스",
+        "현대미래"
+      ],
+      "cards": [
+        {
+          "name": "UBUS 우리카드",
+          "annualFee": "20,000원",
+          "promo": true,
+          "tiers": [
+            {
+              "spend": 300000,
+              "discount": 15000
+            },
+            {
+              "spend": 700000,
+              "discount": 17000
+            },
+            {
+              "spend": 1500000,
+              "discount": 25000
+            }
+          ]
+        },
+        {
+          "name": "UBUS 하나카드",
+          "annualFee": "18,000원",
+          "tiers": [
+            {
+              "spend": 300000,
+              "discount": 13000
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lg",
+      "name": "LG 퓨리케어·LG전자구독",
+      "aliases": [
+        "LG퓨리케어",
+        "LG 퓨리케어",
+        "LG전자구독",
+        "LG전자"
+      ],
+      "cards": [
+        {
+          "name": "LG전자 The 구독케어 신한카드",
+          "annualFee": "국내 22,000원 / 해외 25,000원",
+          "tiers": [
+            {
+              "spend": 300000,
+              "discount": 17000
+            },
+            {
+              "spend": 700000,
+              "discount": 27000
+            },
+            {
+              "spend": 1300000,
+              "discount": 30000
+            }
+          ]
+        },
+        {
+          "name": "LG전자 Platinum 우리카드",
+          "annualFee": "25,000원",
+          "tiers": [
+            {
+              "spend": 1000000,
+              "discount": 35000
+            },
+            {
+              "spend": 1500000,
+              "discount": 39000
+            },
+            {
+              "spend": 2000000,
+              "discount": 42000
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ruh",
+      "name": "루헨스",
+      "aliases": [
+        "루헨스"
+      ],
+      "cards": [
+        {
+          "name": "LOCA X Special SE",
+          "annualFee": "20,000원",
+          "promo": true,
+          "tiers": [
+            {
+              "spend": 300000,
+              "discount": 13000
+            },
+            {
+              "spend": 700000,
+              "discount": 15000
+            },
+            {
+              "spend": 1500000,
+              "discount": 25000
+            }
+          ]
+        },
+        {
+          "name": "루헨스 New 렌탈 플러스 카드",
+          "annualFee": "18,000원",
+          "tiers": [
+            {
+              "spend": 300000,
+              "discount": 13000
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
