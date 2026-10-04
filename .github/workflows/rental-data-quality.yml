@@ -6,6 +6,7 @@ on:
     paths:
       - 'rental/data/products.json'
       - 'rental/data/appliance-gift-options.json'
+      - 'rental/data/catalog-overrides.json'
       - 'rental/assets/product-images/**'
       - 'scripts/check-rental-data.py'
       - '.github/workflows/rental-data-quality.yml'
@@ -14,15 +15,64 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
+
+concurrency:
+  group: rental-data-quality
+  cancel-in-progress: true
 
 jobs:
   validate:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+
       - name: Validate rental catalog and customer gifts
+        id: validate
+        continue-on-error: true
         run: python scripts/check-rental-data.py
+
+      - name: Upload last validated data backup
+        if: steps.validate.outcome == 'success'
+        uses: actions/upload-artifact@v4
+        with:
+          name: rental-data-backup-${{ github.sha }}
+          retention-days: 30
+          if-no-files-found: error
+          path: |
+            rental/data/products.json
+            rental/data/appliance-gift-options.json
+            rental/data/catalog-overrides.json
+            rental/data/affiliate-cards.json
+
+      - name: Auto-restore previous rental data
+        if: steps.validate.outcome == 'failure' && github.event_name == 'push'
+        shell: bash
+        run: |
+          set -euo pipefail
+          for file in rental/data/products.json rental/data/appliance-gift-options.json rental/data/catalog-overrides.json; do
+            if git cat-file -e "HEAD^:$file" 2>/dev/null; then
+              git show "HEAD^:$file" > "$file"
+            fi
+          done
+          python scripts/check-rental-data.py
+          git config user.name 'woongbi-rental-bot'
+          git config user.email 'actions@users.noreply.github.com'
+          git add rental/data/products.json rental/data/appliance-gift-options.json rental/data/catalog-overrides.json
+          if git diff --cached --quiet; then
+            echo 'No previous valid data could be restored.'
+            exit 1
+          fi
+          git commit -m 'Auto-restore last valid rental data'
+          git pull --rebase origin main
+          git push
+
+      - name: Fail manual or scheduled invalid check
+        if: steps.validate.outcome == 'failure' && github.event_name != 'push'
+        run: exit 1
