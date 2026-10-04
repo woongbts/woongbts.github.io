@@ -1,0 +1,3780 @@
+{
+  "schema": 1,
+  "generatedAt": "2026-10-04T10:10:33.666366+00:00",
+  "checkedAt": "2026-10-03",
+  "summary": {
+    "managed": 287,
+    "reference": 0,
+    "review": 184
+  },
+  "items": [
+    {
+      "id": "clover-2254",
+      "name": "MEGA ICE 얼음냉온정수기 mini",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2251",
+      "name": "MEGA ICE 얼음냉온정수기",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2196",
+      "name": "원코크 플러스 얼음물 냉온정수기",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2223",
+      "name": "초소형 라이트 직수 냉온정수기",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2226",
+      "name": "뉴슬림 플러스 정수기(지하수)",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2250",
+      "name": "투워터 직수 냉온정수기",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2203",
+      "name": "뉴슬림 플러스 냉온정수기",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2202",
+      "name": "초소형 플러스 직수 냉온정수기",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2104",
+      "name": "초소형 직수 정수기(냉온정)/할인프로모션",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2105",
+      "name": "초소형 직수 정수기 (냉정) / 할인 프로모션 / 온수불가",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2150",
+      "name": "뉴 미니 정수기(정수전용)",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-1759",
+      "name": "FS직수 대용량 얼음냉온정수기",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2060",
+      "name": "올클린 디아트 공기청정기_22평형 (할인프로모션)",
+      "category": "공기청정기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2059",
+      "name": "올클린 디아트 펫 공기청정기_22평형_펫 전용 (할인프로모션)",
+      "category": "공기청정기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2058",
+      "name": "올클린 디아트 공기청정기_16평형 (할인프로모션)",
+      "category": "공기청정기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-1675",
+      "name": "올클린 공기청정기_25평형(할인프로모션)",
+      "category": "공기청정기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-1857",
+      "name": "친환경 올클린 공기청정기_15평형(할인프로모션)",
+      "category": "공기청정기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2121",
+      "name": "친환경 올클린 공기청정기_20평형(할인프로모션)",
+      "category": "공기청정기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-1856",
+      "name": "AI 공기청정기 ACL300VA_30평형",
+      "category": "공기청정기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2168",
+      "name": "코어 360˚ 공기청정기_13평형",
+      "category": "공기청정기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2244",
+      "name": "올클린 케어 비데",
+      "category": "비데·연수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-1594",
+      "name": "그랜드 RO 냉온정수기 _지하수 가능",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2154",
+      "name": "그랜드 냉온정수기",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-1934",
+      "name": "풀스텐 스파 비데_라이트 프로모션(셀프관리)",
+      "category": "비데·연수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2224",
+      "name": "뉴그랜드 NANO 프리스탠딩 냉온정수기",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2225",
+      "name": "뉴그랜드 RO 프리스탠딩 냉온정수기(지하수)",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2174",
+      "name": "위글위글 풀스텐 스파 비데_위글위글 콜라보_라이트 프로모션",
+      "category": "비데·연수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-1779",
+      "name": "에코미니 정수기 그린4 (정수전용)",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-1860",
+      "name": "파워업 항균 에코 비데_저수압용",
+      "category": "비데·연수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2167",
+      "name": "풀스텐 살균비데_라이트 프로모션(셀프관리)",
+      "category": "비데·연수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2259",
+      "name": "LG 퓨리케어 AI 오브제컬렉션 냉동얼음정수기",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2173",
+      "name": "퓨리케어 360도 공기청정기 19평형",
+      "category": "공기청정기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2201",
+      "name": "LG 퓨리케어 360˚ 공기청정기 플러스 + 무빙휠 세트 100㎡ 2등급",
+      "category": "공기청정기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2171",
+      "name": "오브제컬렉션 에어로타워 Hit (온풍 겸용)",
+      "category": "공기청정기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-1810",
+      "name": "360° 오브제컬렉션 공기청정기_32평형 (V필터)",
+      "category": "공기청정기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-1809",
+      "name": "360° 오브제컬렉션 공기청정기_19평형 (V필터)",
+      "category": "공기청정기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2258",
+      "name": "퓨리케어 오브제컬렉션 얼음정수기",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2242",
+      "name": "퓨리케어 오브제컬렉션 얼음정수기",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2230",
+      "name": "퓨리케어 오브제컬렉션 맞춤 lite 냉온정수기/베이지만 가능",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2231",
+      "name": "퓨리케어 오브제컬렉션 맞춤 lite 냉온정수기/베이지만 가능",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2211",
+      "name": "퓨리케어 오브제컬렉션 정수기 냉온정(음성인식/맞춤출수 초고온수)",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2210",
+      "name": "퓨리케어 오브제컬렉션 냉온정(맞춤출수 초고온수)",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-1927",
+      "name": "퓨리케어 오브제컬렉션 냉정수기(맞춤출수)",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2136",
+      "name": "퓨리케어 오브제컬렉션 정수기 (라이트온, 정수전용)",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-1775",
+      "name": "퓨리케어 오브제컬렉션 듀얼 냉온정수기 (세척수)",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-1586",
+      "name": "퓨리케어 듀얼 냉온정수기(세척수)",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-1588",
+      "name": "퓨리케어 듀얼 냉정수기(방문관리전용)",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-1758",
+      "name": "퓨리케어 상하좌우 냉온정수기",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2184",
+      "name": "디오스 인덕션 빌트인 (와이드존, 케이스 미포함)",
+      "category": "주방가전",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2019",
+      "name": "디오스 오브제컬렉션 인덕션 빌트인 (와이드존, 프레임리스, 케이스 미포함)",
+      "category": "주방가전",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-153",
+      "name": "오브제컬렉션 뉴 스타일러 대용량",
+      "category": "세탁·건조·의류관리",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-1841",
+      "name": "트롬 오브제컬렉션 건조기(19kg)",
+      "category": "세탁·건조·의류관리",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-1840",
+      "name": "트롬 오브제컬렉션 건조기(19kg)",
+      "category": "세탁·건조·의류관리",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-1949",
+      "name": "트롬 오브제컬렉션 드럼세탁기(24kg)",
+      "category": "세탁·건조·의류관리",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2081",
+      "name": "트롬 드럼세탁기 (12kg)",
+      "category": "세탁·건조·의류관리",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2082",
+      "name": "트롬 드럼세탁기 (12kg)",
+      "category": "세탁·건조·의류관리",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-1968",
+      "name": "LG 힐링미 안마의자 (MX9)",
+      "category": "안마의자",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-1969",
+      "name": "힐링미 안마의자_파타야",
+      "category": "안마의자",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-1971",
+      "name": "힐링미 오브제컬렉션 안마의자_아르테(셀프전용)",
+      "category": "안마의자",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-1820",
+      "name": "퓨리케어 빌트인 냉온정수기",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-1821",
+      "name": "퓨리케어 오브제컬렉션 빌트인 냉온정수기",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2118",
+      "name": "퓨리케어 오브제컬렉션 에어로퍼니처 공기청정기 6평형",
+      "category": "공기청정기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2172",
+      "name": "오브제컬렉션 에어로부스터 공기청정기 14평형",
+      "category": "공기청정기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2227",
+      "name": "퓨리케어 오브제컬렉션 냉온정수기(슬림스탠드)",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2228",
+      "name": "퓨리케어 오브제컬렉션 냉온정수기(스탠드)",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2232",
+      "name": "히티브 온풍 공기청정기 5평형",
+      "category": "공기청정기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2215",
+      "name": "스퀘어핏 공기청정기 (38㎡)",
+      "category": "공기청정기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2214",
+      "name": "스퀘어핏 공기청정기 (82㎡)",
+      "category": "공기청정기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2206",
+      "name": "노블 제습공기청정기 9평형",
+      "category": "공기청정기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2195",
+      "name": "파워업 공기청정기 2",
+      "category": "공기청정기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2186",
+      "name": "노블 공기청정기2 (133㎡)",
+      "category": "공기청정기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2161",
+      "name": "노블 공기청정기2 (100㎡)",
+      "category": "공기청정기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2156",
+      "name": "벽걸이 공기청정기2 /12평형",
+      "category": "공기청정기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2031",
+      "name": "노블 공기청정기2_20평형",
+      "category": "공기청정기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2030",
+      "name": "노블 공기청정기2_16평형",
+      "category": "공기청정기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-1756",
+      "name": "노블 공기청정기_30평형 (IoCare형)",
+      "category": "공기청정기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-1679",
+      "name": "듀얼클린 가습공기청정기_12평형",
+      "category": "공기청정기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-312",
+      "name": "콰트로파워 공기청정기_30평형",
+      "category": "공기청정기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-384",
+      "name": "멀티액션 공기청정기2_15평형",
+      "category": "공기청정기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-282",
+      "name": "싱글파워 공기청정기_10평형",
+      "category": "공기청정기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "chpci-8400n",
+      "name": "카페 얼음 냉온정수기",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "chpi-7430n",
+      "name": "아이콘 얼음냉온정수기 미니",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "chpi-7420n",
+      "name": "아이콘 얼음냉온정수기 맥스",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2208",
+      "name": "아이콘 스탠다드 얼음 냉온정수기",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2209",
+      "name": "아이콘 스탠다드 얼음 냉정수기/온수불가",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-1786",
+      "name": "아이콘 얼음냉온정수기",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-1785",
+      "name": "아이콘 얼음냉정수기/온수불가",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2187",
+      "name": "얼음냉온정수기 RO",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "chp-7220n",
+      "name": "아이콘3 냉온정수기",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2194",
+      "name": "아이콘 프로 냉온정수기",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2247",
+      "name": "아이스 스탠드 3.0",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2239",
+      "name": "아이스 스탠드 자이언트 얼음냉온정수기",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2222",
+      "name": "워터스탠드 플러스 RO 냉온정수기",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2193",
+      "name": "엘리트 빌트인 냉온정수기",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2188",
+      "name": "스위치 직수정수기",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2255",
+      "name": "아이콘2 냉온정수기/리뉴얼NEW",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-1579",
+      "name": "AIS(아이스) 3.0 스파클링 냉정수기",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-1724",
+      "name": "AIS(아이스) 3.0 얼음냉온정수기",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-1725",
+      "name": "AIS(아이스) 3.0 얼음냉정수기/온수불가",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "p-350n",
+      "name": "나노직수 미니 정수기 (정수전용)",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-1915",
+      "name": "노블 RO 냉온정수기",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-1933",
+      "name": "엘리트 냉온정수기(방문관리전용)",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-1932",
+      "name": "엘리트 냉정수기(방문관리전용)/온수불가",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-1791",
+      "name": "프라임 아이스 맥스 얼음냉온정수기(방문관리전용)",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-1916",
+      "name": "프라임 스탠드 냉온정수기(방문관리전용)",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-1764",
+      "name": "노블 빌트인 냉온정수기",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-1913",
+      "name": "프라임 베이직 정수기 (정수전용)",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-181",
+      "name": "빌트인 정수기(정수전용)",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-223",
+      "name": "아이스 스탠드 얼음냉온정수기",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-1808",
+      "name": "BEREX 안마의자 시그니처",
+      "category": "생활가전",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-1910",
+      "name": "아이스 스탠드 슬림 얼음냉온정수기",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-1882",
+      "name": "BEREX 안마의자 마인 플러스",
+      "category": "생활가전",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2076",
+      "name": "BEREX 리클라이닝 마사지셋",
+      "category": "생활가전",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2075",
+      "name": "BEREX 코어셋",
+      "category": "생활가전",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-175",
+      "name": "워터 스탠드 냉온정수기",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-245",
+      "name": "시루직수 워터 스탠드 냉온정수기",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-234",
+      "name": "스탠드 냉온정수기",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-1766",
+      "name": "노블 세로 냉온정수기",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-1770",
+      "name": "노블 인덕션 All-Free (4구)",
+      "category": "생활가전",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-1877",
+      "name": "노블 인덕션 All-Free 와이드 (6구,전기공사형)",
+      "category": "생활가전",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-1879",
+      "name": "프라임 인덕션 (3구)",
+      "category": "생활가전",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-1880",
+      "name": "프라임 하이브리드 (인덕션 2구+ 하이라이트 1구)",
+      "category": "생활가전",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-1881",
+      "name": "프라임S 인덕션 (3구)",
+      "category": "생활가전",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-1726",
+      "name": "프라임S 하이라이트 (3구)",
+      "category": "생활가전",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2256",
+      "name": "더매너 비데 플러스",
+      "category": "비데·연수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2233",
+      "name": "슬리믹 비데",
+      "category": "비데·연수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-1353",
+      "name": "BEREX 프라임 매트리스/라지킹만 접수가능",
+      "category": "매트리스·프레임",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-1651",
+      "name": "BEREX 하이브리드 4 매트리스",
+      "category": "매트리스·프레임",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-1351",
+      "name": "BEREX 컴팩트 메모리폼 매트리스",
+      "category": "매트리스·프레임",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2185",
+      "name": "BEREX 엘리트 매트리스",
+      "category": "매트리스·프레임",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-1371",
+      "name": "BEREX 하이브리드 3 매트리스",
+      "category": "매트리스·프레임",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-1324",
+      "name": "BEREX 더블체인지 매트리스",
+      "category": "매트리스·프레임",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-1886",
+      "name": "일체형 BEREX 원바디 2 매트리스",
+      "category": "매트리스·프레임",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-1890",
+      "name": "BEREX 마이 프레임 기본형 (플랫/볼륨)",
+      "category": "매트리스·프레임",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-1888",
+      "name": "BEREX 마이 프레임 사이드형 (플랫/볼륨)",
+      "category": "매트리스·프레임",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-1349",
+      "name": "BEREX 패밀리 프레임 (단독형)",
+      "category": "매트리스·프레임",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-1341",
+      "name": "BEREX 원목 프레임",
+      "category": "매트리스·프레임",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-1897",
+      "name": "룰루 스스로케어 비데(저수압 특화)",
+      "category": "비데·연수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2086",
+      "name": "더블케어 플러스 비데 2",
+      "category": "비데·연수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-1326",
+      "name": "BEREX 모던 어반 프레임",
+      "category": "매트리스·프레임",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-1883",
+      "name": "듀얼클린 제습공기청정기_10평형",
+      "category": "공기청정기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-1304",
+      "name": "BEREX 모던 싱글 프레임",
+      "category": "매트리스·프레임",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-1782",
+      "name": "더블케어 비데 2",
+      "category": "비데·연수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-1895",
+      "name": "스킨플러스 연수기(수전일체형)",
+      "category": "비데·연수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-393",
+      "name": "벽걸이 공기청정기 (AP-3519A)_34평형",
+      "category": "공기청정기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-1894",
+      "name": "스킨플러스 연수기(일반형)",
+      "category": "비데·연수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-441",
+      "name": "연수기(BB15-A)_스탠드형/벽걸이형 겸용",
+      "category": "비데·연수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-674",
+      "name": "사계절 의류청정기 더블케어(FAD-01S)",
+      "category": "생활가전",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-436",
+      "name": "사계절 의류청정기 더블케어(FAD-02S)",
+      "category": "생활가전",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2248",
+      "name": "THE M 얼음 냉온정수기",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-1799",
+      "name": "뉴 아이스트리 직수얼음냉온정수기 (할인프로모션)",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2216",
+      "name": "옴니 플러스 얼음 냉온정수기",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2145",
+      "name": "얼음냉온정수기 아이스트리 플리",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2170",
+      "name": "냉온정수기 아이스트리 플리",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2151",
+      "name": "뉴 러블리트리 직수냉온정수기",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2051",
+      "name": "냉온정수기 450-L",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2217",
+      "name": "얼음냉온정수기 NEW 700 P_할인프로모션",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2045",
+      "name": "얼음냉온정수기 NEW 700",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2046",
+      "name": "얼음냉온정수기 슈퍼 아이스트리",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2126",
+      "name": "냉온정수기 메타 디지털 P (할인프로모션)/오트밀베이지만 가능",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2243",
+      "name": "냉온정수기 TOTA MAX",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2152",
+      "name": "냉온정수기 ANNIE",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2218",
+      "name": "얼음 냉온정수기 550_할인 프로모션",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2241",
+      "name": "얼음 냉온정수기 550 P_할인 프로모션",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2057",
+      "name": "냉온정수기 슈퍼 트리 (할인프로모션)",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2054",
+      "name": "냉온정수기 TOTA R (토타)",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2205",
+      "name": "빌트인 냉온정수기 블리스",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2052",
+      "name": "냉온정수기 ANNIE PLUS",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-581",
+      "name": "일반정수기 S",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-571",
+      "name": "냉온정수기 NEW 디지털",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2260",
+      "name": "클린업 공기청정기",
+      "category": "공기청정기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2246",
+      "name": "서밋 타워 공기청정기 25평형",
+      "category": "공기청정기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2234",
+      "name": "디오 향균 공기청정기 19평형",
+      "category": "공기청정기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2240",
+      "name": "트윈 노즐 비데 B400",
+      "category": "비데·연수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2127",
+      "name": "공기청정기 NEW HERO 2_21평",
+      "category": "공기청정기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2130",
+      "name": "공기청정기 휘파람 숨소리3_10평형",
+      "category": "공기청정기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-1623",
+      "name": "펫 공기청정기_10평형",
+      "category": "공기청정기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2135",
+      "name": "환기 공기청정기 OA_7평형",
+      "category": "공기청정기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-729",
+      "name": "살균비데 B600 Plus",
+      "category": "비데·연수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2131",
+      "name": "공기청정기 하이마운틴_33평",
+      "category": "공기청정기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-639",
+      "name": "가습공기청정기 AH1200_12평형",
+      "category": "공기청정기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-1624",
+      "name": "에어버블 비데",
+      "category": "비데·연수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-1690",
+      "name": "쾌변비데 B350 (리모컨)",
+      "category": "비데·연수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2124",
+      "name": "딜라이트 아이스(방문관리전용)",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2166",
+      "name": "더퓨어 나노S_냉온정수기(카운터/스탠드형)",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2257",
+      "name": "딜라이트2 직수형 냉온정수기",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2111",
+      "name": "딜라이트 직수형 냉온정수기",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2125",
+      "name": "딜라이트 아이 무전원 정수기",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-1784",
+      "name": "더슬림 마이핏_냉온정수기",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-1930",
+      "name": "더슬림 마이핏_냉정수기/온수불가",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-694",
+      "name": "더퓨어 베이직_냉온정수기 (카운터/스탠드)/ 화이트만 가능",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2011",
+      "name": "더퓨어 플러스 살균 냉온정수기 (카운터형/스탠드형)",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2012",
+      "name": "더퓨어 프리미엄RO_냉온정수기",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-1719",
+      "name": "더퓨어 마크업 RO_냉온정수기(지하수겸용)",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-681",
+      "name": "더퓨어 마크업 대용량_냉온정수기",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-1817",
+      "name": "더퓨어 마크업 중용량_냉온정수기",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2235",
+      "name": "더케어 큐브 공기청정기 11평형",
+      "category": "공기청정기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2220",
+      "name": "더케어 타워 에어렌 공기청정기 12평",
+      "category": "공기청정기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-1905",
+      "name": "더케어 타워 프리미엄 세트",
+      "category": "공기청정기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-236",
+      "name": "더케어 타워 프리미엄 항균",
+      "category": "공기청정기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2073",
+      "name": "더클린 살균케어",
+      "category": "비데·연수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-235",
+      "name": "더케어 타워 항균",
+      "category": "공기청정기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-679",
+      "name": "더슬림 미니_정수전용(무전원)",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-241",
+      "name": "더클린 스마트",
+      "category": "비데·연수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-1898",
+      "name": "더클린 화이트",
+      "category": "비데·연수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-1899",
+      "name": "쉘로아 안마의자 에센셜",
+      "category": "생활가전",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-1901",
+      "name": "더카페 큐밍블랙 커피머신",
+      "category": "주방가전",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-1737",
+      "name": "더클린 라이트",
+      "category": "비데·연수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-256",
+      "name": "럭셔리 매트리스_퀸",
+      "category": "매트리스·프레임",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-257",
+      "name": "럭셔리 매트리스SET_퀸",
+      "category": "매트리스·프레임",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-259",
+      "name": "럭셔리 매트리스_라지킹",
+      "category": "매트리스·프레임",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-268",
+      "name": "프리미엄 매트리스_퀸",
+      "category": "매트리스·프레임",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-271",
+      "name": "프리미엄 매트리스SET_퀸",
+      "category": "매트리스·프레임",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-273",
+      "name": "프리미엄 매트리스_라지킹",
+      "category": "매트리스·프레임",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-252",
+      "name": "럭셔리 매트리스_슈퍼싱글",
+      "category": "매트리스·프레임",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-254",
+      "name": "럭셔리 매트리스SET_슈퍼싱글",
+      "category": "매트리스·프레임",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "cp-aqs100ewh",
+      "name": "제로 100 미니 얼음 냉온정수기",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-1769",
+      "name": "ZERO 100S 끓인물 얼음냉온정수기",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2249",
+      "name": "제로 100 슬림 플러스 얼음 정수기_반값할인",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2110",
+      "name": "제로 100 슬림 얼음 정수기_반값할인",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2140",
+      "name": "제로 100 슬림 바리스타 얼음 정수기_반값 할인",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2236",
+      "name": "인스퓨어 헤리티지 공기청정",
+      "category": "공기청정기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2219",
+      "name": "인스퓨어 미니100초소형 냉온정수기",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2197",
+      "name": "살균 직수 정수기",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2159",
+      "name": "쿠쿠 인스퓨어 공기청정기/렌탈료 10%할인 프로모션",
+      "category": "공기청정기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2158",
+      "name": "쿠쿠 대용량 공기청정기",
+      "category": "공기청정기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2237",
+      "name": "인스퓨어 ULTRA 공기청정기",
+      "category": "공기청정기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-1908",
+      "name": "쿠쿠 인스퓨어 ULTRA 12000 공기청정기_34.9평형 / 렌탈료 10%할인 프로모션",
+      "category": "공기청정기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-446",
+      "name": "쿠쿠 인스퓨어 W8200 공기청정기_25.6평형 / 렌탈료 10% 할인 프로모션",
+      "category": "공기청정기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-1603",
+      "name": "인스퓨어 W8300 공기청정기 _28평형 / 렌탈료 10% 할인 프로모션",
+      "category": "공기청정기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2067",
+      "name": "인스퓨어 STEAM 100 바리스타 직수냉온정수기_반값할인",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-1812",
+      "name": "STEAM 100 직수냉온정수기_반값할인",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2253",
+      "name": "대용량 PLUS 얼음 냉온정수기 (노블 화이트)",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2147",
+      "name": "지하수 얼음정수기",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2099",
+      "name": "내추럴워터 정수기(데스크형,스탠드형)",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-1774",
+      "name": "인스퓨어 코크살균 냉온정수기",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2015",
+      "name": "STEAM 100 빌트인 직수냉온정수기",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2143",
+      "name": "100도씨 끓인물 정수기",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-1702",
+      "name": "혼족 직수정수기 (정수전용)",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-1829",
+      "name": "대용량 얼음냉온정수기 (방문관리전용)",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2063",
+      "name": "인스퓨어 냉온정수기",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2016",
+      "name": "인스퓨어 냉온정수기(데스크형/스탠드형_방문관리전용)",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2141",
+      "name": "인스퓨어 지하수 냉온정수기",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2142",
+      "name": "인스퓨어 지하수 냉온정수기",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-1599",
+      "name": "스탠드형 나노포지티브필터 중용량 냉온정수기 (방문관리전용)",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2064",
+      "name": "업소용 중용량 냉온정수기",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-1802",
+      "name": "3구 화이트 셰프스틱 인덕션 레인지",
+      "category": "주방가전",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-1705",
+      "name": "인스퓨어 W8200 펫 전용 공기청정기",
+      "category": "공기청정기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-1721",
+      "name": "인스퓨어 T8700 공기청정기_20평형",
+      "category": "공기청정기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-1720",
+      "name": "인스퓨어 T8700 공기청정기_16평형",
+      "category": "공기청정기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2068",
+      "name": "클렌비스 방수비데",
+      "category": "비데·연수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-1906",
+      "name": "인스퓨어 프리미엄 공기청정기 브릭_14평형",
+      "category": "공기청정기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2175",
+      "name": "인스퓨어 슈퍼슬림 리모컨 비데",
+      "category": "비데·연수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2176",
+      "name": "인스퓨어 트리플케어8 리모컨 비데",
+      "category": "비데·연수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2177",
+      "name": "인스퓨어 트리플케어8 비데",
+      "category": "비데·연수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2178",
+      "name": "도기&노즐 자동살균 방수비데",
+      "category": "비데·연수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2179",
+      "name": "인스퓨어 비데",
+      "category": "비데·연수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-1907",
+      "name": "인스퓨어 프리미엄 공기청정기 브릭_12평형",
+      "category": "공기청정기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2065",
+      "name": "인스퓨어 직수 정수기 (무전원 빌트인 언더싱크)",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2144",
+      "name": "초슬림 벽걸이 공기청정기_9평형",
+      "category": "공기청정기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-1656",
+      "name": "인스퓨어 Easy 필터 방수 비데",
+      "category": "비데·연수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-1657",
+      "name": "인스퓨어 전기분해 노즐 자동살균 비데 (리모컨)",
+      "category": "비데·연수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-481",
+      "name": "인스퓨어 Easy 필터 비데",
+      "category": "비데·연수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-500",
+      "name": "마이크로 버블클렌저",
+      "category": "비데·연수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-516",
+      "name": "펫드라이룸",
+      "category": "생활가전",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2106",
+      "name": "쿠쿠 리네이처",
+      "category": "안마의자",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2108",
+      "name": "쿠쿠 리네이처 고급형",
+      "category": "안마의자",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2096",
+      "name": "냉온 정수기_냉온",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2097",
+      "name": "대용량 업소용 정수기",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-726",
+      "name": "공기청정기 에어_15평형",
+      "category": "공기청정기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2093",
+      "name": "더프레임 직수형 냉온",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-1589",
+      "name": "직수형 얼음정수기_냉온",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-1752",
+      "name": "직수형 냉온정수기",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-1753",
+      "name": "직수형 냉정수기 / 온수 불가",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2094",
+      "name": "냉온 정수기",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-711",
+      "name": "냉온정수기_냉온",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-728",
+      "name": "에그 Egg 공기청정기_10평형",
+      "category": "공기청정기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2180",
+      "name": "퍼펙트 웨이브 비데",
+      "category": "비데·연수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2181",
+      "name": "퍼펙트 클린 비데 리모컨형",
+      "category": "비데·연수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2183",
+      "name": "퍼펙트 클린 비데",
+      "category": "비데·연수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-1401",
+      "name": "샤인 냉온 정수기 (하프)",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-1405",
+      "name": "프라임 냉온 정수기",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2037",
+      "name": "냉온정수기 (화이트)",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2034",
+      "name": "샤인 냉온정수기",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-2039",
+      "name": "항균청정기 CU AT-1370C",
+      "category": "공기청정기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clover-1417",
+      "name": "듀얼 살균 비데 /할인프로모션",
+      "category": "비데·연수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "cp-7211n-v2",
+      "name": "코웨이 아이콘2 냉정수기",
+      "category": "정수기",
+      "status": "managed",
+      "checkedAt": "2026-10-03",
+      "reason": "웅비렌탈 관리 데이터"
+    },
+    {
+      "id": "clv-23052",
+      "name": "디스커버리 엔트리 PAS구동 접이식 전기자전거",
+      "category": "레저·자동차",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-13528",
+      "name": "TX7 36V 5.2Ah 접이식 전기자전거",
+      "category": "레저·자동차",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-5733",
+      "name": "베이직 포터블 디지털 전자 피아노 (블랙)",
+      "category": "레저·자동차",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-8081",
+      "name": "Skycamp 2.0 R",
+      "category": "레저·자동차",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-12646",
+      "name": "디스커버리 와일드 S20 16A 전기 전동스쿠터",
+      "category": "레저·자동차",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-12617",
+      "name": "격자형 창문형 에어컨 6평형 (화이트)",
+      "category": "에어컨·청소기",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-36320",
+      "name": "AI Q9000 2in1 에어컨 17평형+6평형 (화이트)",
+      "category": "에어컨·청소기",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-36310",
+      "name": "AI Q9000 2in1 에어컨 17평형+6평형 (화이트/그레이)",
+      "category": "에어컨·청소기",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-35940",
+      "name": "AI Q9000 2in1 에어컨 19평형+6평형 (화이트)",
+      "category": "에어컨·청소기",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-58159",
+      "name": "휘센 AI 오브제컬렉션 위너 1시리즈 2in1 에어컨 18평형+6평형 (크림 화이트)",
+      "category": "에어컨·청소기",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-55935",
+      "name": "[현장] 비스포크 AI 2in1 에어컨 17평형+6평형 (메탈 화이트)",
+      "category": "에어컨·청소기",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-35750",
+      "name": "Q9000 스탠드 에어컨 17평형 (화이트)",
+      "category": "에어컨·청소기",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-35755",
+      "name": "Q9000 스탠드 에어컨 19평형 (화이트)",
+      "category": "에어컨·청소기",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-35925",
+      "name": "AI Q9000 스탠드 에어컨 19평형 (화이트/베이지)",
+      "category": "에어컨·청소기",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-35765",
+      "name": "비스포크 AI 스탠드 에어컨 17평형 (메탈 화이트)",
+      "category": "에어컨·청소기",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-35950",
+      "name": "AI Q9000 청정 스탠드 에어컨 19평형 (화이트)",
+      "category": "에어컨·청소기",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-21916",
+      "name": "벽걸이 에어컨 6평형 (화이트)",
+      "category": "에어컨·청소기",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-55590",
+      "name": "비스포크 AI 무풍콤보 갤러리 프로 청정 2in1 에어컨 19평형+6평형 (에센셜 화이트/에센셜 화이트)",
+      "category": "에어컨·청소기",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-55543",
+      "name": "비스포크 AI 무풍콤보 갤러리 프로 청정 스탠드 에어컨 17평형 (에센셜 화이트/에센셜 화이트)",
+      "category": "에어컨·청소기",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-18652",
+      "name": "휘센 벽걸이 에어컨 11평형 (화이트)",
+      "category": "에어컨·청소기",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-18656",
+      "name": "휘센 벽걸이 에어컨 13평형 (화이트)",
+      "category": "에어컨·청소기",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-6816",
+      "name": "휘센 스탠드 에어컨 25평형 단상",
+      "category": "에어컨·청소기",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-6817",
+      "name": "휘센 스탠드 에어컨 30평형 단상",
+      "category": "에어컨·청소기",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-7666",
+      "name": "휘센 스탠드 에어컨 40평형 단상",
+      "category": "에어컨·청소기",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-4236",
+      "name": "인버터 스탠드 에어컨 63평형",
+      "category": "에어컨·청소기",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-4243",
+      "name": "인버터 스탠드 에어컨 80평형 삼상",
+      "category": "에어컨·청소기",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-4244",
+      "name": "인버터 스탠드 에어컨 125평형",
+      "category": "에어컨·청소기",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-4245",
+      "name": "인버터 스탠드 에어컨 160평형 삼상",
+      "category": "에어컨·청소기",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-39209",
+      "name": "시에스타 호텔식 침대 프레임+매트리스 세트 (SS) (네추럴 오크)",
+      "category": "매트리스·프레임",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-12811",
+      "name": "샤르니 조야원단 3인용 패브릭 직선형 스윙소파 (핑크/아이보리)",
+      "category": "가구·침대",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-12807",
+      "name": "샤르니 조야원단 4인용 패브릭 코너형 스윙소파 (올 아이보리)",
+      "category": "가구·침대",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-11828",
+      "name": "라온 LED 저상형 침대 SS",
+      "category": "가구·침대",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-11538",
+      "name": "라온 슬림형 저상형 침대 SS + SS",
+      "category": "가구·침대",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-12830",
+      "name": "아리아 조야원단 4인용 카우치 아쿠아텍스 우측 배치형 패브릭 스윙소파 (핑크/라이트 그레이)",
+      "category": "가구·침대",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-12810",
+      "name": "샤르니 조야원단 4인용 패브릭 직선형 스윙소파 (올 아이보리)",
+      "category": "가구·침대",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-12809",
+      "name": "샤르니 조야원단 4인용 패브릭 직선형 스윙소파 (핑크/아이보리)",
+      "category": "가구·침대",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-58086",
+      "name": "QLED 4K TV 98인치",
+      "category": "TV·디지털",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-57332",
+      "name": "올레드 AI TV 77인치",
+      "category": "TV·디지털",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-50899",
+      "name": "[현장] 울트라 HD AI TV 65인치",
+      "category": "TV·디지털",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-23910",
+      "name": "더 세리프 QLED TV 55인치",
+      "category": "TV·디지털",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-24212",
+      "name": "더 세리프 QLED TV 50인치",
+      "category": "TV·디지털",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-24207",
+      "name": "더 세리프 QLED TV 43인치",
+      "category": "TV·디지털",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-46173",
+      "name": "AI 세탁기 21kg + 건조기 21kg (블랙캐비어)",
+      "category": "세탁·건조·의류관리",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-56311",
+      "name": "[현장] AI 세탁기 21kg + 건조기 21kg (블랙캐비어)",
+      "category": "세탁·건조·의류관리",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-56636",
+      "name": "그랑데 AI 세탁기 25kg + 건조기 21kg + 상단 설치 키트 (화이트)",
+      "category": "세탁·건조·의류관리",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-56065",
+      "name": "트롬 워시타워 세탁기 23kg + 건조기 20kg (릴리 화이트)",
+      "category": "세탁·건조·의류관리",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-48939",
+      "name": "AI 세탁기 21kg + 건조기 21kg (화이트) + 상단 설치 키트",
+      "category": "세탁·건조·의류관리",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-57861",
+      "name": "비스포크 AI 콤보 세탁기 25kg + 건조기 18kg (화이트)",
+      "category": "세탁·건조·의류관리",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-48684",
+      "name": "트롬 오브제컬렉션 워시콤보 세탁기 24kg + 건조기 15kg (네이처 베이지)",
+      "category": "세탁·건조·의류관리",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-57856",
+      "name": "비스포크 AI 콤보 세탁기 25kg + 건조기 18kg (다크스틸)",
+      "category": "세탁·건조·의류관리",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-20680",
+      "name": "트롬 오브제컬렉션 워시콤보 세탁기 25kg + 건조기 15kg (네이처 그린)",
+      "category": "세탁·건조·의류관리",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-57876",
+      "name": "비스포크 AI 콤보 세탁기 25kg + 건조기 20kg (그레이지)",
+      "category": "세탁·건조·의류관리",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-59505",
+      "name": "트롬 오브제컬렉션 워시타워 세탁기 23kg + 건조기 21kg (네이처 그린/네이처 베이지)",
+      "category": "세탁·건조·의류관리",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-20690",
+      "name": "트롬 오브제컬렉션 워시콤보 세탁기 25kg + 건조기 15kg (릴리 화이트)",
+      "category": "세탁·건조·의류관리",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-61048",
+      "name": "[현장] Zeo X 올인원 세탁기 11kg + 건조기 6kg (블랙)",
+      "category": "세탁·건조·의류관리",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-44134",
+      "name": "AI 세탁기 25kg (화이트)",
+      "category": "세탁·건조·의류관리",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-56215",
+      "name": "트롬 세탁기 24kg (화이트)",
+      "category": "세탁·건조·의류관리",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-45244",
+      "name": "비스포크 AI 세탁기 21kg (화이트)",
+      "category": "세탁·건조·의류관리",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-16268",
+      "name": "그랑데 세탁기 19kg (화이트)",
+      "category": "세탁·건조·의류관리",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-56776",
+      "name": "트롬 세탁기 17kg (글로우 에센스 화이트)",
+      "category": "세탁·건조·의류관리",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-55141",
+      "name": "트롬 세탁기 12kg (릴리 화이트)",
+      "category": "세탁·건조·의류관리",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-25420",
+      "name": "트롬 세탁기 9kg (화이트)",
+      "category": "세탁·건조·의류관리",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-3722",
+      "name": "그랑데 통버블 세탁기 23kg (블랙 캐비어)",
+      "category": "세탁·건조·의류관리",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-3723",
+      "name": "그랑데 통버블 세탁기 21kg (블랙 캐비어)",
+      "category": "세탁·건조·의류관리",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-10316",
+      "name": "통돌이 세탁기 17kg (미드 프리 실버)",
+      "category": "세탁·건조·의류관리",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-55624",
+      "name": "AI 세탁기 25kg + 건조기 21kg + 상단 설치 키트 (블랙캐비어)",
+      "category": "세탁·건조·의류관리",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-57866",
+      "name": "비스포크 AI 콤보 세탁기 25kg + 건조기 18kg (그레이지)",
+      "category": "세탁·건조·의류관리",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-21702",
+      "name": "트롬 오브제컬렉션 워시콤보 세탁기 25kg + 건조기 15kg + 키높이 수납함 (네이처 그린)",
+      "category": "세탁·건조·의류관리",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-57829",
+      "name": "트롬 오브제컬렉션 워시타워 세탁기 25kg + 건조기 20kg (오브제컬렉션 릴리 화이트/릴리 화이트)",
+      "category": "세탁·건조·의류관리",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-43739",
+      "name": "비스포크 AI 콤보 세탁기 25kg + 건조기 18kg (블랙캐비어)",
+      "category": "세탁·건조·의류관리",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-24367",
+      "name": "트롬 오브제컬렉션 워시콤보 세탁기 25kg + 건조기 15kg + 키높이 수납함 (네이처 베이지)",
+      "category": "세탁·건조·의류관리",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-21457",
+      "name": "트롬 오브제컬렉션 워시콤보 세탁기 25kg + 건조기 15kg + 미니워시 (모던 스테인레스)",
+      "category": "세탁·건조·의류관리",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-49464",
+      "name": "트롬 AI 오브제컬렉션 건조기 25kg (스페이스 블랙)",
+      "category": "세탁·건조·의류관리",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-46018",
+      "name": "AI 건조기 21kg (블랙캐비어)",
+      "category": "세탁·건조·의류관리",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-46746",
+      "name": "트롬 건조기 20kg (화이트)",
+      "category": "세탁·건조·의류관리",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-14541",
+      "name": "트롬 건조기 19kg (화이트)",
+      "category": "세탁·건조·의류관리",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-46751",
+      "name": "트롬 오브제컬렉션 건조기 18kg (모던 스테인리스)",
+      "category": "세탁·건조·의류관리",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-19804",
+      "name": "트롬 듀얼 인버터 히트펌프 건조기 10kg (화이트)",
+      "category": "세탁·건조·의류관리",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-4315",
+      "name": "건조기 9kg (화이트)",
+      "category": "세탁·건조·의류관리",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-24953",
+      "name": "PRO 플러스 미니 건조기 3.5kg (그레이지)",
+      "category": "세탁·건조·의류관리",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-56059",
+      "name": "트롬 오브제컬렉션 워시타워 세탁기 24kg + 건조기 20kg (릴리 화이트)",
+      "category": "세탁·건조·의류관리",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-21442",
+      "name": "트롬 오브제컬렉션 워시콤보 세탁기 25kg + 건조기 15kg + 미니워시 (네이처 그린)",
+      "category": "세탁·건조·의류관리",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-57875",
+      "name": "비스포크 AI 콤보 세탁기 25kg + 건조기 20kg (화이트)",
+      "category": "세탁·건조·의류관리",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-20676",
+      "name": "트롬 오브제컬렉션 워시콤보 세탁기 25kg + 건조기 15kg (네이처 베이지)",
+      "category": "세탁·건조·의류관리",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-21467",
+      "name": "트롬 오브제컬렉션 워시콤보 세탁기 25kg + 건조기 15kg + 미니워시 (릴리 화이트)",
+      "category": "세탁·건조·의류관리",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-21712",
+      "name": "트롬 오브제컬렉션 워시콤보 세탁기 25kg + 건조기 15kg + 미니워시 (네이처 베이지)",
+      "category": "세탁·건조·의류관리",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-52779",
+      "name": "오브제컬렉션 NEW 스타일러 일반용량 (블랙틴트미러)",
+      "category": "세탁·건조·의류관리",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-11457",
+      "name": "비스포크 에어드레서 일반용량 (코타 화이트)",
+      "category": "세탁·건조·의류관리",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-11214",
+      "name": "비스포크 에어드레서 일반용량 (새틴 베이지)",
+      "category": "세탁·건조·의류관리",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-11221",
+      "name": "비스포크 에어드레서 일반용량 (크리스탈 미러)",
+      "category": "세탁·건조·의류관리",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-57097",
+      "name": "비스포크 AI 에어드레서 대용량 (클린화이트)",
+      "category": "세탁·건조·의류관리",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-24986",
+      "name": "비스포크 양문형 냉장고 852L (코타 PCM 화이트)",
+      "category": "냉장고·김치냉장고",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-24985",
+      "name": "양문형 냉장고 852L (젠틀 실버)",
+      "category": "냉장고·김치냉장고",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-24984",
+      "name": "양문형 냉장고 852L (젠틀 블랙)",
+      "category": "냉장고·김치냉장고",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-27740",
+      "name": "비스포크 양문형 냉장고 846L (코타 화이트)",
+      "category": "냉장고·김치냉장고",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-45254",
+      "name": "디오스 AI 오브제컬렉션 냉장고 832L (오브제컬렉션 크림 그레이/에센스 화이트)",
+      "category": "냉장고·김치냉장고",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-37719",
+      "name": "비스포크 AI 4도어 냉장고 905L (코타 화이트)",
+      "category": "냉장고·김치냉장고",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-45694",
+      "name": "비스포크 양문형 냉장고 845L (코타 PCM 화이트)",
+      "category": "냉장고·김치냉장고",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-37729",
+      "name": "비스포크 AI 4도어 냉장고 905L (에센셜 화이트/에센셜 베이지)",
+      "category": "냉장고·김치냉장고",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-56539",
+      "name": "디오스 AI 오브제컬렉션 냉장고 870L (오브제컬렉션 베이지/베이지)",
+      "category": "냉장고·김치냉장고",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-46456",
+      "name": "비스포크 AI 4도어 냉장고 902L (에센셜 베이지)",
+      "category": "냉장고·김치냉장고",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-46446",
+      "name": "비스포크 AI 4도어 냉장고 902L (에센셜 다크메탈)",
+      "category": "냉장고·김치냉장고",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-37199",
+      "name": "비스포크 AI 4도어 냉장고 884L (에센셜 화이트/에센셜 베이지)",
+      "category": "냉장고·김치냉장고",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-55421",
+      "name": "비스포크 AI 하이브리드 4도어 냉장고 901L (코타 화이트)",
+      "category": "냉장고·김치냉장고",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-37644",
+      "name": "비스포크 AI 하이브리드 4도어 냉장고 874L (새틴 화이트)",
+      "category": "냉장고·김치냉장고",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-49924",
+      "name": "[현장] 비스포크 AI 하이브리드 4도어 냉장고 874L (새틴 베이지)",
+      "category": "냉장고·김치냉장고",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-27790",
+      "name": "김치플러스 스탠드형 3도어 김치냉장고 328L (리파인드 이녹스)",
+      "category": "냉장고·김치냉장고",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-61034",
+      "name": "[현장] 비스포크 김치플러스 3도어 김치냉장고 328L (에센셜 화이트)",
+      "category": "냉장고·김치냉장고",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-28185",
+      "name": "비스포크 김치플러스 3도어 김치냉장고 328L (에센셜 화이트)",
+      "category": "냉장고·김치냉장고",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-47626",
+      "name": "비스포크 AI 김치플러스 4도어 김치냉장고 490L (에센셜 다크메탈)",
+      "category": "냉장고·김치냉장고",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-47941",
+      "name": "비스포크 AI 김치플러스 4도어 키친핏 Max 김치냉장고 420L (에센셜 화이트)",
+      "category": "냉장고·김치냉장고",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-47951",
+      "name": "비스포크 AI 김치플러스 4도어 김치냉장고 490L (에센셜 화이트)",
+      "category": "냉장고·김치냉장고",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-47936",
+      "name": "비스포크 AI 김치플러스 4도어 키친핏 Max 김치냉장고 420L (에센셜 화이트/에센셜 베이지)",
+      "category": "냉장고·김치냉장고",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-47946",
+      "name": "비스포크 AI 김치플러스 4도어 김치냉장고 490L (에센셜 화이트/에센셜 베이지)",
+      "category": "냉장고·김치냉장고",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-46466",
+      "name": "비스포크 AI 김치플러스 4도어 김치냉장고 490L (코타 화이트)",
+      "category": "냉장고·김치냉장고",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-49099",
+      "name": "비스포크 AI 김치플러스 4도어 김치냉장고 583L (코타 화이트)",
+      "category": "냉장고·김치냉장고",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-49199",
+      "name": "김치플러스 뚜껑형 김치냉장고 221L (세린 실버)",
+      "category": "냉장고·김치냉장고",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-32696",
+      "name": "미니 스탠드형 1도어 김치냉장고 120L (화이트)",
+      "category": "냉장고·김치냉장고",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-50559",
+      "name": "더 플렌더 MAX 음식물처리기 3L (그레이지)",
+      "category": "주방가전",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-1579",
+      "name": "음식물처리기",
+      "category": "주방가전",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-45948",
+      "name": "에코웨일 건조분쇄형 강력건조통 음식물처리기 2L (노블화이트)",
+      "category": "주방가전",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-52649",
+      "name": "베로 음식물처리기 3L",
+      "category": "주방가전",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-52654",
+      "name": "히트 음식물처리기 4L",
+      "category": "주방가전",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-46313",
+      "name": "400 Pro X 음식물처리기 2L (스노우 화이트)",
+      "category": "주방가전",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-47016",
+      "name": "에코웨일 미생물 음식물처리기 12.5L (노블 화이트)",
+      "category": "주방가전",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-3137",
+      "name": "The 프리미엄 아모르 음식물 처리기",
+      "category": "주방가전",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-46323",
+      "name": "400 Pro X 음식물처리기 2L + 스토리지 타워 (스노우 화이트)",
+      "category": "주방가전",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-7216",
+      "name": "New 미라클 음식물처리기",
+      "category": "주방가전",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-59355",
+      "name": "지니 디스포저 음식물 처리기",
+      "category": "주방가전",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-39664",
+      "name": "AI 무풍 콤보 벽걸이 에어컨 7평형 (화이트)",
+      "category": "에어컨·청소기",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-37614",
+      "name": "AI 무풍 콤보 벽걸이 에어컨 11평형",
+      "category": "에어컨·청소기",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-36325",
+      "name": "AI Q9000 스탠드 에어컨 17평형 (화이트/베이지)",
+      "category": "에어컨·청소기",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-36335",
+      "name": "AI Q9000 스탠드 에어컨 17평형 (화이트/그레이)",
+      "category": "에어컨·청소기",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-35970",
+      "name": "비스포크 AI 무풍 클래식 스탠드 에어컨 17평형 (화이트/그레이)",
+      "category": "에어컨·청소기",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-35775",
+      "name": "비스포크 AI 스탠드 에어컨 19평형 (메탈 화이트)",
+      "category": "에어컨·청소기",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-36295",
+      "name": "AI Q9000 2in1 에어컨 17평형+6평형 (화이트/베이지)",
+      "category": "에어컨·청소기",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-57567",
+      "name": "휘센 AI 오브제컬렉션 뷰II 1시리즈 2in1 에어컨 18평형+6평형 (에센스 화이트)",
+      "category": "에어컨·청소기",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-35760",
+      "name": "비스포크 AI 2in1 에어컨 17평형+6평형 (메탈 화이트)",
+      "category": "에어컨·청소기",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-35770",
+      "name": "비스포크 AI 2in1 에어컨 19평형+6평형 (메탈 화이트)",
+      "category": "에어컨·청소기",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-35965",
+      "name": "비스포크 AI 무풍 클래식 2in1 에어컨 17평형+6평형 (화이트/그레이)",
+      "category": "에어컨·청소기",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-6818",
+      "name": "천장형 1WAY 에어컨 6평형 단상",
+      "category": "에어컨·청소기",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-4655",
+      "name": "천장형 1WAY 에어컨 10평형",
+      "category": "에어컨·청소기",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-4998",
+      "name": "천장형 1WAY 에어컨 12평형",
+      "category": "에어컨·청소기",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-4999",
+      "name": "천장형 1WAY 에어컨 15평형",
+      "category": "에어컨·청소기",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-5000",
+      "name": "천장형 1WAY 에어컨 18평형",
+      "category": "에어컨·청소기",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-12523",
+      "name": "4WAY 무풍 천장형 에어컨 23평형 단상",
+      "category": "에어컨·청소기",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-36540",
+      "name": "천장형 4WAY 에어컨 30평형 단상",
+      "category": "에어컨·청소기",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-36535",
+      "name": "천장형 4WAY 에어컨 40평형 삼상",
+      "category": "에어컨·청소기",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-773",
+      "name": "런닝머신",
+      "category": "건강·뷰티",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-1456",
+      "name": "로잉머신 듀얼레일",
+      "category": "건강·뷰티",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-1618",
+      "name": "음파운동기",
+      "category": "건강·뷰티",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-27715",
+      "name": "가정용 스텝밀 시어드클라임 S",
+      "category": "건강·뷰티",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-25660",
+      "name": "무동력 트레드밀 슬래드러너",
+      "category": "건강·뷰티",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-32371",
+      "name": "뉴클래식 패브릭 안마의자 (파우더블루)",
+      "category": "안마의자",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-3402",
+      "name": "안마의자 아토 (딥브라운)",
+      "category": "안마의자",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-10950",
+      "name": "안마의자 루시",
+      "category": "안마의자",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-19158",
+      "name": "뉴클래식 가죽 안마의자 (엘더화이트)",
+      "category": "안마의자",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-10402",
+      "name": "안마의자 EP-MA05 (민트화이트)",
+      "category": "안마의자",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-51064",
+      "name": "안마의자 더블핏",
+      "category": "안마의자",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-41629",
+      "name": "안마의자 원더모션",
+      "category": "안마의자",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-18889",
+      "name": "누캄포 패브릭L 안마의자 (멜로우 샌드)",
+      "category": "안마의자",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-8932",
+      "name": "안마의자 루카S",
+      "category": "안마의자",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-32366",
+      "name": "안마의자 오스카 PT",
+      "category": "안마의자",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-20604",
+      "name": "안마의자 코지더블 (베이지)",
+      "category": "안마의자",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-21610",
+      "name": "안마의자 EP-MA22 (그린)",
+      "category": "안마의자",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-15521",
+      "name": "안마의자 더블모션 (웜그레이/블랙)",
+      "category": "안마의자",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-801",
+      "name": "안마의자 마스터",
+      "category": "안마의자",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-10410",
+      "name": "안마의자 EP-MAF1 (베이지)",
+      "category": "안마의자",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-4267",
+      "name": "안마의자 레전드 시그니쳐",
+      "category": "안마의자",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-10401",
+      "name": "안마의자 뉴에라",
+      "category": "안마의자",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-10411",
+      "name": "안마의자 리얼프로 EP-MAJ7 (아이보리)",
+      "category": "안마의자",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-10412",
+      "name": "안마의자 리얼프로 EP-MAK1 (블랙)",
+      "category": "안마의자",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-11825",
+      "name": "라온 슬림형 저상형 침대 SS",
+      "category": "가구·침대",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-11537",
+      "name": "라온 슬림형 저상형 침대 SS + Q",
+      "category": "가구·침대",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-11552",
+      "name": "안나 매립형 침대 SS",
+      "category": "가구·침대",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-39184",
+      "name": "시에스타 호텔식 침대 프레임+매트리스 세트 (Q) (네추럴 브라운)",
+      "category": "매트리스·프레임",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-39174",
+      "name": "시에스타 호텔식 침대 프레임+매트리스 세트 (LK) (네추럴 오크)",
+      "category": "매트리스·프레임",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-39214",
+      "name": "시에스타 호텔식 침대 프레임+매트리스+패널 세트 (트윈) (네추럴 브라운)",
+      "category": "매트리스·프레임",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-11858",
+      "name": "엘린 침대 SS",
+      "category": "가구·침대",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-11857",
+      "name": "크레토 침대 K",
+      "category": "가구·침대",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-5901",
+      "name": "몬드리안 침대프레임 + 시그니처 매트리스 세트 + 협탁2개",
+      "category": "매트리스·프레임",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-12827",
+      "name": "아리아 조야원단 4인용 카우치 아쿠아텍스 좌측 배치형 패브릭 스윙소파 (라이트 그레이)",
+      "category": "가구·침대",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-12804",
+      "name": "샤르니 조야원단 4인용 패브릭 코너형 스윙소파 (핑크/아이보리)",
+      "category": "가구·침대",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    },
+    {
+      "id": "clv-12794",
+      "name": "샤르니 조야원단 6인용 패브릭 코너형 스윙소파 (핑크/아이보리)",
+      "category": "가구·침대",
+      "status": "review",
+      "checkedAt": "2026-10-03",
+      "reason": "모델명 확인 필요"
+    }
+  ]
+}
