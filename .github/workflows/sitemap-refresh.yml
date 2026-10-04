@@ -13,6 +13,8 @@ on:
       - 'rental/index.html'
       - 'rental/product.html'
       - 'rental/assets/catalog.js'
+      - 'rental/assets/ai-recommend.js'
+      - 'rental/assets/ai-recommend.css'
       - 'rental/assets/product-generic.js'
       - 'rental/assets/rental.css'
       - 'rental/data/products.json'
