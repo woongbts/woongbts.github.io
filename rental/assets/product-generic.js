@@ -166,6 +166,59 @@
     '루헨스':'루헨스',
     '유버스':'유버스'
   }[brand] || brand || '');
+  function customerDescription(p) {
+    const name=String(p?.name||'상품').replace(/\s+/g,' ').trim();
+    const category=String(p?.category||'렌탈상품');
+    const text=[name,p?.model,...(p?.tags||[]),...(p?.highlights||[])].filter(Boolean).join(' ');
+    const traits=[];
+    if(/얼음|아이스/.test(text))traits.push('얼음 기능');
+    if(/직수/.test(text))traits.push('직수 방식');
+    if(/냉온|냉수|온수/.test(text))traits.push('냉·온수');
+    if(/슬림|초소형|미니/.test(text))traits.push('공간 활용');
+    if(/대용량|업소|사무실/.test(text))traits.push('대용량 사용');
+    if(/자가|셀프/.test(text))traits.push('자가관리');
+    const lead=traits.slice(0,3).join('·');
+    return lead
+      ? name+'은(는) '+lead+'을 중요하게 보는 분이 비교하기 좋은 '+category+'입니다. 월요금과 관리방식, 계약기간을 함께 확인해 보세요.'
+      : name+'은(는) 월요금·관리방식·계약기간을 함께 비교해 선택하기 좋은 '+category+'입니다. 실제 설치와 최신 프로모션은 상담 시 다시 확인합니다.';
+  }
+  function recommendAudience(p) {
+    const text=[p?.name,p?.model,p?.category,...(p?.tags||[]),...(p?.highlights||[])].filter(Boolean).join(' ');
+    const out=[];
+    if(/얼음|아이스/.test(text))out.push('얼음을 자주 사용하는 가정');
+    if(/직수/.test(text))out.push('직수 방식과 위생관리를 중요하게 보는 분');
+    if(/자가|셀프/.test(text))out.push('방문 일정 없이 직접 관리하고 싶은 분');
+    if(/방문/.test(text))out.push('정기적인 방문관리를 선호하는 분');
+    if(/슬림|초소형|미니/.test(text))out.push('주방·생활공간을 넓게 쓰고 싶은 분');
+    if(/대용량|업소|사무실/.test(text))out.push('사무실·매장처럼 사용량이 많은 곳');
+    if(/펫|반려/.test(text))out.push('반려동물과 함께 생활하는 가정');
+    if(/매트리스|침대|프레임/.test(text))out.push('침실 환경과 케어를 함께 비교하는 분');
+    if(!out.length)out.push('월 부담과 사은품을 함께 비교하고 싶은 분','계약기간별 조건을 꼼꼼히 비교하는 분','설치 전 최신 정책을 한 번 더 확인하고 싶은 분');
+    return [...new Set(out)].slice(0,4);
+  }
+  function affiliateProviderMatch(data,p,v) {
+    const hay=[brandLabel(p?.brand),p?.brand,optionLabel(v?.managementLabel||v?.management||'')].filter(Boolean).join(' ').toLowerCase();
+    return (data?.providers||[]).find(provider=>(provider.aliases||[]).some(alias=>hay.includes(String(alias).toLowerCase())))||null;
+  }
+  async function renderAffiliateCards() {
+    const section=$('#affiliate-card-section'),box=$('#affiliate-card-preview'),link=$('#affiliate-card-all-link'),title=$('#affiliate-card-title');
+    if(!section||!box||!product)return;
+    try{
+      const response=await fetch('data/affiliate-cards.json',{cache:'no-store'});
+      if(!response.ok)throw Error('cards');
+      const data=await response.json();
+      const provider=affiliateProviderMatch(data,product,currentVariant());
+      if(!provider||!(provider.cards||[]).length){section.hidden=true;return}
+      section.hidden=false;
+      if(title)title.textContent=provider.name+' 제휴카드 할인도 같이 비교해 보세요.';
+      if(link)link.href='cards/?provider='+encodeURIComponent(provider.id);
+      box.innerHTML=(provider.cards||[]).slice(0,3).map(card=>{
+        const max=card.maxDiscount||Math.max(0,...(card.tiers||[]).map(t=>Number(t.discount)||0));
+        const tiers=(card.tiers||[]).slice(0,3).map(t=>'<span>전월 '+Math.round(Number(t.spend)/10000)+'만원 → <b>'+won(t.discount)+'</b></span>').join('');
+        return '<article><small>'+provider.name+'</small><strong>'+card.name+'</strong><div>'+tiers+'</div><em>월 최대 '+won(max)+' 할인</em></article>';
+      }).join('');
+    }catch(_){section.hidden=true}
+  }
   const $ = sel => document.querySelector(sel);
   const policyMonthText = value => {
     const m = String(value || '').match(/^(\d{4})-(\d{2})/);
@@ -351,6 +404,7 @@
       cardRow.hidden = false;
       $('#card-fee').textContent = won(v.card);
     }
+    renderAffiliateCards();
   }
 
 
@@ -547,7 +601,7 @@
     $('#generic-brand').textContent = brandLabel(product.brand) || 'WOONGBI RENTAL';
     $('#generic-title').textContent = product.name;
     $('#generic-model').textContent = [product.model, product.color].filter(Boolean).join(' · ');
-    $('#generic-description').textContent = product.shortDescription || '';
+    $('#generic-description').textContent = customerDescription(product);
     $('#generic-model-row').textContent = product.model || '-';
     $('#generic-promo').textContent = product.promo || '최신 정책 상담 확인';
     document.body.classList.toggle('appliance-rental-detail', product.sourceKind === 'clover-import');
@@ -555,7 +609,9 @@
     if (careLabel) careLabel.textContent = product.sourceKind === 'clover-import' ? '조건 안내' : '관리주기';
     $('#generic-color').textContent = product.color || '상담 확인';
     $('#generic-tags').innerHTML = (product.tags || []).map(t => '<span>' + t + '</span>').join('');
-    $('#generic-highlights').innerHTML = (product.highlights || []).map(t => '<span>' + t + '</span>').join('');
+    $('#generic-highlights').innerHTML = (product.highlights || product.tags || []).slice(0,8).map(t => '<span>' + t + '</span>').join('');
+    const audience=$('#generic-recommend-audience');
+    if(audience)audience.innerHTML=recommendAudience(product).map(t=>'<span>'+t+'</span>').join('');
 
     $('#summary-brand').textContent = brandLabel(product.brand) || '-';
     $('#summary-category').textContent = product.category || '-';
