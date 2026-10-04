@@ -131,3 +131,10 @@ html.ai-dialog-open .compare-bar{display:none!important}
   .ai-result-actions{grid-template-columns:1fr}
   .ai-result-actions .ai-compare-btn{grid-column:auto}
 }
+
+
+/* Hidden owner diagnostics: add ?ai_stats=1 to the rental URL. */
+.ai-local-stats{position:fixed;right:14px;bottom:14px;z-index:220;width:min(360px,calc(100% - 28px));padding:14px 42px 14px 15px;border:1px solid #bddbd7;border-radius:16px;background:rgba(255,255,255,.98);backdrop-filter:blur(12px);box-shadow:0 18px 50px rgba(10,45,49,.2);color:#274f52}
+.ai-local-stats strong,.ai-local-stats small{display:block}.ai-local-stats strong{font-size:.84rem}.ai-local-stats small{margin-top:2px;color:#829494;font-size:.62rem}
+.ai-local-stats p{margin:8px 0 0;font-size:.68rem;line-height:1.55}.ai-local-stats p b{color:#0f766e}.ai-local-stats-sub{color:#718586}
+.ai-local-stats button{position:absolute;right:8px;top:8px;width:30px;height:30px;border:0;border-radius:50%;background:#edf5f4;color:#476769;font-size:1rem;cursor:pointer}
