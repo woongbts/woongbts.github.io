@@ -17,6 +17,11 @@
 
   let products = [];
   let loadPromise = null;
+  let lastCriteria = null;
+  let lastItems = [];
+
+  const KAKAO_CHAT_URL = 'http://pf.kakao.com/_nWwNT/chat';
+  const COMPARE_KEY = 'wb_rental_compare_v1';
 
   const BRAND_ORDER = [
     { re: /coway|코웨이/i, rank: 1 },
@@ -227,7 +232,7 @@
     if (criteria.brand) {
       if (String(product.brand) === criteria.brand) {
         score += 48;
-        reasons.push('선호 브랜드');
+        reasons.push('선호 브랜드 · ' + brandLabel(product.brand));
       } else {
         score -= 16;
       }
@@ -238,8 +243,9 @@
 
     if (criteria.budget > 0) {
       if (monthly <= criteria.budget) {
-        score += 42 + Math.min(18, (criteria.budget - monthly) / 1500);
-        reasons.push('예산 안');
+        const room = criteria.budget - monthly;
+        score += 42 + Math.min(18, room / 1500);
+        reasons.push(room > 0 ? '예산보다 ' + won(room) + ' 낮음' : '예산에 딱 맞음');
       } else {
         const over = monthly - criteria.budget;
         score -= 28 + Math.min(70, over / 500);
@@ -270,7 +276,10 @@
       if (text.includes(token)) score += 8;
     });
 
-    if (gift !== null) score += Math.min(35, gift / 10000);
+    if (gift !== null) {
+      score += Math.min(35, gift / 10000);
+      if (reasons.length < 3) reasons.push('사은품 ' + won(gift));
+    }
     score -= Math.min(24, monthly / 6500);
 
     if (!reasons.length) reasons.push('월요금·혜택 균형');
@@ -302,7 +311,102 @@
     return lead + ' · ' + item.reasons.join(' · ');
   }
 
+  function criteriaSummary(criteria) {
+    return [
+      criteria.category ? '품목: ' + criteria.category : '',
+      criteria.budget > 0 ? '월 예산: ' + won(criteria.budget) + ' 이하' : '월 예산: 상관없음',
+      criteria.brand ? '선호 브랜드: ' + brandLabel(criteria.brand) : '선호 브랜드: 상관없음',
+      criteria.management ? '관리방식: ' + (criteria.management === 'self' ? '자가·셀프관리' : '방문관리') : '관리방식: 상관없음',
+      criteria.query ? '추가 조건: ' + criteria.query : ''
+    ].filter(Boolean);
+  }
+
+  function buildConsultText(criteria, items) {
+    const lines = ['[웅비렌탈 AI 추천 상담]', ...criteriaSummary(criteria), '', '추천 결과'];
+    items.forEach((item, index) => {
+      const p = item.product;
+      const management = item.option.managementLabel || item.option.care || '';
+      const term = Number(item.option.term) ? Number(item.option.term) + '개월' : '';
+      lines.push(
+        (index + 1) + '. ' + brandLabel(p.brand) + ' ' + p.name,
+        '   ' + [management, term, '월 ' + won(item.monthly), item.gift == null ? '사은품 상담 확인' : '사은품 ' + won(item.gift)].filter(Boolean).join(' · ')
+      );
+    });
+    lines.push('', '이 조건으로 상담 부탁드립니다.');
+    return lines.join('\n');
+  }
+
+  function fallbackCopy(text) {
+    const area = document.createElement('textarea');
+    area.value = text;
+    area.setAttribute('readonly','');
+    area.style.position = 'fixed';
+    area.style.opacity = '0';
+    document.body.appendChild(area);
+    area.select();
+    let copied = false;
+    try { copied = document.execCommand('copy'); } catch (_) {}
+    area.remove();
+    return copied;
+  }
+
+  function copyConsultText(text) {
+    if (navigator.clipboard?.writeText) {
+      navigator.clipboard.writeText(text).then(() => {
+        status.textContent = '상담 내용이 복사되었습니다. 카카오톡 채팅창에 붙여넣어 주세요.';
+      }).catch(() => {
+        const copied = fallbackCopy(text);
+        status.textContent = copied ? '상담 내용이 복사되었습니다. 카카오톡 채팅창에 붙여넣어 주세요.' : '카카오톡에서 추천 조건을 말씀해 주세요.';
+      });
+      return;
+    }
+    const copied = fallbackCopy(text);
+    status.textContent = copied ? '상담 내용이 복사되었습니다. 카카오톡 채팅창에 붙여넣어 주세요.' : '카카오톡에서 추천 조건을 말씀해 주세요.';
+  }
+
+  function readCompareIds() {
+    try {
+      return JSON.parse(localStorage.getItem(COMPARE_KEY) || '[]').filter(Boolean).slice(0,3).map(String);
+    } catch (_) {
+      return [];
+    }
+  }
+
+  function updateAiCompareButtons(ids = readCompareIds()) {
+    document.querySelectorAll('[data-ai-compare]').forEach(button => {
+      const active = ids.includes(String(button.dataset.aiCompare || ''));
+      button.classList.toggle('active', active);
+      button.textContent = active ? '비교담김 ✓' : '비교담기';
+      button.setAttribute('aria-pressed', active ? 'true' : 'false');
+    });
+  }
+
+  async function toggleAiCompare(productId) {
+    if (window.woongbiRentalCompare?.toggle) {
+      const ids = await window.woongbiRentalCompare.toggle(productId);
+      updateAiCompareButtons(Array.isArray(ids) ? ids.map(String) : readCompareIds());
+      status.textContent = readCompareIds().includes(String(productId))
+        ? '비교 목록에 담았습니다. 최대 3개까지 비교할 수 있어요.'
+        : '비교 목록에서 뺐습니다.';
+      return;
+    }
+
+    let ids = readCompareIds();
+    const id = String(productId || '');
+    if (ids.includes(id)) ids = ids.filter(x => x !== id);
+    else if (ids.length < 3) ids.push(id);
+    else {
+      alert('비교는 최대 3개까지 담을 수 있습니다.');
+      return;
+    }
+    try { localStorage.setItem(COMPARE_KEY, JSON.stringify(ids)); } catch (_) {}
+    updateAiCompareButtons(ids);
+  }
+
   function renderResults(items, criteria) {
+    lastCriteria = criteria;
+    lastItems = items;
+
     if (!items.length) {
       results.innerHTML = '<div class="ai-empty"><strong>조건에 맞는 상품을 찾지 못했어요.</strong><p>예산이나 선호 조건을 조금 넓혀서 다시 추천받아 보세요.</p></div>';
       return;
@@ -326,11 +430,20 @@
             '<p class="ai-result-condition">' + escapeHtml([management,term].filter(Boolean).join(' · ')) + '</p>' +
             '<div class="ai-result-price"><span>월 <strong>' + escapeHtml(won(item.monthly)) + '</strong></span>' +
               '<span>사은품 <strong>' + (item.gift == null ? '상담 확인' : escapeHtml(won(item.gift))) + '</strong></span></div>' +
-            '<a class="ai-result-link" href="' + escapeHtml(page) + '" data-ai-product="' + escapeHtml(p.id) + '">조건 자세히 보기 →</a>' +
+            '<div class="ai-result-actions">' +
+              '<a class="ai-result-link" href="' + escapeHtml(page) + '" data-ai-product="' + escapeHtml(p.id) + '">조건 자세히 보기 →</a>' +
+              '<button class="ai-compare-btn" type="button" data-ai-compare="' + escapeHtml(p.id) + '" aria-pressed="false">비교담기</button>' +
+            '</div>' +
           '</div>' +
         '</article>';
       }).join('') +
+      '<div class="ai-result-consult">' +
+        '<div><strong>이 추천 그대로 상담할까요?</strong><span>추천 조건과 TOP 3가 복사됩니다.</span></div>' +
+        '<a class="ai-kakao-consult" data-ai-kakao href="' + KAKAO_CHAT_URL + '" target="_blank" rel="noopener noreferrer">이 조건으로 카톡 상담</a>' +
+      '</div>' +
       '<p class="ai-result-note">AI 추천은 현재 등록된 상품·월요금·사은품 데이터를 조건별로 비교한 결과입니다. 실제 접수 전 최신 정책을 다시 확인합니다.</p>';
+
+    updateAiCompareButtons();
 
     if (typeof window.woongbiTrackConversion === 'function') {
       window.woongbiTrackConversion('rental_ai_recommend', {
@@ -401,6 +514,36 @@
   });
 
   results.addEventListener('click', event => {
+    const compareButton = event.target.closest('[data-ai-compare]');
+    if (compareButton) {
+      event.preventDefault();
+      event.stopPropagation();
+      toggleAiCompare(compareButton.dataset.aiCompare || '').catch(() => {
+        status.textContent = '비교 목록을 업데이트하지 못했습니다. 잠시 후 다시 시도해 주세요.';
+      });
+      return;
+    }
+
+    const kakaoLink = event.target.closest('[data-ai-kakao]');
+    if (kakaoLink) {
+      const text = buildConsultText(lastCriteria || {
+        category: categorySelect.value,
+        budget: Number(budgetSelect.value) || 0,
+        brand: brandSelect.value,
+        management: managementSelect.value,
+        query: preferenceInput.value.trim()
+      }, lastItems || []);
+      copyConsultText(text);
+      if (typeof window.woongbiTrackConversion === 'function') {
+        window.woongbiTrackConversion('rental_ai_kakao', {
+          category: lastCriteria?.category || categorySelect.value,
+          result_count: lastItems.length,
+          analyticsPath: '/rental/'
+        });
+      }
+      return;
+    }
+
     const link = event.target.closest('[data-ai-product]');
     if (!link || typeof window.woongbiTrackConversion !== 'function') return;
     window.woongbiTrackConversion('rental_ai_product_click', {
