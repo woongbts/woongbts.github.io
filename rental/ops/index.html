@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <base href="/rental/">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta name="theme-color" content="#173f42">
+  <title>웅비렌탈 운영자 대시보드</title>
+  <link rel="icon" href="assets/woongbi-rental-favicon.svg?v=20261003-blue3" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/ops.css?v=20261004-ops1">
+</head>
+<body>
+  <header class="ops-head">
+    <div class="ops-wrap">
+      <div><span>WOONGBI RENTAL</span><h1>운영자 대시보드</h1><p>렌탈 퍼널·유입경로·AI 반응·정책 변경을 빠르게 확인합니다.</p></div>
+      <div class="ops-actions"><button id="ops-refresh" type="button">새로고침</button><button id="ops-export" type="button">이벤트 CSV</button><a href="./">렌탈 홈</a></div>
+    </div>
+  </header>
+  <main class="ops-wrap ops-main">
+    <section class="ops-notice">
+      <strong>현재 화면의 행동 통계는 이 브라우저에 저장된 최근 이벤트 기준입니다.</strong>
+      <p>사이트의 서버 전환 수집은 별도로 계속 동작합니다. 개인정보·신청자 정보는 이 대시보드에 표시하지 않습니다.</p>
+    </section>
+
+    <section class="ops-grid ops-kpis" id="ops-kpis" aria-label="핵심 지표"></section>
+
+    <section class="ops-grid ops-two">
+      <article class="ops-card">
+        <div class="ops-title"><div><span>FUNNEL</span><h2>렌탈 전환 퍼널</h2></div><small id="ops-period">최근 이벤트</small></div>
+        <div id="ops-funnel" class="ops-funnel"></div>
+      </article>
+      <article class="ops-card">
+        <div class="ops-title"><div><span>ACQUISITION</span><h2>유입경로</h2></div></div>
+        <div id="ops-sources" class="ops-bars"></div>
+      </article>
+    </section>
+
+    <section class="ops-grid ops-two">
+      <article class="ops-card">
+        <div class="ops-title"><div><span>AI</span><h2>AI 추천 반응</h2></div></div>
+        <div id="ops-ai" class="ops-list"></div>
+      </article>
+      <article class="ops-card">
+        <div class="ops-title"><div><span>PRODUCT</span><h2>관심 상품·품목</h2></div></div>
+        <div id="ops-products" class="ops-list"></div>
+      </article>
+    </section>
+
+    <section class="ops-card">
+      <div class="ops-title"><div><span>POLICY WATCH</span><h2>정책 변경 감시</h2></div><small id="ops-policy-date">확인 중</small></div>
+      <div id="ops-policy" class="ops-policy"></div>
+    </section>
+
+    <section class="ops-card">
+      <div class="ops-title"><div><span>SYSTEM</span><h2>운영 상태</h2></div></div>
+      <div id="ops-system" class="ops-system"></div>
+    </section>
+  </main>
+  <script src="/assets/analytics-config.js?v=20260929-2"></script>
+  <script src="assets/ops.js?v=20261004-ops1" defer></script>
+</body>
+</html>
