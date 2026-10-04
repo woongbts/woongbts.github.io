@@ -15,6 +15,7 @@
   const RENTAL_ENTRY_KEY = 'wb_rental_entry_v1';
   const RECENT_KEY = 'wb_rental_recent_v1';
   const RENTAL_APPLY_SUCCESS_KEY = 'wb_rental_apply_success_v1';
+  const RENTAL_CRM_KEY = 'wb_rental_crm_v1';
   const RENTAL_APPLICATION_BASE = 'https://woongbi-consent.woongbts.workers.dev';
   let policyGeneratedAt = '';
   let rentalApplicationPolicy = null;
@@ -76,6 +77,28 @@
   }
   function saveSuccessfulApplication(phone) {
     try { localStorage.setItem(RENTAL_APPLY_SUCCESS_KEY,JSON.stringify({product_id:product?.id||'',phone:normalizePhone(phone),at:Date.now()})); } catch (_) {}
+  }
+  function saveCrmReceipt(receipt,current) {
+    const id=String(receipt?.id||'').slice(0,12);
+    if(!id)return;
+    try{
+      const rows=JSON.parse(localStorage.getItem(RENTAL_CRM_KEY)||'[]');
+      const c=acquisitionContext();
+      const row={
+        id,
+        product_id:product?.id||'',
+        product_name:product?.name||'',
+        provider:current?.provider||'',
+        management:optionLabel(current?.v?.managementLabel||current?.v?.management||''),
+        term:current?.v?.term??null,
+        source:c.source||'direct',
+        status:'접수',
+        created_at:receipt?.submitted_at||new Date().toISOString(),
+        updated_at:new Date().toISOString()
+      };
+      const next=[row,...rows.filter(x=>String(x.id)!==id)].slice(0,100);
+      localStorage.setItem(RENTAL_CRM_KEY,JSON.stringify(next));
+    }catch(_){}
   }
   function copyTextFallback(text) {
     try {
@@ -578,6 +601,7 @@
       if(!response.ok||!data.ok)throw new Error(data.error||'신청을 접수하지 못했습니다.');
       trackRental('rental_apply_success',{management:current.v.management||'',term:String(current.v.term??'')});
       saveSuccessfulApplication(phone);
+      saveCrmReceipt(data.receipt,current);
       status.textContent='';
       form.reset();
       $('#rental-apply-product').textContent=[brandLabel(product.brand),product.name,product.model].filter(Boolean).join(' · ');
