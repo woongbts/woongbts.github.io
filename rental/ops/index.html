@@ -8,7 +8,7 @@
   <meta name="theme-color" content="#173f42">
   <title>웅비렌탈 운영자 대시보드</title>
   <link rel="icon" href="assets/woongbi-rental-favicon.svg?v=20261003-blue3" type="image/svg+xml">
-  <link rel="stylesheet" href="assets/ops.css?v=20261004-ops1">
+  <link rel="stylesheet" href="assets/ops.css?v=20261004-ops2">
 </head>
 <body>
   <header class="ops-head">
@@ -48,6 +48,12 @@
     </section>
 
     <section class="ops-card">
+      <div class="ops-title"><div><span>CRM</span><h2>렌탈 신청 진행상태</h2></div><small>이 브라우저에서 접수한 신청번호 기준</small></div>
+      <div class="ops-crm-toolbar"><span>개인정보 없이 신청번호·상품·상태만 저장합니다.</span><button id="ops-crm-clear" type="button">완료건 정리</button></div>
+      <div id="ops-crm" class="ops-crm"></div>
+    </section>
+
+    <section class="ops-card">
       <div class="ops-title"><div><span>POLICY WATCH</span><h2>정책 변경 감시</h2></div><small id="ops-policy-date">확인 중</small></div>
       <div id="ops-policy" class="ops-policy"></div>
     </section>
@@ -58,6 +64,6 @@
     </section>
   </main>
   <script src="/assets/analytics-config.js?v=20260929-2"></script>
-  <script src="assets/ops.js?v=20261004-ops1" defer></script>
+  <script src="assets/ops.js?v=20261004-ops2" defer></script>
 </body>
 </html>
