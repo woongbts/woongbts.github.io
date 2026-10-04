@@ -14,9 +14,11 @@
   const IMAGE_REV = '20261003-7f78334';
   const RENTAL_ENTRY_KEY = 'wb_rental_entry_v1';
   const RECENT_KEY = 'wb_rental_recent_v1';
+  const RENTAL_APPLY_SUCCESS_KEY = 'wb_rental_apply_success_v1';
   const RENTAL_APPLICATION_BASE = 'https://woongbi-consent.woongbts.workers.dev';
   let policyGeneratedAt = '';
   let rentalApplicationPolicy = null;
+  let rentalFormOpenedAt = 0;
   const rentalAnalyticsPath = () => '/rental/product/' + encodeURIComponent(String(product?.id || id || 'unknown'));
   function trackRental(type, detail = {}) {
     if (typeof window.woongbiTrackConversion !== 'function') return;
@@ -30,6 +32,50 @@
     let entry = 'direct';
     try { entry = sessionStorage.getItem(RENTAL_ENTRY_KEY) || 'direct'; } catch (_) {}
     return ({recommend:'추천상품',catalog:'전체상품',ai:'AI 추천',direct:'직접 상세페이지'})[entry] || entry;
+  }
+  function acquisitionContext() {
+    try {
+      if (typeof window.woongbiSiteAnalyticsContext === 'function') {
+        const c = window.woongbiSiteAnalyticsContext();
+        if (c) return c;
+      }
+    } catch (_) {}
+    let source='direct', firstSource='direct', landing='', campaign='', medium='';
+    try {
+      source=sessionStorage.getItem('wb_site_source_v1')||source;
+      firstSource=localStorage.getItem('wb_site_first_source_v1')||firstSource;
+      landing=sessionStorage.getItem('wb_site_landing_v1')||'';
+      campaign=sessionStorage.getItem('wb_site_campaign_v1')||'';
+      medium=sessionStorage.getItem('wb_site_medium_v1')||'';
+    } catch (_) {}
+    return {source,first_source:firstSource,landing_path:landing,campaign,medium};
+  }
+  function applicationProductUrl() {
+    const u = new URL(location.href);
+    u.hash = '';
+    const c = acquisitionContext();
+    if (c.source) u.searchParams.set('src', String(c.source).slice(0,80));
+    if (c.first_source) u.searchParams.set('first_src', String(c.first_source).slice(0,80));
+    if (c.campaign && !u.searchParams.has('utm_campaign')) u.searchParams.set('utm_campaign', String(c.campaign).slice(0,100));
+    if (c.medium && !u.searchParams.has('utm_medium')) u.searchParams.set('utm_medium', String(c.medium).slice(0,80));
+    return u.toString();
+  }
+  function normalizePhone(value) {
+    return String(value || '').replace(/[^0-9]/g,'');
+  }
+  function isValidMobilePhone(value) {
+    return /^01(?:0|1|[6-9])\d{7,8}$/.test(normalizePhone(value));
+  }
+  function isSpamInquiry(value) {
+    const text=String(value||'');
+    const links=(text.match(/https?:\/\/|www\./gi)||[]).length;
+    return links>3 || /(.)\1{18,}/u.test(text);
+  }
+  function lastSuccessfulApplication() {
+    try { return JSON.parse(localStorage.getItem(RENTAL_APPLY_SUCCESS_KEY)||'null'); } catch (_) { return null; }
+  }
+  function saveSuccessfulApplication(phone) {
+    try { localStorage.setItem(RENTAL_APPLY_SUCCESS_KEY,JSON.stringify({product_id:product?.id||'',phone:normalizePhone(phone),at:Date.now()})); } catch (_) {}
   }
   function copyTextFallback(text) {
     try {
@@ -387,6 +433,9 @@
   async function openRentalApplication() {
     const current=fillRentalApplicationSummary();
     if(!current)return;
+    rentalFormOpenedAt=Date.now();
+    const honeypot=$('#rental-apply-company');
+    if(honeypot)honeypot.value='';
     const dialog=$('#rental-apply-dialog'),status=$('#rental-apply-status');
     if(status)status.textContent='개인정보 처리 안내를 확인하는 중입니다.';
     openDialog(dialog);
@@ -405,6 +454,39 @@
     const current=fillRentalApplicationSummary();
     if(!form||!current||!product)return;
     if(!form.reportValidity())return;
+
+    const honeypot=String($('#rental-apply-company')?.value||'').trim();
+    const elapsed=Date.now()-(rentalFormOpenedAt||Date.now());
+    const phone=normalizePhone($('#rental-apply-phone')?.value||'');
+    const inquiry=String($('#rental-apply-inquiry')?.value||'');
+    if(honeypot){
+      status.textContent='입력 내용을 다시 확인해 주세요.';
+      trackRental('rental_apply_blocked',{reason:'honeypot'});
+      return;
+    }
+    if(elapsed<650){
+      status.textContent='입력 내용을 확인한 뒤 다시 접수해 주세요.';
+      trackRental('rental_apply_blocked',{reason:'too_fast'});
+      return;
+    }
+    if(!isValidMobilePhone(phone)){
+      status.textContent='연락 가능한 휴대폰 번호를 확인해 주세요.';
+      $('#rental-apply-phone')?.focus();
+      trackRental('rental_apply_blocked',{reason:'phone'});
+      return;
+    }
+    if(isSpamInquiry(inquiry)){
+      status.textContent='문의사항에 입력된 내용을 확인해 주세요.';
+      $('#rental-apply-inquiry')?.focus();
+      trackRental('rental_apply_blocked',{reason:'inquiry'});
+      return;
+    }
+    const last=lastSuccessfulApplication();
+    if(last&&last.product_id===product.id&&last.phone===phone&&Date.now()-Number(last.at||0)<120000){
+      status.textContent='같은 상품 신청이 이미 접수되었습니다. 잠시 후에도 필요하면 카카오톡으로 문의해 주세요.';
+      trackRental('rental_apply_blocked',{reason:'duplicate'});
+      return;
+    }
     if(!rentalApplicationPolicy){
       try{rentalApplicationPolicy=await loadRentalApplicationPolicy();renderRentalApplicationPolicy(rentalApplicationPolicy,current.provider);}
       catch(error){status.textContent=error.message||'신청 안내를 불러오지 못했습니다.';return;}
@@ -415,12 +497,12 @@
       processing_notice_ack:$('#rental-processing-ack')?.checked===true,
       third_party_consent:$('#rental-third-party-consent')?.checked===true,
       name:$('#rental-apply-name')?.value||'',
-      phone:$('#rental-apply-phone')?.value||'',
+      phone:phone,
       email:$('#rental-apply-email')?.value||'',
       install_address:$('#rental-apply-address')?.value||'',
       billing_method:method,
       billing_issuer:$('#rental-apply-issuer')?.value||'',
-      inquiry:$('#rental-apply-inquiry')?.value||'',
+      inquiry:inquiry,
       product_id:product.id,
       product_name:product.name,
       model:product.model||'',
@@ -430,7 +512,7 @@
       term:current.v.term??null,
       monthly:current.v.monthly??null,
       gift:current.v.gift??null,
-      product_url:location.href
+      product_url:applicationProductUrl()
     };
     submit.disabled=true;status.textContent='신청을 안전하게 접수하는 중입니다.';
     trackRental('rental_apply_submit',{management:current.v.management||'',term:String(current.v.term??'')});
@@ -441,6 +523,7 @@
       const data=await response.json().catch(()=>({}));
       if(!response.ok||!data.ok)throw new Error(data.error||'신청을 접수하지 못했습니다.');
       trackRental('rental_apply_success',{management:current.v.management||'',term:String(current.v.term??'')});
+      saveSuccessfulApplication(phone);
       status.textContent='';
       form.reset();
       $('#rental-apply-product').textContent=[brandLabel(product.brand),product.name,product.model].filter(Boolean).join(' · ');
