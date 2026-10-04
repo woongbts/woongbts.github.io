@@ -223,24 +223,122 @@
     const hay=[brandLabel(p?.brand),p?.brand,optionLabel(v?.managementLabel||v?.management||'')].filter(Boolean).join(' ').toLowerCase();
     return (data?.providers||[]).find(provider=>(provider.aliases||[]).some(alias=>hay.includes(String(alias).toLowerCase())))||null;
   }
+  async function loadAffiliateCardsData() {
+    if (affiliateCardsCache) return affiliateCardsCache;
+    if (affiliateCardsPromise) return affiliateCardsPromise;
+    affiliateCardsPromise = fetch('data/affiliate-cards.json',{cache:'no-store'})
+      .then(response => {
+        if(!response.ok) throw Error('cards');
+        return response.json();
+      })
+      .then(data => {
+        affiliateCardsCache=data;
+        return data;
+      })
+      .finally(()=>{affiliateCardsPromise=null;});
+    return affiliateCardsPromise;
+  }
+  function cardTierCandidates(provider) {
+    return (provider?.cards||[]).flatMap(card => (card.tiers||[])
+      .map(tier => ({
+        card,
+        spend:Number(tier.spend),
+        discount:Number(tier.discount),
+        promo:Boolean(card.promo)
+      }))
+      .filter(row => Number.isFinite(row.spend) && row.spend>0 && Number.isFinite(row.discount) && row.discount>0));
+  }
+  function defaultCardExample(provider) {
+    const rows=cardTierCandidates(provider);
+    if(!rows.length)return null;
+    rows.sort((a,b)=>a.spend-b.spend || b.discount-a.discount || Number(a.promo)-Number(b.promo));
+    return rows[0];
+  }
+  function applyCardEstimate(example,monthly) {
+    const row=$('#generic-card-row'),fee=$('#card-fee'),note=$('#card-fee-note');
+    if(!row||!fee)return;
+    const rent=Number(monthly);
+    if(!example||!Number.isFinite(rent)){
+      row.hidden=true;
+      return;
+    }
+    const discounted=Math.max(0,rent-Number(example.discount||0));
+    row.hidden=false;
+    fee.textContent=won(discounted);
+    if(note)note.textContent=[
+      example.card?.name||'제휴카드',
+      '전월 '+Math.round(example.spend/10000)+'만원',
+      won(example.discount)+' 할인',
+      example.promo?'프로모션 조건 확인':''
+    ].filter(Boolean).join(' · ');
+  }
   async function renderAffiliateCards() {
     const section=$('#affiliate-card-section'),box=$('#affiliate-card-preview'),link=$('#affiliate-card-all-link'),title=$('#affiliate-card-title');
     if(!section||!box||!product)return;
+    const variant=currentVariant();
+    const renderKey=[product.id,variant?.management,variant?.term,variant?.monthly].join('|');
     try{
-      const response=await fetch('data/affiliate-cards.json',{cache:'no-store'});
-      if(!response.ok)throw Error('cards');
-      const data=await response.json();
-      const provider=affiliateProviderMatch(data,product,currentVariant());
-      if(!provider||!(provider.cards||[]).length){section.hidden=true;return}
+      const data=await loadAffiliateCardsData();
+      if([product.id,currentVariant()?.management,currentVariant()?.term,currentVariant()?.monthly].join('|')!==renderKey)return;
+      const provider=affiliateProviderMatch(data,product,variant);
+      if(!provider||!(provider.cards||[]).length){
+        section.hidden=true;
+        if(variant?.card!=null){
+          const row=$('#generic-card-row'),fee=$('#card-fee'),note=$('#card-fee-note');
+          if(row)row.hidden=false;
+          if(fee)fee.textContent=won(variant.card);
+          if(note)note.textContent='상품 등록 제휴카드 적용 예시 · 최종 조건 상담 확인';
+        }else{
+          const row=$('#generic-card-row'); if(row)row.hidden=true;
+        }
+        return;
+      }
       section.hidden=false;
       if(title)title.textContent=provider.name+' 제휴카드 할인도 같이 비교해 보세요.';
       if(link)link.href='cards/?provider='+encodeURIComponent(provider.id);
+
+      const defaultExample=defaultCardExample(provider);
+      applyCardEstimate(defaultExample,variant?.monthly);
+
       box.innerHTML=(provider.cards||[]).slice(0,3).map(card=>{
         const max=card.maxDiscount||Math.max(0,...(card.tiers||[]).map(t=>Number(t.discount)||0));
-        const tiers=(card.tiers||[]).slice(0,3).map(t=>'<span>전월 '+Math.round(Number(t.spend)/10000)+'만원 → <b>'+won(t.discount)+'</b></span>').join('');
+        const tiers=(card.tiers||[]).slice(0,3).map(t=>{
+          const monthly=Number(variant?.monthly);
+          const discounted=Number.isFinite(monthly)?Math.max(0,monthly-Number(t.discount||0)):null;
+          return '<button type="button" class="affiliate-card-tier" data-card-name="'+String(card.name||'').replace(/"/g,'&quot;')+'" data-card-spend="'+Number(t.spend)+'" data-card-discount="'+Number(t.discount)+'" data-card-promo="'+(card.promo?'1':'0')+'"><span>전월 '+Math.round(Number(t.spend)/10000)+'만원</span><b>'+won(t.discount)+' 할인</b>'+(discounted==null?'':'<i>적용 월 '+won(discounted)+'</i>')+'</button>';
+        }).join('');
         return '<article><small>'+provider.name+'</small><strong>'+card.name+'</strong><div>'+tiers+'</div><em>월 최대 '+won(max)+' 할인</em></article>';
       }).join('');
-    }catch(_){section.hidden=true}
+
+      box.onclick=event=>{
+        const button=event.target.closest('.affiliate-card-tier');
+        if(!button)return;
+        box.querySelectorAll('.affiliate-card-tier.active').forEach(el=>el.classList.remove('active'));
+        button.classList.add('active');
+        applyCardEstimate({
+          card:{name:button.dataset.cardName||'',promo:button.dataset.cardPromo==='1'},
+          spend:Number(button.dataset.cardSpend),
+          discount:Number(button.dataset.cardDiscount),
+          promo:button.dataset.cardPromo==='1'
+        },currentVariant()?.monthly);
+        $('#generic-card-row')?.scrollIntoView({behavior:'smooth',block:'center'});
+        trackRental('rental_card_estimate',{
+          card:button.dataset.cardName||'',
+          spend:button.dataset.cardSpend||'',
+          discount:button.dataset.cardDiscount||''
+        });
+      };
+    }catch(_){
+      section.hidden=true;
+      if(variant?.card!=null){
+        const row=$('#generic-card-row'),fee=$('#card-fee'),note=$('#card-fee-note');
+        if(row)row.hidden=false;
+        if(fee)fee.textContent=won(variant.card);
+        if(note)note.textContent='상품 등록 제휴카드 적용 예시 · 최종 조건 상담 확인';
+      }else{
+        const row=$('#generic-card-row'); if(row)row.hidden=true;
+      }
+    }
   }
   const $ = sel => document.querySelector(sel);
   const policyMonthText = value => {
@@ -339,6 +437,8 @@
   const termBox = $('#generic-term');
   let product = null;
   let state = { management: '', term: '' };
+  let affiliateCardsCache = null;
+  let affiliateCardsPromise = null;
 
   function optionSet() {
     return (product.options || []).filter(o => isSellableOption(o) && o.management === state.management);
@@ -421,12 +521,10 @@
     $('#sticky-gift').textContent = v.gift == null ? '상담 확인' : won(v.gift);
 
     const cardRow = $('#generic-card-row');
-    if (v.card == null) {
-      cardRow.hidden = true;
-    } else {
-      cardRow.hidden = false;
-      $('#card-fee').textContent = won(v.card);
-    }
+    if (cardRow) cardRow.hidden = true;
+    $('#card-fee').textContent = '-';
+    const cardNote=$('#card-fee-note');
+    if(cardNote)cardNote.textContent='카드 조건을 확인하는 중입니다.';
     renderAffiliateCards();
   }
 
