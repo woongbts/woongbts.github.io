@@ -42,6 +42,30 @@ for p in active:
     if not pid:
         errors.append("ID가 없는 활성 상품이 있습니다.")
         continue
+    if not re.fullmatch(r"[A-Za-z0-9._-]+", pid):
+        errors.append(f"{pid}: 상품 ID에 URL 경로로 쓰기 어려운 문자가 있습니다.")
+    sellable_options = []
+    for o in (p.get("options") or []):
+        text = " ".join(str(o.get(k) or "") for k in ("managementLabel", "sourceOption", "care"))
+        try:
+            monthly = int(o.get("monthly"))
+        except (TypeError, ValueError):
+            continue
+        if monthly > 0 and not re.search(r"(?:^|\\s)단종/", text):
+            sellable_options.append(o)
+    if not sellable_options:
+        errors.append(f"{pid}: 판매 가능한 월요금 옵션이 없습니다.")
+    for o in sellable_options:
+        monthly = int(o.get("monthly"))
+        if monthly < 5000 or monthly > 500000:
+            warnings.append(f"{pid}: 월요금 이상치 확인 필요: {monthly:,}원")
+        gift = o.get("gift")
+        term = o.get("term")
+        try:
+            if gift is not None and term is not None and int(gift) > monthly * int(term):
+                warnings.append(f"{pid}: 사은품이 총 렌탈료보다 큽니다.")
+        except (TypeError, ValueError):
+            pass
     image = str(p.get("image") or "").strip()
     details = [str(x).strip() for x in (p.get("detailImages") or []) if str(x).strip()]
     if not image and not details:
