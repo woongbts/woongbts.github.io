@@ -129,6 +129,20 @@
     policyGeneratedAt = value || policyGeneratedAt;
     const text = policyMonthText(policyGeneratedAt);
     document.querySelectorAll('[data-policy-month]').forEach(el => { el.textContent = text; });
+
+    const freshness = $('#product-freshness');
+    if (freshness) {
+      const raw = String(policyGeneratedAt || '').slice(0,10);
+      const date = /^\d{4}-\d{2}-\d{2}$/.test(raw) ? new Date(raw + 'T00:00:00') : null;
+      const ageDays = date && !Number.isNaN(date.getTime()) ? Math.floor((Date.now() - date.getTime()) / 86400000) : null;
+      freshness.textContent = raw
+        ? '최근 정책 확인 ' + raw.replace(/-/g,'.') + ' · 최종 접수 전 최신 조건 재확인'
+        : '최근 정책 확인일을 확인 중입니다. · 최종 접수 전 최신 조건 재확인';
+      freshness.classList.toggle('is-stale', Number.isFinite(ageDays) && ageDays > 45);
+      if (Number.isFinite(ageDays) && ageDays > 45) {
+        freshness.textContent = '정책 확인일 ' + raw.replace(/-/g,'.') + ' · 오래된 정책일 수 있어 상담 시 최신 조건을 꼭 확인합니다.';
+      }
+    }
   }
   function isSellableOption(option) {
     const text = [option?.managementLabel, option?.sourceOption, option?.care].filter(Boolean).join(' ');
@@ -600,7 +614,15 @@
     .catch(() => {
       $('#generic-title').textContent = '상품 정보를 불러오지 못했습니다.';
       $('#generic-model').textContent = '최신 조건은 상담으로 확인해 주세요.';
+      $('#generic-description').textContent = '잠시 후 새로고침하거나 카카오톡·전화 상담을 이용해 주세요.';
       managementBox.innerHTML = '';
       termBox.innerHTML = '';
+      const fallback = $('#product-load-fallback');
+      if (fallback) fallback.hidden = false;
+      const freshness = $('#product-freshness');
+      if (freshness) {
+        freshness.textContent = '상품 데이터 연결 상태를 확인 중입니다. 상담으로 최신 조건을 안내해 드립니다.';
+        freshness.classList.add('is-stale');
+      }
     });
 })();
