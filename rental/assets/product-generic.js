@@ -223,6 +223,66 @@
     const hay=[brandLabel(p?.brand),p?.brand,optionLabel(v?.managementLabel||v?.management||'')].filter(Boolean).join(' ').toLowerCase();
     return (data?.providers||[]).find(provider=>(provider.aliases||[]).some(alias=>hay.includes(String(alias).toLowerCase())))||null;
   }
+  function cardSpendLabel(value) {
+    const n=Number(value)||0;
+    return '전월 '+Math.round(n/10000).toLocaleString('ko-KR')+'만원 이상';
+  }
+  function cardDiscountedMonthly(monthly,discount) {
+    const m=Number(monthly),d=Number(discount);
+    return Number.isFinite(m)&&Number.isFinite(d)?Math.max(0,m-d):null;
+  }
+  function cardDetailHtml(card,provider,monthly) {
+    const base=(card.tiers||[]).map(t=>{
+      const applied=cardDiscountedMonthly(monthly,t.discount);
+      return '<tr><td>'+cardSpendLabel(t.spend)+'</td><td>'+won(t.discount)+'</td><td>'+(applied==null?'상담 확인':won(applied))+'</td></tr>';
+    }).join('');
+    const promo=card.promo?.tiers?.length ? (
+      '<section class="affiliate-detail-section promo"><h4>'+String(card.promo.title||'신규발급 프로모션')+'</h4>'+
+      '<p class="affiliate-detail-period">'+[card.promo.period,card.promo.duration].filter(Boolean).join(' · ')+'</p>'+
+      (card.promo.eligibility?'<dl><dt>대상조건</dt><dd>'+card.promo.eligibility+'</dd></dl>':'')+
+      (card.promo.activation?'<dl><dt>등록조건</dt><dd>'+card.promo.activation+'</dd></dl>':'')+
+      '<table><thead><tr><th>전월실적</th><th>총 할인</th><th>적용 예상 월</th></tr></thead><tbody>'+
+      card.promo.tiers.map(t=>{
+        const applied=cardDiscountedMonthly(monthly,t.discount);
+        return '<tr><td>'+cardSpendLabel(t.spend)+'</td><td>'+won(t.discount)+(t.extra?'<small>기본+'+won(t.extra)+'</small>':'')+'</td><td>'+(applied==null?'상담 확인':won(applied))+'</td></tr>';
+      }).join('')+'</tbody></table></section>'
+    ) : '';
+    const cautionRows=[
+      card.billingType?'<dl><dt>할인방식</dt><dd>'+card.billingType+'</dd></dl>':'',
+      card.autopayRequired?'<dl><dt>필수조건</dt><dd>해당 렌탈/구독요금 카드 자동납부 등록 필요</dd></dl>':'',
+      card.firstMonthRule?'<dl><dt>신규발급</dt><dd>'+card.firstMonthRule+'</dd></dl>':'',
+      card.exclusions?'<dl><dt>실적제외</dt><dd>'+card.exclusions+'</dd></dl>':'',
+      card.bonus?'<dl><dt>추가혜택</dt><dd>'+card.bonus+'</dd></dl>':'',
+      ...(card.cautions||[]).map(x=>'<li>'+x+'</li>')
+    ];
+    return '<article class="affiliate-detail-card">'+
+      '<div class="affiliate-detail-card-head"><div><small>'+provider.name+' · '+(card.issuer||'카드사')+'</small><h3>'+card.name+'</h3><p>연회비 '+(card.annualFee||'카드사 확인')+(card.applyContact?' · 신청/문의 '+card.applyContact:'')+'</p></div></div>'+
+      '<section class="affiliate-detail-section"><h4>기본 청구할인</h4><table><thead><tr><th>전월실적</th><th>월 할인</th><th>적용 예상 월</th></tr></thead><tbody>'+base+'</tbody></table></section>'+
+      promo+
+      '<section class="affiliate-detail-section"><h4>발급·실적·유의사항</h4>'+cautionRows.filter(x=>x.startsWith('<dl')).join('')+
+      ((card.cautions||[]).length?'<ul>'+cautionRows.filter(x=>x.startsWith('<li')).join('')+'</ul>':'')+
+      '<p class="affiliate-detail-verified">정보 확인 '+(card.verifiedAt||'최신 확인 필요')+'</p></section>'+
+    '</article>';
+  }
+  function openAffiliateCardDialog(provider) {
+    const dialog=$('#affiliate-card-dialog'),title=$('#affiliate-card-dialog-title'),summary=$('#affiliate-card-dialog-summary'),content=$('#affiliate-card-dialog-content'),all=$('#affiliate-card-dialog-all');
+    const variant=currentVariant();
+    if(!dialog||!provider||!variant)return;
+    currentAffiliateProvider=provider;
+    if(title)title.textContent=provider.name+' 제휴카드 상세';
+    if(all)all.href='cards/?provider='+encodeURIComponent(provider.id);
+    if(summary){
+      const example=currentAffiliateExample||defaultCardExample(provider);
+      const applied=example?cardDiscountedMonthly(variant.monthly,example.discount):null;
+      summary.innerHTML='<span>현재 월 렌탈료 <b>'+(variant.monthly==null?'상담 확인':won(variant.monthly))+'</b></span>'+
+        (example?'<span>기본 예시 <b>'+example.card.name+' · '+cardSpendLabel(example.spend)+' · '+won(example.discount)+' 할인</b></span>':'')+
+        (applied==null?'':'<strong>적용 예상 월 '+won(applied)+'</strong>');
+    }
+    if(content)content.innerHTML=(provider.cards||[]).map(card=>cardDetailHtml(card,provider,variant.monthly)).join('');
+    openDialog(dialog);
+    trackRental('rental_card_detail_open',{provider:provider.id||'',management:variant.management||'',term:String(variant.term??'')});
+  }
+
   async function loadAffiliateCardsData() {
     if (affiliateCardsCache) return affiliateCardsCache;
     if (affiliateCardsPromise) return affiliateCardsPromise;
@@ -281,6 +341,7 @@
       const data=await loadAffiliateCardsData();
       if([product.id,currentVariant()?.management,currentVariant()?.term,currentVariant()?.monthly].join('|')!==renderKey)return;
       const provider=affiliateProviderMatch(data,product,variant);
+      currentAffiliateProvider=provider||null;
       if(!provider||!(provider.cards||[]).length){
         section.hidden=true;
         if(variant?.card!=null){
@@ -298,6 +359,7 @@
       if(link)link.href='cards/?provider='+encodeURIComponent(provider.id);
 
       const defaultExample=defaultCardExample(provider);
+      currentAffiliateExample=defaultExample;
       applyCardEstimate(defaultExample,variant?.monthly);
 
       box.innerHTML=(provider.cards||[]).slice(0,3).map(card=>{
@@ -315,12 +377,13 @@
         if(!button)return;
         box.querySelectorAll('.affiliate-card-tier.active').forEach(el=>el.classList.remove('active'));
         button.classList.add('active');
-        applyCardEstimate({
+        currentAffiliateExample={
           card:{name:button.dataset.cardName||'',promo:button.dataset.cardPromo==='1'},
           spend:Number(button.dataset.cardSpend),
           discount:Number(button.dataset.cardDiscount),
           promo:button.dataset.cardPromo==='1'
-        },currentVariant()?.monthly);
+        };
+        applyCardEstimate(currentAffiliateExample,currentVariant()?.monthly);
         $('#generic-card-row')?.scrollIntoView({behavior:'smooth',block:'center'});
         trackRental('rental_card_estimate',{
           card:button.dataset.cardName||'',
@@ -439,6 +502,8 @@
   let state = { management: '', term: '' };
   let affiliateCardsCache = null;
   let affiliateCardsPromise = null;
+  let currentAffiliateProvider = null;
+  let currentAffiliateExample = null;
 
   function optionSet() {
     return (product.options || []).filter(o => isSellableOption(o) && o.management === state.management);
@@ -843,7 +908,10 @@
     $('#rental-apply-close')?.addEventListener('click',()=>closeDialog($('#rental-apply-dialog')));
     $('#rental-apply-dialog')?.addEventListener('click',event=>{if(event.target===$('#rental-apply-dialog'))closeDialog($('#rental-apply-dialog'));});
     $('#rental-apply-form')?.addEventListener('submit',submitRentalApplication);
-    $('#rental-apply-success-confirm')?.addEventListener('click',()=>closeDialog($('#rental-apply-success-dialog')));
+    $('#card-fee-more')?.addEventListener('click',()=>{ if(currentAffiliateProvider) openAffiliateCardDialog(currentAffiliateProvider); });
+    $('#affiliate-card-dialog-close')?.addEventListener('click',()=>closeDialog($('#affiliate-card-dialog')));
+    $('#affiliate-card-dialog')?.addEventListener('click',event=>{if(event.target===$('#affiliate-card-dialog'))closeDialog($('#affiliate-card-dialog'));});
+        $('#rental-apply-success-confirm')?.addEventListener('click',()=>closeDialog($('#rental-apply-success-dialog')));
     $('#rental-apply-success-dialog')?.addEventListener('click',event=>{if(event.target===$('#rental-apply-success-dialog'))closeDialog($('#rental-apply-success-dialog'));});
 
     if (autoApplyRequested) {
