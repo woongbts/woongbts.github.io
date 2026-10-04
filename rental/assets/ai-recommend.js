@@ -537,6 +537,7 @@
     if (criteria.strictManagement) u.searchParams.set('sm','1');
     if (criteria.mustFeatures?.length) u.searchParams.set('feat',criteria.mustFeatures.join(','));
     if (criteria.query) u.searchParams.set('q',criteria.query.slice(0,120));
+    if (lastItems.length) u.searchParams.set('items',lastItems.map(item=>String(item.product.id)).slice(0,3).join(','));
     return u.toString();
   }
 
@@ -552,7 +553,8 @@
       strictBudget:p.get('sb') === '1',
       strictBrand:p.get('sbr') === '1',
       strictManagement:p.get('sm') === '1',
-      mustFeatures:(p.get('feat') || '').split(',').filter(key => FEATURE_DEFS[key])
+      mustFeatures:(p.get('feat') || '').split(',').filter(key => FEATURE_DEFS[key]),
+      sharedIds:(p.get('items') || '').split(',').map(x=>x.trim()).filter(Boolean).slice(0,3)
     };
   }
 
@@ -982,9 +984,15 @@
       await loadProducts();
       applyCriteriaToForm(criteria);
       const normalized = currentCriteria();
-      const items = recommend(normalized);
+      const freshItems = recommend(normalized);
+      const sharedItems = (criteria.sharedIds || [])
+        .map(id => products.find(product => String(product.id) === String(id)))
+        .map(product => product ? scoreProduct(product, normalized) : null)
+        .filter(Boolean);
+      const seen = new Set(sharedItems.map(item => String(item.product.id)));
+      const items = [...sharedItems, ...freshItems.filter(item => !seen.has(String(item.product.id)))].slice(0,3);
       renderResults(items, normalized);
-      status.textContent = items.length ? '공유된 추천 조건을 다시 열었습니다.' : '공유된 조건과 정확히 맞는 상품이 없습니다.';
+      status.textContent = items.length ? '공유된 추천 조건과 상품을 다시 열었습니다.' : '공유된 조건과 정확히 맞는 상품이 없습니다.';
       trackAi('rental_ai_share_open',{category:normalized.category,result_count:items.length,analyticsPath:'/rental/ai/'+encodeURIComponent(String(normalized.category || 'all'))+'/shared'});
     } catch (error) {
       renderFallback(error.message || '공유된 추천 결과를 불러오지 못했습니다.');
