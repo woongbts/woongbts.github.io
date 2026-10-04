@@ -1,24 +1,37 @@
-name: Rental policy freshness
+name: Rental policy watch
 
 on:
   push:
     branches: [main]
     paths:
+      - 'rental/data/products.json'
       - 'rental/data/appliance-gift-options.json'
+      - 'scripts/monitor-rental-policy.py'
       - '.github/workflows/rental-policy-watch.yml'
   schedule:
-    - cron: '30 0 * * *'
+    - cron: '20 0 * * *'
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   issues: write
+
+concurrency:
+  group: rental-policy-watch
+  cancel-in-progress: true
 
 jobs:
   policy-watch:
     runs-on: ubuntu-latest
+    timeout-minutes: 12
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
       - name: Check policy month
         id: freshness
         shell: bash
@@ -28,7 +41,6 @@ jobs:
           from datetime import datetime
           from pathlib import Path
           from zoneinfo import ZoneInfo
-
           data=json.loads(Path("rental/data/appliance-gift-options.json").read_text(encoding="utf-8"))
           generated=str(data.get("generatedAt") or "")
           now=datetime.now(ZoneInfo("Asia/Seoul"))
@@ -39,6 +51,7 @@ jobs:
           print(f"generated={generated}")
           print("stale=true" if actual != expected else "stale=false")
           PY
+
       - name: Open or update stale-policy issue
         if: steps.freshness.outputs.stale == 'true'
         env:
@@ -50,7 +63,7 @@ jobs:
         run: |
           title='[웅비렌탈] 정책 갱신 필요'
           issue="$(gh issue list --state open --json number,title --jq '.[] | select(.title=="'"$title"'") | .number' | head -1)"
-          body="웅비렌탈 사은품 정책 기준월이 현재 월과 다릅니다.
+          body="웅비렌탈 정책 기준월이 현재 월과 다릅니다.
 
           - 현재 필요한 기준월: **$EXPECTED**
           - 등록된 기준월: **${ACTUAL:-확인 불가}**
@@ -63,6 +76,7 @@ jobs:
           else
             gh issue comment "$issue" --body "$body"
           fi
+
       - name: Close stale-policy issue when current
         if: steps.freshness.outputs.stale == 'false'
         env:
@@ -75,3 +89,49 @@ jobs:
           if [ -n "$issue" ]; then
             gh issue close "$issue" --comment "정책 기준월이 $EXPECTED 로 정상화되어 자동으로 닫습니다."
           fi
+
+      - name: Compare product prices and gifts
+        run: python scripts/monitor-rental-policy.py
+
+      - name: Read material alert count
+        id: alerts
+        shell: bash
+        run: |
+          if [ -f rental/data/policy-alerts.json ]; then
+            echo "count=$(python -c "import json;print(json.load(open('rental/data/policy-alerts.json',encoding='utf-8')).get('alertCount',0))")" >> "$GITHUB_OUTPUT"
+            echo "fingerprint=$(python -c "import json;print(json.load(open('rental/data/policy-alerts.json',encoding='utf-8')).get('currentFingerprint','')[:12])")" >> "$GITHUB_OUTPUT"
+          else
+            echo "count=0" >> "$GITHUB_OUTPUT"
+            echo "fingerprint=baseline" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Commit policy snapshot
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'woongbi-rental-bot'
+          git config user.email 'actions@users.noreply.github.com'
+          git add rental/data/policy-snapshot.json rental/data/policy-alerts.json 2>/dev/null || true
+          if git diff --cached --quiet; then
+            echo 'policy snapshot unchanged.'
+            exit 0
+          fi
+          git commit -m 'Update rental policy watch snapshot'
+          git pull --rebase origin main
+          git push
+
+      - name: Create material policy-change issue
+        if: steps.alerts.outputs.count != '0'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          FINGERPRINT: ${{ steps.alerts.outputs.fingerprint }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          TITLE="[웅비렌탈] 정책 변경 감지 · ${FINGERPRINT}"
+          if gh issue list --state all --search "${TITLE} in:title" --json title --jq '.[].title' | grep -Fxq "${TITLE}"; then
+            echo 'matching policy-change issue already exists.'
+            exit 0
+          fi
+          python scripts/monitor-rental-policy.py --issue-body > /tmp/rental-policy-alert.md
+          gh issue create --title "${TITLE}" --body-file /tmp/rental-policy-alert.md
