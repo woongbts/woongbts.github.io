@@ -56,6 +56,36 @@ function assert(condition, message) {
   });
   assert(homeOverflow.x === 0, '홈 화면이 페이지 전체 단위로 가로 스크롤됩니다.');
 
+
+  // AI 추천: 필수조건, 정책 기준, 비교담기, 카카오 상담, 신청 링크를 모바일에서 검증합니다.
+  await page.locator('[data-ai-recommend-open]').first().click();
+  await page.waitForSelector('#ai-recommend-dialog[open]');
+  await page.waitForFunction(() => document.querySelector('#ai-category')?.value === '정수기');
+  await page.locator('#ai-budget').selectOption('40000');
+  await page.locator('#ai-management').selectOption('self');
+  await page.locator('#ai-budget-strict').check();
+  await page.locator('#ai-management-strict').check();
+  await page.locator('[data-ai-must-feature="direct"]').check();
+  await page.locator('#ai-recommend-form').evaluate(form => form.requestSubmit());
+  await page.waitForSelector('.ai-result-card');
+  const aiSummary = await page.locator('.ai-result-summary strong').textContent();
+  assert(aiSummary && /월\s[\d,]+원/.test(aiSummary), 'AI 1위 한줄 요약에 월요금 근거가 없습니다.');
+  const aiPolicy = await page.locator('.ai-result-head span').textContent();
+  assert(/\d{4}년 \d{1,2}월 정책 기준/.test(aiPolicy || ''), 'AI 추천 결과에 정책 기준월이 없습니다.');
+  const applyHref = await page.locator('.ai-apply-link').first().getAttribute('href');
+  assert(applyHref && /\/rental\/product\/[^/]+\/\?/.test(applyHref) && /mgmt=/.test(applyHref) && /term=/.test(applyHref) && /apply=1/.test(applyHref), 'AI 추천 신청 링크가 선택 조건을 이어주지 못합니다.');
+  await page.locator('[data-ai-compare]').first().click();
+  assert(await page.locator('[data-ai-compare].active').count() >= 1, 'AI 추천 결과 비교담기가 동작하지 않습니다.');
+  await page.locator('[data-ai-kakao]').evaluate(el => el.addEventListener('click', e => e.preventDefault()));
+  await page.locator('[data-ai-kakao]').click();
+  await page.waitForTimeout(80);
+  const aiCopied = await page.evaluate(() => sessionStorage.getItem('wb_test_clipboard') || '');
+  assert(aiCopied.includes('[웅비렌탈 AI 추천 상담]') && aiCopied.includes('추천 결과'), 'AI 추천 카카오 상담 복사가 동작하지 않습니다.');
+  const aiEvents = await page.evaluate(() => JSON.parse(localStorage.getItem('wb_conversion_events_v1') || '[]').map(x => x.type));
+  assert(aiEvents.includes('rental_ai_open') && aiEvents.includes('rental_ai_recommend') && aiEvents.includes('rental_ai_compare') && aiEvents.includes('rental_ai_kakao'), 'AI 전환 이벤트 기록이 누락되었습니다.');
+  await page.locator('#ai-recommend-close').click();
+  if (await page.locator('#clear-compare').count()) await page.locator('#clear-compare').click();
+
   await page.locator('[data-recommend-sort="monthly"]').click();
   assert(await page.locator('[data-recommend-sort="monthly"]').getAttribute('aria-pressed') === 'true', '월요금 정렬 버튼이 동작하지 않습니다.');
   await page.locator('[data-recommend-sort="gift"]').click();
@@ -89,7 +119,7 @@ function assert(condition, message) {
   const recentStored = await page.evaluate(() => JSON.parse(localStorage.getItem('wb_rental_recent_v1') || '[]').some(x => x.id === 'clv-10316'));
   assert(recentStored, '최근 본 상품 저장이 동작하지 않습니다.');
   const canonical = await page.locator('#product-canonical').getAttribute('href');
-  assert(canonical && canonical.includes('id=clv-10316'), '상품 canonical URL이 상품별로 갱신되지 않았습니다.');
+  assert(canonical && canonical.includes('/rental/product/clv-10316/'), '상품 canonical URL이 깨끗한 상품 경로로 갱신되지 않았습니다.');
   const jsonLd = await page.locator('#product-jsonld').textContent();
   assert(jsonLd && jsonLd.includes('"Product"'), '상품 구조화 데이터가 생성되지 않았습니다.');
 
@@ -107,6 +137,8 @@ function assert(condition, message) {
   await page.locator('#rental-third-party-consent').check();
   const giftDepositNote = await page.locator('#rental-apply-gift-note').textContent();
   assert(giftDepositNote.includes('설치 후 1주일 이내 입금'), '사은품 입금 안내가 없습니다.');
+  const giftReturnNote = await page.locator('#rental-apply-gift-return-note').textContent();
+  assert(giftReturnNote.includes('1년 이내') && giftReturnNote.includes('반환'), '사은품 반환 안내가 없습니다.');
   await page.locator('#rental-apply-submit').click();
   await page.waitForSelector('#rental-apply-success-dialog[open]');
   assert(await page.locator('#rental-apply-dialog[open]').count() === 0, '신청 성공 후 입력창이 닫히지 않습니다.');
@@ -157,6 +189,25 @@ function assert(condition, message) {
   assert(stickyPriceBox && stickyPriceBox.x >= 0 && stickyPriceBox.x + stickyPriceBox.width <= viewport.width, '월요금 영역이 모바일 화면 밖으로 잘립니다.');
   assert(stickyApplyBox && stickyApplyBox.x >= 0 && stickyApplyBox.x + stickyApplyBox.width <= viewport.width, '신청하기 버튼이 모바일 화면 밖으로 잘립니다.');
   assert(stickyConsultBox && stickyConsultBox.x >= 0 && stickyConsultBox.x + stickyConsultBox.width <= viewport.width, '상담하기 버튼이 모바일 화면 밖으로 잘립니다.');
+
+  // 작은 모바일 화면에서도 AI 모달이 가로로 넘치지 않는지 추가 점검합니다.
+  const compactContext = await browser.newContext({viewport:{width:375,height:667},isMobile:true,hasTouch:true});
+  const compactPage = await compactContext.newPage();
+  await compactPage.goto('http://127.0.0.1:4173/rental/', {waitUntil:'domcontentloaded'});
+  await compactPage.waitForSelector('.recommend-card', {timeout:15000});
+  await compactPage.locator('[data-ai-recommend-open]').first().click();
+  await compactPage.waitForSelector('#ai-recommend-dialog[open]');
+  const compactOverflow = await compactPage.evaluate(() => {
+    const dialog = document.querySelector('#ai-recommend-dialog');
+    const panel = document.querySelector('.ai-recommend-panel');
+    return {
+      page: document.documentElement.scrollWidth - document.documentElement.clientWidth,
+      dialog: dialog ? dialog.scrollWidth - dialog.clientWidth : 999,
+      panel: panel ? panel.scrollWidth - panel.clientWidth : 999
+    };
+  });
+  assert(compactOverflow.page <= 1 && compactOverflow.dialog <= 1 && compactOverflow.panel <= 1, '375px 모바일에서 AI 추천창이 가로로 넘칩니다.');
+  await compactContext.close();
 
   console.log('Rental mobile smoke test passed.');
   await browser.close();
