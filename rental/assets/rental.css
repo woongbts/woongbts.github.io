@@ -582,3 +582,32 @@
   .rental-apply-success-card strong{font-size:1.35rem}
   .rental-apply-success-card p{font-size:.95rem}
 }
+
+
+/* Rental trust, guide, freshness and fallback · 2026-10-04 */
+.rental-guide-section{background:#fff}
+.rental-guide-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:22px}
+.rental-guide-grid a{display:grid;gap:5px;padding:20px;border:1px solid #dce7e5;border-radius:18px;background:#fbfdfc;color:var(--ink);text-decoration:none;transition:.18s ease}
+.rental-guide-grid a:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(21,55,59,.08)}
+.rental-guide-grid span{color:#168fd1;font-size:.7rem;font-weight:1000}.rental-guide-grid strong{font-size:1rem}.rental-guide-grid small{color:#718486;font-size:.72rem}
+.rental-trust-section{background:#f5faf9}
+.rental-trust-box{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);gap:28px;align-items:center;padding:28px;border:1px solid #d6e5e2;border-radius:24px;background:#fff}
+.rental-trust-box h2{margin:5px 0 8px;font-size:1.45rem;letter-spacing:-.035em}.rental-trust-box>div>p:last-child{margin:0;color:#6b8082;font-size:.82rem;line-height:1.6}
+.rental-trust-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
+.rental-trust-steps article{padding:15px;border-radius:15px;background:#f3f8f7}.rental-trust-steps span{width:27px;height:27px;display:grid;place-items:center;border-radius:50%;background:#168fd1;color:#fff;font-size:.67rem;font-weight:1000}
+.rental-trust-steps strong,.rental-trust-steps small{display:block}.rental-trust-steps strong{margin-top:9px;font-size:.82rem}.rental-trust-steps small{margin-top:4px;color:#718486;font-size:.65rem;line-height:1.45}
+.product-freshness{margin:12px 0 0;padding:10px 12px;border-radius:11px;background:#eef8f6;color:#35645f;font-size:.72rem;font-weight:900;line-height:1.45}
+.product-freshness.is-stale{background:#fff4e5;color:#8a5a16}
+.product-trust-section{padding-top:20px!important;padding-bottom:20px!important;background:#fff}
+.product-trust-box{display:flex;align-items:center;justify-content:space-between;gap:22px;padding:20px 22px;border:1px solid #d8e6e3;border-radius:19px;background:#f8fbfa}
+.product-trust-box>div:first-child span{display:block;color:#0f766e;font-size:.68rem;font-weight:950}.product-trust-box>div:first-child strong{display:block;margin-top:4px;font-size:1rem}.product-trust-box>div:first-child p{margin:5px 0 0;color:#718486;font-size:.72rem;line-height:1.5}
+.product-trust-mini{display:flex;gap:7px;flex-wrap:wrap;justify-content:flex-end}.product-trust-mini b{padding:8px 10px;border-radius:999px;background:#eaf5f3;color:#35615e;font-size:.67rem}
+.product-load-fallback{margin-top:15px;padding:16px;border:1px solid #f0d6a6;border-radius:14px;background:#fff8ea}.product-load-fallback strong{display:block;color:#72511b}.product-load-fallback p{margin:5px 0 10px;color:#876f4d;font-size:.75rem}.product-load-fallback div{display:flex;gap:7px;flex-wrap:wrap}.product-load-fallback a{min-height:38px;display:inline-flex;align-items:center;padding:7px 10px;border-radius:9px;background:#fff;color:#466669;text-decoration:none;font-size:.7rem;font-weight:900}
+@media(max-width:720px){
+  .rental-trust-box{grid-template-columns:1fr}.rental-guide-grid{grid-template-columns:1fr}.rental-trust-steps{grid-template-columns:1fr 1fr 1fr}
+  .product-trust-box{display:block}.product-trust-mini{justify-content:flex-start;margin-top:12px}
+}
+@media(max-width:560px){
+  .rental-trust-box{padding:20px}.rental-trust-steps{grid-template-columns:1fr}.rental-trust-steps article{display:grid;grid-template-columns:auto 1fr;column-gap:10px;align-items:center}.rental-trust-steps strong{margin-top:0}.rental-trust-steps small{grid-column:2}
+  .product-trust-mini{display:grid;grid-template-columns:1fr}.product-trust-mini b{text-align:center}
+}
