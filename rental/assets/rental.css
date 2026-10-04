@@ -547,7 +547,7 @@
     grid-template-columns:minmax(108px,1fr) minmax(78px,auto) minmax(78px,auto)!important;
     gap:7px!important;
   }
-  .sticky-price{min-width:0!important;padding-left:4px}
+  .sticky-price{min-width:0!important;padding-left:18px}
   .sticky-price span{font-size:.72rem!important;line-height:1.1}
   .sticky-price strong{
     font-size:1.12rem!important;
