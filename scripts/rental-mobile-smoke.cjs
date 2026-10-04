@@ -135,6 +135,13 @@ function assert(condition, message) {
 
   await page.goto('http://127.0.0.1:4173/rental/cards/', {waitUntil:'domcontentloaded'});
   await page.waitForSelector('.affiliate-card');
+  const cardPathBefore = new URL(page.url()).pathname;
+  await page.locator('#card-compare-jump').click();
+  await page.waitForTimeout(180);
+  const cardPathAfter = new URL(page.url()).pathname;
+  assert(cardPathBefore === '/rental/cards/' && cardPathAfter === '/rental/cards/', '카드 비교하기 클릭 시 렌탈 홈으로 이동합니다.');
+  const cardTargetTop = await page.locator('#affiliate-cards').evaluate(el => el.getBoundingClientRect().top);
+  assert(cardTargetTop < 220, '카드 비교하기 클릭 시 제휴카드 목록으로 이동하지 않습니다.');
   assert(await page.locator('#card-provider-tabs button').count() >= 8, '제휴카드 렌탈사 탭이 충분히 표시되지 않습니다.');
   const cardPageText = await page.locator('#affiliate-cards').textContent();
   assert(cardPageText.includes('코웨이') && cardPageText.includes('전월') && cardPageText.includes('할인'), '제휴카드 비교 정보가 표시되지 않습니다.');
