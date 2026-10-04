@@ -17,7 +17,7 @@ STATIC = {
     "https://woongbts.github.io/manduk-mobile.html": ["manduk-mobile.html"],
     "https://woongbts.github.io/links.html": ["links.html"],
     "https://woongbts.github.io/privacy.html": ["privacy.html"],
-    "https://woongbts.github.io/rental/": ["rental/index.html","rental/assets/catalog.js","rental/assets/rental.css","rental/data/featured.json"],
+    "https://woongbts.github.io/rental/": ["rental/index.html","rental/assets/catalog.js","rental/assets/ai-recommend.js","rental/assets/ai-recommend.css","rental/assets/rental.css","rental/data/featured.json"],
 }
 
 def latest_date(paths):
@@ -49,12 +49,12 @@ def main():
     product_date=latest_date(["rental/data/products.json","rental/data/appliance-gift-options.json","rental/product.html","rental/assets/product-generic.js"])
     products=[
       p for p in data.get("products",[])
-      if p.get("availability")!="inactive" and not re.search(r"접수불가|접수중지",str(p.get("name") or ""))
+      if p.get("availability")!="inactive" and not re.search(r"접수불가|접수중지|단종",str(p.get("name") or ""))
     ]
     for p in sorted(products,key=lambda x:str(x.get("id") or "")):
       pid=quote(str(p.get("id") or ""),safe="-_")
       if not pid: continue
-      rows.append(entry(f"https://woongbts.github.io/rental/product.html?id={pid}",product_date,"weekly","0.6"))
+      rows.append(entry(f"https://woongbts.github.io/rental/product/{pid}/",product_date,"weekly","0.6"))
     rows.append("</urlset>")
     SITEMAP.write_text("\n".join(rows)+"\n",encoding="utf-8")
 
@@ -63,7 +63,7 @@ def main():
     for p in sorted(products,key=lambda x:str(x.get("id") or "")):
       pid=quote(str(p.get("id") or ""),safe="-_")
       if not pid: continue
-      rental_rows.append(entry(f"https://woongbts.github.io/rental/product.html?id={pid}",product_date,"weekly","0.6"))
+      rental_rows.append(entry(f"https://woongbts.github.io/rental/product/{pid}/",product_date,"weekly","0.6"))
     rental_rows.append("</urlset>")
     RENTAL_SITEMAP.write_text("\n".join(rental_rows)+"\n",encoding="utf-8")
 
