@@ -195,6 +195,17 @@ function assert(condition, message) {
   assert(await page.locator('#generic-recommend-audience span').count() >= 1, '이런 분께 추천 영역이 생성되지 않았습니다.');
   const cardPreviewCount = await page.locator('#affiliate-card-preview article').count();
   assert(cardPreviewCount >= 1 || await page.locator('#affiliate-card-section[hidden]').count() === 1, '상품별 제휴카드 미리보기 상태가 올바르지 않습니다.');
+  await page.goto('http://127.0.0.1:4173/rental/product/chp-7220n/', {waitUntil:'domcontentloaded'});
+  await page.waitForFunction(() => document.querySelector('#monthly-fee')?.textContent !== '-');
+  await page.waitForSelector('#generic-card-row:not([hidden])');
+  const cowayMonthly = Number((await page.locator('#monthly-fee').textContent()).replace(/[^0-9]/g,''));
+  const cowayCardMonthly = Number((await page.locator('#card-fee').textContent()).replace(/[^0-9]/g,''));
+  const cowayCardNote = await page.locator('#card-fee-note').textContent();
+  assert(cowayMonthly > 0 && cowayCardMonthly === Math.max(0,cowayMonthly - 13000), '코웨이 대표 제휴카드 예상 월요금 계산이 올바르지 않습니다.');
+  assert(cowayCardNote.includes('전월 30만원') && cowayCardNote.includes('13,000원 할인'), '제휴카드 예상 월요금 계산 근거가 표시되지 않습니다.');
+  await page.locator('.affiliate-card-tier').nth(1).click();
+  const selectedCardNote = await page.locator('#card-fee-note').textContent();
+  assert(selectedCardNote && selectedCardNote.includes('할인'), '제휴카드 실적 선택 시 예상 월요금이 갱신되지 않습니다.');
   const jsonLd = await page.locator('#product-jsonld').textContent();
   assert(jsonLd && jsonLd.includes('"Product"'), '상품 구조화 데이터가 생성되지 않았습니다.');
 
