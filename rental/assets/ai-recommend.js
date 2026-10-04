@@ -14,15 +14,19 @@
   const preferenceInput = document.getElementById('ai-preference');
   const results = document.getElementById('ai-recommend-results');
   const status = document.getElementById('ai-recommend-status');
+  const budgetStrict = document.getElementById('ai-budget-strict');
+  const brandStrict = document.getElementById('ai-brand-strict');
+  const managementStrict = document.getElementById('ai-management-strict');
+  const mustFeatureInputs = [...document.querySelectorAll('[data-ai-must-feature]')];
 
   let products = [];
   let loadPromise = null;
   let lastCriteria = null;
   let lastItems = [];
+  let policyGeneratedAt = '';
 
   const KAKAO_CHAT_URL = 'http://pf.kakao.com/_nWwNT/chat';
   const COMPARE_KEY = 'wb_rental_compare_v1';
-
   const BRAND_ORDER = [
     { re: /coway|코웨이/i, rank: 1 },
     { re: /퓨리케어|^lg$/i, rank: 2 },
@@ -34,6 +38,13 @@
     '세탁·건조·의류관리','냉장고·김치냉장고','TV·디지털','에어컨·청소기',
     '주방가전','생활가전','건강·뷰티','가구·침대','레저·자동차'
   ];
+  const FEATURE_DEFS = {
+    ice: { label:'얼음', re:/얼음|아이스/ },
+    direct: { label:'직수', re:/직수/ },
+    hotcold: { label:'냉온', re:/냉온|냉수|온수/ },
+    slim: { label:'슬림·미니', re:/슬림|초소형|미니|작은|공간/ },
+    large: { label:'대용량', re:/대용량|업소|사무실|매장/ }
+  };
 
   const won = value => Number(value).toLocaleString('ko-KR') + '원';
   const escapeHtml = value => String(value ?? '')
@@ -53,10 +64,28 @@
     return BRAND_ORDER.find(x => x.re.test(value))?.rank ?? 99;
   }
 
+  function policyMonthText(value) {
+    const m = String(value || '').match(/^(\d{4})-(\d{2})/);
+    return m ? m[1] + '년 ' + Number(m[2]) + '월 정책 기준' : '최신 정책 기준';
+  }
+
   function localImageUrl(src) {
     const value = String(src || '').trim();
     if (!value) return '';
     return value.startsWith('assets/product-images/') ? '/rental/' + value : value;
+  }
+
+  function cleanProductPath(product) {
+    return 'product/' + encodeURIComponent(String(product?.id || '')) + '/';
+  }
+
+  function productUrl(product, option, apply = false) {
+    const u = new URL(cleanProductPath(product), location.origin + '/rental/');
+    u.searchParams.set('from', 'ai');
+    if (option?.management) u.searchParams.set('mgmt', String(option.management));
+    if (option?.term != null) u.searchParams.set('term', String(option.term));
+    if (apply) u.searchParams.set('apply', '1');
+    return u.pathname + u.search;
   }
 
   function isSellableOption(option) {
@@ -74,6 +103,11 @@
 
   function isVisitOption(option) {
     return /방문|visit/i.test([option?.management, option?.managementLabel, option?.care, option?.sourceOption].filter(Boolean).join(' '));
+  }
+
+  function managementMatch(option, mode) {
+    if (!mode) return true;
+    return mode === 'self' ? isSelfOption(option) : isVisitOption(option);
   }
 
   function productText(product) {
@@ -97,6 +131,18 @@
     return list;
   }
 
+  function trackAi(type, detail = {}) {
+    if (typeof window.woongbiTrackConversion !== 'function') return;
+    const category = detail.category || lastCriteria?.category || categorySelect.value || 'all';
+    let analyticsPath = detail.analyticsPath;
+    if (!analyticsPath) {
+      analyticsPath = type === 'rental_ai_open'
+        ? '/rental/ai/open'
+        : '/rental/ai/' + encodeURIComponent(String(category));
+    }
+    window.woongbiTrackConversion(type, {...detail, analyticsPath});
+  }
+
   async function loadProducts() {
     if (products.length) return products;
     if (loadPromise) return loadPromise;
@@ -111,14 +157,16 @@
       fetch('data/catalog-overrides.json', { cache: 'no-store' }).then(r => r.ok ? r.json() : null).catch(() => null)
     ]).then(([data, giftData, overrideData]) => {
       const list = Array.isArray(data?.products) ? data.products : [];
+      policyGeneratedAt = giftData?.generatedAt || data?.updatedAt || '';
       products = applyOverrides(list, overrideData, giftData)
         .filter(p => p.availability !== 'inactive')
         .filter(p => !/접수불가|접수중지|단종/.test(String(p.name || '')))
         .filter(p => validOptions(p).length > 0);
 
       setupSelectors();
+      updateStrictControlState();
       status.textContent = products.length
-        ? '현재 등록된 ' + products.length.toLocaleString('ko-KR') + '개 상품을 기준으로 추천합니다.'
+        ? policyMonthText(policyGeneratedAt) + ' · ' + products.length.toLocaleString('ko-KR') + '개 상품 기준'
         : '추천 가능한 상품을 찾지 못했습니다.';
       return products;
     }).catch(error => {
@@ -161,6 +209,21 @@
       '<option value="' + escapeHtml(brand) + '">' + escapeHtml(brandLabel(brand)) + '</option>'
     ).join('');
     if (brands.includes(current)) brandSelect.value = current;
+    updateStrictControlState();
+  }
+
+  function updateStrictControlState() {
+    const pairs = [
+      [budgetStrict, document.getElementById('ai-budget-strict-wrap'), Number(budgetSelect.value) > 0],
+      [brandStrict, document.getElementById('ai-brand-strict-wrap'), Boolean(brandSelect.value)],
+      [managementStrict, document.getElementById('ai-management-strict-wrap'), Boolean(managementSelect.value)]
+    ];
+    pairs.forEach(([input, wrap, enabled]) => {
+      if (!input) return;
+      input.disabled = !enabled;
+      if (!enabled) input.checked = false;
+      wrap?.classList.toggle('is-disabled', !enabled);
+    });
   }
 
   function requestedFeatures(query) {
@@ -190,38 +253,47 @@
       .slice(0, 12);
   }
 
-  function managementMatch(option, mode) {
-    if (!mode) return true;
-    return mode === 'self' ? isSelfOption(option) : isVisitOption(option);
-  }
-
-  function chooseOption(product, budget, management) {
+  function chooseOption(product, criteria) {
     const all = validOptions(product);
     if (!all.length) return null;
-    let candidates = management ? all.filter(o => managementMatch(o, management)) : all;
-    if (!candidates.length) candidates = all;
+
+    let candidates = all;
+    if (criteria.management) {
+      const matching = all.filter(o => managementMatch(o, criteria.management));
+      if (criteria.strictManagement && !matching.length) return null;
+      if (matching.length) candidates = matching;
+    }
+
+    if (criteria.strictBudget && criteria.budget > 0) {
+      candidates = candidates.filter(o => Number(o.monthly) <= criteria.budget);
+      if (!candidates.length) return null;
+    }
 
     const scored = candidates.map(option => {
       const monthly = Number(option.monthly);
       const gift = Number.isFinite(Number(option.gift)) ? Number(option.gift) : 0;
       const term = Number(option.term) || 60;
       let score = gift - monthly * 1.25 - Math.abs(term - 60) * 550;
-      if (budget > 0) {
-        if (monthly <= budget) score += 90000 + (budget - monthly) * 0.8;
-        else score -= (monthly - budget) * 8;
+      if (criteria.budget > 0) {
+        if (monthly <= criteria.budget) score += 90000 + (criteria.budget - monthly) * 0.8;
+        else score -= (monthly - criteria.budget) * 8;
       }
-      if (management && managementMatch(option, management)) score += 25000;
+      if (criteria.management && managementMatch(option, criteria.management)) score += 25000;
       return { option, score };
     }).sort((a,b) => b.score - a.score);
 
-    return scored[0]?.option || candidates[0];
+    return scored[0]?.option || candidates[0] || null;
   }
 
   function scoreProduct(product, criteria) {
     if (criteria.category && product.category !== criteria.category) return null;
 
     const text = productText(product);
-    const option = chooseOption(product, criteria.budget, criteria.management);
+    if (criteria.strictBrand && criteria.brand && String(product.brand) !== criteria.brand) return null;
+    if (criteria.mustFeatures.some(key => !FEATURE_DEFS[key]?.re.test(text))) return null;
+    if (criteria.strictManagement && criteria.management && !validOptions(product).some(o => managementMatch(o, criteria.management))) return null;
+
+    const option = chooseOption(product, criteria);
     if (!option) return null;
 
     const monthly = Number(option.monthly);
@@ -253,17 +325,23 @@
     }
 
     if (criteria.management) {
-      const matched = validOptions(product).some(o => managementMatch(o, criteria.management));
-      if (matched) {
+      if (managementMatch(option, criteria.management)) {
         score += 32;
-        reasons.push(criteria.management === 'self' ? '자가관리 가능' : '방문관리 가능');
+        reasons.push(criteria.management === 'self' ? '자가관리 조건 일치' : '방문관리 조건 일치');
       } else {
         score -= 35;
       }
     }
 
-    const features = requestedFeatures(criteria.query);
-    features.forEach(feature => {
+    criteria.mustFeatures.forEach(key => {
+      const def = FEATURE_DEFS[key];
+      if (def?.re.test(text)) {
+        score += 30;
+        reasons.push(def.label + ' 필수조건 일치');
+      }
+    });
+
+    requestedFeatures(criteria.query).forEach(feature => {
       if (feature.re.test(text)) {
         score += 24;
         reasons.push(feature.label);
@@ -301,9 +379,8 @@
       .sort((a,b) => b.score - a.score || brandRank(a.product.brand) - brandRank(b.product.brand));
 
     if (!ranked.length) return [];
-
     const withinBudget = criteria.budget > 0 ? ranked.filter(x => x.monthly <= criteria.budget) : ranked;
-    return (withinBudget.length >= 3 ? withinBudget : ranked).slice(0, 3);
+    return (withinBudget.length >= 3 || criteria.strictBudget ? withinBudget : ranked).slice(0, 3);
   }
 
   function reasonText(item, index) {
@@ -312,17 +389,30 @@
   }
 
   function criteriaSummary(criteria) {
+    const mustLabels = criteria.mustFeatures.map(key => FEATURE_DEFS[key]?.label).filter(Boolean);
     return [
       criteria.category ? '품목: ' + criteria.category : '',
-      criteria.budget > 0 ? '월 예산: ' + won(criteria.budget) + ' 이하' : '월 예산: 상관없음',
-      criteria.brand ? '선호 브랜드: ' + brandLabel(criteria.brand) : '선호 브랜드: 상관없음',
-      criteria.management ? '관리방식: ' + (criteria.management === 'self' ? '자가·셀프관리' : '방문관리') : '관리방식: 상관없음',
+      criteria.budget > 0 ? '월 예산: ' + won(criteria.budget) + ' 이하' + (criteria.strictBudget ? ' (필수)' : '') : '월 예산: 상관없음',
+      criteria.brand ? '선호 브랜드: ' + brandLabel(criteria.brand) + (criteria.strictBrand ? ' (필수)' : '') : '선호 브랜드: 상관없음',
+      criteria.management ? '관리방식: ' + (criteria.management === 'self' ? '자가·셀프관리' : '방문관리') + (criteria.strictManagement ? ' (필수)' : '') : '관리방식: 상관없음',
+      mustLabels.length ? '필수 기능: ' + mustLabels.join(', ') : '',
       criteria.query ? '추가 조건: ' + criteria.query : ''
     ].filter(Boolean);
   }
 
+  function topSummaryText(item, criteria) {
+    const p = item.product;
+    const clauses = [];
+    if (criteria.budget > 0 && item.monthly <= criteria.budget) clauses.push('예산 안');
+    if (criteria.brand && String(p.brand) === criteria.brand) clauses.push(brandLabel(p.brand));
+    if (criteria.management && managementMatch(item.option, criteria.management)) clauses.push(criteria.management === 'self' ? '자가관리' : '방문관리');
+    criteria.mustFeatures.forEach(key => clauses.push(FEATURE_DEFS[key]?.label || key));
+    const head = clauses.length ? clauses.join(' + ') + ' 조건에서' : '선택한 조건에서';
+    return head + ' ' + brandLabel(p.brand) + ' ' + p.name + '이 가장 잘 맞습니다. 월 ' + won(item.monthly) + (item.gift == null ? '' : ', 사은품 ' + won(item.gift)) + '.';
+  }
+
   function buildConsultText(criteria, items) {
-    const lines = ['[웅비렌탈 AI 추천 상담]', ...criteriaSummary(criteria), '', '추천 결과'];
+    const lines = ['[웅비렌탈 AI 추천 상담]', policyMonthText(policyGeneratedAt), ...criteriaSummary(criteria), '', '추천 결과'];
     items.forEach((item, index) => {
       const p = item.product;
       const management = item.option.managementLabel || item.option.care || '';
@@ -384,23 +474,29 @@
   async function toggleAiCompare(productId) {
     if (window.woongbiRentalCompare?.toggle) {
       const ids = await window.woongbiRentalCompare.toggle(productId);
-      updateAiCompareButtons(Array.isArray(ids) ? ids.map(String) : readCompareIds());
-      status.textContent = readCompareIds().includes(String(productId))
+      const normalized = Array.isArray(ids) ? ids.map(String) : readCompareIds();
+      updateAiCompareButtons(normalized);
+      status.textContent = normalized.includes(String(productId))
         ? '비교 목록에 담았습니다. 최대 3개까지 비교할 수 있어요.'
         : '비교 목록에서 뺐습니다.';
-      return;
+    } else {
+      let ids = readCompareIds();
+      const id = String(productId || '');
+      if (ids.includes(id)) ids = ids.filter(x => x !== id);
+      else if (ids.length < 3) ids.push(id);
+      else {
+        alert('비교는 최대 3개까지 담을 수 있습니다.');
+        return;
+      }
+      try { localStorage.setItem(COMPARE_KEY, JSON.stringify(ids)); } catch (_) {}
+      updateAiCompareButtons(ids);
     }
 
-    let ids = readCompareIds();
-    const id = String(productId || '');
-    if (ids.includes(id)) ids = ids.filter(x => x !== id);
-    else if (ids.length < 3) ids.push(id);
-    else {
-      alert('비교는 최대 3개까지 담을 수 있습니다.');
-      return;
-    }
-    try { localStorage.setItem(COMPARE_KEY, JSON.stringify(ids)); } catch (_) {}
-    updateAiCompareButtons(ids);
+    trackAi('rental_ai_compare', {
+      product_id: String(productId || ''),
+      category: lastCriteria?.category || categorySelect.value,
+      analyticsPath: '/rental/product/' + encodeURIComponent(String(productId || 'unknown'))
+    });
   }
 
   function renderResults(items, criteria) {
@@ -408,19 +504,23 @@
     lastItems = items;
 
     if (!items.length) {
-      results.innerHTML = '<div class="ai-empty"><strong>조건에 맞는 상품을 찾지 못했어요.</strong><p>예산이나 선호 조건을 조금 넓혀서 다시 추천받아 보세요.</p></div>';
+      results.innerHTML = '<div class="ai-empty"><strong>필수조건까지 모두 맞는 상품을 찾지 못했어요.</strong><p>필수조건을 하나 줄이거나 예산을 조금 넓혀서 다시 추천받아 보세요.</p></div>';
       return;
     }
 
-    results.innerHTML = '<div class="ai-result-head"><strong>추천 결과</strong><span>현재 상품 데이터 기준 TOP ' + items.length + '</span></div>' +
+    const top = items[0];
+    results.innerHTML =
+      '<div class="ai-result-summary"><small>AI 한줄 결론</small><strong>' + escapeHtml(topSummaryText(top, criteria)) + '</strong><span>' + escapeHtml(policyMonthText(policyGeneratedAt)) + '</span></div>' +
+      '<div class="ai-result-head"><strong>추천 결과</strong><span>' + escapeHtml(policyMonthText(policyGeneratedAt)) + ' · TOP ' + items.length + '</span></div>' +
       items.map((item,index) => {
         const p = item.product;
         const image = localImageUrl(p.image || p.imageSourceOriginal || '');
-        const page = p.page || ('product.html?id=' + encodeURIComponent(p.id));
+        const detailUrl = productUrl(p, item.option, false);
+        const applyUrl = productUrl(p, item.option, true);
         const term = Number(item.option.term) ? Number(item.option.term) + '개월' : '계약기간 확인';
         const management = item.option.managementLabel || item.option.care || '';
         return '<article class="ai-result-card">' +
-          '<a class="ai-result-image" href="' + escapeHtml(page) + '" data-ai-product="' + escapeHtml(p.id) + '">' +
+          '<a class="ai-result-image" href="' + escapeHtml(detailUrl) + '" data-ai-product="' + escapeHtml(p.id) + '">' +
             (image ? '<img src="' + escapeHtml(image) + '" alt="' + escapeHtml(p.name) + '" loading="lazy">' : '<span>W</span>') +
           '</a>' +
           '<div class="ai-result-body">' +
@@ -431,7 +531,8 @@
             '<div class="ai-result-price"><span>월 <strong>' + escapeHtml(won(item.monthly)) + '</strong></span>' +
               '<span>사은품 <strong>' + (item.gift == null ? '상담 확인' : escapeHtml(won(item.gift))) + '</strong></span></div>' +
             '<div class="ai-result-actions">' +
-              '<a class="ai-result-link" href="' + escapeHtml(page) + '" data-ai-product="' + escapeHtml(p.id) + '">조건 자세히 보기 →</a>' +
+              '<a class="ai-result-link" href="' + escapeHtml(detailUrl) + '" data-ai-product="' + escapeHtml(p.id) + '">조건 자세히 보기</a>' +
+              '<a class="ai-apply-link" href="' + escapeHtml(applyUrl) + '" data-ai-apply="' + escapeHtml(p.id) + '">이 조건으로 신청</a>' +
               '<button class="ai-compare-btn" type="button" data-ai-compare="' + escapeHtml(p.id) + '" aria-pressed="false">비교담기</button>' +
             '</div>' +
           '</div>' +
@@ -441,20 +542,19 @@
         '<div><strong>이 추천 그대로 상담할까요?</strong><span>추천 조건과 TOP 3가 복사됩니다.</span></div>' +
         '<a class="ai-kakao-consult" data-ai-kakao href="' + KAKAO_CHAT_URL + '" target="_blank" rel="noopener noreferrer">이 조건으로 카톡 상담</a>' +
       '</div>' +
-      '<p class="ai-result-note">AI 추천은 현재 등록된 상품·월요금·사은품 데이터를 조건별로 비교한 결과입니다. 실제 접수 전 최신 정책을 다시 확인합니다.</p>';
+      '<p class="ai-result-note">' + escapeHtml(policyMonthText(policyGeneratedAt)) + '의 등록 상품·월요금·사은품 데이터를 비교한 결과입니다. 실제 접수 전 최신 정책을 다시 확인합니다.</p>';
 
     updateAiCompareButtons();
 
-    if (typeof window.woongbiTrackConversion === 'function') {
-      window.woongbiTrackConversion('rental_ai_recommend', {
-        category: criteria.category,
-        budget: criteria.budget || '',
-        brand: criteria.brand || '',
-        management: criteria.management || '',
-        result_count: items.length,
-        analyticsPath: '/rental/'
-      });
-    }
+    trackAi('rental_ai_recommend', {
+      category: criteria.category,
+      budget: criteria.budget || '',
+      brand: criteria.brand || '',
+      management: criteria.management || '',
+      strict_count: Number(criteria.strictBudget) + Number(criteria.strictBrand) + Number(criteria.strictManagement) + criteria.mustFeatures.length,
+      result_count: items.length,
+      analyticsPath: '/rental/ai/' + encodeURIComponent(String(criteria.category || 'all'))
+    });
   }
 
   function openDialog() {
@@ -472,9 +572,7 @@
   openButtons.forEach(button => {
     button.addEventListener('click', async () => {
       openDialog();
-      if (typeof window.woongbiTrackConversion === 'function') {
-        window.woongbiTrackConversion('rental_ai_open', { analyticsPath: '/rental/' });
-      }
+      trackAi('rental_ai_open', { analyticsPath:'/rental/ai/open' });
       try {
         await loadProducts();
       } catch (_) {}
@@ -490,7 +588,13 @@
     closeDialog();
   });
 
-  categorySelect.addEventListener('change', setupBrands);
+  categorySelect.addEventListener('change', () => {
+    setupBrands();
+    updateStrictControlState();
+  });
+  budgetSelect.addEventListener('change', updateStrictControlState);
+  brandSelect.addEventListener('change', updateStrictControlState);
+  managementSelect.addEventListener('change', updateStrictControlState);
 
   form.addEventListener('submit', async event => {
     event.preventDefault();
@@ -501,12 +605,16 @@
         budget: Number(budgetSelect.value) || 0,
         brand: brandSelect.value,
         management: managementSelect.value,
-        query: preferenceInput.value.trim()
+        query: preferenceInput.value.trim(),
+        strictBudget: budgetStrict?.checked === true,
+        strictBrand: brandStrict?.checked === true,
+        strictManagement: managementStrict?.checked === true,
+        mustFeatures: mustFeatureInputs.filter(input => input.checked).map(input => input.dataset.aiMustFeature).filter(Boolean)
       };
       status.textContent = '조건을 분석해 가장 잘 맞는 상품을 고르는 중입니다.';
       const items = recommend(criteria);
       renderResults(items, criteria);
-      status.textContent = '추천이 완료되었습니다.';
+      status.textContent = items.length ? '추천이 완료되었습니다.' : '필수조건을 모두 만족하는 상품이 없습니다.';
       results.scrollIntoView({ behavior: 'smooth', block: 'start' });
     } catch (error) {
       status.textContent = error.message || '추천 중 오류가 발생했습니다.';
@@ -526,29 +634,66 @@
 
     const kakaoLink = event.target.closest('[data-ai-kakao]');
     if (kakaoLink) {
-      const text = buildConsultText(lastCriteria || {
+      const criteria = lastCriteria || {
         category: categorySelect.value,
         budget: Number(budgetSelect.value) || 0,
         brand: brandSelect.value,
         management: managementSelect.value,
-        query: preferenceInput.value.trim()
-      }, lastItems || []);
-      copyConsultText(text);
-      if (typeof window.woongbiTrackConversion === 'function') {
-        window.woongbiTrackConversion('rental_ai_kakao', {
-          category: lastCriteria?.category || categorySelect.value,
-          result_count: lastItems.length,
-          analyticsPath: '/rental/'
-        });
-      }
+        query: preferenceInput.value.trim(),
+        strictBudget:false, strictBrand:false, strictManagement:false, mustFeatures:[]
+      };
+      copyConsultText(buildConsultText(criteria, lastItems || []));
+      trackAi('rental_ai_kakao', {
+        category: criteria.category,
+        result_count: lastItems.length,
+        analyticsPath: '/rental/ai/' + encodeURIComponent(String(criteria.category || 'all')) + '/kakao'
+      });
+      return;
+    }
+
+    const applyLink = event.target.closest('[data-ai-apply]');
+    if (applyLink) {
+      const id = applyLink.dataset.aiApply || '';
+      trackAi('rental_ai_apply', {
+        product_id:id,
+        category:lastCriteria?.category || categorySelect.value,
+        analyticsPath:'/rental/product/' + encodeURIComponent(id || 'unknown')
+      });
       return;
     }
 
     const link = event.target.closest('[data-ai-product]');
-    if (!link || typeof window.woongbiTrackConversion !== 'function') return;
-    window.woongbiTrackConversion('rental_ai_product_click', {
-      product_id: link.dataset.aiProduct || '',
-      analyticsPath: '/rental/product/' + encodeURIComponent(link.dataset.aiProduct || 'unknown')
+    if (!link) return;
+    const id = link.dataset.aiProduct || '';
+    trackAi('rental_ai_product_click', {
+      product_id:id,
+      category:lastCriteria?.category || categorySelect.value,
+      analyticsPath:'/rental/product/' + encodeURIComponent(id || 'unknown')
     });
   });
+
+  window.woongbiRentalAiStats = () => {
+    let rows = [];
+    try { rows = JSON.parse(localStorage.getItem('wb_conversion_events_v1') || '[]'); } catch (_) {}
+    const today = new Date().toISOString().slice(0,10);
+    const aiRows = rows.filter(row => String(row?.type || '').startsWith('rental_ai_'));
+    const todays = aiRows.filter(row => String(row?.at || '').slice(0,10) === today);
+    const countBy = key => todays.reduce((acc,row) => {
+      const value = String(row?.detail?.[key] || 'unknown');
+      acc[value] = (acc[value] || 0) + 1;
+      return acc;
+    }, {});
+    return {
+      scope:'this-browser',
+      date:today,
+      opens:todays.filter(x => x.type === 'rental_ai_open').length,
+      recommendations:todays.filter(x => x.type === 'rental_ai_recommend').length,
+      productClicks:todays.filter(x => x.type === 'rental_ai_product_click').length,
+      compares:todays.filter(x => x.type === 'rental_ai_compare').length,
+      kakao:todays.filter(x => x.type === 'rental_ai_kakao').length,
+      applies:todays.filter(x => x.type === 'rental_ai_apply').length,
+      categories:countBy('category'),
+      products:countBy('product_id')
+    };
+  };
 })();
