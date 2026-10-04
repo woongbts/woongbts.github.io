@@ -22,7 +22,7 @@
   <link rel="icon" href="assets/woongbi-rental-icon-32.png?v=20261003-blue3" sizes="32x32" type="image/png">
   <link rel="apple-touch-icon" sizes="180x180" href="assets/woongbi-rental-icon-180.png?v=20261003-blue3">
   <link rel="manifest" href="manifest.webmanifest?v=20261003-blue3">
-<link rel="stylesheet" href="assets/rental.css?v=20261004-cardcalc1">
+<link rel="stylesheet" href="assets/rental.css?v=20261004-carddetail1">
 </head>
 <body>
   <header class="site-header">
@@ -95,7 +95,7 @@
           <div class="quote-card" id="generic-card-row" hidden>
             <span>제휴카드 적용 예상 월<small id="card-fee-note">카드 조건을 확인하는 중입니다.</small></span>
             <b id="card-fee">-</b>
-            <a id="card-fee-more" href="#affiliate-card-section">카드조건 보기</a>
+            <button id="card-fee-more" type="button">카드조건 보기</button>
           </div>
         </div>
 
@@ -177,6 +177,21 @@
     </div>
   </div>
 
+  <dialog id="affiliate-card-dialog" class="affiliate-card-dialog">
+    <div class="affiliate-card-dialog-shell">
+      <div class="affiliate-card-dialog-head">
+        <div><span>제휴카드 상세</span><strong id="affiliate-card-dialog-title">카드 할인 조건</strong></div>
+        <button id="affiliate-card-dialog-close" type="button" aria-label="제휴카드 안내 닫기">×</button>
+      </div>
+      <div id="affiliate-card-dialog-summary" class="affiliate-card-dialog-summary"></div>
+      <div id="affiliate-card-dialog-content" class="affiliate-card-dialog-content"></div>
+      <div class="affiliate-card-dialog-foot">
+        <p>제휴카드 할인은 카드사 심사·자동납부 등록·전월실적·프로모션 대상 여부에 따라 달라집니다. 실제 발급 전 카드사와 렌탈사에서 최신 조건을 확인해 주세요.</p>
+        <a id="affiliate-card-dialog-all" href="cards/">전체 제휴카드 비교</a>
+      </div>
+    </div>
+  </dialog>
+
   <dialog id="rental-apply-dialog" class="rental-apply-dialog">
     <form id="rental-apply-form" class="rental-apply-form">
       <div class="rental-apply-head">
@@ -243,6 +258,6 @@
   <script src="/assets/analytics-config.js?v=20260929-2" defer></script>
   <script src="/assets/conversion-tracker.min.js?v=20261004-ops1" defer></script>
   <script src="/assets/site-analytics.min.js?v=20261004-source1" defer></script>
-  <script src="assets/product-generic.js?v=20261004-cardcalc1" defer></script>
+  <script src="assets/product-generic.js?v=20261004-carddetail1" defer></script>
 </body>
 </html>
