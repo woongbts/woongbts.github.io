@@ -1,4 +1,4 @@
-name: Build rental product routes
+name: Build rental SEO routes
 
 on:
   push:
@@ -8,6 +8,8 @@ on:
       - 'rental/data/products.json'
       - 'rental/assets/product-generic.js'
       - 'scripts/build-rental-product-routes.py'
+      - 'scripts/build-rental-category-pages.py'
+      - 'rental/assets/category.css'
       - '.github/workflows/rental-product-routes.yml'
   workflow_dispatch:
 
@@ -31,17 +33,19 @@ jobs:
           python-version: '3.12'
       - name: Generate clean product routes
         run: python scripts/build-rental-product-routes.py
+      - name: Generate category SEO pages
+        run: python scripts/build-rental-category-pages.py
       - name: Commit generated routes
         shell: bash
         run: |
           set -euo pipefail
           git config user.name 'woongbi-rental-bot'
           git config user.email 'actions@users.noreply.github.com'
-          git add -A rental/product
+          git add -A rental/product rental/water-purifier rental/air-purifier rental/bidet rental/mattress rental/massage-chair rental/laundry rental/refrigerator rental/tv-digital rental/aircon-cleaner rental/kitchen-appliance rental/home-appliance rental/health-beauty rental/furniture-bed rental/leisure-auto
           if git diff --cached --quiet; then
-            echo 'clean product routes are already current.'
+            echo 'rental SEO routes are already current.'
             exit 0
           fi
-          git commit -m 'Build clean rental product routes'
+          git commit -m 'Build rental SEO routes'
           git pull --rebase origin main
           git push
