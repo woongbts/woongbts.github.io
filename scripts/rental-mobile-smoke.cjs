@@ -138,6 +138,9 @@ function assert(condition, message) {
   assert(await page.locator('#card-provider-tabs button').count() >= 8, '제휴카드 렌탈사 탭이 충분히 표시되지 않습니다.');
   const cardPageText = await page.locator('#affiliate-cards').textContent();
   assert(cardPageText.includes('코웨이') && cardPageText.includes('전월') && cardPageText.includes('할인'), '제휴카드 비교 정보가 표시되지 않습니다.');
+  await page.locator('.card-detail').first().evaluate(el => { el.open = true; });
+  const cardDetailPageText = await page.locator('.card-detail').first().textContent();
+  assert(cardDetailPageText.includes('발급') || cardDetailPageText.includes('프로모션'), '제휴카드 비교 페이지에 상세 발급조건이 없습니다.');
 
   await page.goto('http://127.0.0.1:4173/rental/', {waitUntil:'domcontentloaded'});
   await page.waitForSelector('.recommend-card', {timeout:15000});
@@ -203,6 +206,14 @@ function assert(condition, message) {
   const cowayCardNote = await page.locator('#card-fee-note').textContent();
   assert(cowayMonthly > 0 && cowayCardMonthly === Math.max(0,cowayMonthly - 13000), '코웨이 대표 제휴카드 예상 월요금 계산이 올바르지 않습니다.');
   assert(cowayCardNote.includes('전월 30만원') && cowayCardNote.includes('13,000원 할인'), '제휴카드 예상 월요금 계산 근거가 표시되지 않습니다.');
+  const cardScrollBefore = await page.evaluate(() => window.scrollY);
+  await page.locator('#card-fee-more').click();
+  await page.waitForSelector('#affiliate-card-dialog[open]');
+  const cardDialogText = await page.locator('#affiliate-card-dialog').textContent();
+  assert(cardDialogText.includes('코웨이 ICON 우리카드') && cardDialogText.includes('발급·실적·유의사항') && cardDialogText.includes('자동납부') && cardDialogText.includes('2026년 10월 신규발급 추가 할인'), '제휴카드 상세 발급조건/유의사항이 표시되지 않습니다.');
+  const cardScrollAfter = await page.evaluate(() => window.scrollY);
+  assert(Math.abs(cardScrollAfter - cardScrollBefore) <= 2, '카드조건 보기 클릭 시 페이지가 먼 위치로 이동합니다.');
+  await page.locator('#affiliate-card-dialog-close').click();
   await page.locator('.affiliate-card-tier').nth(1).click();
   const selectedCardNote = await page.locator('#card-fee-note').textContent();
   assert(selectedCardNote && selectedCardNote.includes('할인'), '제휴카드 실적 선택 시 예상 월요금이 갱신되지 않습니다.');
