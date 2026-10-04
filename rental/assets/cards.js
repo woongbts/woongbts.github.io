@@ -27,4 +27,10 @@
     renderCards();
   }).catch(()=>{$('#card-grid').innerHTML='<div class="card-notice"><strong>카드 정보를 잠시 불러오지 못했습니다.</strong><p>카카오톡 상담으로 현재 적용 가능한 제휴카드를 확인해 주세요.</p></div>'});
   $('#card-provider-tabs')?.addEventListener('click',e=>{const b=e.target.closest('[data-provider]');if(!b||!data)return;active=b.dataset.provider;renderCards();history.replaceState(null,'','cards/?provider='+encodeURIComponent(active));});
+  $('#card-compare-jump')?.addEventListener('click',()=>{
+    const target=$('#affiliate-cards');
+    if(!target)return;
+    target.scrollIntoView({behavior:'smooth',block:'start'});
+    history.replaceState(null,'',location.pathname+location.search+'#affiliate-cards');
+  });
 })();
