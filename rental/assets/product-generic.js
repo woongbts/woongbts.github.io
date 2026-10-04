@@ -279,7 +279,9 @@
         (applied==null?'':'<strong>적용 예상 월 '+won(applied)+'</strong>');
     }
     if(content)content.innerHTML=(provider.cards||[]).map(card=>cardDetailHtml(card,provider,variant.monthly)).join('');
+    const scrollTop=window.scrollY;
     openDialog(dialog);
+    requestAnimationFrame(()=>window.scrollTo({top:scrollTop,left:0,behavior:'auto'}));
     trackRental('rental_card_detail_open',{provider:provider.id||'',management:variant.management||'',term:String(variant.term??'')});
   }
 
