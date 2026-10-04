@@ -21,7 +21,8 @@
   <link rel="icon" href="assets/woongbi-rental-icon-32.png?v=20261003-blue3" sizes="32x32" type="image/png">
   <link rel="apple-touch-icon" sizes="180x180" href="assets/woongbi-rental-icon-180.png?v=20261003-blue3">
   <link rel="manifest" href="manifest.webmanifest?v=20261003-blue3">
-<link rel="stylesheet" href="assets/rental.css?v=20261004-ai2">
+<link rel="stylesheet" href="assets/rental.css?v=20261004-core15">
+<link rel="stylesheet" href="assets/ai-recommend.css?v=20261004-ai3">
   <style id="catalog-mobile-critical">
     @media (max-width:560px){
       .catalog-card{display:block!important}
@@ -274,6 +275,21 @@
             </select>
           </label>
         </div>
+        <fieldset class="ai-must-have">
+          <legend>꼭 지켜야 하는 조건 <small>선택</small></legend>
+          <div class="ai-must-grid">
+            <label id="ai-budget-strict-wrap"><input id="ai-budget-strict" type="checkbox"> 월 예산 초과 제외</label>
+            <label id="ai-brand-strict-wrap"><input id="ai-brand-strict" type="checkbox"> 선택 브랜드만</label>
+            <label id="ai-management-strict-wrap"><input id="ai-management-strict" type="checkbox"> 선택 관리방식만</label>
+          </div>
+          <div class="ai-feature-must" aria-label="필수 기능">
+            <label><input type="checkbox" data-ai-must-feature="ice"> 얼음</label>
+            <label><input type="checkbox" data-ai-must-feature="direct"> 직수</label>
+            <label><input type="checkbox" data-ai-must-feature="hotcold"> 냉온</label>
+            <label><input type="checkbox" data-ai-must-feature="slim"> 슬림·미니</label>
+            <label><input type="checkbox" data-ai-must-feature="large"> 대용량</label>
+          </div>
+        </fieldset>
         <label class="ai-preference-label">
           <span>원하는 조건을 자유롭게 적어주세요 <small>선택</small></span>
           <input id="ai-preference" type="text" maxlength="120" placeholder="예: 얼음 나오는 슬림한 제품, 직수, 대용량 등">
@@ -299,7 +315,7 @@
   <script src="/assets/analytics-config.js?v=20260929-2" defer></script>
   <script src="/assets/conversion-tracker.min.js?v=20261003-rental1" defer></script>
   <script src="/assets/site-analytics.min.js?v=20260930-5" defer></script>
-  <script src="assets/catalog.js?v=20261004-ai2" defer></script>
-  <script src="assets/ai-recommend.js?v=20261004-ai2" defer></script>
+  <script src="assets/catalog.js?v=20261004-seo1" defer></script>
+  <script src="assets/ai-recommend.js?v=20261004-ai3" defer></script>
 </body>
 </html>
