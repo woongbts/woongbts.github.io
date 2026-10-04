@@ -696,4 +696,26 @@
       products:countBy('product_id')
     };
   };
+
+  function renderLocalStatsPanel() {
+    if (new URLSearchParams(location.search).get('ai_stats') !== '1') return;
+    let panel = document.getElementById('ai-local-stats');
+    if (!panel) {
+      panel = document.createElement('aside');
+      panel.id = 'ai-local-stats';
+      panel.className = 'ai-local-stats';
+      document.body.appendChild(panel);
+    }
+    const stats = window.woongbiRentalAiStats();
+    const top = obj => Object.entries(obj || {}).filter(([key]) => key !== 'unknown').sort((a,b) => b[1]-a[1]).slice(0,3);
+    panel.innerHTML =
+      '<div><strong>AI 추천 테스트 통계</strong><small>이 브라우저 · ' + escapeHtml(stats.date) + '</small></div>' +
+      '<p>열기 <b>' + stats.opens + '</b> · 추천 <b>' + stats.recommendations + '</b> · 상품클릭 <b>' + stats.productClicks + '</b> · 비교 <b>' + stats.compares + '</b> · 카톡 <b>' + stats.kakao + '</b> · 신청 <b>' + stats.applies + '</b></p>' +
+      '<p class="ai-local-stats-sub">품목 ' + escapeHtml(top(stats.categories).map(([k,v]) => k + ' ' + v).join(' · ') || '기록 없음') + '</p>' +
+      '<button type="button" aria-label="통계창 닫기">×</button>';
+    panel.querySelector('button')?.addEventListener('click', () => panel.remove(), {once:true});
+  }
+
+  renderLocalStatsPanel();
+  window.addEventListener('woongbi:conversion', () => setTimeout(renderLocalStatsPanel, 0));
 })();
