@@ -637,6 +637,22 @@
     return catalogLoading;
   }
 
+  window.woongbiRentalCompare = {
+    async toggle(id) {
+      await loadFullCatalog();
+      toggleCompare(String(id || ''));
+      return loadCompareIds();
+    },
+    async open() {
+      await loadFullCatalog();
+      openCompareModal();
+      return loadCompareIds();
+    },
+    ids() {
+      return loadCompareIds();
+    }
+  };
+
   catalogToggle?.addEventListener('click', async () => {
     if (catalogPanel?.hidden) {
       await loadFullCatalog();
