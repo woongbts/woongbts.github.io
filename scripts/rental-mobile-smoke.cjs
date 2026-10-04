@@ -206,6 +206,7 @@ function assert(condition, message) {
   const cowayCardNote = await page.locator('#card-fee-note').textContent();
   assert(cowayMonthly > 0 && cowayCardMonthly === Math.max(0,cowayMonthly - 13000), '코웨이 대표 제휴카드 예상 월요금 계산이 올바르지 않습니다.');
   assert(cowayCardNote.includes('전월 30만원') && cowayCardNote.includes('13,000원 할인'), '제휴카드 예상 월요금 계산 근거가 표시되지 않습니다.');
+  await page.locator('#card-fee-more').scrollIntoViewIfNeeded();
   const cardScrollBefore = await page.evaluate(() => window.scrollY);
   await page.locator('#card-fee-more').click();
   await page.waitForSelector('#affiliate-card-dialog[open]');
