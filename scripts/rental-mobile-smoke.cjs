@@ -113,6 +113,18 @@ function assert(condition, message) {
   const firstActionHeight = await page.locator('.catalog-card .product-actions .btn').first().evaluate(el => el.getBoundingClientRect().height);
   assert(firstActionHeight >= 44, '모바일 상품 버튼 높이가 44px 미만입니다.');
 
+  const aiApplyUrl = new URL(applyHref, 'http://127.0.0.1:4173/rental/').toString();
+  const aiApplyParams = new URL(aiApplyUrl).searchParams;
+  await page.goto(aiApplyUrl, {waitUntil:'domcontentloaded'});
+  await page.waitForFunction(() => document.querySelector('#monthly-fee')?.textContent !== '-');
+  await page.waitForSelector('#rental-apply-dialog[open]');
+  const selectedManagement = await page.locator('#generic-management button.active').getAttribute('data-value');
+  const selectedTerm = await page.locator('#generic-term button.active').getAttribute('data-value');
+  assert(selectedManagement === aiApplyParams.get('mgmt') && selectedTerm === aiApplyParams.get('term'), 'AI 추천 조건이 상세페이지에 그대로 선택되지 않았습니다.');
+  const cleanCanonical = await page.locator('#product-canonical').getAttribute('href');
+  assert(cleanCanonical && /\/rental\/product\/[^/]+\/$/.test(cleanCanonical), '깨끗한 상품 URL canonical이 동작하지 않습니다.');
+  await page.locator('#rental-apply-close').click();
+
   await page.goto('http://127.0.0.1:4173/rental/product.html?id=clv-10316', {waitUntil:'domcontentloaded'});
   await page.waitForFunction(() => {
     const el = document.querySelector('#monthly-fee');
