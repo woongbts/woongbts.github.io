@@ -8,6 +8,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 PRODUCTS = ROOT / "rental/data/products.json"
 GIFTS = ROOT / "rental/data/appliance-gift-options.json"
+CARDS = ROOT / "rental/data/affiliate-cards.json"
 RATES = {
     "LG헬로렌탈": Decimal("0.12"),
     "스마트렌탈": Decimal("0.09"),
@@ -115,6 +116,32 @@ if gift_data.get("productCount") != len(gift_products):
     errors.append("appliance-gift-options.json의 productCount가 실제 상품 수와 다릅니다.")
 if gift_data.get("optionCount") != option_count:
     errors.append("appliance-gift-options.json의 optionCount가 실제 옵션 수와 다릅니다.")
+
+
+card_data = load(CARDS)
+providers = card_data.get("providers", [])
+provider_ids = [str(p.get("id") or "") for p in providers]
+if len(provider_ids) != len(set(provider_ids)):
+    errors.append("제휴카드 렌탈사 ID가 중복되어 있습니다.")
+for provider in providers:
+    pid = str(provider.get("id") or "")
+    if not pid or not provider.get("name"):
+        errors.append("제휴카드 렌탈사 ID 또는 이름이 없습니다.")
+    for card in provider.get("cards", []):
+        if not card.get("name"):
+            errors.append(f"{pid}: 카드명이 없는 제휴카드가 있습니다.")
+        tiers = card.get("tiers", [])
+        for tier in tiers:
+            try:
+                spend = int(tier.get("spend"))
+                discount = int(tier.get("discount"))
+            except (TypeError, ValueError):
+                errors.append(f"{pid}/{card.get('name','')}: 실적·할인금액 형식이 올바르지 않습니다.")
+                continue
+            if spend <= 0 or discount <= 0 or discount > spend:
+                errors.append(f"{pid}/{card.get('name','')}: 실적·할인금액 값이 올바르지 않습니다.")
+if not str(card_data.get("checkedAt") or ""):
+    warnings.append("제휴카드 checkedAt 날짜가 없습니다.")
 
 generated = str(gift_data.get("generatedAt") or "")
 try:
