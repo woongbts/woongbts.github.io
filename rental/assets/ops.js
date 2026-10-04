@@ -29,6 +29,23 @@
       return await r.json();
     }catch(_){return {};}
   }
+  async function verificationData(){
+    try{
+      const r=await fetch('data/catalog-verification.json',{cache:'no-store'});
+      if(!r.ok) throw Error('no verification');
+      return await r.json();
+    }catch(_){return {summary:{managed:0,reference:0,review:0},items:[]};}
+  }
+  async function remoteSummary(){
+    const endpoint=(window.WOONGBI_ANALYTICS||{}).rentalOpsSummaryEndpoint;
+    if(!endpoint)return null;
+    try{
+      const r=await fetch(endpoint,{credentials:'omit',cache:'no-store'});
+      if(!r.ok)throw Error('summary');
+      const data=await r.json();
+      return data?.ok?data:null;
+    }catch(_){return null;}
+  }
 
   function renderKpis(rows){
     const views=count(rows,'rental_product_view');
@@ -120,13 +137,25 @@
     }).join('');
   }
 
-  function renderSystem(rows,report,gift){
+  function renderVerification(verification){
+    const s=verification?.summary||{};
+    const review=(verification?.items||[]).filter(x=>x.status==='review').slice(0,8);
+    const box=$('#ops-verification');
+    if(!box)return;
+    box.innerHTML='<div class="ops-list-row"><span>웅비 관리 데이터</span><b>'+(s.managed||0)+'</b></div>'+
+      '<div class="ops-list-row"><span>공개자료 재정리</span><b>'+(s.reference||0)+'</b></div>'+
+      '<div class="ops-list-row"><span>확인 필요</span><b>'+(s.review||0)+'</b></div>'+
+      (review.length?'<div class="ops-verify-review">'+review.map(x=>'<span>'+escapeHtml(x.id)+' · '+escapeHtml(x.reason||'확인 필요')+'</span>').join('')+'</div>':'');
+  }
+
+  function renderSystem(rows,report,gift,remote){
     const analytics=window.WOONGBI_ANALYTICS||{};
     let first='direct',last='direct';
     try{first=localStorage.getItem('wb_site_first_source_v1')||first;last=sessionStorage.getItem('wb_site_source_v1')||last;}catch(_){}
     const items=[
       ['서버 페이지뷰',analytics.siteAnalyticsEndpoint?'연결됨':'미설정',analytics.siteAnalyticsEndpoint?'ok':'warn-text'],
       ['서버 전환수집',analytics.siteConversionEndpoint?'연결됨':'미설정',analytics.siteConversionEndpoint?'ok':'warn-text'],
+      ['전체집계 API',remote?'연결됨':'미연결',remote?'ok':'warn-text'],
       ['첫 유입',first,''],
       ['현재 유입',last,''],
       ['정책 기준일',gift.generatedAt||'확인 불가',gift.generatedAt?'ok':'warn-text'],
@@ -150,8 +179,8 @@
 
   async function render(){
     const rows=events().slice(-500);
-    const [report,gift]=await Promise.all([policyData(),giftData()]);
-    renderKpis(rows);renderFunnel(rows);renderSources(rows);renderAi(rows);renderProducts(rows);renderCrm();renderPolicy(report);renderSystem(rows,report,gift);
+    const [report,gift,verification,remote]=await Promise.all([policyData(),giftData(),verificationData(),remoteSummary()]);
+    renderKpis(rows);renderFunnel(rows);renderSources(rows);renderAi(rows);renderProducts(rows);renderCrm();renderPolicy(report);renderVerification(verification);renderSystem(rows,report,gift,remote);
     const dates=rows.map(x=>String(x.at||'').slice(0,10)).filter(Boolean);
     $('#ops-period').textContent=dates.length?(dates[0]+' ~ '+dates[dates.length-1]):'이 브라우저';
   }
