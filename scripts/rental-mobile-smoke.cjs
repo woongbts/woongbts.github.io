@@ -9,6 +9,7 @@ function assert(condition, message) {
   const context = await browser.newContext({...devices['iPhone 14']});
   const page = await context.newPage();
   let fullCatalogRequests = 0;
+  let submittedRentalBody = null;
   page.on('request', req => {
     if (/\/rental\/data\/products\.json(?:\?|$)/.test(req.url())) fullCatalogRequests += 1;
   });
@@ -25,6 +26,7 @@ function assert(condition, message) {
   await page.route('https://woongbi-consent.woongbts.workers.dev/api/rental-application', async route => {
     const origin='http://127.0.0.1:4173';
     if(route.request().method()==='OPTIONS') return route.fulfill({status:204,headers:{'access-control-allow-origin':origin,'access-control-allow-methods':'GET, POST, OPTIONS','access-control-allow-headers':'content-type'}});
+    try { submittedRentalBody = JSON.parse(route.request().postData() || '{}'); } catch (_) { submittedRentalBody = null; }
     return route.fulfill({status:200,contentType:'application/json',headers:{'access-control-allow-origin':origin},body:JSON.stringify({ok:true,receipt:{id:'00000000-test',submitted_at:new Date().toISOString(),status:'접수완료'}})});
   });
   await page.addInitScript(() => {
@@ -40,12 +42,14 @@ function assert(condition, message) {
     } catch (_) {}
   });
 
-  await page.goto('http://127.0.0.1:4173/rental/', {waitUntil:'domcontentloaded'});
+  await page.goto('http://127.0.0.1:4173/rental/?utm_source=naver&utm_campaign=smoke-test', {waitUntil:'domcontentloaded'});
   await page.waitForSelector('.recommend-card', {timeout:15000});
 
   assert(fullCatalogRequests === 0, '첫 화면에서 전체 products.json을 미리 불러오고 있습니다.');
   const policyText = await page.locator('[data-policy-month]').first().textContent();
   assert(/\d{4}년 \d{1,2}월 기준/.test(policyText || ''), '정책 기준월 자동 표시가 동작하지 않습니다.');
+  const acquisition = await page.evaluate(() => window.woongbiSiteAnalyticsContext?.());
+  assert(acquisition?.source === 'naver-search' && acquisition?.campaign === 'smoke-test', '렌탈 유입경로 추적이 동작하지 않습니다.');
   const mattressTile = await page.locator('[data-category-link="매트리스·프레임"]').count();
   assert(mattressTile === 1, '매트리스·프레임 카테고리가 없습니다.');
 
@@ -184,6 +188,9 @@ function assert(condition, message) {
 
   await page.locator('#rental-apply-open').click();
   assert(await page.locator('#rental-apply-dialog[open]').count() === 1, '온라인 렌탈 신청창이 열리지 않습니다.');
+  assert(await page.locator('#rental-apply-company').count() === 1, '신청 스팸 방지 honeypot 필드가 없습니다.');
+  const honeypotBox = await page.locator('#rental-apply-company').boundingBox();
+  assert(!honeypotBox || honeypotBox.x < 0 || honeypotBox.width <= 1, 'honeypot 필드가 고객 화면에 노출됩니다.');
   await page.waitForFunction(() => document.querySelector('#rental-processing-policy')?.textContent?.includes('최대 90일'));
   const paymentWarning = await page.locator('.rental-billing p').textContent();
   assert(paymentWarning.includes('계좌번호') && paymentWarning.includes('카드번호'), '결제정보 전체번호 미수집 안내가 없습니다.');
@@ -198,8 +205,10 @@ function assert(condition, message) {
   assert(giftDepositNote.includes('설치 후 1주일 이내 입금'), '사은품 입금 안내가 없습니다.');
   const giftReturnNote = await page.locator('#rental-apply-gift-return-note').textContent();
   assert(giftReturnNote.includes('1년 이내') && giftReturnNote.includes('반환'), '사은품 반환 안내가 없습니다.');
+  await page.waitForTimeout(700);
   await page.locator('#rental-apply-submit').click();
   await page.waitForSelector('#rental-apply-success-dialog[open]');
+  assert(submittedRentalBody && submittedRentalBody.product_url && /[?&]src=naver-search/.test(submittedRentalBody.product_url), '렌탈 신청에 유입경로가 이어지지 않습니다.');
   assert(await page.locator('#rental-apply-dialog[open]').count() === 0, '신청 성공 후 입력창이 닫히지 않습니다.');
   const successTitle = await page.locator('#rental-apply-success-title').textContent();
   const successMessage = await page.locator('#rental-apply-success-dialog p').textContent();
@@ -248,6 +257,11 @@ function assert(condition, message) {
   assert(stickyPriceBox && stickyPriceBox.x >= 0 && stickyPriceBox.x + stickyPriceBox.width <= viewport.width, '월요금 영역이 모바일 화면 밖으로 잘립니다.');
   assert(stickyApplyBox && stickyApplyBox.x >= 0 && stickyApplyBox.x + stickyApplyBox.width <= viewport.width, '신청하기 버튼이 모바일 화면 밖으로 잘립니다.');
   assert(stickyConsultBox && stickyConsultBox.x >= 0 && stickyConsultBox.x + stickyConsultBox.width <= viewport.width, '상담하기 버튼이 모바일 화면 밖으로 잘립니다.');
+
+  await page.goto('http://127.0.0.1:4173/rental/ops/', {waitUntil:'domcontentloaded'});
+  assert(await page.locator('meta[name="robots"]').getAttribute('content') === 'noindex,nofollow,noarchive', '운영자 대시보드가 검색 차단되지 않았습니다.');
+  await page.waitForSelector('#ops-kpis .ops-kpi');
+  assert(await page.locator('#ops-funnel .ops-stage').count() === 6, '운영자 대시보드 전환 퍼널이 표시되지 않습니다.');
 
   // 작은 모바일 화면에서도 AI 모달이 가로로 넘치지 않는지 추가 점검합니다.
   const compactContext = await browser.newContext({viewport:{width:375,height:667},isMobile:true,hasTouch:true});
