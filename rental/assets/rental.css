@@ -673,3 +673,22 @@ html.ai-dialog-open{overflow:hidden}
   .ai-result-body h3{font-size:.96rem}
   .ai-result-price{display:grid;gap:2px;margin-top:8px}
 }
+
+
+/* AI recommendation conversion actions · 2026-10-04 */
+.ai-result-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:10px}
+.ai-result-actions .ai-result-link{margin-top:0;min-height:38px;display:inline-flex;align-items:center;padding:7px 10px;border-radius:10px;background:#eef8f6}
+.ai-compare-btn{min-height:38px;padding:7px 11px;border:1px solid #cbdcda;border-radius:10px;background:#fff;color:#385b5e;font:inherit;font-size:.72rem;font-weight:950;cursor:pointer}
+.ai-compare-btn.active{border-color:#0f766e;background:#0f766e;color:#fff}
+.ai-result-consult{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:15px 16px;border:1px solid #f0d6a6;border-radius:16px;background:#fff8ea}
+.ai-result-consult div{min-width:0}
+.ai-result-consult strong,.ai-result-consult span{display:block}
+.ai-result-consult strong{font-size:.88rem;color:#6b4d1d}
+.ai-result-consult span{margin-top:3px;color:#8a7352;font-size:.67rem}
+.ai-kakao-consult{flex:0 0 auto;min-height:42px;display:inline-flex;align-items:center;justify-content:center;padding:9px 13px;border-radius:11px;background:#fee500;color:#191919;text-decoration:none;font-size:.76rem;font-weight:950}
+@media(max-width:560px){
+  .ai-result-actions{display:grid;grid-template-columns:1fr auto;gap:6px}
+  .ai-result-actions .ai-result-link{justify-content:center}
+  .ai-result-consult{display:block;padding:14px}
+  .ai-kakao-consult{width:100%;margin-top:10px}
+}
