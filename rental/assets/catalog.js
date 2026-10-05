@@ -30,6 +30,7 @@
   let catalogLoaded = false;
   let catalogLoading = null;
   let filtersReady = false;
+  let salesSignals = new Map();
   const RECENT_KEY = 'wb_rental_recent_v1';
   const COMPARE_KEY = 'wb_rental_compare_v1';
 
@@ -131,7 +132,7 @@
       return '<div class="catalog-image-slot">' + placeholder + '</div>';
     }
     return '<div class="catalog-image-slot">' +
-      '<img class="catalog-product-image" data-product-id="' + product.id + '" alt="' + product.name + '" loading="eager" decoding="async">' +
+      '<img class="catalog-product-image" data-product-id="' + product.id + '" alt="' + product.name + '" loading="lazy" decoding="async">' +
       placeholder +
       '</div>';
   }
@@ -264,7 +265,11 @@
     const over = Math.max(0, m.minMonthly - limit);
     // High gift is rewarded, while a high monthly fee is penalized more strongly
     // once it crosses a comfortable price band for that product category.
-    return m.maxGift - (m.minMonthly * 1.55) - (over * 4.5);
+    const signal = salesSignals.get(String(product.id));
+    const salesBoost = signal
+      ? Math.min(12000, Number(signal.completed || 0) * 2500 + Math.min(4000, Number(signal.conversion || 0) * 40))
+      : 0;
+    return m.maxGift - (m.minMonthly * 1.55) - (over * 4.5) + salesBoost;
   }
 
   function recommendationCard(product) {
@@ -671,8 +676,10 @@
     catalogLoading = Promise.all([
       fetch('data/products.json', {cache:'no-store'}).then(r => { if(!r.ok) throw new Error('catalog fetch failed'); return r.json(); }),
       fetch('data/appliance-gift-options.json', {cache:'no-store'}).then(r => r.ok ? r.json() : null).catch(()=>null),
-      fetch('data/catalog-overrides.json', {cache:'no-store'}).then(r => r.ok ? r.json() : null).catch(()=>null)
-    ]).then(([data,giftData,overrideData]) => {
+      fetch('data/catalog-overrides.json', {cache:'no-store'}).then(r => r.ok ? r.json() : null).catch(()=>null),
+      fetch('https://woongbi-consent.woongbts.workers.dev/api/recommendation-signals',{cache:'no-store',credentials:'omit'}).then(r=>r.ok?r.json():null).catch(()=>null)
+    ]).then(([data,giftData,overrideData,signalData]) => {
+      salesSignals = new Map((signalData?.signals?.rental || []).map(row => [String(row.product_id), row]));
       products = Array.isArray(data.products) ? data.products.filter(p=>p.availability!=='inactive'&&!/접수불가|접수중지/.test(String(p.name||''))) : [];
       applyCatalogOverrides(products, overrideData);
       const overrides=giftData?.products||{};
@@ -748,9 +755,11 @@
 
   Promise.all([
     fetch('data/featured.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error('featured fetch failed');return r.json()}),
-    fetch('data/catalog-overrides.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).catch(()=>null)
+    fetch('data/catalog-overrides.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).catch(()=>null),
+    fetch('https://woongbi-consent.woongbts.workers.dev/api/recommendation-signals',{cache:'no-store',credentials:'omit'}).then(r=>r.ok?r.json():null).catch(()=>null)
   ])
-    .then(([data,overrideData])=>{
+    .then(([data,overrideData,signalData])=>{
+      salesSignals = new Map((signalData?.signals?.rental || []).map(row => [String(row.product_id), row]));
       products=Array.isArray(data.products)?data.products:[];
       applyCatalogOverrides(products, overrideData);
       applyPolicyMonth(data.generatedAt||'');
