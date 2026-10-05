@@ -818,7 +818,7 @@
       });
     }
     const requiredText=String(policy.items?.required||'');
-    billingRequiredByPolicy=/자동이체|결제방식|결제수단|은행|카드사/i.test(requiredText);
+    billingRequiredByPolicy=/자동이체|결제방식|결제수단|결제정보|은행|카드사/i.test(requiredText);
     const billingDetails=$('#rental-billing-details');
     const billingLabel=$('#rental-billing-required-label');
     const billingMethodInputs=[...document.querySelectorAll('input[name="billing_method"]')];
