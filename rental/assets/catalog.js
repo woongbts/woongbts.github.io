@@ -446,6 +446,22 @@
     if(!rows.length)return;
     let modal=document.getElementById('compare-modal');
     if(!modal){modal=document.createElement('div');modal.id='compare-modal';modal.className='compare-modal';document.body.appendChild(modal)}
+    const metrics=rows.map(p=>{
+      const m=recommendationMetrics(p)||{};
+      const terms=[...new Set((p.options||[]).map(o=>o.term).filter(Boolean))];
+      return {product:p,minMonthly:m.minMonthly??null,maxGift:m.maxGift??null,termCount:terms.length,featureCount:(p.highlights||[]).length};
+    });
+    const minMonthly=Math.min(...metrics.map(x=>x.minMonthly).filter(Number.isFinite));
+    const maxGift=Math.max(...metrics.map(x=>x.maxGift).filter(Number.isFinite));
+    const maxTermCount=Math.max(...metrics.map(x=>x.termCount));
+    const strengthHtml=metrics.map(x=>{
+      const badges=[];
+      if(Number.isFinite(x.minMonthly)&&x.minMonthly===minMonthly)badges.push('월요금 최저');
+      if(Number.isFinite(x.maxGift)&&x.maxGift===maxGift)badges.push('사은품 최대');
+      if(x.termCount>1&&x.termCount===maxTermCount)badges.push('계약기간 선택 폭 넓음');
+      if(!badges.length)badges.push('차이표에서 조건 확인');
+      return '<article><strong>'+x.product.name+'</strong><div>'+badges.slice(0,3).map(b=>'<span>'+b+'</span>').join('')+'</div></article>';
+    }).join('');
     const cell=(p,key)=>{
       const m=recommendationMetrics(p)||{};
       if(key==='brand')return brandLabel(p.brand)||'-';
@@ -461,7 +477,7 @@
     const defaultRows=diffRows.length?diffRows:rowData;
     const head=rows.map(p=>'<th>'+p.name+'</th>').join('');
     const renderRows=list=>list.map(row=>'<tr><th>'+row.label+'</th>'+row.values.map(value=>'<td>'+value+'</td>').join('')+'</tr>').join('');
-    modal.innerHTML='<div class="compare-backdrop" data-close-compare></div><section class="compare-panel" role="dialog" aria-modal="true" aria-label="렌탈상품 비교"><button class="compare-close" data-close-compare type="button">×</button><p class="eyebrow dark">상품 비교</p><div class="compare-title-row"><div><h2>서로 다른 조건부터 빠르게 보세요.</h2><p>같은 항목은 숨기고 결정에 필요한 차이만 먼저 보여드립니다.</p></div><button id="compare-diff-toggle" type="button" data-mode="diff">'+(diffRows.length?'전체 항목 보기':'차이 없음')+'</button></div><div class="compare-diff-summary">'+diffRows.slice(0,3).map(row=>'<span><b>'+row.label+'</b> · '+row.values.join(' / ')+'</span>').join('')+'</div><div class="compare-table-wrap"><table><thead><tr><th>항목</th>'+head+'</tr></thead><tbody id="compare-table-body">'+renderRows(defaultRows)+'</tbody></table></div><div class="compare-links">'+rows.map(p=>'<a class="btn primary" href="'+productHref(p)+'">'+p.name+' 조건 보기</a>').join('')+'</div></section>';
+    modal.innerHTML='<div class="compare-backdrop" data-close-compare></div><section class="compare-panel" role="dialog" aria-modal="true" aria-label="렌탈상품 비교"><button class="compare-close" data-close-compare type="button">×</button><p class="eyebrow dark">상품 비교</p><div class="compare-title-row"><div><h2>서로 다른 조건부터 빠르게 보세요.</h2><p>같은 항목은 숨기고 결정에 필요한 차이와 각 상품의 강점을 먼저 보여드립니다.</p></div><button id="compare-diff-toggle" type="button" data-mode="diff">'+(diffRows.length?'전체 항목 보기':'차이 없음')+'</button></div><div class="compare-strengths">'+strengthHtml+'</div><div class="compare-diff-summary">'+diffRows.slice(0,3).map(row=>'<span><b>'+row.label+'</b> · '+row.values.join(' / ')+'</span>').join('')+'</div><div class="compare-table-wrap"><table><thead><tr><th>항목</th>'+head+'</tr></thead><tbody id="compare-table-body">'+renderRows(defaultRows)+'</tbody></table></div><div class="compare-links">'+rows.map(p=>'<a class="btn primary" href="'+productHref(p)+'">'+p.name+' 조건 보기</a>').join('')+'</div></section>';
     const toggle=modal.querySelector('#compare-diff-toggle');
     if(toggle&&diffRows.length){
       toggle.addEventListener('click',()=>{
