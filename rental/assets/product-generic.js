@@ -20,6 +20,8 @@
   let policyGeneratedAt = '';
   let rentalApplicationPolicy = null;
   let rentalFormOpenedAt = 0;
+  let allProducts = [];
+  let billingRequiredByPolicy = false;
   const rentalAnalyticsPath = () => '/rental/product/' + encodeURIComponent(String(product?.id || id || 'unknown'));
   function trackRental(type, detail = {}) {
     if (typeof window.woongbiTrackConversion !== 'function') return;
@@ -129,11 +131,140 @@
     clearTimeout(showConsultToast.timer);
     showConsultToast.timer = setTimeout(() => toast.classList.remove('show'), 2600);
   }
+  function selectedProductUrl() {
+    const link = new URL(location.origin + '/rental/product/' + encodeURIComponent(String(product?.id || id || '')) + '/');
+    const v = currentVariant();
+    if (v?.management) link.searchParams.set('mgmt', String(v.management));
+    if (v?.term != null) link.searchParams.set('term', String(v.term));
+    return link.toString();
+  }
+  function totalRentEstimate(v) {
+    const monthly=Number(v?.monthly),term=Number(v?.term);
+    if(!Number.isFinite(monthly)||monthly<=0||!Number.isFinite(term)||term<=0)return null;
+    const text=[
+      product?.promo,v?.promo,v?.sourceOption,v?.care,v?.note,v?.description
+    ].filter(Boolean).join(' ');
+    if(/반값|렌탈료\s*면제|면제\s*회차|무료\s*개월|무상\s*개월|\d+개월\s*(?:간\s*)?(?:추가\s*)?할인|할인\s*기간|프로모션\s*요금/i.test(text))return null;
+    return {total:monthly*term,monthly,term};
+  }
+  function contractValue(keys) {
+    for(const key of keys){
+      const value=currentVariant()?.[key] ?? product?.[key];
+      if(value!==undefined&&value!==null&&String(value).trim()!=='')return value;
+    }
+    return null;
+  }
+  function ownershipLabel() {
+    const value=contractValue(['ownershipTransfer','ownership','ownershipPeriod','ownershipTerm']);
+    if(value==null)return '상담 확인';
+    if(typeof value==='boolean')return value?'계약조건 충족 후 이전':'소유권 이전 없음';
+    if(Number.isFinite(Number(value)))return Number(value)+'개월 후 확인';
+    return String(value);
+  }
+  function mandatoryTermLabel() {
+    const value=contractValue(['mandatoryTerm','minimumTerm','obligationTerm','requiredTerm']);
+    if(value==null)return '상담 확인';
+    const n=Number(value);
+    return Number.isFinite(n)&&n>0?n+'개월':String(value);
+  }
+  function renderContractSummary(v) {
+    const term=$('#contract-term'),mandatory=$('#contract-mandatory'),ownership=$('#contract-ownership'),management=$('#contract-management');
+    if(term)term.textContent=termLabel(v);
+    if(mandatory)mandatory.textContent=mandatoryTermLabel();
+    if(ownership)ownership.textContent=ownershipLabel();
+    if(management)management.textContent=optionLabel(v?.managementLabel||v?.management||'')||'상담 확인';
+  }
+  function productMetrics(p) {
+    const options=(p?.options||[]).filter(isSellableOption);
+    const monthly=options.map(o=>Number(o.monthly)).filter(n=>Number.isFinite(n)&&n>0);
+    const gifts=options.map(o=>Number(o.gift)).filter(n=>Number.isFinite(n)&&n>=0);
+    return {
+      minMonthly:monthly.length?Math.min(...monthly):null,
+      maxGift:gifts.length?Math.max(...gifts):null
+    };
+  }
+  function renderAlternatives() {
+    const section=$('#product-alternatives'),grid=$('#product-alternative-grid'),v=currentVariant();
+    if(!section||!grid||!product||!v||!allProducts.length)return;
+    const currentMonthly=Number(v.monthly),currentGift=Number(v.gift);
+    const pool=allProducts
+      .filter(p=>p.id!==product.id&&p.category===product.category&&p.availability!=='inactive')
+      .filter(p=>!/단종|접수불가|접수중지/.test(String(p.name||'')))
+      .map(p=>({p,m:productMetrics(p)}))
+      .filter(x=>x.m.minMonthly!=null);
+
+    const picked=[];
+    const add=(row,reason)=>{if(row&&!picked.some(x=>x.p.id===row.p.id))picked.push({...row,reason});};
+    if(Number.isFinite(currentMonthly)){
+      const cheaper=[...pool].filter(x=>x.m.minMonthly<currentMonthly).sort((a,b)=>a.m.minMonthly-b.m.minMonthly)[0];
+      add(cheaper,'월 부담을 더 낮추고 싶다면');
+    }
+    if(Number.isFinite(currentGift)){
+      const gift=[...pool].filter(x=>x.m.maxGift!=null&&x.m.maxGift>currentGift).sort((a,b)=>b.m.maxGift-a.m.maxGift)[0];
+      add(gift,'사은품 혜택을 더 보고 싶다면');
+    }
+    for(const row of [...pool].sort((a,b)=>(a.m.minMonthly??Infinity)-(b.m.minMonthly??Infinity))){
+      if(picked.length>=3)break;
+      add(row,'같은 품목의 다른 선택');
+    }
+    if(!picked.length){section.hidden=true;grid.innerHTML='';return}
+    section.hidden=false;
+    grid.innerHTML=picked.slice(0,3).map(({p,m,reason})=>{
+      const image=imageCandidatesFor(p)[0]||'';
+      const href='/rental/product/'+encodeURIComponent(String(p.id))+'/';
+      return '<article class="product-alternative-card">'+
+        '<a class="product-alternative-image" href="'+href+'">'+(image?'<img src="'+image+'" alt="'+p.name+'" loading="lazy">':'<span>W</span>')+'</a>'+
+        '<div><small>'+reason+'</small><strong>'+brandLabel(p.brand)+' · '+p.name+'</strong>'+
+        '<p>월 '+(m.minMonthly==null?'상담 확인':won(m.minMonthly)+'부터')+(m.maxGift==null?'':' · 사은품 최대 '+won(m.maxGift))+'</p>'+
+        '<a href="'+href+'">조건 비교하기 →</a></div></article>';
+    }).join('');
+  }
+  function quoteShareMessage() {
+    const v=currentVariant();
+    if(!product||!v)return '';
+    const total=totalRentEstimate(v);
+    const cardDiscount=currentAffiliateExample?Number(currentAffiliateExample.discount||0):null;
+    const cardMonthly=Number.isFinite(Number(v.monthly))&&Number.isFinite(cardDiscount)?Math.max(0,Number(v.monthly)-cardDiscount):null;
+    return [
+      '[웅비렌탈 한눈견적]',
+      '상품: '+[brandLabel(product.brand),product.name].filter(Boolean).join(' '),
+      product.model?'모델: '+product.model:'',
+      '조건: '+[optionLabel(v.managementLabel||v.management),termLabel(v)].filter(Boolean).join(' · '),
+      '월 렌탈료: '+(v.monthly==null?'상담 확인':won(v.monthly)),
+      total?'총 예상 렌탈료: '+won(total.total)+' (월요금×'+total.term+'개월 단순 환산)':'총 예상 렌탈료: 프로모션/세부조건 상담 확인',
+      '고객사은품: '+(v.gift==null?'상담 확인':won(v.gift)),
+      cardMonthly==null?'':'제휴카드 기본 예시 적용 월: '+won(cardMonthly),
+      '설치비: 면제',
+      '설치 일정: 재고·지역·렌탈사 일정 확인 후 안내',
+      '상품 링크: '+selectedProductUrl(),
+      '※ 최종 접수 전 최신 요금·사은품·카드·계약조건을 다시 확인합니다.'
+    ].filter(Boolean).join('\n');
+  }
+  async function shareQuote() {
+    const text=quoteShareMessage();
+    if(!text)return;
+    const url=selectedProductUrl();
+    try{
+      if(navigator.share){
+        await navigator.share({title:'웅비렌탈 한눈견적',text,url});
+        showConsultToast('견적을 공유했습니다.');
+      }else if(navigator.clipboard?.writeText){
+        await navigator.clipboard.writeText(text);
+        showConsultToast('견적이 복사됐어요. 카톡에 붙여넣어 주세요.');
+      }else{
+        const ok=copyTextFallback(text);
+        showConsultToast(ok?'견적이 복사됐어요.':'견적 공유를 지원하지 않는 브라우저입니다.');
+      }
+      trackRental('rental_quote_share',{management:currentVariant()?.management||'',term:String(currentVariant()?.term??'')});
+    }catch(_){
+      showConsultToast('견적 공유를 취소했거나 복사하지 못했습니다.');
+    }
+  }
+
   function consultMessage() {
     const v = currentVariant();
     if (!product || !v) return '';
-    const link = new URL(location.href);
-    link.hash = '';
+    const total=totalRentEstimate(v);
     return [
       '[웅비렌탈 상담]',
       '상품: ' + product.name,
@@ -142,9 +273,11 @@
       '계약기간: ' + termLabel(v),
       '월 렌탈료: ' + (v.monthly == null ? '상담 확인' : won(v.monthly)),
       '고객사은품: ' + (v.gift == null ? '상담 확인' : won(v.gift)),
+      total ? '총 예상 렌탈료: ' + won(total.total) + ' (단순 환산)' : '',
       '설치비: 면제',
+      '설치 일정: 재고·지역·렌탈사 일정 확인 후 안내',
       '확인 경로: ' + rentalEntryLabel(),
-      '상품 링크: ' + link.toString(),
+      '상품 링크: ' + selectedProductUrl(),
       '※ 최종 접수 전 최신 정책을 다시 확인해 주세요.'
     ].filter(Boolean).join('\n');
   }
@@ -606,6 +739,18 @@
     $('#sticky-monthly').textContent = v.monthly == null ? '상담 확인' : won(v.monthly);
     $('#sticky-gift').textContent = v.gift == null ? '상담 확인' : won(v.gift);
 
+    const total=totalRentEstimate(v);
+    const totalRow=$('#total-rent-row'),totalFee=$('#total-rent-fee'),totalNote=$('#total-rent-note');
+    if(totalRow){
+      totalRow.hidden=!total;
+      if(total){
+        if(totalFee)totalFee.textContent=won(total.total);
+        if(totalNote)totalNote.textContent='월 '+won(total.monthly)+' × '+total.term+'개월 단순 환산 · 프로모션 변동 시 달라질 수 있음';
+      }
+    }
+    renderContractSummary(v);
+    renderAlternatives();
+
     const cardRow = $('#generic-card-row');
     if (cardRow) cardRow.hidden = true;
     $('#card-fee').textContent = '-';
@@ -672,6 +817,16 @@
         b.textContent=label+' · ';p.append(b,document.createTextNode(String(value||'')));third.append(p);
       });
     }
+    const requiredText=String(policy.items?.required||'');
+    billingRequiredByPolicy=/자동이체|결제방식|결제수단|은행|카드사/i.test(requiredText);
+    const billingDetails=$('#rental-billing-details');
+    const billingLabel=$('#rental-billing-required-label');
+    const billingMethodInputs=[...document.querySelectorAll('input[name="billing_method"]')];
+    const issuer=$('#rental-apply-issuer');
+    billingMethodInputs.forEach(input=>{input.required=billingRequiredByPolicy;});
+    if(issuer)issuer.required=billingRequiredByPolicy;
+    if(billingLabel)billingLabel.textContent=billingRequiredByPolicy?'필수':'선택';
+    if(billingRequiredByPolicy&&billingDetails)billingDetails.open=true;
   }
   function fillRentalApplicationSummary() {
     const v=currentVariant();
@@ -754,6 +909,13 @@
       catch(error){status.textContent=error.message||'신청 안내를 불러오지 못했습니다.';return;}
     }
     const method=form.querySelector('input[name="billing_method"]:checked')?.value||'';
+    const issuerValue=$('#rental-apply-issuer')?.value||'';
+    if(billingRequiredByPolicy&&(!method||!issuerValue.trim())){
+      const billingDetails=$('#rental-billing-details');
+      if(billingDetails)billingDetails.open=true;
+      status.textContent='현재 신청 정책상 결제방식과 은행/카드사명을 확인해야 합니다.';
+      return;
+    }
     const payload={
       policy_version:rentalApplicationPolicy.version,
       processing_notice_ack:$('#rental-processing-ack')?.checked===true,
@@ -763,7 +925,7 @@
       email:$('#rental-apply-email')?.value||'',
       install_address:$('#rental-apply-address')?.value||'',
       billing_method:method,
-      billing_issuer:$('#rental-apply-issuer')?.value||'',
+      billing_issuer:issuerValue,
       inquiry:inquiry,
       product_id:product.id,
       product_name:product.name,
@@ -810,7 +972,8 @@
   }
 
   function initialize(data) {
-    product = (data.products || []).find(p => p.id === id);
+    allProducts = Array.isArray(data.products) ? data.products : [];
+    product = allProducts.find(p => p.id === id);
     if (!product) throw new Error('product not found');
 
     applyProductSeo(product);
@@ -933,7 +1096,8 @@
         });
       });
     });
-    $('#rental-apply-open')?.addEventListener('click',openRentalApplication);
+    $('#rental-share-quote')?.addEventListener('click',shareQuote);
+        $('#rental-apply-open')?.addEventListener('click',openRentalApplication);
     $('#rental-apply-sticky')?.addEventListener('click',openRentalApplication);
     $('#rental-apply-close')?.addEventListener('click',()=>closeDialog($('#rental-apply-dialog')));
     $('#rental-apply-dialog')?.addEventListener('click',event=>{if(event.target===$('#rental-apply-dialog'))closeDialog($('#rental-apply-dialog'));});
