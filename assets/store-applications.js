@@ -95,6 +95,16 @@
     const dialog=$('store-application-success');
     const id=$('store-application-receipt');
     if(id)id.textContent=receipt?.id?'신청번호 '+String(receipt.id).slice(0,8):'';
+    const statusLink=$('store-application-status-link');
+    if(statusLink){
+      if(receipt?.lookup_token){
+        statusLink.href='/application-status.html?t='+encodeURIComponent(receipt.lookup_token);
+        statusLink.hidden=false;
+      }else{
+        statusLink.hidden=true;
+        statusLink.removeAttribute('href');
+      }
+    }
     if(typeof dialog?.showModal==='function')dialog.showModal(); else dialog?.setAttribute('open','');
   }
 
