@@ -231,6 +231,18 @@ body.home-modern{
   align-items:center;
   gap:10px;
 }
+.home-modern .home-trust-rail .precon-badge{
+  min-height:86px;
+  padding:14px 20px;
+  border:0;
+  border-right:1px solid #e3ecea;
+  border-radius:0;
+  background:transparent;
+  box-shadow:none;
+  color:inherit;
+}
+.home-modern .home-trust-rail .precon-badge:hover{background:#f7fbfa;border-color:#e3ecea}
+.home-modern .home-trust-rail .precon-badge .precon-official-mark{width:54px;height:auto}
 .home-modern .trust-cert img{width:54px;height:auto;object-fit:contain}
 .home-modern .trust-cert span{display:block}
 .home-modern .trust-cert b{display:block;color:#294e53;font-size:.75rem}
