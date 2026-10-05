@@ -159,3 +159,11 @@
   .store-application-intro{padding-left:14px;padding-right:14px}
   .store-application-summary{margin-left:14px;margin-right:14px}
 }
+
+/* Internet/TV selected quote: keep the primary online application centered below the 2x2 tools */
+.wired-quote-tools > .store-apply-btn[data-store-selected-apply="internet"]{
+  grid-column:1 / -1;
+  width:min(100%,360px);
+  justify-self:center;
+  margin-top:4px;
+}
