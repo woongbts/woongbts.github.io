@@ -34,6 +34,7 @@ jobs:
           node --check assets/site-pro.min.js
           node --check assets/ai-chat.min.js
           node --check assets/mobile-menu.js
+          node --check assets/rates-deeplink.js
           node --check assets/pwa.min.js
           node --check assets/quote-api-bridge.min.js
           node --check assets/recommend-api-bridge.min.js
