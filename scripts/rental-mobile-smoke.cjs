@@ -188,6 +188,9 @@ function assert(condition, message) {
   await page.locator('#open-compare').click();
   assert(await page.locator('#compare-modal.open').count() === 1, '상품 비교 모달이 열리지 않습니다.');
   assert(await page.locator('#compare-diff-toggle').count() === 1, '차이만 보기 비교 기능이 없습니다.');
+  assert(await page.locator('.compare-strengths article').count() >= 2, '상품별 자동 비교결론이 표시되지 않습니다.');
+  const strengthText = await page.locator('.compare-strengths').textContent();
+  assert(/월요금 최저|사은품 최대|계약기간 선택 폭 넓음/.test(strengthText || ''), '비교 자동결론에 실제 강점이 표시되지 않습니다.');
   const compareHeading = await page.locator('.compare-title-row h2').textContent();
   assert(compareHeading.includes('서로 다른 조건'), '비교창이 차이 중심으로 안내되지 않습니다.');
   await page.locator('.compare-close').click();
@@ -241,6 +244,20 @@ function assert(condition, message) {
   const faqText = await page.locator('#product-faq').textContent();
   assert(faqText.includes('설치비는 면제') && faqText.includes('제휴카드는 꼭'), 'FAQ에 설치비 면제/제휴카드 안내가 없습니다.');
   assert(await page.locator('.product-extra-details:not([open])').count() === 1, '부가정보가 기본 접힘 상태가 아닙니다.');
+  const contractText = await page.locator('.contract-key-box').textContent();
+  assert(contractText.includes('계약기간') && contractText.includes('의무사용기간') && contractText.includes('소유권 이전') && contractText.includes('설치비') && contractText.includes('면제'), '계약 핵심조건 요약이 부족합니다.');
+  const installQuickText = await page.locator('.installation-quick-note').textContent();
+  assert(installQuickText.includes('설치비 면제') && installQuickText.includes('재고') && installQuickText.includes('설치지역'), '설치비/설치일정 안내가 없습니다.');
+  assert(await page.locator('#product-alternatives:not([hidden]) .product-alternative-card').count() >= 1, '다른 상품 추천이 표시되지 않습니다.');
+  const totalState = await page.evaluate(() => {
+    const row=document.querySelector('#total-rent-row');
+    if(!row || row.hidden) return {hidden:true};
+    const monthly=Number((document.querySelector('#monthly-fee')?.textContent||'').replace(/[^0-9]/g,''));
+    const term=Number((document.querySelector('#contract-term')?.textContent||'').replace(/[^0-9]/g,''));
+    const total=Number((document.querySelector('#total-rent-fee')?.textContent||'').replace(/[^0-9]/g,''));
+    return {hidden:false,monthly,term,total};
+  });
+  assert(totalState.hidden || (totalState.monthly > 0 && totalState.term > 0 && totalState.total === totalState.monthly * totalState.term), '총 예상 렌탈료 계산이 단순 환산 기준과 맞지 않습니다.');
   const reassuranceText = await page.locator('.apply-reassurance').textContent();
   assert(reassuranceText.includes('신청 즉시 결제되지 않습니다') && reassuranceText.includes('설치비 면제'), '신청 전 안심 안내가 없습니다.');
   await page.locator('#card-fee-more').scrollIntoViewIfNeeded();
@@ -258,6 +275,13 @@ function assert(condition, message) {
   const jsonLd = await page.locator('#product-jsonld').textContent();
   assert(jsonLd && jsonLd.includes('"Product"'), '상품 구조화 데이터가 생성되지 않았습니다.');
 
+  await page.locator('#rental-share-quote').click();
+  await page.waitForTimeout(50);
+  const sharedQuote = await page.evaluate(() => JSON.parse(sessionStorage.getItem('wb_test_share') || '{}'));
+  assert((sharedQuote.text || '').includes('[웅비렌탈 한눈견적]') && (sharedQuote.text || '').includes('설치비: 면제') && sharedQuote.url, '상품 상세 견적 공유가 동작하지 않습니다.');
+  const quoteShareEvent = await page.evaluate(() => JSON.parse(localStorage.getItem('wb_conversion_events_v1') || '[]').some(x => x.type === 'rental_quote_share'));
+  assert(quoteShareEvent, '상품 상세 견적 공유 전환 이벤트가 기록되지 않았습니다.');
+
   await page.locator('#rental-apply-open').click();
   assert(await page.locator('#rental-apply-dialog[open]').count() === 1, '온라인 렌탈 신청창이 열리지 않습니다.');
   const applyReassuranceText = await page.locator('.rental-apply-reassurance').textContent();
@@ -266,13 +290,15 @@ function assert(condition, message) {
   const honeypotBox = await page.locator('#rental-apply-company').boundingBox();
   assert(!honeypotBox || honeypotBox.x < 0 || honeypotBox.width <= 1, 'honeypot 필드가 고객 화면에 노출됩니다.');
   await page.waitForFunction(() => document.querySelector('#rental-processing-policy')?.textContent?.includes('최대 90일'));
+  const billingLabel = await page.locator('#rental-billing-required-label').textContent();
+  assert(billingLabel.includes('선택'), '정책상 선택인 결제방식이 필수로 노출됩니다.');
+  assert(await page.locator('#rental-billing-details:not([open])').count() === 1, '선택 결제방식이 기본 펼침 상태입니다.');
+  await page.locator('#rental-billing-details').evaluate(el => { el.open = true; });
   const paymentWarning = await page.locator('.rental-billing p').textContent();
-  assert(paymentWarning.includes('계좌번호') && paymentWarning.includes('카드번호'), '결제정보 전체번호 미수집 안내가 없습니다.');
+  assert(paymentWarning.includes('실제 결제방식') && paymentWarning.includes('공식 계약 절차'), '결제방식 후속 입력 안내가 없습니다.');
   await page.locator('#rental-apply-name').fill('테스트고객');
   await page.locator('#rental-apply-phone').fill('01012345678');
   await page.locator('#rental-apply-address').fill('부산광역시 테스트 주소');
-  await page.locator('input[name="billing_method"][value="bank"]').check();
-  await page.locator('#rental-apply-issuer').fill('테스트은행');
   await page.locator('#rental-processing-ack').check();
   await page.locator('#rental-third-party-consent').check();
   const giftDepositNote = await page.locator('#rental-apply-gift-note').textContent();
@@ -283,6 +309,7 @@ function assert(condition, message) {
   await page.locator('#rental-apply-submit').click();
   await page.waitForSelector('#rental-apply-success-dialog[open]');
   assert(submittedRentalBody && submittedRentalBody.product_url && /[?&]src=naver-search/.test(submittedRentalBody.product_url), '렌탈 신청에 유입경로가 이어지지 않습니다.');
+  assert(submittedRentalBody.billing_method === '' && submittedRentalBody.billing_issuer === '', '선택 결제방식이 입력하지 않았는데 강제로 저장됩니다.');
   assert(await page.locator('#rental-apply-dialog[open]').count() === 0, '신청 성공 후 입력창이 닫히지 않습니다.');
   const successTitle = await page.locator('#rental-apply-success-title').textContent();
   const successMessage = await page.locator('#rental-apply-success-dialog > .rental-apply-success-card > p').textContent();
