@@ -18,6 +18,8 @@
   const brandStrict = document.getElementById('ai-brand-strict');
   const managementStrict = document.getElementById('ai-management-strict');
   const mustFeatureInputs = [...document.querySelectorAll('[data-ai-must-feature]')];
+  const aiSteps = [...document.querySelectorAll('[data-ai-step]')];
+  const aiStepIndicators = [...document.querySelectorAll('[data-ai-step-indicator]')];
 
   let products = [];
   let loadPromise = null;
@@ -776,6 +778,22 @@
     });
   }
 
+  function showAiStep(step) {
+    const target = Math.min(4,Math.max(1,Number(step)||1));
+    aiSteps.forEach(section => {
+      const active=Number(section.dataset.aiStep)===target;
+      section.hidden=!active;
+      section.classList.toggle('active',active);
+    });
+    aiStepIndicators.forEach(indicator => {
+      const n=Number(indicator.dataset.aiStepIndicator);
+      indicator.classList.toggle('active',n===target);
+      indicator.classList.toggle('done',n<target);
+    });
+    const prompts={1:'먼저 품목을 선택해 주세요.',2:'월 예산을 골라 주세요.',3:'관리방식을 골라 주세요.',4:'필요하면 세부조건을 추가하고 추천받아 보세요.'};
+    if(status&&!lastItems.length)status.textContent=prompts[target]||'추천 조건을 선택해 주세요.';
+  }
+
   function openDialog() {
     if (typeof dialog.showModal === 'function') dialog.showModal();
     else dialog.setAttribute('open','');
@@ -790,6 +808,8 @@
 
   openButtons.forEach(button => {
     button.addEventListener('click', async () => {
+      lastItems = [];
+      showAiStep(1);
       openDialog();
       trackAi('rental_ai_open', { analyticsPath:'/rental/ai/open' });
       try {
@@ -807,6 +827,21 @@
     closeDialog();
   });
 
+  form.querySelectorAll('[data-ai-next]').forEach(button => {
+    button.addEventListener('click', () => {
+      const next=Number(button.dataset.aiNext)||1;
+      if(next===2 && !categorySelect.value){
+        status.textContent='먼저 찾는 품목을 선택해 주세요.';
+        categorySelect.focus();
+        return;
+      }
+      showAiStep(next);
+    });
+  });
+  form.querySelectorAll('[data-ai-prev]').forEach(button => {
+    button.addEventListener('click', () => showAiStep(Number(button.dataset.aiPrev)||1));
+  });
+
   categorySelect.addEventListener('change', () => {
     setupBrands();
     updateStrictControlState();
@@ -822,8 +857,9 @@
       const criteria = currentCriteria();
       status.textContent = '조건을 분석해 가장 잘 맞는 상품을 고르는 중입니다.';
       const items = recommend(criteria);
+      showAiStep(4);
       renderResults(items, criteria);
-      status.textContent = items.length ? '추천이 완료되었습니다.' : '필수조건을 모두 만족하는 상품이 없습니다.';
+      status.textContent = items.length ? '추천이 완료되었습니다. 아래 TOP 3를 확인해 보세요.' : '필수조건을 모두 만족하는 상품이 없습니다.';
       results.scrollIntoView({ behavior: 'smooth', block: 'start' });
     } catch (error) {
       status.textContent = error.message || '추천 중 오류가 발생했습니다.';
@@ -983,6 +1019,7 @@
     try {
       await loadProducts();
       applyCriteriaToForm(criteria);
+      showAiStep(4);
       const normalized = currentCriteria();
       const freshItems = recommend(normalized);
       const sharedItems = (criteria.sharedIds || [])
