@@ -21,8 +21,8 @@
   <link rel="icon" href="assets/woongbi-rental-icon-32.png?v=20261003-blue3" sizes="32x32" type="image/png">
   <link rel="apple-touch-icon" sizes="180x180" href="assets/woongbi-rental-icon-180.png?v=20261003-blue3">
   <link rel="manifest" href="manifest.webmanifest?v=20261003-blue3">
-<link rel="stylesheet" href="assets/rental.css?v=20261004-core18">
-<link rel="stylesheet" href="assets/ai-recommend.css?v=20261004-ai5">
+<link rel="stylesheet" href="assets/rental.css?v=20261005-customerux1">
+<link rel="stylesheet" href="assets/ai-recommend.css?v=20261005-guided1">
   <style id="catalog-mobile-critical">
     @media (max-width:560px){
       .catalog-card{display:block!important}
@@ -143,6 +143,7 @@
           <button type="button" data-recommend-sort="gift" aria-pressed="false">사은품 높은순</button>
         </div>
         <div id="recommend-grid" class="recommend-grid" aria-live="polite"></div>
+        <div id="recommend-progress" class="recommend-progress" aria-live="polite" hidden><span>1 / 1</span><div class="recommend-dots"></div></div>
       </div>
     </section>
 
@@ -289,8 +290,21 @@
       </header>
 
       <form id="ai-recommend-form" class="ai-recommend-form">
-        <div class="ai-form-grid">
-          <label><span>어떤 제품을 찾으세요?</span><select id="ai-category" required><option>상품 불러오는 중</option></select></label>
+        <div class="ai-step-progress" aria-label="AI 추천 단계">
+          <span class="active" data-ai-step-indicator="1">1 품목</span>
+          <span data-ai-step-indicator="2">2 예산</span>
+          <span data-ai-step-indicator="3">3 관리</span>
+          <span data-ai-step-indicator="4">4 세부</span>
+        </div>
+
+        <section class="ai-guided-step active" data-ai-step="1">
+          <p class="ai-question">어떤 제품을 찾으세요?</p>
+          <label><span>품목</span><select id="ai-category" required><option>상품 불러오는 중</option></select></label>
+          <button class="ai-step-next" type="button" data-ai-next="2">다음 · 예산 선택 →</button>
+        </section>
+
+        <section class="ai-guided-step" data-ai-step="2" hidden>
+          <p class="ai-question">월 얼마까지 생각하세요?</p>
           <label><span>월 예산</span>
             <select id="ai-budget">
               <option value="0">예산 상관없음</option>
@@ -303,7 +317,11 @@
               <option value="250000">25만원 이하</option>
             </select>
           </label>
-          <label><span>선호 브랜드</span><select id="ai-brand"><option value="">브랜드 상관없음</option></select></label>
+          <div class="ai-step-nav"><button type="button" data-ai-prev="1">← 이전</button><button class="ai-step-next" type="button" data-ai-next="3">다음 · 관리방식 →</button></div>
+        </section>
+
+        <section class="ai-guided-step" data-ai-step="3" hidden>
+          <p class="ai-question">관리방식은 어떻게 할까요?</p>
           <label><span>관리방식</span>
             <select id="ai-management">
               <option value="">상관없음</option>
@@ -311,29 +329,41 @@
               <option value="visit">방문관리</option>
             </select>
           </label>
-        </div>
-        <fieldset class="ai-must-have">
-          <legend>꼭 지켜야 하는 조건 <small>선택</small></legend>
-          <div class="ai-must-grid">
-            <label id="ai-budget-strict-wrap"><input id="ai-budget-strict" type="checkbox"> 월 예산 초과 제외</label>
-            <label id="ai-brand-strict-wrap"><input id="ai-brand-strict" type="checkbox"> 선택 브랜드만</label>
-            <label id="ai-management-strict-wrap"><input id="ai-management-strict" type="checkbox"> 선택 관리방식만</label>
-          </div>
-          <div class="ai-feature-must" aria-label="필수 기능">
-            <label><input type="checkbox" data-ai-must-feature="ice"> 얼음</label>
-            <label><input type="checkbox" data-ai-must-feature="direct"> 직수</label>
-            <label><input type="checkbox" data-ai-must-feature="hotcold"> 냉온</label>
-            <label><input type="checkbox" data-ai-must-feature="slim"> 슬림·미니</label>
-            <label><input type="checkbox" data-ai-must-feature="large"> 대용량</label>
-          </div>
-        </fieldset>
-        <label class="ai-preference-label">
-          <span>원하는 조건을 자유롭게 적어주세요 <small>선택</small></span>
-          <input id="ai-preference" type="text" maxlength="120" placeholder="예: 얼음 나오는 슬림한 제품, 직수, 대용량 등">
-        </label>
-        <p class="ai-privacy-note">입력한 조건은 서버로 전송하지 않고, 이 화면에서 상품 데이터와 비교하는 데만 사용합니다.</p>
-        <button class="ai-recommend-submit" type="submit"><span aria-hidden="true">✦</span> 이 조건으로 AI 추천받기</button>
-        <p id="ai-recommend-status" class="ai-recommend-status" role="status">추천 조건을 선택해 주세요.</p>
+          <div class="ai-step-nav"><button type="button" data-ai-prev="2">← 이전</button><button class="ai-step-next" type="button" data-ai-next="4">마지막 · 세부조건 →</button></div>
+        </section>
+
+        <section class="ai-guided-step" data-ai-step="4" hidden>
+          <p class="ai-question">마지막으로 원하는 조건이 있나요?</p>
+          <label><span>선호 브랜드 <small>선택</small></span><select id="ai-brand"><option value="">브랜드 상관없음</option></select></label>
+
+          <details class="ai-advanced-details">
+            <summary>더 자세히 선택 <small>필수조건·기능</small></summary>
+            <fieldset class="ai-must-have">
+              <legend>꼭 지켜야 하는 조건 <small>선택</small></legend>
+              <div class="ai-must-grid">
+                <label id="ai-budget-strict-wrap"><input id="ai-budget-strict" type="checkbox"> 월 예산 초과 제외</label>
+                <label id="ai-brand-strict-wrap"><input id="ai-brand-strict" type="checkbox"> 선택 브랜드만</label>
+                <label id="ai-management-strict-wrap"><input id="ai-management-strict" type="checkbox"> 선택 관리방식만</label>
+              </div>
+              <div class="ai-feature-must" aria-label="필수 기능">
+                <label><input type="checkbox" data-ai-must-feature="ice"> 얼음</label>
+                <label><input type="checkbox" data-ai-must-feature="direct"> 직수</label>
+                <label><input type="checkbox" data-ai-must-feature="hotcold"> 냉온</label>
+                <label><input type="checkbox" data-ai-must-feature="slim"> 슬림·미니</label>
+                <label><input type="checkbox" data-ai-must-feature="large"> 대용량</label>
+              </div>
+            </fieldset>
+            <label class="ai-preference-label">
+              <span>원하는 조건을 자유롭게 적어주세요 <small>선택</small></span>
+              <input id="ai-preference" type="text" maxlength="120" placeholder="예: 얼음 나오는 슬림한 제품, 직수, 대용량 등">
+            </label>
+          </details>
+
+          <p class="ai-privacy-note">입력한 조건은 서버로 전송하지 않고, 이 화면에서 상품 데이터와 비교하는 데만 사용합니다.</p>
+          <div class="ai-step-nav final"><button type="button" data-ai-prev="3">← 이전</button><button class="ai-recommend-submit" type="submit"><span aria-hidden="true">✦</span> 이 조건으로 AI 추천받기</button></div>
+        </section>
+
+        <p id="ai-recommend-status" class="ai-recommend-status" role="status">먼저 품목을 선택해 주세요.</p>
       </form>
 
       <div id="ai-recommend-results" class="ai-recommend-results" aria-live="polite">
@@ -352,7 +382,7 @@
   <script src="/assets/analytics-config.js?v=20260929-2" defer></script>
   <script src="/assets/conversion-tracker.min.js?v=20261004-ops1" defer></script>
   <script src="/assets/site-analytics.min.js?v=20261004-source1" defer></script>
-  <script src="assets/catalog.js?v=20261005-rankless1" defer></script>
-  <script src="assets/ai-recommend.js?v=20261004-ai6" defer></script>
+  <script src="assets/catalog.js?v=20261005-customerux1" defer></script>
+  <script src="assets/ai-recommend.js?v=20261005-guided1" defer></script>
 </body>
 </html>
