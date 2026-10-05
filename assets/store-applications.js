@@ -4,6 +4,7 @@
   const $=id=>document.getElementById(id);
   const CATEGORY_LABEL={studyphone:'공신폰',mvno:'알뜰폰',prepaid:'선불폰',internet:'인터넷·TV'};
   let policy=null,current=null,openedAt=0,lastSubmit=null;
+  let salesSignals=new Map();
 
   function digits(value){return String(value||'').replace(/\D/g,'');}
   function moneyValue(text){
@@ -39,6 +40,15 @@
       ctx.detail?'조건: '+ctx.detail:'',
       '※ 신청 후 웅비통신 덕천만덕점에서 확인 후 연락드립니다.'
     ].filter(Boolean).join('\n');
+  }
+
+  async function loadSalesSignals(){
+    try{
+      const res=await fetch(API+'/api/recommendation-signals',{headers:{accept:'application/json'},cache:'no-store'});
+      const data=await res.json();
+      salesSignals=new Map((data?.signals?.store||[]).map(row=>[String(row.product_id),row]));
+      decorateAll();
+    }catch{salesSignals=new Map();}
   }
 
   async function loadPolicy(){
@@ -252,6 +262,13 @@
       if(!actions||actions.querySelector('.store-apply-btn'))return;
       const source=actions.querySelector('[data-mvno-recommend-detail],[data-mvno-recommend-consult]');
       if(!source)return;
+      const planId=source.dataset.mvnoRecommendDetail||source.dataset.mvnoRecommendConsult;
+      const signal=salesSignals.get('mvno:'+planId);
+      if(signal && !card.querySelector('.store-sales-signal')){
+        const badge=document.createElement('small');badge.className='store-sales-signal';
+        badge.textContent='실제 완료 데이터 반영 · '+Number(signal.completed||0)+'건';
+        card.querySelector('.mvno-recommend-card-head')?.append(badge);
+      }
       const apply=makeApplyButton('신청하기');
       apply.addEventListener('click',event=>{
         event.stopPropagation();
@@ -259,6 +276,29 @@
       });
       actions.append(apply);
     });
+    const recommendList=$('mvno-recommend-list');
+    if(recommendList && !recommendList.dataset.salesSorted){
+      const cards=[...recommendList.querySelectorAll(':scope > .mvno-recommend-card')];
+      const signaled=cards.filter(card=>{
+        const source=card.querySelector('[data-mvno-recommend-detail],[data-mvno-recommend-consult]');
+        const id=source?.dataset.mvnoRecommendDetail||source?.dataset.mvnoRecommendConsult||'';
+        return salesSignals.has('mvno:'+id);
+      });
+      if(signaled.length>=2){
+        const original=new Map(cards.map((card,index)=>[card,index]));
+        cards.sort((a,b)=>{
+          const sa=a.querySelector('[data-mvno-recommend-detail],[data-mvno-recommend-consult]');
+          const sb=b.querySelector('[data-mvno-recommend-detail],[data-mvno-recommend-consult]');
+          const ia=sa?.dataset.mvnoRecommendDetail||sa?.dataset.mvnoRecommendConsult||'';
+          const ib=sb?.dataset.mvnoRecommendDetail||sb?.dataset.mvnoRecommendConsult||'';
+          const aa=salesSignals.get('mvno:'+ia),bb=salesSignals.get('mvno:'+ib);
+          const boostA=aa?Math.min(12,Number(aa.completed||0)*2+Number(aa.conversion||0)/25):0;
+          const boostB=bb?Math.min(12,Number(bb.completed||0)*2+Number(bb.conversion||0)/25):0;
+          return boostB-boostA || original.get(a)-original.get(b);
+        }).forEach(card=>recommendList.append(card));
+        recommendList.dataset.salesSorted='1';
+      }
+    }
 
     const list=$('mvno-plan-picker-list'); if(!list)return;
     [...list.querySelectorAll(':scope > .plan-option-card')].forEach(card=>{
@@ -405,7 +445,7 @@
     ['studyphone-plan-list','mvno-recommend-list','mvno-plan-picker-list','wired-compare-results'].forEach(id=>{
       const el=$(id);if(el)observer.observe(el,{childList:true,subtree:true});
     });
-    loadPolicy();decorateAll();syncCrossSell();
+    loadPolicy();loadSalesSignals();decorateAll();syncCrossSell();
   }
   document.readyState==='loading'?document.addEventListener('DOMContentLoaded',boot,{once:true}):boot();
 })();
