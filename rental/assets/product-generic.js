@@ -936,7 +936,8 @@
       term:current.v.term??null,
       monthly:current.v.monthly??null,
       gift:current.v.gift??null,
-      product_url:applicationProductUrl()
+      product_url:applicationProductUrl(),
+      attribution:(()=>{try{const c=window.woongbiSiteAnalyticsContext?.()||{};return{source:c.source||'direct',campaign:c.campaign||'',landing_path:c.landing_path||location.pathname};}catch{return{source:'direct',campaign:'',landing_path:location.pathname};}})()
     };
     submit.disabled=true;status.textContent='신청을 안전하게 접수하는 중입니다.';
     trackRental('rental_apply_submit',{management:current.v.management||'',term:String(current.v.term??'')});
