@@ -15,6 +15,7 @@
   const recommendTabs = document.getElementById('recommend-tabs');
   const recommendGrid = document.getElementById('recommend-grid');
   const recommendSort = document.getElementById('recommend-sort');
+  const recommendProgress = document.getElementById('recommend-progress');
   const applianceMore = document.getElementById('appliance-more');
   const applianceGrid = document.querySelector('.appliance-grid');
   const recentSection = document.getElementById('recently-viewed');
@@ -381,8 +382,32 @@
     }
 
     recommendGrid.innerHTML = selected.map(recommendationCard).join('');
+    bindRecommendProgress();
   }
 
+
+  function updateRecommendProgress() {
+    if(!recommendProgress||!recommendGrid)return;
+    const cards=[...recommendGrid.querySelectorAll('.recommend-card')];
+    const mobile=window.matchMedia('(max-width:560px)').matches;
+    recommendProgress.hidden=!mobile||cards.length<=1;
+    if(!mobile||cards.length<=1)return;
+    const gridRect=recommendGrid.getBoundingClientRect();
+    let current=0,best=Infinity;
+    cards.forEach((card,index)=>{
+      const d=Math.abs(card.getBoundingClientRect().left-gridRect.left);
+      if(d<best){best=d;current=index;}
+    });
+    const label=recommendProgress.querySelector('span');
+    const dots=recommendProgress.querySelector('.recommend-dots');
+    if(label)label.textContent=(current+1)+' / '+cards.length;
+    if(dots)dots.innerHTML=cards.map((_,i)=>'<i class="'+(i===current?'active':'')+'"></i>').join('');
+  }
+  function bindRecommendProgress() {
+    if(!recommendGrid)return;
+    recommendGrid.onscroll=()=>requestAnimationFrame(updateRecommendProgress);
+    requestAnimationFrame(updateRecommendProgress);
+  }
 
   function summaryFor(product) {
     const m = recommendationMetrics(product) || {};
@@ -430,9 +455,23 @@
       if(key==='feature')return (p.highlights||[]).slice(0,3).join(' · ')||p.category||'-';
       return '-';
     };
+    const defs=[['브랜드','brand'],['월 렌탈료','monthly'],['고객사은품','gift'],['계약기간','term'],['주요 특징','feature']];
+    const rowData=defs.map(([label,key])=>({label,key,values:rows.map(p=>cell(p,key))}));
+    const diffRows=rowData.filter(row=>new Set(row.values.map(String)).size>1);
+    const defaultRows=diffRows.length?diffRows:rowData;
     const head=rows.map(p=>'<th>'+p.name+'</th>').join('');
-    const tr=(label,key)=>'<tr><th>'+label+'</th>'+rows.map(p=>'<td>'+cell(p,key)+'</td>').join('')+'</tr>';
-    modal.innerHTML='<div class="compare-backdrop" data-close-compare></div><section class="compare-panel" role="dialog" aria-modal="true" aria-label="렌탈상품 비교"><button class="compare-close" data-close-compare type="button">×</button><p class="eyebrow dark">상품 비교</p><h2>최대 3개까지 한눈에 비교하세요.</h2><div class="compare-table-wrap"><table><thead><tr><th>항목</th>'+head+'</tr></thead><tbody>'+tr('브랜드','brand')+tr('월 렌탈료','monthly')+tr('고객사은품','gift')+tr('계약기간','term')+tr('주요 특징','feature')+'</tbody></table></div><div class="compare-links">'+rows.map(p=>'<a class="btn primary" href="'+productHref(p)+'">'+p.name+' 조건 보기</a>').join('')+'</div></section>';
+    const renderRows=list=>list.map(row=>'<tr><th>'+row.label+'</th>'+row.values.map(value=>'<td>'+value+'</td>').join('')+'</tr>').join('');
+    modal.innerHTML='<div class="compare-backdrop" data-close-compare></div><section class="compare-panel" role="dialog" aria-modal="true" aria-label="렌탈상품 비교"><button class="compare-close" data-close-compare type="button">×</button><p class="eyebrow dark">상품 비교</p><div class="compare-title-row"><div><h2>서로 다른 조건부터 빠르게 보세요.</h2><p>같은 항목은 숨기고 결정에 필요한 차이만 먼저 보여드립니다.</p></div><button id="compare-diff-toggle" type="button" data-mode="diff">'+(diffRows.length?'전체 항목 보기':'차이 없음')+'</button></div><div class="compare-diff-summary">'+diffRows.slice(0,3).map(row=>'<span><b>'+row.label+'</b> · '+row.values.join(' / ')+'</span>').join('')+'</div><div class="compare-table-wrap"><table><thead><tr><th>항목</th>'+head+'</tr></thead><tbody id="compare-table-body">'+renderRows(defaultRows)+'</tbody></table></div><div class="compare-links">'+rows.map(p=>'<a class="btn primary" href="'+productHref(p)+'">'+p.name+' 조건 보기</a>').join('')+'</div></section>';
+    const toggle=modal.querySelector('#compare-diff-toggle');
+    if(toggle&&diffRows.length){
+      toggle.addEventListener('click',()=>{
+        const all=toggle.dataset.mode==='all';
+        toggle.dataset.mode=all?'diff':'all';
+        toggle.textContent=all?'전체 항목 보기':'차이만 보기';
+        const body=modal.querySelector('#compare-table-body');
+        if(body)body.innerHTML=renderRows(all?diffRows:rowData);
+      });
+    }else if(toggle){toggle.disabled=true}
     modal.classList.add('open');
   }
   function renderRecent(){
