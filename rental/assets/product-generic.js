@@ -142,6 +142,7 @@
       '계약기간: ' + termLabel(v),
       '월 렌탈료: ' + (v.monthly == null ? '상담 확인' : won(v.monthly)),
       '고객사은품: ' + (v.gift == null ? '상담 확인' : won(v.gift)),
+      '설치비: 면제',
       '확인 경로: ' + rentalEntryLabel(),
       '상품 링크: ' + link.toString(),
       '※ 최종 접수 전 최신 정책을 다시 확인해 주세요.'
@@ -324,13 +325,17 @@
       row.hidden=true;
       return;
     }
-    const discounted=Math.max(0,rent-Number(example.discount||0));
+    const discount=Math.max(0,Number(example.discount||0));
+    const discounted=Math.max(0,rent-discount);
     row.hidden=false;
     fee.textContent=won(discounted);
+    const baseEl=$('#card-base-monthly'),discountEl=$('#card-discount');
+    if(baseEl)baseEl.textContent=won(rent);
+    if(discountEl)discountEl.textContent='-' + won(discount);
     if(note)note.textContent=[
       example.card?.name||'제휴카드',
       '전월 '+Math.round(example.spend/10000)+'만원',
-      (example.promo?'프로모션 ':'기본 ')+won(example.discount)+' 할인',
+      (example.promo?'프로모션 ':'기본 ')+won(discount)+' 할인',
       example.promo?'프로모션 조건 확인':''
     ].filter(Boolean).join(' · ');
   }
@@ -350,6 +355,9 @@
           const row=$('#generic-card-row'),fee=$('#card-fee'),note=$('#card-fee-note');
           if(row)row.hidden=false;
           if(fee)fee.textContent=won(variant.card);
+          const baseEl=$('#card-base-monthly'),discountEl=$('#card-discount');
+          if(baseEl)baseEl.textContent=variant.monthly==null?'상담 확인':won(variant.monthly);
+          if(discountEl)discountEl.textContent=variant.monthly!=null&&variant.card!=null?'-'+won(Math.max(0,Number(variant.monthly)-Number(variant.card))):'상담 확인';
           if(note)note.textContent='상품 등록 제휴카드 적용 예시 · 최종 조건 상담 확인';
         }else{
           const row=$('#generic-card-row'); if(row)row.hidden=true;
@@ -583,7 +591,15 @@
     $('#monthly-fee').textContent = v.monthly == null ? '상담 확인' : won(v.monthly);
     $('#gift-fee').textContent = v.gift == null ? '상담 확인' : won(v.gift);
     $('#care-cycle').textContent = v.care || '상담 확인';
-    $('#sticky-selection').textContent = optionLabel(v.managementLabel || v.management) + ' · ' + termLabel(v);
+    const selectionSummary = [
+      optionLabel(v.managementLabel || v.management),
+      termLabel(v),
+      v.monthly == null ? '월요금 상담 확인' : '월 ' + won(v.monthly),
+      v.gift == null ? '사은품 상담 확인' : '사은품 ' + won(v.gift)
+    ].filter(Boolean).join(' · ');
+    $('#sticky-selection').textContent = selectionSummary;
+    const selectedSummary=$('#selected-condition-summary');
+    if(selectedSummary)selectedSummary.textContent=selectionSummary;
     $('#sticky-monthly').textContent = v.monthly == null ? '상담 확인' : won(v.monthly);
     $('#sticky-gift').textContent = v.gift == null ? '상담 확인' : won(v.gift);
 
@@ -664,7 +680,8 @@
       optionLabel(v.managementLabel||v.management),
       termLabel(v),
       v.monthly==null?'월요금 상담 확인':'월 '+won(v.monthly),
-      v.gift==null?'사은품 상담 확인':'고객사은품 '+won(v.gift)
+      v.gift==null?'사은품 상담 확인':'고객사은품 '+won(v.gift),
+      '설치비 면제'
     ].filter(Boolean).join(' · ');
     const giftNote=$('#rental-apply-gift-note');
     const giftReturnNote=$('#rental-apply-gift-return-note');
@@ -774,6 +791,14 @@
       const receipt=String(data.receipt?.id||'').slice(0,8);
       const receiptEl=$('#rental-apply-success-receipt');
       if(receiptEl)receiptEl.textContent=receipt?'신청번호 '+receipt:'';
+      const successProduct=$('#rental-success-product'),successCondition=$('#rental-success-condition');
+      if(successProduct)successProduct.textContent=[brandLabel(product.brand),product.name,product.model].filter(Boolean).join(' · ');
+      if(successCondition)successCondition.textContent=[
+        optionLabel(current.v.managementLabel||current.v.management),
+        termLabel(current.v),
+        current.v.monthly==null?'월요금 상담 확인':'월 '+won(current.v.monthly),
+        '설치비 면제'
+      ].filter(Boolean).join(' · ');
       closeDialog($('#rental-apply-dialog'));
       openDialog($('#rental-apply-success-dialog'));
     }catch(error){
