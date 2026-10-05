@@ -275,7 +275,7 @@
     return `
       <article class="recommend-card">
         <a class="recommend-image" data-rental-product-id="${product.id}" data-rental-entry="recommend" href="${productHref(product)}">
-          ${image ? '<img src="' + image + '" alt="' + product.name + '" loading="lazy">' : '<span class="recommend-fallback">W</span>'}
+          ${image ? '<img src="' + image + '" alt="' + product.name + '" loading="lazy" decoding="async">' : '<span class="recommend-fallback">W</span>'}
         </a>
         <div class="recommend-body">
           <div class="recommend-meta">
@@ -495,7 +495,7 @@
     let list=[];try{list=JSON.parse(localStorage.getItem(RECENT_KEY)||'[]')}catch(_){}
     list=(Array.isArray(list)?list:[]).slice(0,5);
     recentSection.hidden=!list.length;
-    recentGrid.innerHTML=list.map(p=>'<article class="recent-card"><a href="'+(p.id?('product/'+encodeURIComponent(String(p.id))+'/'):(p.page||'#'))+'">'+(p.image?'<img src="'+p.image+'" alt="" loading="lazy">':'<span class="recent-fallback">W</span>')+'<div><small>'+((p.brand||'')+(p.model?' · '+p.model:'')).replace(/</g,'&lt;')+'</small><strong>'+String(p.name||'상품').replace(/</g,'&lt;')+'</strong><span>'+(p.minMonthly!=null?'월 '+won(p.minMonthly)+'부터':'월요금 상담 확인')+' · '+(p.maxGift!=null?'사은품 최대 '+won(p.maxGift):'사은품 상담 확인')+'</span></div></a></article>').join('');
+    recentGrid.innerHTML=list.map(p=>'<article class="recent-card"><a href="'+(p.id?('product/'+encodeURIComponent(String(p.id))+'/'):(p.page||'#'))+'">'+(p.image?'<img src="'+p.image+'" alt="" loading="lazy" decoding="async">':'<span class="recent-fallback">W</span>')+'<div><small>'+((p.brand||'')+(p.model?' · '+p.model:'')).replace(/</g,'&lt;')+'</small><strong>'+String(p.name||'상품').replace(/</g,'&lt;')+'</strong><span>'+(p.minMonthly!=null?'월 '+won(p.minMonthly)+'부터':'월요금 상담 확인')+' · '+(p.maxGift!=null?'사은품 최대 '+won(p.maxGift):'사은품 상담 확인')+'</span></div></a></article>').join('');
   }
 
   function openCatalog(scrollIntoView = false) {
