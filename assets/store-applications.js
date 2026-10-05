@@ -181,6 +181,50 @@
     };
   }
 
+  function buildConditionShareUrl(category){
+    const u=new URL('/rates.html',location.origin);
+    ['src','utm_source','utm_medium','utm_campaign','utm_term'].forEach(key=>{const value=new URLSearchParams(location.search).get(key);if(value)u.searchParams.set(key,value);});
+    if(category==='studyphone'){
+      const id=$('studyphone-plan')?.value;if(!id)return '';
+      u.searchParams.set('tab','studyphone');u.searchParams.set('sp',id);
+    }else if(category==='mvno'){
+      const id=$('mvno-plan')?.value;if(!id)return '';
+      u.searchParams.set('tab','mvno');u.searchParams.set('mp',id);
+      const provider=$('mvno-provider')?.value;if(provider)u.searchParams.set('mprov',provider);
+    }else if(category==='prepaid'){
+      const id=$('prepaid-plan')?.value;if(!id)return '';
+      u.searchParams.set('tab','prepaid');u.searchParams.set('pp',id);
+      const provider=$('prepaid-provider')?.value;if(provider)u.searchParams.set('pprov',provider);
+    }else if(category==='internet'){
+      const id=$('internet-product')?.value;if(!id)return '';
+      u.searchParams.set('tab','internet');
+      u.searchParams.set('ic',$('internet-carrier')?.value||'');
+      u.searchParams.set('ip',id);
+      u.searchParams.set('itv',$('tv-product')?.value||'none');
+      u.searchParams.set('itvc',$('tv-count')?.value||'1');
+      u.searchParams.set('iwb',$('wired-bundle')?.value||'none');
+      u.searchParams.set('imb',$('mobile-bundle')?.value||'none');
+      const q=safeText($('wired-quote-number'));if(q&&q!=='견적 생성 전')u.searchParams.set('iq',q);
+    }else return '';
+    return u.toString();
+  }
+  async function shareCondition(category,getContext){
+    const ctx=getContext(),url=buildConditionShareUrl(category);
+    if(!ctx||!url){alert('먼저 상품이나 요금제를 선택해 주세요.');return}
+    const text=(ctx.quote_text||quoteLines(ctx))+'\n같은 조건 다시 보기: '+url;
+    try{
+      if(navigator.share)await navigator.share({title:'웅비통신 '+categoryLabel(category)+' 견적',text,url});
+      else if(navigator.clipboard?.writeText)await navigator.clipboard.writeText(text);
+      else{
+        const area=document.createElement('textarea');area.value=text;area.style.position='fixed';area.style.opacity='0';document.body.append(area);area.select();document.execCommand('copy');area.remove();
+      }
+      const status=category==='internet'?$('wired-quote-status'):category==='mvno'?$('mvno-quote-status'):category==='prepaid'?$('prepaid-quote-status'):$('studyphone-quote-status');
+      if(status)status.textContent=navigator.share?'견적을 공유했습니다.':'같은 조건 링크와 견적을 복사했습니다.';
+    }catch(e){
+      if(e?.name!=='AbortError')alert('견적을 공유하지 못했습니다.');
+    }
+  }
+
   function makeApplyButton(label='신청하기'){
     const button=document.createElement('button');
     button.type='button';button.className='store-apply-btn';button.textContent=label;
@@ -279,7 +323,12 @@
         if(!ctx){alert('먼저 상품이나 요금제를 선택해 주세요.');return}
         openApplication(ctx);
       });
-      host.append(button);
+      const share=document.createElement('button');share.type='button';share.className='store-share-btn';share.dataset.storeShare=category;share.textContent='같은 조건 공유';
+      share.addEventListener('click',()=>shareCondition(category,getContext));
+      host.append(button,share);
+      if(!host.querySelector('.store-apply-trust')){
+        const trust=document.createElement('small');trust.className='store-apply-trust';trust.textContent='신청만으로 개통·계약 확정 X · 개인정보 암호화 저장 · 매장에서 최종 조건 재확인';host.append(trust);
+      }
     });
   }
   function decorateAll(){
