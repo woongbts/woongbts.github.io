@@ -956,6 +956,16 @@
       const receipt=String(data.receipt?.id||'').slice(0,8);
       const receiptEl=$('#rental-apply-success-receipt');
       if(receiptEl)receiptEl.textContent=receipt?'신청번호 '+receipt:'';
+      const statusLink=$('#rental-application-status-link');
+      if(statusLink){
+        if(data.receipt?.lookup_token){
+          statusLink.href='/application-status.html?t='+encodeURIComponent(data.receipt.lookup_token);
+          statusLink.hidden=false;
+        }else{
+          statusLink.hidden=true;
+          statusLink.removeAttribute('href');
+        }
+      }
       const successProduct=$('#rental-success-product'),successCondition=$('#rental-success-condition');
       if(successProduct)successProduct.textContent=[brandLabel(product.brand),product.name,product.model].filter(Boolean).join(' · ');
       if(successCondition)successCondition.textContent=[
