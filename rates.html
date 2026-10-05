@@ -27,7 +27,7 @@
   <link rel="manifest" href="/manifest.webmanifest"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="apple-mobile-web-app-title" content="웅비통신">
   <link rel="stylesheet" href="assets/rates.css?v=20260919-2">
   <link rel="stylesheet" href="assets/readability-20260921.css?v=20260929-2">
-<link rel="stylesheet" href="/assets/customer-polish.css?v=20260930-3"><link rel="stylesheet" href="/assets/mvno-easy.css?v=20260930-7"><link rel="stylesheet" href="/assets/store-applications.css?v=20261005-2"></head>
+<link rel="stylesheet" href="/assets/customer-polish.css?v=20260930-3"><link rel="stylesheet" href="/assets/mvno-easy.css?v=20260930-7"><link rel="stylesheet" href="/assets/store-applications.css?v=20261005-3"></head>
 <body class="rate-page">
   <header class="rate-top">
     <div class="rate-wrap rate-nav">
@@ -560,6 +560,13 @@
       <strong id="store-application-success-title">신청이 접수되었습니다</strong>
       <p>웅비통신 덕천만덕점에서 신청 내용을 확인한 뒤 연락드리겠습니다.</p>
       <small id="store-application-receipt"></small>
+      <ol class="store-success-steps">
+        <li class="active"><span>1</span><div><b>신청 접수</b><small>현재 단계</small></div></li>
+        <li><span>2</span><div><b>매장 확인</b><small>요금·재고·가입조건 재확인</small></div></li>
+        <li><span>3</span><div><b>고객 연락</b><small>최종 조건 안내 및 상담</small></div></li>
+        <li><span>4</span><div><b>개통·처리</b><small>고객 확인 후 진행</small></div></li>
+      </ol>
+      <a id="store-application-status-link" class="store-success-status-link" href="#" hidden>신청 진행상태 확인</a>
       <button id="store-application-success-confirm" type="button">확인</button>
     </div>
   </dialog>
@@ -568,7 +575,7 @@
   <script src="assets/store-sale-policy.js?v=20260928-1" defer></script>
   <script src="assets/quote-handoff.js?v=20260930-2" defer></script>
   <script src="/assets/plan-eligibility.js?v=20260930-3" defer></script>
-<script src="/assets/mvno-api-bridge.min.js?v=20261001-1" defer></script><script src="/assets/mvno-display.js?v=20261001-1" defer></script><script src="/assets/studyphone-api-bridge.min.js?v=20261001-1" defer></script><script src="/assets/internet-api-bridge.min.js?v=20261001-1" defer></script><script src="/assets/plan-recommend-api-bridge.min.js?v=20261001-1" defer></script><script src="assets/rates.min.js?v=20261001-12" defer></script><script src="/assets/internet-ui.min.js?v=20261005-gift1" defer></script><script src="/assets/rates-deeplink.js?v=20261005-1" defer></script><script src="/assets/store-applications.js?v=20261005-1" defer></script>
+<script src="/assets/mvno-api-bridge.min.js?v=20261001-1" defer></script><script src="/assets/mvno-display.js?v=20261001-1" defer></script><script src="/assets/studyphone-api-bridge.min.js?v=20261001-1" defer></script><script src="/assets/internet-api-bridge.min.js?v=20261001-1" defer></script><script src="/assets/plan-recommend-api-bridge.min.js?v=20261001-1" defer></script><script src="assets/rates.min.js?v=20261001-12" defer></script><script src="/assets/internet-ui.min.js?v=20261005-gift1" defer></script><script src="/assets/rates-deeplink.js?v=20261005-1" defer></script><script src="/assets/store-applications.js?v=20261005-2" defer></script>
   <script src="assets/ai-chat.min.js?v=20261002-1" defer></script>
 
   <div class="mobile-quote-bar" id="mobile-quote-bar" hidden>
