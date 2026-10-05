@@ -98,6 +98,7 @@
 .store-application-form>label{display:grid;gap:6px;color:#355d60;font-size:.72rem;font-weight:900}
 .store-application-form input[type=text],
 .store-application-form input[type=tel],
+.store-application-form input[type=email],
 .store-application-form textarea{
   width:100%;box-sizing:border-box;
   padding:11px 12px;
@@ -109,6 +110,19 @@
 .store-application-form textarea{min-height:96px;resize:vertical}
 .store-application-form input:focus,
 .store-application-form textarea:focus{border-color:#55a99f;box-shadow:0 0 0 3px rgba(15,118,110,.08)}
+.store-application-form input[readonly]{background:#f4f7f7;color:#587174}
+.store-internet-fields{display:grid;gap:10px;padding:13px;border:1px solid #d8e5e2;border-radius:13px;background:#f9fcfb}
+.store-internet-fields[hidden]{display:none!important}
+.store-internet-fields-head strong,.store-internet-fields-head small{display:block}
+.store-internet-fields-head strong{color:#245d59;font-size:.8rem}.store-internet-fields-head small{margin-top:3px;color:#748789;font-size:.66rem}
+.store-internet-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.store-internet-grid label{display:grid;gap:6px;color:#355d60;font-size:.7rem;font-weight:900}
+.store-internet-grid .wide{grid-column:1/-1}
+.store-billing-methods{margin:0;padding:10px 11px;border:1px solid #dce7e5;border-radius:11px;background:#fff}
+.store-billing-methods legend{padding:0 5px;color:#355d60;font-size:.7rem;font-weight:900}.store-billing-methods legend b{color:#0f766e}
+.store-billing-methods>label{display:inline-flex;align-items:center;gap:6px;margin:4px 14px 4px 0;color:#48686a;font-size:.72rem;font-weight:800}
+.store-billing-methods input{width:18px;height:18px}
+.store-payment-note{margin:0;color:#718486;font-size:.65rem;line-height:1.5}
 .store-application-policy{
   border:1px solid #dbe6e4;
   border-radius:12px;
@@ -158,6 +172,8 @@
   .store-application-head,.store-application-form{padding-left:14px;padding-right:14px}
   .store-application-intro{padding-left:14px;padding-right:14px}
   .store-application-summary{margin-left:14px;margin-right:14px}
+  .store-internet-grid{grid-template-columns:1fr}.store-internet-grid .wide{grid-column:auto}
+  .store-billing-methods>label{display:flex;margin-right:0}
 }
 
 /* Internet/TV selected quote: keep the primary online application centered below the 2x2 tools */
