@@ -175,3 +175,9 @@
 .store-success-steps li.active{border-color:#b9d9d3;background:#f4fbf9;color:#285d59}.store-success-steps li.active>span{background:#0f766e;color:#fff}
 .store-success-status-link{min-height:42px;margin-top:13px;display:grid;place-items:center;border:1px solid #a9d1ca;border-radius:10px;background:#eff9f6;color:#0f766e;text-decoration:none;font-size:.74rem;font-weight:950}
 .store-success-status-link[hidden]{display:none!important}
+
+.store-share-btn{min-height:40px;padding:8px 12px;border:1px solid #bfd5d1;border-radius:10px;background:#fff;color:#315c5d;font:inherit;font-size:.76rem;font-weight:900;cursor:pointer}
+.store-share-btn:hover{background:#f2f8f6}
+.store-apply-trust{grid-column:1/-1;display:block;width:100%;margin-top:2px;color:#748789;font-size:.64rem;line-height:1.5;text-align:center}
+.consult-copy-tools>.store-share-btn,.wired-quote-tools>.store-share-btn{background:#fff;color:#315c5d}
+@media(max-width:600px){.store-share-btn{min-height:44px;font-size:.8rem}.store-apply-trust{font-size:.68rem}}
