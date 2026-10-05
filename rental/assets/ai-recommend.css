@@ -170,3 +170,29 @@ html.ai-dialog-open .compare-bar{display:none!important}
 @media(max-width:390px){
   .ai-result-actions{grid-template-columns:1fr}.ai-quote-grid{grid-template-columns:1fr}
 }
+
+
+/* Guided AI steps · 2026-10-05 */
+.ai-step-progress{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;margin-bottom:16px}
+.ai-step-progress span{position:relative;padding:7px 5px;border-radius:999px;background:#edf3f2;color:#839493;text-align:center;font-size:.61rem;font-weight:900}
+.ai-step-progress span.done{background:#e5f5f2;color:#4b7772}.ai-step-progress span.active{background:#0f766e;color:#fff}
+.ai-guided-step{display:grid;gap:12px}
+.ai-guided-step[hidden]{display:none!important}
+.ai-guided-step label{display:grid;gap:7px;color:#405f62;font-size:.77rem;font-weight:900}
+.ai-guided-step select{width:100%;min-height:50px;padding:10px 12px;border:1px solid #cbdcda;border-radius:12px;background:#fff;color:#173f42;font:inherit;font-size:.86rem;outline:none}
+.ai-question{margin:0;color:#173f42;font-size:1.02rem;font-weight:950;letter-spacing:-.025em}
+.ai-step-next{width:100%;min-height:48px;border:0;border-radius:12px;background:#173f42;color:#fff;font:inherit;font-size:.8rem;font-weight:950;cursor:pointer}
+.ai-step-nav{display:grid;grid-template-columns:auto 1fr;gap:8px}
+.ai-step-nav>button:first-child{min-height:48px;padding:9px 12px;border:1px solid #d1dfdd;border-radius:12px;background:#fff;color:#587275;font:inherit;font-size:.76rem;font-weight:900;cursor:pointer}
+.ai-step-nav.final .ai-recommend-submit{margin:0;min-height:48px}
+.ai-advanced-details{border:1px solid #d7e5e3;border-radius:13px;background:#fff;overflow:hidden}
+.ai-advanced-details>summary{padding:12px 13px;cursor:pointer;color:#456668;font-size:.75rem;font-weight:950;list-style:none}
+.ai-advanced-details>summary::-webkit-details-marker{display:none}
+.ai-advanced-details>summary:after{content:"＋";float:right;color:#759092}.ai-advanced-details[open]>summary:after{content:"−"}
+.ai-advanced-details>summary small{margin-left:4px;color:#92a0a0;font-size:.62rem}
+.ai-advanced-details .ai-must-have{margin:0;border:0;border-top:1px solid #edf1f0;border-radius:0}
+.ai-advanced-details .ai-preference-label{margin:0;padding:0 13px 13px}
+@media(max-width:560px){
+  .ai-step-progress{gap:3px;margin-bottom:13px}.ai-step-progress span{padding:6px 2px;font-size:.55rem}
+  .ai-question{font-size:.95rem}.ai-step-nav{grid-template-columns:88px 1fr}
+}
