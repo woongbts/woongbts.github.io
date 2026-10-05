@@ -32,10 +32,16 @@ STATIC = {
     "https://woongbts.github.io/": ["index.html","assets/site-pro.css","assets/readability-20260921.css","assets/ai-chat.min.js","assets/analytics-config.js","assets/conversion-tracker.min.js","assets/site-analytics.min.js"],
     "https://woongbts.github.io/rates.html": ["rates.html","assets/rates.min.js","assets/rates.css","assets/conversion-tracker.min.js","sw.js","data/catalog.json","data/plans.json","data/supports.json","data/mvno-postpaid.json","data/prepaid.json","data/internet.json"],
     "https://woongbts.github.io/manduk-mobile.html": ["manduk-mobile.html"],
+    "https://woongbts.github.io/deokcheon-mobile.html": ["deokcheon-mobile.html","assets/local-seo.css"],
+    "https://woongbts.github.io/hwamyeong-mobile.html": ["hwamyeong-mobile.html","assets/local-seo.css"],
+    "https://woongbts.github.io/deokcheon-internet.html": ["deokcheon-internet.html","assets/local-seo.css"],
+    "https://woongbts.github.io/hwamyeong-internet.html": ["hwamyeong-internet.html","assets/local-seo.css"],
     "https://woongbts.github.io/links.html": ["links.html"],
     "https://woongbts.github.io/privacy.html": ["privacy.html"],
     "https://woongbts.github.io/rental/": ["rental/index.html","rental/assets/catalog.js","rental/assets/ai-recommend.js","rental/assets/ai-recommend.css","rental/assets/rental.css","rental/data/featured.json"],
     "https://woongbts.github.io/rental/cards/": ["rental/cards/index.html","rental/assets/cards.js","rental/assets/cards.css","rental/data/affiliate-cards.json"],
+    "https://woongbts.github.io/rental/deokcheon/": ["rental/deokcheon/index.html","assets/local-seo.css"],
+    "https://woongbts.github.io/rental/hwamyeong/": ["rental/hwamyeong/index.html","assets/local-seo.css"],
 }
 
 def latest_date(paths):
@@ -55,10 +61,16 @@ def main():
       "https://woongbts.github.io/":("weekly","1.0"),
       "https://woongbts.github.io/rates.html":("daily","0.9"),
       "https://woongbts.github.io/manduk-mobile.html":("weekly","0.8"),
+      "https://woongbts.github.io/deokcheon-mobile.html":("weekly","0.8"),
+      "https://woongbts.github.io/hwamyeong-mobile.html":("weekly","0.8"),
+      "https://woongbts.github.io/deokcheon-internet.html":("weekly","0.8"),
+      "https://woongbts.github.io/hwamyeong-internet.html":("weekly","0.8"),
       "https://woongbts.github.io/links.html":("monthly","0.5"),
       "https://woongbts.github.io/privacy.html":("yearly","0.4"),
       "https://woongbts.github.io/rental/":("daily","0.9"),
       "https://woongbts.github.io/rental/cards/":("weekly","0.7"),
+      "https://woongbts.github.io/rental/deokcheon/":("weekly","0.75"),
+      "https://woongbts.github.io/rental/hwamyeong/":("weekly","0.75"),
     }
     for loc,paths in STATIC.items():
       freq,prio=priorities[loc]
@@ -86,6 +98,8 @@ def main():
     rental_rows=['<?xml version="1.0" encoding="UTF-8"?>','<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
     rental_rows.append(entry("https://woongbts.github.io/rental/",latest_date(STATIC["https://woongbts.github.io/rental/"]),"daily","0.9"))
     rental_rows.append(entry("https://woongbts.github.io/rental/cards/",latest_date(STATIC["https://woongbts.github.io/rental/cards/"]),"weekly","0.7"))
+    rental_rows.append(entry("https://woongbts.github.io/rental/deokcheon/",latest_date(STATIC["https://woongbts.github.io/rental/deokcheon/"]),"weekly","0.75"))
+    rental_rows.append(entry("https://woongbts.github.io/rental/hwamyeong/",latest_date(STATIC["https://woongbts.github.io/rental/hwamyeong/"]),"weekly","0.75"))
     for category in categories:
       slug=CATEGORY_SLUGS[category]
       if not (ROOT/f"rental/{slug}/index.html").exists(): continue
