@@ -756,3 +756,6 @@
 }
 
 .quote-total[hidden],.product-alternatives-section[hidden]{display:none!important}
+
+.rental-success-status-link{min-height:44px;margin:12px 0 0;display:grid;place-items:center;border:1px solid #afd7cf;border-radius:11px;background:#eef9f6;color:#0f766e;text-decoration:none;font-size:.76rem;font-weight:950}
+.rental-success-status-link[hidden]{display:none!important}
