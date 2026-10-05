@@ -759,3 +759,6 @@
 
 .rental-success-status-link{min-height:44px;margin:12px 0 0;display:grid;place-items:center;border:1px solid #afd7cf;border-radius:11px;background:#eef9f6;color:#0f766e;text-decoration:none;font-size:.76rem;font-weight:950}
 .rental-success-status-link[hidden]{display:none!important}
+
+.rental-cross-sell-section{background:#f7faf9}.rental-cross-sell-box{display:flex;align-items:center;justify-content:space-between;gap:28px;padding:22px;border:1px solid #d9e6e3;border-radius:17px;background:#fff}.rental-cross-sell-box h2{margin:0;color:#31575b;font-size:1.18rem}.rental-cross-sell-box p{margin:6px 0 0;color:#748789;font-size:.72rem;line-height:1.6}.rental-cross-sell-box>div:last-child{display:flex;gap:7px;flex-wrap:wrap}.rental-cross-sell-box a{padding:9px 12px;border-radius:10px;background:#eef7f5;color:#0f766e;text-decoration:none;font-size:.7rem;font-weight:950}
+@media(max-width:700px){.rental-cross-sell-box{display:block;padding:17px}.rental-cross-sell-box>div:last-child{margin-top:13px}.rental-cross-sell-box a{flex:1;text-align:center}}
