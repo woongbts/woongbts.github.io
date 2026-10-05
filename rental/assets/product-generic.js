@@ -213,7 +213,7 @@
       const image=imageCandidatesFor(p)[0]||'';
       const href='/rental/product/'+encodeURIComponent(String(p.id))+'/';
       return '<article class="product-alternative-card">'+
-        '<a class="product-alternative-image" href="'+href+'">'+(image?'<img src="'+image+'" alt="'+p.name+'" loading="lazy">':'<span>W</span>')+'</a>'+
+        '<a class="product-alternative-image" href="'+href+'">'+(image?'<img src="'+image+'" alt="'+p.name+'" loading="lazy" decoding="async">':'<span>W</span>')+'</a>'+
         '<div><small>'+reason+'</small><strong>'+brandLabel(p.brand)+' · '+p.name+'</strong>'+
         '<p>월 '+(m.minMonthly==null?'상담 확인':won(m.minMonthly)+'부터')+(m.maxGift==null?'':' · 사은품 최대 '+won(m.maxGift))+'</p>'+
         '<a href="'+href+'">조건 비교하기 →</a></div></article>';
@@ -1014,6 +1014,7 @@
 
     const img = $('#generic-image');
     const art = $('#generic-art');
+    if(img){img.decoding='async';img.fetchPriority='high';}
     const imageCandidates = imageCandidatesFor(product);
 
     if (imageCandidates.length) {
@@ -1057,7 +1058,7 @@
     const detailBox = $('#generic-detail-images');
     if (detailSection && detailBox && detailImages.length) {
       detailBox.innerHTML = detailImages.map((src, index) =>
-        '<img src="' + src + '" alt="' + product.name + ' 상세 이미지 ' + (index + 1) + '" loading="lazy" referrerpolicy="no-referrer">'
+        '<img src="' + src + '" alt="' + product.name + ' 상세 이미지 ' + (index + 1) + '" loading="lazy" decoding="async" referrerpolicy="no-referrer">'
       ).join('');
       detailSection.hidden = false;
     }
