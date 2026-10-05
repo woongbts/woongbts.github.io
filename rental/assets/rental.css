@@ -790,3 +790,8 @@
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{scroll-behavior:auto!important;transition-duration:.01ms!important;animation-duration:.01ms!important;animation-iteration-count:1!important}
 }
+
+.footer-local-links{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:10px;font-size:.66rem;color:#88aaa6}
+.footer-local-links span{font-weight:900;color:#b4ceca}.footer-local-links a{padding:5px 7px;border:1px solid rgba(255,255,255,.12);border-radius:8px;color:#d9e7e5;text-decoration:none}
+.footer-local-links a:hover{border-color:rgba(255,255,255,.28);background:rgba(255,255,255,.04)}
+@media(max-width:560px){.footer-local-links{gap:6px}.footer-local-links span{width:100%}}
