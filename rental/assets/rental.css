@@ -717,3 +717,40 @@
   .rental-apply-success-dialog{width:calc(100% - 18px)}
   .rental-apply-success-card{max-height:92vh;overflow:auto}
 }
+
+
+/* Customer transparency & comparison UX · 2026-10-05 */
+.quote-total{grid-column:1/-1;display:grid;grid-template-columns:1fr auto;gap:4px 12px;padding:13px 15px;border-top:1px solid #e1e9e7;background:#fbfdfc}
+.quote-total small{align-self:center;color:#718486;font-size:.72rem;font-weight:900}
+.quote-total strong{color:#274f52;font-size:1rem;white-space:nowrap}
+.quote-total span{grid-column:1/-1;color:#8a9999;font-size:.6rem;line-height:1.45}
+
+.installation-quick-note{display:flex;align-items:center;gap:9px;margin:12px 0;padding:10px 12px;border-radius:12px;background:#eef8f6;color:#496a68}
+.installation-quick-note b{flex:0 0 auto;color:#0f766e;font-size:.7rem}.installation-quick-note span{font-size:.65rem;line-height:1.45}
+
+.contract-key-box{margin:12px 0;padding:14px;border:1px solid #d7e4e1;border-radius:15px;background:#fff}
+.contract-key-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:10px}.contract-key-head strong{font-size:.78rem;color:#31595b}.contract-key-head small{color:#8a9999;font-size:.58rem}
+.contract-key-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}.contract-key-grid>div{padding:10px;border-radius:10px;background:#f6f9f8}.contract-key-grid span,.contract-key-grid b{display:block}.contract-key-grid span{color:#7a8d8e;font-size:.59rem}.contract-key-grid b{margin-top:4px;color:#31595b;font-size:.67rem;line-height:1.4}
+
+.product-alternatives-section{background:#fff}.product-alternatives-head h2{margin:4px 0 0;font-size:1.35rem}.product-alternatives-head p{margin:6px 0 0;color:#718486;font-size:.72rem;line-height:1.55}
+.product-alternative-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:16px}.product-alternative-card{display:grid;grid-template-columns:110px 1fr;gap:12px;padding:12px;border:1px solid #dbe7e5;border-radius:15px;background:#f9fbfb}.product-alternative-image{height:110px;display:grid;place-items:center;border-radius:11px;background:#f3f5f3;overflow:hidden}.product-alternative-image img{width:100%;height:100%;object-fit:contain;padding:5px}.product-alternative-image span{width:42px;height:42px;display:grid;place-items:center;border-radius:12px;background:#168fd1;color:#fff;font-weight:1000}
+.product-alternative-card>div{min-width:0}.product-alternative-card small{display:block;color:#0f766e;font-size:.59rem;font-weight:950}.product-alternative-card strong{display:block;margin-top:3px;color:#31595b;font-size:.76rem;line-height:1.35}.product-alternative-card p{margin:7px 0 0;color:#708486;font-size:.62rem;line-height:1.5}.product-alternative-card>div>a{display:inline-block;margin-top:9px;color:#0f766e;text-decoration:none;font-size:.64rem;font-weight:950}
+
+.rental-billing-optional{margin:13px 0;border:1px solid #d9e5e3;border-radius:13px;background:#fafcfc;overflow:hidden}
+.rental-billing-optional>summary{padding:12px 13px;cursor:pointer;color:#48686a;font-size:.72rem;font-weight:950;list-style:none}.rental-billing-optional>summary::-webkit-details-marker{display:none}.rental-billing-optional>summary:after{content:"＋";float:right;color:#809293}.rental-billing-optional[open]>summary:after{content:"−"}.rental-billing-optional>summary small{margin-left:5px;padding:3px 6px;border-radius:999px;background:#edf4f3;color:#6d8586;font-size:.57rem}
+.rental-billing-inner{padding:0 13px 13px;border-top:1px solid #edf1f0}.rental-billing-inner .rental-billing-methods{margin-top:11px}
+
+.compare-strengths{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin:0 0 12px}.compare-strengths article{padding:10px;border:1px solid #dce7e5;border-radius:11px;background:#f8fbfa}.compare-strengths strong{display:block;color:#31595b;font-size:.67rem;line-height:1.35}.compare-strengths div{display:flex;gap:4px;flex-wrap:wrap;margin-top:7px}.compare-strengths span{padding:4px 6px;border-radius:999px;background:#e8f6f2;color:#0f766e;font-size:.55rem;font-weight:950}
+
+@media(max-width:780px){
+  .product-alternative-grid{grid-template-columns:1fr}
+  .contract-key-grid{grid-template-columns:1fr 1fr}
+  .compare-strengths{grid-template-columns:1fr}
+}
+@media(max-width:560px){
+  .quote-total{padding:11px 12px}.quote-total strong{font-size:.9rem}
+  .installation-quick-note{display:block}.installation-quick-note span{display:block;margin-top:3px}
+  .contract-key-head{display:block}.contract-key-head small{display:block;margin-top:3px}.contract-key-grid{grid-template-columns:1fr 1fr}
+  .product-alternative-card{grid-template-columns:92px 1fr}.product-alternative-image{height:92px}
+  .detail-actions{grid-template-columns:1fr 1fr!important}.detail-actions .consult-copy-help{grid-column:1/-1}
+}
