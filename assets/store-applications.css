@@ -1,0 +1,161 @@
+/* Online consultation applications · 2026-10-05 */
+.store-apply-btn{
+  min-height:40px;
+  padding:8px 12px;
+  border:0;
+  border-radius:10px;
+  background:#0f766e;
+  color:#fff;
+  font:inherit;
+  font-size:.78rem;
+  font-weight:900;
+  cursor:pointer;
+}
+.store-apply-btn:hover{background:#0b635d}
+.store-studyphone-item,
+.store-mvno-picker-item{display:grid;gap:7px}
+.store-studyphone-item>.studyphone-plan-card,
+.store-mvno-picker-item>.plan-option-card{width:100%}
+.store-studyphone-item>.store-apply-btn,
+.store-mvno-picker-item>.store-apply-btn{width:100%}
+.mvno-recommend-actions .store-apply-btn{background:#0f766e;color:#fff}
+.wired-compare-card>.store-apply-btn{width:100%;margin-top:8px}
+.consult-copy-tools>.store-apply-btn,
+.wired-quote-tools>.store-apply-btn{background:#0f766e;color:#fff}
+
+.store-prepaid-products{
+  margin:16px 0;
+  padding:15px;
+  border:1px solid #d6e4e2;
+  border-radius:16px;
+  background:#f8fbfa;
+}
+.store-prepaid-products[hidden]{display:none!important}
+.store-prepaid-head{display:flex;align-items:end;justify-content:space-between;gap:12px;margin-bottom:10px}
+.store-prepaid-head strong{color:#244f52;font-size:.9rem}
+.store-prepaid-head small{color:#778b8d;font-size:.68rem}
+.store-prepaid-list{display:grid;gap:7px}
+.store-prepaid-list article{
+  display:grid;
+  grid-template-columns:1fr auto;
+  align-items:center;
+  gap:10px;
+  padding:11px 12px;
+  border:1px solid #e0e8e7;
+  border-radius:11px;
+  background:#fff;
+}
+.store-prepaid-list article strong,
+.store-prepaid-list article small{display:block}
+.store-prepaid-list article strong{color:#31575b;font-size:.78rem}
+.store-prepaid-list article small{margin-top:3px;color:#809193;font-size:.65rem}
+
+.store-application-dialog,
+.store-application-success{
+  width:min(620px,calc(100% - 24px));
+  max-height:92vh;
+  padding:0;
+  border:0;
+  border-radius:22px;
+  background:#fff;
+  color:#173f42;
+  box-shadow:0 28px 90px rgba(5,29,33,.32);
+}
+.store-application-dialog::backdrop,
+.store-application-success::backdrop{background:rgba(7,27,31,.62);backdrop-filter:blur(5px)}
+.store-application-shell{max-height:92vh;overflow:auto}
+.store-application-head{
+  position:sticky;top:0;z-index:2;
+  display:flex;align-items:flex-start;justify-content:space-between;gap:14px;
+  padding:18px 20px;
+  border-bottom:1px solid #e1e9e7;
+  background:rgba(255,255,255,.97);
+  backdrop-filter:blur(12px);
+}
+.store-application-head span{display:block;color:#168fd1;font-size:.65rem;font-weight:950}
+.store-application-head strong{display:block;margin-top:3px;font-size:1.05rem;line-height:1.35}
+.store-application-head button{
+  flex:0 0 auto;width:38px;height:38px;border:0;border-radius:50%;
+  background:#edf5f4;color:#48686a;font-size:1.25rem;cursor:pointer
+}
+.store-application-intro{
+  padding:14px 20px;
+  background:#eef8f6;
+}
+.store-application-intro strong{display:block;color:#245d59;font-size:.82rem}
+.store-application-intro p{margin:5px 0 0;color:#688082;font-size:.72rem;line-height:1.55}
+.store-application-summary{
+  margin:14px 20px 0;
+  padding:11px 12px;
+  border:1px solid #d8e5e2;
+  border-radius:11px;
+  background:#fafcfc;
+  color:#48686a;
+  font-size:.7rem;
+  line-height:1.55;
+}
+.store-application-form{display:grid;gap:12px;padding:16px 20px 20px}
+.store-application-form>label{display:grid;gap:6px;color:#355d60;font-size:.72rem;font-weight:900}
+.store-application-form input[type=text],
+.store-application-form input[type=tel],
+.store-application-form textarea{
+  width:100%;box-sizing:border-box;
+  padding:11px 12px;
+  border:1px solid #ccdcd9;
+  border-radius:10px;
+  background:#fff;color:#173f42;
+  font:inherit;font-size:.78rem;outline:none;
+}
+.store-application-form textarea{min-height:96px;resize:vertical}
+.store-application-form input:focus,
+.store-application-form textarea:focus{border-color:#55a99f;box-shadow:0 0 0 3px rgba(15,118,110,.08)}
+.store-application-policy{
+  border:1px solid #dbe6e4;
+  border-radius:12px;
+  background:#fbfdfc;
+  overflow:hidden;
+}
+.store-application-policy summary{padding:11px 12px;cursor:pointer;color:#48686a;font-size:.7rem;font-weight:900}
+.store-application-policy div{padding:0 12px 11px;color:#718486;font-size:.65rem;line-height:1.55}
+.store-application-policy p{margin:7px 0}
+.store-application-policy-state{margin:0 0 5px!important;color:#839293!important;font-size:.6rem!important}
+.store-application-consent{
+  display:flex!important;grid-template-columns:none!important;
+  align-items:flex-start;gap:8px!important;
+  padding:11px 12px;border-radius:11px;background:#f0f8f6;
+  color:#31595b!important;line-height:1.5
+}
+.store-application-consent input{width:19px;height:19px;margin-top:1px;flex:0 0 auto}
+.store-application-actions{display:grid;grid-template-columns:1fr auto;gap:8px}
+.store-application-actions button{
+  min-height:44px;padding:9px 12px;border-radius:10px;font:inherit;font-size:.76rem;font-weight:900;cursor:pointer
+}
+#store-application-submit{border:0;background:#0f766e;color:#fff}
+#store-application-cancel{border:1px solid #cfdddb;background:#fff;color:#5a7274}
+#store-application-submit:disabled{opacity:.55;cursor:wait}
+.store-application-status{min-height:1.3em;margin:0;color:#9a5d18;font-size:.66rem}
+.store-honeypot{position:absolute!important;left:-10000px!important;width:1px!important;height:1px!important;opacity:0!important}
+
+.store-success-card{padding:25px 22px;text-align:center}
+.store-success-icon{
+  width:52px;height:52px;margin:0 auto 12px;
+  display:grid;place-items:center;border-radius:50%;
+  background:#e4f6f2;color:#0f766e;font-size:1.4rem;font-weight:1000
+}
+.store-success-card strong{display:block;color:#244f52;font-size:1.12rem}
+.store-success-card p{margin:7px 0 0;color:#718486;font-size:.74rem;line-height:1.55}
+.store-success-card small{display:block;margin-top:8px;color:#8a9999;font-size:.63rem}
+.store-success-card button{
+  width:100%;min-height:44px;margin-top:17px;border:0;border-radius:10px;
+  background:#173f42;color:#fff;font:inherit;font-size:.78rem;font-weight:900
+}
+
+@media(max-width:600px){
+  .store-apply-btn{font-size:.82rem;min-height:44px}
+  .store-prepaid-head{display:block}.store-prepaid-head small{display:block;margin-top:3px}
+  .store-prepaid-list article{grid-template-columns:1fr auto}
+  .store-application-dialog,.store-application-success{width:calc(100% - 12px);border-radius:18px}
+  .store-application-head,.store-application-form{padding-left:14px;padding-right:14px}
+  .store-application-intro{padding-left:14px;padding-right:14px}
+  .store-application-summary{margin-left:14px;margin-right:14px}
+}
