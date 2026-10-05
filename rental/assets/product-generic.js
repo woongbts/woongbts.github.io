@@ -597,7 +597,10 @@
       v.monthly == null ? '월요금 상담 확인' : '월 ' + won(v.monthly),
       v.gift == null ? '사은품 상담 확인' : '사은품 ' + won(v.gift)
     ].filter(Boolean).join(' · ');
-    $('#sticky-selection').textContent = selectionSummary;
+    $('#sticky-selection').textContent = [
+      optionLabel(v.managementLabel || v.management),
+      termLabel(v)
+    ].filter(Boolean).join(' · ');
     const selectedSummary=$('#selected-condition-summary');
     if(selectedSummary)selectedSummary.textContent=selectionSummary;
     $('#sticky-monthly').textContent = v.monthly == null ? '상담 확인' : won(v.monthly);
