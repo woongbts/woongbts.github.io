@@ -1127,11 +1127,12 @@
   ])
     .then(([data, giftData, overrideData]) => {
       applyPolicyMonth(giftData?.generatedAt || data?.updatedAt || '');
-      const target = (data.products || []).find(p => p.id === id);
-      const catalogOverride = overrideData?.products?.[id];
-      if (target && catalogOverride) Object.assign(target, catalogOverride);
-      const override = giftData?.products?.[id];
-      if (target && override && target.sourceKind === 'clover-import') Object.assign(target, override);
+      (data.products || []).forEach(item => {
+        const catalogOverride = overrideData?.products?.[item.id];
+        if (catalogOverride) Object.assign(item, catalogOverride);
+        const giftOverride = giftData?.products?.[item.id];
+        if (giftOverride && item.sourceKind === 'clover-import') Object.assign(item, giftOverride);
+      });
       initialize(data);
     })
     .catch(() => {
