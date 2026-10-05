@@ -762,3 +762,31 @@
 
 .rental-cross-sell-section{background:#f7faf9}.rental-cross-sell-box{display:flex;align-items:center;justify-content:space-between;gap:28px;padding:22px;border:1px solid #d9e6e3;border-radius:17px;background:#fff}.rental-cross-sell-box h2{margin:0;color:#31575b;font-size:1.18rem}.rental-cross-sell-box p{margin:6px 0 0;color:#748789;font-size:.72rem;line-height:1.6}.rental-cross-sell-box>div:last-child{display:flex;gap:7px;flex-wrap:wrap}.rental-cross-sell-box a{padding:9px 12px;border-radius:10px;background:#eef7f5;color:#0f766e;text-decoration:none;font-size:.7rem;font-weight:950}
 @media(max-width:700px){.rental-cross-sell-box{display:block;padding:17px}.rental-cross-sell-box>div:last-child{margin-top:13px}.rental-cross-sell-box a{flex:1;text-align:center}}
+
+
+/* Mobile readability + render performance · 2026-10-05 */
+@supports (content-visibility:auto){
+  .section{content-visibility:auto;contain-intrinsic-size:720px}
+  .recommend-section,.catalog-panel,.generic-source-detail{contain-intrinsic-size:900px}
+}
+@media(max-width:560px){
+  .recommend-body small{font-size:.76rem;line-height:1.4}
+  .recommend-body h3{font-size:1.12rem}
+  .recommend-prices span{font-size:.94rem}.recommend-prices strong{font-size:1.03rem}
+  .recommend-link,.compare-toggle.small{min-height:42px;align-items:center;font-size:.78rem}
+  .catalog-prices small{font-size:.77rem}.catalog-meta,.catalog-count{font-size:.76rem;line-height:1.45}
+  .appliance-category small{font-size:.74rem!important}
+  .apply-reassurance strong,.rental-apply-reassurance b{font-size:.82rem}
+  .apply-reassurance span,.rental-apply-reassurance span{font-size:.74rem}
+  .contract-key-grid span{font-size:.68rem}.contract-key-grid b{font-size:.75rem}
+  .installation-quick-note b{font-size:.76rem}.installation-quick-note span{font-size:.72rem}
+  .product-faq-list summary{font-size:.86rem}.product-faq-list p{font-size:.78rem}
+  .rental-success-selected b{font-size:.78rem}.rental-success-selected span{font-size:.7rem}
+  .rental-success-steps b{font-size:.75rem}.rental-success-steps small{font-size:.66rem}
+  .rental-apply-grid label,.rental-billing>label,.rental-inquiry-label{font-size:.82rem}
+  .rental-consent-check b{font-size:.84rem}.rental-consent-check small,.rental-consent-box summary,.rental-consent-box details p,.rental-marketing-note{font-size:.74rem}
+  .detail-actions .btn,.sticky-quote button,.sticky-quote a{min-height:44px}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{scroll-behavior:auto!important;transition-duration:.01ms!important;animation-duration:.01ms!important;animation-iteration-count:1!important}
+}
