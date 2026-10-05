@@ -203,7 +203,7 @@ body.home-modern{
   border-top:1px solid #dce7e5;
 }
 .home-modern .home-trust-rail>div,
- .home-modern .home-trust-rail>.trust-cert{
+.home-modern .home-trust-rail>.precon-badge{
   min-height:86px;
   display:flex;
   flex-direction:column;
@@ -226,11 +226,6 @@ body.home-modern{
   letter-spacing:-.03em;
 }
 .home-modern .home-trust-rail small{margin-top:2px;color:#879697;font-size:.57rem}
-.home-modern .trust-cert{
-  flex-direction:row!important;
-  align-items:center;
-  gap:10px;
-}
 .home-modern .home-trust-rail .precon-badge{
   min-height:86px;
   padding:14px 20px;
@@ -243,10 +238,11 @@ body.home-modern{
 }
 .home-modern .home-trust-rail .precon-badge:hover{background:#f7fbfa;border-color:#e3ecea}
 .home-modern .home-trust-rail .precon-badge .precon-official-mark{width:54px;height:auto}
-.home-modern .trust-cert img{width:54px;height:auto;object-fit:contain}
-.home-modern .trust-cert span{display:block}
-.home-modern .trust-cert b{display:block;color:#294e53;font-size:.75rem}
-.home-modern .trust-cert small{display:block;margin-top:3px}
+.home-modern .home-trust-rail .precon-badge{flex-direction:row!important;align-items:center;gap:10px}
+.home-modern .home-trust-rail .precon-badge img{width:54px;height:auto;object-fit:contain}
+.home-modern .home-trust-rail .precon-badge span{display:block}
+.home-modern .home-trust-rail .precon-badge b{display:block;color:#294e53;font-size:.75rem}
+.home-modern .home-trust-rail .precon-badge small{display:block;margin-top:3px}
 
 /* Shared section typography */
 .home-modern .content{padding:88px 0}
@@ -641,7 +637,7 @@ body.home-modern{
     grid-template-columns:1fr 1fr;
   }
   .home-modern .home-trust-rail>div,
-  .home-modern .home-trust-rail>.trust-cert{
+  .home-modern .home-trust-rail>.precon-badge{
     min-height:72px;
     padding:10px;
     border-right:1px solid #e3ecea;
