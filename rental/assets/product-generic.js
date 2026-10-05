@@ -177,7 +177,7 @@
   function productMetrics(p) {
     const options=(p?.options||[]).filter(isSellableOption);
     const monthly=options.map(o=>Number(o.monthly)).filter(n=>Number.isFinite(n)&&n>0);
-    const gifts=options.map(o=>Number(o.gift)).filter(n=>Number.isFinite(n)&&n>=0);
+    const gifts=options.filter(o=>o.gift!==null&&o.gift!==undefined&&o.gift!=='').map(o=>Number(o.gift)).filter(n=>Number.isFinite(n)&&n>=0);
     return {
       minMonthly:monthly.length?Math.min(...monthly):null,
       maxGift:gifts.length?Math.max(...gifts):null
@@ -186,7 +186,7 @@
   function renderAlternatives() {
     const section=$('#product-alternatives'),grid=$('#product-alternative-grid'),v=currentVariant();
     if(!section||!grid||!product||!v||!allProducts.length)return;
-    const currentMonthly=Number(v.monthly),currentGift=Number(v.gift);
+    const currentMonthly=v.monthly==null?NaN:Number(v.monthly),currentGift=v.gift==null?NaN:Number(v.gift);
     const pool=allProducts
       .filter(p=>p.id!==product.id&&p.category===product.category&&p.availability!=='inactive')
       .filter(p=>!/단종|접수불가|접수중지/.test(String(p.name||'')))
