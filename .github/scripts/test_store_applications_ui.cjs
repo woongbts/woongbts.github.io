@@ -1,0 +1,21 @@
+const assert=require('node:assert/strict');
+const fs=require('node:fs');
+const html=fs.readFileSync('rates.html','utf8');
+const app=fs.readFileSync('assets/store-applications.js','utf8');
+const internet=fs.readFileSync('assets/internet-ui.min.js','utf8');
+
+assert.match(html,/id="store-application-dialog"/);
+assert.match(html,/id="store-application-name"/);
+assert.match(html,/id="store-application-phone"/);
+assert.match(html,/id="store-application-inquiry"/);
+assert.match(html,/id="store-application-consent"/);
+assert.match(html,/매장에서 확인하고 연락드리겠습니다/);
+assert.match(app,/api\/store-application-policy/);
+assert.match(app,/api\/store-application/);
+for(const category of ['studyphone','mvno','prepaid','internet'])assert.ok(app.includes(category));
+assert.match(app,/wired-compare-card/);
+assert.match(app,/mvno-recommend-card/);
+assert.match(app,/studyphone-plan-card/);
+assert.match(app,/store-prepaid-products/);
+assert.ok(internet.includes('고객사은품:'),'인터넷·TV 견적 복사 문구에 고객사은품이 없습니다.');
+console.log('Store application UI and Internet/TV gift quote checks passed.');
