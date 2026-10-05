@@ -374,6 +374,23 @@
     finally{button.disabled=false}
   }
 
+  function syncCrossSell(){
+    const active=document.querySelector('.rate-tab.active')?.dataset.tab||new URLSearchParams(location.search).get('wbtab')||new URLSearchParams(location.search).get('tab')||'mobile';
+    const link=$('rate-cross-sell-primary');if(!link)return;
+    if(active==='internet'){
+      link.href='/rates.html?src=internet-crosssell';
+      link.querySelector('b').textContent='휴대폰 요금도 같이 계산';
+      link.querySelector('small').textContent='인터넷과 묶을 휴대폰 요금까지 같이 확인해 보세요.';
+      link.querySelector('span').textContent='휴대폰 계산 →';
+    }else{
+      link.href='/rates.html?tab=internet&src=telecom-crosssell';
+      link.querySelector('b').textContent='인터넷·TV 결합 확인';
+      link.querySelector('small').textContent='휴대폰과 함께 쓰는 결합조건을 같이 비교해 보세요.';
+      link.querySelector('span').textContent='인터넷·TV 확인 →';
+    }
+  }
+  document.addEventListener('click',e=>{if(e.target.closest('.rate-tab'))setTimeout(syncCrossSell,80);});
+
   function boot(){
     const form=$('store-application-form');
     form?.addEventListener('submit',submit);
@@ -388,7 +405,7 @@
     ['studyphone-plan-list','mvno-recommend-list','mvno-plan-picker-list','wired-compare-results'].forEach(id=>{
       const el=$(id);if(el)observer.observe(el,{childList:true,subtree:true});
     });
-    loadPolicy();decorateAll();
+    loadPolicy();decorateAll();syncCrossSell();
   }
   document.readyState==='loading'?document.addEventListener('DOMContentLoaded',boot,{once:true}):boot();
 })();
