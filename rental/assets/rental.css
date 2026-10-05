@@ -754,3 +754,5 @@
   .product-alternative-card{grid-template-columns:92px 1fr}.product-alternative-image{height:92px}
   .detail-actions{grid-template-columns:1fr 1fr!important}.detail-actions .consult-copy-help{grid-column:1/-1}
 }
+
+.quote-total[hidden],.product-alternatives-section[hidden]{display:none!important}
