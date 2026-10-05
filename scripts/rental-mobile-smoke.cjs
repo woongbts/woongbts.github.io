@@ -68,14 +68,25 @@ function assert(condition, message) {
   const guideHref = await page.locator('#rental-guides a[href="water-purifier/"]').getAttribute('href');
   assert(guideHref === 'water-purifier/', '정수기 SEO 가이드 링크가 올바르지 않습니다.');
   assert(await page.locator('.rental-card-guide-box a[href="cards/"]').count() === 1, '메인 제휴카드 비교 링크가 없습니다.');
+  await page.waitForTimeout(80);
+  assert(await page.locator('#recommend-progress').count() === 1, '모바일 추천상품 진행 표시가 없습니다.');
+  const recommendCardWidth = await page.locator('.recommend-card').first().evaluate(el => el.getBoundingClientRect().width);
+  const recommendGridWidth = await page.locator('#recommend-grid').evaluate(el => el.getBoundingClientRect().width);
+  assert(recommendCardWidth >= recommendGridWidth * 0.85, '모바일 추천상품 카드가 한 장 중심으로 보이지 않습니다.');
 
 
   // AI 추천: 필수조건, 정책 기준, 비교담기, 카카오 상담, 신청 링크를 모바일에서 검증합니다.
   await page.locator('[data-ai-recommend-open]').first().click();
   await page.waitForSelector('#ai-recommend-dialog[open]');
   await page.waitForFunction(() => document.querySelector('#ai-category')?.value === '정수기');
+  assert(await page.locator('[data-ai-step="1"]:not([hidden])').count() === 1, 'AI 추천 1단계가 보이지 않습니다.');
+  await page.locator('[data-ai-next="2"]').click();
   await page.locator('#ai-budget').selectOption('40000');
+  await page.locator('[data-ai-next="3"]').click();
   await page.locator('#ai-management').selectOption('self');
+  await page.locator('[data-ai-next="4"]').click();
+  assert(await page.locator('[data-ai-step="4"]:not([hidden])').count() === 1, 'AI 추천 4단계까지 이동하지 못합니다.');
+  await page.locator('.ai-advanced-details').evaluate(el => { el.open = true; });
   await page.locator('#ai-budget-strict').check();
   await page.locator('#ai-management-strict').check();
   await page.locator('[data-ai-must-feature="direct"]').check();
@@ -168,10 +179,17 @@ function assert(condition, message) {
   const cowayMattress = await page.locator('.catalog-card').filter({hasText:'BEREX'}).count();
   assert(cowayMattress >= 1, '코웨이 BEREX 매트리스가 매트리스 카테고리에 표시되지 않습니다.');
 
-  await page.locator('.catalog-card [data-compare-product]').first().click();
+  const compareButtons = page.locator('.catalog-card [data-compare-product]');
+  const compareCount = await compareButtons.count();
+  assert(compareCount >= 2, '차이 비교 테스트에 필요한 상품이 2개 미만입니다.');
+  await compareButtons.nth(0).click();
+  await compareButtons.nth(1).click();
   assert(await page.locator('#compare-bar').count() === 1, '상품 비교담기 바가 표시되지 않습니다.');
   await page.locator('#open-compare').click();
   assert(await page.locator('#compare-modal.open').count() === 1, '상품 비교 모달이 열리지 않습니다.');
+  assert(await page.locator('#compare-diff-toggle').count() === 1, '차이만 보기 비교 기능이 없습니다.');
+  const compareHeading = await page.locator('.compare-title-row h2').textContent();
+  assert(compareHeading.includes('서로 다른 조건'), '비교창이 차이 중심으로 안내되지 않습니다.');
   await page.locator('.compare-close').click();
   const firstActionHeight = await page.locator('.catalog-card .product-actions .btn').first().evaluate(el => el.getBoundingClientRect().height);
   assert(firstActionHeight >= 44, '모바일 상품 버튼 높이가 44px 미만입니다.');
@@ -214,6 +232,17 @@ function assert(condition, message) {
   const cowayCardNote = await page.locator('#card-fee-note').textContent();
   assert(cowayMonthly > 0 && cowayCardMonthly === Math.max(0,cowayMonthly - 13000), '코웨이 대표 제휴카드 예상 월요금 계산이 올바르지 않습니다.');
   assert(cowayCardNote.includes('전월 30만원') && cowayCardNote.includes('13,000원 할인'), '제휴카드 예상 월요금 계산 근거가 표시되지 않습니다.');
+  const baseMonthlyText = await page.locator('#card-base-monthly').textContent();
+  const cardDiscountText = await page.locator('#card-discount').textContent();
+  assert(baseMonthlyText.includes('38,900원') && cardDiscountText.includes('-13,000원'), '실제 월 부담 계산기의 렌탈료/카드할인 내역이 올바르지 않습니다.');
+  const selectedSummaryText = await page.locator('#selected-condition-summary').textContent();
+  assert(selectedSummaryText.includes('월 ') && selectedSummaryText.includes('사은품'), '현재 선택 조건 한줄 요약이 표시되지 않습니다.');
+  assert(await page.locator('#product-faq details').count() >= 6, '상품 FAQ가 충분히 표시되지 않습니다.');
+  const faqText = await page.locator('#product-faq').textContent();
+  assert(faqText.includes('설치비는 면제') && faqText.includes('제휴카드는 꼭'), 'FAQ에 설치비 면제/제휴카드 안내가 없습니다.');
+  assert(await page.locator('.product-extra-details:not([open])').count() === 1, '부가정보가 기본 접힘 상태가 아닙니다.');
+  const reassuranceText = await page.locator('.apply-reassurance').textContent();
+  assert(reassuranceText.includes('신청 즉시 결제되지 않습니다') && reassuranceText.includes('설치비 면제'), '신청 전 안심 안내가 없습니다.');
   await page.locator('#card-fee-more').scrollIntoViewIfNeeded();
   const cardScrollBefore = await page.evaluate(() => window.scrollY);
   await page.locator('#card-fee-more').click();
@@ -231,6 +260,8 @@ function assert(condition, message) {
 
   await page.locator('#rental-apply-open').click();
   assert(await page.locator('#rental-apply-dialog[open]').count() === 1, '온라인 렌탈 신청창이 열리지 않습니다.');
+  const applyReassuranceText = await page.locator('.rental-apply-reassurance').textContent();
+  assert(applyReassuranceText.includes('결제되거나 계약이 확정되지 않습니다') && applyReassuranceText.includes('설치비 면제'), '신청창 안심 안내가 없습니다.');
   assert(await page.locator('#rental-apply-company').count() === 1, '신청 스팸 방지 honeypot 필드가 없습니다.');
   const honeypotBox = await page.locator('#rental-apply-company').boundingBox();
   assert(!honeypotBox || honeypotBox.x < 0 || honeypotBox.width <= 1, 'honeypot 필드가 고객 화면에 노출됩니다.');
@@ -254,8 +285,13 @@ function assert(condition, message) {
   assert(submittedRentalBody && submittedRentalBody.product_url && /[?&]src=naver-search/.test(submittedRentalBody.product_url), '렌탈 신청에 유입경로가 이어지지 않습니다.');
   assert(await page.locator('#rental-apply-dialog[open]').count() === 0, '신청 성공 후 입력창이 닫히지 않습니다.');
   const successTitle = await page.locator('#rental-apply-success-title').textContent();
-  const successMessage = await page.locator('#rental-apply-success-dialog p').textContent();
-  assert(successTitle.includes('신청이 접수되었습니다') && successMessage.includes('확인 후 연락드리겠습니다'), '신청 완료 팝업 문구가 올바르지 않습니다.');
+  const successMessage = await page.locator('#rental-apply-success-dialog > .rental-apply-success-card > p').textContent();
+  assert(successTitle.includes('신청이 접수되었습니다') && successMessage.includes('조건을 확인하고 연락'), '신청 완료 팝업 문구가 올바르지 않습니다.');
+  assert(await page.locator('.rental-success-steps li').count() === 5, '신청 이후 진행단계가 5단계로 표시되지 않습니다.');
+  const successFlowText = await page.locator('.rental-success-steps').textContent();
+  assert(successFlowText.includes('렌탈사 공식 접수') && successFlowText.includes('설치비 면제'), '신청 완료 후 다음 단계 안내가 부족합니다.');
+  const successCondition = await page.locator('#rental-success-condition').textContent();
+  assert(successCondition.includes('설치비 면제'), '신청 완료 선택조건에 설치비 면제가 표시되지 않습니다.');
   const applySuccess = await page.evaluate(() => JSON.parse(localStorage.getItem('wb_conversion_events_v1') || '[]').some(x => x.type === 'rental_apply_success'));
   assert(applySuccess, '렌탈 신청 성공 전환 이벤트가 기록되지 않았습니다.');
   const crmSaved = await page.evaluate(() => JSON.parse(localStorage.getItem('wb_rental_crm_v1') || '[]')[0] || null);
