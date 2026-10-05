@@ -7,6 +7,7 @@
   let salesSignals=new Map();
 
   function digits(value){return String(value||'').replace(/\D/g,'');}
+  function hasSensitivePaymentNumber(value){return /(?:\d[ -]?){12,19}/.test(String(value||''));}
   function moneyValue(text){
     const raw=String(text||'');
     if(/미지급/.test(raw))return 0;
@@ -100,6 +101,16 @@
     $('store-application-name').value='';
     $('store-application-phone').value='';
     $('store-application-inquiry').value='';
+    const internetFields=$('store-internet-fields');
+    const isInternet=ctx.category==='internet';
+    if(internetFields)internetFields.hidden=!isInternet;
+    const carrierInput=$('store-application-internet-carrier');
+    const emailInput=$('store-application-email');
+    const addressInput=$('store-application-address');
+    if(carrierInput)carrierInput.value=isInternet?(ctx.provider||''):'';
+    if(emailInput){emailInput.value='';emailInput.required=isInternet;}
+    if(addressInput){addressInput.value='';addressInput.required=isInternet;}
+    document.querySelectorAll('input[name="store_billing_method"]').forEach(input=>{input.checked=false;input.required=isInternet;});
     $('store-application-consent').checked=false;
     $('store-application-honeypot').value='';
     $('store-application-status').textContent=policy?'':'개인정보 처리 안내를 확인하는 중입니다.';
@@ -384,8 +395,17 @@
     if($('store-application-honeypot').value){status.textContent='신청을 처리할 수 없습니다.';return}
     const name=$('store-application-name').value.trim();
     const phone=digits($('store-application-phone').value);
+    const inquiry=$('store-application-inquiry').value.trim();
+    const isInternet=current.category==='internet';
+    const email=isInternet?$('store-application-email').value.trim():'';
+    const installAddress=isInternet?$('store-application-address').value.trim():'';
+    const billingMethod=isInternet?(document.querySelector('input[name="store_billing_method"]:checked')?.value||''):'';
     if(name.length<2){status.textContent='이름을 확인해 주세요.';return}
     if(!/^01[016789]\d{7,8}$/.test(phone)){status.textContent='연락처를 확인해 주세요.';return}
+    if(isInternet&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){status.textContent='이메일주소를 확인해 주세요.';$('store-application-email')?.focus();return}
+    if(isInternet&&installAddress.length<5){status.textContent='설치주소를 확인해 주세요.';$('store-application-address')?.focus();return}
+    if(isInternet&&!['bank','card'].includes(billingMethod)){status.textContent='자동이체 방식을 선택해 주세요.';return}
+    if(hasSensitivePaymentNumber(inquiry)){status.textContent='계좌번호·카드번호는 문의사항에 입력하지 마세요. 실제 결제정보는 통신사 공식 접수 단계에서 확인합니다.';return}
     if(!$('store-application-consent').checked){status.textContent='개인정보 수집·이용 동의가 필요합니다.';return}
     const signature=current.product_id+'|'+phone;
     if(lastSubmit&&lastSubmit.signature===signature&&Date.now()-lastSubmit.at<120000){status.textContent='같은 상품 신청이 이미 접수되었습니다. 잠시 후 매장에서 연락드리겠습니다.';return}
@@ -393,7 +413,9 @@
     const payload={
       policy_version:policy.version,processing_consent:true,
       category:current.category,name,phone,
-      inquiry:$('store-application-inquiry').value.trim(),
+      inquiry,
+      email,install_address:installAddress,billing_method:billingMethod,
+      internet_carrier:isInternet?(current.provider||''):'',
       product_id:current.product_id,product_name:current.product_name,
       provider:current.provider||'',monthly:current.monthly,gift:current.gift,
       detail:current.detail||'',quote_text:current.quote_text||quoteLines(current),page_url:current.page_url||location.href,
