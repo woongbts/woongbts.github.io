@@ -20,6 +20,15 @@
   }
   function safeText(el){return el?.textContent?.trim()||'';}
   function categoryLabel(category){return CATEGORY_LABEL[category]||category||'상담';}
+  function acquisitionContext(){
+    try{
+      const c=window.woongbiSiteAnalyticsContext?.()||{};
+      return {source:c.source||'direct',campaign:c.campaign||'',landing_path:c.landing_path||location.pathname};
+    }catch{return {source:'direct',campaign:'',landing_path:location.pathname};}
+  }
+  function trackStore(type,ctx={}){
+    try{window.woongbiTrackConversion?.(type,{product_id:ctx.product_id||'',category:ctx.category||''});}catch{}
+  }
   function quoteLines(ctx){
     return [
       '[웅비통신 '+categoryLabel(ctx.category)+' 상담 신청]',
@@ -67,6 +76,7 @@
   function openApplication(ctx){
     if(!ctx?.product_id||!ctx?.product_name)return;
     current={...ctx,quote_text:ctx.quote_text||quoteLines(ctx),page_url:location.href};
+    trackStore('store_apply_open',ctx);
     const dialog=$('store-application-dialog');
     if(!dialog)return;
     $('store-application-category').textContent=categoryLabel(ctx.category);
@@ -297,9 +307,11 @@
       inquiry:$('store-application-inquiry').value.trim(),
       product_id:current.product_id,product_name:current.product_name,
       provider:current.provider||'',monthly:current.monthly,gift:current.gift,
-      detail:current.detail||'',quote_text:current.quote_text||quoteLines(current),page_url:current.page_url||location.href
+      detail:current.detail||'',quote_text:current.quote_text||quoteLines(current),page_url:current.page_url||location.href,
+      attribution:acquisitionContext()
     };
     button.disabled=true;status.textContent='신청을 접수하고 있습니다.';
+    trackStore('store_apply_submit',current);
     try{
       const response=await fetch(API+'/api/store-application',{
         method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(payload)
@@ -307,6 +319,7 @@
       const data=await response.json();
       if(!response.ok||!data.ok)throw Error(data.error||'신청을 접수하지 못했습니다.');
       lastSubmit={signature,at:Date.now()};
+      trackStore('store_apply_success',current);
       closeApplication();showSuccess(data.receipt);
     }catch(e){status.textContent=e.message||'신청을 접수하지 못했습니다. 잠시 후 다시 시도해 주세요.';}
     finally{button.disabled=false}
