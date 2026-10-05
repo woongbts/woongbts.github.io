@@ -26,6 +26,7 @@
   let lastCriteria = null;
   let lastItems = [];
   let policyGeneratedAt = '';
+  let salesSignals = new Map();
 
   const KAKAO_CHAT_URL = 'http://pf.kakao.com/_nWwNT/chat';
   const COMPARE_KEY = 'wb_rental_compare_v1';
@@ -156,8 +157,10 @@
         return r.json();
       }),
       fetch('data/appliance-gift-options.json', { cache: 'no-store' }).then(r => r.ok ? r.json() : null).catch(() => null),
-      fetch('data/catalog-overrides.json', { cache: 'no-store' }).then(r => r.ok ? r.json() : null).catch(() => null)
-    ]).then(([data, giftData, overrideData]) => {
+      fetch('data/catalog-overrides.json', { cache: 'no-store' }).then(r => r.ok ? r.json() : null).catch(() => null),
+      fetch('https://woongbi-consent.woongbts.workers.dev/api/recommendation-signals', { cache:'no-store', credentials:'omit' }).then(r => r.ok ? r.json() : null).catch(() => null)
+    ]).then(([data, giftData, overrideData, signalData]) => {
+      salesSignals = new Map((signalData?.signals?.rental || []).map(row => [String(row.product_id), row]));
       const list = Array.isArray(data?.products) ? data.products : [];
       policyGeneratedAt = giftData?.generatedAt || data?.updatedAt || '';
       products = applyOverrides(list, overrideData, giftData)
@@ -362,6 +365,15 @@
       if (reasons.length < 3) reasons.push('사은품 ' + won(gift));
     }
     score -= Math.min(24, monthly / 6500);
+
+    // Real completed applications are only a small tie-breaker after enough sample.
+    // User-selected budget/brand/management/features always remain dominant.
+    const salesSignal = salesSignals.get(String(product.id));
+    if (salesSignal) {
+      const completed = Number(salesSignal.completed || 0);
+      const conversion = Number(salesSignal.conversion || 0);
+      score += Math.min(8, completed * 2) + Math.min(4, conversion / 25);
+    }
 
     if (!reasons.length) reasons.push('월요금·혜택 균형');
 
