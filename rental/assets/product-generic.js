@@ -313,6 +313,41 @@
     });
     return candidates;
   };
+  const RENTAL_COMPARE_KEY='wb_rental_compare_v1';
+  function loadRentalCompareIds(){
+    try{return JSON.parse(localStorage.getItem(RENTAL_COMPARE_KEY)||'[]').filter(Boolean).map(String).slice(0,3)}catch(_){return[]}
+  }
+  function saveRentalCompareIds(ids){
+    try{localStorage.setItem(RENTAL_COMPARE_KEY,JSON.stringify(ids.slice(0,3)))}catch(_){}
+  }
+  function updateRentalCompareButton(){
+    const btn=$('#rental-compare-add'),status=$('#rental-compare-status');
+    if(!btn||!product)return;
+    const ids=loadRentalCompareIds(),id=String(product.id||''),active=ids.includes(id);
+    btn.classList.toggle('active',active);
+    btn.setAttribute('aria-pressed',active?'true':'false');
+    btn.textContent=active?'비교담김 ✓':'비교담기';
+    if(status){
+      status.innerHTML=active
+        ? '비교함에 담았습니다. <a href="./#products">렌탈 메인에서 '+ids.length+'개 비교하기 →</a>'
+        : (ids.length?'현재 비교함 '+ids.length+'/3 · 다른 상품과 같이 비교할 수 있습니다.':'최대 3개 상품의 월요금·사은품·계약기간을 비교할 수 있습니다.');
+    }
+  }
+  function toggleRentalCompare(){
+    if(!product)return;
+    const id=String(product.id||''); if(!id)return;
+    let ids=loadRentalCompareIds(),active=ids.includes(id);
+    if(active)ids=ids.filter(x=>x!==id);
+    else{
+      if(ids.length>=3){showConsultToast('비교는 최대 3개까지 담을 수 있습니다.');return}
+      ids.push(id);
+    }
+    saveRentalCompareIds(ids);
+    updateRentalCompareButton();
+    trackRental('rental_compare_toggle',{selected:!active,count:ids.length});
+    showConsultToast(!active?'비교함에 담았습니다.':'비교함에서 뺐습니다.');
+  }
+
   const brandLabel = brand => ({
     'COWAY':'코웨이',
     'CUCKOO':'쿠쿠',
@@ -1131,6 +1166,8 @@
       });
     });
     $('#rental-share-quote')?.addEventListener('click',shareQuote);
+    $('#rental-compare-add')?.addEventListener('click',toggleRentalCompare);
+    updateRentalCompareButton();
         $('#rental-apply-open')?.addEventListener('click',openRentalApplication);
     $('#rental-apply-sticky')?.addEventListener('click',openRentalApplication);
     $('#rental-apply-close')?.addEventListener('click',()=>closeDialog($('#rental-apply-dialog')));
