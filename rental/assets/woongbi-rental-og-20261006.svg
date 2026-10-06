@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f8fdff"/><stop offset="1" stop-color="#e5f6fb"/></linearGradient>
+  <linearGradient id="blue" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#168fd1"/><stop offset="1" stop-color="#0f6fa8"/></linearGradient>
+  <filter id="s"><feDropShadow dx="0" dy="14" stdDeviation="18" flood-color="#0a4d72" flood-opacity=".16"/></filter>
+</defs>
+<rect width="1200" height="630" fill="url(#bg)"/>
+<circle cx="1040" cy="110" r="270" fill="#d5eff8"/><circle cx="1110" cy="300" r="315" fill="#dff4f9" opacity=".8"/>
+<rect x="58" y="52" width="216" height="54" rx="27" fill="url(#blue)"/>
+<text x="166" y="88" text-anchor="middle" font-family="Noto Sans CJK KR,sans-serif" font-size="28" font-weight="900" fill="#fff">WOONGBI RENTAL</text>
+<text x="58" y="176" font-family="Noto Sans CJK KR,sans-serif" font-size="54" font-weight="900" fill="#123f55">정수기·생활가전 렌탈,</text>
+<text x="58" y="252" font-family="Noto Sans CJK KR,sans-serif" font-size="65" font-weight="900" fill="#168fd1">월요금과 사은품을 한눈에.</text>
+<rect x="58" y="292" width="650" height="68" rx="18" fill="#fff" stroke="#c8e2ea"/>
+<text x="84" y="334" font-family="Noto Sans CJK KR,sans-serif" font-size="24" font-weight="800" fill="#214a5b">코웨이 · LG 퓨리케어 · SK매직 · 쿠쿠</text>
+<text x="58" y="420" font-family="Noto Sans CJK KR,sans-serif" font-size="27" font-weight="800" fill="#315d68">관리방식 · 계약기간 · 월 렌탈료 · 고객사은품 비교</text>
+<text x="58" y="472" font-family="Noto Sans CJK KR,sans-serif" font-size="23" fill="#637b83">웅비통신 덕천만덕점이 직접 확인하고 상담합니다.</text>
+<text x="58" y="548" font-family="Noto Sans CJK KR,sans-serif" font-size="22" font-weight="800" fill="#168fd1">woongbts.github.io/rental/</text>
+<g filter="url(#s)" transform="translate(800 126)">
+  <rect x="0" y="74" width="118" height="280" rx="24" fill="#fff" stroke="#b9dae6" stroke-width="5"/>
+  <rect x="22" y="100" width="74" height="70" rx="12" fill="#e7f7fb"/><circle cx="59" cy="135" r="18" fill="#168fd1"/>
+  <rect x="38" y="195" width="42" height="110" rx="18" fill="#eef8fb"/><path d="M59 225 C48 244 45 254 45 266a14 14 0 0 0 28 0c0-12-3-22-14-41z" fill="#61c7ec"/>
+  <rect x="168" y="28" width="194" height="344" rx="28" fill="#fff" stroke="#b9dae6" stroke-width="5"/>
+  <rect x="190" y="54" width="150" height="210" rx="18" fill="#eaf7fb"/>
+  <path d="M215 205 C242 142 285 118 320 92" stroke="#168fd1" stroke-width="14" stroke-linecap="round" fill="none"/>
+  <circle cx="231" cy="210" r="12" fill="#74d0ef"/><circle cx="276" cy="158" r="10" fill="#74d0ef"/><circle cx="316" cy="108" r="9" fill="#74d0ef"/>
+  <rect x="214" y="294" width="102" height="36" rx="18" fill="#168fd1"/>
+</g>
+</svg>
