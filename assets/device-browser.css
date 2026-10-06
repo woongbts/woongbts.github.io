@@ -1,0 +1,34 @@
+.device-browser{grid-column:1/-1;padding:20px;border:1px solid #d9e5e8;border-radius:20px;background:#fff}
+.device-browser-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:16px}
+.device-browser-head span{display:block;color:#0f7180;font-size:.75rem;font-weight:900;letter-spacing:.08em}
+.device-browser-head h3{margin:4px 0 0;font-size:1.35rem;color:#173842}
+.device-browser-head p{margin:5px 0 0;color:#6b7f86;line-height:1.5;font-size:.88rem}
+.device-browser-controls{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:12px}
+.device-browser-controls label{display:flex;flex-direction:column;gap:6px;font-size:.78rem;font-weight:800;color:#5c747c}
+.device-browser-controls select,.device-browser-search{width:100%;min-height:44px;border:1px solid #cbdcdf;border-radius:11px;background:#fff;padding:9px 11px;color:#173842;font:inherit}
+.device-browser-search-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:end;margin:10px 0 12px}
+.device-browser-search-wrap{display:flex;flex-direction:column;gap:6px;font-size:.78rem;font-weight:800;color:#5c747c}
+.device-browser-brand{display:flex;gap:7px;flex-wrap:wrap}
+.device-browser-brand button{min-height:40px;padding:8px 13px;border:1px solid #cbdcdf;border-radius:999px;background:#fff;color:#4f6972;font-weight:850}
+.device-browser-brand button.active{border-color:#103f53;background:#103f53;color:#fff}
+.device-browser-meta{display:flex;justify-content:space-between;gap:12px;align-items:center;margin:10px 0 13px}
+.device-browser-meta strong{color:#173842}.device-browser-meta small{color:#6c8188;text-align:right;max-width:720px;line-height:1.45}
+.device-browser-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.device-browser-card{position:relative;display:flex;flex-direction:column;min-width:0;padding:16px;border:1px solid #dce7ea;border-radius:17px;background:#fbfdfe}
+.device-browser-image{height:132px;display:flex;align-items:center;justify-content:center;margin-bottom:10px;border-radius:13px;background:#f4f8f9;overflow:hidden}
+.device-browser-image img{display:block;max-width:100%;max-height:122px;object-fit:contain}
+.device-browser-image span{font-size:.9rem;font-weight:900;color:#829399}
+.device-browser-carrier{align-self:flex-start;padding:4px 7px;border-radius:999px;background:#eaf4f6;color:#0d6776;font-size:.7rem;font-weight:900}
+.device-browser-card h4{margin:9px 0 4px;font-size:1rem;color:#173842;line-height:1.35}
+.device-browser-model{min-height:1.25em;margin:0 0 10px;color:#7a8b90;font-size:.72rem}
+.device-browser-facts{display:grid;gap:5px;margin-top:auto}
+.device-browser-facts>div{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:7px 0;border-top:1px solid #edf2f3;font-size:.78rem}
+.device-browser-facts span{color:#71858c}.device-browser-facts b{color:#254953}
+.device-browser-facts .device-browser-effective{margin-top:2px;padding:10px;border:0;border-radius:10px;background:#edf7f5}
+.device-browser-effective strong{font-size:.95rem;color:#0d7d71}
+.device-browser-plan{margin:9px 0 11px;color:#60777f;font-size:.72rem;line-height:1.45}
+.device-browser-calc{display:block;padding:11px 12px;border-radius:11px;background:#103f53;color:#fff;text-align:center;text-decoration:none;font-size:.85rem;font-weight:900}
+.device-browser-more{display:block;margin:14px auto 0;min-width:180px;padding:11px 18px;border:1px solid #bfcfd3;border-radius:12px;background:#fff;color:#244c59;font-weight:900}
+.device-browser-error{grid-column:1/-1;padding:18px;border-radius:12px;background:#fff6e8;color:#7b591c;text-align:center}
+@media(max-width:900px){.device-browser-controls{grid-template-columns:1fr 1fr}.device-browser-list{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.device-browser{padding:14px;border-radius:16px}.device-browser-head{display:block}.device-browser-controls{grid-template-columns:1fr 1fr}.device-browser-search-row{grid-template-columns:1fr}.device-browser-list{grid-template-columns:1fr}.device-browser-image{height:150px}.device-browser-meta{display:block}.device-browser-meta small{display:block;text-align:left;margin-top:5px}.device-browser-controls label:nth-child(3),.device-browser-controls label:nth-child(4){grid-column:1/-1}}
