@@ -27,6 +27,7 @@ const Et=t("prepaid-provider"),Lt=t("prepaid-plan");function Nt(){const o=Et.val
 /* Kids promo snapshot override · 2026-10-06 */
 (()=>{
   'use strict';
+  const VERSION='20261006-2';
   const DEALS=[
     {
       key:'pocketpiece',carrier:'SKT',name:'ZEM폰 포켓피스',model:'SM-A175N_ZEM',
@@ -34,7 +35,7 @@ const Et=t("prepaid-provider"),Lt=t("prepaid-plan");function Nt(){const o=Et.val
       data:'1.5GB + 400Kbps 무제한',voice:'60분 + SKT 망내 지정 2회선 무제한',sms:'무제한',video:'0분',
       method:'선택약정 12개월',discount:4950,publicSupport:0,extraSupport:349800,
       age:'만 12세 이하 가입 가능 (2026년도 기준 2013년생 생일 이전)',
-      benefit:'ZEM 이용 데이터 무료 · 기본 데이터 소진 후 400Kbps 이용'
+      benefits:['ZEM 이용 데이터 무료','기본 데이터 소진 후 400Kbps 무제한','신규가입 한정 행사']
     },
     {
       key:'pompompurin',carrier:'KT',name:'폼폼푸린 키즈폰',model:'SM-A175NK-KP',
@@ -42,7 +43,7 @@ const Et=t("prepaid-provider"),Lt=t("prepaid-plan");function Nt(){const o=Et.val
       data:'1.5GB + 400Kbps 무제한',voice:'무제한',sms:'기본 제공',video:'50분',
       method:'공시지원',discount:0,publicSupport:305000,extraSupport:44800,
       age:'만 12세 이하 가입 가능 (2026년도 기준 2013년생 생일 이전)',
-      benefit:'영상·부가통화 50분 · 안심박스 제공 · 기본 데이터 소진 후 400Kbps 이용'
+      benefits:['안심박스 제공','영상·부가통화 50분','기본 데이터 소진 후 400Kbps 무제한','신규가입 한정 행사']
     },
     {
       key:'mooner2',carrier:'LGU+',name:'갤럭시 A17 키즈폰 무너2',model:'SM_A175N-M2',
@@ -50,7 +51,7 @@ const Et=t("prepaid-provider"),Lt=t("prepaid-plan");function Nt(){const o=Et.val
       data:'1GB + 400Kbps 무제한',voice:'125분',sms:'기본 제공',video:'0분',
       method:'공시지원',discount:0,publicSupport:217000,extraSupport:152500,
       age:'만 12세 이하 가입 가능 (2026년도 기준 2013년생 생일 이전)',
-      benefit:'기본 데이터 소진 후 400Kbps 이용 · 테더링·쉐어링 가능'
+      benefits:['테더링·쉐어링 가능','기본 데이터 소진 후 400Kbps 무제한','신규가입 한정 행사']
     }
   ];
   const $=id=>document.getElementById(id);
@@ -83,8 +84,8 @@ const Et=t("prepaid-provider"),Lt=t("prepaid-plan");function Nt(){const o=Et.val
       '기기값: 0원 행사',
       '예상 월 납부액: '+won(d.monthly),
       '가입조건: '+d.age,
-      '주요 안내: '+d.benefit,
-      '※ 신규가입 한정 · 재고와 최종 행사 조건은 상담 시점에 다시 확인합니다.'
+      '주요 안내: '+d.benefits.join(' · '),
+      '※ 신규가입 한정 · 재고·지원금·프로모션은 상담 시점에 최종 확인합니다.'
     ].filter(Boolean).join('\n');
   }
   function renderKids(){
@@ -92,16 +93,20 @@ const Et=t("prepaid-provider"),Lt=t("prepaid-plan");function Nt(){const o=Et.val
     const box=$('purpose-results');if(!box)return;
     const join=$('purpose-join');if(join)join.value='신규가입';
     const note=$('purpose-category-note');
-    if(note)note.textContent='신규가입 한정 키즈폰 특가 3종입니다. 아래 데이터·통화·문자와 할인/지원 조건은 제공해주신 2026-10-06 기준 정책 화면을 반영했습니다. 재고와 행사 조건은 상담 시점에 최종 확인됩니다.';
+    if(note)note.textContent='신규가입 한정 키즈폰 특가 3종입니다. 데이터·통화·문자·영상/부가통화와 할인·지원 조건은 2026-10-06 제공 정책 화면 기준으로 반영했습니다. 재고와 최종 행사 조건은 상담 시점에 다시 확인합니다.';
     const carrier=$('purpose-carrier')?.value||'all';
     const deals=DEALS.filter(d=>carrier==='all'||d.carrier===carrier);
     box.innerHTML='';
     if(!deals.length){box.innerHTML='<p>선택한 통신사의 키즈폰 특가가 없습니다.</p>';return}
     deals.forEach(d=>{
-      const card=document.createElement('article');card.className='purpose-card kids-sale-card';
+      const card=document.createElement('article');
+      card.className='purpose-card kids-sale-card';
+      card.dataset.kidsPolicyVersion=VERSION;
+
       const top=document.createElement('div');top.className='purpose-card-top';
       const badge=document.createElement('span'),sale=document.createElement('small');
       badge.textContent=d.carrier+' · 신규가입';sale.textContent='특가';top.append(badge,sale);
+
       const name=document.createElement('strong');name.textContent=d.name;
       const imgUrl=imageFor(d);
       const imageFrame=imgUrl?document.createElement('div'):null;
@@ -110,36 +115,55 @@ const Et=t("prepaid-provider"),Lt=t("prepaid-plan");function Nt(){const o=Et.val
         const img=document.createElement('img');img.src=imgUrl;img.alt=d.name;img.loading='lazy';img.decoding='async';imageFrame.append(img);
       }
       const plan=document.createElement('em');plan.textContent=d.plan;
+
       const promo=document.createElement('div');promo.className='kids-zero-deal';
       promo.innerHTML='<span>특가</span><strong>기기값 0원 행사</strong><small>'+d.age+'</small>';
+
       const total=document.createElement('div');total.className='purpose-card-total';
-      total.append(line('예상 월 납부액',won(d.monthly)));
+      total.append(line('예상 월 납부액 · 신규가입 특가',won(d.monthly)));
+
       const amountNote=document.createElement('p');amountNote.className='quote-amount-note';
-      amountNote.textContent=d.method+' 기준 · 출고가 '+won(d.price)+' · 실제 개통 전 최종 조건 재확인';
-      const specs=document.createElement('div');specs.className='wb-v2-specs';
-      [['데이터',d.data],['통화',d.voice]].forEach(([label,value])=>{
+      const supportSummary=d.discount
+        ? d.method+' · 월 '+won(d.discount)+' 할인'
+        : '공시지원 '+won(d.publicSupport)+' + 추가지원 '+won(d.extraSupport);
+      amountNote.textContent=supportSummary+' · 실제 개통 전 최종 조건 재확인';
+
+      const specs=document.createElement('div');specs.className='wb-v2-specs kids-policy-specs';
+      [['데이터',d.data],['통화',d.voice],['문자',d.sms],['영상·부가',d.video]].forEach(([label,value])=>{
         const item=document.createElement('span'),s=document.createElement('small'),b=document.createElement('b');
         s.textContent=label;b.textContent=value;item.append(s,b);specs.append(item);
       });
-      const details=document.createElement('details');details.className='recommend-details';
+
+      const details=document.createElement('details');details.className='recommend-details kids-policy-details';
       const summary=document.createElement('summary');summary.textContent='요금·지원·제공량 자세히 보기';
       const body=document.createElement('div');body.className='recommend-details-body';
-      const detail=document.createElement('div');detail.className='purpose-card-detail';
+      const detail=document.createElement('div');detail.className='purpose-card-detail kids-policy-lines';
       detail.append(
-        line('기본료',won(d.planFee)),
+        line('출고가',won(d.price)),
+        line('요금제 기본료',won(d.planFee)),
         line('월 통신요금',won(d.monthly)),
+        line('데이터',d.data),
+        line('통화',d.voice),
         line('문자',d.sms),
         line('영상·부가통화',d.video)
       );
       if(d.discount)detail.append(line('선택약정 월 할인','-'+won(d.discount)));
       if(d.publicSupport)detail.append(line('공시지원금','-'+won(d.publicSupport)));
       if(d.extraSupport)detail.append(line('추가지원금','-'+won(d.extraSupport)));
-      detail.append(line('기기값','0원'));
-      const cond=document.createElement('div');cond.className='purpose-method-compare kids-sale-condition';
-      cond.textContent=d.age+' · '+d.benefit;
+      detail.append(line('기기값','0원','kids-device-zero'));
+
+      const cond=document.createElement('div');cond.className='purpose-method-compare kids-sale-condition kids-policy-notes';
+      const conditionTitle=document.createElement('strong');conditionTitle.textContent='가입·이용 조건';
+      const conditionList=document.createElement('ul');
+      [d.age,...d.benefits,'재고·지원금·프로모션은 상담 시 최종 확인'].forEach(text=>{
+        const li=document.createElement('li');li.textContent=text;conditionList.append(li);
+      });
+      cond.append(conditionTitle,conditionList);
+
       const best=document.createElement('div');best.className='purpose-best';
       best.textContent='기기값 0원 행사 · '+d.plan+' 기준 월 '+won(d.monthly);
       body.append(detail,cond,best);details.append(summary,body);
+
       const actions=document.createElement('div');actions.className='purpose-card-actions';
       const consult=document.createElement('button');consult.type='button';consult.className='primary';consult.style.gridColumn='1 / -1';consult.textContent='이 특가 상담';
       consult.addEventListener('click',()=>{
@@ -153,9 +177,30 @@ const Et=t("prepaid-provider"),Lt=t("prepaid-plan");function Nt(){const o=Et.val
       box.append(card);
     });
   }
+
+  function needsRefresh(){
+    if(!kidsActive())return false;
+    const box=$('purpose-results');if(!box)return false;
+    const cards=[...box.querySelectorAll('.kids-sale-card')];
+    if(!cards.length)return true;
+    if(cards.some(card=>card.dataset.kidsPolicyVersion!==VERSION))return true;
+    return [...box.querySelectorAll('.wb-v2-specs b')].some(el=>/확인\s*필요/.test(el.textContent||''));
+  }
+
+  let queued=false;
+  function ensureKids(){
+    if(queued)return;queued=true;
+    queueMicrotask(()=>{queued=false;if(needsRefresh())renderKids();});
+  }
+
   document.querySelectorAll('[data-purpose-category]').forEach(btn=>btn.addEventListener('click',()=>{
     if(btn.dataset.purposeCategory==='kids')queueMicrotask(renderKids);
   }));
   ['purpose-carrier','purpose-join'].forEach(id=>$(id)?.addEventListener('change',()=>{if(kidsActive())queueMicrotask(renderKids)}));
+
+  const target=$('purpose-results');
+  if(target)new MutationObserver(()=>ensureKids()).observe(target,{childList:true,subtree:true,characterData:true});
+  window.addEventListener('woongbi:quote-ready',ensureKids);
+  window.addEventListener('woongbi:plan-recommend-ready',ensureKids);
   document.addEventListener('DOMContentLoaded',()=>{if(kidsActive())renderKids()},{once:true});
 })();
