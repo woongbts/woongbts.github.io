@@ -33,8 +33,8 @@
   };
   const planById=id=>state.plans.find(p=>p.id===id)||null;
   const carrierPlans=()=>{
-    const list=state.plans.filter(p=>p.carrier===state.carrier && (p.age_limit==='ALL'||!p.age_limit));
-    return list.slice().sort((a,b)=>Number(a.monthly_fee||0)-Number(b.monthly_fee||0)||Number(a.source_order||9999)-Number(b.source_order||9999));
+    const list=state.plans.filter(p=>p.carrier===state.carrier);
+    return list.slice().sort((a,b)=>Number(a.monthly_fee||0)-Number(b.monthly_fee||0)||((a.age_limit==='ALL'||!a.age_limit)?-1:1)-((b.age_limit==='ALL'||!b.age_limit)?-1:1)||Number(a.source_order||9999)-Number(b.source_order||9999));
   };
   const closestPlan=(plans,target=55000)=>{
     if(!plans.length)return null;
@@ -124,9 +124,9 @@
     root.dataset.state='loading';
     try{
       const [catalog,plans,supports,extra,iphone]=await Promise.all([
-        fetch('data/catalog.json?v=20260930-browser1').then(r=>r.json()),
-        fetch('data/plans.json?v=20260930-browser1').then(r=>r.json()),
-        fetch('data/supports.json?v=20260930-browser1').then(r=>r.json()),
+        fetch('data/catalog.json?v=20260918-5').then(r=>r.json()),
+        fetch('data/plans.json?v=20260922-1').then(r=>r.json()),
+        fetch('data/supports.json?v=20260918-4').then(r=>r.json()),
         fetch('data/devices-extra.json?v=20260916-1').then(r=>r.json()).catch(()=>({devices:[]})),
         fetch('data/iphone18.json?v=20260916-1').then(r=>r.json()).catch(()=>({devices:[]}))
       ]);
