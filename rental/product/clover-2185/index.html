@@ -13,12 +13,12 @@
   <meta property="og:description" id="product-og-description" content="모델 CM(S/SS/Q)-ST01EH · 월 25,900원부터 · 고객사은품 최대 170,000원 · 최종 접수 전 최신 조건 확인">
   <meta property="og:url" id="product-og-url" content="https://woongbts.github.io/rental/product/clover-2185/">
   <meta property="og:image" id="product-og-image" content="https://woongbts.github.io/rental/assets/product-images/clover-2185.webp">
-  <meta property="og:image:alt" id="product-og-image-alt" content="웅비렌탈 상품 이미지">
+  <meta property="og:image:alt" id="product-og-image-alt" content="코웨이 BEREX 엘리트 매트리스 렌탈 상품 이미지">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" id="product-twitter-title" content="상품 상세 | 웅비렌탈">
-  <meta name="twitter:description" id="product-twitter-description" content="월 렌탈료와 고객사은품 조건을 확인하세요.">
-  <meta name="twitter:image" id="product-twitter-image" content="https://woongbts.github.io/rental/assets/woongbi-rental-icon-180.png">
-  <script type="application/ld+json" id="product-jsonld">{"@context":"https://schema.org","@type":"Product","name":"BEREX 엘리트 매트리스","brand":{"@type":"Brand","name":"코웨이"},"model":"CM(S/SS/Q)-ST01EH","category":"매트리스·프레임","description":"모델 CM(S/SS/Q)-ST01EH · 월 25,900원부터 · 고객사은품 최대 170,000원 · 최종 접수 전 최신 조건 확인","url":"https://woongbts.github.io/rental/product/clover-2185/","image":["https://woongbts.github.io/rental/assets/product-images/clover-2185.webp"]}</script>
+  <meta name="twitter:title" id="product-twitter-title" content="코웨이 BEREX 엘리트 매트리스 렌탈 | 웅비렌탈">
+  <meta name="twitter:description" id="product-twitter-description" content="모델 CM(S/SS/Q)-ST01EH · 월 25,900원부터 · 고객사은품 최대 170,000원 · 최종 접수 전 최신 조건 확인">
+  <meta name="twitter:image" id="product-twitter-image" content="https://woongbts.github.io/rental/assets/product-images/clover-2185.webp">
+  <script type="application/ld+json" id="product-jsonld">{"@context":"https://schema.org","@type":"Product","name":"BEREX 엘리트 매트리스","brand":{"@type":"Brand","name":"코웨이"},"model":"CM(S/SS/Q)-ST01EH","sku":"clover-2185","category":"매트리스·프레임","description":"모델 CM(S/SS/Q)-ST01EH · 월 25,900원부터 · 고객사은품 최대 170,000원 · 최종 접수 전 최신 조건 확인","url":"https://woongbts.github.io/rental/product/clover-2185/","image":["https://woongbts.github.io/rental/assets/product-images/clover-2185.webp"],"offers":{"@type":"AggregateOffer","priceCurrency":"KRW","lowPrice":25900,"highPrice":34900,"offerCount":3,"availability":"https://schema.org/InStock","url":"https://woongbts.github.io/rental/product/clover-2185/","priceSpecification":{"@type":"UnitPriceSpecification","price":25900,"priceCurrency":"KRW","unitText":"월 렌탈료"}}}</script>
   <title>코웨이 BEREX 엘리트 매트리스 렌탈 | 웅비렌탈</title>
     <meta name="theme-color" content="#168FD1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -28,7 +28,7 @@
   <link rel="icon" href="assets/woongbi-rental-icon-32.png?v=20261003-blue3" sizes="32x32" type="image/png">
   <link rel="apple-touch-icon" sizes="180x180" href="assets/woongbi-rental-icon-180.png?v=20261003-blue3">
   <link rel="manifest" href="manifest.webmanifest?v=20261003-blue3">
-<link rel="stylesheet" href="assets/rental.css?v=20261006-seo2">
+<link rel="stylesheet" href="assets/rental.css?v=20261006-compare1">
 </head>
 <body>
   <header class="site-header">
@@ -159,7 +159,9 @@
           <button class="btn apply" id="rental-apply-open" type="button">온라인 신청하기</button>
           <a class="btn primary" id="rental-kakao-consult" data-rental-consult href="http://pf.kakao.com/_nWwNT/chat" target="_blank" rel="noopener noreferrer">조건 복사 후 카톡 상담</a>
           <button class="btn ghost" id="rental-share-quote" type="button">견적 공유하기</button>
+          <button class="btn ghost rental-compare-add" id="rental-compare-add" type="button" aria-pressed="false">비교담기</button>
           <a class="btn ghost" id="rental-phone-consult" data-rental-phone href="tel:0513437677">전화 상담</a>
+          <p class="rental-compare-status" id="rental-compare-status" aria-live="polite"></p>
           <p class="consult-copy-help">온라인 신청은 선택한 조건을 그대로 불러옵니다. 계좌번호·카드번호 전체는 받지 않으며, 실제 결제정보는 계약 단계에서 렌탈사 공식 절차로 입력합니다.</p>
         </div>
         <div id="product-load-fallback" class="product-load-fallback" hidden>
@@ -354,8 +356,8 @@
     <div class="wrap footer-note">상품·요금·프로모션·제휴카드·사은품 조건은 변경될 수 있으며 최종 접수 전 상담을 통해 확인합니다.</div>
   </footer>
   <script src="/assets/analytics-config.js?v=20260929-2" defer></script>
-  <script src="/assets/conversion-tracker.min.js?v=20261005-growth3" defer></script>
+  <script src="/assets/conversion-tracker.min.js?v=20261006-funnel1" defer></script>
   <script src="/assets/site-analytics.min.js?v=20261005-growth3" defer></script>
-  <script src="assets/product-generic.js?v=20261006-seo2" defer></script>
+  <script src="assets/product-generic.js?v=20261006-compare1" defer></script>
 </body>
 </html>
