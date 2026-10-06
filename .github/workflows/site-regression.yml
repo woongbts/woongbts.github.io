@@ -41,6 +41,10 @@ jobs:
           node --check assets/quote-api-bridge.min.js
           node --check assets/recommend-api-bridge.min.js
           node --check assets/home-recommend-api.min.js
+          node --check assets/home-intelligence-loader.js
+          node --check assets/quote-advice.js
+          node --check assets/kids-promos-data.js
+          node --check assets/funnel-observer.js
           node --check assets/plan-recommend-api-bridge.min.js
           node --check assets/studyphone-api-bridge.min.js
           node --check assets/internet-api-bridge.min.js
@@ -71,7 +75,8 @@ jobs:
           ! grep -q 'recommendation-engine-v2.js' assets/pwa.min.js
           ! grep -q 'recommendation-engine-v2.js' sw.js
           ! grep -q 'recommendation-engine-v2.js' index.html
-          grep -q 'home-recommend-api.min.js' index.html
+          grep -q 'home-intelligence-loader.js' index.html
+          grep -q 'home-recommend-api.min.js' assets/home-intelligence-loader.js
           grep -q 'home-recommend-api.min.js' sw.js
           grep -q '/recommend/purpose' assets/home-recommend-api.min.js
           grep -q 'WoongbiRecommendationV2' assets/home-recommend-api.min.js
