@@ -24,3 +24,138 @@ function wbRenderMvno(){
 document.querySelectorAll("[data-mvno-usage]").forEach(button=>button.addEventListener("click",()=>{wbMvnoGroup=button.dataset.mvnoUsage;document.querySelectorAll("[data-mvno-usage]").forEach(b=>{b.classList.toggle("active",b===button);b.setAttribute("aria-pressed",String(b===button))});wbRenderMvno()}));
 const Et=t("prepaid-provider"),Lt=t("prepaid-plan");function Nt(){const o=Et.value,r=(c.providers||[]).find(e=>e.id===o);f(Lt,o?"요금제를 선택하세요":"통신사를 먼저 선택하세요"),Lt.disabled=!o,t("prepaid-network").textContent=r?.network||"—";const a=(c.plans||[]).filter(e=>e.provider_id===o).sort(p);a.forEach(t=>v(Lt,t.id,`${t.name} · ${n(t.monthly_fee)?e(t.monthly_fee):"매장 확인"}`)),o&&!a.length&&(Lt.disabled=!0,t("prepaid-detail").textContent="확인된 선불 요금은 매장에서 안내해 드립니다."),Tt()}function Tt(){const o=(c.plans||[]).find(e=>e.id===Lt.value)||null,r=(c.providers||[]).find(e=>e.id===Et.value)||null;if(t("prepaid-network").textContent=o?.network||r?.network||"—",!o)return t("prepaid-fee-view").textContent="—",t("prepaid-total").textContent="—",void(t("prepaid-summary").textContent=Et.value?"현재 확인된 요금은 매장에서 안내해 드립니다.":"통신사와 요금제를 선택하면 자동으로 반영됩니다.");const a=n(o.monthly_fee);t("prepaid-fee-view").textContent=a?e(o.monthly_fee):"매장 확인",t("prepaid-total").textContent=a?e(o.monthly_fee):"매장 확인";const i=[];o.data&&i.push(`데이터 ${o.data}`),o.voice&&i.push(`통화 ${o.voice}`),o.valid_days&&i.push(`${o.valid_days}일`),t("prepaid-detail").textContent=i.join(" · ")||"선불 요금제",t("prepaid-summary").textContent=a?`${r?.name||o.provider_id} · ${o.name} 월 이용료입니다.`:`${r?.name||o.provider_id} · ${o.name}의 현재 이용료는 매장에서 확인해 주세요.`}function St(){const t=(c.plans||[]).find(e=>e.id===Lt.value)||null;if(!t)return"";const o=(c.providers||[]).find(e=>e.id===t.provider_id)||null,r=["[웅비통신 선불폰 상담]",`통신사: ${o?.name||t.provider_id||"확인 필요"}`,`통신망: ${t.network||o?.network||"확인 필요"}`,`요금제: ${t.name||"확인 필요"}`,`월 이용료: ${n(t.monthly_fee)?e(t.monthly_fee):"매장 확인"}`];return t.data&&r.push(`데이터: ${t.data}`),t.voice&&r.push(`통화: ${t.voice}`),t.valid_days&&r.push(`사용기간: ${t.valid_days}일`),r.push("※ 충전·유심·개통 조건은 상담 시점에 최종 확인해 주세요."),r.join("\n")}Et.addEventListener("change",Nt),Lt.addEventListener("change",Tt),t("copy-prepaid-quote")?.addEventListener("click",async()=>{const e=St(),n=t("prepaid-quote-status");if(!e)return void(n&&(n.textContent="요금제를 먼저 선택해 주세요."));const o=await b(e);n&&(n.textContent=o?"선택 내용을 복사했습니다.":"복사하지 못했습니다. 다시 시도해 주세요.")}),t("share-prepaid-quote")?.addEventListener("click",()=>_("웅비통신 선불폰 상담",St(),"prepaid-quote-status")),t("consult-prepaid-quote")?.addEventListener("click",()=>y(St(),"prepaid-quote-status"));wbLoadStudyphone(),Promise.all([fetch("data/catalog.json?v=20260918-5").then(e=>e.json()),fetch("data/plans.json?v=20260922-1").then(e=>e.json()),fetch("data/supports.json?v=20260918-4").then(e=>e.json()),fetch("data/devices-extra.json?v=20260916-1").then(e=>e.json()),fetch("data/iphone18.json?v=20260916-1").then(e=>e.json()),window.WoongbiMvnoApi?.loadCatalog?.()||Promise.resolve({meta:{},providers:[],plans:[],groups:[],recommendations:{}}),fetch("data/prepaid.json?v=20260917-2").then(e=>e.json()),Promise.resolve(null)]).then(([l,u,d,m,b,_,y,w])=>{o=l;const k=new Map;[...l?.devices||[],...m?.devices||[],...b?.devices||[]].forEach(e=>k.set(e.id,e)),o.devices=[...k.values()].filter(e=>window.WoongbiSalePolicy.available(e)),o.mobile_plans=(u?.mobile_plans||l?.mobile_plans||[]).map(e=>({...e,data:String(e?.data||"").replace(/\+{2,}/g,"+"),voice:String(e?.voice||"").replace(/\+{2,}/g,"+"),sms:String(e?.sms||"").replace(/\+{2,}/g,"+"),video:String(e?.video||"").replace(/\+{2,}/g,"+")})),r=Number(u?.selection_contract_rate)||.25,a=d?.support_schedules||[],i=window.WoongbiMvnoDisplay.clean(_||i),c=y||c,s=w||s,h("catalog-updated",[l?.meta?.updated_at,u?.meta?.updated_at,d?.meta?.updated_at,m?.meta?.updated_at,b?.meta?.updated_at].filter(Boolean).sort().at(-1)),h("mvno-updated",i?.meta?.updated_at),i?.meta?.store_reviewed_at&&(t("mvno-updated").textContent=`주력 요금제 확인 ${i.meta.store_reviewed_at} · 전체 목록 ${i.meta.updated_at}`),h("prepaid-updated",c?.meta?.updated_at),z(),function(){const e=ot.value;f(ot,"통신사를 선택하세요"),v(ot,"all","전체 통신사"),(i.providers||[]).slice().sort(p).forEach(e=>v(ot,e.id,e.name)),[...ot.options].some(t=>t.value===e)&&(ot.value=e),wt()}(),wbRenderMvno(),ft("recommend"),function(){f(Et,"통신사를 선택하세요");const e=(c.providers||[]).slice().sort(p);e.forEach(e=>v(Et,e.id,e.name)),e.length||(t("prepaid-detail").textContent="확인된 선불폰 상품은 매장에서 안내해 드립니다."),Nt()}(),Fe();Re();const E=function(){const e=new URLSearchParams(location.search),t=e.get("d"),n=e.get("p"),r=e.get("qid");if(!t||!n)return!1;const a=e.get("c");["SKT","KT","LGU+"].includes(a)&&(I.value=a);const i=e.get("j");["기기변경","번호이동","신규가입"].includes(i)&&(K.value=i);const l=e.get("m");["support","contract"].includes(l)&&(j.value=l);const c=e.get("w");[...H.options].some(e=>e.value===c)&&(H.value=c);const s=(o?.devices||[]).find(e=>e.id===t&&e.carrier===I.value&&wbVisibleDevice(e));if(!s)return!1;if(U=A(s),Z(),B.value=s.name||"",z(),F.value=t,ie(),![...P.options].some(e=>e.value===n))return!1;P.value=n;const u=e.get("mo");return[...D.options].some(e=>e.value===u)&&(D.value=u),B.value="",z(),F.value=t,ie(),P.value=n,[...D.options].some(e=>e.value===u)&&(D.value=u),Be("direct"),r&&(x=r,C=He()),Ze(),!0}();E||Be("purpose"),g=!1,ze()}).catch(()=>{t("mobile-data-note").textContent="상품 데이터를 불러오지 못했습니다. 잠시 후 다시 확인해 주세요."})}();
 
+/* Kids promo snapshot override · 2026-10-06 */
+(()=>{
+  'use strict';
+  const DEALS=[
+    {
+      key:'pocketpiece',carrier:'SKT',name:'ZEM폰 포켓피스',model:'SM-A175N_ZEM',
+      price:349800,plan:'ZEM플랜 스마트',planFee:19800,monthly:14850,
+      data:'1.5GB + 400Kbps 무제한',voice:'60분 + SKT 망내 지정 2회선 무제한',sms:'무제한',video:'0분',
+      method:'선택약정 12개월',discount:4950,publicSupport:0,extraSupport:349800,
+      age:'만 12세 이하 가입 가능 (2026년도 기준 2013년생 생일 이전)',
+      benefit:'ZEM 이용 데이터 무료 · 기본 데이터 소진 후 400Kbps 이용'
+    },
+    {
+      key:'pompompurin',carrier:'KT',name:'폼폼푸린 키즈폰',model:'SM-A175NK-KP',
+      price:349800,plan:'키즈24',planFee:24000,monthly:24000,
+      data:'1.5GB + 400Kbps 무제한',voice:'무제한',sms:'기본 제공',video:'50분',
+      method:'공시지원',discount:0,publicSupport:305000,extraSupport:44800,
+      age:'만 12세 이하 가입 가능 (2026년도 기준 2013년생 생일 이전)',
+      benefit:'영상·부가통화 50분 · 안심박스 제공 · 기본 데이터 소진 후 400Kbps 이용'
+    },
+    {
+      key:'mooner2',carrier:'LGU+',name:'갤럭시 A17 키즈폰 무너2',model:'SM_A175N-M2',
+      price:369500,plan:'데이터플랜300MB(키즈)+0.7GB',planFee:28000,monthly:28000,
+      data:'1GB + 400Kbps 무제한',voice:'125분',sms:'기본 제공',video:'0분',
+      method:'공시지원',discount:0,publicSupport:217000,extraSupport:152500,
+      age:'만 12세 이하 가입 가능 (2026년도 기준 2013년생 생일 이전)',
+      benefit:'기본 데이터 소진 후 400Kbps 이용 · 테더링·쉐어링 가능'
+    }
+  ];
+  const $=id=>document.getElementById(id);
+  const won=value=>Number(value||0).toLocaleString('ko-KR')+'원';
+  const kidsActive=()=>document.querySelector('[data-purpose-category="kids"]')?.classList.contains('active');
+  function imageFor(deal){
+    try{return window.woongbiDeviceImage?.({name:deal.name,model_code:deal.model})||''}catch{return''}
+  }
+  function line(label,value,cls=''){
+    const row=document.createElement('div');if(cls)row.className=cls;
+    const a=document.createElement('span'),b=document.createElement('b');
+    a.textContent=label;b.textContent=value;row.append(a,b);return row;
+  }
+  function consultText(d){
+    return [
+      '[웅비통신 키즈폰 특가 상담]',
+      '통신사: '+d.carrier,
+      '가입유형: 신규가입',
+      '기종: '+d.name+' ('+d.model+')',
+      '출고가: '+won(d.price),
+      '요금제: '+d.plan+' / '+won(d.planFee),
+      '데이터: '+d.data,
+      '통화: '+d.voice,
+      '문자: '+d.sms,
+      '영상·부가통화: '+d.video,
+      '할인/지원 기준: '+d.method,
+      d.discount?'선택약정 월 할인: -'+won(d.discount):'',
+      d.publicSupport?'공시지원금: -'+won(d.publicSupport):'',
+      d.extraSupport?'추가지원금: -'+won(d.extraSupport):'',
+      '기기값: 0원 행사',
+      '예상 월 납부액: '+won(d.monthly),
+      '가입조건: '+d.age,
+      '주요 안내: '+d.benefit,
+      '※ 신규가입 한정 · 재고와 최종 행사 조건은 상담 시점에 다시 확인합니다.'
+    ].filter(Boolean).join('\n');
+  }
+  function renderKids(){
+    if(!kidsActive())return;
+    const box=$('purpose-results');if(!box)return;
+    const join=$('purpose-join');if(join)join.value='신규가입';
+    const note=$('purpose-category-note');
+    if(note)note.textContent='신규가입 한정 키즈폰 특가 3종입니다. 아래 데이터·통화·문자와 할인/지원 조건은 제공해주신 2026-10-06 기준 정책 화면을 반영했습니다. 재고와 행사 조건은 상담 시점에 최종 확인됩니다.';
+    const carrier=$('purpose-carrier')?.value||'all';
+    const deals=DEALS.filter(d=>carrier==='all'||d.carrier===carrier);
+    box.innerHTML='';
+    if(!deals.length){box.innerHTML='<p>선택한 통신사의 키즈폰 특가가 없습니다.</p>';return}
+    deals.forEach(d=>{
+      const card=document.createElement('article');card.className='purpose-card kids-sale-card';
+      const top=document.createElement('div');top.className='purpose-card-top';
+      const badge=document.createElement('span'),sale=document.createElement('small');
+      badge.textContent=d.carrier+' · 신규가입';sale.textContent='특가';top.append(badge,sale);
+      const name=document.createElement('strong');name.textContent=d.name;
+      const imgUrl=imageFor(d);
+      const imageFrame=imgUrl?document.createElement('div'):null;
+      if(imageFrame){
+        imageFrame.className='device-card-image purpose-device-image';
+        const img=document.createElement('img');img.src=imgUrl;img.alt=d.name;img.loading='lazy';img.decoding='async';imageFrame.append(img);
+      }
+      const plan=document.createElement('em');plan.textContent=d.plan;
+      const promo=document.createElement('div');promo.className='kids-zero-deal';
+      promo.innerHTML='<span>특가</span><strong>기기값 0원 행사</strong><small>'+d.age+'</small>';
+      const total=document.createElement('div');total.className='purpose-card-total';
+      total.append(line('예상 월 납부액',won(d.monthly)));
+      const amountNote=document.createElement('p');amountNote.className='quote-amount-note';
+      amountNote.textContent=d.method+' 기준 · 출고가 '+won(d.price)+' · 실제 개통 전 최종 조건 재확인';
+      const specs=document.createElement('div');specs.className='wb-v2-specs';
+      [['데이터',d.data],['통화',d.voice]].forEach(([label,value])=>{
+        const item=document.createElement('span'),s=document.createElement('small'),b=document.createElement('b');
+        s.textContent=label;b.textContent=value;item.append(s,b);specs.append(item);
+      });
+      const details=document.createElement('details');details.className='recommend-details';
+      const summary=document.createElement('summary');summary.textContent='요금·지원·제공량 자세히 보기';
+      const body=document.createElement('div');body.className='recommend-details-body';
+      const detail=document.createElement('div');detail.className='purpose-card-detail';
+      detail.append(
+        line('기본료',won(d.planFee)),
+        line('월 통신요금',won(d.monthly)),
+        line('문자',d.sms),
+        line('영상·부가통화',d.video)
+      );
+      if(d.discount)detail.append(line('선택약정 월 할인','-'+won(d.discount)));
+      if(d.publicSupport)detail.append(line('공시지원금','-'+won(d.publicSupport)));
+      if(d.extraSupport)detail.append(line('추가지원금','-'+won(d.extraSupport)));
+      detail.append(line('기기값','0원'));
+      const cond=document.createElement('div');cond.className='purpose-method-compare kids-sale-condition';
+      cond.textContent=d.age+' · '+d.benefit;
+      const best=document.createElement('div');best.className='purpose-best';
+      best.textContent='기기값 0원 행사 · '+d.plan+' 기준 월 '+won(d.monthly);
+      body.append(detail,cond,best);details.append(summary,body);
+      const actions=document.createElement('div');actions.className='purpose-card-actions';
+      const consult=document.createElement('button');consult.type='button';consult.className='primary';consult.style.gridColumn='1 / -1';consult.textContent='이 특가 상담';
+      consult.addEventListener('click',()=>{
+        try{window.woongbiTrackConversion?.('kids_promo_consult',{product_id:'kids-promo-'+d.key,category:'kids'});}catch{}
+        const text=consultText(d);
+        if(window.WoongbiQuoteHandoff?.open)window.WoongbiQuoteHandoff.open(text);
+        else if(navigator.clipboard?.writeText)navigator.clipboard.writeText(text).then(()=>alert('상담 내용을 복사했습니다.'));
+      });
+      actions.append(consult);
+      card.append(top);if(imageFrame)card.append(imageFrame);card.append(name,plan,promo,total,amountNote,specs,details,actions);
+      box.append(card);
+    });
+  }
+  document.querySelectorAll('[data-purpose-category]').forEach(btn=>btn.addEventListener('click',()=>{
+    if(btn.dataset.purposeCategory==='kids')queueMicrotask(renderKids);
+  }));
+  ['purpose-carrier','purpose-join'].forEach(id=>$(id)?.addEventListener('change',()=>{if(kidsActive())queueMicrotask(renderKids)}));
+  document.addEventListener('DOMContentLoaded',()=>{if(kidsActive())renderKids()},{once:true});
+})();
