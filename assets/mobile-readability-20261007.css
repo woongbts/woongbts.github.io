@@ -1,0 +1,174 @@
+/* 2026-10-07 mobile readability pass */
+@media (max-width: 760px){
+
+  /* Mobile plan quick tools: full-width sections, equal controls, larger type */
+  .rate-page .plan-quick-tools{
+    display:grid!important;
+    grid-template-columns:1fr!important;
+    gap:18px!important;
+    margin:18px 0 10px!important;
+    width:100%!important;
+  }
+  .rate-page .plan-quick-row{
+    display:grid!important;
+    grid-template-columns:1fr!important;
+    gap:9px!important;
+    width:100%!important;
+  }
+  .rate-page .plan-quick-row>span{
+    display:block!important;
+    margin:0!important;
+    font-size:16px!important;
+    line-height:1.35!important;
+    font-weight:900!important;
+    color:#47636c!important;
+  }
+  .rate-page .plan-quick-row>div{
+    display:grid!important;
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    gap:9px!important;
+    width:100%!important;
+  }
+  .rate-page .plan-quick-row button{
+    width:100%!important;
+    min-width:0!important;
+    min-height:50px!important;
+    padding:10px 11px!important;
+    border-radius:14px!important;
+    font-size:15.5px!important;
+    line-height:1.25!important;
+    letter-spacing:-.025em!important;
+    text-align:center!important;
+    white-space:normal!important;
+  }
+  .rate-page .plan-quick-row:nth-child(2)>div button:first-child{
+    grid-column:1/-1!important;
+  }
+
+  /* MVNO top mode and recommendation controls */
+  .rate-page .mvno-mode-switch{
+    display:grid!important;
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    gap:10px!important;
+    margin:16px 0 20px!important;
+  }
+  .rate-page .mvno-mode-switch button{
+    min-width:0!important;
+    min-height:54px!important;
+    padding:11px 12px!important;
+    font-size:17px!important;
+    line-height:1.25!important;
+    font-weight:900!important;
+  }
+  .rate-page .mvno-recommend-head h3{
+    font-size:25px!important;
+    line-height:1.3!important;
+    letter-spacing:-.035em!important;
+  }
+  .rate-page .mvno-recommend-head p{
+    font-size:16px!important;
+    line-height:1.7!important;
+  }
+  .rate-page .mvno-usage-buttons{
+    display:grid!important;
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    gap:10px!important;
+    margin:18px 0!important;
+  }
+  .rate-page .mvno-usage-buttons button{
+    width:100%!important;
+    min-width:0!important;
+    min-height:58px!important;
+    padding:11px 12px!important;
+    font-size:16px!important;
+    line-height:1.35!important;
+    font-weight:850!important;
+    white-space:normal!important;
+  }
+  .rate-page .mvno-recommend-note{
+    display:block!important;
+    font-size:15px!important;
+    line-height:1.7!important;
+  }
+
+  /* Quote actions: primary full width, copy/share equal */
+  .rate-page #mobile-result .quote-tools{
+    display:grid!important;
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    gap:10px!important;
+    width:100%!important;
+    margin:18px 0 12px!important;
+  }
+  .rate-page #mobile-result .quote-tools .primary{
+    grid-column:1/-1!important;
+    order:0!important;
+    width:100%!important;
+    min-height:54px!important;
+    font-size:18px!important;
+    line-height:1.25!important;
+  }
+  .rate-page #mobile-result .quote-tools button:not(.primary){
+    width:100%!important;
+    min-width:0!important;
+    min-height:50px!important;
+    padding:10px 12px!important;
+    font-size:16px!important;
+    line-height:1.25!important;
+    font-weight:850!important;
+  }
+  .rate-page #mobile-result .quote-tools small{
+    grid-column:1/-1!important;
+  }
+  .rate-page .quote-next-step{
+    margin-top:14px!important;
+    font-size:16px!important;
+    line-height:1.75!important;
+  }
+
+  /* Cross-sell: larger, aligned cards */
+  .rate-page .rate-cross-sell{
+    padding-top:34px!important;
+    padding-bottom:34px!important;
+  }
+  .rate-page .rate-cross-sell-head{
+    margin-bottom:16px!important;
+  }
+  .rate-page .rate-cross-sell-head>span{
+    font-size:15px!important;
+    line-height:1.4!important;
+    font-weight:900!important;
+  }
+  .rate-page .rate-cross-sell-head>strong{
+    display:block!important;
+    margin-top:5px!important;
+    font-size:24px!important;
+    line-height:1.35!important;
+    letter-spacing:-.035em!important;
+  }
+  .rate-page .rate-cross-sell-grid{
+    display:grid!important;
+    grid-template-columns:1fr!important;
+    gap:12px!important;
+  }
+  .rate-page .rate-cross-sell-grid>a{
+    display:grid!important;
+    gap:8px!important;
+    min-height:0!important;
+    padding:20px 18px!important;
+    border-radius:16px!important;
+  }
+  .rate-page .rate-cross-sell-grid>a>b{
+    font-size:19px!important;
+    line-height:1.35!important;
+  }
+  .rate-page .rate-cross-sell-grid>a>small{
+    font-size:16px!important;
+    line-height:1.65!important;
+  }
+  .rate-page .rate-cross-sell-grid>a>span{
+    margin-top:3px!important;
+    font-size:16px!important;
+    line-height:1.4!important;
+    font-weight:900!important;
+  }
+}
