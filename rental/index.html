@@ -21,7 +21,7 @@
   <link rel="icon" href="assets/woongbi-rental-icon-32.png?v=20261003-blue3" sizes="32x32" type="image/png">
   <link rel="apple-touch-icon" sizes="180x180" href="assets/woongbi-rental-icon-180.png?v=20261003-blue3">
   <link rel="manifest" href="manifest.webmanifest?v=20261003-blue3">
-<link rel="stylesheet" href="assets/rental.css?v=20261005-growth4">
+<link rel="stylesheet" href="assets/rental.css?v=20261006-filters2">
 <link rel="stylesheet" href="assets/ai-recommend.css?v=20261005-guided2">
   <style id="catalog-mobile-critical">
     @media (max-width:560px){
@@ -205,10 +205,45 @@
               <option value="">전체 카테고리</option>
             </select>
           </div>
+          <div class="catalog-advanced-filters" aria-label="요금·관리·계약기간 필터">
+            <label>월요금
+              <select id="catalog-budget-filter" class="catalog-select">
+                <option value="">전체</option>
+                <option value="20000">2만원 이하</option>
+                <option value="30000">3만원 이하</option>
+                <option value="40000">4만원 이하</option>
+                <option value="50000">5만원 이하</option>
+                <option value="70000">7만원 이하</option>
+                <option value="100000">10만원 이하</option>
+              </select>
+            </label>
+            <label>관리방식
+              <select id="catalog-management-filter" class="catalog-select">
+                <option value="">전체</option>
+                <option value="self">자가·셀프관리</option>
+                <option value="visit">방문관리</option>
+              </select>
+            </label>
+            <label>계약기간
+              <select id="catalog-term-filter" class="catalog-select">
+                <option value="">전체</option>
+              </select>
+            </label>
+            <label>정렬
+              <select id="catalog-sort" class="catalog-select">
+                <option value="recommend">추천순</option>
+                <option value="monthly">월요금 낮은순</option>
+                <option value="gift">사은품 높은순</option>
+                <option value="brand">브랜드순</option>
+              </select>
+            </label>
+            <button id="catalog-reset" class="catalog-reset" type="button">조건 초기화</button>
+          </div>
           <div class="catalog-feature-row">
             <span>빠른 조건</span>
             <div id="feature-filters" class="catalog-feature-filters" aria-label="기능 빠른 필터"></div>
           </div>
+          <p class="catalog-compare-help">비교하고 싶은 상품의 <b>비교담기</b>를 누르면 최대 3개까지 월요금·사은품·계약기간을 한눈에 볼 수 있습니다.</p>
           <p id="catalog-count" class="catalog-count" aria-live="polite"></p>
         </div>
         <div id="product-grid" class="catalog-grid" aria-busy="true"><p class="catalog-loading">상품 정보를 불러오는 중입니다.</p></div>
@@ -383,7 +418,7 @@
   <script src="/assets/analytics-config.js?v=20260929-2" defer></script>
   <script src="/assets/conversion-tracker.min.js?v=20261005-growth3" defer></script>
   <script src="/assets/site-analytics.min.js?v=20261005-growth3" defer></script>
-  <script src="assets/catalog.js?v=20261005-growth3" defer></script>
+  <script src="assets/catalog.js?v=20261006-filters2" defer></script>
   <script src="assets/ai-recommend.js?v=20261005-growth3" defer></script>
 </body>
 </html>
