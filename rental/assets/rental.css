@@ -821,3 +821,11 @@
   .catalog-advanced-filters label{font-size:.72rem}
   .catalog-compare-help{font-size:.74rem}
 }
+
+
+/* Product detail compare entry · 2026-10-06 */
+.rental-compare-add.active{background:#0f766e!important;border-color:#0f766e!important;color:#fff!important}
+.rental-compare-status{flex:1 0 100%;margin:0;color:#627a7d;font-size:.76rem;line-height:1.55}
+.rental-compare-status:empty{display:none}
+.rental-compare-status a{color:#0f766e;font-weight:900;text-decoration:none}
+.rental-compare-status a:hover{text-decoration:underline}
