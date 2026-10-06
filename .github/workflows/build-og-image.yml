@@ -23,7 +23,7 @@ jobs:
           rsvg-convert -w 1200 -h 630 assets/woongbi-og-20261006.svg -o assets/woongbi-og-20261006.png
       - name: Commit rendered OG image
         run: |
-          if git diff --quiet -- assets/woongbi-og-20261006.png; then
+          if [ -z "$(git status --porcelain -- assets/woongbi-og-20261006.png)" ]; then
             echo "No image changes"
             exit 0
           fi
