@@ -66,8 +66,8 @@ def replace_meta(source: str, product: dict) -> str:
     desc_parts = [f"모델 {model}" if model else ""]
     if minimum is not None:
         desc_parts.append(f"월 {minimum:,}원부터")
-    if maximum is not None:
-        desc_parts.append(f"고객사은품 최대 {maximum:,}원")
+    if maximum_gift is not None:
+        desc_parts.append(f"고객사은품 최대 {maximum_gift:,}원")
     desc_parts.append("최종 접수 전 최신 조건 확인")
     desc = " · ".join(x for x in desc_parts if x)
 
