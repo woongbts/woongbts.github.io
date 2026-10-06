@@ -1,0 +1,16 @@
+/* 2026-10-07 compact plan quick controls */
+.plan-quick-tools{display:grid;gap:12px;margin:12px 0 4px;padding:0;border:0;background:transparent}
+.plan-quick-row{display:grid;gap:7px}
+.plan-quick-row>span{color:#5f7880;font-size:.78rem;font-weight:900}
+.plan-quick-row>div{display:flex;flex-wrap:wrap;gap:7px}
+.plan-quick-row button{min-height:38px;padding:8px 12px;border:1px solid #cbdcdf;border-radius:999px;background:#fff;color:#49656e;font:inherit;font-size:.76rem;font-weight:900;cursor:pointer}
+.plan-quick-row button:hover{border-color:#9fb8bf}
+.plan-quick-row button:focus-visible{outline:2px solid #0f7f74;outline-offset:2px}
+.plan-quick-row button:disabled{opacity:.45;cursor:not-allowed}
+@media(max-width:560px){
+  .plan-quick-tools{gap:11px}
+  .plan-quick-row>div{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
+  .plan-quick-row:nth-child(2)>div{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .plan-quick-row button{width:100%;min-height:42px;padding:8px 9px;font-size:.72rem;line-height:1.25}
+  .plan-quick-row:nth-child(2)>div button:first-child{grid-column:1/-1}
+}
