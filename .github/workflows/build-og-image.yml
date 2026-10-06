@@ -4,6 +4,7 @@ on:
     branches: [main]
     paths:
       - 'assets/woongbi-og-20261006.svg'
+      - 'rental/assets/woongbi-rental-og-20261006.svg'
   workflow_dispatch:
 
 permissions:
@@ -21,14 +22,15 @@ jobs:
       - name: Render PNG
         run: |
           rsvg-convert -w 1200 -h 630 assets/woongbi-og-20261006.svg -o assets/woongbi-og-20261006.png
+          rsvg-convert -w 1200 -h 630 rental/assets/woongbi-rental-og-20261006.svg -o rental/assets/woongbi-rental-og-20261006.png
       - name: Commit rendered OG image
         run: |
-          if [ -z "$(git status --porcelain -- assets/woongbi-og-20261006.png)" ]; then
+          if [ -z "$(git status --porcelain -- assets/woongbi-og-20261006.png rental/assets/woongbi-rental-og-20261006.png)" ]; then
             echo "No image changes"
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add assets/woongbi-og-20261006.png
+          git add assets/woongbi-og-20261006.png rental/assets/woongbi-rental-og-20261006.png
           git commit -m "Render new Woongbi OG image"
           git push
