@@ -21,3 +21,34 @@ body.plan-picker-opened{overflow:hidden;touch-action:auto}
 
 /* Entry mode guide */
 .mobile-mode-guide{display:flex;align-items:center;gap:10px;margin:10px 0 18px;padding:11px 13px;border:1px solid #d9e6e7;border-radius:12px;background:#f7fbfb;color:#587078;font-size:.78rem;line-height:1.5}.mobile-mode-guide strong{flex:0 0 auto;color:#103c52}.mobile-mode-guide span{min-width:0}@media(max-width:760px){.mobile-mode-guide{display:block;font-size:.75rem}.mobile-mode-guide strong,.mobile-mode-guide span{display:block}.mobile-mode-guide span{margin-top:3px}}
+
+
+/* Desktop internet/TV readability uplift · 2026-10-06 */
+@media (min-width:901px){
+  .rate-page .rate-panel[data-panel="internet"] .updated{font-size:13.5px}
+  .rate-page .wired-compare-head h3{font-size:20px}
+  .rate-page .wired-compare-head p{font-size:15px;line-height:1.7}
+  .rate-page .wired-life-presets>span{font-size:13px}
+  .rate-page .wired-life-presets button{font-size:14px}
+  .rate-page .wired-compare-controls label{font-size:13.5px}
+  .rate-page .wired-compare-controls select{font-size:15px}
+
+  .rate-page .wired-compare-card>span{font-size:13.5px}
+  .rate-page .wired-compare-card>small{font-size:13.5px}
+  .rate-page .wired-compare-card>p{font-size:15px!important;line-height:1.65!important}
+  .rate-page .wired-compare-card>div{font-size:14px;line-height:1.5}
+  .rate-page .wired-compare-card>div em,
+  .rate-page .wired-compare-card>div b{font-size:14px}
+  .rate-page .wired-extra-line{font-size:13.5px!important}
+  .rate-page .wired-compare-card button{font-size:15px;min-height:42px}
+  .rate-page .wired-compare-note{font-size:13.5px;line-height:1.65}
+
+  .rate-page .internet-speed-guide,
+  .rate-page .internet-availability-note{font-size:14px;line-height:1.65}
+  .rate-page .tv-product-info{font-size:14px;line-height:1.65}
+  .rate-page .tv-product-info strong{font-size:15px}
+  .rate-page .tv-product-info p{font-size:14px!important;line-height:1.65!important}
+  .rate-page .tv-product-info small{font-size:13px}
+  .rate-page .additional-tv-box>span{font-size:13px}
+  .rate-page .additional-tv-box>small{font-size:13px;line-height:1.55}
+}
