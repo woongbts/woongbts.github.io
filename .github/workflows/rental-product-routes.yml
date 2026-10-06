@@ -47,5 +47,13 @@ jobs:
             exit 0
           fi
           git commit -m 'Build rental SEO routes'
-          git pull --rebase origin main
-          git push
+          for attempt in 1 2 3 4; do
+            git pull --rebase origin main
+            if git push; then
+              exit 0
+            fi
+            echo "push raced with another main update; retrying ($attempt/4)"
+            sleep $((attempt * 2))
+          done
+          echo "failed to push generated rental SEO routes after retries" >&2
+          exit 1
