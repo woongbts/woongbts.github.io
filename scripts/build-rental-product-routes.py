@@ -46,7 +46,12 @@ def metrics(product: dict):
             gifts.append(int(o.get("gift")))
         except (TypeError, ValueError):
             pass
-    return (min(monthly) if monthly else None, max(gifts) if gifts else None)
+    return (
+        min(monthly) if monthly else None,
+        max(monthly) if monthly else None,
+        max(gifts) if gifts else None,
+        len(options),
+    )
 
 
 def replace_meta(source: str, product: dict) -> str:
@@ -55,7 +60,7 @@ def replace_meta(source: str, product: dict) -> str:
     name = str(product.get("name") or "상품")
     model = str(product.get("model") or "")
     category = str(product.get("category") or "")
-    minimum, maximum = metrics(product)
+    minimum, maximum_monthly, maximum_gift, offer_count = metrics(product)
     canonical = f"https://woongbts.github.io/rental/product/{quote(pid, safe='-_')}/"
     title = f"{brand} {name} 렌탈 | 웅비렌탈".strip()
     desc_parts = [f"모델 {model}" if model else ""]
@@ -78,10 +83,26 @@ def replace_meta(source: str, product: dict) -> str:
         "name": name,
         "brand": {"@type": "Brand", "name": brand or "웅비렌탈"},
         "model": model or None,
+        "sku": pid,
         "category": category or None,
         "description": desc,
         "url": canonical,
         "image": [image] if image else None,
+        "offers": {
+            "@type": "AggregateOffer",
+            "priceCurrency": "KRW",
+            "lowPrice": minimum,
+            "highPrice": maximum_monthly if maximum_monthly is not None else minimum,
+            "offerCount": max(1, offer_count),
+            "availability": "https://schema.org/InStock",
+            "url": canonical,
+            "priceSpecification": {
+                "@type": "UnitPriceSpecification",
+                "price": minimum,
+                "priceCurrency": "KRW",
+                "unitText": "월 렌탈료",
+            },
+        } if minimum is not None else None,
     }
     jsonld = {k: v for k, v in jsonld.items() if v not in (None, "", [])}
 
@@ -92,6 +113,10 @@ def replace_meta(source: str, product: dict) -> str:
     source = re.sub(r'(<meta property="og:description" id="product-og-description" content=")[^"]*(">)', lambda m: m.group(1) + html.escape(desc, quote=True) + m.group(2), source, count=1)
     source = re.sub(r'(<meta property="og:url" id="product-og-url" content=")[^"]*(">)', lambda m: m.group(1) + canonical + m.group(2), source, count=1)
     source = re.sub(r'(<meta property="og:image" id="product-og-image" content=")[^"]*(">)', lambda m: m.group(1) + html.escape(image, quote=True) + m.group(2), source, count=1)
+    source = re.sub(r'(<meta property="og:image:alt" id="product-og-image-alt" content=")[^"]*(">)', lambda m: m.group(1) + html.escape(f"{brand} {name} 렌탈 상품 이미지", quote=True) + m.group(2), source, count=1)
+    source = re.sub(r'(<meta name="twitter:title" id="product-twitter-title" content=")[^"]*(">)', lambda m: m.group(1) + html.escape(title, quote=True) + m.group(2), source, count=1)
+    source = re.sub(r'(<meta name="twitter:description" id="product-twitter-description" content=")[^"]*(">)', lambda m: m.group(1) + html.escape(desc, quote=True) + m.group(2), source, count=1)
+    source = re.sub(r'(<meta name="twitter:image" id="product-twitter-image" content=")[^"]*(">)', lambda m: m.group(1) + html.escape(image, quote=True) + m.group(2), source, count=1)
     source = re.sub(r'<script type="application/ld\+json" id="product-jsonld">.*?</script>', '<script type="application/ld+json" id="product-jsonld">' + json.dumps(jsonld, ensure_ascii=False, separators=(",", ":")) + '</script>', source, count=1)
     source = re.sub(r"<title>.*?</title>", "<title>" + html.escape(title) + "</title>", source, count=1)
     return source
