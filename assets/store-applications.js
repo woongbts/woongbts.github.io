@@ -5,6 +5,7 @@
   const CATEGORY_LABEL={studyphone:'공신폰',mvno:'알뜰폰',prepaid:'선불폰',internet:'인터넷·TV'};
   let policy=null,current=null,openedAt=0,lastSubmit=null;
   let salesSignals=new Map();
+  let selectedInternetCard=null;
 
   function digits(value){return String(value||'').replace(/\D/g,'');}
   function hasSensitivePaymentNumber(value){return /(?:\d[ -]?){12,19}/.test(String(value||''));}
@@ -348,16 +349,83 @@
     });
     host.replaceChildren(title,list);
   }
+  function ensureInternetSelectionBar(){
+    let bar=$('desktop-internet-selection');
+    if(bar)return bar;
+    bar=document.createElement('div');
+    bar.id='desktop-internet-selection';
+    bar.className='desktop-internet-selection';
+    bar.hidden=true;
+    bar.innerHTML='<div><span>현재 선택</span><strong id="desktop-internet-selection-title">인터넷·TV 조건을 선택해 주세요.</strong><small id="desktop-internet-selection-detail"></small></div><button type="button" id="desktop-internet-selection-apply">이 조건으로 신청하기</button>';
+    document.body.append(bar);
+    $('desktop-internet-selection-apply')?.addEventListener('click',()=>{
+      const ctx=selectedInternetCard?internetCardContext(selectedInternetCard):null;
+      if(ctx)openApplication(ctx);
+    });
+    return bar;
+  }
+  function selectInternetCard(card){
+    if(!card)return;
+    document.querySelectorAll('.wired-compare-card.is-selected').forEach(el=>el.classList.remove('is-selected'));
+    selectedInternetCard=card;
+    card.classList.add('is-selected');
+    const ctx=internetCardContext(card),bar=ensureInternetSelectionBar();
+    if(!ctx||!bar)return;
+    const price=ctx.monthly!=null?'월 '+Number(ctx.monthly).toLocaleString('ko-KR')+'원':'월요금 확인';
+    $('desktop-internet-selection-title').textContent=[ctx.provider,price].filter(Boolean).join(' · ');
+    $('desktop-internet-selection-detail').textContent=ctx.detail||'선택한 조건으로 신청할 수 있습니다.';
+    bar.hidden=false;
+  }
+  function enhanceInternetRecommendations(){
+    const cards=[...document.querySelectorAll('.wired-compare-card')];
+    if(!cards.length){const bar=$('desktop-internet-selection');if(bar)bar.hidden=true;selectedInternetCard=null;return}
+    if(selectedInternetCard&&!cards.includes(selectedInternetCard)){selectedInternetCard=null;const bar=$('desktop-internet-selection');if(bar)bar.hidden=true;}
+    const rows=cards.map((card,index)=>({
+      card,index,
+      price:moneyValue(safeText(card.querySelector(':scope > strong'))),
+      gift:moneyValue(safeText(card.querySelector(':scope > div b')))
+    })).filter(row=>row.price!=null);
+    if(!rows.length)return;
+    const priced=rows.filter(row=>row.price>0);
+    const gifted=rows.filter(row=>row.gift!=null);
+    const low=priced.length?priced.reduce((a,b)=>b.price<a.price?b:a):null;
+    const high=gifted.length?gifted.reduce((a,b)=>Number(b.gift||0)>Number(a.gift||0)?b:a):null;
+    const prices=priced.map(x=>x.price),gifts=gifted.map(x=>Number(x.gift||0));
+    const minP=prices.length?Math.min(...prices):0,maxP=prices.length?Math.max(...prices):0;
+    const minG=gifts.length?Math.min(...gifts):0,maxG=gifts.length?Math.max(...gifts):0;
+    const balanced=rows.reduce((best,row)=>{
+      const priceScore=row.price&&maxP>minP?(maxP-row.price)/(maxP-minP):.5;
+      const giftScore=row.gift!=null&&maxG>minG?(Number(row.gift)-minG)/(maxG-minG):.5;
+      const score=priceScore+giftScore;
+      return !best||score>best.score?{row,score}:best;
+    },null)?.row||null;
+    rows.forEach(row=>{
+      const labels=[];
+      if(low&&row.card===low.card)labels.push('월요금 낮음');
+      if(high&&row.card===high.card)labels.push('사은품 높음');
+      if(balanced&&row.card===balanced.card)labels.push('균형형');
+      const key=labels.join('|');
+      if(row.card.dataset.recommendBadges===key)return;
+      row.card.dataset.recommendBadges=key;
+      let box=row.card.querySelector('.wired-recommend-badges');
+      if(!labels.length){box?.remove();return}
+      if(!box){box=document.createElement('div');box.className='wired-recommend-badges';row.card.prepend(box);}
+      box.innerHTML=labels.map(label=>'<span>'+label+'</span>').join('');
+    });
+  }
   function decorateInternet(){
     document.querySelectorAll('.wired-compare-card').forEach(card=>{
-      if(card.querySelector('.store-apply-btn'))return;
-      const apply=makeApplyButton('신청하기');
-      apply.addEventListener('click',event=>{
-        event.preventDefault();event.stopPropagation();
-        const ctx=internetCardContext(card);if(ctx)openApplication(ctx);
-      });
-      card.append(apply);
+      if(!card.querySelector('.store-apply-btn')){
+        const apply=makeApplyButton('신청하기');
+        apply.addEventListener('click',event=>{
+          event.preventDefault();event.stopPropagation();
+          selectInternetCard(card);
+          const ctx=internetCardContext(card);if(ctx)openApplication(ctx);
+        });
+        card.append(apply);
+      }
     });
+    enhanceInternetRecommendations();
   }
   function addSelectedApplyButtons(){
     const specs=[
@@ -462,6 +530,12 @@
     $('store-application-success-confirm')?.addEventListener('click',()=>$('store-application-success')?.close());
     $('prepaid-provider')?.addEventListener('change',()=>setTimeout(renderPrepaidProducts,0));
     $('prepaid-plan')?.addEventListener('change',()=>setTimeout(renderPrepaidProducts,0));
+    $('wired-compare-results')?.addEventListener('click',event=>{
+      const detail=event.target.closest('[data-wired-provider]');
+      const card=event.target.closest('.wired-compare-card');
+      if(detail&&card)selectInternetCard(card);
+    });
+    ensureInternetSelectionBar();
 
     const observer=new MutationObserver(()=>queueMicrotask(decorateAll));
     ['studyphone-plan-list','mvno-recommend-list','mvno-plan-picker-list','wired-compare-results'].forEach(id=>{
