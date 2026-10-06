@@ -591,7 +591,8 @@
   function applyProductSeo(p) {
     const m=productMetrics(p);
     const canonical=new URL('product/'+encodeURIComponent(p.id)+'/', location.origin + '/rental/').toString();
-    const title=`${brandLabel(p.brand)} ${p.name} 렌탈 | 웅비렌탈`;
+    const brand=brandLabel(p.brand)||p.brand||'웅비렌탈';
+    const title=`${brand} ${p.name} 렌탈 | 웅비렌탈`;
     const desc=[p.model?('모델 '+p.model):'',m.minMonthly!=null?('월 '+won(m.minMonthly)+'부터'):'',m.maxGift!=null?('고객사은품 최대 '+won(m.maxGift)):'','최종 접수 전 최신 조건 확인'].filter(Boolean).join(' · ');
     document.title=title;
     $('#product-meta-description')?.setAttribute('content',desc);
@@ -599,13 +600,34 @@
     $('#product-og-title')?.setAttribute('content',title);
     $('#product-og-description')?.setAttribute('content',desc);
     $('#product-og-url')?.setAttribute('content',canonical);
+    $('#product-twitter-title')?.setAttribute('content',title);
+    $('#product-twitter-description')?.setAttribute('content',desc);
     const image=imageCandidatesFor(p)[0];
-    if(image) $('#product-og-image')?.setAttribute('content',new URL(image,location.href).toString());
+    const imageUrl=image?new URL(image,location.href).toString():'https://woongbts.github.io/rental/assets/woongbi-rental-icon-180.png';
+    $('#product-og-image')?.setAttribute('content',imageUrl);
+    $('#product-og-image-alt')?.setAttribute('content',brand+' '+p.name+' 렌탈 상품 이미지');
+    $('#product-twitter-image')?.setAttribute('content',imageUrl);
+    const optionCount=(p.options||[]).filter(isSellableOption).length;
     const jsonld={
       '@context':'https://schema.org','@type':'Product',name:p.name,
-      brand:{'@type':'Brand',name:brandLabel(p.brand)||p.brand||'웅비렌탈'},
-      model:p.model||undefined,category:p.category||undefined,description:p.shortDescription||desc,url:canonical,
-      image:image?[new URL(image,location.href).toString()]:undefined,
+      brand:{'@type':'Brand',name:brand},
+      model:p.model||undefined,sku:String(p.id||''),category:p.category||undefined,
+      description:p.shortDescription||desc,url:canonical,image:[imageUrl],
+      offers:m.minMonthly!=null?{
+        '@type':'AggregateOffer',
+        priceCurrency:'KRW',
+        lowPrice:Number(m.minMonthly),
+        highPrice:Number(m.maxMonthly??m.minMonthly),
+        offerCount:Math.max(1,optionCount),
+        availability:'https://schema.org/InStock',
+        url:canonical,
+        priceSpecification:{
+          '@type':'UnitPriceSpecification',
+          price:Number(m.minMonthly),
+          priceCurrency:'KRW',
+          unitText:'월 렌탈료'
+        }
+      }:undefined,
       additionalProperty:[
         m.minMonthly!=null?{'@type':'PropertyValue',name:'월 렌탈료',value:won(m.minMonthly)+'부터'}:null,
         m.maxGift!=null?{'@type':'PropertyValue',name:'고객사은품',value:'최대 '+won(m.maxGift)}:null,
