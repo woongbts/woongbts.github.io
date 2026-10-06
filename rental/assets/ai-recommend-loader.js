@@ -23,4 +23,7 @@
       try{await load();setTimeout(()=>btn.click(),0);}catch(_){}
     },{capture:true});
   });
+  if(new URLSearchParams(location.search).get('ai')==='1'){
+    load().catch(()=>{});
+  }
 })();
