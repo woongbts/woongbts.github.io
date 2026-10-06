@@ -778,3 +778,19 @@ body.home-modern{
   .home-modern .owner-note>span{font-size:13px}
   .home-modern .owner-note p{font-size:15px;line-height:1.7}
 }
+
+
+/* Task-based service cards · 2026-10-06 */
+.home-modern .service-task-grid .service-code{
+  display:inline-flex;
+  align-self:flex-start;
+  padding:5px 8px;
+  border-radius:999px;
+  background:#eef7f5;
+  color:#0f766e;
+  letter-spacing:0;
+}
+.home-modern .service-task-grid .service-card h3{margin-top:18px}
+@media(max-width:900px){
+  .home-modern .service-task-grid .service-code{font-size:.68rem}
+}
