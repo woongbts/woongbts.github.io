@@ -27,7 +27,7 @@
   <link rel="manifest" href="/manifest.webmanifest"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="apple-mobile-web-app-title" content="웅비통신">
   <link rel="stylesheet" href="assets/rates.css?v=20261006-advice1">
   <link rel="stylesheet" href="assets/readability-20260921.css?v=20260929-2">
-<link rel="stylesheet" href="/assets/customer-polish.css?v=20260930-3"><link rel="stylesheet" href="/assets/mvno-easy.css?v=20260930-7"><link rel="stylesheet" href="/assets/store-applications.css?v=20261006-conversion1"><link rel="stylesheet" href="/assets/device-browser.css?v=20261007-3"></head>
+<link rel="stylesheet" href="/assets/customer-polish.css?v=20260930-3"><link rel="stylesheet" href="/assets/mvno-easy.css?v=20260930-7"><link rel="stylesheet" href="/assets/store-applications.css?v=20261006-conversion1"><link rel="stylesheet" href="/assets/device-browser.css?v=20261007-3"><link rel="stylesheet" href="/assets/plan-quick-tools.css?v=20261007-1"></head>
 <body class="rate-page">
   <header class="rate-top">
     <div class="rate-wrap rate-nav">
@@ -143,12 +143,26 @@
                   <span class="plan-picker-main"><strong id="plan-picker-selected">기종을 먼저 선택하세요</strong><small id="plan-picker-selected-detail">기종을 선택하면 요금제를 찾을 수 있습니다.</small></span>
                   <b>추천 요금제 보기</b>
                 </button>
-                <div class="plan-quick-shortcuts" id="plan-quick-shortcuts" aria-label="요금제 빠른 찾기">
-                  <span>빠른 찾기</span>
-                  <button type="button" data-plan-quick-price="under40" disabled>가볍게 · 4만원 미만</button>
-                  <button type="button" data-plan-quick-price="40s" disabled>실속 · 4만원대</button>
-                  <button type="button" data-plan-quick-price="50plus" disabled>넉넉하게 · 5만원+</button>
-                  <button type="button" data-plan-quick-feature="benefit" disabled>콘텐츠·혜택형</button>
+                <div class="plan-quick-shortcuts plan-quick-tools" id="plan-quick-shortcuts" aria-label="요금제 빠른 비교">
+                  <div class="plan-quick-row">
+                    <span>빠른 정렬</span>
+                    <div>
+                      <button type="button" data-plan-quick-sort="price" disabled>낮은 요금순</button>
+                      <button type="button" data-plan-quick-sort="data" disabled>데이터 많은 순</button>
+                      <button type="button" data-plan-quick-feature="general" disabled>일반 요금제</button>
+                      <button type="button" data-plan-quick-feature="special" disabled>연령·혜택요금제</button>
+                    </div>
+                  </div>
+                  <div class="plan-quick-row">
+                    <span>가격대</span>
+                    <div>
+                      <button type="button" data-plan-quick-price="all" disabled>전체</button>
+                      <button type="button" data-plan-quick-price="under30" disabled>~3만원</button>
+                      <button type="button" data-plan-quick-price="30to50" disabled>3~5만원</button>
+                      <button type="button" data-plan-quick-price="50to70" disabled>5~7만원</button>
+                      <button type="button" data-plan-quick-price="70plus" disabled>7만원+</button>
+                    </div>
+                  </div>
                 </div>
                 <select id="plan-select" class="plan-select-native" disabled tabindex="-1" aria-hidden="true"><option value="">기종을 먼저 선택하세요</option></select>
                 <div class="plan-picker-backdrop" id="plan-picker-backdrop" hidden>
@@ -177,22 +191,25 @@
                       <span>월 기본료</span>
                       <div>
                         <button type="button" class="active" data-plan-filter-group="price" data-plan-filter-value="all">전체</button>
-                        <button type="button" data-plan-filter-group="price" data-plan-filter-value="under40">4만원 미만 · 실속</button>
-                        <button type="button" data-plan-filter-group="price" data-plan-filter-value="40s">4만원대 · 균형</button>
-                        <button type="button" data-plan-filter-group="price" data-plan-filter-value="50plus">5만원 이상 · 넉넉하게</button>
+                        <button type="button" data-plan-filter-group="price" data-plan-filter-value="under30">3만원 미만</button>
+                        <button type="button" data-plan-filter-group="price" data-plan-filter-value="30to50">3~5만원</button>
+                        <button type="button" data-plan-filter-group="price" data-plan-filter-value="50to70">5~7만원</button>
+                        <button type="button" data-plan-filter-group="price" data-plan-filter-value="70plus">7만원 이상</button>
                       </div>
-                      <small class="plan-filter-hint">5만원 이상에는 데이터 제공량이 큰 요금제와 콘텐츠·디바이스 등 혜택형 요금제가 함께 포함될 수 있어요.</small>
+                      <small class="plan-filter-hint">월 기본료 구간으로 먼저 좁힌 뒤 데이터·연령·혜택 조건을 추가로 확인할 수 있어요.</small>
                     </div>
                     <div class="plan-filter-group plan-feature-group">
-                      <span>특징으로 찾기</span>
+                      <span>유형으로 찾기</span>
                       <div>
                         <button type="button" class="active" data-plan-filter-group="feature" data-plan-filter-value="all">전체</button>
+                        <button type="button" data-plan-filter-group="feature" data-plan-filter-value="general">일반 요금제</button>
+                        <button type="button" data-plan-filter-group="feature" data-plan-filter-value="special">연령·혜택요금제</button>
                         <button type="button" data-plan-filter-group="feature" data-plan-filter-value="benefit">혜택형</button>
                         <button type="button" data-plan-filter-group="feature" data-plan-filter-value="senior">시니어</button>
                         <button type="button" data-plan-filter-group="feature" data-plan-filter-value="youth">청년</button>
                         <button type="button" data-plan-filter-group="feature" data-plan-filter-value="kids">키즈·청소년</button>
                       </div>
-                      <small class="plan-filter-hint">혜택형은 요금제명에 콘텐츠·구독·디바이스 등 혜택이 명시된 상품만 표시합니다.</small>
+                      <small class="plan-filter-hint">일반 요금제와 연령·콘텐츠·구독 등 특별 조건 요금제를 나눠서 볼 수 있어요.</small>
                     </div>
                     <div class="plan-picker-toolbar">
                       <strong id="plan-picker-count">요금제를 불러오는 중입니다.</strong>
@@ -626,7 +643,7 @@
   <script src="assets/quote-handoff.js?v=20260930-2" defer></script>
   <script src="/assets/plan-eligibility.js?v=20260930-3" defer></script>
 <script src="/assets/mvno-api-bridge.min.js?v=20261001-1" defer></script><script src="/assets/mvno-display.js?v=20261001-1" defer></script><script src="/assets/studyphone-api-bridge.min.js?v=20261001-1" defer></script><script src="/assets/wired-master.js?v=20261006-master4"></script>
-<script src="/assets/internet-api-bridge.min.js?v=20261006-master6" defer></script><script src="/assets/plan-recommend-api-bridge.min.js?v=20261001-1" defer></script><script src="assets/rates.min.js?v=20261006-kids2" defer></script>
+<script src="/assets/internet-api-bridge.min.js?v=20261006-master6" defer></script><script src="/assets/plan-recommend-api-bridge.min.js?v=20261001-1" defer></script><script src="assets/rates.min.js?v=20261007-planquick1" defer></script>
 <script src="/assets/quote-advice.js?v=20261006-1" defer></script>
 <script src="/assets/kids-promos-data.js?v=20261006-data1" defer></script>
 <script src="/assets/funnel-observer.js?v=20261006-1" defer></script><script src="/assets/internet-ui.min.js?v=20261006-wiredfix1" defer></script><script src="/assets/rates-deeplink.js?v=20261006-purpose1" defer></script><script src="/assets/store-applications.js?v=20261006-conversion1" defer></script>
