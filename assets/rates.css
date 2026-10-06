@@ -81,3 +81,14 @@ body.plan-picker-opened{overflow:hidden;touch-action:auto}
   .rate-page .kids-sale-card .kids-policy-lines span{flex-basis:96px}
   .rate-page .kids-sale-card .kids-policy-lines b{text-align:left}
 }
+
+
+/* Quote decision explanation · 2026-10-06 */
+.quote-advice{margin:14px 0;padding:15px 16px;border:1px solid #b9d9d4;border-radius:14px;background:linear-gradient(135deg,#f2fbf8,#f8fcfd);box-shadow:0 8px 24px rgba(15,118,110,.06)}
+.quote-advice[hidden]{display:none!important}
+.quote-advice-head span{display:block;color:#0f766e;font-size:12px;font-weight:950;letter-spacing:.04em}
+.quote-advice-head strong{display:block;margin-top:4px;color:#173e48;font-size:17px;line-height:1.45}
+.quote-advice>p{margin:8px 0 0;color:#4c696d;font-size:14px;line-height:1.65}
+.quote-advice-check{display:grid;grid-template-columns:auto 1fr;gap:8px;margin-top:10px;padding-top:10px;border-top:1px dashed #cfe1de;color:#617b7d;font-size:13px;line-height:1.55}
+.quote-advice-check b{color:#315d5b}
+@media(max-width:640px){.quote-advice{padding:13px}.quote-advice-head strong{font-size:16px}.quote-advice>p{font-size:13px}.quote-advice-check{grid-template-columns:1fr;font-size:12.5px}}
