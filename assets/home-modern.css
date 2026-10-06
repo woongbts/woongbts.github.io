@@ -743,3 +743,38 @@ body.home-modern{
   .home-modern .contact p{font-size:.78rem}
   .home-modern .contact .btn{font-size:.78rem}
 }
+
+
+/* Desktop readability uplift · 2026-10-06 */
+@media (min-width:901px){
+  .home-modern .menu{font-size:clamp(14px,.95vw,15.5px);gap:8px}
+  .home-modern .menu a{padding:9px 8px}
+
+  .home-modern .hero-microcopy{font-size:14.5px;line-height:1.65}
+  .home-modern .hero-choice-head span{font-size:12.5px}
+  .home-modern .hero-choice-head strong{font-size:20px}
+  .home-modern .hero-choice-head p{font-size:14px;line-height:1.55}
+  .home-modern .hero-choice-grid small{font-size:13px}
+  .home-modern .hero-choice-grid b{font-size:16px;line-height:1.4}
+  .home-modern .hero-choice-grid span{font-size:13.5px;line-height:1.45}
+
+  .home-modern .home-trust-rail span{font-size:13px}
+  .home-modern .home-trust-rail strong{font-size:18px}
+  .home-modern .home-trust-rail small{font-size:12.5px}
+  .home-modern .home-trust-rail .precon-badge b{font-size:14px}
+  .home-modern .home-trust-rail .precon-badge small{font-size:12.5px}
+
+  .home-modern .section-heading>p{font-size:15.5px;line-height:1.75}
+  .home-modern .service-code{font-size:12px}
+  .home-modern .service-card h3{font-size:20px}
+  .home-modern .service-card p{font-size:15px;line-height:1.7}
+  .home-modern .service-links a{font-size:14px}
+  .home-modern .service-links .main-link{font-size:14.5px}
+
+  .home-modern .quick-label{font-size:12.5px}
+  .home-modern .quick-cta p{font-size:15px;line-height:1.65}
+  .home-modern .quick-cta-actions .btn{min-height:46px;padding:10px 15px;font-size:14.5px}
+
+  .home-modern .owner-note>span{font-size:13px}
+  .home-modern .owner-note p{font-size:15px;line-height:1.7}
+}
