@@ -1,6 +1,6 @@
 (()=>{'use strict';
 window.WOONGBI_WIRED_MASTER={
-version:'2026-10-06.2',
+version:'2026-10-06.3',
 settop:{SKB:{name:'스마트3',fee:4400},SKTNET:{name:'스마트3',fee:4400},KT:{name:'기가지니 A',fee:3300},'LGU+':{name:'4K UHD4',fee:4400}},
 rules:{
 SKB:{
@@ -14,7 +14,12 @@ SKB:{
 },
 SKTNET:{
  internetMobile:{100:4400,500:11000,1000:13200},
- tvMobile:{100:5500,500:12100,1000:14300}
+ tvMobile:{100:4400,500:6600,1000:7700},
+ verified:{
+  '100|TV_BASIC_NEW':{noMobile:36300,mobile:31900,mobileDiscount:4400},
+  '100|TV_SMART_PLUS':{noMobile:39600,mobile:35200,mobileDiscount:4400},
+  '100|TV_ALL':{noMobile:42900,mobile:38500,mobileDiscount:4400}
+ }
 },
 KT:{
  verified:{
