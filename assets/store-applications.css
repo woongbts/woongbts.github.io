@@ -202,3 +202,14 @@
 .rate-cross-sell-head span{display:block;color:#0f766e;font-size:.68rem;font-weight:950;letter-spacing:.08em}.rate-cross-sell-head strong{display:block;margin-top:4px;color:#234d52;font-size:1.18rem}
 .rate-cross-sell-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:13px}.rate-cross-sell-grid a{display:block;padding:16px;border:1px solid #d7e5e2;border-radius:14px;background:#fff;color:#31575b;text-decoration:none}.rate-cross-sell-grid b,.rate-cross-sell-grid small,.rate-cross-sell-grid span{display:block}.rate-cross-sell-grid b{font-size:.9rem}.rate-cross-sell-grid small{margin-top:5px;color:#758789;font-size:.7rem;line-height:1.5}.rate-cross-sell-grid span{margin-top:11px;color:#0f766e;font-size:.7rem;font-weight:950}
 @media(max-width:600px){.rate-cross-sell{padding:20px 0 38px}.rate-cross-sell-grid{grid-template-columns:1fr}.rate-cross-sell-head strong{font-size:1.05rem}.rate-cross-sell-grid b{font-size:.86rem}.rate-cross-sell-grid small,.rate-cross-sell-grid span{font-size:.72rem}}
+
+
+/* Desktop cross-sell readability uplift · 2026-10-06 */
+@media (min-width:901px){
+  .rate-cross-sell-head span{font-size:13.5px}
+  .rate-cross-sell-head strong{font-size:22px}
+  .rate-cross-sell-grid a{padding:19px 20px}
+  .rate-cross-sell-grid b{font-size:17px}
+  .rate-cross-sell-grid small{font-size:14.5px;line-height:1.65}
+  .rate-cross-sell-grid span{font-size:14.5px}
+}
