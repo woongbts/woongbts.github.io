@@ -1,6 +1,6 @@
 (()=>{'use strict';
 window.WOONGBI_WIRED_MASTER={
-version:'2026-10-06.3',
+version:'2026-10-06.4',
 settop:{SKB:{name:'스마트3',fee:4400},SKTNET:{name:'스마트3',fee:4400},KT:{name:'기가지니 A',fee:3300},'LGU+':{name:'4K UHD4',fee:4400}},
 rules:{
 SKB:{
@@ -34,7 +34,11 @@ KT:{
 },
 'LGU+':{
  tvMobile:{100:5500,500:9900,1000:13200},
- verified:{'100|TV_ECONOMY_PACK':{noMobile:39600,mobile:34100,mobileDiscount:5500}}
+ verified:{
+  '100|TV_ECONOMY_PACK':{noMobile:39600,mobile:34100,mobileDiscount:5500},
+  '500|TV_ECONOMY_PACK':{noMobile:45100,mobile:35200,mobileDiscount:9900},
+  '1000|TV_ECONOMY_PACK':{noMobile:50600,mobile:37400,mobileDiscount:13200}
+ }
 }
 }
 };
