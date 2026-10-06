@@ -1,0 +1,81 @@
+{
+  "updatedAt": "2026-10-06",
+  "products": [
+    {
+      "key": "pocketpiece",
+      "active": true,
+      "carrier": "SKT",
+      "name": "ZEM폰 포켓피스",
+      "model": "SM-A175N_ZEM",
+      "price": 349800,
+      "plan": "ZEM플랜 스마트",
+      "planFee": 19800,
+      "monthly": 14850,
+      "data": "1.5GB + 400Kbps 무제한",
+      "voice": "60분 + SKT 망내 지정 2회선 무제한",
+      "sms": "무제한",
+      "video": "0분",
+      "method": "선택약정 12개월",
+      "discount": 4950,
+      "publicSupport": 0,
+      "extraSupport": 349800,
+      "age": "만 12세 이하 가입 가능 (2026년도 기준 2013년생 생일 이전)",
+      "benefits": [
+        "ZEM 이용 데이터 무료",
+        "기본 데이터 소진 후 400Kbps 무제한",
+        "신규가입 한정 행사"
+      ]
+    },
+    {
+      "key": "pompompurin",
+      "active": true,
+      "carrier": "KT",
+      "name": "폼폼푸린 키즈폰",
+      "model": "SM-A175NK-KP",
+      "price": 349800,
+      "plan": "키즈24",
+      "planFee": 24000,
+      "monthly": 24000,
+      "data": "1.5GB + 400Kbps 무제한",
+      "voice": "무제한",
+      "sms": "기본 제공",
+      "video": "50분",
+      "method": "공시지원",
+      "discount": 0,
+      "publicSupport": 305000,
+      "extraSupport": 44800,
+      "age": "만 12세 이하 가입 가능 (2026년도 기준 2013년생 생일 이전)",
+      "benefits": [
+        "안심박스 제공",
+        "영상·부가통화 50분",
+        "기본 데이터 소진 후 400Kbps 무제한",
+        "신규가입 한정 행사"
+      ]
+    },
+    {
+      "key": "mooner2",
+      "active": true,
+      "carrier": "LGU+",
+      "name": "갤럭시 A17 키즈폰 무너2",
+      "model": "SM_A175N-M2",
+      "price": 369500,
+      "plan": "데이터플랜300MB(키즈)+0.7GB",
+      "planFee": 28000,
+      "monthly": 28000,
+      "data": "1GB + 400Kbps 무제한",
+      "voice": "125분",
+      "sms": "기본 제공",
+      "video": "0분",
+      "method": "공시지원",
+      "discount": 0,
+      "publicSupport": 217000,
+      "extraSupport": 152500,
+      "age": "만 12세 이하 가입 가능 (2026년도 기준 2013년생 생일 이전)",
+      "benefits": [
+        "테더링·쉐어링 가능",
+        "기본 데이터 소진 후 400Kbps 무제한",
+        "신규가입 한정 행사"
+      ]
+    }
+  ]
+}
