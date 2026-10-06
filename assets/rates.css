@@ -52,3 +52,32 @@ body.plan-picker-opened{overflow:hidden;touch-action:auto}
   .rate-page .additional-tv-box>span{font-size:13px}
   .rate-page .additional-tv-box>small{font-size:13px;line-height:1.55}
 }
+
+
+/* Kids promo policy detail polish · 2026-10-06 */
+.rate-page .kids-sale-card .kids-policy-specs{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.rate-page .kids-sale-card .kids-policy-specs>span{
+  min-width:0;padding:10px 11px;border:1px solid #d9e5e8;border-radius:11px;background:#f9fbfc
+}
+.rate-page .kids-sale-card .kids-policy-specs small{display:block;margin-bottom:3px;color:#708489;font-size:13px;font-weight:800}
+.rate-page .kids-sale-card .kids-policy-specs b{
+  display:block;color:#173e4b;font-size:14px;line-height:1.45;word-break:keep-all;overflow-wrap:anywhere
+}
+.rate-page .kids-sale-card .kids-policy-lines>div{
+  align-items:flex-start;padding:8px 0;border-bottom:1px dashed #e5ecee;font-size:14px
+}
+.rate-page .kids-sale-card .kids-policy-lines>div:last-child{border-bottom:0}
+.rate-page .kids-sale-card .kids-policy-lines span{flex:0 0 108px;color:#687f84}
+.rate-page .kids-sale-card .kids-policy-lines b{
+  flex:1;text-align:right;color:#153b4a;font-size:14px;line-height:1.45;word-break:keep-all
+}
+.rate-page .kids-sale-card .kids-policy-lines .kids-device-zero b{color:#d84418;font-size:16px}
+.rate-page .kids-sale-card .kids-policy-notes{padding:12px 13px}
+.rate-page .kids-sale-card .kids-policy-notes>strong{display:block;margin-bottom:6px;color:#694f17;font-size:14px}
+.rate-page .kids-sale-card .kids-policy-notes ul{margin:0;padding-left:18px}
+.rate-page .kids-sale-card .kids-policy-notes li{margin:4px 0;font-size:13px;line-height:1.5}
+@media(max-width:760px){
+  .rate-page .kids-sale-card .kids-policy-specs{grid-template-columns:1fr 1fr}
+  .rate-page .kids-sale-card .kids-policy-lines span{flex-basis:96px}
+  .rate-page .kids-sale-card .kids-policy-lines b{text-align:left}
+}
