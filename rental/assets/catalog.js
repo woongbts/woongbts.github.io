@@ -8,6 +8,11 @@
   const brandFilters = document.getElementById('brand-filters');
   const categoryFilter = document.getElementById('category-filter');
   const featureFilters = document.getElementById('feature-filters');
+  const budgetFilter = document.getElementById('catalog-budget-filter');
+  const managementFilter = document.getElementById('catalog-management-filter');
+  const termFilter = document.getElementById('catalog-term-filter');
+  const catalogSort = document.getElementById('catalog-sort');
+  const catalogReset = document.getElementById('catalog-reset');
   const count = document.getElementById('catalog-count');
   const moreBtn = document.getElementById('catalog-more');
   const catalogToggle = document.getElementById('catalog-toggle');
@@ -25,7 +30,7 @@
   const RECOMMEND_CATEGORIES = ['정수기','공기청정기','비데·연수기','안마의자','매트리스·프레임'];
   let recommendCategory = '정수기';
   let recommendSortMode = 'recommend';
-  const state = { query: '', brand: '', category: '', feature: '', limit: PAGE_SIZE };
+  const state = { query: '', brand: '', category: '', feature: '', budget: 0, management: '', term: '', sort: 'recommend', limit: PAGE_SIZE };
   let products = [];
   let catalogLoaded = false;
   let catalogLoading = null;
@@ -549,15 +554,37 @@
     return true;
   }
 
+  function optionManagementMatches(option, mode) {
+    if (!mode) return true;
+    const text=[option?.management,option?.managementLabel,option?.care,option?.sourceOption].filter(Boolean).join(' ');
+    return mode==='self' ? /자가|셀프|self/i.test(text) : /방문|visit/i.test(text);
+  }
+
   function matches(product) {
     if (!matchesBase(product)) return false;
-    if (!state.feature) return true;
-    const def = featureDefs.find(x => x.key === state.feature);
-    return !def || def.test(productText(product));
+    if (state.feature) {
+      const def = featureDefs.find(x => x.key === state.feature);
+      if (def && !def.test(productText(product))) return false;
+    }
+    const valid=(product.options||[]).filter(o=>isSellableOption(o)&&Number.isFinite(Number(o.monthly)));
+    if (state.budget) {
+      const min=valid.length?Math.min(...valid.map(o=>Number(o.monthly))):Infinity;
+      if (min>Number(state.budget)) return false;
+    }
+    if (state.management && !valid.some(o=>optionManagementMatches(o,state.management))) return false;
+    if (state.term && !valid.some(o=>String(o.term)===String(state.term))) return false;
+    return true;
   }
 
   function filteredProducts() {
-    return products.filter(p => p.availability !== 'inactive').filter(matches);
+    const list=products.filter(p => p.availability !== 'inactive').filter(matches);
+    return [...list].sort((a,b)=>{
+      const am=recommendationMetrics(a)||{},bm=recommendationMetrics(b)||{};
+      if(state.sort==='monthly') return (am.minMonthly??Infinity)-(bm.minMonthly??Infinity) || brandPreference(a).rank-brandPreference(b).rank;
+      if(state.sort==='gift') return (bm.maxGift??-1)-(am.maxGift??-1) || (am.minMonthly??Infinity)-(bm.minMonthly??Infinity);
+      if(state.sort==='brand') return brandPreference(a).rank-brandPreference(b).rank || brandLabel(a.brand).localeCompare(brandLabel(b.brand),'ko') || String(a.name).localeCompare(String(b.name),'ko');
+      return recommendationScore(b)-recommendationScore(a) || brandPreference(a).rank-brandPreference(b).rank || (am.minMonthly??Infinity)-(bm.minMonthly??Infinity);
+    });
   }
 
   function renderFeatureFilters() {
@@ -656,12 +683,30 @@
       });
     }
 
+    const terms=[...new Set(activeProducts.flatMap(p=>(p.options||[]).filter(isSellableOption).map(o=>Number(o.term))).filter(Number.isFinite))].sort((a,b)=>a-b);
+    if(termFilter) termFilter.innerHTML='<option value="">전체</option>'+terms.map(term=>'<option value="'+term+'">'+term+'개월</option>').join('');
+
     searchInput?.addEventListener('input', () => {
       state.query = searchInput.value;
       if (state.feature && !featureDefs.some(def => def.key === state.feature)) state.feature = '';
       resetAndRender();
     });
-
+    budgetFilter?.addEventListener('change',()=>{state.budget=Number(budgetFilter.value)||0;resetAndRender();trackRental('rental_catalog_filter',null,{filter:'budget',value:budgetFilter.value||'all'});});
+    managementFilter?.addEventListener('change',()=>{state.management=managementFilter.value||'';resetAndRender();trackRental('rental_catalog_filter',null,{filter:'management',value:state.management||'all'});});
+    termFilter?.addEventListener('change',()=>{state.term=termFilter.value||'';resetAndRender();trackRental('rental_catalog_filter',null,{filter:'term',value:state.term||'all'});});
+    catalogSort?.addEventListener('change',()=>{state.sort=catalogSort.value||'recommend';resetAndRender();trackRental('rental_catalog_sort',null,{sort:state.sort});});
+    catalogReset?.addEventListener('click',()=>{
+      state.query='';state.brand='';state.category='';state.feature='';state.budget=0;state.management='';state.term='';state.sort='recommend';
+      if(searchInput)searchInput.value='';
+      if(categoryFilter)categoryFilter.value='';
+      if(budgetFilter)budgetFilter.value='';
+      if(managementFilter)managementFilter.value='';
+      if(termFilter)termFilter.value='';
+      if(catalogSort)catalogSort.value='recommend';
+      brandFilters?.querySelectorAll('button').forEach(btn=>btn.classList.toggle('active',!btn.dataset.brand));
+      document.querySelectorAll('[data-category-link]').forEach(link=>link.classList.remove('active'));
+      resetAndRender();
+    });
 
     moreBtn?.addEventListener('click', () => {
       state.limit += PAGE_SIZE;
@@ -741,8 +786,8 @@
 
   document.addEventListener('click', event => {
     const compareBtn=event.target.closest('[data-compare-product]');
-    if(compareBtn){event.preventDefault();toggleCompare(String(compareBtn.dataset.compareProduct||''));return}
-    if(event.target.closest('#open-compare')){openCompareModal();return}
+    if(compareBtn){event.preventDefault();const id=String(compareBtn.dataset.compareProduct||'');toggleCompare(id);trackRental('rental_compare_toggle',productById(id)||null,{selected:loadCompareIds().includes(id),count:loadCompareIds().length});return}
+    if(event.target.closest('#open-compare')){trackRental('rental_compare_open',null,{count:loadCompareIds().length});openCompareModal();return}
     if(event.target.closest('#clear-compare')){saveCompareIds([]);updateCompareUi();return}
     if(event.target.closest('[data-close-compare]')){document.getElementById('compare-modal')?.classList.remove('open');return}
     const link=event.target.closest('[data-rental-product-id]');
