@@ -121,6 +121,21 @@
   }
   async function init(){
     const root=$('device-browser'); if(!root)return;
+    const params=new URLSearchParams(location.search);
+    const deepLinked=Boolean(params.get('d')&&params.get('p'));
+    if(deepLinked){
+      root.hidden=true;
+      root.dataset.deeplink='1';
+      const reveal=$('device-browser-reveal');
+      if(reveal){reveal.hidden=false;reveal.addEventListener('click',()=>{root.hidden=false;reveal.hidden=true;root.scrollIntoView({behavior:'smooth',block:'start'});});}
+      let tries=0;
+      const focusSelected=()=>{
+        const device=$('device-select'),form=$('mobile-form');
+        if(device?.value===params.get('d')){form?.scrollIntoView({behavior:'auto',block:'start'});return;}
+        if(++tries<30)setTimeout(focusSelected,120);
+      };
+      setTimeout(focusSelected,120);
+    }
     root.dataset.state='loading';
     try{
       const [catalog,plans,supports,extra,iphone]=await Promise.all([
