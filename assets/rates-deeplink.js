@@ -34,12 +34,26 @@
       if(provider)waitFor(()=>setSelect('prepaid-provider',provider),()=>setTimeout(selectPlan,80));else selectPlan();
     }
   }
+  function restoreMobilePurpose(){
+    if(requested!=='mobile')return;
+    const purpose=params.get('purpose');
+    if(!purpose)return;
+    const allowedPurpose=new Set(['senior','kids','value','premium']);
+    if(!allowedPurpose.has(purpose))return;
+    waitFor(()=>document.querySelector('[data-mobile-mode="purpose"]'),mode=>{
+      mode.click();
+      setTimeout(()=>{
+        const target=document.querySelector('[data-purpose-category="'+purpose+'"]');
+        if(target){target.click();document.getElementById('purpose-recommend')?.scrollIntoView({behavior:'auto',block:'start'});}
+      },120);
+    });
+  }
   function openRequestedTab(){
     const tab=document.querySelector('.rate-tab[data-tab="'+requested+'"]');
     const panel=document.querySelector('.rate-panel[data-panel="'+requested+'"]');
     if(!tab||!panel)return;
     tab.click();
-    setTimeout(restoreSelection,120);
+    setTimeout(()=>{restoreSelection();restoreMobilePurpose();},120);
     if(requested!=='mobile')requestAnimationFrame(()=>panel.scrollIntoView({behavior:'auto',block:'start'}));
   }
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',openRequestedTab,{once:true});
