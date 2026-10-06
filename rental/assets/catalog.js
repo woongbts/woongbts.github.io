@@ -787,7 +787,7 @@
   document.addEventListener('click', event => {
     const compareBtn=event.target.closest('[data-compare-product]');
     if(compareBtn){event.preventDefault();const id=String(compareBtn.dataset.compareProduct||'');toggleCompare(id);trackRental('rental_compare_toggle',productById(id)||null,{selected:loadCompareIds().includes(id),count:loadCompareIds().length});return}
-    if(event.target.closest('#open-compare')){trackRental('rental_compare_open',null,{count:loadCompareIds().length});openCompareModal();return}
+    if(event.target.closest('#open-compare')){event.preventDefault();trackRental('rental_compare_open',null,{count:loadCompareIds().length});loadFullCatalog().then(()=>{updateCompareUi();openCompareModal();});return}
     if(event.target.closest('#clear-compare')){saveCompareIds([]);updateCompareUi();return}
     if(event.target.closest('[data-close-compare]')){document.getElementById('compare-modal')?.classList.remove('open');return}
     const link=event.target.closest('[data-rental-product-id]');
