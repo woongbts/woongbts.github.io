@@ -172,3 +172,96 @@
     font-weight:900!important;
   }
 }
+
+/* Monthly result: support vs contract decision cards */
+.rate-page .result-method-compare{
+  margin:18px 0 18px;
+  padding:16px;
+  border:1px solid #cfe0e3;
+  border-radius:16px;
+  background:#f7fbfb;
+}
+.rate-page .result-method-compare .compare-head strong{
+  font-size:18px;
+  line-height:1.35;
+  color:#173e48;
+}
+.rate-page .result-method-compare .compare-head span{
+  font-size:14px;
+  line-height:1.55;
+}
+.rate-page .result-method-compare .compare-head>b{
+  font-size:13px;
+  padding:7px 9px;
+}
+.rate-page .result-method-compare .compare-grid{
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:10px;
+}
+.rate-page .result-method-compare .compare-card{
+  position:relative;
+  min-width:0;
+  min-height:128px;
+  padding:14px 13px;
+  border-radius:14px;
+}
+.rate-page .result-method-compare .compare-card>span{
+  font-size:15px;
+  line-height:1.35;
+}
+.rate-page .result-method-compare .compare-card>strong{
+  font-size:25px;
+  line-height:1.2;
+}
+.rate-page .result-method-compare .compare-card>small,
+.rate-page .result-method-compare .compare-card>i{
+  font-size:13px;
+  line-height:1.45;
+}
+.rate-page .result-method-compare .compare-card.active{
+  border-color:#0f766e;
+  background:#edf8f5;
+  box-shadow:0 0 0 2px rgba(15,118,110,.14);
+}
+.rate-page .result-method-compare .compare-card.active::after{
+  content:"선택됨";
+  position:absolute;
+  top:10px;
+  right:10px;
+  padding:4px 7px;
+  border-radius:999px;
+  background:#0f766e;
+  color:#fff;
+  font-size:11px;
+  font-weight:900;
+}
+.rate-page .result-method-compare .compare-diff{
+  margin-top:10px;
+  padding:11px 12px;
+  font-size:14px;
+  line-height:1.55;
+}
+
+@media(max-width:560px){
+  .rate-page .result-method-compare{
+    padding:14px 12px;
+  }
+  .rate-page .result-method-compare .compare-head{
+    gap:7px;
+    margin-bottom:11px;
+  }
+  .rate-page .result-method-compare .compare-head strong{font-size:17px}
+  .rate-page .result-method-compare .compare-head span{font-size:13.5px}
+  .rate-page .result-method-compare .compare-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    gap:8px!important;
+  }
+  .rate-page .result-method-compare .compare-card{
+    min-height:124px;
+    padding:13px 10px;
+  }
+  .rate-page .result-method-compare .compare-card>span{font-size:14px}
+  .rate-page .result-method-compare .compare-card>strong{font-size:22px}
+  .rate-page .result-method-compare .compare-card>small,
+  .rate-page .result-method-compare .compare-card>i{font-size:12px}
+}
