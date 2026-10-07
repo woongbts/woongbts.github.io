@@ -1,0 +1,126 @@
+/* 2026-10-07 readability uplift: keep the design compact, avoid tiny helper text */
+
+/* Rates / calculator */
+.rate-page .updated{font-size:14px!important;line-height:1.5}
+.rate-page .rate-form label,
+.rate-page .quick-fields label,
+.rate-page .device-compare-selects label{font-size:15px!important;line-height:1.45}
+.rate-page .field-help,
+.rate-page .device-brand-filter>small,
+.rate-page .plan-filter-hint,
+.rate-page .plan-picker-note,
+.rate-page .purpose-footnote,
+.rate-page .data-note,
+.rate-page .rate-warning,
+.rate-page .quote-tools small,
+.rate-page .support-notice-summary,
+.rate-page .wired-compare-note,
+.rate-page .wired-extra-line,
+.rate-page .store-payment-note{font-size:14px!important;line-height:1.65!important}
+
+.rate-page .device-brand-filter>span{font-size:15px!important}
+.rate-page .device-brand-filter button{font-size:15px!important;min-height:44px!important}
+
+.rate-page .auto-box span{font-size:14px!important}
+.rate-page .result-label{font-size:15px!important}
+.rate-page .result-breakdown div{font-size:15px!important;line-height:1.5}
+.rate-page .rate-result p{font-size:15px!important;line-height:1.7}
+.rate-page .rate-actions a{font-size:15px!important;min-height:46px!important}
+
+.rate-page .plan-picker-toolbar>strong{font-size:14px!important}
+.rate-page .plan-picker-toolbar label,
+.rate-page .plan-picker-toolbar select{font-size:14px!important}
+.rate-page .plan-option-top strong{font-size:15px!important;line-height:1.45}
+.rate-page .plan-option-top b{font-size:16px!important}
+.rate-page .plan-option-card>small{font-size:14px!important;line-height:1.55}
+.rate-page .plan-option-tags i{font-size:13px!important}
+.rate-page .plan-option-card>em{font-size:13.5px!important}
+.rate-page .plan-picker-empty{font-size:14px!important;line-height:1.6}
+
+.rate-page .purpose-card-top span,
+.rate-page .purpose-card-top small,
+.rate-page .purpose-lineup{font-size:13px!important}
+.rate-page .purpose-card>em{font-size:14px!important;line-height:1.55}
+.rate-page .purpose-card-total span{font-size:13px!important}
+.rate-page .purpose-card-detail>div,
+.rate-page .purpose-method-compare>div{font-size:14px!important;line-height:1.5}
+.rate-page .purpose-card-detail b,
+.rate-page .purpose-method-compare b{font-size:14.5px!important}
+.rate-page .purpose-best{font-size:14px!important;line-height:1.55}
+.rate-page .purpose-card-actions button{font-size:15px!important}
+
+.rate-page .device-compare-results>p{font-size:14px!important;line-height:1.6}
+.rate-page .device-compare-card>span{font-size:13px!important}
+.rate-page .device-compare-card>strong{font-size:15px!important}
+.rate-page .device-compare-card>em{font-size:13.5px!important}
+.rate-page .device-compare-card>div,
+.rate-page .device-compare-card>div b{font-size:13.5px!important}
+.rate-page .device-compare-card>i{font-size:13.5px!important;line-height:1.5}
+
+.rate-page .store-apply-btn{font-size:15px!important;min-height:44px!important}
+.rate-page .store-prepaid-list article strong{font-size:15px!important;line-height:1.45}
+.rate-page .store-prepaid-list article small{font-size:14px!important;line-height:1.55}
+
+.rate-page .rate-footer{font-size:14px!important}
+.rate-page .rate-footer p{font-size:14px!important;line-height:1.7}
+
+/* Homepage */
+.home-modern .hero-microcopy{font-size:15px!important;line-height:1.6}
+.home-modern .home-fast-copy>span{font-size:14px!important}
+.home-modern .home-fast-copy>p{font-size:15px!important;line-height:1.65}
+.home-modern .home-fast-options a>b{font-size:17px!important;line-height:1.35}
+.home-modern .home-fast-options a>small{font-size:14.5px!important;line-height:1.55}
+.home-modern .home-fast-options a>span{font-size:14px!important;line-height:1.4}
+
+.home-modern .home-trust-rail span,
+.home-modern .home-trust-rail small{font-size:13.5px!important;line-height:1.45}
+.home-modern .service-task-grid .service-code{font-size:13.5px!important}
+.home-modern .service-card>p{font-size:16px!important;line-height:1.7}
+.home-modern .service-links a{font-size:15px!important}
+.home-modern .section-heading>p{font-size:16px!important;line-height:1.7}
+
+.home-modern .faq-list summary{font-size:16px!important;line-height:1.5}
+.home-modern .faq-list details p{font-size:15.5px!important;line-height:1.75}
+
+.home-modern .section-note{font-size:16px!important;line-height:1.7}
+.home-modern .visit-guide strong{font-size:17px!important}
+.home-modern .visit-guide p,
+.home-modern .visit-guide a{font-size:15.5px!important;line-height:1.7}
+.home-modern .access-badge{font-size:14.5px!important}
+.home-modern .location .actions .btn{font-size:15px!important;min-height:46px!important}
+.home-modern .details dt{font-size:14px!important}
+.home-modern .details dd{font-size:16px!important;line-height:1.6}
+.home-modern .closed{font-size:14px!important}
+
+.home-modern .contact p{font-size:15.5px!important;line-height:1.6}
+.home-modern .contact .btn{font-size:15px!important;min-height:46px!important}
+.home-modern footer{font-size:14px!important;line-height:1.65}
+.home-modern .footer-brand strong{font-size:15.5px!important}
+.home-modern .footer-brand span,
+.home-modern .cert-link{font-size:14px!important;line-height:1.55}
+.home-modern .copyright{font-size:13.5px!important;line-height:1.6}
+
+/* Shared notices that should never look like fine print */
+.support-notice-summary,
+.quote-condition-note,
+.visit-guide{font-size:15px!important;line-height:1.7}
+
+@media(max-width:640px){
+  .rate-page .field-help,
+  .rate-page .device-brand-filter>small,
+  .rate-page .plan-filter-hint,
+  .rate-page .plan-picker-note,
+  .rate-page .purpose-footnote,
+  .rate-page .data-note,
+  .rate-page .rate-warning{font-size:14px!important}
+  .rate-page .rate-form label{font-size:15px!important}
+  .rate-page .device-brand-filter button{font-size:15px!important}
+  .rate-page .plan-option-top strong{font-size:15px!important}
+  .rate-page .plan-option-card>small{font-size:14px!important}
+
+  .home-modern .home-fast-options a{padding:18px 16px!important}
+  .home-modern .home-fast-options a>small{font-size:15px!important}
+  .home-modern .visit-guide p,
+  .home-modern .visit-guide a{font-size:16px!important}
+  .home-modern .mobile-bar .btn{font-size:15px!important}
+}
