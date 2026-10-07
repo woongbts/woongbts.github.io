@@ -270,3 +270,84 @@
     font-size:15.5px!important;
   }
 }
+
+
+/* 2026-10-07 button typography uplift */
+.home-modern .btn,
+.home-modern button,
+.home-modern a.primary-cta,
+.home-modern a.text-cta,
+.home-modern a.kakao-soft,
+.home-modern .home-fast-options a,
+.home-modern .service-links a,
+.home-modern .quick-cta-actions a,
+.home-modern .location .actions a{
+  font-size:16px!important;
+  line-height:1.35!important;
+}
+.home-modern .btn,
+.home-modern button{
+  min-height:48px;
+}
+.home-modern .header-call{font-size:16px!important}
+
+.rate-page button,
+.rate-page .btn,
+.rate-page .rate-home,
+.rate-page .rate-tab,
+.rate-page .mobile-mode-switch button,
+.rate-page .purpose-tabs button,
+.rate-page .device-brand-filter button,
+.rate-page .plan-quick-row button,
+.rate-page .plan-filter-group button,
+.rate-page .device-browser-brand button,
+.rate-page .device-browser-more,
+.rate-page .device-browser-calc,
+.rate-page .store-apply-btn,
+.rate-page .quote-tools button,
+.rate-page .rate-actions a{
+  font-size:16px!important;
+  line-height:1.35!important;
+}
+.rate-page .rate-tab,
+.rate-page .mobile-mode-switch button,
+.rate-page .purpose-tabs button{
+  min-height:50px!important;
+}
+.rate-page .plan-quick-row button,
+.rate-page .plan-filter-group button,
+.rate-page .device-brand-filter button,
+.rate-page .device-browser-brand button{
+  min-height:44px!important;
+}
+
+@media(max-width:640px){
+  .home-modern .btn,
+  .home-modern button,
+  .home-modern a.primary-cta,
+  .home-modern a.text-cta,
+  .home-modern a.kakao-soft,
+  .home-modern .home-fast-options a,
+  .home-modern .service-links a,
+  .home-modern .quick-cta-actions a,
+  .home-modern .location .actions a{
+    font-size:15.5px!important;
+  }
+  .rate-page button,
+  .rate-page .btn,
+  .rate-page .rate-home,
+  .rate-page .rate-tab,
+  .rate-page .mobile-mode-switch button,
+  .rate-page .purpose-tabs button,
+  .rate-page .device-brand-filter button,
+  .rate-page .plan-quick-row button,
+  .rate-page .plan-filter-group button,
+  .rate-page .device-browser-brand button,
+  .rate-page .device-browser-more,
+  .rate-page .device-browser-calc,
+  .rate-page .store-apply-btn,
+  .rate-page .quote-tools button,
+  .rate-page .rate-actions a{
+    font-size:15.5px!important;
+  }
+}
