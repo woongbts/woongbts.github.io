@@ -1,0 +1,146 @@
+/* 2026-10-07 readability uplift for Woongbi Rental
+   Keep large headings/prices intact; raise small helper copy, controls and notices. */
+
+/* Header / global controls */
+.brand small{font-size:12px!important;line-height:1.35!important}
+.desktop-nav a{font-size:15px!important}
+.nav-cta,.nav-actions .nav-cta{font-size:15px!important;min-height:44px!important}
+.nav-home-link{font-size:14.5px!important;min-height:44px!important}
+.nav-home-link small{font-size:12px!important;line-height:1.3!important}
+
+.eyebrow{font-size:14px!important;line-height:1.4!important}
+.btn{font-size:15px!important;min-height:50px!important}
+.hero-desc{font-size:17px!important;line-height:1.75!important}
+.hero-points li{font-size:14px!important;line-height:1.4!important}
+.hero-card-top small{font-size:14px!important}
+.pill{font-size:13px!important}
+.mini-price span{font-size:14px!important}
+.card-link{font-size:15px!important}
+
+/* Homepage / catalog */
+.section-title-row p{font-size:16px!important;line-height:1.7!important}
+.category span{font-size:13px!important}
+.category small,.category-grid-all .category small{font-size:14px!important;line-height:1.45!important}
+.product-tags span{font-size:13.5px!important}
+.model,.catalog-info .model{font-size:14.5px!important;line-height:1.5!important}
+.price-row small,.catalog-prices small{font-size:14px!important}
+.promo,.catalog-meta{font-size:15px!important;line-height:1.6!important}
+.benefit-note p{font-size:15.5px!important;line-height:1.7!important}
+.steps span{font-size:13.5px!important}
+.steps p{font-size:15px!important;line-height:1.65!important}
+
+.catalog-search>span{font-size:14px!important}
+.catalog-search input{font-size:15px!important;min-height:50px!important}
+.catalog-filters button,
+.catalog-feature-filters button{font-size:14.5px!important;min-height:40px!important}
+.catalog-select{font-size:14.5px!important;min-height:42px!important}
+.catalog-count{font-size:14px!important;line-height:1.5!important}
+.catalog-description{font-size:15.5px!important;line-height:1.65!important}
+.catalog-highlights li{font-size:14px!important;line-height:1.45!important}
+.catalog-feature-row>span{font-size:14px!important}
+.catalog-feature-filters button small{font-size:12.5px!important}
+.catalog-image-placeholder small{font-size:14px!important}
+.product-actions .btn{font-size:15px!important}
+
+/* Product detail */
+.breadcrumb{font-size:14px!important;line-height:1.5!important}
+.detail-visual p{font-size:14px!important;line-height:1.6!important}
+.selector-block>strong{font-size:15px!important}
+.segmented button{font-size:15px!important;min-height:50px!important}
+.selector-help{font-size:14px!important;line-height:1.6!important}
+.quote-main small,.quote-gift small{font-size:14px!important}
+.quote-card span{font-size:14px!important}
+.quote-card b{font-size:16px!important}
+.text-button{font-size:14px!important}
+.condition-list>div{font-size:15px!important;line-height:1.55!important}
+.condition-list span{font-size:14px!important}
+.condition-list b{font-size:15px!important}
+.notice-box strong{font-size:15.5px!important}
+.notice-box p{font-size:14.5px!important;line-height:1.7!important}
+.detail-actions .btn{font-size:15.5px!important}
+.detail-feature-grid span{font-size:13.5px!important}
+.detail-feature-grid p{font-size:15px!important;line-height:1.6!important}
+
+.generic-product-description{font-size:15.5px!important;line-height:1.7!important}
+.generic-feature-block>strong{font-size:14.5px!important}
+.generic-highlight-list span{font-size:14.5px!important;line-height:1.5!important}
+.generic-summary-grid span{font-size:14px!important}
+.generic-summary-grid strong{font-size:16px!important}
+.generic-source-note{font-size:14.5px!important;line-height:1.65!important}
+.detail-image-note{font-size:15px!important;line-height:1.7!important}
+
+/* Long-form product story */
+.detail-anchor-nav a{font-size:15px!important}
+.landing-kicker,.landing-number{font-size:13.5px!important}
+.stage-badge{font-size:13px!important}
+.landing-stat span{font-size:14.5px!important;line-height:1.55!important}
+.slim-visual .measure-line span{font-size:14px!important}
+.feature-strip span{font-size:14.5px!important;line-height:1.5!important}
+.landing-checks li{font-size:15px!important;line-height:1.6!important}
+.care-label{font-size:13.5px!important}
+.care-compare p{font-size:15px!important;line-height:1.7!important}
+.care-compare a{font-size:15px!important}
+.contract-grid span{font-size:13.5px!important}
+.contract-grid p{font-size:14.5px!important;line-height:1.65!important}
+.contract-footnote{font-size:14px!important;line-height:1.65!important}
+.coffee-lines span{font-size:13px!important}
+
+/* Modal / footer / sticky quote */
+.card-example span{font-size:14px!important}
+.card-example p,.modal-note{font-size:14px!important;line-height:1.65!important}
+.footer-inner span{font-size:14px!important;line-height:1.55!important}
+.footer-note{font-size:13.5px!important;line-height:1.65!important}
+.sticky-copy span,.sticky-price span,.sticky-gift span{font-size:13px!important;line-height:1.35!important}
+.sticky-copy strong,.sticky-price strong,.sticky-gift strong{font-size:16px!important}
+.sticky-quote a{font-size:15px!important;min-height:46px!important}
+
+/* Mobile: still readable, without inflating cards */
+@media(max-width:640px){
+  .brand small{font-size:11.5px!important}
+  .nav-home-link{font-size:13.5px!important}
+  .nav-home-link small{font-size:11.5px!important}
+  .nav-actions .nav-cta{font-size:14px!important}
+  .eyebrow{font-size:13.5px!important}
+  .hero-desc{font-size:16px!important;line-height:1.7!important}
+  .hero-points li{font-size:13.5px!important}
+  .btn{font-size:14.5px!important}
+
+  .section-title-row p{font-size:15.5px!important}
+  .category small,.category-grid-all .category small{font-size:13.5px!important}
+  .catalog-search>span{font-size:14px!important}
+  .catalog-filters button,.catalog-feature-filters button{font-size:14px!important}
+  .catalog-select{font-size:14px!important}
+  .catalog-count{font-size:13.5px!important}
+  .catalog-highlights li{font-size:13.5px!important}
+  .catalog-prices small{font-size:13.5px!important}
+  .catalog-meta{font-size:14px!important}
+  .product-actions .btn{font-size:14.5px!important}
+
+  .breadcrumb{font-size:13.5px!important}
+  .selector-block>strong{font-size:14.5px!important}
+  .segmented button{font-size:14.5px!important}
+  .selector-help{font-size:13.5px!important}
+  .quote-main small,.quote-gift small{font-size:13.5px!important}
+  .quote-card span{font-size:13.5px!important}
+  .text-button{font-size:13.5px!important}
+  .condition-list>div{font-size:14.5px!important}
+  .condition-list span{font-size:13.5px!important}
+  .condition-list b{font-size:14.5px!important}
+  .notice-box strong{font-size:15px!important}
+  .notice-box p{font-size:14px!important}
+  .detail-actions .btn{font-size:15px!important}
+  .generic-source-note,.detail-image-note{font-size:14px!important}
+
+  .detail-anchor-nav a{font-size:14px!important}
+  .landing-kicker,.landing-number{font-size:13px!important}
+  .stage-badge{font-size:12.5px!important}
+  .feature-strip span{font-size:14px!important}
+  .landing-checks li{font-size:14.5px!important}
+  .care-compare p{font-size:14.5px!important}
+  .contract-grid p{font-size:14px!important}
+  .contract-footnote{font-size:13.5px!important}
+
+  .sticky-copy span,.sticky-price span,.sticky-gift span{font-size:12px!important}
+  .sticky-copy strong,.sticky-price strong,.sticky-gift strong{font-size:15px!important}
+  .sticky-quote a{font-size:14px!important}
+}
