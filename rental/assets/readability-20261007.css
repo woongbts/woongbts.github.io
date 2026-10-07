@@ -144,3 +144,52 @@
   .sticky-copy strong,.sticky-price strong,.sticky-gift strong{font-size:15px!important}
   .sticky-quote a{font-size:14px!important}
 }
+
+
+/* 2026-10-07 button typography uplift */
+.btn,
+button,
+.nav-cta,
+.nav-home-link,
+.catalog-filters button,
+.catalog-feature-filters button,
+.segmented button,
+.text-button,
+.product-actions .btn,
+.detail-actions .btn,
+.sticky-quote a,
+.catalog-more{
+  font-size:16px!important;
+  line-height:1.35!important;
+}
+.btn,
+.nav-cta,
+.nav-home-link,
+.segmented button,
+.product-actions .btn,
+.detail-actions .btn{
+  min-height:48px!important;
+}
+.catalog-filters button,
+.catalog-feature-filters button{
+  min-height:42px!important;
+}
+.text-button{font-size:15px!important}
+.sticky-quote a{font-size:15.5px!important}
+
+@media(max-width:640px){
+  .btn,
+  button,
+  .nav-cta,
+  .nav-home-link,
+  .catalog-filters button,
+  .catalog-feature-filters button,
+  .segmented button,
+  .product-actions .btn,
+  .detail-actions .btn,
+  .catalog-more{
+    font-size:15.5px!important;
+  }
+  .text-button{font-size:14.5px!important}
+  .sticky-quote a{font-size:15px!important}
+}
