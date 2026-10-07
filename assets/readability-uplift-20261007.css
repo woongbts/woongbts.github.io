@@ -351,3 +351,27 @@
     font-size:15.5px!important;
   }
 }
+
+
+/* 2026-10-07 mobile hero CTA emphasis */
+@media(max-width:640px){
+  .home-modern .hero-actions{
+    display:grid!important;
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    gap:10px!important;
+    width:100%!important;
+  }
+  .home-modern .hero-actions .btn,
+  .home-modern .hero-actions a{
+    width:100%!important;
+    min-width:0!important;
+    min-height:58px!important;
+    padding:14px 12px!important;
+    font-size:17px!important;
+    line-height:1.25!important;
+    font-weight:850!important;
+    letter-spacing:-.025em!important;
+    text-align:center!important;
+    white-space:nowrap!important;
+  }
+}
