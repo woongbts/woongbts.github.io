@@ -31,25 +31,34 @@
     if(resultStatus&&!waiting)resultStatus.textContent=state;
   }
   function scrollToResult(){
-    const cards=result.querySelectorAll('.purpose-card');
-    if(!cards.length){
-      waiting=true;
-      resultStatus.textContent='선택한 조건으로 추천 상품을 찾는 중이에요. 잠시만 기다려 주세요.';
-      resultButton.disabled=true;
-      window.setTimeout(()=>{
-        waiting=false;resultButton.disabled=false;
-        const found=result.querySelector('.purpose-card');
-        if(found)found.scrollIntoView({behavior:'smooth',block:'start'});
-        else {
-          resultStatus.textContent='상품을 찾지 못했어요. 통신사나 가입유형을 바꾸거나 매장에 전화로 문의해 주세요.';
-          result.scrollIntoView({behavior:'smooth',block:'start'});
-        }
-      },1800);
-      return;
-    }
-    activeStep(3);
-    resultStatus.textContent='마음에 드는 상품 아래의 ‘상담 신청하기’를 눌러주세요.';
-    result.scrollIntoView({behavior:'smooth',block:'start'});
+    const first=result.querySelector('.purpose-card');
+    const go=()=>{
+      waiting=false;
+      resultButton.disabled=false;
+      activeStep(3);
+      resultStatus.textContent='마음에 드는 상품 아래의 ‘상담 신청하기’를 눌러주세요.';
+      result.scrollIntoView({behavior:'smooth',block:'start'});
+    };
+    if(first){go();return;}
+    if(waiting)return;
+    waiting=true;
+    resultStatus.textContent='선택한 조건으로 추천 상품을 찾는 중이에요. 잠시만 기다려 주세요.';
+    resultButton.disabled=true;
+    let timer;
+    const pendingObserver=new MutationObserver(()=>{
+      if(result.querySelector('.purpose-card')){
+        pendingObserver.disconnect();window.clearTimeout(timer);go();
+      }
+    });
+    pendingObserver.observe(result,{childList:true});
+    timer=window.setTimeout(()=>{
+      pendingObserver.disconnect();waiting=false;resultButton.disabled=false;
+      if(result.querySelector('.purpose-card'))go();
+      else {
+        resultStatus.textContent='추천 상품을 불러오지 못했어요. 통신사·가입유형을 바꾸거나 매장에 전화로 문의해 주세요.';
+        result.scrollIntoView({behavior:'smooth',block:'start'});
+      }
+    },9000);
   }
   resultButton.addEventListener('click',scrollToResult);
   section.querySelectorAll('[data-purpose-category]').forEach(btn=>btn.addEventListener('click',()=>{
