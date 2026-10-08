@@ -103,6 +103,10 @@
     $('store-application-phone').value='';
     $('store-application-inquiry').value='';
     const internetFields=$('store-internet-fields');
+    const submitBtn=$('store-application-submit');
+    if(submitBtn)submitBtn.textContent=ctx.category==='internet'?'다음 · 설치정보 입력':'이 조건으로 상담 신청';
+    const fallback=$('store-application-fallback');if(fallback)fallback.hidden=true;
+    if(dialog)dialog.dataset.applicationCategory=ctx.category;
     const isInternet=ctx.category==='internet';
     if(internetFields)internetFields.hidden=!isInternet;
     if(isInternet && internetFields && 'open' in internetFields)internetFields.open=false;
@@ -162,15 +166,22 @@
     };
   }
   function purposeMobileContext(card){
-    const category=document.querySelector('[data-purpose-category].active')?.dataset.purposeCategory||'senior';
+    const purpose=document.querySelector('[data-purpose-category].active')?.dataset.purposeCategory||'senior';
     const cards=[...card.parentElement.querySelectorAll('.purpose-card')];
     const index=Math.max(0,cards.indexOf(card));
     const productName=safeText(card.querySelector(':scope > strong, h3, h4'))||'추천 휴대폰';
     const provider=safeText(card.querySelector('.purpose-card-top span'))||selectedText('purpose-carrier');
-    const summary=safeText(card.querySelector('.purpose-card-total'))||'';
-    const monthly=moneyValue(summary);
-    const detail=[category,selectedText('purpose-join'),safeText(card.querySelector('em')),safeText(card.querySelector('.quote-amount-note'))].filter(Boolean).join(' · ');
-    return {category:'mobile',product_id:'mobile-purpose:'+category+':'+index,product_name:productName,provider,monthly,gift:null,detail};
+    const deviceId=card.dataset.deviceId||'';
+    const planId=card.dataset.planId||'';
+    const monthly=moneyValue(safeText(card.querySelector('.purpose-card-total b')));
+    const discount=card.dataset.selectedMethod==='support'?'공시지원금'
+      :card.dataset.selectedMethod==='contract'?'선택약정 25%'
+      :card.dataset.selectedMethod==='promo'?'신규가입 특가':'할인방식 상담 확인';
+    const detail=[purpose==='senior'?'효도폰':purpose==='kids'?'키즈폰':purpose==='value'?'가성비폰':'프리미엄폰',
+      selectedText('purpose-join'),safeText(card.querySelector('em')),discount,
+      safeText(card.querySelector('.quote-amount-note'))].filter(Boolean).join(' · ');
+    const identity=deviceId&&planId?deviceId+':'+planId+':'+(card.dataset.selectedMethod||'') : purpose+':'+index;
+    return {category:'mobile',product_id:'mobile-purpose:'+identity,product_name:productName,provider,monthly,gift:null,detail};
   }
 
   function selectedMvnoContext(){
@@ -535,10 +546,42 @@
     decorateMobile();decorateStudyphone();decorateMvno();decorateInternet();addSelectedApplyButtons();renderPrepaidProducts();
   }
 
+  function revealInternetStep(){
+    const section=$('store-internet-fields');
+    if(current?.category!=='internet'||!section||section.open)return false;
+    const name=$('store-application-name')?.value?.trim()||'';
+    const phone=digits($('store-application-phone')?.value||'');
+    const status=$('store-application-status');
+    if(name.length<2){if(status)status.textContent='먼저 성함을 입력해 주세요.';$('store-application-name')?.focus();return true;}
+    if(!/^01[016789]\\d{7,8}$/.test(phone)){if(status)status.textContent='연락받으실 휴대폰 번호를 확인해 주세요.';$('store-application-phone')?.focus();return true;}
+    section.open=true;
+    const email=$('store-application-email'),address=$('store-application-address');
+    if(email)email.required=true;
+    if(address)address.required=true;
+    document.querySelectorAll('input[name="store_billing_method"]').forEach(input=>input.required=true);
+    const button=$('store-application-submit');
+    if(button)button.textContent='정보 확인 후 상담 신청';
+    if(status)status.textContent='마지막으로 인터넷 설치정보를 입력해 주세요.';
+    section.scrollIntoView({behavior:'smooth',block:'start'});
+    return true;
+  }
+  function showApplicationFallback(){
+    const box=$('store-application-fallback');
+    if(box)box.hidden=false;
+  }
+  async function copyApplicationQuote(){
+    const quote=current?.quote_text||'';
+    if(!quote)return;
+    const status=$('store-application-status');
+    try{await navigator.clipboard.writeText(quote);if(status)status.textContent='선택하신 상품 조건만 복사했어요. 카카오톡에 붙여넣어 주세요.';}
+    catch{if(status)status.textContent='조건을 복사하지 못했습니다. 카카오톡 상담에서 상품명을 알려주세요.';}
+  }
+
   async function submit(event){
     event.preventDefault();
     const status=$('store-application-status'),button=$('store-application-submit');
     if(!current)return;
+    if(revealInternetStep())return;
     if(!policy){status.textContent='개인정보 처리 안내를 불러온 뒤 다시 신청해 주세요.';await loadPolicy();return}
     if(Date.now()-openedAt<600){status.textContent='신청 내용을 확인한 뒤 다시 눌러 주세요.';return}
     if($('store-application-honeypot').value){status.textContent='신청을 처리할 수 없습니다.';return}
@@ -581,7 +624,7 @@
       lastSubmit={signature,at:Date.now()};
       trackStore('store_apply_success',current);
       closeApplication();showSuccess(data.receipt);
-    }catch(e){status.textContent=e.message||'신청을 접수하지 못했습니다. 잠시 후 다시 시도해 주세요.';}
+    }catch(e){status.textContent=(e.message||'접수 오류가 발생했습니다.')+' 카카오톡이나 전화로도 상담하실 수 있어요.';showApplicationFallback();}
     finally{button.disabled=false}
   }
 
@@ -610,19 +653,12 @@
     form?.addEventListener('submit',submit);
     form?.addEventListener('click',event=>{
       if(!event.target.closest('#store-application-submit'))return;
-      const section=$('store-internet-fields');
-      if(current?.category!=='internet'||!section||section.open)return;
-      // First action only reveals the second step; don't ask for all
-      // installation details before customers enter their contact details.
-      event.preventDefault();
-      section.open=true;
-      const email=$('store-application-email'),address=$('store-application-address');
-      if(email)email.required=true;
-      if(address)address.required=true;
-      document.querySelectorAll('input[name="store_billing_method"]').forEach(input=>input.required=true);
-      $('store-application-status').textContent='이어서 설치주소와 접수 정보를 확인해 주세요.';
-      section.scrollIntoView({behavior:'smooth',block:'start'});
+      if(current?.category==='internet' && !$('store-internet-fields')?.open){
+        event.preventDefault();
+        revealInternetStep();
+      }
     },true);
+    $('store-application-fallback-copy')?.addEventListener('click',copyApplicationQuote);
     $('store-internet-fields')?.addEventListener('toggle',()=>{
       if(current?.category!=='internet')return;
       const open=$('store-internet-fields').open;
