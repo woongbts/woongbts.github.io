@@ -15,6 +15,7 @@ for(const category of ['mobile','mvno','prepaid','internet','rental','visit']){
 }
 assert.equal((homepage.match(/data-quick-category="/g)||[]).length,6);
 assert.match(homepage,/id="home-order-choices"/);
+assert.ok(homepage.indexOf('id="quick-order"')<homepage.indexOf('class="hero-grid hero-grid-single"'),'quick picker must appear above the marketing hero');
 assert.match(homepage,/src="\/assets\/quick-order\.js\?v=/);
 assert.match(homepage,/href="\/assets\/quick-order\.css\?v=/);
 assert.match(homepage,/href="#quick-order">상품 간편 찾기/);
