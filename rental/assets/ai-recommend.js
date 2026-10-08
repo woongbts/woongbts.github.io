@@ -1090,7 +1090,7 @@
     try {
       await loadProducts();
       applyCriteriaToForm(criteria);
-      showAiStep(4);
+      showAiStep(3);
       const normalized = currentCriteria();
       const freshItems = recommend(normalized);
       const sharedItems = (criteria.sharedIds || [])
