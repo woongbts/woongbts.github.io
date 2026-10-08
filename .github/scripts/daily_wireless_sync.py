@@ -14,8 +14,7 @@ from zoneinfo import ZoneInfo
 
 ROOT = os.environ.get("WIRELESS_SOURCE_BASE_URL", "").strip().rstrip("/")
 if not ROOT:
-    import base64
-    ROOT = base64.b64decode("aHR0cHM6Ly93d3cueGVyb25vdGUuY28ua3I=").decode("utf-8").rstrip("/")
+    ROOT = "https://www.xeronote.co.kr"
 if not ROOT.startswith("https://"):
     raise SystemExit("WIRELESS_SOURCE_BASE_URL is invalid")
 
@@ -77,6 +76,34 @@ def money(value):
 
 def valid_public_support(amount, retail_price):
     return type(amount) is int and type(retail_price) is int and retail_price > 0 and 0 <= amount <= retail_price
+
+
+def verified_primary_or_official_support(raw_support, retail_price, carrier, model_code,
+                                        plan_name, monthly_fee, join_type,
+                                        official_lookup=verified_lgu_support):
+    """Return (amount, corrected). Never interpret a missing or invalid amount as zero.
+
+    The Zeronote feed is primary. If its amount is invalid for LGU+, official
+    verification is optional: unavailable carrier systems cannot block the
+    entire Zeronote import, and must not fabricate a replacement subsidy.
+    """
+    amount = money(raw_support)
+    if amount is None:
+        return None, False
+    if valid_public_support(amount, retail_price):
+        return amount, False
+    if carrier != "LGU+":
+        raise RuntimeError(f"invalid Zeronote subsidy: {carrier} {model_code} {plan_name} {join_type}")
+    try:
+        corrected = official_lookup(model_code, retail_price, plan_name, monthly_fee, join_type)
+        if valid_public_support(corrected, retail_price):
+            return corrected, True
+    except Exception as exc:
+        print(f"[WARN] LGU+ external verification unavailable ({type(exc).__name__}); "
+              f"omit unverified subsidy for {model_code} / {join_type}", flush=True)
+    return None, False
+
+
 
 
 def clean(value):
@@ -271,6 +298,8 @@ def main():
     all_plans = {}
     per_device_support = {}
     official_corrections = 0
+    unverified_support_skipped = 0
+    lgu_official_disabled = False
 
     for api_carrier, carrier, prefix in CARRIERS:
         device_payload = get_json(
@@ -354,18 +383,28 @@ def main():
                     plan_id = f"{prefix}-XP-{raw_plan_id}"
                     ids.append(plan_id)
                     union_by_source_id.setdefault(raw_plan_id, (plan_order, plan))
-                    support = money(plan.get(support_field))
-                    if valid_public_support(support, money(device.get("factory_price"))):
+                    raw_support = plan.get(support_field)
+                    primary_amount = money(raw_support)
+                    price = money(device.get("factory_price"))
+                    if carrier == "LGU+" and lgu_official_disabled and primary_amount is not None and not valid_public_support(primary_amount, price):
+                        # Access-denied official data must not trigger repeated remote calls.
+                        support, corrected = None, False
+                    else:
+                        try:
+                            support, corrected = verified_primary_or_official_support(
+                                raw_support, price, carrier, clean(device.get("device_name")),
+                                clean(plan.get("plan_name")), money(plan.get("price")), join_label,
+                            )
+                        except RuntimeError:
+                            raise
+                        if carrier == "LGU+" and primary_amount is not None and not valid_public_support(primary_amount, price) and support is None:
+                            lgu_official_disabled = True
+                    if support is not None:
                         amounts[plan_id] = support
-                    elif support is not None:
-                        if carrier != "LGU+":
-                            raise RuntimeError(f"invalid primary support for {carrier}: {source_id} {raw_plan_id}")
-                        support = verified_lgu_support(
-                            clean(device.get("device_name")), money(device.get("factory_price")),
-                            clean(plan.get("plan_name")), money(plan.get("price")), join_label,
-                        )
-                        amounts[plan_id] = support
-                        official_corrections += 1
+                        if corrected:
+                            official_corrections += 1
+                    elif primary_amount is not None:
+                        unverified_support_skipped += 1
                 eligible_by_join[join_label] = ids
                 support_by_join[join_label] = amounts
 
@@ -562,6 +601,7 @@ def main():
                 "devices_by_carrier": by_carrier,
                 "result": "validated",
                 "official_support_entries_corrected": official_corrections,
+                "unverified_subsidy_entries_skipped": unverified_support_skipped,
             },
             ensure_ascii=False,
             indent=2,
