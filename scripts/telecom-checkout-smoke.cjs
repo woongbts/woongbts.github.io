@@ -4,6 +4,7 @@ function check(ok,message){if(!ok)throw Error(message);}
  const browser=await chromium.launch({headless:true});
  const context=await browser.newContext({...devices['iPhone 14']});
  const page=await context.newPage();
+ page.on('pageerror',err=>console.log('BROWSER_ERROR',err.message));
  const origin='http://127.0.0.1:4173';
  await page.route('https://woongbi-consent.woongbts.workers.dev/api/store-application-policy',async route=>{
   return route.fulfill({status:200,contentType:'application/json',headers:{'access-control-allow-origin':origin},body:JSON.stringify({ok:true,policy:{version:'SMOKE',purpose:'상담신청',items:{required:'이름, 전화번호'},retention:'90일',refusal:'거절 가능'}})});
@@ -15,8 +16,9 @@ function check(ok,message){if(!ok)throw Error(message);}
   submit=JSON.parse(route.request().postData()||'{}');
   return route.fulfill({status:200,contentType:'application/json',headers:{'access-control-allow-origin':origin},body:JSON.stringify({ok:true,receipt:{id:'smoke-test-1234',lookup_token:'fake-test-token'}})});
  });
- await page.goto(origin+'/',{waitUntil:'domcontentloaded'});
- await page.waitForSelector('#home-order-choices .home-order-option',{timeout:12000});
+ await page.goto(origin+'/',{waitUntil:'load'});
+ await page.waitForTimeout(500);
+ await page.waitForFunction(()=>document.querySelectorAll('#home-order-choices .home-order-option').length===4,{timeout:12000});
  const labels=await page.locator('#home-order-choices .home-order-option strong').allTextContents();
  check(JSON.stringify(labels)===JSON.stringify(['효도폰','키즈폰','가성비폰','프리미엄폰']), 'Homepage should show only four phone purposes: '+JSON.stringify(labels));
  const names=['senior','kids','value','premium'];
