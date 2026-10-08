@@ -7,7 +7,7 @@ const home=fs.readFileSync('index.html','utf8');
 const previous=JSON.parse(fs.readFileSync('data/support-notice.json','utf8'));
 new vm.Script(source,{filename:'assets/support-notice.js'});
 assert.match(home,/support-notice\.js\?v=20261008-model4/);
-assert.match(home,/support-notice\.css\?v=20261008-model4/);
+assert.match(home,/support-notice\.css\?v=20261008-button5/);
 assert.match(source,/support-notice-summary-device/);
 assert.match(source,/todayUtc - noticeUtc > 7 \* 86400000/);
 assert.match(source,/notice_total_count/);
