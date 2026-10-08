@@ -51,6 +51,6 @@ assert.match(apply,/function revealInternetStep/);
 assert.match(apply,/function showApplicationFallback/);
 assert.match(applyStyle,/font-size:17px/);
 assert.match(html,/store-applications\.js\?v=20261008-easy5/);
-assert.match(html,/rates-easy-journey\.js\?v=20261008-senior3/);
+assert.match(html,/rates-easy-journey\.js\?v=20261008-senior4/);
 assert.match(html,/rates-easy-journey\.css\?v=20261008-senior3/);
 console.log('Phone easy journey: structure, script syntax, handoff and accessible form hooks passed.');
