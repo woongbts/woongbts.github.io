@@ -16,7 +16,7 @@ assert.ok(html.includes('id="ai-management"')&&html.includes('id="ai-brand"'),'p
 assert.match(css,/\.ai-priority-card/);
 assert.match(source,/총 예상 렌탈료/);
 assert.match(source,/item\.monthly\*Number\(item\.option\.term\)/);
-assert.match(html,/ai-recommend\.css\?v=20261008-cost3/);
+assert.match(html,/ai-recommend\.css\?v=20261008-cost4/);
 assert.match(html,/ai-recommend-loader\.js\?v=20261008-cost3/);
 assert.match(loader,/ai-recommend\.js\?v=20261008-cost3/);
 assert.doesNotMatch(source,/showAiStep\(4\)/);
