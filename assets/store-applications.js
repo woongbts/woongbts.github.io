@@ -553,7 +553,7 @@
     const phone=digits($('store-application-phone')?.value||'');
     const status=$('store-application-status');
     if(name.length<2){if(status)status.textContent='먼저 성함을 입력해 주세요.';$('store-application-name')?.focus();return true;}
-    if(!/^01[016789]\\d{7,8}$/.test(phone)){if(status)status.textContent='연락받으실 휴대폰 번호를 확인해 주세요.';$('store-application-phone')?.focus();return true;}
+    if(!/^01[016789]\d{7,8}$/.test(phone)){if(status)status.textContent='연락받으실 휴대폰 번호를 확인해 주세요.';$('store-application-phone')?.focus();return true;}
     section.open=true;
     const email=$('store-application-email'),address=$('store-application-address');
     if(email)email.required=true;
