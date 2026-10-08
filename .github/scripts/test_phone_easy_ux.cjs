@@ -1,0 +1,38 @@
+'use strict';
+const assert=require('node:assert/strict');
+const fs=require('node:fs');
+const vm=require('node:vm');
+const get=path=>fs.readFileSync(path,'utf8');
+const html=get('rates.html');
+const guided=get('assets/rates-easy-journey.js');
+const style=get('assets/rates-easy-journey.css');
+const apply=get('assets/store-applications.js');
+const applyStyle=get('assets/store-applications.css');
+for(const [name,src] of [['guided journey',guided],['secure application',apply]]){
+ new vm.Script(src,{filename:name});
+}
+assert.match(html,/id="mobile-easy-intro"/);
+assert.match(html,/id="mobile-easy-advanced"/);
+assert.match(html,/id="mobile-easy-result-guide"/);
+assert.match(html,/id="mobile-easy-see-results"/);
+assert.match(html,/data-purpose-category="senior"/);
+assert.match(html,/data-purpose-category="kids"/);
+assert.match(html,/data-purpose-category="value"/);
+assert.match(html,/data-purpose-category="premium"/);
+assert.match(guided,/purpose-carrier/);
+assert.match(guided,/purpose-join/);
+assert.match(guided,/scrollToResult/);
+assert.match(style,/min-height:55px/);
+assert.match(html,/store-application-easy-heading/);
+assert.match(html,/store-inquiry-optional/);
+assert.match(html,/id="store-application-fallback"/);
+assert.match(apply,/category:'mobile'/);
+assert.match(apply,/card\.dataset\.deviceId/);
+assert.match(apply,/card\.dataset\.selectedMethod/);
+assert.match(apply,/function revealInternetStep/);
+assert.match(apply,/function showApplicationFallback/);
+assert.match(applyStyle,/font-size:17px/);
+assert.match(html,/store-applications\.js\?v=20261008-easy5/);
+assert.match(html,/rates-easy-journey\.js\?v=20261008-1/);
+assert.match(html,/rates-easy-journey\.css\?v=20261008-1/);
+console.log('Phone easy journey: structure, script syntax, handoff and accessible form hooks passed.');
