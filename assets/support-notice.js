@@ -28,20 +28,34 @@
       top.append(heading, close);
       const body = el('div', undefined, 'support-notice-body');
       body.append(el('p', `${data.date} 변경${data.date < today() ? ' · 지난 공지' : ''}`, 'support-notice-date'));
-      const summaries = new Map();
+      // Group a small set of verified changes under the affected handset.
+      // Join-type amounts without a model name are confusing to customers.
+      const summaryGroups = new Map();
+      let summaryItems = 0;
       for (const row of changes) {
         if (row.before === null || row.after === null || row.before === row.after) continue;
-        const key = JSON.stringify([row.join, row.before, row.after]);
-        if (!summaries.has(key)) summaries.set(key, {row, count: 0});
-        summaries.get(key).count++;
+        if (summaryItems >= 3) break;
+        const key = JSON.stringify([row.carrier, row.device_id || row.device]);
+        if (!summaryGroups.has(key)) summaryGroups.set(key, {carrier: row.carrier, device: row.device, changes: []});
+        summaryGroups.get(key).changes.push(row);
+        summaryItems++;
       }
-      if (summaries.size) {
+      if (summaryGroups.size) {
         const summary = el('div', undefined, 'support-notice-summary');
-        
-        for (const {row, count} of [...summaries.values()].slice(0, 3)) summary.append(el('p', `${row.join} · ${money(row.before)} → ${money(row.after)}`));
+        for (const group of summaryGroups.values()) {
+          const item = el('section', undefined, 'support-notice-summary-group');
+          item.append(el('strong', `${group.carrier} · ${group.device}`, 'support-notice-summary-device'));
+          for (const row of group.changes) {
+            const line = el('p', undefined, 'support-notice-summary-change');
+            line.append(el('span', row.join, 'support-notice-summary-join'),
+                        el('span', `${money(row.before)} → ${money(row.after)}`, 'support-notice-summary-amount'));
+            item.append(line);
+          }
+          summary.append(item);
+        }
         body.append(summary);
       }
-      if (!summaries.size) body.append(el('p', `새 지원금 조건 ${changes.length}건이 확인됐습니다.`, 'support-notice-summary'));
+      if (!summaryGroups.size) body.append(el('p', `새 지원금 조건 ${changes.length}건이 확인됐습니다.`, 'support-notice-summary'));
       const details = el('details', undefined, 'support-notice-details');
       details.append(el('summary', '적용 기종·요금제 보기'));
       for (const carrier of ['SKT', 'KT', 'LGU+']) {
