@@ -6,7 +6,9 @@ const source=fs.readFileSync('assets/support-notice.js','utf8');
 const home=fs.readFileSync('index.html','utf8');
 const previous=JSON.parse(fs.readFileSync('data/support-notice.json','utf8'));
 new vm.Script(source,{filename:'assets/support-notice.js'});
-assert.match(home,/support-notice\.js\?v=20261008-verified3/);
+assert.match(home,/support-notice\\.js\\?v=20261008-model4/);
+assert.match(home,/support-notice\\.css\\?v=20261008-model4/);
+assert.match(source,/support-notice-summary-device/);
 assert.match(source,/todayUtc - noticeUtc > 7 \* 86400000/);
 assert.match(source,/notice_total_count/);
 function fakeElement(tag){
@@ -44,5 +46,15 @@ async function render(data){
  const fresh=await render({...previous,date:'2026-10-08',id:'confirmed-today',notice_total_count:87});
  assert.equal(fresh.dialogs.length,1,'same verified changes with a fresh revision create a customer popup');
  assert.ok(fresh.timers.length>0,'fresh verified change must schedule unobtrusive popup');
+ const body=fresh.dialogs[0].children[1];
+ const summary=body.children.find(node=>node.className==='support-notice-summary');
+ assert.ok(summary,'fresh change has a green overview summary');
+ const modelGroups=summary.children.filter(node=>node.className==='support-notice-summary-group');
+ assert.equal(modelGroups.length,1,'three join types for one handset have one model heading');
+ assert.equal(modelGroups[0].children[0].textContent,'KT · Moto g77','handset and carrier appear before amounts');
+ const amountLines=modelGroups[0].children.filter(node=>node.className==='support-notice-summary-change');
+ assert.equal(amountLines.length,3,'all three join-type amounts remain visible');
+ assert.equal(amountLines[0].children[0].textContent,'기기변경');
+ assert.equal(amountLines[0].children[1].textContent,'60,000원 → 300,000원');
  console.log('Support popup: stale notices suppressed; fresh verified changes prepared for modal.');
 })().catch(error=>{console.error(error);process.exit(1)});
