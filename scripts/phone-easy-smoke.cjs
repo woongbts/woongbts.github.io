@@ -17,6 +17,7 @@ const assert=require('node:assert/strict');
   contract:{known:true,method:'contract',monthly:39900,contractDiscount:11000,inst:{monthly:14000},service:25900,total24:957600}
  }]};
  await page.route('https://woongbi-quote-api.woongbts.workers.dev/recommend/purpose',route=>{
+   if(route.request().method()==='OPTIONS')return route.fulfill({status:204,headers:{'access-control-allow-origin':'*','access-control-allow-methods':'POST, OPTIONS','access-control-allow-headers':'content-type'}});
    const category=JSON.parse(route.request().postData()||'{}').category;
    return route.fulfill({status:200,contentType:'application/json',headers:{'access-control-allow-origin':'*'},body:JSON.stringify({...fake,description:category+' 테스트 추천'})});
  });
@@ -26,6 +27,7 @@ const assert=require('node:assert/strict');
  await page.route('https://woongbi-consent.woongbts.workers.dev/api/recommendation-signals',route=>route.fulfill({status:200,contentType:'application/json',headers:{'access-control-allow-origin':'*'},body:JSON.stringify({ok:true,signals:{store:[]}})}));
  let sent=null;
  await page.route('https://woongbi-consent.woongbts.workers.dev/api/store-application',route=>{
+  if(route.request().method()==='OPTIONS')return route.fulfill({status:204,headers:{'access-control-allow-origin':'*','access-control-allow-methods':'POST, OPTIONS','access-control-allow-headers':'content-type'}});
   sent=JSON.parse(route.request().postData());
   return route.fulfill({status:200,contentType:'application/json',headers:{'access-control-allow-origin':'*'},body:JSON.stringify({ok:true,receipt:{id:'test-123456',lookup_token:'fake-token'}})});
  });
