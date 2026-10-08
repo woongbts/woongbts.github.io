@@ -9,15 +9,13 @@
   const base='/rates.html?tab=';
   const options={
     mobile:{
-      heading:'원하는 휴대폰을 골라보세요',
-      info:'기종부터 확인하거나 용도별 추천으로 시작할 수 있어요.',
+      heading:'어떤 휴대폰이 필요하세요?',
+      info:'용도를 고르면 해당 휴대폰 추천과 계산 화면으로 바로 이동합니다.',
       items:[
-        ['아이폰','아이폰 기종·요금 비교',base+'mobile&mode=direct&brand=apple&src=home-easy'],
-        ['갤럭시','삼성 갤럭시 기종 비교',base+'mobile&mode=direct&brand=samsung&src=home-easy'],
         ['효도폰','부모님께 필요한 기종 추천',base+'mobile&purpose=senior&src=home-easy'],
         ['키즈폰','아이 첫 휴대폰 추천',base+'mobile&purpose=kids&src=home-easy'],
         ['가성비폰','부담 적은 기종 추천',base+'mobile&purpose=value&src=home-easy'],
-        ['최신·프리미엄폰','고성능 기종 추천',base+'mobile&purpose=premium&src=home-easy']
+        ['프리미엄폰','최신·고성능 기종 추천',base+'mobile&purpose=premium&src=home-easy']
       ]
     },
     mvno:{
