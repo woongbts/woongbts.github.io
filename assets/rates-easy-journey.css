@@ -48,3 +48,28 @@
  #purpose-recommend .purpose-footnote{font-size:13px;line-height:1.65}
 }
 @media(prefers-reduced-motion:reduce){#mobile-easy-see-results{transition:none}}
+
+
+/* Elder-friendly senior recommendations: smartphone first; folder phones by choice. */
+.senior-phone-kind{padding:18px;margin:16px 0 20px;border:1px solid #bcdcd3;border-radius:18px;background:#f5fbf8}
+.senior-phone-kind[hidden]{display:none!important}
+.senior-phone-kind-head{display:grid;justify-items:start;gap:4px}
+.senior-phone-kind-head .mobile-easy-step-label{margin-bottom:2px}
+.senior-phone-kind-head>strong{font-size:clamp(20px,2.5vw,25px);line-height:1.35;letter-spacing:-.025em;color:#153f42}
+.senior-phone-kind-head>p{margin:3px 0 13px;color:#5e7975;font-size:14px;line-height:1.6}
+.senior-phone-kind-choices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.senior-phone-kind-btn{appearance:none;position:relative;display:flex;gap:12px;align-items:center;min-width:0;min-height:90px;padding:15px;border:2px solid #d5e7e1;border-radius:15px;background:white;color:#214b4b;text-align:left;font:inherit;cursor:pointer;transition:border-color .14s,background-color .14s}
+.senior-phone-kind-btn.is-selected,.senior-phone-kind-btn[aria-pressed="true"]{border-color:#0f766e;background:#e5f5ee}
+.senior-phone-kind-btn:focus-visible{outline:3px solid #89bdb2;outline-offset:3px}
+.senior-phone-kind-btn .senior-phone-kind-symbol{display:grid;place-items:center;flex:0 0 43px;width:43px;height:49px;border:2px solid #b8d8d0;border-radius:11px;background:#f1f9f7;color:#0d7064;font-size:29px;font-weight:900}
+.senior-phone-kind-btn>span:nth-child(2){display:grid;gap:5px;min-width:0}
+.senior-phone-kind-btn strong{font-size:17px;line-height:1.35;color:#153c3d}
+.senior-phone-kind-btn small{font-size:13px;line-height:1.5;color:#65807d}
+.senior-phone-kind-check{align-self:flex-start;margin-left:auto;opacity:0;color:#0f766e;font-size:19px;font-weight:950}
+.senior-phone-kind-btn[aria-pressed="true"] .senior-phone-kind-check{opacity:1}
+.senior-phone-kind-note{margin:10px 0 0;color:#42766b;font-size:13px;line-height:1.55}
+#purpose-results .senior-type-empty{padding:21px 18px;border-radius:15px;background:#f2faf6;border:1px solid #cfe4db;color:#335d55;line-height:1.65;font-size:15px}
+#purpose-results .senior-type-empty strong{display:block;font-size:18px;color:#164e44;margin-bottom:4px}
+#purpose-results .senior-type-empty a{color:#0a7369;font-weight:900}
+@media(max-width:700px){.senior-phone-kind{padding:14px;margin:14px 0 17px}.senior-phone-kind-choices{grid-template-columns:1fr;gap:9px}.senior-phone-kind-btn{min-height:79px;padding:12px 13px}.senior-phone-kind-btn strong{font-size:17px}.senior-phone-kind-btn small{font-size:13px}.senior-phone-kind-btn .senior-phone-kind-symbol{flex-basis:41px;width:41px;height:46px}}
+@media(prefers-reduced-motion:reduce){.senior-phone-kind-btn{transition:none}}
