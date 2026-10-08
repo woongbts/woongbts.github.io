@@ -1,0 +1,41 @@
+name: Phone guided UX smoke
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'rates.html'
+      - 'assets/rates-easy-journey.*'
+      - 'assets/store-applications.*'
+      - 'assets/rates-deeplink.js'
+      - 'scripts/phone-easy-smoke.cjs'
+      - '.github/workflows/phone-guided-smoke.yml'
+  workflow_dispatch:
+concurrency:
+  group: phone-guided-${{ github.ref }}
+  cancel-in-progress: true
+permissions:
+  contents: read
+jobs:
+  guided-iphone:
+    runs-on: ubuntu-latest
+    timeout-minutes: 9
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install Chromium and Playwright
+        run: |
+          mkdir -p /tmp/woongbi-phone-test
+          cd /tmp/woongbi-phone-test
+          npm init -y >/dev/null 2>&1
+          npm install playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Start isolated website preview
+        run: |
+          python3 -m http.server 4173 --directory . >/tmp/woongbi-phone-test.log 2>&1 &
+          sleep 2
+      - name: Verify guided journey
+        env:
+          NODE_PATH: /tmp/woongbi-phone-test/node_modules
+        run: node scripts/phone-easy-smoke.cjs
