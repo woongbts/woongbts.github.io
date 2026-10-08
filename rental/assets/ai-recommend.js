@@ -485,9 +485,10 @@
       const p = item.product;
       const management = item.option.managementLabel || item.option.care || '';
       const term = Number(item.option.term) ? Number(item.option.term) + '개월' : '';
+      const total = Number(item.option.term)>0 ? won(item.monthly*Number(item.option.term)) : '';
       lines.push(
         (index + 1) + '. ' + brandLabel(p.brand) + ' ' + p.name,
-        '   ' + [management, term, '월 ' + won(item.monthly), item.gift == null ? '사은품 상담 확인' : '사은품 ' + won(item.gift)].filter(Boolean).join(' · ')
+        '   ' + [management, term, '월 ' + won(item.monthly), total ? '총 예상 렌탈료 ' + total : '', item.gift == null ? '사은품 상담 확인' : '사은품 ' + won(item.gift)].filter(Boolean).join(' · ')
       );
     });
     lines.push('', '이 조건으로 상담 부탁드립니다.');
@@ -679,6 +680,7 @@
       p.model ? '모델: ' + p.model : '',
       '조건: ' + [management,term].filter(Boolean).join(' · '),
       '월 렌탈료: ' + won(item.monthly),
+      (Number(item.option.term)>0 ? '총 예상 렌탈료: ' + won(item.monthly*Number(item.option.term)) + ' (월요금 × 계약개월, 단순 합계)' : ''),
       '고객사은품: ' + (item.gift == null ? '상담 확인' : won(item.gift)),
       '정책 기준: ' + policyMonthText(policyGeneratedAt),
       '※ 설치 후 12개월 이내 미납·정지 또는 해지 시 사은품 금액 반환',
@@ -720,8 +722,10 @@
           '<div><span>관리·옵션</span><strong>' + escapeHtml(management || '상담 확인') + '</strong></div>' +
           '<div><span>계약기간</span><strong>' + escapeHtml(term) + '</strong></div>' +
           '<div><span>월 렌탈료</span><strong>' + escapeHtml(won(item.monthly)) + '</strong></div>' +
+          '<div><span>총 예상 렌탈료</span><strong>' + escapeHtml(Number(item.option.term)>0 ? won(item.monthly*Number(item.option.term)) : '계약기간 확인') + '</strong></div>' +
           '<div><span>고객사은품</span><strong>' + (item.gift == null ? '상담 확인' : escapeHtml(won(item.gift))) + '</strong></div>' +
         '</div>' +
+        '<p class="ai-quote-total-note">총 예상 렌탈료는 월 렌탈료 × 계약개월의 단순 합계이며, 카드 할인·추가 비용·사은품은 별도입니다.</p>' +
         '<div class="ai-quote-return">※ 설치 후 12개월 이내 미납·정지 또는 해지 시 사은품 금액을 반환해 주셔야 합니다.</div>' +
         '<div class="ai-quote-actions">' +
           '<button type="button" data-ai-quote-copy="' + escapeHtml(p.id) + '">견적 내용 복사</button>' +
@@ -814,6 +818,7 @@
             '<p class="ai-result-condition">' + escapeHtml([management,term].filter(Boolean).join(' · ')) + '</p>' +
             '<div class="ai-result-price"><span>월 <strong>' + escapeHtml(won(item.monthly)) + '</strong></span>' +
               '<span>사은품 <strong>' + (item.gift == null ? '상담 확인' : escapeHtml(won(item.gift))) + '</strong></span></div>' +
+            '<p class="ai-result-total">총 예상 렌탈료 <strong>' + escapeHtml(Number(item.option.term)>0 ? won(item.monthly*Number(item.option.term)) : '계약기간 확인') + '</strong><small>월 렌탈료 × 계약개월 단순 합계 · 카드 할인·사은품 별도</small></p>' +
             '<div class="ai-result-actions">' +
               '<a class="ai-result-link" href="' + escapeHtml(detailUrl) + '" data-ai-product="' + escapeHtml(p.id) + '">조건 자세히 보기</a>' +
               '<a class="ai-apply-link" href="' + escapeHtml(applyUrl) + '" data-ai-apply="' + escapeHtml(p.id) + '">이 조건으로 신청</a>' +
