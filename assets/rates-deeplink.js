@@ -38,22 +38,27 @@
     if(requested!=='mobile')return;
     const purpose=params.get('purpose');
     if(!['senior','kids','value','premium'].includes(purpose))return;
-    waitFor(()=>document.querySelector('[data-mobile-mode="purpose"]'),mode=>{
-      mode.click();
-      const apply=()=>{
-        const target=document.querySelector('[data-purpose-category="'+purpose+'"]');
-        if(!target)return false;
-        target.click();
-        const section=document.getElementById('purpose-recommend');
-        if(section&&!section.hidden)section.scrollIntoView({behavior:'instant',block:'start'});
+    const apply=()=>{
+      const mode=document.querySelector('[data-mobile-mode="purpose"]');
+      const target=document.querySelector('[data-purpose-category="'+purpose+'"]');
+      const section=document.getElementById('purpose-recommend');
+      if(!mode||!target||!section)return false;
+      if(!mode.classList.contains('active')||section.hidden)mode.click();
+      if(!target.classList.contains('active'))target.click();
+      if(mode.classList.contains('active')&&target.classList.contains('active')&&!section.hidden){
+        section.scrollIntoView({behavior:'instant',block:'start'});
         return true;
-      };
-      // The calculator initializes asynchronously, so re-apply the requested
-      // purpose after the first render rather than relying on a single click.
-      setTimeout(apply,180);
-      setTimeout(apply,700);
-      waitFor(()=>document.querySelector('[data-purpose-category="'+purpose+'"]'),apply,60);
-    });
+      }
+      return false;
+    };
+    // Some calculator modules finish binding after data arrives. Retry until
+    // the requested category is genuinely visible, never just change labels.
+    let attempts=0;
+    const timer=setInterval(()=>{
+      attempts+=1;
+      if(apply()||attempts>=60)clearInterval(timer);
+    },250);
+    setTimeout(apply,60);
   }
   function restoreMobileDirect(){
     if(requested!=='mobile'||params.get('purpose')||params.get('mode')!=='direct')return;
