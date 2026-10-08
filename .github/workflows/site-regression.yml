@@ -33,6 +33,7 @@ jobs:
           node --check assets/rates.min.js
           node --check assets/site-pro.min.js
           node --check assets/ai-chat.min.js
+          node .github/scripts/test_ai_launcher_label.cjs
           node --check assets/mobile-menu.js
           node --check assets/rates-deeplink.js
           node --check assets/quick-order.js
