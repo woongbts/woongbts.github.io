@@ -58,3 +58,11 @@ body.home-modern .hero-grid.hero-grid-single{padding-bottom:16px}
  .home-order-option{min-height:67px}
 }
 @media(prefers-reduced-motion:reduce){.home-order-category{transition:none}}
+
+/* Continue step for shoppers arriving at the calculator */
+.rate-easy-flow[hidden]{display:none!important}
+.rate-easy-flow{padding:16px 18px;margin:0 0 18px;border:1px solid #b9dcd5;border-radius:15px;background:#eff9f6;color:#23454a;line-height:1.55}
+.rate-easy-flow>span{display:block;margin-bottom:4px;font-size:13px;font-weight:900;color:#0a7369}
+.rate-easy-flow>strong{display:block;font-size:19px;letter-spacing:-.02em}
+.rate-easy-flow p{margin:6px 0 8px;color:#466466;font-size:15px}
+.rate-easy-flow a{font-size:14px;font-weight:900;color:#08756d}
