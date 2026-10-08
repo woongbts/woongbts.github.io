@@ -8,10 +8,11 @@ from datetime import datetime
 from zoneinfo import ZoneInfo
 from report_wireless_changes import flatten_supports
 
-REFERENCES = {'SKT': ('SKT-XP-2901', '베스트 109(T 우주)'),
-              'KT': ('KT-XP-2582', '초이스110 폰케어'),
-              'LGU+': ('LG-XP-1097', '플러스플랜115')}
-JOINS = ['기기변경', '번호이동', '신규가입']
+CARRIERS = ('SKT', 'KT', 'LGU+')
+# The complete verified amount-change count is retained in the metadata.
+# Keep the customer popup readable: at most one plan per handset and join
+# type, and up to this many examples from each carrier.
+MAX_NOTICE_PER_CARRIER = 16
 
 
 def support_delta_stats(old, new):
@@ -34,34 +35,65 @@ def build(old_supports, catalog, plans, supports, previous=None, checked_on=None
     stats = support_delta_stats(old, new)
     plan_map = {p['id']: p for p in plans['mobile_plans']}
     devices = {d['id']: d for d in catalog['devices']}
+    # Only compare monetary values which were verified in BOTH published
+    # snapshots. Missing support records are 'unknown', never a 0-won change.
+    # No external source failure may be converted to a customer claim.
+    candidates = []
+    for carrier, did, join, pid in sorted(set(old) & set(new)):
+        before, after = old[(carrier, did, join, pid)], new[(carrier, did, join, pid)]
+        if before == after or carrier not in CARRIERS:
+            continue
+        device = devices.get(did)
+        plan = plan_map.get(pid)
+        if not device or not plan or device.get('carrier') != carrier or plan.get('carrier', carrier) != carrier:
+            continue
+        fee = plan.get('monthly_fee')
+        if type(fee) is not int or fee < 0:
+            continue
+        # Retain the future-device guard for records supplied before launch.
+        if '아이폰 17' in device.get('name', '') and '(NEW)' in device.get('name', '') and checked_on < '2026-10-01':
+            continue
+        candidates.append({
+            'carrier': carrier, 'device_id': did, 'device': device.get('name') or device.get('model_code') or did,
+            'plan_id': pid, 'plan': plan.get('name') or pid, 'monthly_fee': fee,
+            'join': join, 'before': before, 'after': after,
+            '_release': device.get('release_date') or '',
+        })
+    # Prefer major changes, with recent devices as a tiebreaker. Show a
+    # representative plan for each affected handset/join without flooding
+    # a customer's phone with nearly identical tariff variations.
+    candidates.sort(key=lambda row: (
+        -abs(row['after'] - row['before']),
+        -int((row['_release'] or '0000')[:4] or 0),
+        row['carrier'], row['device'], row['join'], row['plan_id'],
+    ))
     changes = []
-    for carrier, (pid, expected_name) in REFERENCES.items():
-        if pid not in plan_map or plan_map[pid]['name'] != expected_name:
-            raise ValueError('Reference plan changed; verify customer notice configuration')
-        for did, device in devices.items():
-            if device['carrier'] != carrier:
-                continue
-            # Store-confirmed October applicability. Do not advertise future NEW SKUs in September.
-            if '아이폰 17' in device['name'] and '(NEW)' in device['name'] and checked_on < '2026-10-01':
-                continue
-            for join in JOINS:
-                key = carrier, did, join, pid
-                before, after = old.get(key), new.get(key)
-                if before == after:
-                    continue
-                changes.append({'carrier': carrier, 'device_id': did, 'device': device['name'],
-                                'plan_id': pid, 'plan': expected_name, 'monthly_fee': plan_map[pid]['monthly_fee'],
-                                'join': join, 'before': before, 'after': after})
+    seen = set()
+    per_carrier = {carrier: 0 for carrier in CARRIERS}
+    for row in candidates:
+        key = (row['carrier'], row['device_id'], row['join'])
+        if key in seen or per_carrier[row['carrier']] >= MAX_NOTICE_PER_CARRIER:
+            continue
+        seen.add(key)
+        per_carrier[row['carrier']] += 1
+        changes.append({k: v for k, v in row.items() if not k.startswith('_')})
     if not changes and previous:
         result = dict(previous)
         result['refresh_change_count'] = 0
+        result['notice_total_count'] = 0
         result['checked_on'] = checked_on
         result.update(stats)
         return result
-    content = {'date': checked_on, 'changes': changes}
-    revision = hashlib.sha256(json.dumps(content, ensure_ascii=False, sort_keys=True).encode()).hexdigest()[:16]
+    # Include every verified amount delta in the revision hash even when
+    # the popup can only show a representative subset.
+    revision_basis = {
+        'date': checked_on,
+        'deltas': [(r['carrier'], r['device_id'], r['join'], r['plan_id'], r['before'], r['after']) for r in candidates],
+    }
+    revision = hashlib.sha256(json.dumps(revision_basis, ensure_ascii=False, sort_keys=True).encode()).hexdigest()[:16]
     return {'version': 1, 'id': revision, 'date': checked_on, 'checked_on': checked_on,
-            'changes': changes, 'refresh_change_count': len(changes), **stats}
+            'changes': changes, 'refresh_change_count': len(changes),
+            'notice_total_count': len(candidates), **stats}
 
 
 def main():
