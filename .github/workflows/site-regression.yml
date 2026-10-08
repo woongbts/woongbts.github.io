@@ -36,6 +36,8 @@ jobs:
           node --check assets/mobile-menu.js
           node --check assets/rates-deeplink.js
           node --check assets/quick-order.js
+          node --check rental/assets/ai-recommend.js
+          node .github/scripts/test_rental_ai_priority.cjs
           node .github/scripts/test_quick_order.cjs
           node --check assets/store-applications.js
           node .github/scripts/test_store_applications_ui.cjs
