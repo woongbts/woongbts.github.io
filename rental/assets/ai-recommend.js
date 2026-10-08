@@ -9,6 +9,7 @@
   const form = document.getElementById('ai-recommend-form');
   const categorySelect = document.getElementById('ai-category');
   const budgetSelect = document.getElementById('ai-budget');
+  const priorityInputs = [...document.querySelectorAll('input[name="ai-priority"]')];
   const brandSelect = document.getElementById('ai-brand');
   const managementSelect = document.getElementById('ai-management');
   const preferenceInput = document.getElementById('ai-preference');
@@ -269,25 +270,33 @@
       if (criteria.strictManagement && !matching.length) return null;
       if (matching.length) candidates = matching;
     }
-
     if (criteria.strictBudget && criteria.budget > 0) {
       candidates = candidates.filter(o => Number(o.monthly) <= criteria.budget);
       if (!candidates.length) return null;
     }
 
+    const prices = candidates.map(o => Number(o.monthly));
+    const knownGifts = candidates.map(o => Number(o.gift)).filter((v,i) => candidates[i].gift != null && Number.isFinite(v));
+    const minPrice = Math.min(...prices), maxPrice = Math.max(...prices);
+    const minGift = knownGifts.length ? Math.min(...knownGifts) : 0;
+    const maxGift = knownGifts.length ? Math.max(...knownGifts) : 0;
+    const priority = criteria.priority || 'balanced';
+    const priceWeight = priority === 'monthly' ? .85 : priority === 'gift' ? .2 : .52;
+    const giftWeight = 1 - priceWeight;
     const scored = candidates.map(option => {
       const monthly = Number(option.monthly);
-      const gift = Number.isFinite(Number(option.gift)) ? Number(option.gift) : 0;
-      const term = Number(option.term) || 60;
-      let score = gift - monthly * 1.25 - Math.abs(term - 60) * 550;
+      const gift = option.gift == null ? null : Number(option.gift);
+      const priceFit = maxPrice === minPrice ? .5 : (maxPrice - monthly) / (maxPrice - minPrice);
+      const giftFit = gift == null ? 0 : maxGift === minGift ? .5 : (gift - minGift) / (maxGift - minGift);
+      let score = priceFit * priceWeight + giftFit * giftWeight;
+      // Optional budget is a preference; only explicit 'exclude over budget' is a hard filter.
       if (criteria.budget > 0) {
-        if (monthly <= criteria.budget) score += 90000 + (criteria.budget - monthly) * 0.8;
-        else score -= (monthly - criteria.budget) * 8;
+        if (monthly <= criteria.budget) score += .18;
+        else score -= Math.min(1, (monthly - criteria.budget) / criteria.budget);
       }
-      if (criteria.management && managementMatch(option, criteria.management)) score += 25000;
+      score -= Math.abs((Number(option.term) || 60) - 60) * .001;
       return { option, score };
-    }).sort((a,b) => b.score - a.score);
-
+    }).sort((a,b) => b.score - a.score || Number(a.option.monthly) - Number(b.option.monthly));
     return scored[0]?.option || candidates[0] || null;
   }
 
@@ -387,15 +396,58 @@
     };
   }
 
+  // A three-way comparison, with the customer's chosen priority shown first.
+  // Hard constraints (budget, brand, management and required features) are
+  // checked by scoreProduct before any type-specific ordering takes place.
+  const PRIORITY_LABELS = {
+    monthly:'월요금 부담 적게',
+    balanced:'요금·혜택 균형',
+    gift:'사은품 혜택 중심'
+  };
+  function priorityOrder(priority) {
+    return priority === 'monthly' ? ['monthly','balanced','gift']
+      : priority === 'gift' ? ['gift','balanced','monthly']
+      : ['balanced','monthly','gift'];
+  }
   function recommend(criteria) {
-    const ranked = products
-      .map(product => scoreProduct(product, criteria))
-      .filter(Boolean)
-      .sort((a,b) => b.score - a.score || brandRank(a.product.brand) - brandRank(b.product.brand));
-
-    if (!ranked.length) return [];
-    const withinBudget = criteria.budget > 0 ? ranked.filter(x => x.monthly <= criteria.budget) : ranked;
-    return (withinBudget.length >= 3 || criteria.strictBudget ? withinBudget : ranked).slice(0, 3);
+    const chosen = criteria.priority || 'balanced';
+    const selected = [], used = new Set();
+    const byKind = {};
+    priorityOrder(chosen).forEach(kind => {
+      const ranked = products.map(product => scoreProduct(product, {...criteria,priority:kind})).filter(Boolean);
+      if (!ranked.length) { byKind[kind] = []; return; }
+      const within = criteria.budget > 0 ? ranked.filter(x => x.monthly <= criteria.budget) : ranked;
+      const eligible = criteria.strictBudget || within.length >= 3 ? within : ranked;
+      const prices = eligible.map(x => x.monthly);
+      const gifts = eligible.map(x => x.gift).filter(x => x != null);
+      const minP = Math.min(...prices), maxP = Math.max(...prices);
+      const minG = gifts.length ? Math.min(...gifts) : 0;
+      const maxG = gifts.length ? Math.max(...gifts) : 0;
+      const priceWeight = kind === 'monthly' ? .88 : kind === 'gift' ? .18 : .53;
+      byKind[kind] = eligible.slice().sort((a,b) => {
+        const measure = x => {
+          const affordable = maxP === minP ? .5 : (maxP - x.monthly) / (maxP - minP);
+          const benefit = x.gift == null ? 0 : maxG === minG ? .5 : (x.gift - minG) / (maxG - minG);
+          return (priceWeight * affordable + (1 - priceWeight) * benefit) * 110 + x.score * .45;
+        };
+        return measure(b) - measure(a) || brandRank(a.product.brand) - brandRank(b.product.brand);
+      });
+    });
+    for (const kind of priorityOrder(chosen)) {
+      const candidate = (byKind[kind] || []).find(item => !used.has(String(item.product.id)));
+      if (!candidate) continue;
+      used.add(String(candidate.product.id));
+      selected.push({...candidate,kind,kindLabel:PRIORITY_LABELS[kind]});
+    }
+    // An unusually small category may not have three distinct products.
+    // Fill remaining places with valid distinct choices without inventing prices.
+    for (const item of (byKind[chosen] || [])) {
+      if (selected.length >= 3) break;
+      if (used.has(String(item.product.id))) continue;
+      used.add(String(item.product.id));
+      selected.push({...item,kind:chosen,kindLabel:PRIORITY_LABELS[chosen]});
+    }
+    return selected.slice(0,3);
   }
 
   function reasonText(item, index) {
@@ -407,7 +459,8 @@
     const mustLabels = criteria.mustFeatures.map(key => FEATURE_DEFS[key]?.label).filter(Boolean);
     return [
       criteria.category ? '품목: ' + criteria.category : '',
-      criteria.budget > 0 ? '월 예산: ' + won(criteria.budget) + ' 이하' + (criteria.strictBudget ? ' (필수)' : '') : '월 예산: 상관없음',
+      '추천 기준: ' + (PRIORITY_LABELS[criteria.priority] || PRIORITY_LABELS.balanced),
+      criteria.budget > 0 ? '월 예산 상한: ' + won(criteria.budget) + ' 이하' + (criteria.strictBudget ? ' (초과 제외)' : ' (선호)') : '',
       criteria.brand ? '선호 브랜드: ' + brandLabel(criteria.brand) + (criteria.strictBrand ? ' (필수)' : '') : '선호 브랜드: 상관없음',
       criteria.management ? '관리방식: ' + (criteria.management === 'self' ? '자가·셀프관리' : '방문관리') + (criteria.strictManagement ? ' (필수)' : '') : '관리방식: 상관없음',
       mustLabels.length ? '필수 기능: ' + mustLabels.join(', ') : '',
@@ -529,6 +582,7 @@
     return {
       category: categorySelect.value,
       budget: Number(budgetSelect.value) || 0,
+      priority: priorityInputs.find(input => input.checked)?.value || 'balanced',
       brand: brandSelect.value,
       management: managementSelect.value,
       query: preferenceInput.value.trim(),
@@ -544,6 +598,7 @@
     u.searchParams.set('ai','1');
     if (criteria.category) u.searchParams.set('cat',criteria.category);
     if (criteria.budget) u.searchParams.set('budget',String(criteria.budget));
+    if (criteria.priority) u.searchParams.set('priority',criteria.priority);
     if (criteria.brand) u.searchParams.set('brand',criteria.brand);
     if (criteria.management) u.searchParams.set('mgmt',criteria.management);
     if (criteria.strictBudget) u.searchParams.set('sb','1');
@@ -561,6 +616,7 @@
     return {
       category:p.get('cat') || '정수기',
       budget:Number(p.get('budget')) || 0,
+      priority:['monthly','balanced','gift'].includes(p.get('priority')) ? p.get('priority') : 'balanced',
       brand:p.get('brand') || '',
       management:p.get('mgmt') || '',
       query:(p.get('q') || '').slice(0,120),
@@ -576,6 +632,7 @@
     if (criteria.category && [...categorySelect.options].some(o => o.value === criteria.category)) categorySelect.value = criteria.category;
     setupBrands();
     if (criteria.budget && [...budgetSelect.options].some(o => Number(o.value) === Number(criteria.budget))) budgetSelect.value = String(criteria.budget);
+    priorityInputs.forEach(input => { input.checked = input.value === (criteria.priority || 'balanced'); });
     if (criteria.brand && [...brandSelect.options].some(o => o.value === criteria.brand)) brandSelect.value = criteria.brand;
     if (criteria.management && [...managementSelect.options].some(o => o.value === criteria.management)) managementSelect.value = criteria.management;
     preferenceInput.value = criteria.query || '';
@@ -731,7 +788,7 @@
     lastItems = items;
 
     if (!items.length) {
-      results.innerHTML = '<div class="ai-empty"><strong>필수조건까지 모두 맞는 상품을 찾지 못했어요.</strong><p>필수조건을 하나 줄이거나 예산을 조금 넓혀서 다시 추천받아 보세요.</p></div>';
+      results.innerHTML = '<div class="ai-empty"><strong>필수조건까지 모두 맞는 상품을 찾지 못했어요.</strong><p>선택한 필수조건을 조정하거나 월 예산 상한을 넓혀서 다시 추천받아 보세요.</p></div>';
       return;
     }
 
@@ -751,7 +808,7 @@
             (image ? '<img src="' + escapeHtml(image) + '" alt="' + escapeHtml(p.name) + '" loading="lazy">' : '<span>W</span>') +
           '</a>' +
           '<div class="ai-result-body">' +
-            '<div class="ai-result-rank"><b>' + (index + 1) + '순위</b><span>' + escapeHtml(reasonText(item,index)) + '</span></div>' +
+            '<div class="ai-result-rank"><b>' + escapeHtml(item.kindLabel || (index + 1) + '번째 추천') + '</b><span>' + escapeHtml(reasonText(item,index)) + '</span></div>' +
             '<small>' + escapeHtml(brandLabel(p.brand)) + ' · ' + escapeHtml(p.model || p.category || '') + '</small>' +
             '<h3>' + escapeHtml(p.name) + '</h3>' +
             '<p class="ai-result-condition">' + escapeHtml([management,term].filter(Boolean).join(' · ')) + '</p>' +
@@ -782,6 +839,7 @@
     trackAi('rental_ai_recommend', {
       category: criteria.category,
       budget: criteria.budget || '',
+      priority: criteria.priority || 'balanced',
       brand: criteria.brand || '',
       management: criteria.management || '',
       strict_count: Number(criteria.strictBudget) + Number(criteria.strictBrand) + Number(criteria.strictManagement) + criteria.mustFeatures.length,
@@ -791,7 +849,7 @@
   }
 
   function showAiStep(step) {
-    const target = Math.min(4,Math.max(1,Number(step)||1));
+    const target = Math.min(3,Math.max(1,Number(step)||1));
     aiSteps.forEach(section => {
       const active=Number(section.dataset.aiStep)===target;
       section.hidden=!active;
@@ -802,7 +860,7 @@
       indicator.classList.toggle('active',n===target);
       indicator.classList.toggle('done',n<target);
     });
-    const prompts={1:'먼저 품목을 선택해 주세요.',2:'월 예산을 골라 주세요.',3:'관리방식을 골라 주세요.',4:'필요하면 세부조건을 추가하고 추천받아 보세요.'};
+    const prompts={1:'먼저 품목을 선택해 주세요.',2:'월요금·사은품 중 중요한 기준을 선택해 주세요.',3:'원하면 세부조건을 추가하고 추천받아 보세요.'};
     if(status&&!lastItems.length)status.textContent=prompts[target]||'추천 조건을 선택해 주세요.';
   }
 
@@ -869,7 +927,7 @@
       const criteria = currentCriteria();
       status.textContent = '조건을 분석해 가장 잘 맞는 상품을 고르는 중입니다.';
       const items = recommend(criteria);
-      showAiStep(4);
+      showAiStep(3);
       renderResults(items, criteria);
       status.textContent = items.length ? '추천이 완료되었습니다. 아래 TOP 3를 확인해 보세요.' : '필수조건을 모두 만족하는 상품이 없습니다.';
       results.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -923,6 +981,7 @@
       const criteria = lastCriteria || {
         category: categorySelect.value,
         budget: Number(budgetSelect.value) || 0,
+        priority: priorityInputs.find(input => input.checked)?.value || 'balanced',
         brand: brandSelect.value,
         management: managementSelect.value,
         query: preferenceInput.value.trim(),
@@ -1035,9 +1094,14 @@
       const normalized = currentCriteria();
       const freshItems = recommend(normalized);
       const sharedItems = (criteria.sharedIds || [])
-        .map(id => products.find(product => String(product.id) === String(id)))
-        .map(product => product ? scoreProduct(product, normalized) : null)
-        .filter(Boolean);
+        .map((id,index) => {
+          const already = freshItems.find(item => String(item.product.id) === String(id));
+          if (already) return already;
+          const product = products.find(product => String(product.id) === String(id));
+          const kind = priorityOrder(normalized.priority)[index] || normalized.priority;
+          const item = product ? scoreProduct(product,{...normalized,priority:kind}) : null;
+          return item ? {...item,kind,kindLabel:PRIORITY_LABELS[kind]} : null;
+        }).filter(Boolean);
       const seen = new Set(sharedItems.map(item => String(item.product.id)));
       const items = [...sharedItems, ...freshItems.filter(item => !seen.has(String(item.product.id)))].slice(0,3);
       renderResults(items, normalized);
