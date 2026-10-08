@@ -37,15 +37,22 @@
   function restoreMobilePurpose(){
     if(requested!=='mobile')return;
     const purpose=params.get('purpose');
-    if(!purpose)return;
-    const allowedPurpose=new Set(['senior','kids','value','premium']);
-    if(!allowedPurpose.has(purpose))return;
+    if(!['senior','kids','value','premium'].includes(purpose))return;
     waitFor(()=>document.querySelector('[data-mobile-mode="purpose"]'),mode=>{
-      mode.click();
-      setTimeout(()=>{
+      if(!mode.classList.contains('active'))mode.click();
+      const apply=()=>{
         const target=document.querySelector('[data-purpose-category="'+purpose+'"]');
-        if(target){target.click();document.getElementById('purpose-recommend')?.scrollIntoView({behavior:'auto',block:'start'});}
-      },120);
+        if(!target)return false;
+        if(!target.classList.contains('active'))target.click();
+        const section=document.getElementById('purpose-recommend');
+        if(section&&!section.hidden)section.scrollIntoView({behavior:'instant',block:'start'});
+        return true;
+      };
+      // The calculator initializes asynchronously, so re-apply the requested
+      // purpose after the first render rather than relying on a single click.
+      setTimeout(apply,180);
+      setTimeout(apply,700);
+      waitFor(()=>document.querySelector('[data-purpose-category="'+purpose+'"]'),apply,60);
     });
   }
   function restoreMobileDirect(){
