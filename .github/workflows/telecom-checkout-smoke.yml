@@ -1,0 +1,41 @@
+name: Telecom checkout smoke
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'index.html'
+      - 'rates.html'
+      - 'visit.html'
+      - 'assets/quick-order.*'
+      - 'assets/rates-deeplink.js'
+      - 'assets/store-applications.*'
+      - 'assets/visit-handoff.js'
+      - 'scripts/telecom-checkout-smoke.cjs'
+      - '.github/workflows/telecom-checkout-smoke.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  iphone-checkout:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install browser
+        run: |
+          mkdir -p /tmp/woongbi-checkout-browser
+          cd /tmp/woongbi-checkout-browser
+          npm init -y >/dev/null 2>&1
+          npm install playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Start preview server
+        run: |
+          python3 -m http.server 4173 --directory . >/tmp/woongbi-checkout-http.log 2>&1 &
+          sleep 2
+      - name: Test mobile shopping and booking
+        env:
+          NODE_PATH: /tmp/woongbi-checkout-browser/node_modules
+        run: node scripts/telecom-checkout-smoke.cjs
