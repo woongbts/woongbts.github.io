@@ -1,0 +1,32 @@
+const assert=require('node:assert/strict');
+const fs=require('node:fs');
+const vm=require('node:vm');
+const read=path=>fs.readFileSync(path,'utf8');
+const homepage=read('index.html');
+const rates=read('rates.html');
+const quick=read('assets/quick-order.js');
+const direct=read('assets/rates-deeplink.js');
+const styles=read('assets/quick-order.css');
+new vm.Script(quick,{filename:'quick-order.js'});
+new vm.Script(direct,{filename:'rates-deeplink.js'});
+for(const category of ['mobile','mvno','prepaid','internet','rental','visit']){
+  assert.match(homepage,new RegExp('data-quick-category="'+category+'"'));
+  assert.match(quick,new RegExp('\\b'+category+':\\s*\\{'));
+}
+assert.equal((homepage.match(/data-quick-category="/g)||[]).length,6);
+assert.match(homepage,/id="home-order-choices"/);
+assert.match(homepage,/src="\/assets\/quick-order\.js\?v=/);
+assert.match(homepage,/href="\/assets\/quick-order\.css\?v=/);
+assert.match(homepage,/href="#quick-order">상품 간편 찾기/);
+assert.match(rates,/id="rate-easy-flow"/);
+assert.match(rates,/rates-deeplink\.js\?v=20261008-quick1/);
+assert.match(rates,/quick-order\.css/);
+assert.match(quick,/mode=direct&brand=apple/);
+assert.match(quick,/purpose=senior/);
+assert.match(quick,/qs=500&qt=basic/);
+assert.match(quick,/tab=prepaid/);
+assert.match(direct,/function restoreInternetQuick\(/);
+assert.match(direct,/function restoreMobileDirect\(/);
+assert.match(direct,/function showQuickJourney\(/);
+assert.match(styles,/@media\(max-width:480px\)/);
+console.log('Quick product picker: assets, links, accessibility hooks and JavaScript parse passed.');
