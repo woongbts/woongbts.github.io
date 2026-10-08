@@ -32,7 +32,7 @@ async function popup(hide=false,seen=false,dismissed=false) {
   if(dismissed)local.set('woongbi-support-dismissed','test');
   if(seen)session.set('woongbi-support-seen',`${today}:test`);
   const storage=m=>({getItem:k=>m.get(k),setItem:(k,v)=>m.set(k,v)});
-  const context={HTMLDialogElement:Element,Intl,Date,URL,location:{origin:'https://example.invalid'},document:{body,activeElement:new Element(),hidden:false,querySelector:()=>null,createElement:()=>new Element()},window:{localStorage:storage(local),sessionStorage:storage(session),addEventListener(){},removeEventListener(){}},setTimeout:f=>f(),fetch:async()=>({ok:true,json:async()=>({version:1,id:'test',date:'2026-09-24',changes:[{carrier:'SKT',device:'테스트 기종',plan:'테스트 요금제',monthly_fee:100000,join:'기기변경',before:500000,after:600000}]})})};
+  const context={HTMLDialogElement:Element,Intl,Date,URL,location:{origin:'https://example.invalid'},document:{body,activeElement:new Element(),hidden:false,querySelector:()=>null,createElement:()=>new Element()},window:{localStorage:storage(local),sessionStorage:storage(session),addEventListener(){},removeEventListener(){}},setTimeout:f=>f(),fetch:async()=>({ok:true,json:async()=>({version:1,id:'test',date:today,changes:[{carrier:'SKT',device:'테스트 기종',plan:'테스트 요금제',monthly_fee:100000,join:'기기변경',before:500000,after:600000}]})})};
   vm.runInNewContext(fs.readFileSync('assets/support-notice.js','utf8'),context);await flush();
   assert.equal(body.children.length,1);
   assert.equal(Boolean(body.children[0].open),!hide&&!seen&&!dismissed);
