@@ -34,7 +34,18 @@ function check(ok,message){if(!ok)throw Error(message);}
  check(geometry.bar&&geometry.ai.bottom<=geometry.bar.top+1,'AI button covered by mobile action bar: '+JSON.stringify(geometry));
  for(const purpose of names){
   await page.goto(origin+'/rates.html?tab=mobile&purpose='+purpose+'&src=home-easy',{waitUntil:'domcontentloaded'});
-  await page.waitForSelector('[data-purpose-category="'+purpose+'"].active',{timeout:15000});
+  await page.waitForTimeout(1100);
+  const diagnostic=await page.evaluate((key)=>({
+    url:location.href,
+    tab:document.querySelector('.rate-tab.active')?.dataset.tab,
+    panelHidden:document.querySelector('.rate-panel[data-panel="mobile"]')?.hidden,
+    mode:document.querySelector('[data-mobile-mode].active')?.dataset.mobileMode,
+    category:[...document.querySelectorAll('[data-purpose-category]')].filter(x=>x.classList.contains('active')).map(x=>x.dataset.purposeCategory),
+    sectionHidden:document.getElementById('purpose-recommend')?.hidden,
+    targetVisible:Boolean(document.querySelector('[data-purpose-category="'+key+'"]')?.getClientRects().length)
+  }),purpose);
+  console.log('PURPOSE_DIAGNOSTIC',purpose,JSON.stringify(diagnostic));
+  await page.waitForSelector('[data-purpose-category="'+purpose+'"].active',{timeout:10000});
   check(await page.locator('#purpose-recommend:not([hidden])').count()===1,'Calculator purpose content hidden: '+purpose);
  }
  await page.goto(origin+'/rates.html?tab=mobile&purpose=kids&src=home-easy',{waitUntil:'domcontentloaded'});
