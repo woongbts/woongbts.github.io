@@ -13,6 +13,9 @@ on:
       - 'scripts/telecom-checkout-smoke.cjs'
       - '.github/workflows/telecom-checkout-smoke.yml'
   workflow_dispatch:
+concurrency:
+  group: telecom-checkout-${{ github.ref }}
+  cancel-in-progress: true
 permissions:
   contents: read
 jobs:
