@@ -85,8 +85,8 @@ body.home-modern .hero-grid.hero-grid-single .hero-actions{margin-top:15px}
 @media(max-width:760px){
   body.home-modern #woongbi-ai-launcher.wb-ai-launcher{
     position:fixed!important;
-    right:14px!important;left:auto!important;
-    bottom:calc(94px + env(safe-area-inset-bottom,0px))!important;
+    right:8px!important;left:auto!important;
+    bottom:calc(80px + env(safe-area-inset-bottom,0px))!important;
     width:134px!important;min-width:134px!important;max-width:calc(100vw - 28px)!important;
     height:52px!important;min-height:52px!important;max-height:52px!important;
     padding:0 12px!important;border-radius:999px!important;
@@ -101,8 +101,8 @@ body.home-modern .hero-grid.hero-grid-single .hero-actions{margin-top:15px}
     letter-spacing:-.02em!important;white-space:nowrap!important;color:#fff!important;
   }
   body.home-modern #woongbi-ai-panel.wb-ai-panel{
-    right:10px!important;left:auto!important;
-    bottom:calc(156px + env(safe-area-inset-bottom,0px))!important;
+    right:8px!important;left:auto!important;
+    bottom:calc(142px + env(safe-area-inset-bottom,0px))!important;
     width:calc(100vw - 20px)!important;
     max-height:calc(100dvh - 180px)!important;
     box-sizing:border-box!important;
