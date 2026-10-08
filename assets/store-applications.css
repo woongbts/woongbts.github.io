@@ -239,3 +239,17 @@
   .wired-compare-card.is-selected{transform:none}
   .wired-recommend-badges span{font-size:.7rem}
 }
+
+/* Booking handoff and progressive Internet contact flow */
+.store-visit-btn{min-height:44px;padding:10px 15px;border-radius:11px;border:2px solid #c2dcd5;background:#fff;color:#11635c;font:inherit;font-size:.9rem;font-weight:900;cursor:pointer;white-space:normal;line-height:1.35}
+#mobile-form>.store-apply-btn,#mobile-form>.store-visit-btn{width:100%;margin-top:10px}
+.purpose-card-actions>.store-visit-btn,.purpose-card-actions>.store-apply-btn{width:100%;grid-column:1/-1}
+.wired-compare-card>.store-visit-btn{display:block;width:100%;margin-top:8px}
+.store-internet-fields[hidden]{display:none!important}
+.store-internet-summary{display:flex;justify-content:space-between;gap:8px;padding:15px 13px;cursor:pointer;font-weight:950;font-size:1rem;color:#173f42;background:#f0f9f6;border-radius:12px;list-style:none}
+.store-internet-summary::-webkit-details-marker{display:none}
+.store-internet-summary:after{content:'＋';font-size:20px;color:#0f766e}
+.store-internet-fields[open]>.store-internet-summary:after{content:'−'}
+.store-internet-summary small{font-size:.72rem;color:#587e79;font-weight:800}
+.store-internet-fields[open] .store-internet-summary{border-radius:12px 12px 0 0}
+@media(max-width:640px){.store-internet-summary{font-size:.93rem;flex-wrap:wrap}.store-visit-btn{font-size:.9rem}}
