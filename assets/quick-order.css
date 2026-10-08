@@ -66,3 +66,16 @@ body.home-modern .hero-grid.hero-grid-single{padding-bottom:16px}
 .rate-easy-flow>strong{display:block;font-size:19px;letter-spacing:-.02em}
 .rate-easy-flow p{margin:6px 0 8px;color:#466466;font-size:15px}
 .rate-easy-flow a{font-size:14px;font-weight:900;color:#08756d}
+
+/* First-fold ordering: category selector is the first thing visitors see. */
+body.home-modern .hero{padding-top:clamp(12px,2.2vw,24px)}
+body.home-modern .hero .home-order{margin:0 0 24px}
+body.home-modern .hero-grid.hero-grid-single{padding:0 0 15px}
+body.home-modern .hero-grid.hero-grid-single .hero-copy{padding:12px 0 18px}
+body.home-modern .hero-grid.hero-grid-single .hero-copy h1{font-size:clamp(25px,3vw,39px);line-height:1.15}
+body.home-modern .hero-grid.hero-grid-single .hero-copy .intro{margin-top:10px;font-size:15px}
+body.home-modern .hero-grid.hero-grid-single .hero-actions{margin-top:15px}
+@media(max-width:480px){
+ body.home-modern .hero .home-order{margin-bottom:17px}
+ body.home-modern .hero-grid.hero-grid-single .hero-copy h1{font-size:27px}
+}
