@@ -105,13 +105,14 @@
     const internetFields=$('store-internet-fields');
     const isInternet=ctx.category==='internet';
     if(internetFields)internetFields.hidden=!isInternet;
+    if(isInternet && internetFields && 'open' in internetFields)internetFields.open=false;
     const carrierInput=$('store-application-internet-carrier');
     const emailInput=$('store-application-email');
     const addressInput=$('store-application-address');
     if(carrierInput)carrierInput.value=isInternet?(ctx.provider||''):'';
-    if(emailInput){emailInput.value='';emailInput.required=isInternet;}
-    if(addressInput){addressInput.value='';addressInput.required=isInternet;}
-    document.querySelectorAll('input[name="store_billing_method"]').forEach(input=>{input.checked=false;input.required=isInternet;});
+    if(emailInput){emailInput.value='';emailInput.required=false;}
+    if(addressInput){addressInput.value='';addressInput.required=false;}
+    document.querySelectorAll('input[name="store_billing_method"]').forEach(input=>{input.checked=false;input.required=false;});
     $('store-application-consent').checked=false;
     $('store-application-honeypot').value='';
     $('store-application-status').textContent=policy?'':'개인정보 처리 안내를 확인하는 중입니다.';
@@ -438,6 +439,31 @@
       box.innerHTML=labels.map(label=>'<span>'+label+'</span>').join('');
     });
   }
+  function visitHandoff(ctx){
+    if(!ctx?.product_name){alert('먼저 상품을 선택해 주세요.');return;}
+    // Store only product/quote details on this device. Never store name or phone.
+    const selection={
+      category:String(ctx.category||'').slice(0,40),
+      product_id:String(ctx.product_id||'').slice(0,120),
+      product_name:String(ctx.product_name||'').slice(0,150),
+      provider:String(ctx.provider||'').slice(0,100),
+      detail:String(ctx.detail||'').slice(0,550),
+      monthly:Number.isFinite(Number(ctx.monthly))&&ctx.monthly!=null?Number(ctx.monthly):null
+    };
+    try{sessionStorage.setItem('wb_visit_selection_v1',JSON.stringify(selection));}catch{}
+    try{window.woongbiTrackConversion?.('visit_handoff_start',{category:selection.category,product_id:selection.product_id});}catch{}
+    location.assign('/visit.html?src=rates');
+  }
+  function visitButton(ctx){
+    const button=document.createElement('button');button.type='button';
+    button.className='store-visit-btn';button.textContent='이 상품 방문 예약';
+    button.addEventListener('click',event=>{
+      event.preventDefault();event.stopPropagation();
+      const selected=typeof ctx==='function'?ctx():ctx;
+      visitHandoff(selected);
+    });
+    return button;
+  }
   function decorateMobile(){
     const host=$('mobile-form');
     if(host && !host.querySelector('[data-store-mobile-apply]')){
@@ -452,7 +478,7 @@
       const trust=document.createElement('small');
       trust.className='store-apply-trust';
       trust.textContent='접수만으로 개통·결제되지 않습니다. 실제 가입 조건은 매장에서 확인합니다.';
-      host.append(button,trust);
+      host.append(button,visitButton(selectedMobileContext),trust);
     }
     const container=$('purpose-results');
     if(container)container.querySelectorAll('.purpose-card').forEach(card=>{
@@ -464,7 +490,7 @@
         openApplication(purposeMobileContext(card));
       });
       const actions=card.querySelector('.purpose-card-actions')||card;
-      actions.append(button);
+      actions.append(button,visitButton(()=>purposeMobileContext(card)));
     });
   }
 
@@ -477,7 +503,7 @@
           selectInternetCard(card);
           const ctx=internetCardContext(card);if(ctx)openApplication(ctx);
         });
-        card.append(apply);
+        card.append(apply,visitButton(()=>internetCardContext(card)));
       }
     });
     enhanceInternetRecommendations();
@@ -499,7 +525,7 @@
       });
       const share=document.createElement('button');share.type='button';share.className='store-share-btn';share.dataset.storeShare=category;share.textContent='같은 조건 공유';
       share.addEventListener('click',()=>shareCondition(category,getContext));
-      host.append(button,share);
+      host.append(button,share,visitButton(getContext));
       if(!host.querySelector('.store-apply-trust')){
         const trust=document.createElement('small');trust.className='store-apply-trust';trust.textContent='신청만으로 개통·계약 확정 X · 개인정보 암호화 저장 · 매장에서 최종 조건 재확인';host.append(trust);
       }
@@ -582,6 +608,29 @@
   function boot(){
     const form=$('store-application-form');
     form?.addEventListener('submit',submit);
+    form?.addEventListener('click',event=>{
+      if(!event.target.closest('#store-application-submit'))return;
+      const section=$('store-internet-fields');
+      if(current?.category!=='internet'||!section||section.open)return;
+      // First action only reveals the second step; don't ask for all
+      // installation details before customers enter their contact details.
+      event.preventDefault();
+      section.open=true;
+      const email=$('store-application-email'),address=$('store-application-address');
+      if(email)email.required=true;
+      if(address)address.required=true;
+      document.querySelectorAll('input[name="store_billing_method"]').forEach(input=>input.required=true);
+      $('store-application-status').textContent='이어서 설치주소와 접수 정보를 확인해 주세요.';
+      section.scrollIntoView({behavior:'smooth',block:'start'});
+    },true);
+    $('store-internet-fields')?.addEventListener('toggle',()=>{
+      if(current?.category!=='internet')return;
+      const open=$('store-internet-fields').open;
+      const email=$('store-application-email'),address=$('store-application-address');
+      if(email)email.required=open;
+      if(address)address.required=open;
+      document.querySelectorAll('input[name="store_billing_method"]').forEach(input=>input.required=open);
+    });
     $('store-application-close')?.addEventListener('click',closeApplication);
     $('store-application-cancel')?.addEventListener('click',closeApplication);
     $('store-application-dialog')?.addEventListener('click',e=>{if(e.target===$('store-application-dialog'))closeApplication();});
