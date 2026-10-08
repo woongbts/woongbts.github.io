@@ -24,6 +24,17 @@ assert.match(html,/data-senior-type="smartphone"/);
 assert.match(html,/data-senior-type="folder"/);
 assert.match(guided,/function filterSeniorCards/);
 assert.match(guided,/function folderName/);
+const start=guided.indexOf('  function folderName(value){');
+const end=guided.indexOf('  function visibleSeniorCards()',start);
+assert.ok(start>0&&end>start,'senior folder classifier present');
+const classification={};
+vm.runInNewContext(guided.slice(start,end)+';globalResult=folderName;',classification);
+assert.equal(classification.globalResult('스타일폴더2'),true,'button folder phones recognized');
+assert.equal(classification.globalResult('STYLE FOLDER 2'),true,'English folder name recognized');
+assert.equal(classification.globalResult('갤럭시 A17'),false,'regular Galaxy smartphone remains visible');
+assert.equal(classification.globalResult('갤럭시 Z 폴드8'),false,'modern foldable smartphone is not a button phone');
+assert.equal(classification.globalResult('iPhone 18'),false,'iPhone remains in smart recommendations');
+
 assert.match(guided,/\.style\.display=show\?\x27\x27:\x27none\x27/);
 assert.match(style,/\.senior-phone-kind-btn/);
 assert.match(guided,/purpose-carrier/);
