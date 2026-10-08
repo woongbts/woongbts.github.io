@@ -22,7 +22,7 @@
     return PHONE_KINDS.includes(requested)?requested:'smartphone';
   }
   function folderName(value){
-    const text=String(value||'').toLowerCase().replace(/\\s+/g,'');
+    const text=String(value||'').toLowerCase().replace(/\s+/g,'');
     if(/갤럭시z?(폴드|플립)|galaxyz?(fold|flip)|zfold|zflip|폴드[678]|플립[678]/.test(text))return false;
     return /스타일폴더|stylefolder|folderphone|폴더폰|폴더형|버튼형|피처폰|featurephone|와인폰|와인스마트|at-m140|폴더2/.test(text);
   }
