@@ -102,6 +102,11 @@
     $('store-application-name').value='';
     $('store-application-phone').value='';
     $('store-application-inquiry').value='';
+    const easyTitle=$('store-application-intro-title'),easyDescription=$('store-application-intro-description');
+    if(easyTitle)easyTitle.textContent='먼저 연락받으실 정보를 입력하세요.';
+    if(easyDescription)easyDescription.textContent=ctx.category==='internet'
+      ?'연락처를 입력한 뒤 설치정보를 확인합니다. 신청만으로 가입이나 결제가 확정되지 않습니다.'
+      :'매장에서 정확한 요금·재고·가입조건을 확인하고 연락드립니다. 개통·결제는 확정되지 않습니다.';
     const internetFields=$('store-internet-fields');
     const submitBtn=$('store-application-submit');
     if(submitBtn)submitBtn.textContent=ctx.category==='internet'?'다음 · 설치정보 입력':'이 조건으로 상담 신청';
