@@ -2,8 +2,9 @@ const {chromium,devices}=require('playwright');
 function check(ok,message){if(!ok)throw Error(message);}
 (async()=>{
  const browser=await chromium.launch({headless:true});
- const context=await browser.newContext({...devices['iPhone 14']});
+ const context=await browser.newContext({...devices['iPhone 14'],serviceWorkers:'block'});
  const page=await context.newPage();
+ page.setDefaultTimeout(10000);
  page.on('pageerror',err=>console.log('BROWSER_ERROR',err.message));
  const origin='http://127.0.0.1:4173';
  await page.route('https://woongbi-consent.woongbts.workers.dev/api/store-application-policy',async route=>{
