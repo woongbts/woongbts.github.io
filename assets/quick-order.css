@@ -79,3 +79,29 @@ body.home-modern .hero-grid.hero-grid-single .hero-actions{margin-top:15px}
  body.home-modern .hero .home-order{margin-bottom:17px}
  body.home-modern .hero-grid.hero-grid-single .hero-copy h1{font-size:27px}
 }
+
+/* Keep the mobile AI helper above the fixed action bar without clipping. */
+#woongbi-ai-launcher.wb-ai-launcher{max-width:calc(100vw - 24px);box-sizing:border-box}
+@media(max-width:760px){
+  body.home-modern #woongbi-ai-launcher.wb-ai-launcher{
+    right:14px!important;left:auto!important;
+    bottom:calc(90px + env(safe-area-inset-bottom,0px))!important;
+    width:56px!important;height:56px!important;min-width:56px!important;
+    padding:0!important;border-radius:50%!important;display:flex!important;
+    align-items:center!important;justify-content:center!important;
+    overflow:visible!important;white-space:nowrap!important;z-index:450!important;
+    font-size:0!important;
+  }
+  body.home-modern #woongbi-ai-launcher.wb-ai-launcher>span{display:none!important}
+  body.home-modern #woongbi-ai-launcher.wb-ai-launcher:after{
+    content:'AI'!important;display:block!important;font-size:17px!important;
+    line-height:1!important;font-weight:950!important;color:#fff!important;
+  }
+  body.home-modern #woongbi-ai-panel.wb-ai-panel{
+    right:10px!important;left:auto!important;
+    bottom:calc(155px + env(safe-area-inset-bottom,0px))!important;
+    width:calc(100vw - 20px)!important;max-height:calc(100dvh - 176px)!important;
+    box-sizing:border-box!important;
+  }
+  #purpose-recommend{scroll-margin-top:96px}
+}
