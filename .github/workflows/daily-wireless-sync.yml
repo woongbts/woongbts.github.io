@@ -39,6 +39,7 @@ jobs:
 
       - name: Validate Zeronote and public-support handling
         run: |
+          echo 'Validating direct Zeronote feed and blocked-carrier fallback safeguards'
           python3 .github/scripts/test_daily_wireless_sync.py
           python3 .github/scripts/test_support_notice.py
 
