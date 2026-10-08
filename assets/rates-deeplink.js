@@ -39,11 +39,11 @@
     const purpose=params.get('purpose');
     if(!['senior','kids','value','premium'].includes(purpose))return;
     waitFor(()=>document.querySelector('[data-mobile-mode="purpose"]'),mode=>{
-      if(!mode.classList.contains('active'))mode.click();
+      mode.click();
       const apply=()=>{
         const target=document.querySelector('[data-purpose-category="'+purpose+'"]');
         if(!target)return false;
-        if(!target.classList.contains('active'))target.click();
+        target.click();
         const section=document.getElementById('purpose-recommend');
         if(section&&!section.hidden)section.scrollIntoView({behavior:'instant',block:'start'});
         return true;
