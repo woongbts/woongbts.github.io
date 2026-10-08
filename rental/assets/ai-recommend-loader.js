@@ -6,7 +6,7 @@
     promise=new Promise((resolve,reject)=>{
       if(window.woongbiRentalAiLoaded)return resolve();
       const s=document.createElement('script');
-      s.src='assets/ai-recommend.js?v=20261008-preference2';
+      s.src='assets/ai-recommend.js?v=20261008-cost3';
       s.defer=true;
       s.onload=()=>{window.woongbiRentalAiLoaded=true;resolve();};
       s.onerror=reject;
