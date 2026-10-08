@@ -27,7 +27,7 @@
   <link rel="manifest" href="/manifest.webmanifest"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="apple-mobile-web-app-title" content="웅비통신">
   <link rel="stylesheet" href="assets/rates.css?v=20261006-advice1">
   <link rel="stylesheet" href="assets/readability-20260921.css?v=20260929-2">
-<link rel="stylesheet" href="/assets/customer-polish.css?v=20260930-3"><link rel="stylesheet" href="/assets/mvno-easy.css?v=20260930-7"><link rel="stylesheet" href="/assets/store-applications.css?v=20261008-visit3"><link rel="stylesheet" href="/assets/quick-order.css?v=20261008-2"><link rel="stylesheet" href="/assets/device-browser.css?v=20261007-3"><link rel="stylesheet" href="/assets/plan-quick-tools.css?v=20261007-1"><link rel="stylesheet" href="/assets/mobile-readability-20261007.css?v=20261007-3"><link rel="stylesheet" href="/assets/readability-uplift-20261007.css?v=20261007-3"><link rel="stylesheet" href="/assets/prepaid-recommend.css?v=20261007-1"></head>
+<link rel="stylesheet" href="/assets/customer-polish.css?v=20260930-3"><link rel="stylesheet" href="/assets/mvno-easy.css?v=20260930-7"><link rel="stylesheet" href="/assets/store-applications.css?v=20261008-visit3"><link rel="stylesheet" href="/assets/quick-order.css?v=20261008-2"><link rel="stylesheet" href="/assets/device-browser.css?v=20261007-3"><link rel="stylesheet" href="/assets/plan-quick-tools.css?v=20261007-1"><link rel="stylesheet" href="/assets/mobile-readability-20261007.css?v=20261007-3"><link rel="stylesheet" href="/assets/readability-uplift-20261007.css?v=20261007-3"><link rel="stylesheet" href="/assets/prepaid-recommend.css?v=20261007-1"><link rel="stylesheet" href="/assets/rates-easy-journey.css?v=20261008-1"></head>
 <body class="rate-page">
   <header class="rate-top">
     <div class="rate-wrap rate-nav">
@@ -58,15 +58,27 @@
         <section class="rate-panel active" data-panel="mobile">
           <div class="rate-panel-head"><div><span class="eyebrow">휴대폰</span><h2>휴대폰 요금 알아보기</h2></div><span class="updated" id="catalog-updated">데이터 기준 확인 중</span></div>
 <p id="store-price-period" class="store-price-period" hidden></p>
+<section class="mobile-easy-intro" id="mobile-easy-intro" aria-label="쉬운 휴대폰 찾기">
+  <div class="mobile-easy-intro-top"><span>간편 휴대폰 찾기</span><strong>3단계로 쉽게 골라보세요.</strong></div>
+  <ol class="mobile-easy-steps">
+    <li><b>1</b><span>용도 선택</span></li>
+    <li><b>2</b><span>통신사·가입유형</span></li>
+    <li><b>3</b><span>추천 확인·신청</span></li>
+  </ol>
+  <p>어려운 요금 계산은 자동으로 비교합니다. 마음에 드는 상품을 고르면 매장에서 최종 조건을 확인해 드려요.</p>
+</section>
+<details class="mobile-easy-advanced" id="mobile-easy-advanced">
+  <summary>다른 방법으로 계산하기 <small>기종 직접 찾기 · 월 납부액 맞추기</small></summary>
 <div class="mobile-mode-switch" role="tablist" aria-label="휴대폰 견적 방식">
   <button type="button" class="active" data-mobile-mode="purpose">추천받기</button>
   <button type="button" data-mobile-mode="direct">기종 직접 찾기</button>
   <button type="button" data-mobile-mode="quick">월 납부액 맞추기</button>
 </div>
 <p class="mobile-mode-guide">추천을 받거나, 통신사별 기종을 비교한 뒤 원하는 모델을 직접 계산해 보세요.</p>
+</details>
 <section class="purpose-recommend" id="purpose-recommend">
   <div class="purpose-head">
-    <div><h3>누구를 위한 휴대폰인가요?</h3><p>대상을 고르면 추천 기종과 월 예상요금을 보여드립니다.</p></div>
+    <div><span class="mobile-easy-step-label">1단계 · 용도 선택</span><h3>어떤 휴대폰이 필요하세요?</h3><p>대상을 고르면 추천 기종과 월 예상요금을 보여드립니다.</p></div>
   </div>
   <div class="purpose-tabs" role="tablist" aria-label="휴대폰 용도 선택">
     <button type="button" class="active" data-purpose-category="senior"><strong>효도폰</strong><small>부모님께 부담 적게</small></button>
@@ -74,10 +86,16 @@
     <button type="button" data-purpose-category="value"><strong>가성비폰</strong><small>가격·성능 균형</small></button>
     <button type="button" data-purpose-category="premium"><strong>프리미엄폰</strong><small>최신·고성능</small></button>
   </div>
+  <div class="mobile-easy-step-title" id="mobile-easy-condition-title"><span class="mobile-easy-step-label">2단계 · 조건 선택</span><strong>통신사와 가입유형을 골라주세요.</strong><small>모르시면 기본 선택 그대로 보셔도 돼요.</small></div>
   <div class="purpose-controls">
     <label>통신사<select id="purpose-carrier"><option value="all">전체 통신사</option><option>SKT</option><option>KT</option><option>LGU+</option></select></label>
     <label>가입유형<select id="purpose-join"><option>번호이동</option><option>기기변경</option><option>신규가입</option></select><small class="field-help">추천은 번호이동 조건을 먼저 보여드리며, 기기변경·신규가입도 직접 선택할 수 있습니다.</small></label>
     <label class="purpose-pension" id="purpose-pension-wrap"><input type="checkbox" id="purpose-pension"><span><strong>기초연금 수급자 할인 적용</strong><small>실제 기초연금 수급자에게만 적용되는 예시입니다.</small></span></label>
+  </div>
+  <div class="mobile-easy-result-guide" id="mobile-easy-result-guide">
+    <span class="mobile-easy-step-label">3단계 · 추천 및 신청</span>
+    <button type="button" id="mobile-easy-see-results">이 조건으로 추천 상품 보기 →</button>
+    <small id="mobile-easy-result-status" role="status" aria-live="polite">상품 선택과 가입유형을 확인한 뒤 눌러주세요.</small>
   </div>
   <div class="purpose-category-note" id="purpose-category-note">출고가가 낮은 기종과 시니어 요금제를 우선 살펴보고, 해당 시 선택한 기초연금 수급자 할인을 적용해 공시지원금과 선택약정 중 24개월 총 부담이 낮은 조건을 보여드립니다.</div>
   <div class="purpose-results" id="purpose-results"><p>추천 조건을 불러오는 중입니다.</p></div>
@@ -656,7 +674,7 @@
 <script src="/assets/internet-api-bridge.min.js?v=20261006-master6" defer></script><script src="/assets/plan-recommend-api-bridge.min.js?v=20261001-1" defer></script><script src="assets/rates.min.js?v=20261007-planquick1" defer></script>
 <script src="/assets/quote-advice.js?v=20261006-1" defer></script>
 <script src="/assets/kids-promos-data.js?v=20261006-data1" defer></script>
-<script src="/assets/funnel-observer.js?v=20261006-1" defer></script><script src="/assets/internet-ui.min.js?v=20261006-wiredfix1" defer></script><script src="/assets/rates-deeplink.js?v=20261008-purpose4" defer></script><script src="/assets/store-applications.js?v=20261008-visit3" defer></script>
+<script src="/assets/funnel-observer.js?v=20261006-1" defer></script><script src="/assets/internet-ui.min.js?v=20261006-wiredfix1" defer></script><script src="/assets/rates-deeplink.js?v=20261008-purpose4" defer></script><script src="/assets/rates-easy-journey.js?v=20261008-1" defer></script><script src="/assets/store-applications.js?v=20261008-visit3" defer></script>
   <script src="assets/ai-chat.min.js?v=20261002-1" defer></script>
 
   <div class="mobile-quote-bar" id="mobile-quote-bar" hidden>
