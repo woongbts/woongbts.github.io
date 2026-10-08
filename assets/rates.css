@@ -160,3 +160,30 @@ body.plan-picker-opened{overflow:hidden;touch-action:auto}
   .rate-page .rate-panel[data-panel="internet"] .wired-compare-card>p{font-size:16px!important}
   .rate-page .rate-panel[data-panel="internet"] .wired-compare-card>div{align-items:flex-start}
 }
+
+
+/* Wired compare filters: larger mobile labels and selects · 2026-10-09 */
+@media (max-width:760px){
+  .rate-page .rate-panel[data-panel="internet"] .wired-compare-controls {
+    gap:14px;
+    min-width:0;
+  }
+  .rate-page .rate-panel[data-panel="internet"] .wired-compare-controls label {
+    gap:8px;
+    min-width:0;
+    font-size:16px;
+    line-height:1.45;
+    font-weight:850;
+  }
+  .rate-page .rate-panel[data-panel="internet"] .wired-compare-controls select {
+    box-sizing:border-box;
+    width:100%;
+    min-width:0;
+    min-height:52px;
+    padding:11px 14px;
+    font-size:17px;
+    line-height:1.4;
+    font-weight:750;
+    color:#183c48;
+  }
+}
