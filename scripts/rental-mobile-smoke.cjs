@@ -81,17 +81,21 @@ function assert(condition, message) {
   await page.waitForFunction(() => document.querySelector('#ai-category')?.value === '정수기');
   assert(await page.locator('[data-ai-step="1"]:not([hidden])').count() === 1, 'AI 추천 1단계가 보이지 않습니다.');
   await page.locator('[data-ai-next="2"]').click();
-  await page.locator('#ai-budget').selectOption('40000');
-  await page.locator('[data-ai-next="3"]').click();
+  assert(await page.locator('[data-ai-step="2"]:not([hidden])').count() === 1, 'AI 추천 기준 선택 화면이 보이지 않습니다.');
+  assert(await page.locator('input[name="ai-priority"]').count() === 3, '월요금·사은품·균형형 추천이 준비되지 않았습니다.');
+  await page.locator('input[name="ai-priority"][value="monthly"]').check();
   await page.locator('#ai-management').selectOption('self');
-  await page.locator('[data-ai-next="4"]').click();
-  assert(await page.locator('[data-ai-step="4"]:not([hidden])').count() === 1, 'AI 추천 4단계까지 이동하지 못합니다.');
+  await page.locator('[data-ai-next="3"]').click();
+  assert(await page.locator('[data-ai-step="3"]:not([hidden])').count() === 1, 'AI 추천 3단계에 도달하지 못합니다.');
   await page.locator('.ai-advanced-details').evaluate(el => { el.open = true; });
+  await page.locator('#ai-budget').selectOption('40000');
   await page.locator('#ai-budget-strict').check();
   await page.locator('#ai-management-strict').check();
   await page.locator('[data-ai-must-feature="direct"]').check();
   await page.locator('#ai-recommend-form').evaluate(form => form.requestSubmit());
   await page.waitForSelector('.ai-result-card');
+  const firstAiLabel = await page.locator('.ai-result-rank b').first().textContent();
+  assert(firstAiLabel.includes('월요금 부담 적게'), '고른 기준이 추천 결과 첫 화면에 반영되지 않았습니다.');
   const aiSummary = await page.locator('.ai-result-summary strong').textContent();
   assert(aiSummary && /월\s[\d,]+원/.test(aiSummary), 'AI 1위 한줄 요약에 월요금 근거가 없습니다.');
   const aiPolicy = await page.locator('.ai-result-head span').textContent();
@@ -113,7 +117,7 @@ function assert(condition, message) {
   await page.locator('[data-ai-share]').click();
   await page.waitForTimeout(50);
   const sharedData = await page.evaluate(() => JSON.parse(sessionStorage.getItem('wb_test_share') || '{}'));
-  assert(sharedData.url && /[?&]ai=1/.test(sharedData.url) && /[?&]cat=/.test(sharedData.url), 'AI 추천 공유 링크가 조건을 포함하지 않습니다.');
+  assert(sharedData.url && /[?&]ai=1/.test(sharedData.url) && /[?&]cat=/.test(sharedData.url) && /[?&]priority=monthly/.test(sharedData.url), 'AI 추천 공유 링크가 선택 기준을 포함하지 않습니다.');
 
   await page.locator('[data-ai-feedback="up"]').click();
   assert(await page.locator('[data-ai-feedback="up"].active').count() === 1, 'AI 추천 피드백이 반영되지 않습니다.');
