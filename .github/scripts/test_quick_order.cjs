@@ -24,7 +24,7 @@ assert.match(rates,/quick-order\.css/);
 assert.match(quick,/mode=direct&brand=apple/);
 assert.match(quick,/purpose=senior/);
 assert.match(quick,/qs=500&qt=basic/);
-assert.match(quick,/tab=prepaid/);
+assert.match(quick,/prepaid&src=home-easy/);
 assert.match(direct,/function restoreInternetQuick\(/);
 assert.match(direct,/function restoreMobileDirect\(/);
 assert.match(direct,/function showQuickJourney\(/);
