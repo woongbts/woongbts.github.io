@@ -20,7 +20,7 @@ assert.match(homepage,/src="\/assets\/quick-order\.js\?v=/);
 assert.match(homepage,/href="\/assets\/quick-order\.css\?v=/);
 assert.match(homepage,/href="#quick-order">상품 간편 찾기/);
 assert.match(rates,/id="rate-easy-flow"/);
-assert.match(rates,/rates-deeplink\.js\?v=20261008-purpose3/);
+assert.match(rates,/rates-deeplink\.js\?v=20261008-purpose4/);
 assert.match(rates,/quick-order\.css/);
 assert.doesNotMatch(quick,/mode=direct&brand=apple/);
 assert.match(quick,/purpose=senior/);
