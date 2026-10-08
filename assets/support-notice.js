@@ -10,6 +10,12 @@
     .then(r => { if (!r.ok) throw Error('unavailable'); return r.json(); })
     .then(data => {
       if (data.version !== 1 || !/^\d{4}-\d{2}-\d{2}$/.test(data.date) || data.date > today() || !Array.isArray(data.changes)) return;
+      // Avoid showing last month's subsidies as today's news to new visitors.
+      // Historical changes stay archived in the JSON, but do not auto-popup.
+      const todayUtc = Date.parse(today() + 'T00:00:00Z');
+      const noticeUtc = Date.parse(data.date + 'T00:00:00Z');
+      if (!Number.isFinite(noticeUtc) || !Number.isFinite(todayUtc) ||
+          todayUtc - noticeUtc > 7 * 86400000) return;
       if (!data.changes.length) return;
       const changes = data.changes;
       const validAmount = v => v === null || (Number.isSafeInteger(v) && v >= 0);
@@ -72,7 +78,12 @@
       }
       if (typeof data.checked_at === 'string' && !Number.isNaN(Date.parse(data.checked_at))) details.append(el('p', `데이터 확인: ${new Date(data.checked_at).toLocaleString('ko-KR', {timeZone:'Asia/Seoul'})}`, 'support-notice-checked'));
       body.append(details);
-      body.append(el('p', `${data.date < today() ? '지난 변경 내역입니다. ' : ''}대표 요금제 기준이며 가입유형·요금제에 따라 다릅니다. 현재 조건은 계산기에서 확인하세요.`, 'support-notice-footnote'));
+      const totalVerified = Number.isSafeInteger(data.notice_total_count) && data.notice_total_count >= changes.length
+        ? data.notice_total_count : changes.length;
+      const scope = totalVerified > changes.length
+        ? `확인된 금액 변동 ${totalVerified.toLocaleString('ko-KR')}건 중 대표 ${changes.length}건을 표시합니다. `
+        : '확인된 지원금 금액 변동을 표시합니다. ';
+      body.append(el('p', `${scope}통신사·기종·가입유형·요금제마다 금액이 다르므로 현재 조건은 계산기에서 다시 확인하세요.`, 'support-notice-footnote'));
       const actions = el('footer', undefined, 'support-notice-actions');
       const hide = el('button', '오늘 보지 않기'); hide.type = 'button';
       const link = el('a', '요금 계산기'); link.href = '/rates.html';
