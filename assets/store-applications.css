@@ -253,3 +253,42 @@
 .store-internet-summary small{font-size:.72rem;color:#587e79;font-weight:800}
 .store-internet-fields[open] .store-internet-summary{border-radius:12px 12px 0 0}
 @media(max-width:640px){.store-internet-summary{font-size:.93rem;flex-wrap:wrap}.store-visit-btn{font-size:.9rem}}
+
+
+/* 2026-10-08 · Low-friction application for elderly and first-time shoppers */
+.store-application-easy-heading{display:grid;gap:4px;padding:4px 0 5px;color:#204e4c}
+.store-application-easy-heading>span{font-size:12px;font-weight:950;color:#0e756c}
+.store-application-easy-heading>strong{font-size:19px;line-height:1.4;letter-spacing:-.02em}
+.store-application-easy-heading>small{color:#69827e;font-size:13px}
+.store-inquiry-optional{border:1px solid #dae9e4;background:#fbfdfc;border-radius:12px}
+.store-inquiry-optional>summary{padding:13px 14px;cursor:pointer;font-size:15px;font-weight:850;color:#2d6460;list-style:none;display:flex;gap:8px;align-items:center}
+.store-inquiry-optional>summary::-webkit-details-marker{display:none}
+.store-inquiry-optional>summary::after{content:'⌄';margin-left:auto;font-size:19px}
+.store-inquiry-optional[open]>summary::after{content:'⌃'}
+.store-inquiry-optional>summary small{font-size:13px;color:#728983}
+.store-inquiry-optional>label{display:grid;gap:7px;padding:0 13px 13px;color:#355d60}
+.store-application-fallback[hidden]{display:none!important}
+.store-application-fallback{display:grid;gap:9px;border:1px solid #eddcb8;background:#fff9ed;padding:13px;border-radius:13px}
+.store-application-fallback>strong{color:#755b2e;font-size:16px}
+.store-application-fallback>p{margin:0;font-size:13px;color:#7d6844;line-height:1.55}
+.store-application-fallback a,.store-application-fallback button{min-height:44px;border:1px solid #dbd0b3;border-radius:10px;display:flex;align-items:center;justify-content:center;padding:9px 12px;font:inherit;font-size:14px;font-weight:850;text-decoration:none;color:#245753;background:#fff;cursor:pointer}
+@media(max-width:650px){
+ .store-application-dialog{width:calc(100vw - 16px);max-width:calc(100vw - 16px);max-height:calc(100dvh - 24px);border-radius:18px}
+ .store-application-shell{max-height:calc(100dvh - 24px)}
+ .store-application-head{padding:16px 17px}
+ .store-application-head>div>strong{font-size:20px}
+ .store-application-head>div>span{font-size:13px}
+ .store-application-intro{padding:12px 17px}
+ .store-application-intro strong{font-size:15px;line-height:1.5}
+ .store-application-intro p{font-size:13px;line-height:1.6}
+ .store-application-summary{margin:12px 17px 0;padding:12px;font-size:14px}
+ .store-application-form{padding:15px 17px 19px;gap:14px}
+ .store-application-form>label{font-size:17px;gap:8px}
+ .store-application-form input[type=text],.store-application-form input[type=tel],.store-application-form input[type=email],.store-application-form textarea{min-height:51px;padding:11px 13px;font-size:17px;line-height:1.4}
+ .store-application-form textarea{min-height:95px}
+ .store-application-consent{font-size:14px;line-height:1.6}
+ .store-application-consent input{width:23px;height:23px;flex:0 0 23px;accent-color:#0f766e}
+ .store-application-actions #store-application-submit{min-height:56px;font-size:18px;line-height:1.4}
+ .store-application-actions #store-application-cancel{min-height:48px;font-size:15px}
+ .store-application-status{font-size:14px;line-height:1.5}
+}
