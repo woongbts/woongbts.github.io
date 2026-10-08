@@ -27,7 +27,7 @@
   <link rel="manifest" href="/manifest.webmanifest"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="apple-mobile-web-app-title" content="웅비통신">
   <link rel="stylesheet" href="assets/rates.css?v=20261006-advice1">
   <link rel="stylesheet" href="assets/readability-20260921.css?v=20260929-2">
-<link rel="stylesheet" href="/assets/customer-polish.css?v=20260930-3"><link rel="stylesheet" href="/assets/mvno-easy.css?v=20260930-7"><link rel="stylesheet" href="/assets/store-applications.css?v=20261008-easy5"><link rel="stylesheet" href="/assets/quick-order.css?v=20261008-2"><link rel="stylesheet" href="/assets/device-browser.css?v=20261007-3"><link rel="stylesheet" href="/assets/plan-quick-tools.css?v=20261007-1"><link rel="stylesheet" href="/assets/mobile-readability-20261007.css?v=20261007-3"><link rel="stylesheet" href="/assets/readability-uplift-20261007.css?v=20261007-3"><link rel="stylesheet" href="/assets/prepaid-recommend.css?v=20261007-1"><link rel="stylesheet" href="/assets/rates-easy-journey.css?v=20261008-1"></head>
+<link rel="stylesheet" href="/assets/customer-polish.css?v=20260930-3"><link rel="stylesheet" href="/assets/mvno-easy.css?v=20260930-7"><link rel="stylesheet" href="/assets/store-applications.css?v=20261008-easy5"><link rel="stylesheet" href="/assets/quick-order.css?v=20261008-2"><link rel="stylesheet" href="/assets/device-browser.css?v=20261007-3"><link rel="stylesheet" href="/assets/plan-quick-tools.css?v=20261007-1"><link rel="stylesheet" href="/assets/mobile-readability-20261007.css?v=20261007-3"><link rel="stylesheet" href="/assets/readability-uplift-20261007.css?v=20261007-3"><link rel="stylesheet" href="/assets/prepaid-recommend.css?v=20261007-1"><link rel="stylesheet" href="/assets/rates-easy-journey.css?v=20261008-senior2"></head>
 <body class="rate-page">
   <header class="rate-top">
     <div class="rate-wrap rate-nav">
@@ -85,6 +85,26 @@
     <button type="button" data-purpose-category="kids"><strong>키즈폰</strong><small>아이 첫 휴대폰</small></button>
     <button type="button" data-purpose-category="value"><strong>가성비폰</strong><small>가격·성능 균형</small></button>
     <button type="button" data-purpose-category="premium"><strong>프리미엄폰</strong><small>최신·고성능</small></button>
+  </div>
+  <div class="senior-phone-kind" id="senior-phone-kind" aria-labelledby="senior-phone-kind-title">
+    <div class="senior-phone-kind-head">
+      <span class="mobile-easy-step-label">부모님 사용방식 선택</span>
+      <strong id="senior-phone-kind-title">부모님은 어떤 휴대폰이 편하신가요?</strong>
+      <p>사용 방식에 따라 맞는 기종부터 추천해 드릴게요.</p>
+    </div>
+    <div class="senior-phone-kind-choices" role="group" aria-label="효도폰 기종 형태">
+      <button type="button" class="senior-phone-kind-btn is-selected" data-senior-type="smartphone" aria-pressed="true">
+        <span class="senior-phone-kind-symbol" aria-hidden="true">▣</span>
+        <span><strong>일반 스마트폰</strong><small>카카오톡 · 사진 · 유튜브도 사용해요</small></span>
+        <span class="senior-phone-kind-check" aria-hidden="true">✓</span>
+      </button>
+      <button type="button" class="senior-phone-kind-btn" data-senior-type="folder" aria-pressed="false">
+        <span class="senior-phone-kind-symbol" aria-hidden="true">▤</span>
+        <span><strong>버튼형 폴더폰</strong><small>통화 · 문자 위주로 사용해요</small></span>
+        <span class="senior-phone-kind-check" aria-hidden="true">✓</span>
+      </button>
+    </div>
+    <p class="senior-phone-kind-note" id="senior-phone-kind-note" role="status" aria-live="polite">잘 모르시면 일반 스마트폰 추천부터 보셔도 됩니다.</p>
   </div>
   <div class="mobile-easy-step-title" id="mobile-easy-condition-title"><span class="mobile-easy-step-label">2단계 · 조건 선택</span><strong>통신사와 가입유형을 골라주세요.</strong><small>모르시면 기본 선택 그대로 보셔도 돼요.</small></div>
   <div class="purpose-controls">
@@ -682,10 +702,10 @@
   <script src="assets/quote-handoff.js?v=20260930-2" defer></script>
   <script src="/assets/plan-eligibility.js?v=20260930-3" defer></script>
 <script src="/assets/mvno-api-bridge.min.js?v=20261001-1" defer></script><script src="/assets/mvno-display.js?v=20261001-1" defer></script><script src="/assets/studyphone-api-bridge.min.js?v=20261001-1" defer></script><script src="/assets/wired-master.js?v=20261006-master4"></script>
-<script src="/assets/internet-api-bridge.min.js?v=20261006-master6" defer></script><script src="/assets/plan-recommend-api-bridge.min.js?v=20261001-1" defer></script><script src="assets/rates.min.js?v=20261007-planquick1" defer></script>
+<script src="/assets/internet-api-bridge.min.js?v=20261006-master6" defer></script><script src="/assets/plan-recommend-api-bridge.min.js?v=20261008-senior2" defer></script><script src="assets/rates.min.js?v=20261007-planquick1" defer></script>
 <script src="/assets/quote-advice.js?v=20261006-1" defer></script>
 <script src="/assets/kids-promos-data.js?v=20261006-data1" defer></script>
-<script src="/assets/funnel-observer.js?v=20261006-1" defer></script><script src="/assets/internet-ui.min.js?v=20261006-wiredfix1" defer></script><script src="/assets/rates-deeplink.js?v=20261008-purpose4" defer></script><script src="/assets/rates-easy-journey.js?v=20261008-2" defer></script><script src="/assets/store-applications.js?v=20261008-easy5" defer></script>
+<script src="/assets/funnel-observer.js?v=20261006-1" defer></script><script src="/assets/internet-ui.min.js?v=20261006-wiredfix1" defer></script><script src="/assets/rates-deeplink.js?v=20261008-purpose4" defer></script><script src="/assets/rates-easy-journey.js?v=20261008-senior2" defer></script><script src="/assets/store-applications.js?v=20261008-easy5" defer></script>
   <script src="assets/ai-chat.min.js?v=20261008-mobilefix2" defer></script>
 
   <div class="mobile-quote-bar" id="mobile-quote-bar" hidden>
