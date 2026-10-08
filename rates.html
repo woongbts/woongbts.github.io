@@ -27,7 +27,7 @@
   <link rel="manifest" href="/manifest.webmanifest"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="apple-mobile-web-app-title" content="웅비통신">
   <link rel="stylesheet" href="assets/rates.css?v=20261006-advice1">
   <link rel="stylesheet" href="assets/readability-20260921.css?v=20260929-2">
-<link rel="stylesheet" href="/assets/customer-polish.css?v=20260930-3"><link rel="stylesheet" href="/assets/mvno-easy.css?v=20260930-7"><link rel="stylesheet" href="/assets/store-applications.css?v=20261006-conversion1"><link rel="stylesheet" href="/assets/quick-order.css?v=20261008-2"><link rel="stylesheet" href="/assets/device-browser.css?v=20261007-3"><link rel="stylesheet" href="/assets/plan-quick-tools.css?v=20261007-1"><link rel="stylesheet" href="/assets/mobile-readability-20261007.css?v=20261007-3"><link rel="stylesheet" href="/assets/readability-uplift-20261007.css?v=20261007-3"><link rel="stylesheet" href="/assets/prepaid-recommend.css?v=20261007-1"></head>
+<link rel="stylesheet" href="/assets/customer-polish.css?v=20260930-3"><link rel="stylesheet" href="/assets/mvno-easy.css?v=20260930-7"><link rel="stylesheet" href="/assets/store-applications.css?v=20261008-visit3"><link rel="stylesheet" href="/assets/quick-order.css?v=20261008-2"><link rel="stylesheet" href="/assets/device-browser.css?v=20261007-3"><link rel="stylesheet" href="/assets/plan-quick-tools.css?v=20261007-1"><link rel="stylesheet" href="/assets/mobile-readability-20261007.css?v=20261007-3"><link rel="stylesheet" href="/assets/readability-uplift-20261007.css?v=20261007-3"><link rel="stylesheet" href="/assets/prepaid-recommend.css?v=20261007-1"></head>
 <body class="rate-page">
   <header class="rate-top">
     <div class="rate-wrap rate-nav">
@@ -594,8 +594,8 @@
       <form id="store-application-form" class="store-application-form">
         <label>이름 <input id="store-application-name" name="name" type="text" maxlength="40" autocomplete="name" required placeholder="성함을 입력해 주세요"></label>
         <label>연락처 <input id="store-application-phone" name="phone" type="tel" inputmode="tel" maxlength="13" autocomplete="tel" required placeholder="010-0000-0000"></label>
-        <section id="store-internet-fields" class="store-internet-fields" hidden aria-label="인터넷·TV 가입 정보">
-          <div class="store-internet-fields-head"><strong>인터넷·TV 가입 정보</strong><small>설치 상담에 필요한 기본 정보만 받습니다.</small></div>
+        <details id="store-internet-fields" class="store-internet-fields" hidden aria-label="인터넷·TV 가입 정보"><summary class="store-internet-summary">2단계 · 설치정보와 가입 조건 입력 <small>필수 상담정보</small></summary>
+          <div class="store-internet-fields-head"><strong>인터넷·TV 설치 상담 정보</strong><small>연락처 입력 후 설치 정보를 확인합니다. 실제 결제정보는 받지 않습니다.</small></div>
           <div class="store-internet-grid">
             <label>가입 통신사 <input id="store-application-internet-carrier" type="text" readonly></label>
             <label>이메일주소 <input id="store-application-email" name="email" type="email" autocomplete="email" maxlength="160" placeholder="example@email.com"></label>
@@ -608,7 +608,7 @@
           </fieldset>
           <p class="store-payment-note">계좌번호·카드번호는 이 화면에서 받지 않습니다. 실제 결제정보는 통신사 공식 접수 단계에서 입력합니다.</p>
           <p class="store-payment-note">사은품 지급 계좌는 실제 가입 진행 시 별도로 확인합니다.</p>
-        </section>
+        </details>
         <label>문의사항 <textarea id="store-application-inquiry" name="inquiry" maxlength="1200" placeholder="궁금한 내용이 있으면 적어 주세요. (선택)"></textarea></label>
         <label class="store-honeypot" aria-hidden="true">웹사이트<input id="store-application-honeypot" name="website" type="text" tabindex="-1" autocomplete="off"></label>
         <details class="store-application-policy">
@@ -656,7 +656,7 @@
 <script src="/assets/internet-api-bridge.min.js?v=20261006-master6" defer></script><script src="/assets/plan-recommend-api-bridge.min.js?v=20261001-1" defer></script><script src="assets/rates.min.js?v=20261007-planquick1" defer></script>
 <script src="/assets/quote-advice.js?v=20261006-1" defer></script>
 <script src="/assets/kids-promos-data.js?v=20261006-data1" defer></script>
-<script src="/assets/funnel-observer.js?v=20261006-1" defer></script><script src="/assets/internet-ui.min.js?v=20261006-wiredfix1" defer></script><script src="/assets/rates-deeplink.js?v=20261008-quick1" defer></script><script src="/assets/store-applications.js?v=20261006-conversion1" defer></script>
+<script src="/assets/funnel-observer.js?v=20261006-1" defer></script><script src="/assets/internet-ui.min.js?v=20261006-wiredfix1" defer></script><script src="/assets/rates-deeplink.js?v=20261008-purpose2" defer></script><script src="/assets/store-applications.js?v=20261008-visit3" defer></script>
   <script src="assets/ai-chat.min.js?v=20261002-1" defer></script>
 
   <div class="mobile-quote-bar" id="mobile-quote-bar" hidden>
