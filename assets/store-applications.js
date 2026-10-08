@@ -2,7 +2,7 @@
   'use strict';
   const API='https://woongbi-consent.woongbts.workers.dev';
   const $=id=>document.getElementById(id);
-  const CATEGORY_LABEL={studyphone:'공신폰',mvno:'알뜰폰',prepaid:'선불폰',internet:'인터넷·TV'};
+  const CATEGORY_LABEL={mobile:'휴대폰',studyphone:'공신폰',mvno:'알뜰폰',prepaid:'선불폰',internet:'인터넷·TV'};
   let policy=null,current=null,openedAt=0,lastSubmit=null;
   let salesSignals=new Map();
   let selectedInternetCard=null;
@@ -147,6 +147,31 @@
     const detail=safeText($('studyphone-summary'))||safeText(document.querySelector('.studyphone-plan-card[data-studyphone-plan="'+CSS.escape(planId)+'"] small'));
     return {category:'studyphone',product_id:'studyphone:'+planId,product_name:'갤럭시 A17 공신폰 · '+(planName||'공신폰 요금제'),provider:'KT M모바일',monthly,gift:null,detail};
   }
+  function selectedMobileContext(){
+    const model=$('device-select'),plan=$('plan-select');
+    if(!model?.value || !plan?.value)return null;
+    const provider=selectedText('carrier');
+    const join=selectedText('join-type');
+    const discount=selectedText('discount-method');
+    const monthly=moneyValue(safeText($('monthly-total')));
+    const detail=[join,selectedText('plan-select'),discount,selectedText('installment-months')||'',safeText($('quote-action-status'))].filter(Boolean).join(' · ');
+    return {
+      category:'mobile',product_id:'mobile:'+provider+':'+model.value+':'+plan.value,
+      product_name:selectedText('device-select')||'휴대폰',provider,monthly,gift:null,detail
+    };
+  }
+  function purposeMobileContext(card){
+    const category=document.querySelector('[data-purpose-category].active')?.dataset.purposeCategory||'senior';
+    const cards=[...card.parentElement.querySelectorAll('.purpose-card')];
+    const index=Math.max(0,cards.indexOf(card));
+    const productName=safeText(card.querySelector(':scope > strong, h3, h4'))||'추천 휴대폰';
+    const provider=safeText(card.querySelector('.purpose-card-top span'))||selectedText('purpose-carrier');
+    const summary=safeText(card.querySelector('.purpose-card-total'))||'';
+    const monthly=moneyValue(summary);
+    const detail=[category,selectedText('purpose-join'),safeText(card.querySelector('em')),safeText(card.querySelector('.quote-amount-note'))].filter(Boolean).join(' · ');
+    return {category:'mobile',product_id:'mobile-purpose:'+category+':'+index,product_name:productName,provider,monthly,gift:null,detail};
+  }
+
   function selectedMvnoContext(){
     const plan=$('mvno-plan'),id=plan?.value;
     if(!id)return null;
@@ -413,6 +438,36 @@
       box.innerHTML=labels.map(label=>'<span>'+label+'</span>').join('');
     });
   }
+  function decorateMobile(){
+    const host=$('mobile-form');
+    if(host && !host.querySelector('[data-store-mobile-apply]')){
+      const button=makeApplyButton('선택한 휴대폰으로 상담 신청');
+      button.dataset.storeMobileApply='1';
+      button.type='button';
+      button.addEventListener('click',()=>{
+        const ctx=selectedMobileContext();
+        if(!ctx){alert('휴대폰 기종과 요금제를 먼저 선택해 주세요.');return;}
+        openApplication(ctx);
+      });
+      const trust=document.createElement('small');
+      trust.className='store-apply-trust';
+      trust.textContent='접수만으로 개통·결제되지 않습니다. 실제 가입 조건은 매장에서 확인합니다.';
+      host.append(button,trust);
+    }
+    const container=$('purpose-results');
+    if(container)container.querySelectorAll('.purpose-card').forEach(card=>{
+      if(card.querySelector('[data-store-purpose-apply]'))return;
+      const button=makeApplyButton('이 휴대폰으로 상담 신청');
+      button.dataset.storePurposeApply='1';button.type='button';
+      button.addEventListener('click',event=>{
+        event.preventDefault();event.stopPropagation();
+        openApplication(purposeMobileContext(card));
+      });
+      const actions=card.querySelector('.purpose-card-actions')||card;
+      actions.append(button);
+    });
+  }
+
   function decorateInternet(){
     document.querySelectorAll('.wired-compare-card').forEach(card=>{
       if(!card.querySelector('.store-apply-btn')){
@@ -451,7 +506,7 @@
     });
   }
   function decorateAll(){
-    decorateStudyphone();decorateMvno();decorateInternet();addSelectedApplyButtons();renderPrepaidProducts();
+    decorateMobile();decorateStudyphone();decorateMvno();decorateInternet();addSelectedApplyButtons();renderPrepaidProducts();
   }
 
   async function submit(event){
@@ -521,6 +576,9 @@
   }
   document.addEventListener('click',e=>{if(e.target.closest('.rate-tab'))setTimeout(syncCrossSell,80);});
 
+  // Other site components may hand off a selected product to the same
+  // secure, consent-gated form; no PII is put in query strings.
+  window.WoongbiStoreApplication={open:openApplication};
   function boot(){
     const form=$('store-application-form');
     form?.addEventListener('submit',submit);
@@ -538,7 +596,7 @@
     ensureInternetSelectionBar();
 
     const observer=new MutationObserver(()=>queueMicrotask(decorateAll));
-    ['studyphone-plan-list','mvno-recommend-list','mvno-plan-picker-list','wired-compare-results'].forEach(id=>{
+    ['studyphone-plan-list','mvno-recommend-list','mvno-plan-picker-list','wired-compare-results','purpose-results'].forEach(id=>{
       const el=$(id);if(el)observer.observe(el,{childList:true,subtree:true});
     });
     loadPolicy();loadSalesSignals();decorateAll();syncCrossSell();
