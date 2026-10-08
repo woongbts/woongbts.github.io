@@ -196,3 +196,39 @@ html.ai-dialog-open .compare-bar{display:none!important}
   .ai-step-progress{gap:3px;margin-bottom:13px}.ai-step-progress span{padding:6px 2px;font-size:.55rem}
   .ai-question{font-size:.95rem}.ai-step-nav{grid-template-columns:88px 1fr}
 }
+
+
+/* AI recommendation: preference-first three-step experience · 2026-10-08 */
+.ai-step-progress{grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}
+.ai-step-progress span{font-size:.75rem;line-height:1.4;padding:10px 7px}
+.ai-guided-step .ai-question{font-size:1.12rem;line-height:1.45}
+.ai-guided-step .ai-priority-fieldset{min-width:0;border:0;margin:0;padding:0}
+.ai-priority-fieldset .ai-question{padding:0;margin:0;color:#173f42;font-size:1.12rem;font-weight:950;letter-spacing:-.02em}
+.ai-priority-help{margin:4px 0 14px;color:#607b7a;font-size:.83rem;line-height:1.55}
+.ai-priority-choices{display:grid;gap:9px}
+.ai-priority-choices .ai-priority-card{
+  display:grid;grid-template-columns:22px 46px minmax(0,1fr);align-items:center;gap:12px;
+  padding:13px 15px;min-height:77px;border:2px solid #dbe8e6;border-radius:15px;
+  background:#fff;color:#214e52;cursor:pointer;transition:border-color .15s,background-color .15s
+}
+.ai-priority-choices .ai-priority-card:has(input:checked){border-color:#0f766e;background:#edf9f4}
+.ai-priority-choices .ai-priority-card:focus-within{outline:3px solid #a3d7d0;outline-offset:2px}
+.ai-priority-card input{width:20px;height:20px;margin:0;accent-color:#0f766e}
+.ai-priority-symbol{width:44px;height:44px;display:grid;place-items:center;border-radius:13px;background:#e8f3f1;color:#12665f;font-size:25px;font-weight:900}
+.ai-priority-choices .ai-priority-card>span:last-child{min-width:0;display:grid;gap:4px}
+.ai-priority-card strong{color:#163e43;font-size:1rem;line-height:1.35}
+.ai-priority-card small{color:#667f7f;font-size:.81rem;line-height:1.45}
+.ai-budget-optional{margin:0;padding:14px;border-bottom:1px solid #e4edeb}
+.ai-budget-optional label{font-size:.86rem}
+.ai-budget-optional p{margin:8px 0 0;font-size:.75rem;line-height:1.6;color:#698081}
+.ai-recommend-results .ai-result-rank b{font-size:.76rem;padding:7px 10px}
+.ai-recommend-results .ai-result-rank span{font-size:.74rem;line-height:1.5}
+@media(max-width:560px){
+  .ai-step-progress span{font-size:.72rem;padding:9px 4px}
+  .ai-priority-choices .ai-priority-card{grid-template-columns:20px 38px minmax(0,1fr);gap:9px;padding:12px;min-height:78px}
+  .ai-priority-symbol{width:38px;height:38px;font-size:22px}
+  .ai-priority-card strong{font-size:.96rem}
+  .ai-priority-card small{font-size:.77rem}
+  .ai-priority-help{font-size:.78rem}
+}
+@media(prefers-reduced-motion:reduce){.ai-priority-choices .ai-priority-card{transition:none}}
