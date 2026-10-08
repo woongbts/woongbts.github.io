@@ -38,6 +38,8 @@ jobs:
           node --check assets/quick-order.js
           node --check rental/assets/ai-recommend.js
           node .github/scripts/test_rental_ai_priority.cjs
+          node --check assets/rates-easy-journey.js
+          node .github/scripts/test_phone_easy_ux.cjs
           node .github/scripts/test_quick_order.cjs
           node --check assets/store-applications.js
           node .github/scripts/test_store_applications_ui.cjs
