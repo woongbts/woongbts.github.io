@@ -40,7 +40,7 @@ async function render(data){
  return {dialogs,timers};
 }
 (async()=>{
- const stale=await render(previous);
+ const stale=await render({...previous,date:'2026-09-24',id:'previous-month'});
  assert.equal(stale.dialogs.length,0,'September popup must not show to October visitors');
  assert.equal(stale.timers.length,0,'stale alert must not schedule an automatic popup');
  const fresh=await render({...previous,date:'2026-10-08',id:'confirmed-today',notice_total_count:87});
