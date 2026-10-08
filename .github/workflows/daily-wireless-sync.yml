@@ -2,8 +2,13 @@ name: Daily wireless data refresh
 
 on:
   schedule:
-    - cron: '0 2 * * *' # 11:00 Asia/Seoul
+    - cron: '10 2 * * *' # around 11:10 Asia/Seoul; GitHub may run late
   workflow_dispatch:
+  # Also exercises the full live import when this workflow configuration is
+  # edited; ordinary site/content edits do not trigger extra source requests.
+  push:
+    branches: [main]
+    paths: ['.github/workflows/daily-wireless-sync.yml']
 
 permissions:
   contents: write
@@ -32,7 +37,12 @@ jobs:
           cp data/plans.json "$RUNNER_TEMP/plans-before.json"
           cp data/supports.json "$RUNNER_TEMP/supports-before.json"
 
-      - name: Refresh verified public wireless data
+      - name: Validate Zeronote and public-support handling
+        run: |
+          python3 .github/scripts/test_daily_wireless_sync.py
+          python3 .github/scripts/test_support_notice.py
+
+      - name: Refresh verified Zeronote wireless data (skip unavailable carrier checks)
         run: python3 .github/scripts/daily_wireless_sync.py
 
       - name: Validate website data and JavaScript
