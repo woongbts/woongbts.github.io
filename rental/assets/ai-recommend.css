@@ -232,3 +232,9 @@ html.ai-dialog-open .compare-bar{display:none!important}
   .ai-priority-help{font-size:.78rem}
 }
 @media(prefers-reduced-motion:reduce){.ai-priority-choices .ai-priority-card{transition:none}}
+
+/* Contract cost disclosure for recommendations */
+.ai-result-total{margin:9px 0 0;padding:10px 12px;border-radius:11px;background:#f3f9f7;color:#516b6a;font-size:.79rem;line-height:1.5}
+.ai-result-total strong{display:inline;margin-left:6px;font-size:.94rem;color:#194e50}
+.ai-result-total small{display:block;color:#6a8583;font-size:.72rem;margin-top:4px}
+.ai-quote-total-note{margin:11px 0 0!important;font-size:.74rem!important;color:#708582!important;line-height:1.55!important}
