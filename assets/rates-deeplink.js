@@ -75,10 +75,17 @@
     setTimeout(apply,140);
     waitFor(()=>document.querySelector('.wired-compare-card'),apply,60);
   }
+  function showQuickJourney(){
+    const src=params.get('src')||'';
+    if(!/^home-easy(?:-|$)/.test(src))return;
+    const helper=document.getElementById('rate-easy-flow');
+    if(helper)helper.hidden=false;
+  }
   function openRequestedTab(){
     const tab=document.querySelector('.rate-tab[data-tab="'+requested+'"]');
     const panel=document.querySelector('.rate-panel[data-panel="'+requested+'"]');
     if(!tab||!panel)return;
+    showQuickJourney();
     tab.click();
     setTimeout(()=>{restoreSelection();restoreMobilePurpose();restoreMobileDirect();restoreInternetQuick();},120);
     if(requested!=='mobile')requestAnimationFrame(()=>panel.scrollIntoView({behavior:'auto',block:'start'}));
