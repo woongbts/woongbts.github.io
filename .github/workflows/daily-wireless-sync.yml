@@ -4,11 +4,6 @@ on:
   schedule:
     - cron: '10 2 * * *' # around 11:10 Asia/Seoul; GitHub may run late
   workflow_dispatch:
-  # Also exercises the full live import when this workflow configuration is
-  # edited; ordinary site/content edits do not trigger extra source requests.
-  push:
-    branches: [main]
-    paths: ['.github/workflows/daily-wireless-sync.yml']
 
 permissions:
   contents: write
