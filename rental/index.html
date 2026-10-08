@@ -128,7 +128,7 @@
           <div>
             <p class="eyebrow dark">AI 렌탈 추천</p>
             <h2>수백 개 상품 중, 내 조건에 맞는 3개만.</h2>
-            <p>품목·예산·브랜드·관리방식과 원하는 기능을 알려주면 현재 등록된 상품 데이터에서 바로 골라드립니다.</p>
+            <p>품목과 중요하게 생각하는 기준만 고르면 월요금·사은품을 비교해 추천해 드립니다.</p>
           </div>
         </div>
         <button class="ai-recommend-start" type="button" data-ai-recommend-open>30초 AI 추천 시작 <span>→</span></button>
@@ -334,55 +334,63 @@
 
       <form id="ai-recommend-form" class="ai-recommend-form">
         <div class="ai-step-progress" aria-label="AI 추천 단계">
-          <span class="active" data-ai-step-indicator="1">1 품목</span>
-          <span data-ai-step-indicator="2">2 예산</span>
-          <span data-ai-step-indicator="3">3 관리</span>
-          <span data-ai-step-indicator="4">4 세부</span>
+          <span class="active" data-ai-step-indicator="1">1 품목 선택</span>
+          <span data-ai-step-indicator="2">2 추천 기준</span>
+          <span data-ai-step-indicator="3">3 맞춤 추천</span>
         </div>
 
         <section class="ai-guided-step active" data-ai-step="1">
           <p class="ai-question">어떤 제품을 찾으세요?</p>
           <label><span>품목</span><select id="ai-category" required><option>상품 불러오는 중</option></select></label>
-          <button class="ai-step-next" type="button" data-ai-next="2">다음 · 예산 선택 →</button>
+          <button class="ai-step-next" type="button" data-ai-next="2">다음 · 추천 기준 고르기 →</button>
         </section>
 
         <section class="ai-guided-step" data-ai-step="2" hidden>
-          <p class="ai-question">월 얼마까지 생각하세요?</p>
-          <label><span>월 예산</span>
-            <select id="ai-budget">
-              <option value="0">예산 상관없음</option>
-              <option value="30000">3만원 이하</option>
-              <option value="40000">4만원 이하</option>
-              <option value="50000">5만원 이하</option>
-              <option value="70000">7만원 이하</option>
-              <option value="100000">10만원 이하</option>
-              <option value="150000">15만원 이하</option>
-              <option value="250000">25만원 이하</option>
-            </select>
-          </label>
-          <div class="ai-step-nav"><button type="button" data-ai-prev="1">← 이전</button><button class="ai-step-next" type="button" data-ai-next="3">다음 · 관리방식 →</button></div>
-        </section>
-
-        <section class="ai-guided-step" data-ai-step="3" hidden>
-          <p class="ai-question">관리방식은 어떻게 할까요?</p>
-          <label><span>관리방식</span>
+          <fieldset class="ai-priority-fieldset">
+            <legend class="ai-question">어떤 점을 가장 중요하게 생각하세요?</legend>
+            <p class="ai-priority-help">월 예산을 미리 정하지 않아도 괜찮아요. 마음에 드는 기준을 골라주세요.</p>
+            <div class="ai-priority-choices">
+              <label class="ai-priority-card"><input type="radio" name="ai-priority" value="monthly"><span class="ai-priority-symbol" aria-hidden="true">₩</span><span><strong>월요금이 저렴한 제품</strong><small>매달 부담을 줄이고 싶어요</small></span></label>
+              <label class="ai-priority-card"><input type="radio" name="ai-priority" value="gift"><span class="ai-priority-symbol" aria-hidden="true">🎁</span><span><strong>사은품 혜택이 좋은 제품</strong><small>혜택을 충분히 받고 싶어요</small></span></label>
+              <label class="ai-priority-card"><input type="radio" name="ai-priority" value="balanced" checked><span class="ai-priority-symbol" aria-hidden="true">⚖</span><span><strong>월요금과 혜택의 균형</strong><small>요금과 혜택을 함께 비교하고 싶어요 · 추천</small></span></label>
+            </div>
+          </fieldset>
+          <label><span>관리방식 <small>(선택)</small></span>
             <select id="ai-management">
               <option value="">상관없음</option>
               <option value="self">자가·셀프관리</option>
               <option value="visit">방문관리</option>
             </select>
           </label>
-          <div class="ai-step-nav"><button type="button" data-ai-prev="2">← 이전</button><button class="ai-step-next" type="button" data-ai-next="4">마지막 · 세부조건 →</button></div>
+          <div class="ai-step-nav"><button type="button" data-ai-prev="1">← 이전</button><button class="ai-step-next" type="button" data-ai-next="3">다음 · 맞춤 추천 →</button></div>
         </section>
 
-        <section class="ai-guided-step" data-ai-step="4" hidden>
+        <section class="ai-guided-step" data-ai-step="3" hidden>
           <p class="ai-question">마지막으로 원하는 조건이 있나요?</p>
-          <label><span>선호 브랜드 <small>선택</small></span><select id="ai-brand"><option value="">브랜드 상관없음</option></select></label>
+          <label><span>선호 브랜드 <small>(선택)</small></span><select id="ai-brand"><option value="">브랜드 상관없음</option></select></label>
 
           <details class="ai-advanced-details">
-            <summary>더 자세히 선택 <small>필수조건·기능</small></summary>
+            <summary>자세한 조건 설정 <small>월 예산 상한·필수 기능 (선택)</small></summary>
+            <div class="ai-budget-optional">
+              <label><span>꼭 지켜야 하는 월 예산이 있나요?</span>
+                <select id="ai-budget">
+                  <option value="0">예산 상관없음 (기본)</option>
+                  <option value="20000">2만원 이하</option>
+                  <option value="30000">3만원 이하</option>
+                  <option value="40000">4만원 이하</option>
+                  <option value="50000">5만원 이하</option>
+                  <option value="70000">7만원 이하</option>
+                  <option value="100000">10만원 이하</option>
+                  <option value="150000">15만원 이하</option>
+                  <option value="250000">25만원 이하</option>
+                  <option value="400000">40만원 이하</option>
+                  <option value="600000">60만원 이하</option>
+                </select>
+              </label>
+              <p>예산을 지정해도 필터가 선택사항이면 가까운 조건까지 비교합니다. 초과 상품을 제외하려면 아래에서 체크해 주세요.</p>
+            </div>
             <fieldset class="ai-must-have">
-              <legend>꼭 지켜야 하는 조건 <small>선택</small></legend>
+              <legend>꼭 지켜야 하는 조건 <small>(선택)</small></legend>
               <div class="ai-must-grid">
                 <label id="ai-budget-strict-wrap"><input id="ai-budget-strict" type="checkbox"> 월 예산 초과 제외</label>
                 <label id="ai-brand-strict-wrap"><input id="ai-brand-strict" type="checkbox"> 선택 브랜드만</label>
@@ -397,13 +405,13 @@
               </div>
             </fieldset>
             <label class="ai-preference-label">
-              <span>원하는 조건을 자유롭게 적어주세요 <small>선택</small></span>
+              <span>원하는 조건을 자유롭게 적어주세요 <small>(선택)</small></span>
               <input id="ai-preference" type="text" maxlength="120" placeholder="예: 얼음 나오는 슬림한 제품, 직수, 대용량 등">
             </label>
           </details>
 
           <p class="ai-privacy-note">입력한 조건은 서버로 전송하지 않고, 이 화면에서 상품 데이터와 비교하는 데만 사용합니다.</p>
-          <div class="ai-step-nav final"><button type="button" data-ai-prev="3">← 이전</button><button class="ai-recommend-submit" type="submit"><span aria-hidden="true">✦</span> 이 조건으로 AI 추천받기</button></div>
+          <div class="ai-step-nav final"><button type="button" data-ai-prev="2">← 이전</button><button class="ai-recommend-submit" type="submit"><span aria-hidden="true">✦</span> 조건에 맞는 상품 3개 추천받기</button></div>
         </section>
 
         <p id="ai-recommend-status" class="ai-recommend-status" role="status">먼저 품목을 선택해 주세요.</p>
