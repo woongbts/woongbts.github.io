@@ -15,9 +15,13 @@ assert.match(chat,/width:134px!important/,'calculator AI button has room for ful
 assert.match(homeCss,/width:134px!important/,'homepage AI button has room for full label');
 assert.match(chat,/white-space:nowrap!important/,'calculator label stays on a single line');
 assert.match(homeCss,/white-space:nowrap!important/,'homepage label stays on a single line');
+assert.match(chat,/right:8px!important;left:auto!important;bottom:calc\(80px/,'calculator pill moved lower and right');
+assert.match(homeCss,/right:8px!important;left:auto!important;/,'homepage pill moved right');
+assert.match(homeCss,/bottom:calc\(80px/,'homepage pill moved lower');
+
 assert.match(chat,/\.wb-ai-launcher>span\{display:none!important\}/,'old label hidden in compact view');
 assert.match(homeCss,/#woongbi-ai-launcher\.wb-ai-launcher>span\{display:none!important\}/,'homepage hides old label');
-assert.match(rates,/ai-chat\.min\.js\?v=20261008-pill3/);
-assert.match(loader,/ai-chat\.min\.js\?v=20261008-pill3/);
-assert.match(homepage,/quick-order\.css\?v=20261008-pill3/);
+assert.match(rates,/ai-chat\.min\.js\?v=20261008-pos4/);
+assert.match(loader,/ai-chat\.min\.js\?v=20261008-pos4/);
+assert.match(homepage,/quick-order\.css\?v=20261008-pos4/);
 console.log('AI launchers: readable mobile pill and new cache references passed.');
