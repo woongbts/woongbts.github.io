@@ -452,6 +452,7 @@ function assert(condition, message) {
       spend:get('.affiliate-card .card-tier span'),
       discount:get('.affiliate-card .card-tier strong'),
       savings:get('.affiliate-card .card-max'),
+      discountValue:get('.affiliate-card .card-max-amount'),
       detail:get('.affiliate-card .card-detail summary'),
       annual:get('.affiliate-card .annual'),
       notice:get('.card-notice p')
@@ -461,7 +462,7 @@ function assert(condition, message) {
   for(const [key,minSize,minWeight] of [
     ['provider',14.9,850],['title',18.9,900],
     ['spend',14.9,750],['discount',16.9,900],
-    ['savings',17.9,900],['detail',15.9,850],
+    ['savings',17.9,900],['discountValue',23.9,950],['detail',15.9,850],
     ['annual',13.9,700],['notice',14.9,700]
   ]){
     const row=cardStyle[key];
