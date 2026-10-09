@@ -1,0 +1,39 @@
+name: Home bold readability smoke
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'index.html'
+      - 'assets/home-bold-readability-20261009.css'
+      - 'scripts/home-bold-readability-smoke.cjs'
+      - '.github/workflows/home-bold-readability-smoke.yml'
+  workflow_dispatch:
+concurrency:
+  group: home-bold-${{ github.ref }}
+  cancel-in-progress: true
+permissions:
+  contents: read
+jobs:
+  responsive-type:
+    runs-on: ubuntu-latest
+    timeout-minutes: 9
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install Chromium
+        run: |
+          mkdir -p /tmp/woongbi-home-browser
+          cd /tmp/woongbi-home-browser
+          npm init -y >/dev/null 2>&1
+          npm install playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Serve homepage
+        run: |
+          python3 -m http.server 4173 --directory . >/tmp/woongbi-home-server.log 2>&1 &
+          sleep 2
+      - name: Check bold desktop and mobile text
+        env:
+          NODE_PATH: /tmp/woongbi-home-browser/node_modules
+        run: node scripts/home-bold-readability-smoke.cjs
