@@ -253,3 +253,32 @@
   .card-hero-actions a,.card-hero-actions button{flex:1 1 100%}
 }
 
+
+/* Separate the important real discount amount from the explanatory words. */
+.affiliate-card .card-max{
+  display:flex;
+  justify-content:center;
+  align-items:baseline;
+  flex-wrap:wrap;
+  gap:4px 8px;
+}
+.affiliate-card .card-max .card-max-label,
+.affiliate-card .card-max .card-max-unit{
+  font-size:16px!important;
+  font-weight:850!important;
+  color:#205a52!important;
+  line-height:1.5!important;
+}
+.affiliate-card .card-max .card-max-amount{
+  font-size:25px!important;
+  font-weight:1000!important;
+  line-height:1.35!important;
+  letter-spacing:-.03em;
+  color:#075b50!important;
+  white-space:nowrap;
+}
+@media(max-width:560px){
+  .affiliate-card .card-max .card-max-amount{font-size:24px!important}
+  .affiliate-card .card-max .card-max-label,
+  .affiliate-card .card-max .card-max-unit{font-size:15px!important}
+}
