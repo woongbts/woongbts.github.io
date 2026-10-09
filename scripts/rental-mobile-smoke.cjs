@@ -163,7 +163,9 @@ function assert(condition, message) {
   await page.waitForSelector('.affiliate-card');
   const cardPathBefore = new URL(page.url()).pathname;
   await page.locator('#card-compare-jump').click();
-  await page.waitForTimeout(180);
+  // Allow the intended smooth scroll to finish; taller readable type makes the
+  // scroll distance longer than an arbitrary 180ms delay.
+  await page.waitForFunction(() => document.querySelector('#affiliate-cards')?.getBoundingClientRect().top < 220, null, {timeout:4500});
   const cardPathAfter = new URL(page.url()).pathname;
   assert(cardPathBefore === '/rental/cards/' && cardPathAfter === '/rental/cards/', '카드 비교하기 클릭 시 렌탈 홈으로 이동합니다.');
   const cardTargetTop = await page.locator('#affiliate-cards').evaluate(el => el.getBoundingClientRect().top);
