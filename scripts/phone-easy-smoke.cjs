@@ -39,7 +39,10 @@ const assert=require('node:assert/strict');
    await page.waitForSelector('#purpose-results .purpose-card',{timeout:16000});
    const btn=page.locator('#mobile-easy-see-results');
    await btn.click();
-   assert.equal(await page.locator('#purpose-results .store-apply-btn').count(),1,'one action per result');
+   const cards=page.locator('#purpose-results .purpose-card');
+   const count=await cards.count();
+   assert.ok(count>0,'recommendations present');
+   for(let i=0;i<count;i++)assert.equal(await cards.nth(i).locator('.store-apply-btn').count(),1,'one application action per result');
    console.log('PURPOSE_OK',purpose);
  }
  await page.locator('#purpose-results .store-apply-btn').first().click();
