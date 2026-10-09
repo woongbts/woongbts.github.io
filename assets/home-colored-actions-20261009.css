@@ -1,0 +1,160 @@
+/* Woongbi homepage color action system — 2026-10-09.
+ * Actual links remain links: no duplicate buttons, no broken destinations.
+ * Each category keeps a consistent, accessible palette.
+ */
+body.home-modern .home-order-category{
+  --quick-fill:#0b766d;
+  --quick-shadow:rgba(6,78,71,.22);
+  position:relative;
+  min-width:0;
+  min-height:113px;
+  padding:17px;
+  border:2px solid transparent!important;
+  border-radius:16px;
+  background:var(--quick-fill)!important;
+  color:#fff!important;
+  box-shadow:0 5px 16px var(--quick-shadow);
+  transition:transform .14s,box-shadow .14s,filter .14s;
+}
+body.home-modern .home-order-category[data-quick-category="mobile"]{--quick-fill:#08766a;--quick-shadow:rgba(8,118,106,.24)}
+body.home-modern .home-order-category[data-quick-category="mvno"]{--quick-fill:#16713b;--quick-shadow:rgba(22,113,59,.22)}
+body.home-modern .home-order-category[data-quick-category="prepaid"]{--quick-fill:#294eb3;--quick-shadow:rgba(41,78,179,.22)}
+body.home-modern .home-order-category[data-quick-category="internet"]{--quick-fill:#126493;--quick-shadow:rgba(18,100,147,.22)}
+body.home-modern .home-order-category[data-quick-category="rental"]{--quick-fill:#0a7282;--quick-shadow:rgba(10,114,130,.22)}
+body.home-modern .home-order-category[data-quick-category="visit"]{--quick-fill:#9e285d;--quick-shadow:rgba(158,40,93,.22)}
+body.home-modern .home-order-category b,
+body.home-modern .home-order-category small{
+  color:#fff!important;
+  text-shadow:none;
+  font-weight:850!important;
+  word-break:keep-all;
+  overflow-wrap:break-word;
+}
+body.home-modern .home-order-category b{font-size:18px!important}
+body.home-modern .home-order-category small{font-size:15.5px!important;line-height:1.5!important;opacity:.95}
+body.home-modern .home-order-category .home-order-glyph{
+  background:rgba(255,255,255,.19)!important;
+  border:1px solid rgba(255,255,255,.28);
+}
+body.home-modern .home-order-category:hover{
+  background:var(--quick-fill)!important;
+  border-color:rgba(255,255,255,.65)!important;
+  filter:brightness(.92);
+  transform:translateY(-2px);
+  box-shadow:0 10px 22px var(--quick-shadow);
+}
+body.home-modern .home-order-category.is-active,
+body.home-modern .home-order-category.is-active:hover{
+  background:var(--quick-fill)!important;
+  border-color:#fff!important;
+  box-shadow:inset 0 0 0 2px rgba(255,255,255,.85),0 7px 18px var(--quick-shadow);
+}
+body.home-modern .home-order-category.is-active .home-order-glyph{background:rgba(255,255,255,.22)!important}
+body.home-modern .home-order-category:focus-visible,
+body.home-modern .home-order-option:focus-visible,
+body.home-modern .service-card .service-links a:focus-visible{
+  outline:3px solid #f3b849!important;
+  outline-offset:3px!important;
+}
+/* The four phone purposes have four unmistakable colors.
+ * Other categories follow their category's palette while keeping readable text.
+ */
+body.home-modern .home-order-option{
+  --choice-fill:#08766a;
+  --choice-shadow:rgba(8,118,106,.16);
+  background:var(--choice-fill)!important;
+  border:2px solid transparent!important;
+  border-radius:13px;
+  color:#fff!important;
+  box-shadow:0 4px 12px var(--choice-shadow);
+  min-width:0;
+  min-height:88px;
+  transition:transform .14s,filter .14s,box-shadow .14s;
+}
+body.home-modern #quick-order[data-active-category="mobile"] .home-order-option[href*="purpose=senior"]{--choice-fill:#176837;--choice-shadow:rgba(23,104,55,.19)}
+body.home-modern #quick-order[data-active-category="mobile"] .home-order-option[href*="purpose=kids"]{--choice-fill:#2460c8;--choice-shadow:rgba(36,96,200,.19)}
+body.home-modern #quick-order[data-active-category="mobile"] .home-order-option[href*="purpose=value"]{--choice-fill:#a64813;--choice-shadow:rgba(166,72,19,.19)}
+body.home-modern #quick-order[data-active-category="mobile"] .home-order-option[href*="purpose=premium"]{--choice-fill:#6736a1;--choice-shadow:rgba(103,54,161,.19)}
+body.home-modern #quick-order[data-active-category="mvno"] .home-order-option{--choice-fill:#16713b}
+body.home-modern #quick-order[data-active-category="prepaid"] .home-order-option{--choice-fill:#294eb3}
+body.home-modern #quick-order[data-active-category="internet"] .home-order-option{--choice-fill:#126493}
+body.home-modern #quick-order[data-active-category="rental"] .home-order-option{--choice-fill:#0a7282}
+body.home-modern #quick-order[data-active-category="visit"] .home-order-option{--choice-fill:#9e285d}
+body.home-modern .home-order-option strong,
+body.home-modern .home-order-option small,
+body.home-modern .home-order-option .home-order-arrow{
+  color:#fff!important;
+  opacity:1;
+}
+body.home-modern .home-order-option strong{font-size:18px!important;font-weight:900!important}
+body.home-modern .home-order-option small{font-size:15.5px!important;font-weight:750!important;line-height:1.55!important;opacity:.95}
+body.home-modern .home-order-option .home-order-arrow{flex:none;font-size:26px;font-weight:900}
+body.home-modern .home-order-option:hover{
+  border-color:rgba(255,255,255,.72)!important;
+  background:var(--choice-fill)!important;
+  filter:brightness(.92);
+  transform:translateY(-2px);
+  box-shadow:0 8px 20px var(--choice-shadow);
+}
+/* Popular consultation links are unmistakable actions, not tiny text links. */
+body.home-modern .service-card{
+  --service-fill:#0b766d;
+  --service-soft:#e8f6f2;
+  --service-soft-ink:#075d54;
+}
+body.home-modern #service-mvno{--service-fill:#176837;--service-soft:#e7f6e9;--service-soft-ink:#11582e}
+body.home-modern #service-internet{--service-fill:#2258af;--service-soft:#e8f0ff;--service-soft-ink:#164688}
+body.home-modern .service-card-rental{--service-fill:#6736a1;--service-soft:#f0eafd;--service-soft-ink:#552b8b}
+body.home-modern .service-card .service-links{gap:8px;align-items:stretch}
+body.home-modern .service-card .service-links a{
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  min-height:48px!important;
+  min-width:0;
+  padding:10px 13px!important;
+  margin:0;
+  border:2px solid var(--service-fill)!important;
+  border-radius:12px!important;
+  background:var(--service-soft)!important;
+  color:var(--service-soft-ink)!important;
+  font-size:15.5px!important;
+  font-weight:850!important;
+  line-height:1.35!important;
+  text-decoration:none!important;
+  text-align:center;
+  white-space:normal;
+  word-break:keep-all;
+  box-shadow:0 3px 10px rgba(12,53,61,.04);
+  transition:transform .14s,background .14s,color .14s;
+}
+body.home-modern .service-card .service-links a.main-link{
+  background:var(--service-fill)!important;
+  color:#fff!important;
+  font-size:16px!important;
+  font-weight:900!important;
+}
+body.home-modern .service-card .service-links a:hover{
+  filter:brightness(.94);
+  transform:translateY(-1px);
+}
+@media(max-width:760px){
+  body.home-modern .home-order-category{min-height:111px;padding:13px}
+  body.home-modern .home-order-category b{font-size:16.5px!important}
+  body.home-modern .home-order-category small{font-size:14.5px!important}
+  body.home-modern .home-order-option{min-height:79px;padding:12px 14px}
+  body.home-modern .home-order-option strong{font-size:16.5px!important}
+  body.home-modern .home-order-option small{font-size:14.5px!important}
+  body.home-modern .service-card .service-links a{min-height:48px!important;font-size:15px!important}
+  body.home-modern .service-card .service-links a.main-link{font-size:15px!important}
+}
+@media(max-width:390px){
+  body.home-modern .home-order-category{padding:12px 9px}
+  body.home-modern .home-order-category b{font-size:16px!important}
+  body.home-modern .home-order-category small{font-size:14px!important}
+}
+@media(prefers-reduced-motion:reduce){
+  body.home-modern .home-order-category,
+  body.home-modern .home-order-option,
+  body.home-modern .service-card .service-links a{transition:none;transform:none!important}
+}
