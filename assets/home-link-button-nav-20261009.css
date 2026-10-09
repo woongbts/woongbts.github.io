@@ -81,7 +81,7 @@ body.home-modern .top .menu a{
   min-height:48px;
   padding:11px 12px;
   border-radius:11px;
-  font-size:clamp(15px,1.02vw,17px)!important;
+  font-size:17px!important;
   font-weight:850!important;
   line-height:1.35!important;
   color:#214e54!important;
