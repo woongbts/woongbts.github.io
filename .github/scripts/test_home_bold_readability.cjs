@@ -54,7 +54,7 @@ console.log('Homepage CTA links and navigation: large button styles, dynamic fal
 
 const colors=fs.readFileSync('assets/home-colored-actions-20261009.css','utf8');
 const picker=fs.readFileSync('assets/quick-order.js','utf8');
-assert.ok(html.includes('home-colored-actions-20261009.css?v=20261009-b1'),'new 6-category palette loaded');
+assert.ok(html.includes('home-colored-actions-20261009.css?v=20261009-b2'),'new 6-category palette loaded');
 assert.ok(html.includes('quick-order.js?v=20261009-b1'),'category state JS cache refreshed');
 assert.ok(picker.includes('root.dataset.activeCategory=category;'),'UI state exposed for context color');
 const categories=['mobile','mvno','prepaid','internet','rental','visit'];
