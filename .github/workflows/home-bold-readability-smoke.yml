@@ -5,6 +5,8 @@ on:
     paths:
       - 'index.html'
       - 'assets/home-bold-readability-20261009.css'
+      - 'assets/home-colored-actions-20261009.css'
+      - 'assets/quick-order.js'
       - 'scripts/home-bold-readability-smoke.cjs'
       - '.github/workflows/home-bold-readability-smoke.yml'
   workflow_dispatch:
