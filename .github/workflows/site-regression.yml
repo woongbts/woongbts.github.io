@@ -60,6 +60,7 @@ jobs:
           node --check assets/mvno-api-bridge.min.js
           node .github/scripts/test_support_integrity.cjs
           node .github/scripts/test_home_recommendations.cjs
+          node .github/scripts/test_home_bold_readability.cjs
           node --check assets/plan-eligibility.js
           node --check assets/device-images.js
           python3 .github/scripts/test_official_support.py
