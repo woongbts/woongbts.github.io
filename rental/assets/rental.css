@@ -829,3 +829,334 @@
 .rental-compare-status:empty{display:none}
 .rental-compare-status a{color:#0f766e;font-weight:900;text-decoration:none}
 .rental-compare-status a:hover{text-decoration:underline}
+
+
+/* Rental customer action clarity + readable policy details (2026-10-09) */
+/* All 471 generated product detail pages reuse rental.css. This final,
+   shared CSS layer improves contrast and touch sizes without changing
+   quoting, billing, consent, or link destinations. */
+
+/* 1. Recommended product actions: easy to spot. */
+.recommend-card .recommend-actions{
+  display:flex;flex-wrap:wrap;align-items:center;gap:9px;
+  justify-content:space-between;
+}
+.recommend-card .recommend-actions .recommend-link{
+  display:inline-flex!important;align-items:center;justify-content:center;
+  min-height:48px;padding:10px 16px;border-radius:12px;
+  background:#08796d!important;color:#fff!important;
+  border:2px solid #08796d!important;text-decoration:none!important;
+  font-size:16px!important;font-weight:900!important;line-height:1.35;
+  text-align:center;white-space:normal;word-break:keep-all;
+}
+.recommend-card .recommend-actions .compare-toggle.small{
+  display:inline-flex;align-items:center;justify-content:center;
+  min-height:48px;padding:9px 14px;
+  border:2px solid #277eb5!important;border-radius:12px;
+  background:#e8f3ff!important;color:#175885!important;
+  font-size:15px!important;font-weight:900!important;line-height:1.35;
+}
+.recommend-card .recommend-actions .compare-toggle.small.active{
+  background:#195e94!important;color:#fff!important;border-color:#195e94!important;
+}
+.recommend-card .recommend-body .recommend-meta small{
+  font-size:14.5px!important;font-weight:800!important;line-height:1.6!important;
+  color:#50686c!important;
+}
+.recommend-card .recommend-body h3{font-size:18px!important;font-weight:900!important;line-height:1.45}
+.recommend-card .recommend-prices span{
+  font-size:15.5px!important;font-weight:750!important;line-height:1.6;
+}
+.recommend-card .recommend-prices strong{
+  font-size:16px!important;font-weight:900!important;line-height:1.55;
+}
+
+/* 2. Eleven product category choices. Keep a gentle, consistent palette. */
+.appliance-grid .appliance-category{
+  min-width:0;height:auto!important;min-height:153px;
+  border:2px solid #b4d8d2!important;background:#f0faf7!important;
+  border-radius:18px;box-shadow:0 5px 14px rgba(9,87,82,.055);
+}
+.appliance-grid .appliance-category:nth-child(5n+2){
+  background:#eff5ff!important;border-color:#b7d1ee!important;
+}
+.appliance-grid .appliance-category:nth-child(5n+3){
+  background:#f3f0fd!important;border-color:#d0c7ed!important;
+}
+.appliance-grid .appliance-category:nth-child(5n+4){
+  background:#fff5e9!important;border-color:#eed1ac!important;
+}
+.appliance-grid .appliance-category:nth-child(5n+5){
+  background:#fff0f4!important;border-color:#efc4d2!important;
+}
+.appliance-grid .appliance-category>span{
+  background:#fff!important;color:#086d67!important;
+  border:1px solid #cfe2e0;
+  font-size:14px!important;font-weight:950!important;
+}
+.appliance-grid .appliance-category>strong{
+  color:#163e45!important;font-size:18px!important;
+  font-weight:900!important;line-height:1.4!important;
+}
+.appliance-grid .appliance-category>small{
+  color:#355a61!important;font-size:15.5px!important;
+  font-weight:750!important;line-height:1.55!important;
+  overflow-wrap:anywhere;
+}
+.appliance-grid .appliance-category.active{
+  border-color:#08796d!important;box-shadow:inset 0 0 0 1px #08796d,0 8px 19px rgba(8,121,109,.15);
+}
+.appliance-grid .appliance-category:focus-visible,
+.recommend-card a:focus-visible,
+.recommend-card button:focus-visible,
+.product-page a:focus-visible,
+.product-page button:focus-visible,
+.product-faq-list summary:focus-visible{
+  outline:3px solid #d99b20!important;outline-offset:3px!important;
+}
+
+/* 3. Recently viewed product: entire surface remains one valid link. */
+.recent-card{
+  border:2px solid #bfded9!important;background:#f7fcfa!important;
+  box-shadow:0 4px 15px rgba(13,83,81,.06);
+}
+.recent-card:hover{border-color:#0d8175!important;background:#eff9f6!important}
+.recent-card a{min-height:100%;color:#193f46!important}
+.recent-card small{font-size:14px!important;font-weight:850!important;color:#50686c!important;line-height:1.5}
+.recent-card strong{font-size:17px!important;font-weight:900!important;line-height:1.45}
+.recent-card span:not(.recent-fallback){
+  font-size:14.5px!important;font-weight:750!important;
+  color:#225c60!important;line-height:1.6!important;
+}
+
+/* 4. Product-specific decision guidance / step headers. */
+.generic-recommend-block>strong{
+  font-size:16px!important;font-weight:900!important;line-height:1.5!important;
+}
+.generic-recommend-list span{
+  font-size:14.5px!important;font-weight:800!important;
+  line-height:1.5!important;padding:9px 11px;white-space:normal;
+}
+.selection-flow{font-size:15px!important;font-weight:850!important;line-height:1.5;gap:10px}
+.selection-flow b,.selector-step{
+  width:29px!important;height:29px!important;font-size:14px!important;
+  flex:none;
+}
+.selector-heading strong{font-size:17px!important;font-weight:900!important;line-height:1.4}
+.selector-help{font-size:14.5px!important;font-weight:700!important;line-height:1.6!important;color:#445f64!important}
+.selected-condition-strip{flex-wrap:wrap}
+.selected-condition-strip span{font-size:14px!important;color:#3f6165!important}
+.selected-condition-strip strong{
+  font-size:16px!important;overflow:visible!important;
+  text-overflow:clip!important;white-space:normal!important;line-height:1.6!important;
+}
+
+/* 5. Terms, support math, card discounts and installation notes. */
+.quote-basis,.quote-box small{font-size:14px!important;font-weight:850!important}
+.quote-total small{font-size:15px!important;color:#345c61!important}
+.quote-total strong{font-size:19px!important}
+.quote-total span{
+  font-size:14px!important;font-weight:750!important;color:#426469!important;
+  line-height:1.65!important;
+}
+.card-burden-title>span{font-size:16px!important;color:#355d62!important}
+.card-burden-breakdown span,.card-burden-breakdown b{
+  font-size:15px!important;font-weight:800!important;line-height:1.5!important;
+  color:#3d5f64!important;
+}
+.quote-card-burden>#card-fee-note{
+  font-size:14px!important;font-weight:750!important;
+  color:#49686c!important;line-height:1.7!important;
+}
+#card-fee-more{
+  min-height:45px!important;padding:10px 15px!important;border-radius:11px!important;
+  font-size:15px!important;font-weight:900!important;
+  background:#eaf6f3!important;color:#086d65!important;
+}
+.installation-quick-note{padding:14px 15px!important;flex-wrap:wrap}
+.installation-quick-note b{font-size:16px!important;font-weight:900!important}
+.installation-quick-note span{
+  font-size:15px!important;font-weight:750!important;
+  color:#355f60!important;line-height:1.6!important;
+}
+.contract-key-head strong{font-size:18px!important;font-weight:900!important}
+.contract-key-head small{
+  font-size:14px!important;color:#50686a!important;
+  font-weight:750!important;line-height:1.5!important;
+}
+.contract-key-grid>div{min-width:0;padding:12px}
+.contract-key-grid span{
+  font-size:14px!important;font-weight:800!important;
+  color:#4b6669!important;line-height:1.45!important;
+}
+.contract-key-grid b{
+  font-size:15px!important;font-weight:900!important;
+  line-height:1.45!important;overflow-wrap:anywhere;
+}
+.product-extra-details>summary{
+  min-height:49px!important;
+  font-size:16px!important;font-weight:900!important;line-height:1.55!important;
+  color:#245357!important;
+}
+.product-extra-details .condition-list span{
+  font-size:15px!important;font-weight:800!important;line-height:1.5!important;
+}
+.product-extra-details .condition-list b{
+  font-size:16px!important;font-weight:850!important;line-height:1.5!important;
+}
+.product-extra-details .notice-box strong{font-size:17px!important}
+.product-extra-details .notice-box p{font-size:15px!important;line-height:1.7!important}
+.apply-reassurance strong,.rental-apply-reassurance b{
+  font-size:17px!important;font-weight:900!important;line-height:1.5!important;
+}
+.apply-reassurance span,.rental-apply-reassurance span,
+.consult-copy-help,.generic-source-note{
+  font-size:15px!important;font-weight:750!important;
+  line-height:1.7!important;color:#49666b!important;
+}
+.product-freshness{font-size:14px!important;line-height:1.6!important}
+.detail-image-note{font-size:15px!important;font-weight:700!important;line-height:1.7!important}
+
+/* 6. Affiliate card review: all three examples and action button. */
+.product-card-head>div>p:last-child{
+  font-size:16px!important;font-weight:750!important;
+  color:#425f63!important;line-height:1.7!important;
+}
+.product-card-head>a{
+  display:inline-flex!important;justify-content:center;align-items:center;
+  padding:12px 17px!important;min-height:48px!important;
+  border-radius:12px!important;border:2px solid #155e9c!important;
+  background:#155e9c!important;color:#fff!important;
+  text-decoration:none!important;font-size:16px!important;font-weight:900!important;
+  line-height:1.4!important;
+}
+.affiliate-card-preview article{min-width:0;padding:17px!important}
+.affiliate-card-preview article small{font-size:14px!important;font-weight:850!important}
+.affiliate-card-preview article strong{font-size:17px!important;font-weight:900!important;line-height:1.45!important}
+.affiliate-card-preview article div span{
+  font-size:15px!important;font-weight:750!important;
+  line-height:1.5!important;gap:8px;flex-wrap:wrap;
+}
+.affiliate-card-preview article div b{font-size:15px!important;font-weight:900!important}
+.affiliate-card-preview article em{font-size:15px!important;font-weight:850!important;line-height:1.55!important}
+.affiliate-card-tier{min-height:52px!important;padding:10px 12px!important}
+.affiliate-card-tier span,.affiliate-card-tier b,.affiliate-card-tier i{
+  font-size:14.5px!important;font-weight:800!important;line-height:1.5!important;
+}
+.affiliate-card-caution{font-size:14.5px!important;font-weight:750!important;line-height:1.7!important}
+.affiliate-card-dialog-foot p{font-size:15px!important;line-height:1.7!important}
+.affiliate-card-dialog-foot a{min-height:45px;font-size:15px!important}
+
+/* 7. Compare alternatives and telecom cross-link actions. */
+.product-alternatives-head p{
+  font-size:16px!important;font-weight:750!important;
+  color:#405f64!important;line-height:1.7!important;
+}
+.product-alternative-card{min-width:0;padding:15px}
+.product-alternative-card small{
+  font-size:14.5px!important;font-weight:850!important;line-height:1.45!important;
+}
+.product-alternative-card strong{
+  font-size:17px!important;font-weight:900!important;line-height:1.5!important;
+}
+.product-alternative-card p{
+  font-size:15px!important;font-weight:750!important;
+  color:#45676a!important;line-height:1.65!important;
+}
+.product-alternative-card>div>a{
+  min-height:46px;max-width:100%;
+  display:inline-flex!important;align-items:center;justify-content:center;
+  padding:9px 14px!important;margin-top:12px!important;
+  border:2px solid #08796d!important;border-radius:11px!important;
+  background:#08796d!important;color:#fff!important;
+  font-size:15px!important;font-weight:900!important;
+  text-decoration:none!important;text-align:center;word-break:keep-all;
+}
+.rental-cross-sell-box p{
+  font-size:16px!important;font-weight:750!important;
+  color:#426469!important;line-height:1.7!important;
+}
+.rental-cross-sell-box>div:last-child{min-width:0;align-items:center}
+.rental-cross-sell-box a{
+  min-height:49px;padding:11px 15px!important;
+  display:inline-flex;align-items:center;justify-content:center;
+  background:#126397!important;border:2px solid #126397!important;
+  border-radius:12px!important;color:#fff!important;
+  font-size:15px!important;font-weight:900!important;text-decoration:none!important;
+  text-align:center;line-height:1.4;white-space:normal;word-break:keep-all;
+}
+.rental-cross-sell-box a:last-child{
+  background:#0d756c!important;border-color:#0d756c!important;
+}
+
+/* 8. FAQ and reassurance (also covers user's last screenshot). */
+.product-faq-list{gap:12px;max-width:1000px}
+.product-faq-list details{border:2px solid #cee0dd!important}
+.product-faq-list summary{
+  min-height:52px;padding:15px 17px;
+  font-size:17px!important;font-weight:900!important;
+  color:#21494f!important;line-height:1.55!important;
+}
+.product-faq-list p{
+  padding:0 17px 18px;
+  font-size:16px!important;font-weight:750!important;
+  color:#405f63!important;line-height:1.75!important;
+}
+.product-faq-list p strong{font-weight:900!important}
+.product-trust-box>div:first-child span{font-size:14.5px!important;font-weight:900!important}
+.product-trust-box>div:first-child strong{font-size:20px!important;font-weight:900!important;line-height:1.45!important}
+.product-trust-box>div:first-child p{
+  font-size:16px!important;font-weight:750!important;color:#49666a!important;
+  line-height:1.7!important;
+}
+.product-trust-mini b{
+  min-height:38px;display:inline-flex;align-items:center;justify-content:center;
+  font-size:15px!important;font-weight:850!important;line-height:1.4!important;
+}
+
+/* Keep interactive buttons touch-friendly, without hiding functionality. */
+.recommend-card .recommend-actions a:hover,
+.product-card-head>a:hover,.product-alternative-card>div>a:hover,
+.rental-cross-sell-box a:hover{filter:brightness(.9)}
+@media(max-width:900px){
+  .appliance-grid .appliance-category{min-height:155px}
+  .affiliate-card-preview article{padding:14px!important}
+  .rental-cross-sell-box>div:last-child{align-items:stretch}
+}
+@media(max-width:560px){
+  .recommend-card .recommend-actions{gap:8px}
+  .recommend-card .recommend-actions .recommend-link{font-size:15px!important;min-height:46px}
+  .recommend-card .recommend-actions .compare-toggle.small{font-size:15px!important;min-height:46px}
+  .appliance-grid{grid-template-rows:repeat(2,minmax(155px,auto))!important}
+  .appliance-grid .appliance-category{height:auto!important;min-height:153px!important;padding:13px!important}
+  .appliance-grid .appliance-category>strong{font-size:16px!important;margin-top:10px!important}
+  .appliance-grid .appliance-category>small{font-size:14px!important}
+  .recent-card{flex-basis:70vw!important}
+  .generic-recommend-list span{font-size:13.5px!important}
+  .selection-flow{font-size:13.5px!important;padding:11px;gap:6px}
+  .selection-flow b,.selector-step{width:25px!important;height:25px!important;font-size:13px!important}
+  .selector-heading strong{font-size:16px!important}
+  .quote-total{grid-template-columns:minmax(0,1fr) auto;gap:6px}
+  .quote-total span{font-size:13.5px!important}
+  .card-burden-breakdown span,.card-burden-breakdown b{font-size:14px!important}
+  .contract-key-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .contract-key-head small{font-size:13px!important}
+  .contract-key-grid span{font-size:13.5px!important}
+  .contract-key-grid b{font-size:14px!important}
+  .product-card-head>a{width:100%;margin-top:12px!important}
+  .affiliate-card-preview article div span{font-size:14px!important}
+  .product-alternative-card{grid-template-columns:86px minmax(0,1fr)}
+  .product-alternative-card strong{font-size:16px!important}
+  .product-alternative-card p{font-size:14px!important}
+  .rental-cross-sell-box a{flex:1 1 100%;font-size:15px!important}
+  .product-faq-list summary{font-size:16px!important}
+  .product-faq-list p{font-size:15px!important}
+  .product-trust-box>div:first-child strong{font-size:18px!important}
+  .product-trust-box>div:first-child p{font-size:15px!important}
+  .product-trust-mini b{font-size:14px!important}
+}
+@media(prefers-reduced-motion:reduce){
+ .recommend-card a,.appliance-grid .appliance-category,
+ .product-alternative-card>div>a,.rental-cross-sell-box a{transition:none!important}
+}
+
