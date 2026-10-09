@@ -5,8 +5,7 @@
   if(!results||!section)return;
   const API='https://woongbi-quote-api.woongbts.workers.dev/quote/mobile';
   const pins=[
-    {id:'SKT-XD-2824',carrier:'SKT',name:'갤럭시 A17 LTE',planId:'SKT-XP-969',planName:'T플랜 세이브'},
-    {id:'LG-XD-2826',carrier:'LGU+',name:'갤럭시 A17 LTE',planId:'LG-XP-2512',planName:'데이터플랜1.5GB'}
+    {id:'SKT-XD-2824',carrier:'SKT',name:'갤럭시 A17 LTE',planId:'SKT-XP-969',planName:'T플랜 세이브'}
   ];
   const cache=new Map();
   let cycle=0,scheduled=false;
