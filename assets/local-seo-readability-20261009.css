@@ -1,0 +1,152 @@
+/* Local SEO landing pages: accessible, consistent typography and visible CTAs.
+   Only pages with .local-seo-page opt in. This does not change SEO text or routing. */
+.local-seo-page{
+  font-size:16px;
+  line-height:1.65;
+  word-break:keep-all;
+  overflow-wrap:break-word;
+}
+.local-seo-page .brand{font-size:17px;line-height:1.35}
+.local-seo-page .brand small{font-size:13px;color:#516b70}
+.local-seo-page .eyebrow{font-size:14px;line-height:1.45;letter-spacing:.035em}
+.local-seo-page .breadcrumbs{font-size:14px;line-height:1.5}
+.local-seo-page .breadcrumbs a{font-weight:800;text-decoration:underline;text-underline-offset:3px}
+.local-seo-page .navlinks a{
+  display:inline-flex;align-items:center;justify-content:center;
+  min-height:44px;padding:10px 14px;border:1px solid #d2e0e4;
+  border-radius:11px;background:#f3f9fc;color:#264e65;
+  font-size:15px;line-height:1.3;font-weight:850;
+}
+.local-seo-page .navlinks a.cta{
+  background:#0f587c;border-color:#0f587c;color:#fff;
+}
+.local-seo-page .hero h1{line-height:1.2;letter-spacing:-.045em}
+.local-seo-page .hero .lead{font-size:18px;line-height:1.75;color:#496268}
+.local-seo-page .actions{gap:10px}
+.local-seo-page .actions a,
+.local-seo-page .actions .btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  min-height:52px;padding:12px 20px;border-radius:13px;
+  font-size:17px;line-height:1.35;font-weight:900;
+  text-align:center;white-space:normal;text-decoration:none;
+  box-shadow:0 3px 10px rgba(11,67,93,.09);
+}
+.local-seo-page .actions .primary{
+  color:#fff;background:#0f668f;border:1px solid #0f668f;
+}
+.local-seo-page .actions .secondary{
+  color:#124d72;background:#eaf5ff;border:1px solid #a3cce9;
+}
+.local-seo-page .trust span{font-size:13px;color:#546d73;line-height:1.45}
+.local-seo-page .trust b{font-size:16px;line-height:1.45;color:#214c56}
+.local-seo-page .section h2{line-height:1.26;letter-spacing:-.035em}
+.local-seo-page .section-intro{font-size:17px;line-height:1.72;color:#506b70}
+.local-seo-page .card{display:flex;flex-direction:column;min-width:0;gap:0}
+.local-seo-page .card small{font-size:14px;line-height:1.45}
+.local-seo-page .card h3{font-size:20px;line-height:1.4}
+.local-seo-page .card p{font-size:16.5px;line-height:1.7;color:#506b70}
+.local-seo-page .card>a{
+  display:inline-flex;align-items:center;justify-content:center;
+  align-self:flex-start;max-width:100%;min-height:48px;
+  margin-top:auto;padding:12px 17px;border-radius:11px;
+  background:#0e7181;border:1px solid #0e7181;color:#fff;
+  text-align:center;text-decoration:none;font-size:16px;
+  line-height:1.4;font-weight:900;
+}
+.local-seo-page .card p+a{margin-top:18px}
+.local-seo-page .flow span{font-size:13px;line-height:1.45}
+.local-seo-page .flow b{font-size:17px;line-height:1.45}
+.local-seo-page .flow p{font-size:15.5px;line-height:1.65;color:#526c70}
+.local-seo-page .local-box strong{font-size:18px;line-height:1.45}
+.local-seo-page .local-box p{font-size:16px;line-height:1.7;color:#506b70}
+.local-seo-page .local-box>a{
+  display:flex;align-items:center;justify-content:center;
+  min-height:52px;padding:13px 20px;border-radius:13px;
+  text-decoration:none;text-align:center;
+  color:#fff;background:#0f668f;font-size:17px;font-weight:900;
+}
+.local-seo-page .faq summary{font-size:17px;line-height:1.55;padding:17px 0}
+.local-seo-page .faq p{font-size:16px;line-height:1.7;color:#526a70}
+.local-seo-page .faq details{padding:0 18px}
+.local-seo-page .final strong{font-size:21px;line-height:1.45}
+.local-seo-page .final p{font-size:15px;line-height:1.6;color:#e0eeed}
+.local-seo-page .final a{
+  display:inline-flex;align-items:center;justify-content:center;
+  min-height:52px;padding:13px 20px;border-radius:13px;
+  color:#203d45;background:#ffe08c;text-decoration:none;
+  font-size:17px;line-height:1.4;font-weight:950;text-align:center;
+}
+.local-seo-page footer{font-size:14px;line-height:1.7;color:#52666b}
+.local-seo-page :is(.actions a,.card a,.local-box>a,.final a,.navlinks a):hover{
+  filter:brightness(.94);
+}
+.local-seo-page a:focus-visible{
+  outline:3px solid #e89c2e;outline-offset:3px;
+}
+
+/* Standalone manduk guide also shares the new look. */
+.local-seo-manduk .brand{color:#fff}
+.local-seo-manduk .nav>a:last-child{
+  min-height:44px;display:inline-flex;align-items:center;justify-content:center;
+  background:rgba(255,255,255,.13);font-size:15px;
+}
+.local-seo-manduk .hero p:not(.eyebrow){font-size:18px;line-height:1.75;color:#4d636d}
+.local-seo-manduk main section.content{font-size:17px;line-height:1.75}
+.local-seo-manduk h2{line-height:1.32}
+.local-seo-manduk .card h3{font-size:20px}
+.local-seo-manduk .card p{font-size:16.5px;line-height:1.7}
+.local-seo-manduk .guide strong{font-size:19px;line-height:1.45}
+.local-seo-manduk .guide p{font-size:16.5px;line-height:1.72}
+.local-seo-manduk .note{font-size:16px;line-height:1.7}
+.local-seo-manduk .info{font-size:17px;line-height:1.7}
+.local-seo-manduk .btn{background:#0f648f;color:#fff}
+.local-seo-manduk .btn.yellow{background:#f3c959;color:#2f3338}
+.local-seo-manduk .btn.outline{background:#eaf5ff;border:1px solid #a3cce9;color:#124d72}
+.local-seo-manduk .card-route{
+  display:flex;align-items:center;gap:9px;flex-wrap:wrap;
+  margin-top:17px!important;
+}
+.local-seo-manduk .card-route a,
+.local-seo-manduk .info a[href^="tel:"],
+.local-seo-manduk .content>.wrap>p>a{
+  display:inline-flex;align-items:center;justify-content:center;
+  min-height:48px;padding:10px 14px;border-radius:11px;
+  color:#fff;background:#0e7181;font-size:16px;
+  line-height:1.45;font-weight:900;text-align:center;text-decoration:none;
+}
+.local-seo-manduk .content>.wrap>p>a{margin-top:12px}
+.local-seo-manduk .card-route a:hover,
+.local-seo-manduk .info a[href^="tel:"]:hover,
+.local-seo-manduk .content>.wrap>p>a:hover{filter:brightness(.94)}
+
+@media(max-width:760px){
+  .local-seo-page .brand{font-size:16px}
+  .local-seo-page .hero{padding-top:45px}
+  .local-seo-page .hero h1{font-size:clamp(29px,7.7vw,38px);line-height:1.24}
+  .local-seo-page .hero .lead{font-size:17px}
+  .local-seo-page .actions{gap:9px}
+  .local-seo-page .actions a{flex:1 1 190px}
+  .local-seo-page .section{padding:44px 0}
+  .local-seo-page .section h2{font-size:clamp(25px,6vw,32px)}
+  .local-seo-page .grid{gap:13px}
+  .local-seo-page .card{padding:22px}
+  .local-seo-page .card>a{align-self:stretch}
+  .local-seo-page .flow{gap:11px}
+  .local-seo-page .flow div{padding:17px}
+  .local-seo-page .trust div{padding:14px}
+  .local-seo-page .final a{width:100%;margin-top:18px}
+  .local-seo-manduk .card-route a{flex:1 1 170px}
+  .local-seo-manduk .hero p:not(.eyebrow){font-size:17px}
+}
+@media(max-width:420px){
+  .local-seo-page .actions{display:grid;grid-template-columns:1fr}
+  .local-seo-page .actions a{width:100%;min-height:52px}
+  .local-seo-page .trust{grid-template-columns:1fr 1fr}
+  .local-seo-page .trust b{font-size:15px}
+  .local-seo-page .card h3{font-size:19px}
+  .local-seo-page .navlinks a.cta{padding:10px 12px}
+  .local-seo-manduk .actions{display:grid}
+  .local-seo-manduk .actions .btn{width:100%}
+  .local-seo-manduk .nav{gap:8px}
+  .local-seo-manduk .nav>a:last-child{padding:8px 10px}
+}
