@@ -13,7 +13,7 @@
   function start(){
     if(started)return;started=true;
     Promise.allSettled([
-      load('/assets/home-recommend-api.min.js?v=20261001-1'),
+      load('/assets/home-recommend-api.min.js?v=20261009-a17-33'),
       load('/assets/ai-chat.min.js?v=20261008-pos4')
     ]);
   }
