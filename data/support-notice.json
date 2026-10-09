@@ -2,7 +2,7 @@
   "version": 1,
   "id": "c245efe6809c7f90",
   "date": "2026-10-08",
-  "checked_on": "2026-10-08",
+  "checked_on": "2026-10-09",
   "changes": [
     {
       "carrier": "KT",
@@ -38,12 +38,12 @@
       "after": 300000
     }
   ],
-  "refresh_change_count": 3,
-  "notice_total_count": 1006,
-  "support_amount_change_count": 1006,
-  "support_entry_added_count": 12516,
-  "support_entry_removed_count": 42,
-  "support_delta_count": 13564,
-  "refresh_run_id": "37766005764",
-  "checked_at": "2026-10-08T19:51:17+09:00"
+  "refresh_change_count": 0,
+  "notice_total_count": 0,
+  "support_amount_change_count": 0,
+  "support_entry_added_count": 0,
+  "support_entry_removed_count": 0,
+  "support_delta_count": 0,
+  "refresh_run_id": "37908079289",
+  "checked_at": "2026-10-09T17:58:53+09:00"
 }
