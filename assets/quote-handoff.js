@@ -39,7 +39,7 @@
 
   if (typeof location !== 'undefined' && /\/rates\.html$/.test(location.pathname)) {
     const quoteBridge = document.createElement('script');
-    quoteBridge.src = '/assets/quote-api-bridge.min.js?v=20261001-1';
+    quoteBridge.src = '/assets/quote-api-bridge.min.js?v=20261009-carrier-switch1';
     quoteBridge.async = false;
     document.head.appendChild(quoteBridge);
 

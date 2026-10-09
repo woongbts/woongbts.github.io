@@ -1,0 +1,35 @@
+const assert=require('node:assert/strict');
+const fs=require('node:fs');
+const vm=require('node:vm');
+const source=fs.readFileSync('src/rates.js','utf8');
+const helpers=source.slice(source.indexOf('function wbSameCarrierDevice'),source.indexOf('let wbCarrierDevice'));
+const context={Q:()=>[],q:p=>parseFloat(p.data)||0,p:(a,b)=>a.name.localeCompare(b.name)};
+vm.createContext(context);vm.runInContext(helpers,context);
+const devices=[{id:'lg',carrier:'LGU+',name:'스타일폴더2'},{id:'sk',carrier:'SKT',name:'스타일폴더2'},{id:'kt256',carrier:'KT',name:'갤럭시 S26 256GB'},{id:'kt512',carrier:'KT',name:'갤럭시 S26 512GB'},{id:'ktnew',carrier:'KT',name:'갤럭시 S26 256GB(NEW)'}];
+assert.equal(context.wbSameCarrierDevice(devices[0],devices,'SKT').id,'sk');
+assert.equal(context.wbSameCarrierDevice(devices[0],devices,'KT'),null);
+assert.equal(context.wbSameCarrierDevice({name:'갤럭시 S26 256GB'},devices,'KT').id,'kt256');
+assert.equal(context.wbSameCarrierDevice({name:'갤럭시 S26 256GB(NEW)'},devices,'KT').id,'ktnew');
+assert.equal(context.wbSameCarrierDevice(devices[0],[...devices,{...devices[1],id:'duplicate'}],'SKT'),null);
+const plans=[{id:'general',name:'일반',monthly_fee:33000,age_limit:'ALL'},{id:'youth',name:'청년',monthly_fee:33000,age_limit:'B_19_34'},{id:'senior',name:'시니어',monthly_fee:35000,age_limit:'O_65'}];
+assert.equal(context.wbComparableCarrierPlan({monthly_fee:33000,age_limit:'ALL'},plans).id,'general');
+assert.equal(context.wbComparableCarrierPlan({monthly_fee:33000,age_limit:'O_65'},plans).id,'senior');
+assert.equal(context.wbComparableCarrierPlan({monthly_fee:33000,age_limit:'U_12'},plans),null);
+
+(async()=>{
+ const nodes=new Map();const node=id=>{if(!nodes.has(id))nodes.set(id,{value:'',textContent:'OLD',hidden:false,addEventListener(){}});return nodes.get(id)};
+ Object.entries({'device-select':'lg','plan-select':'lg-plan','join-type':'번호이동','discount-method':'support','installment-months':'24','welfare-type':'none'}).forEach(([k,v])=>node(k).value=v);
+ const deferred=[];
+ const ctx={window:{dispatchEvent(){}},document:{readyState:'loading',addEventListener(){},getElementById:node,documentElement:{dataset:{}},body:{classList:{remove(){}}},querySelectorAll:()=>[]},CustomEvent:function(){},fetch:()=>new Promise(resolve=>deferred.push(resolve)),setTimeout,clearTimeout,console};
+ vm.createContext(ctx);vm.runInContext(fs.readFileSync('assets/quote-api-bridge.min.js','utf8'),ctx);
+ const api=ctx.window.WoongbiQuoteApi;
+ const old=api.sync();assert.equal(deferred.length,2);
+ node('device-select').value='';node('plan-select').value='';
+ await api.sync();
+ for(const id of ['monthly-total','compare-support-monthly','compare-contract-monthly','discount-amount-view','plan-discount-view','explain-monthly-total'])assert.equal(node(id).textContent,'—',id);
+ deferred.forEach(resolve=>resolve({ok:true,json:async()=>({ok:true,quote:{known:true,monthly:34399,support:206000,total24:825576}})}));
+ await old;
+ assert.equal(node('monthly-total').textContent,'—','late old quote must not overwrite empty selection');
+ assert.equal(ctx.document.documentElement.dataset.quoteApi,'idle');
+ console.log('Carrier handset variants, plan eligibility, stale comparison clearing and late-response protection passed.');
+})().catch(e=>{console.error(e);process.exit(1)});

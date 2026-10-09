@@ -60,6 +60,7 @@ jobs:
           node --check assets/internet-api-bridge.min.js
           node --check assets/internet-ui.min.js
           node --check assets/mvno-api-bridge.min.js
+          node .github/scripts/test_carrier_switch.cjs
           node .github/scripts/test_support_integrity.cjs
           node .github/scripts/test_home_recommendations.cjs
           node .github/scripts/test_home_bold_readability.cjs
