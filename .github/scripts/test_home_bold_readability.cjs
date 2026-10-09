@@ -52,4 +52,17 @@ assert.ok(actions.includes('background:#125884!important'),'catalog button fille
 assert.ok(actions.includes('color:#fff!important'),'button text remains white and readable');
 console.log('Homepage CTA links and navigation: large button styles, dynamic fallback and mobile layout PASS');
 
+const colors=fs.readFileSync('assets/home-colored-actions-20261009.css','utf8');
+const picker=fs.readFileSync('assets/quick-order.js','utf8');
+assert.ok(html.includes('home-colored-actions-20261009.css?v=20261009-b1'),'new 6-category palette loaded');
+assert.ok(html.includes('quick-order.js?v=20261009-b1'),'category state JS cache refreshed');
+assert.ok(picker.includes('root.dataset.activeCategory=category;'),'UI state exposed for context color');
+const categories=['mobile','mvno','prepaid','internet','rental','visit'];
+for(const cat of categories)assert.ok(colors.includes('[data-quick-category="'+cat+'"]'),cat+' has own palette');
+for(const purpose of ['senior','kids','value','premium'])assert.ok(colors.includes('[href*="purpose='+purpose+'"]'),purpose+' has own distinct button');
+for(const service of ['service-mvno','service-internet','service-card-rental'])assert.ok(colors.includes(service),service+' action link colors defined');
+assert.ok(colors.includes('.service-card .service-links a.main-link'),'main consultation action is filled and readable');
+assert.ok(colors.includes('.service-card .service-links a:focus-visible'),'keyboard access is visible');
+assert.ok(colors.includes('@media(max-width:760px)'),'compact colored card variants exist');
+console.log('Color categories, four phone choices and consultation action selectors PASS');
 console.log('Homepage text clarity: red-marked labels, bold typography, mobile wrap, CSS load order PASS');
