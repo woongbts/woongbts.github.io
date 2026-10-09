@@ -119,6 +119,58 @@ def replace_meta(source: str, product: dict) -> str:
     source = re.sub(r'(<meta name="twitter:image" id="product-twitter-image" content=")[^"]*(">)', lambda m: m.group(1) + html.escape(image, quote=True) + m.group(2), source, count=1)
     source = re.sub(r'<script type="application/ld\+json" id="product-jsonld">.*?</script>', '<script type="application/ld+json" id="product-jsonld">' + json.dumps(jsonld, ensure_ascii=False, separators=(",", ":")) + '</script>', source, count=1)
     source = re.sub(r"<title>.*?</title>", "<title>" + html.escape(title) + "</title>", source, count=1)
+
+    # The base HTML must identify the product even before JavaScript executes.
+    # The existing client-side renderer updates these same IDs with live policy data.
+    escaped_name = html.escape(name)
+    escaped_brand = html.escape(brand or "웅비렌탈")
+    model_text = " · ".join(
+        str(x).strip() for x in (model, product.get("color")) if str(x or "").strip()
+    )
+    raw_summary = str(
+        product.get("shortDescription") or product.get("description") or ""
+    ).strip()
+    # Keep initial copy concise and unique to the actual catalog entry.
+    summary = raw_summary[:280] if raw_summary else (
+        f"{brand} {name} 렌탈 상품입니다. 계약기간과 관리방식에 따른 조건을 비교할 수 있습니다."
+    )
+    price_facts = []
+    if minimum is not None:
+        price_facts.append(f"월 렌탈료 {minimum:,}원부터")
+    if maximum_gift is not None:
+        price_facts.append(f"고객사은품 최대 {maximum_gift:,}원")
+    if price_facts:
+        summary += " " + " · ".join(price_facts) + (
+            ". 금액과 혜택은 동일 옵션 기준이 아닐 수 있으며 "
+            "신청 전 선택 조건별 최신 정책을 확인합니다."
+        )
+    tags = product.get("tags") if isinstance(product.get("tags"), list) else []
+    highlights = product.get("highlights")
+    highlights = highlights if isinstance(highlights, list) else tags
+    highlights_html = "".join(
+        f"<span>{html.escape(str(value))}</span>"
+        for value in highlights[:8] if str(value or "").strip()
+    )
+
+    initial_values = (
+        ('<b id="breadcrumb-model">상품 상세</b>',
+         f'<b id="breadcrumb-model">{html.escape(model or name)}</b>'),
+        ('<span class="brand-label" id="generic-brand">WOONGBI RENTAL</span>',
+         f'<span class="brand-label" id="generic-brand">{escaped_brand}</span>'),
+        ('<h1 id="generic-title">상품 정보를 불러오는 중입니다.</h1>',
+         f'<h1 id="generic-title">{escaped_name}</h1>'),
+        ('<p class="model" id="generic-model"></p>',
+         f'<p class="model" id="generic-model">{html.escape(model_text)}</p>'),
+        ('<p id="generic-description" class="generic-product-description"></p>',
+         f'<p id="generic-description" class="generic-product-description">{html.escape(summary)}</p>'),
+        ('<div id="generic-highlights" class="generic-highlight-list" aria-label="핵심 특징"></div>',
+         f'<div id="generic-highlights" class="generic-highlight-list" aria-label="핵심 특징">{highlights_html}</div>'),
+    )
+    for before, after in initial_values:
+        if source.count(before) != 1:
+            raise ValueError(f"Missing or duplicated product template anchor: {before}")
+        source = source.replace(before, after, 1)
+
     return source
 
 
