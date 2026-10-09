@@ -67,6 +67,7 @@
   function selectCategory(category,focus=false){
     const entry=options[category];
     if(!entry)return;
+    root.dataset.activeCategory=category;
     buttons.forEach(link=>{
       const selected=link.dataset.quickCategory===category;
       link.classList.toggle('is-active',selected);
