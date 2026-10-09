@@ -14,4 +14,11 @@
  .support-notice .support-notice-summary-amount{font-size:16px}
 }
 /* Keep the popup's calculator action a little farther from the right edge. */
-@media(max-width:480px){.support-notice-actions a[href="/rates.html"]{margin-right:12px}}
+/* Pull the calculator action farther inward on narrow popup screens. */
+.support-notice-actions a[href="/rates.html"]{margin-right:24px}
+@media(max-width:480px){
+  .support-notice-actions a[href="/rates.html"]{margin-right:34px}
+}
+@media(max-width:350px){
+  .support-notice-actions a[href="/rates.html"]{margin-right:20px}
+}
