@@ -103,12 +103,15 @@
       if(!wanted.some(x=>x.carrier===card.dataset.seniorA17Pin))card.remove();
     });
     // Keep the original server recommendations intact, only ensure A17 precedes them.
-    let next=results.firstChild;
-    for(let i=wanted.length-1;i>=0;i--){
-      const item=wanted[i];
-      let card=results.querySelector('[data-senior-a17-pin="'+item.carrier+'"]');
-      if(!card){card=createCard(item);results.insertBefore(card,results.firstChild);}
-      else if(card!==results.firstChild)results.insertBefore(card,results.firstChild);
+    const alreadyFirst=wanted.every((item,i)=>results.children[i]?.dataset.seniorA17Pin===item.carrier);
+    if(!alreadyFirst){
+      // Reorder only when needed; otherwise the childList observer would repeat forever.
+      for(let i=wanted.length-1;i>=0;i--){
+        const item=wanted[i];
+        let card=results.querySelector('[data-senior-a17-pin="'+item.carrier+'"]');
+        if(!card)card=createCard(item);
+        results.insertBefore(card,results.firstChild);
+      }
     }
     const loading=[...results.children].filter(node=>node.tagName==='P'&&/추천 조건을 불러오는 중/.test(node.textContent||''));
     if(wanted.length)loading.forEach(node=>node.remove());
