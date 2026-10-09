@@ -40,6 +40,7 @@ jobs:
           node --check rental/assets/ai-recommend.js
           node .github/scripts/test_rental_ai_priority.cjs
           node .github/scripts/test_rental_readability.cjs
+          node .github/scripts/test_rental_action_clarity.cjs
           node --check assets/rates-easy-journey.js
           node .github/scripts/test_phone_easy_ux.cjs
           node .github/scripts/test_quick_order.cjs
