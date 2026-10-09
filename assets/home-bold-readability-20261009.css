@@ -1,0 +1,306 @@
+/* Wooongbi Telecom 2026-10-09: Bold, senior-readable homepage copy.
+   Scoped strictly to the telecom homepage, without changing prices,
+   navigation, or the detailed calculator. No external font downloads. */
+
+body.home-modern{
+  font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",system-ui,sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* 01. EASY PICK: labels, six category captions, four phone choices. */
+body.home-modern .home-order-heading .home-order-kicker{
+  font-size:15px!important;font-weight:900!important;
+  letter-spacing:.025em;line-height:1.5;color:#086b62!important;
+}
+body.home-modern .home-order-heading>div>p{
+  font-size:17px!important;font-weight:750!important;line-height:1.7!important;
+  color:#344f55!important;
+}
+body.home-modern .home-order-detail-link{
+  min-height:50px;font-size:17px!important;font-weight:850!important;
+  color:#164a4e!important;
+}
+body.home-modern .home-order-progress li{
+  font-size:15px!important;font-weight:850!important;line-height:1.5!important;
+  color:#2d6061;
+}
+body.home-modern .home-order-category{
+  min-width:0;min-height:112px;padding:16px 15px;
+  grid-template-columns:auto minmax(0,1fr);
+}
+body.home-modern .home-order-category b{
+  font-size:18px!important;font-weight:850!important;
+  line-height:1.35;overflow-wrap:break-word;
+}
+body.home-modern .home-order-category small{
+  min-width:0;font-size:16px!important;font-weight:750!important;
+  line-height:1.55!important;color:#395b5f!important;
+  word-break:keep-all;overflow-wrap:anywhere;
+}
+body.home-modern .home-order-choice{
+  min-width:0;
+}
+body.home-modern .home-order-choice-heading h3{
+  font-size:22px!important;font-weight:850!important;line-height:1.4;
+}
+body.home-modern .home-order-choice-heading small{
+  font-size:16px!important;font-weight:750!important;
+  color:#3e6365!important;line-height:1.6!important;
+}
+body.home-modern .home-order-option{
+  min-width:0;min-height:88px;padding:16px;
+}
+body.home-modern .home-order-option span:first-child{min-width:0}
+body.home-modern .home-order-option strong{
+  font-size:18px!important;font-weight:850!important;line-height:1.45!important;
+}
+body.home-modern .home-order-option small{
+  font-size:16px!important;font-weight:750!important;
+  color:#3c5f62!important;line-height:1.55!important;
+}
+body.home-modern .home-order-disclaimer{
+  font-size:15.5px!important;font-weight:700!important;
+  color:#405d60!important;line-height:1.75!important;
+}
+body.home-modern .home-order-bottom,
+body.home-modern .home-order-bottom span{
+  font-size:16px!important;font-weight:750!important;color:#355b5d!important;
+  line-height:1.65!important;
+}
+body.home-modern .home-order-bottom a{font-size:16px!important;font-weight:850!important}
+
+/* 02. Store history and eligibility rail. */
+body.home-modern .hero-kicker{
+  font-size:15px!important;font-weight:850!important;line-height:1.5!important;
+}
+body.home-modern .hero .intro{
+  font-size:18px!important;font-weight:750!important;line-height:1.75!important;
+  color:#365b60!important;
+}
+body.home-modern .hero-microcopy{
+  font-size:16px!important;font-weight:800!important;line-height:1.65!important;
+  color:#35585e!important;
+}
+body.home-modern .home-trust-rail>div,
+body.home-modern .home-trust-rail>.precon-badge{
+  min-width:0;min-height:105px;
+}
+body.home-modern .home-trust-rail span{
+  font-size:15px!important;font-weight:800!important;line-height:1.5!important;
+  color:#365d60!important;
+}
+body.home-modern .home-trust-rail small,
+body.home-modern .home-trust-rail .precon-badge small{
+  font-size:15px!important;font-weight:750!important;
+  line-height:1.5!important;color:#44696c!important;
+}
+body.home-modern .home-trust-rail strong{
+  font-size:19px!important;font-weight:900!important;line-height:1.4!important;
+}
+body.home-modern .home-trust-rail .precon-badge b{
+  font-size:17px!important;font-weight:850!important;line-height:1.4!important;
+}
+
+/* 03. Dynamically generated starter recommendations and calculator shortcut. */
+body.home-modern #woongbi-storefront-deals .eyebrow{
+  font-size:16px!important;font-weight:900!important;
+}
+body.home-modern #woongbi-storefront-deals .storefront-head>div>p:not(.eyebrow){
+  font-size:17px!important;font-weight:750!important;
+  line-height:1.75!important;color:#375c60!important;
+}
+body.home-modern #woongbi-storefront-deals .storefront-all{
+  min-height:47px;font-size:17px!important;font-weight:850!important;
+  line-height:1.5!important;
+}
+body.home-modern #woongbi-storefront-deals .deal-note{
+  font-size:16px!important;font-weight:750!important;
+  line-height:1.75!important;color:#345b60!important;
+}
+body.home-modern #woongbi-storefront-deals .deal-note strong{
+  font-size:17px!important;font-weight:900!important;
+}
+body.home-modern #woongbi-storefront-deals .deal-carrier,
+body.home-modern #woongbi-storefront-deals .deal-plan,
+body.home-modern #woongbi-storefront-deals .deal-fit,
+body.home-modern #woongbi-storefront-deals .deal-price small{
+  font-size:15px!important;font-weight:750!important;
+  line-height:1.6!important;color:#3b5a60!important;
+}
+body.home-modern #woongbi-storefront-deals .deal-link{
+  font-size:16px!important;font-weight:850!important;
+}
+body.home-modern .rate-calculator-cta p,
+body.home-modern .rate-calculator-cta small{
+  font-size:16px!important;font-weight:750!important;line-height:1.7!important;
+}
+body.home-modern .rate-calculator-cta a{
+  font-size:16px!important;font-weight:850!important;
+}
+
+/* 04. Common questions and featured consultation cards. */
+body.home-modern .section-heading>p{
+  font-size:17px!important;font-weight:750!important;
+  line-height:1.8!important;color:#365b61!important;
+}
+body.home-modern .service-task-grid .service-code{
+  font-size:15px!important;font-weight:850!important;
+  line-height:1.4!important;
+}
+body.home-modern .service-card>p{
+  font-size:17px!important;font-weight:750!important;
+  line-height:1.75!important;color:#375a5e!important;
+}
+body.home-modern .service-links a{
+  min-height:32px;font-size:16px!important;font-weight:800!important;
+  line-height:1.5!important;
+}
+body.home-modern .service-links .main-link{
+  font-size:17px!important;font-weight:900!important;
+}
+body.home-modern .service-local-links span{
+  font-size:15px!important;font-weight:850!important;
+}
+body.home-modern .service-local-links a{
+  font-size:15px!important;font-weight:800!important;
+}
+
+/* 05. Business mission and advice from the store owner. */
+body.home-modern .owner-note>span{
+  font-size:16px!important;font-weight:900!important;
+  line-height:1.5!important;color:#205c60!important;
+}
+body.home-modern .owner-note blockquote{
+  font-size:clamp(19px,2vw,23px)!important;
+  font-weight:850!important;line-height:1.6!important;
+  color:#1a454b!important;
+}
+body.home-modern .owner-note>p{
+  font-size:17px!important;font-weight:750!important;
+  line-height:1.8!important;color:#365b60!important;
+}
+body.home-modern .fact h3{
+  font-size:19px!important;font-weight:850!important;
+}
+body.home-modern .fact p{
+  font-size:16px!important;font-weight:750!important;
+  line-height:1.7!important;color:#3e5e63!important;
+}
+
+/* 06. Three principles on deep-green background. */
+body.home-modern .principles .eyebrow{
+  font-size:16px!important;font-weight:900!important;
+  color:#9be1d4!important;
+}
+body.home-modern .principle{min-width:0;min-height:210px;padding:24px}
+body.home-modern .principle-num{
+  font-size:16px!important;font-weight:900!important;
+  color:#a0e3d6!important;line-height:1.5!important;
+}
+body.home-modern .principle h3{
+  font-size:20px!important;font-weight:850!important;
+  line-height:1.5!important;color:#fff!important;
+}
+body.home-modern .principle p{
+  font-size:17px!important;font-weight:750!important;
+  line-height:1.75!important;color:#e0f2ef!important;
+}
+
+/* 07. Location, hours and visit information. */
+body.home-modern #location .eyebrow{
+  font-size:16px!important;font-weight:900!important;
+}
+body.home-modern #location .section-note{
+  font-size:17px!important;font-weight:750!important;
+  color:#375b60!important;line-height:1.75!important;
+}
+body.home-modern #location .visit-guide strong{
+  font-size:18px!important;font-weight:900!important;
+}
+body.home-modern #location .visit-guide p{
+  font-size:16px!important;font-weight:750!important;
+  line-height:1.7!important;color:#355a5f!important;
+}
+body.home-modern #location .visit-guide a{
+  font-size:16px!important;font-weight:850!important;
+}
+body.home-modern #location .access-badge{
+  font-size:16px!important;font-weight:850!important;line-height:1.5!important;
+}
+body.home-modern #location .details dt{
+  font-size:16px!important;font-weight:850!important;
+  color:#385e62!important;
+}
+body.home-modern #location .details dd,
+body.home-modern #location .details dd a,
+body.home-modern #location .details #address{
+  font-size:18px!important;font-weight:850!important;
+  line-height:1.65!important;color:#214b50!important;
+  overflow-wrap:anywhere;
+}
+body.home-modern #location .details .closed{
+  font-size:16px!important;font-weight:800!important;
+}
+body.home-modern #location .address-button{
+  font-size:16px!important;font-weight:850!important;min-height:46px;
+}
+
+/* Dense screens: preserve two-column phone options and make category cards grow. */
+@media(max-width:900px){
+  body.home-modern .home-trust-rail{grid-template-columns:repeat(2,minmax(0,1fr))}
+  body.home-modern .home-trust-rail>div,
+  body.home-modern .home-trust-rail>.precon-badge{
+    padding:15px!important;min-height:97px;
+  }
+  body.home-modern .service-card{min-height:290px}
+  body.home-modern .principle{min-height:unset}
+}
+@media(max-width:600px){
+  body.home-modern .home-order-heading .home-order-kicker{font-size:14px!important}
+  body.home-modern .home-order-heading>div>p{font-size:15.5px!important}
+  body.home-modern .home-order-progress{flex-wrap:wrap;gap:5px 8px}
+  body.home-modern .home-order-progress li{font-size:13px!important}
+  body.home-modern .home-order-detail-link{font-size:16px!important}
+  body.home-modern .home-order-category{
+    min-height:120px;padding:13px 11px;
+    grid-template-columns:36px minmax(0,1fr);gap:5px 8px;
+  }
+  body.home-modern .home-order-category b{font-size:16px!important}
+  body.home-modern .home-order-category small{
+    font-size:14.5px!important;line-height:1.5!important;
+  }
+  body.home-modern .home-order-choice-heading h3{font-size:19px!important}
+  body.home-modern .home-order-choice-heading small{font-size:15px!important}
+  body.home-modern .home-order-option{min-height:81px;padding:14px}
+  body.home-modern .home-order-option strong{font-size:17px!important}
+  body.home-modern .home-order-option small{font-size:15px!important}
+  body.home-modern .home-order-disclaimer{font-size:14.5px!important}
+  body.home-modern .home-order-bottom span{font-size:15px!important}
+  body.home-modern .hero .intro{font-size:16px!important;line-height:1.7!important}
+  body.home-modern .hero-microcopy{font-size:15.5px!important}
+  body.home-modern .home-trust-rail span,
+  body.home-modern .home-trust-rail small,
+  body.home-modern .home-trust-rail .precon-badge small{font-size:14px!important}
+  body.home-modern .home-trust-rail strong{font-size:17px!important}
+  body.home-modern .home-trust-rail .precon-badge b{font-size:15px!important}
+  body.home-modern .section-heading>p{font-size:16px!important}
+  body.home-modern .service-card>p{font-size:16px!important}
+  body.home-modern .service-links a{font-size:15px!important}
+  body.home-modern #woongbi-storefront-deals .storefront-head>div>p:not(.eyebrow){font-size:16px!important}
+  body.home-modern #woongbi-storefront-deals .deal-note{font-size:15px!important}
+  body.home-modern .owner-note>p{font-size:16px!important}
+  body.home-modern .owner-note blockquote{font-size:19px!important}
+  body.home-modern .principles .eyebrow{font-size:15px!important}
+  body.home-modern .principle h3{font-size:19px!important}
+  body.home-modern .principle p{font-size:16px!important}
+  body.home-modern #location .section-note{font-size:16px!important}
+  body.home-modern #location .details dd,
+  body.home-modern #location .details dd a,
+  body.home-modern #location .details #address{font-size:17px!important}
+}
+@media(max-width:360px){
+  body.home-modern .home-order-category{grid-template-columns:1fr;padding:13px;min-height:134px}
+  body.home-modern .home-order-category .home-order-glyph{grid-row:auto}
+  body.home-modern .home-order-category b,
+  body.home-modern .home-order-category small{grid-column:1}
+}
