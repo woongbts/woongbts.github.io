@@ -73,6 +73,17 @@ function assert(condition, message) {
   const recommendCardWidth = await page.locator('.recommend-card').first().evaluate(el => el.getBoundingClientRect().width);
   const recommendGridWidth = await page.locator('#recommend-grid').evaluate(el => el.getBoundingClientRect().width);
   assert(recommendCardWidth >= recommendGridWidth * 0.85, '모바일 추천상품 카드가 한 장 중심으로 보이지 않습니다.');
+  const coloredActions = await page.evaluate(() => {
+    const recommended=document.querySelector('.recommend-card .recommend-link');
+    const compare=document.querySelector('.recommend-card .compare-toggle.small');
+    const category=document.querySelector('.appliance-grid .appliance-category');
+    const note=document.querySelector('.appliance-grid .appliance-category small');
+    const pick=el=>el && ({height:el.getBoundingClientRect().height,background:getComputedStyle(el).backgroundColor,fontSize:parseFloat(getComputedStyle(el).fontSize),fontWeight:parseInt(getComputedStyle(el).fontWeight,10)});
+    return {recommended:pick(recommended),compare:pick(compare),category:pick(category),note:pick(note)};
+  });
+  assert(coloredActions.recommended?.height>=44 && coloredActions.recommended.background!=='rgba(0, 0, 0, 0)', '추천상품 조건 보기 버튼의 색상/터치 영역이 부족합니다.');
+  assert(coloredActions.compare?.height>=44, '추천상품 비교담기 버튼이 작습니다.');
+  assert(coloredActions.category?.height>=140 && coloredActions.note?.fontSize>=13.9, '11개 렌탈 카테고리 설명을 충분히 키우지 못했습니다.');
 
 
   // AI 추천: 필수조건, 정책 기준, 비교담기, 카카오 상담, 신청 링크를 모바일에서 검증합니다.
@@ -247,6 +258,27 @@ function assert(condition, message) {
   assert(await page.locator('#product-faq details').count() >= 6, '상품 FAQ가 충분히 표시되지 않습니다.');
   const faqText = await page.locator('#product-faq').textContent();
   assert(faqText.includes('설치비는 면제') && faqText.includes('제휴카드는 꼭'), 'FAQ에 설치비 면제/제휴카드 안내가 없습니다.');
+  const typography = await page.evaluate(() => {
+    const data={};
+    for (const [key,query] of Object.entries({
+      faq:'.product-faq-list summary',faqAnswer:'.product-faq-list p',
+      contract:'.contract-key-grid span',cardNote:'#card-fee-note',
+      installation:'.installation-quick-note span',
+      alternate:'.product-alternative-card>div>a',
+      telecom:'.rental-cross-sell-box a'
+    })) {
+      const el=document.querySelector(query);
+      if(!el) continue;
+      const style=getComputedStyle(el);
+      data[key]={size:parseFloat(style.fontSize),weight:parseInt(style.fontWeight,10),height:el.getBoundingClientRect().height,background:style.backgroundColor};
+    }
+    return data;
+  });
+  assert(typography.faq?.size>=15.9 && typography.faqAnswer?.size>=14.9, 'FAQ 질문과 답변이 아직 너무 작습니다.');
+  assert(typography.contract?.size>=13.4 && typography.installation?.size>=14.9, '계약/설치 안내문 가독성이 부족합니다.');
+  assert(typography.cardNote?.size>=13.5, '제휴카드 할인 조건이 아직 너무 작습니다.');
+  assert(typography.alternate?.height>=44 && typography.alternate.background!=='rgba(0, 0, 0, 0)', '다른 상품 조건 비교 버튼에 색상이 없습니다.');
+  assert(typography.telecom?.height>=44 && typography.telecom.background!=='rgba(0, 0, 0, 0)', '웅비통신 계산기 이동 버튼이 작습니다.');
   assert(await page.locator('.product-extra-details:not([open])').count() === 1, '부가정보가 기본 접힘 상태가 아닙니다.');
   const contractText = await page.locator('.contract-key-box').textContent();
   assert(contractText.includes('계약기간') && contractText.includes('의무사용기간') && contractText.includes('소유권 이전') && contractText.includes('설치비') && contractText.includes('면제'), '계약 핵심조건 요약이 부족합니다.');
