@@ -10,23 +10,25 @@ body.home-modern #woongbi-storefront-deals .deal-grid a.storefront-fallback-link
   width:max-content;max-width:100%;
   min-height:54px!important;
   padding:12px 22px!important;
-  border:2px solid #0f766e!important;
+  border:2px solid #0d766a!important;
   border-radius:13px!important;
-  background:#fff!important;
-  color:#0b625e!important;
+  background:#0d766a!important;
+  color:#fff!important;
   font-size:18px!important;
   font-weight:850!important;
   line-height:1.45!important;
   text-decoration:none!important;
   text-align:center;
   word-break:keep-all;
-  box-shadow:0 4px 12px rgba(15,118,110,.06);
+  box-shadow:0 6px 16px rgba(13,118,106,.2);
   transition:background .15s,border-color .15s,box-shadow .15s;
 }
 body.home-modern #woongbi-storefront-deals .storefront-head .storefront-all:hover,
 body.home-modern #woongbi-storefront-deals .deal-grid a.storefront-fallback-link:hover{
-  background:#eaf7f3!important;
-  box-shadow:0 6px 18px rgba(15,118,110,.13);
+  background:#075c53!important;
+  border-color:#075c53!important;
+  color:#fff!important;
+  box-shadow:0 8px 22px rgba(7,92,83,.26);
 }
 body.home-modern #woongbi-storefront-deals .storefront-head .storefront-all:focus-visible,
 body.home-modern #woongbi-storefront-deals .deal-grid a.storefront-fallback-link:focus-visible{
@@ -149,4 +151,18 @@ body.home-modern .top .menu a:focus-visible{
 @media(prefers-reduced-motion:reduce){
   body.home-modern #woongbi-storefront-deals a,
   body.home-modern .top .menu a{transition:none}
+}
+
+/* The full-price catalog action is secondary yet distinct: deep blue. */
+body.home-modern #woongbi-storefront-deals .storefront-head .storefront-all{
+  background:#125884!important;
+  border-color:#125884!important;
+  color:#fff!important;
+  box-shadow:0 6px 16px rgba(18,88,132,.22);
+}
+body.home-modern #woongbi-storefront-deals .storefront-head .storefront-all:hover{
+  background:#0a4267!important;
+  border-color:#0a4267!important;
+  color:#fff!important;
+  box-shadow:0 8px 22px rgba(10,66,103,.28);
 }
