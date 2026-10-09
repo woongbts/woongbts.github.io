@@ -1,1 +1,255 @@
 .card-hero{padding:56px 0 42px;background:linear-gradient(135deg,#edf8ff,#f0faf7 58%,#fff)}.card-hero h1{margin:7px 0 0;font-size:2.15rem;line-height:1.18;letter-spacing:-.05em}.card-hero h1 em{font-style:normal;color:#168fd1}.card-hero p{max-width:760px;margin:14px 0 0;color:#687d7f;font-size:.87rem;line-height:1.7}.card-hero-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:20px}.card-hero-actions a,.card-hero-actions button{min-height:44px;display:inline-flex;align-items:center;justify-content:center;padding:9px 14px;border-radius:11px;background:#173f42;color:#fff;text-decoration:none;font:inherit;font-size:.76rem;font-weight:950;border:0;cursor:pointer}.card-hero-actions a{background:#fff;color:#3d6265;border:1px solid #cddedb}.card-provider-tabs{display:flex;gap:7px;flex-wrap:wrap;margin:20px 0 16px}.card-provider-tabs button{min-height:39px;padding:8px 11px;border:1px solid #d4e1df;border-radius:999px;background:#fff;color:#49686a;font:inherit;font-size:.7rem;font-weight:900;cursor:pointer}.card-provider-tabs button.active{border-color:#0f766e;background:#0f766e;color:#fff}.card-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.affiliate-card{display:flex;flex-direction:column;padding:17px;border:1px solid #d9e6e3;border-radius:17px;background:#fff;box-shadow:0 8px 24px rgba(21,55,59,.04)}.affiliate-card>small{color:#168fd1;font-size:.63rem;font-weight:950}.affiliate-card h3{margin:4px 0 0;font-size:1rem;letter-spacing:-.025em}.affiliate-card .annual{margin:5px 0 0;color:#829293;font-size:.65rem}.affiliate-card .promo{display:inline-flex;align-self:flex-start;margin-top:7px;padding:4px 7px;border-radius:999px;background:#fff4e5;color:#946019;font-size:.6rem;font-weight:900}.card-tiers{display:grid;gap:5px;margin-top:13px}.card-tier{display:flex;justify-content:space-between;gap:9px;padding:9px 10px;border-radius:10px;background:#f5f9f8}.card-tier span{color:#718486;font-size:.65rem}.card-tier strong{font-size:.72rem}.card-max{margin-top:12px;padding:11px;border-radius:11px;background:#eef8f6;color:#0f766e;font-size:.72rem;font-weight:950}.card-notice{margin-top:18px;padding:16px;border:1px solid #ecd8b5;border-radius:15px;background:#fff9ee}.card-notice strong{color:#775522;font-size:.78rem}.card-notice p{margin:5px 0 0;color:#806e52;font-size:.67rem;line-height:1.55}@media(max-width:850px){.card-grid{grid-template-columns:1fr 1fr}}@media(max-width:560px){.card-hero{padding:40px 0 30px}.card-hero h1{font-size:1.65rem}.card-grid{grid-template-columns:1fr}}.card-detail{margin-top:10px;border-top:1px solid #e7efed;padding-top:9px}.card-detail summary{cursor:pointer;color:#355f61;font-size:.68rem;font-weight:950}.card-detail p{margin:7px 0 0;color:#748789;font-size:.62rem;line-height:1.5}.card-detail dl{display:grid;grid-template-columns:65px 1fr;gap:7px;margin:7px 0;padding:8px;border-radius:9px;background:#f6f9f8}.card-detail dt{color:#7d8d8e;font-size:.59rem;font-weight:900}.card-detail dd{margin:0;color:#4e696b;font-size:.61rem;line-height:1.5}.card-detail ul{margin:8px 0 0;padding-left:17px;color:#667b7d;font-size:.61rem;line-height:1.5}.promo-detail{padding:10px;border:1px solid #efd9b1;border-radius:11px;background:#fff8ea}.promo-detail summary{color:#8d5e1c}.card-verified{color:#8b999a!important;font-size:.57rem!important}
+
+
+/* 2026-10-09: readable affiliate-card comparison, with clear savings hierarchy */
+/* Card savings can only be compared against the relevant rental contract:
+   these are bill discounts, not guaranteed product-specific final fees. */
+.card-hero{padding:63px 0 49px}
+.card-hero p.eyebrow{
+  font-size:15px!important;font-weight:950!important;
+  color:#066d65!important;line-height:1.5;
+}
+.card-hero h1{
+  max-width:980px;
+  font-size:clamp(31px,3.8vw,50px)!important;
+  font-weight:900!important;
+  letter-spacing:-.045em;line-height:1.23!important;
+}
+.card-hero h1 em{color:#087970!important;font-weight:950}
+.card-hero .wrap>p:not(.eyebrow){
+  max-width:900px;
+  font-size:17px!important;
+  font-weight:750!important;
+  color:#3e6266!important;
+  line-height:1.8!important;
+}
+.card-hero-actions{gap:12px;margin-top:26px}
+.card-hero-actions a,.card-hero-actions button{
+  min-height:53px!important;
+  padding:12px 21px!important;
+  border-radius:13px!important;
+  border:2px solid #155f68!important;
+  background:#155f68!important;color:#fff!important;
+  font-size:17px!important;font-weight:900!important;
+  line-height:1.4!important;
+  word-break:keep-all;
+}
+.card-hero-actions a{
+  background:#fff!important;color:#18596a!important;
+  border-color:#9cc7cb!important;
+}
+.card-hero-actions a:hover,.card-hero-actions button:hover{filter:brightness(.93)}
+.section-title-row h2{font-weight:900!important;line-height:1.3}
+.section-title-row #cards-updated{
+  max-width:630px;
+  font-size:15px!important;
+  font-weight:750!important;
+  line-height:1.65!important;
+  color:#496568!important;
+}
+.card-provider-tabs{gap:9px;margin:22px 0 22px}
+.card-provider-tabs button{
+  min-height:49px!important;
+  padding:11px 16px!important;
+  border:2px solid #bdcfcd!important;
+  background:#f7fbfa!important;
+  color:#254e53!important;
+  font-size:16px!important;
+  font-weight:900!important;
+  line-height:1.3!important;
+  white-space:normal;
+}
+.card-provider-tabs button.active{
+  background:#0c746c!important;
+  border-color:#0c746c!important;
+  color:#fff!important;
+  box-shadow:0 5px 13px rgba(12,116,108,.15);
+}
+.card-provider-tabs button:not(.active):hover{background:#e9f5f2!important}
+.card-hero-actions a:focus-visible,
+.card-hero-actions button:focus-visible,
+.card-provider-tabs button:focus-visible,
+.card-detail summary:focus-visible{
+  outline:3px solid #e3a52c!important;
+  outline-offset:3px!important;
+}
+.card-grid{gap:17px}
+.affiliate-card{
+  padding:22px;
+  border:2px solid #d1e2df!important;
+  border-radius:19px;
+  min-width:0;
+  box-shadow:0 11px 25px rgba(21,55,59,.06);
+}
+.affiliate-card>small{
+  color:#0a7278!important;
+  font-size:14px!important;
+  line-height:1.45!important;
+  font-weight:900!important;
+}
+.affiliate-card h3{
+  margin-top:7px!important;
+  font-size:20px!important;
+  line-height:1.4!important;
+  color:#173c43!important;
+  font-weight:950!important;
+  overflow-wrap:anywhere;
+  word-break:keep-all;
+}
+.affiliate-card .annual{
+  margin-top:9px!important;
+  font-size:14px!important;
+  line-height:1.6!important;
+  font-weight:750!important;
+  color:#50696c!important;
+}
+.affiliate-card .promo{
+  margin-top:11px;
+  padding:7px 10px;
+  font-size:14px!important;
+  line-height:1.4!important;
+  font-weight:900!important;
+  color:#785116!important;
+  background:#ffedcb;
+}
+.affiliate-card .card-tiers{gap:9px;margin-top:17px}
+.affiliate-card .card-tier{
+  display:flex;
+  align-items:center;
+  min-width:0;
+  gap:9px;
+  padding:13px 14px!important;
+  background:#f1f7f5!important;
+  border:1px solid #e0eeea;
+  border-radius:12px;
+}
+.affiliate-card .card-tier span{
+  font-size:15px!important;
+  font-weight:800!important;
+  line-height:1.55!important;
+  color:#3c6265!important;
+  overflow-wrap:anywhere;
+}
+.affiliate-card .card-tier strong{
+  flex:0 0 auto;
+  font-size:17px!important;
+  font-weight:950!important;
+  line-height:1.4!important;
+  color:#086d65!important;
+  text-align:right;
+}
+.affiliate-card .card-max{
+  margin-top:16px;
+  padding:16px 14px!important;
+  border:2px solid #b2dbd3!important;
+  border-radius:14px;
+  background:#e3f6ef!important;
+  color:#076354!important;
+  font-size:19px!important;
+  font-weight:950!important;
+  line-height:1.5!important;
+  text-align:center;
+  word-break:keep-all;
+}
+.affiliate-card .card-detail{
+  margin-top:16px;
+  padding-top:14px;
+  border-color:#d4e5e1!important;
+}
+.affiliate-card .card-detail summary{
+  min-height:46px;
+  display:flex;
+  align-items:center;
+  color:#1c5259!important;
+  font-size:16px!important;
+  font-weight:900!important;
+  line-height:1.5!important;
+}
+.affiliate-card .card-detail p,
+.affiliate-card .card-detail dd,
+.affiliate-card .card-detail li{
+  color:#415e63!important;
+  font-size:15px!important;
+  font-weight:750!important;
+  line-height:1.7!important;
+  overflow-wrap:anywhere;
+}
+.affiliate-card .card-detail dt{
+  color:#28565c!important;
+  font-size:14px!important;
+  font-weight:900!important;
+  line-height:1.6!important;
+}
+.affiliate-card .card-detail dl{
+  grid-template-columns:85px minmax(0,1fr);
+  gap:10px 12px;
+  padding:12px;
+}
+.affiliate-card .card-detail .card-verified{
+  font-size:14px!important;
+  font-weight:800!important;
+  color:#547073!important;
+}
+.affiliate-card .promo-detail{
+  padding:13px;
+  background:#fffbf1!important;
+}
+.affiliate-card .promo-detail summary{color:#80540e!important}
+.card-notice{
+  margin-top:24px;
+  padding:23px;
+  border:2px solid #e7ce9d!important;
+  border-radius:16px;
+  background:#fffaed!important;
+}
+.card-notice strong{
+  color:#664710!important;
+  font-size:19px!important;
+  font-weight:950!important;
+}
+.card-notice p{
+  margin-top:10px;
+  color:#644f2e!important;
+  font-size:16px!important;
+  font-weight:750!important;
+  line-height:1.75!important;
+}
+.footer-note{
+  font-size:14px!important;
+  font-weight:700!important;
+  line-height:1.7!important;
+  color:#d5e7e3!important;
+}
+@media(max-width:980px){
+  .affiliate-card{padding:18px}
+  .affiliate-card h3{font-size:19px!important}
+  .affiliate-card .card-tier{padding:11px!important}
+  .affiliate-card .card-tier strong{font-size:16px!important}
+  .affiliate-card .card-max{font-size:17px!important}
+}
+@media(max-width:560px){
+  .card-hero{padding:42px 0 36px}
+  .card-hero h1{font-size:clamp(28px,8vw,36px)!important;line-height:1.28!important}
+  .card-hero .wrap>p:not(.eyebrow){font-size:16px!important;line-height:1.7!important}
+  .card-hero-actions a,.card-hero-actions button{min-height:50px!important;font-size:16px!important}
+  .section-title-row{flex-direction:column;align-items:flex-start;gap:10px}
+  .section-title-row #cards-updated{font-size:14px!important}
+  .card-provider-tabs button{min-height:45px!important;font-size:15px!important;padding:10px 13px!important}
+  .affiliate-card{padding:18px}
+  .affiliate-card h3{font-size:19px!important}
+  .affiliate-card .card-tier{flex-wrap:wrap;align-items:baseline;gap:5px 10px}
+  .affiliate-card .card-tier span{font-size:15px!important}
+  .affiliate-card .card-tier strong{font-size:17px!important}
+  .affiliate-card .card-max{font-size:18px!important}
+  .affiliate-card .card-detail summary{font-size:16px!important}
+  .affiliate-card .card-detail p,
+  .affiliate-card .card-detail dd,
+  .affiliate-card .card-detail li{font-size:15px!important}
+  .card-notice{padding:18px}
+  .card-notice p{font-size:15px!important}
+}
+@media(max-width:350px){
+  .affiliate-card .card-tier strong{flex:1 1 100%;text-align:left}
+  .card-hero-actions a,.card-hero-actions button{flex:1 1 100%}
+}
+
