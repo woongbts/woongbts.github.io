@@ -1,0 +1,46 @@
+/* Senior smartphone: first-party A17 priority cards. Other calculator views unaffected. */
+#purpose-results .purpose-a17-priority{
+  display:flex;flex-direction:column;gap:10px;min-width:0;margin:10px 0;
+  padding:20px;border:1.5px solid #b5d8d2;border-radius:18px;background:#fff;
+  box-shadow:0 8px 24px rgba(16,60,82,.07);color:#163c45;
+}
+#purpose-results .purpose-a17-priority[hidden]{display:none!important}
+#purpose-results .purpose-a17-priority .purpose-card-top{
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px
+}
+#purpose-results .purpose-a17-priority .purpose-card-top span{font-weight:850;font-size:15px}
+#purpose-results .purpose-a17-priority .purpose-card-top small{
+  border-radius:999px;padding:6px 11px;background:#e2f4ee;color:#086e64;font-size:13px;font-weight:850
+}
+#purpose-results .purpose-a17-priority .purpose-device-image{
+  display:flex;justify-content:center;align-items:center;min-height:150px;max-height:175px;
+  border-radius:12px;background:#f6faf9;margin:0
+}
+#purpose-results .purpose-a17-priority .purpose-device-image img{
+  width:100%;height:150px;object-fit:contain;display:block
+}
+#purpose-results .purpose-a17-priority>strong{font-size:22px;line-height:1.35}
+#purpose-results .purpose-a17-priority>em{font-size:16px;font-style:normal;color:#4d6d75;font-weight:750}
+#purpose-results .purpose-a17-priority .purpose-card-total{
+  display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;
+  padding:13px 0;border-top:1px solid #deeaec
+}
+#purpose-results .purpose-a17-priority .purpose-card-total span{font-size:14px;color:#536e75}
+#purpose-results .purpose-a17-priority .purpose-card-total b{font-size:23px;color:#103f53}
+#purpose-results .purpose-a17-priority .quote-amount-note{margin:0;font-size:14px;line-height:1.6}
+#purpose-results .purpose-a17-priority .purpose-card-actions{display:flex;flex-wrap:wrap;gap:9px}
+#purpose-results .purpose-a17-priority .senior-a17-details{
+  display:inline-flex;justify-content:center;align-items:center;flex:1;min-height:48px;
+  border-radius:11px;background:#175c79;color:#fff;text-align:center;
+  padding:10px 14px;text-decoration:none;font-size:16px;font-weight:850
+}
+#purpose-results .purpose-a17-priority .senior-a17-details:focus-visible{
+  outline:3px solid #e3a934;outline-offset:3px
+}
+@media(max-width:640px){
+ #purpose-results .purpose-a17-priority{padding:17px 15px}
+ #purpose-results .purpose-a17-priority .purpose-card-total{align-items:flex-start}
+ #purpose-results .purpose-a17-priority .purpose-card-total span,
+ #purpose-results .purpose-a17-priority .purpose-card-total b{display:block;width:100%}
+ #purpose-results .purpose-a17-priority .purpose-card-actions{display:grid;grid-template-columns:1fr}
+}
