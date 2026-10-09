@@ -1,0 +1,145 @@
+/* Woongbi Rental: customer-facing copy sizes after 2026-10-09 visual review.
+   Scoped to the rental homepage. Keep prices/layout unchanged and ensure
+   readable helper text without causing horizontal overflow. */
+
+/* Hero: the three decision-making points and the real product detail action. */
+.hero-copy .hero-points li{
+  font-size:16px!important;line-height:1.5!important;
+  min-height:50px;padding:10px 12px;overflow-wrap:break-word;
+}
+.hero-card .card-link{font-size:16px!important;font-weight:850;line-height:1.55}
+
+/* AI promotion on the home page. */
+.ai-recommend-banner .ai-recommend-copy .eyebrow{font-size:15px!important;font-weight:950}
+.ai-recommend-banner .ai-recommend-copy p:last-child{
+  color:#43676a;font-size:16px!important;line-height:1.65!important;
+}
+.ai-recommend-banner .ai-recommend-copy h2{line-height:1.35}
+
+/* Recommendation sorting and the category-selection cards. */
+.recommend-sort>span{font-size:15px!important;color:#42686b;font-weight:950}
+.recommend-sort button{font-size:15px!important;min-height:44px;padding:9px 14px}
+.appliance-grid .appliance-category{min-width:0;min-height:154px;padding:19px}
+.appliance-grid .appliance-category>span{font-size:14px!important;min-height:29px}
+.appliance-grid .appliance-category>strong{font-size:18px!important;line-height:1.4;margin-top:16px}
+.appliance-grid .appliance-category>small{
+  display:block;font-size:15px!important;line-height:1.55!important;
+  color:#526d70;overflow-wrap:break-word;
+}
+
+/* Full-catalog introduction. */
+.catalog-open-row>span{font-size:16px!important;line-height:1.6!important;color:#506c70}
+
+/* Gift disclosure and its important return conditions. */
+.benefit-note .policy-badge{font-size:14px!important;line-height:1.4}
+.benefit-note>strong{display:block;font-size:18px!important;line-height:1.55}
+.benefit-note>p{font-size:16px!important;line-height:1.8!important;color:#546e72}
+
+/* Popular rental categories. */
+.rental-guide-grid>a{min-width:0;min-height:147px;padding:20px}
+.rental-guide-grid>a>span{font-size:14px!important}
+.rental-guide-grid>a>strong{font-size:19px!important;line-height:1.4}
+.rental-guide-grid>a>small{font-size:16px!important;line-height:1.55!important;color:#557073}
+
+/* Credit-card discount intro and comparison action. */
+.rental-card-guide-box>div>p:last-child{
+  font-size:16px!important;line-height:1.7!important;color:#526f70;
+}
+.rental-card-guide-box>a{
+  font-size:16px!important;line-height:1.45!important;min-height:48px;
+  display:inline-flex;align-items:center;justify-content:center;
+  text-align:center;white-space:normal;
+}
+
+/* Owner-managed consultations and the three service stages. */
+.rental-trust-box{min-width:0}
+.rental-trust-box>div:first-child{min-width:0}
+.rental-trust-box h2{font-size:clamp(22px,2.1vw,28px)!important;line-height:1.4}
+.rental-trust-box>div:first-child>p:last-child{
+  font-size:16px!important;line-height:1.7!important;color:#536e71;
+}
+.rental-trust-steps{min-width:0;gap:10px}
+.rental-trust-steps article{min-width:0;padding:16px}
+.rental-trust-steps span{
+  width:32px;height:32px;font-size:15px!important;
+}
+.rental-trust-steps strong{font-size:16px!important;line-height:1.45}
+.rental-trust-steps small{
+  font-size:14.5px!important;line-height:1.55!important;color:#526f73;
+  overflow-wrap:break-word;
+}
+
+/* Rental AI modal: previously too small for customers to read. */
+.ai-recommend-head>div>span{font-size:14px!important;line-height:1.5}
+.ai-recommend-head>div>small{
+  font-size:16px!important;line-height:1.55!important;color:#536f72;
+}
+.ai-step-progress{grid-template-columns:repeat(3,minmax(0,1fr))}
+.ai-step-progress>span{
+  min-width:0;font-size:16px!important;line-height:1.5!important;
+  padding:11px 8px!important;white-space:normal;word-break:keep-all;
+}
+.ai-empty.ai-empty-start>strong{font-size:20px!important;line-height:1.5!important}
+.ai-empty.ai-empty-start>p{
+  font-size:15.5px!important;line-height:1.7!important;color:#587275;
+}
+.ai-recommend-status{font-size:14.5px!important;line-height:1.55}
+.ai-recommend-form .ai-priority-help{font-size:15px!important;line-height:1.6}
+.ai-guided-step label{font-size:15px!important}
+.ai-guided-step select{font-size:16px!important}
+
+/* Avoid clipped text in the 5-column desktop grids and on tablets. */
+@media(max-width:1000px){
+  .appliance-grid .appliance-category{padding:16px;min-height:151px}
+  .rental-trust-steps article{padding:13px}
+  .rental-trust-steps small{font-size:14px!important}
+}
+@media(max-width:720px){
+  .rental-trust-steps{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+  .rental-trust-steps article{padding:12px}
+  .rental-trust-steps strong{font-size:15px!important}
+  .rental-trust-steps small{font-size:13.5px!important}
+  .rental-card-guide-box>a{width:100%}
+}
+@media(max-width:560px){
+  .hero-copy .hero-points li{
+    min-height:52px;padding:10px 7px;font-size:15px!important;
+  }
+  .ai-recommend-banner .ai-recommend-copy .eyebrow{font-size:14px!important}
+  .ai-recommend-banner .ai-recommend-copy p:last-child{
+    font-size:15px!important;line-height:1.6!important;
+  }
+  .recommend-sort>span{font-size:14px!important}
+  .recommend-sort button{font-size:14px!important;min-height:44px}
+  .appliance-grid .appliance-category{
+    height:auto!important;min-height:139px!important;
+    padding:14px!important;
+  }
+  .appliance-grid .appliance-category>span{font-size:13px!important}
+  .appliance-grid .appliance-category>strong{
+    font-size:16px!important;margin-top:10px!important;
+  }
+  .appliance-grid .appliance-category>small{font-size:14px!important}
+  .catalog-open-row>span{font-size:15px!important}
+  .benefit-note>strong{font-size:17px!important}
+  .benefit-note>p{font-size:15px!important;line-height:1.75!important}
+  .rental-guide-grid>a{min-height:126px}
+  .rental-guide-grid>a>strong{font-size:18px!important}
+  .rental-guide-grid>a>small{font-size:15px!important}
+  .rental-card-guide-box>div>p:last-child{font-size:15px!important}
+  .rental-trust-box h2{font-size:22px!important}
+  .rental-trust-box>div:first-child>p:last-child{font-size:15px!important}
+  .rental-trust-steps{grid-template-columns:1fr;gap:9px}
+  .rental-trust-steps article{padding:14px}
+  .rental-trust-steps strong{font-size:16px!important}
+  .rental-trust-steps small{font-size:14.5px!important}
+  .ai-recommend-head>div>span{font-size:13px!important}
+  .ai-recommend-head>div>small{font-size:14.5px!important}
+  .ai-step-progress{gap:5px}
+  .ai-step-progress>span{font-size:14px!important;padding:11px 3px!important}
+  .ai-empty.ai-empty-start>strong{font-size:18px!important}
+  .ai-empty.ai-empty-start>p{font-size:15px!important}
+}
+@media(max-width:375px){
+  .ai-step-progress>span{font-size:13.5px!important;padding:10px 2px!important}
+}
