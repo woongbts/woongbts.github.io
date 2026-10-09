@@ -431,6 +431,57 @@ function assert(condition, message) {
   assert(compactOverflow.page <= 1 && compactOverflow.dialog <= 1 && compactOverflow.panel <= 1, '375px 모바일에서 AI 추천창이 가로로 넘칩니다.');
   await compactContext.close();
 
+
+  // Separate full affiliate-card catalog must also be readable on a phone.
+  const cardsPage=await context.newPage();
+  await cardsPage.goto('http://127.0.0.1:4173/rental/cards/',{waitUntil:'domcontentloaded'});
+  await cardsPage.waitForSelector('#card-grid .affiliate-card',{timeout:15000});
+  const cardsAtStart=await cardsPage.locator('#card-grid .affiliate-card').count();
+  assert(cardsAtStart===3,'제휴카드 전체보기에서 코웨이 카드 3개가 표시되지 않습니다.');
+  const cardStyle=await cardsPage.evaluate(()=>{
+    const get=(sel)=>{
+      const el=document.querySelector(sel),style=el&&getComputedStyle(el);
+      return el?{size:parseFloat(style.fontSize),weight:parseInt(style.fontWeight,10),height:el.getBoundingClientRect().height}:null;
+    };
+    return {
+      tabs:document.querySelectorAll('#card-provider-tabs button').length,
+      provider:get('.card-provider-tabs button'),
+      title:get('.affiliate-card h3'),
+      spend:get('.affiliate-card .card-tier span'),
+      discount:get('.affiliate-card .card-tier strong'),
+      savings:get('.affiliate-card .card-max'),
+      detail:get('.affiliate-card .card-detail summary'),
+      annual:get('.affiliate-card .annual'),
+      notice:get('.card-notice p')
+    };
+  });
+  assert(cardStyle.tabs>=6,'제휴카드 렌탈사 탭 목록을 찾을 수 없습니다.');
+  for(const [key,minSize,minWeight] of [
+    ['provider',14.9,850],['title',18.9,900],
+    ['spend',14.9,750],['discount',16.9,900],
+    ['savings',17.9,900],['detail',15.9,850],
+    ['annual',13.9,700],['notice',14.9,700]
+  ]){
+    const row=cardStyle[key];
+    assert(row && row.size>=minSize && row.weight>=minWeight,
+      '제휴카드 '+key+' 글씨가 여전히 작거나 얇습니다: '+JSON.stringify(row));
+  }
+  assert(cardStyle.provider.height>=44,'제휴카드 렌탈사 선택 버튼의 터치 높이가 부족합니다.');
+  await cardsPage.locator('.affiliate-card .card-detail summary').last().click();
+  assert(await cardsPage.locator('.affiliate-card .card-detail[open]').count()===1,
+    '제휴카드 실적·유의사항 펼치기가 동작하지 않습니다.');
+  await cardsPage.locator('[data-provider="skmagic"]').click();
+  await cardsPage.waitForFunction(()=>document.querySelector('#card-grid .affiliate-card h3')?.textContent.includes('SK'));
+  assert(await cardsPage.locator('#card-grid .affiliate-card').count()===3,
+    '제휴카드 카드사 변경 후 상품 목록이 표시되지 않습니다.');
+  const cardsOverflow=await cardsPage.evaluate(()=>{
+    window.scrollTo(9999,0);
+    return window.scrollX;
+  });
+  assert(cardsOverflow===0,'제휴카드 전체보기 페이지가 모바일에서 가로로 밀립니다.');
+  console.log('Rental affiliate cards 21 entries: mobile typography, provider tabs, details and overflow passed.');
+  await cardsPage.close();
+
   console.log('Rental mobile smoke test passed.');
   await browser.close();
 })().catch(err => {
