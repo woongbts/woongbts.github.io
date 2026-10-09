@@ -43,7 +43,7 @@ assert.ok(sw.includes('/assets/home-recommend-api.min.js'));
 
 const html=fs.readFileSync('index.html','utf8');
 assert.equal(html.includes('recommendation-engine-v2.js'),false,'homepage must not load removed V2 engine');
-assert.ok(html.includes('/assets/home-intelligence-loader.js?v=20261006-1'),'homepage intelligence lazy loader missing');
+assert.ok(html.includes('/assets/home-intelligence-loader.js?v=20261009-recommend-order1'),'homepage intelligence lazy loader missing');
 const homeLoader=fs.readFileSync('assets/home-intelligence-loader.js','utf8');
 assert.ok(homeLoader.includes('/assets/home-recommend-api.min.js?v=20261001-1'),'homepage lazy loader must load server recommendation bridge');
 assert.equal(html.includes('이런 분들이 많이 찾아오세요'),false);
@@ -53,3 +53,6 @@ assert.ok(legacy.includes('https://m.booking.naver.com/booking/6/bizes/281910'))
 assert.equal(legacy.includes('bookingRedirectUrl='),false);
 
 console.log('Server recommendation bridges, shared eligibility, selected-method handoff and homepage regressions passed.');
+
+assert.ok(html.indexOf('src="/assets/home-recommend-api.min.js') < html.indexOf('src="assets/site-pro.min.js'), 'homepage API must initialize before storefront rendering');
+assert.ok(homeLoader.includes('script[src='), 'lazy loader must skip already loaded recommendation bridge');

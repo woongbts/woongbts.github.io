@@ -3,7 +3,7 @@
   let started=false;
   function load(src){
     return new Promise((resolve,reject)=>{
-      if(document.querySelector('script[data-lazy-src="'+src+'"]')) return resolve();
+      if(document.querySelector('script[data-lazy-src="'+src+'"],script[src="'+src+'"]')) return resolve();
       const s=document.createElement('script');
       s.src=src;s.defer=true;s.dataset.lazySrc=src;
       s.onload=resolve;s.onerror=reject;
