@@ -5,11 +5,13 @@ const page=fs.readFileSync('rental/cards/index.html','utf8');
 const css=fs.readFileSync('rental/assets/cards.css','utf8');
 const js=fs.readFileSync('rental/assets/cards.js','utf8');
 const payload=JSON.parse(fs.readFileSync('rental/data/affiliate-cards.json','utf8'));
-assert.ok(page.includes('assets/cards.css?v=20261009-readable4'),'customer page must load latest typography');
-assert.ok(page.includes('cards.js?v=20261004-cards3'),'functional card comparison code unchanged');
+assert.ok(page.includes('assets/cards.css?v=20261009-readable5'),'customer page must load latest typography');
+assert.ok(page.includes('cards.js?v=20261009-amount2'),'functional card comparison code unchanged');
 assert.equal(payload.providers.reduce((sum,p)=>sum+p.cards.length,0),21,'card dataset available');
 assert.ok(js.includes('data-provider')&&js.includes('renderCards()'),'provider selector remains functional');
 assert.ok(js.includes('class="card-tier"')&&js.includes('class="card-max"'),'discount and spending data remain displayed');
+assert.ok(js.includes('class="card-max-amount"'),'highlighted monthly maximum uses existing amount calculation');
+assert.ok(css.includes('.card-max .card-max-amount'),'large discount amount is distinctly styled');
 const selectors=[
  '.card-hero .wrap>p:not(.eyebrow)',
  '.card-provider-tabs button',
