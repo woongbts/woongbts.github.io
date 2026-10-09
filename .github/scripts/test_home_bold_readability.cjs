@@ -33,7 +33,7 @@ assert.match(css,/grid-template-columns:repeat\(2,minmax\(0,1fr\)\)/);
 assert.doesNotMatch(css,/@import\s+/i,'no external font download needed');
 const actions=fs.readFileSync('assets/home-link-button-nav-20261009.css','utf8');
 const dynamic=fs.readFileSync('assets/site-pro.min.js','utf8');
-assert.ok(html.includes('home-link-button-nav-20261009.css?v=20261009-a2'));
+assert.ok(html.includes('home-link-button-nav-20261009.css?v=20261009-color3'));
 assert.ok(html.includes('site-pro.min.js?v=20261009-linkbtn1'));
 assert.ok(dynamic.includes("className='storefront-fallback-link'"));
 assert.ok(dynamic.includes('class="storefront-all"'));
@@ -47,6 +47,9 @@ for(const key of [
  'font-weight:850!important',
  'font-size:18px!important',
 ]) assert.ok(actions.includes(key),'missing enlarged action style '+key);
+assert.ok(actions.includes('background:#0d766a!important'),'recommendation calculator button filled teal');
+assert.ok(actions.includes('background:#125884!important'),'catalog button filled blue');
+assert.ok(actions.includes('color:#fff!important'),'button text remains white and readable');
 console.log('Homepage CTA links and navigation: large button styles, dynamic fallback and mobile layout PASS');
 
 console.log('Homepage text clarity: red-marked labels, bold typography, mobile wrap, CSS load order PASS');
