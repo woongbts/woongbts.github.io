@@ -2,7 +2,7 @@
   "version": 1,
   "id": "c245efe6809c7f90",
   "date": "2026-10-08",
-  "checked_on": "2026-10-09",
+  "checked_on": "2026-10-10",
   "changes": [
     {
       "carrier": "KT",
@@ -44,6 +44,6 @@
   "support_entry_added_count": 0,
   "support_entry_removed_count": 0,
   "support_delta_count": 0,
-  "refresh_run_id": "37908079289",
-  "checked_at": "2026-10-09T17:58:53+09:00"
+  "refresh_run_id": "38037835537",
+  "checked_at": "2026-10-10T17:27:22+09:00"
 }
