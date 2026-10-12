@@ -1,6 +1,12 @@
 (() => {
   'use strict';
 
+  // Product routes are generated from the shared product template. Keep any
+  // existing rental consultation links on the dedicated Rental channel.
+  document.querySelectorAll('a[href*="pf.kakao.com/_nWwNT"]').forEach(link => {
+    link.href = 'https://pf.kakao.com/_xbrVrxb';
+  });
+
   const params = new URLSearchParams(location.search);
   const cleanMatch = location.pathname.match(/^\/rental\/product\/([^/]+)\/?$/);
   let cleanId = '';
