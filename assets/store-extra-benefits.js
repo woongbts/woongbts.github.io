@@ -4,6 +4,11 @@
   const request=byId('store-benefit-request');
   const basePrice=byId('store-benefit-base-price');
   const status=byId('store-benefit-request-status');
+  const extra=byId('extra-support-view');
+  function keepEligibilityLabel(){
+    if(extra && extra.textContent!=='적용 여부 확인')extra.textContent='적용 여부 확인';
+  }
+  if(extra){new MutationObserver(keepEligibilityLabel).observe(extra,{childList:true,subtree:true,characterData:true});keepEligibilityLabel()}
   if(!request||!basePrice||!status)return;
   const selected=id=>{
     const field=byId(id);
