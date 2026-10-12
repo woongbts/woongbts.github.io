@@ -29,7 +29,7 @@
   let policyGeneratedAt = '';
   let salesSignals = new Map();
 
-  const KAKAO_CHAT_URL = 'http://pf.kakao.com/_nWwNT/chat';
+  const KAKAO_CHAT_URL = 'https://pf.kakao.com/_xbrVrxb';
   const COMPARE_KEY = 'wb_rental_compare_v1';
   const BRAND_ORDER = [
     { re: /coway|코웨이/i, rank: 1 },
