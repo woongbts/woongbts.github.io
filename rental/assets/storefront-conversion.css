@@ -1,0 +1,163 @@
+/* Homepage product-first conversion path: the catalog remains the source of truth. */
+.rental-fast-find{
+  background:linear-gradient(125deg,#eef9f6,#f9fcff 68%,#fff);
+  padding:31px 0 30px;
+  border-bottom:1px solid #dceae7;
+}
+.rental-fast-find-layout{
+  display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);
+  gap:15px 30px;align-items:center;
+}
+.rental-fast-find-copy h2{
+  margin:5px 0 8px;font-size:clamp(23px,2.5vw,31px);
+  line-height:1.38;letter-spacing:-.035em;word-break:keep-all;
+}
+.rental-fast-find-copy h2 em{
+  font-style:normal;color:#08786e;
+  background:linear-gradient(transparent 65%,#cbede4 65%);
+}
+.rental-fast-find-copy>p:last-child{
+  margin:0;color:#4b6e71;font-size:16px;line-height:1.75;
+}
+.rental-fast-find-form{
+  display:grid;gap:9px;padding:16px;
+  background:#fff;border:1px solid #badcd6;border-radius:17px;
+  box-shadow:0 10px 28px rgba(19,89,89,.06);
+}
+.rental-fast-find-form label{
+  color:#24585b;font-size:15px;font-weight:950;line-height:1.4;
+}
+.rental-fast-find-controls{display:flex;gap:8px;min-width:0}
+.rental-fast-find-controls input{
+  min-width:0;flex:1;min-height:52px;
+  padding:12px 14px;border:2px solid #c7dcd9;border-radius:11px;
+  background:#fff;color:#15373b;font:inherit;font-size:16px;
+}
+.rental-fast-find-controls input::placeholder{color:#768b8d;opacity:1}
+.rental-fast-find-controls button{
+  flex:0 0 auto;min-height:52px;padding:12px 18px;
+  border:0;border-radius:11px;background:#0b756b;color:#fff;
+  font:inherit;font-size:16px;font-weight:950;cursor:pointer;
+}
+.rental-fast-find-controls button:hover{background:#075a53}
+.rental-fast-find-controls input:focus-visible,
+.rental-fast-find-controls button:focus-visible,
+.rental-fast-find-links button:focus-visible,
+.rental-fast-find-links a:focus-visible,
+.rental-real-stories a:focus-visible{outline:3px solid #e3a441;outline-offset:2px}
+#rental-fast-find-status{margin:0;color:#60777a;font-size:13.5px;line-height:1.6}
+.rental-fast-find-links{
+  display:flex;align-items:center;flex-wrap:wrap;gap:8px;
+  grid-column:1/-1;
+}
+.rental-fast-find-links>span{
+  color:#315c61;font-size:14px;font-weight:900;margin-right:2px;
+}
+.rental-fast-find-links button,
+.rental-fast-find-links a{
+  display:inline-flex;align-items:center;justify-content:center;
+  min-height:43px;padding:9px 13px;border-radius:999px;
+  border:1px solid #bbdcd6;background:#fff;
+  color:#0c665f;text-decoration:none;font:inherit;
+  font-size:14px;font-weight:900;line-height:1.4;cursor:pointer;
+}
+.rental-fast-find-links button:hover,
+.rental-fast-find-links a:hover{background:#dbf4eb}
+#recommendations{
+  padding-top:43px;padding-bottom:45px;background:#fff;
+}
+#recommendations .recommend-title-row h2{
+  font-size:clamp(24px,2.5vw,32px);
+  line-height:1.42;word-break:keep-all;
+}
+#recommendations .recommend-title-row p{
+  color:#527073;font-size:15.5px;line-height:1.7;
+}
+#recommendations .recommend-card{min-width:0}
+#recommendations .recommend-body h3{word-break:keep-all}
+#recommendations .recommend-prices span{font-size:16px;font-weight:850;color:#275c62}
+#recommendations .recommend-prices strong{font-size:17px;color:#08766b}
+#recommendations .recommend-card .recommend-link{
+  background:#0d756b!important;color:#fff!important;
+}
+#recommendations .recommend-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+.rental-real-stories[hidden]{display:none!important}
+.rental-real-stories{background:#f6faf9}
+.rental-real-stories-grid{
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:14px;margin-top:22px;
+}
+.rental-real-story{
+  min-width:0;padding:20px;border-radius:16px;
+  border:1px solid #d7e7e2;background:#fff;
+}
+.rental-real-story .story-tag{display:block;color:#087c71;font-size:14px;font-weight:900}
+.rental-real-story h3{font-size:20px;line-height:1.45;margin:10px 0}
+.rental-real-story p{font-size:16px;line-height:1.75;color:#4e6a6f}
+.rental-real-story img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:10px}
+@media(max-width:1040px){
+  .rental-fast-find-layout{grid-template-columns:1fr}
+  #recommendations .recommend-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:560px){
+  .rental-fast-find{padding:22px 0}
+  .rental-fast-find-layout{gap:14px}
+  .rental-fast-find-copy h2{font-size:25px;line-height:1.45}
+  .rental-fast-find-copy>p:last-child{font-size:15px;line-height:1.7}
+  .rental-fast-find-form{padding:13px;gap:9px}
+  .rental-fast-find-form label{font-size:15px}
+  .rental-fast-find-controls input{
+    min-height:51px;padding:10px;font-size:16px;width:100%;
+  }
+  .rental-fast-find-controls button{min-height:51px;padding:9px 11px;font-size:15px}
+  .rental-fast-find-links{gap:7px}
+  .rental-fast-find-links>span{width:100%}
+  .rental-fast-find-links button,.rental-fast-find-links a{
+    min-height:42px;font-size:14px;padding:8px 12px;
+  }
+  #recommendations{padding-top:30px;padding-bottom:35px}
+  #recommendations .recommend-title-row h2{font-size:23px}
+  #recommendations .recommend-title-row p{font-size:15px}
+  #recommendations .recommend-grid{
+    display:grid!important;
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    gap:10px!important;margin:0!important;
+    padding:0!important;overflow:visible!important;
+    scroll-snap-type:none!important;
+  }
+  #recommendations .recommend-card{
+    flex:none!important;width:auto!important;min-width:0;max-width:none!important;
+    border-radius:15px;
+  }
+  #recommendations .recommend-image{height:132px!important;padding:9px}
+  #recommendations .recommend-body{padding:12px!important}
+  #recommendations .recommend-body small{
+    font-size:12.5px;line-height:1.5;overflow-wrap:anywhere;
+  }
+  #recommendations .recommend-body h3{
+    font-size:15.5px!important;line-height:1.43;margin-bottom:10px;
+    min-height:43px;overflow-wrap:anywhere;
+  }
+  #recommendations .recommend-prices{gap:5px;margin-bottom:10px}
+  #recommendations .recommend-prices span{
+    font-size:14.5px!important;line-height:1.4;
+  }
+  #recommendations .recommend-prices strong{
+    font-size:14.5px!important;line-height:1.45;overflow-wrap:anywhere;
+  }
+  #recommendations .recommend-actions{
+    display:grid;grid-template-columns:1fr;gap:8px;
+  }
+  #recommendations .recommend-actions .recommend-link,
+  #recommendations .recommend-actions .compare-toggle.small{
+    width:100%;min-height:44px!important;padding:8px 6px!important;
+    font-size:14px!important;line-height:1.35;text-align:center;
+  }
+  #recommendations .recommend-progress{display:none!important}
+  .rental-real-stories-grid{grid-template-columns:1fr}
+}
+@media(max-width:360px){
+  #recommendations .recommend-grid{gap:7px!important}
+  #recommendations .recommend-body{padding:9px!important}
+  #recommendations .recommend-prices strong{font-size:13.5px!important}
+}
