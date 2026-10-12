@@ -32,6 +32,7 @@
 <link rel="stylesheet" href="assets/readability-20261007.css?v=20261007-2">
 <link rel="stylesheet" href="assets/ai-recommend.css?v=20261008-cost4">
 <link rel="stylesheet" href="assets/readability-20261009.css?v=20261009-1">
+<link rel="stylesheet" href="assets/storefront-conversion.css?v=20261012-1">
   <style id="rental-kakao-header-layout">
     /* Desktop and tablet: compact rental chat next to the rental logo. */
     .site-header .nav>.rental-kakao-cta {
@@ -175,17 +176,28 @@
       </div>
     </section>
 
-    <section class="ai-recommend-section" id="ai-recommend">
-      <div class="wrap ai-recommend-banner">
-        <div class="ai-recommend-copy">
-          <span class="ai-spark" aria-hidden="true">AI</span>
-          <div>
-            <p class="eyebrow dark">AI 렌탈 추천</p>
-            <h2>수백 개 상품 중, 내 조건에 맞는 3개만.</h2>
-            <p>품목과 중요하게 생각하는 기준만 고르면 월요금·사은품을 비교해 추천해 드립니다.</p>
-          </div>
+    <section class="rental-fast-find" id="find-rental" aria-labelledby="rental-fast-find-title">
+      <div class="wrap rental-fast-find-layout">
+        <div class="rental-fast-find-copy">
+          <p class="eyebrow dark">원하는 상품 빠르게 찾기</p>
+          <h2 id="rental-fast-find-title">제품명이 떠오르면 <em>바로 검색하세요.</em></h2>
+          <p>정수기·공기청정기·비데부터 모델명까지. 월요금과 사은품을 비교한 뒤 직접 상담받을 수 있어요.</p>
         </div>
-        <button class="ai-recommend-start" type="button" data-ai-recommend-open>30초 AI 추천 시작 <span>→</span></button>
+        <form id="rental-fast-find-form" class="rental-fast-find-form" role="search">
+          <label for="rental-fast-find-input">브랜드·모델명·상품명 검색</label>
+          <div class="rental-fast-find-controls">
+            <input id="rental-fast-find-input" type="search" placeholder="예: 코웨이 아이콘3, 얼음정수기" enterkeyhint="search" autocomplete="off">
+            <button type="submit">상품 찾기 →</button>
+          </div>
+          <p id="rental-fast-find-status" role="status" aria-live="polite">상품 검색 결과는 웅비렌탈의 실제 등록상품을 기준으로 표시됩니다.</p>
+        </form>
+        <div class="rental-fast-find-links" aria-label="많이 찾는 렌탈 품목">
+          <span>빠른 품목 선택</span>
+          <button type="button" data-quick-rental-category="정수기">정수기</button>
+          <button type="button" data-quick-rental-category="공기청정기">공기청정기</button>
+          <button type="button" data-quick-rental-category="비데·연수기">비데·연수기</button>
+          <a href="#trust">웅비통신 직접 상담 안내 →</a>
+        </div>
       </div>
     </section>
 
@@ -193,8 +205,8 @@
       <div class="wrap">
         <p class="eyebrow dark">웅비 추천</p>
         <div class="section-title-row recommend-title-row">
-          <h2>혜택 좋은 상품만 먼저 빠르게 보세요.</h2>
-          <p>사은품 규모와 월요금, 상품 구성을 함께 보고 카테고리별로 추렸습니다.</p>
+          <h2>실제 등록상품 4개, 월요금부터 비교하세요.</h2>
+          <p>매장 선호도와 월요금·사은품을 함께 고려한 추천입니다. 원하는 품목으로 바꿔 볼 수 있어요.</p>
         </div>
         <p class="policy-badge"><span data-policy-month>정책 기준 확인 중</span> · 최종 접수 전 최신 조건 확인</p>
         <div id="recommend-tabs" class="recommend-tabs" role="tablist" aria-label="추천 상품 카테고리"></div>
@@ -206,6 +218,20 @@
         </div>
         <div id="recommend-grid" class="recommend-grid" aria-live="polite"></div>
         <div id="recommend-progress" class="recommend-progress" aria-live="polite" hidden><span>1 / 1</span><div class="recommend-dots"></div></div>
+      </div>
+    </section>
+
+    <section class="ai-recommend-section" id="ai-recommend">
+      <div class="wrap ai-recommend-banner">
+        <div class="ai-recommend-copy">
+          <span class="ai-spark" aria-hidden="true">AI</span>
+          <div>
+            <p class="eyebrow dark">AI 렌탈 추천</p>
+            <h2>수백 개 상품 중, 내 조건에 맞는 3개만.</h2>
+            <p>품목과 중요하게 생각하는 기준만 고르면 월요금·사은품을 비교해 추천해 드립니다.</p>
+          </div>
+        </div>
+        <button class="ai-recommend-start" type="button" data-ai-recommend-open>30초 AI 추천 시작 <span>→</span></button>
       </div>
     </section>
 
@@ -365,6 +391,14 @@
       </div>
     </section>
 
+    <section class="section rental-real-stories" id="rental-real-stories" hidden aria-labelledby="rental-real-stories-title">
+      <div class="wrap">
+        <p class="eyebrow dark">실제 설치 이야기</p>
+        <div class="section-title-row"><h2 id="rental-real-stories-title">직접 상담하고 설치한 이야기</h2><p>고객의 공개 동의를 확인한 실제 사례만 소개합니다.</p></div>
+        <div id="rental-real-stories-grid" class="rental-real-stories-grid"></div>
+      </div>
+    </section>
+
     <section class="section dark-section" id="how">
       <div class="wrap">
         <p class="eyebrow light">이용 방법</p>
@@ -488,7 +522,8 @@
   <script src="/assets/analytics-config.js?v=20261009-owner1" defer></script>
   <script src="/assets/conversion-tracker.min.js?v=20261009-owner1" defer></script>
   <script src="/assets/site-analytics.min.js?v=20261009-owner1" defer></script>
-  <script src="assets/catalog.js?v=20261006-compare2" defer></script>
+  <script src="assets/catalog.js?v=20261012-storefront1" defer></script>
+  <script src="assets/verified-stories.js?v=20261012-1" defer></script>
 <script src="assets/ai-recommend-loader.js?v=20261008-cost3" defer></script>
   
 </body>
