@@ -27,7 +27,7 @@
   <link rel="manifest" href="/manifest.webmanifest"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="apple-mobile-web-app-title" content="웅비통신">
   <link rel="stylesheet" href="assets/rates.css?v=20261009-kids-layout2">
   <link rel="stylesheet" href="assets/readability-20260921.css?v=20260929-2">
-<link rel="stylesheet" href="/assets/customer-polish.css?v=20260930-3"><link rel="stylesheet" href="/assets/mvno-easy.css?v=20260930-7"><link rel="stylesheet" href="/assets/store-applications.css?v=20261008-easy5"><link rel="stylesheet" href="/assets/quick-order.css?v=20261008-2"><link rel="stylesheet" href="/assets/device-browser.css?v=20261007-3"><link rel="stylesheet" href="/assets/plan-quick-tools.css?v=20261007-1"><link rel="stylesheet" href="/assets/mobile-readability-20261007.css?v=20261007-3"><link rel="stylesheet" href="/assets/readability-uplift-20261007.css?v=20261007-3"><link rel="stylesheet" href="/assets/prepaid-recommend.css?v=20261007-1"><link rel="stylesheet" href="/assets/rates-easy-journey.css?v=20261008-senior3"><link rel="stylesheet" href="/assets/senior-a17-first.css?v=20261009-a17first1"></head>
+<link rel="stylesheet" href="/assets/customer-polish.css?v=20260930-3"><link rel="stylesheet" href="/assets/mvno-easy.css?v=20260930-7"><link rel="stylesheet" href="/assets/store-applications.css?v=20261008-easy5"><link rel="stylesheet" href="/assets/quick-order.css?v=20261008-2"><link rel="stylesheet" href="/assets/device-browser.css?v=20261007-3"><link rel="stylesheet" href="/assets/plan-quick-tools.css?v=20261007-1"><link rel="stylesheet" href="/assets/mobile-readability-20261007.css?v=20261007-3"><link rel="stylesheet" href="/assets/readability-uplift-20261007.css?v=20261007-3"><link rel="stylesheet" href="/assets/prepaid-recommend.css?v=20261007-1"><link rel="stylesheet" href="/assets/rates-easy-journey.css?v=20261008-senior3"><link rel="stylesheet" href="/assets/store-extra-benefits.css?v=20261012-1"><link rel="stylesheet" href="/assets/senior-a17-first.css?v=20261009-a17first1"></head>
 <body class="rate-page">
   <header class="rate-top">
     <div class="rate-wrap rate-nav">
@@ -274,7 +274,7 @@
                 <div class="auto-box"><span>출고가</span><strong id="device-price-view">—</strong></div>
                 <div class="auto-box"><span id="discount-amount-label">공시지원금</span><strong id="discount-amount-view">—</strong></div>
                 <div class="auto-box"><span>요금제 월정액</span><strong id="plan-fee-view">—</strong></div>
-                <div class="auto-box inquiry"><span>추가지원금</span><strong id="extra-support-view">매장 문의</strong></div>
+                <div class="auto-box inquiry"><span>매장 추가지원금</span><strong id="extra-support-view">적용 여부 확인</strong><small class="extra-support-disclaimer">기종·통신사·가입조건별로 다르며 적용되지 않을 수도 있습니다.</small></div>
               </div>
               <div id="mobile-data-note" class="data-note">상품 데이터를 불러오고 있습니다.</div>
             </form>
@@ -283,7 +283,7 @@
               <span class="result-label">예상 월 납부액</span>
               <strong id="monthly-total">—</strong>
               <p class="monthly-total-help">월 단말기 할부금 + 월 통신요금</p>
-              <p class="quote-amount-note">매장 추가지원금·가족/인터넷 결합 미반영<br>최종 가입 조건은 상담으로 확인해 주세요.</p>
+              <p class="quote-amount-note">위 금액은 매장 추가지원금·가족/인터넷 결합 미반영 예상치입니다.<br>추가 혜택 적용 여부와 최종 금액은 아래에서 확인 요청할 수 있습니다.</p>
               <section class="mobile-compare result-method-compare" id="mobile-compare" aria-live="polite">
                 <div class="compare-head"><div><strong>할인방식 바로 비교</strong><span>같은 기종·요금제에서 공시지원금과 선택약정의 월 납부액을 비교하세요.</span></div><b id="compare-best">조건을 선택해 주세요</b></div>
                 <div class="compare-grid">
@@ -308,6 +308,26 @@
               </div>
               <p id="calc-summary">통신사, 가입유형, 할인방식, 기종, 요금제를 선택하면 자동으로 계산됩니다.</p>
               <div class="quote-condition-note"><strong>금액과 함께 확인해 주세요</strong><p>월 납부액은 단말기 할부금과 통신요금의 합계입니다. 할부금에는 연 5.9% 기준 이자가 포함됩니다. 선택한 복지할인은 자격 확인이 필요하며, 가족·인터넷 결합과 매장 추가지원금은 이 휴대폰 계산에 포함하지 않습니다.</p><p>요금제 유지 기간·부가서비스·재고·최종 가입 조건은 상담에서 확인해 주세요.</p></div>
+              <section class="store-extra-benefits" id="store-extra-benefits" aria-labelledby="store-extra-benefits-title">
+                <div class="store-extra-benefits-heading">
+                  <span>웅비통신 매장 혜택 확인</span>
+                  <h3 id="store-extra-benefits-title">추가 할인 가능 여부부터 최종 납부금액까지</h3>
+                  <p>매장 추가지원금은 기종·통신사·가입유형·요금제·상담 시점의 정책에 따라 적용될 수 있으며, 제공되지 않을 수도 있습니다. 할인 금액이나 적용을 미리 보장하지 않습니다.</p>
+                </div>
+                <div class="store-extra-benefits-prices">
+                  <div><span>홈페이지 예상 월 납부액 <small>(매장 추가혜택 미반영)</small></span><strong id="store-benefit-base-price">기종·요금제 선택 후 표시</strong></div>
+                  <div><span>매장 추가지원금 적용 여부</span><strong>조건 확인 필요</strong></div>
+                  <div class="store-extra-benefits-final"><span>추가 혜택 반영 후 최종 월 납부액</span><strong>상담 후 확인</strong></div>
+                </div>
+                <div class="store-extra-benefits-conditions" aria-label="상담 시 확인할 가입 조건">
+                  <div><strong>요금제 유지조건</strong><span>유지기간·변경 시 비용·제약 여부 확인</span></div>
+                  <div><strong>부가서비스</strong><span>가입 필요 여부·월 이용료·유지기간 확인</span></div>
+                  <div><strong>최종 납부금액</strong><span>지원금·단말 할부금·통신요금·부가서비스 비용을 확인한 후 안내</span></div>
+                </div>
+                <p class="store-extra-benefits-footnote">홈페이지의 예상 월 납부액은 최종 판매가격이 아닙니다. 확인되지 않은 혜택·유지조건·부가서비스 요금은 임의로 계산하지 않으며, 실제 조건은 상담 시 개별 안내합니다.</p>
+                <button type="button" id="store-benefit-request">이 조건으로 매장 추가혜택·최종금액 확인하기 →</button>
+                <small class="store-benefit-request-status" id="store-benefit-request-status" role="status" aria-live="polite">선택한 기종·요금제를 포함해 매장에 확인을 요청할 수 있습니다. 신청만으로 개통되거나 결제되지 않습니다.</small>
+              </section>
     <div class="quote-tools">
                 <button type="button" id="copy-quote">견적 복사</button>
                 <button type="button" id="share-quote">견적 공유</button>
@@ -705,7 +725,7 @@
 <script src="/assets/internet-api-bridge.min.js?v=20261006-master6" defer></script><script src="/assets/plan-recommend-api-bridge.min.js?v=20261001-1" defer></script><script src="assets/rates.min.js?v=20261009-carrier-switch3" defer></script>
 <script src="/assets/quote-advice.js?v=20261006-1" defer></script>
 <script src="/assets/kids-promos-data.js?v=20261006-data1" defer></script>
-<script src="/assets/funnel-observer.js?v=20261006-1" defer></script><script src="/assets/internet-ui.min.js?v=20261006-wiredfix1" defer></script><script src="/assets/rates-deeplink.js?v=20261008-purpose4" defer></script><script src="/assets/rates-easy-journey.js?v=20261008-senior4" defer></script><script src="/assets/senior-a17-first.js?v=20261009-a17first3" defer></script><script src="/assets/store-applications.js?v=20261008-easy5" defer></script>
+<script src="/assets/funnel-observer.js?v=20261006-1" defer></script><script src="/assets/internet-ui.min.js?v=20261006-wiredfix1" defer></script><script src="/assets/rates-deeplink.js?v=20261008-purpose4" defer></script><script src="/assets/rates-easy-journey.js?v=20261008-senior4" defer></script><script src="/assets/senior-a17-first.js?v=20261009-a17first3" defer></script><script src="/assets/store-applications.js?v=20261008-easy5" defer></script><script src="/assets/store-extra-benefits.js?v=20261012-1" defer></script>
   <script src="assets/ai-chat.min.js?v=20261008-pos4" defer></script>
 
   <div class="mobile-quote-bar" id="mobile-quote-bar" hidden>
