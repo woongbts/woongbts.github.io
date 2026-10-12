@@ -17,3 +17,88 @@
 .category-trust{margin-top:20px;padding:20px;border-radius:18px;background:#173f42;color:#fff}.category-trust strong{display:block;font-size:1rem}.category-trust p{margin:6px 0 0;color:#d6e4e2;font-size:.74rem;line-height:1.6}
 @media(max-width:820px){.category-products{grid-template-columns:1fr 1fr}.category-hero-grid{grid-template-columns:1fr}.category-fresh{max-width:520px}}
 @media(max-width:560px){.category-hero{padding:38px 0 28px}.category-hero h1{font-size:1.7rem}.category-products{grid-template-columns:1fr}.category-title-row{display:block}.category-title-row p{margin-top:7px}.category-help-grid{grid-template-columns:1fr}.category-product-image{height:210px}}
+
+
+/* 2026-10-12: Rental SEO category entry — stronger price, headline and CTA hierarchy. */
+.category-hero{padding:63px 0 48px;background:linear-gradient(130deg,#eef8fe 0%,#f5fbf8 58%,#fff 100%)}
+.category-hero .eyebrow{font-size:15px;line-height:1.5;font-weight:950;color:#0b706b}
+.category-hero h1{
+  font-size:clamp(33px,3.8vw,51px);line-height:1.24;
+  font-weight:950;letter-spacing:-.045em;word-break:keep-all;overflow-wrap:anywhere;
+}
+.category-hero h1 em{
+  color:#087b74;
+  background:linear-gradient(transparent 65%,#c8f1e7 65%);
+  -webkit-box-decoration-break:clone;box-decoration-break:clone;
+}
+.category-hero p{max-width:800px;font-size:17px;line-height:1.75;color:#48676c}
+.category-hero-actions{gap:11px;margin-top:23px}
+.category-hero-actions a{
+  min-height:54px;padding:12px 20px;font-size:16px;line-height:1.5;
+  border-radius:12px;font-weight:950;text-align:center;
+}
+.category-hero-actions .primary{background:#0e756c;color:#fff}
+.category-hero-actions .ghost{background:#fff;border:2px solid #b7ddd5;color:#0c635f}
+.category-hero-actions a:focus-visible,.category-product>a:focus-visible{
+  outline:3px solid #dba142;outline-offset:3px;
+}
+.category-fresh{padding:22px;border-color:#c9e2dd;box-shadow:0 9px 20px rgba(16,71,76,.05)}
+.category-fresh span{font-size:14px;line-height:1.5;color:#097d73}
+.category-fresh strong{font-size:20px;line-height:1.45;color:#194b50}
+.category-fresh small{font-size:15px;line-height:1.65;color:#506e71}
+.category-content{padding:45px 0 65px}
+.category-title-row h2{font-size:clamp(25px,2.7vw,34px);line-height:1.38;color:#174f51}
+.category-title-row p{max-width:590px;font-size:16px;line-height:1.75;color:#4c6b6f}
+.category-products{gap:16px;margin-top:25px}
+.category-product{padding:18px;border-radius:18px}
+.category-product small{font-size:14px;line-height:1.5;color:#647e81}
+.category-product h3{font-size:20px;line-height:1.43;font-weight:950;color:#1a4b50;word-break:keep-all}
+.category-product p{font-size:15px;line-height:1.68;color:#526f71}
+.category-product-price{gap:10px;margin-top:17px;padding-top:14px}
+.category-product-price span{font-size:14px;line-height:1.5;font-weight:800;color:#557276}
+.category-product-price strong{
+  font-size:19px;line-height:1.43;font-weight:950;color:#08766e;word-break:keep-all;
+}
+.category-product-price span:first-child strong{color:#104e60}
+.category-product>a{
+  display:flex;align-items:center;justify-content:center;
+  width:100%;min-height:48px;margin-top:auto;padding:11px 12px;
+  background:#edf8f6;border:1px solid #b7dbd4;border-radius:10px;
+  color:#095d57;font-size:16px;line-height:1.4;font-weight:950;text-align:center;
+}
+.category-product>a:hover{background:#d9f1e9}
+.category-help{margin-top:35px;padding:24px}
+.category-help h2{font-size:24px;line-height:1.35;color:#194c50}
+.category-help-grid{gap:12px}
+.category-help article span{font-size:14px;color:#0d85be}
+.category-help article strong{font-size:18px;line-height:1.5;color:#185351}
+.category-help article p{font-size:15px;line-height:1.7;color:#506e71}
+.category-trust{padding:23px;background:#124b4c}
+.category-trust strong{font-size:21px;line-height:1.45}
+.category-trust p{font-size:16px;line-height:1.75;color:#e1f0ec}
+@media(max-width:980px){
+  .category-hero-grid{grid-template-columns:1fr}
+  .category-fresh{max-width:620px}
+}
+@media(max-width:820px){
+  .category-products{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:560px){
+  .category-hero{padding:42px 0 34px}
+  .category-hero h1{font-size:clamp(29px,7.5vw,37px);line-height:1.3}
+  .category-hero p{font-size:16px}
+  .category-hero-actions{display:grid;grid-template-columns:1fr}
+  .category-hero-actions a{width:100%;min-height:54px;font-size:16px}
+  .category-fresh strong{font-size:18px}
+  .category-content{padding:36px 0 54px}
+  .category-title-row h2{font-size:26px}
+  .category-title-row p{font-size:15.5px}
+  .category-products{grid-template-columns:1fr}
+  .category-product{padding:17px}
+  .category-product h3{font-size:20px}
+  .category-product p{font-size:15.5px}
+  .category-product-price strong{font-size:20px}
+  .category-help{padding:20px}
+  .category-help h2{font-size:22px}
+  .category-trust strong{font-size:19px}
+}
