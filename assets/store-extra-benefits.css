@@ -1,70 +1,82 @@
-/* Conditional store benefits: no unverified discount prices. */
+/* Concise, honest store-benefit inquiry: figures remain from the existing quote API. */
 .rate-page .auto-box.inquiry .extra-support-disclaimer{
   display:block;margin-top:9px;color:#6c634c;font-size:13px;line-height:1.55;font-weight:500;letter-spacing:0;
 }
 .rate-page #mobile-result .store-extra-benefits{
-  margin:17px 0 19px;padding:20px;
-  border:1px solid #b7d9d5;border-radius:16px;
-  background:#f6fbfa;color:#173f49;
+  margin:17px 0 19px;padding:19px 18px;
+  border:1px solid #bbdcd7;border-radius:16px;background:#f5faf9;color:#173f49;
 }
 .rate-page .store-extra-benefits-heading>span{
-  display:inline-block;margin-bottom:5px;color:#0a7369;font-size:14px;font-weight:900;
+  display:inline-flex;align-items:center;
+  margin-bottom:7px;color:#096f65;font-size:14px;font-weight:900;
 }
 .rate-page .store-extra-benefits-heading h3{
-  margin:0 0 9px;font-size:clamp(19px,2.2vw,23px);line-height:1.4;letter-spacing:-.025em;
+  margin:0 0 8px;color:#103f52;
+  font-size:clamp(20px,2.2vw,23px);font-weight:900;line-height:1.4;letter-spacing:-.025em;
 }
 .rate-page #mobile-result .store-extra-benefits-heading p{
-  margin:0;color:#426169;font-size:15px!important;line-height:1.7;
+  margin:0;color:#496770;font-size:15px!important;line-height:1.65;
 }
 .rate-page .store-extra-benefits-prices{
-  display:grid;gap:0;margin:16px 0;padding:5px 13px;
-  border:1px solid #deebe8;border-radius:12px;background:#fff;
+  display:grid;gap:0;margin:15px 0 14px;padding:4px 13px;
+  border:1px solid #dce9e6;border-radius:12px;background:#fff;
 }
 .rate-page .store-extra-benefits-prices>div{
-  display:flex;justify-content:space-between;align-items:center;gap:14px;padding:13px 0;
-  border-bottom:1px solid #e4edeb;
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  padding:13px 0;border-bottom:1px solid #e3ecea;
 }
 .rate-page .store-extra-benefits-prices>div:last-child{border-bottom:0}
 .rate-page .store-extra-benefits-prices span{
-  color:#3f5b64;font-size:14px;line-height:1.5;font-weight:750;
+  color:#425f66;font-size:14px;line-height:1.5;font-weight:750;
 }
 .rate-page .store-extra-benefits-prices span small{
-  display:block;margin-top:2px;color:#667e83;font-weight:500;font-size:12px;
+  display:block;margin-top:2px;color:#76878a;font-size:12.5px;font-weight:500;
 }
 .rate-page .store-extra-benefits-prices strong{
-  flex:0 0 auto;max-width:57%;text-align:right;color:#193e49;font-size:15px;line-height:1.45;overflow-wrap:anywhere;
+  flex:0 0 auto;max-width:57%;color:#1e4552;font-size:15px;line-height:1.5;
+  text-align:right;overflow-wrap:anywhere;
 }
 .rate-page .store-extra-benefits-prices .store-extra-benefits-final strong{
-  color:#0a7067;font-size:18px;
-}
-.rate-page .store-extra-benefits-conditions{
-  display:grid;gap:9px;margin:14px 0;
-}
-.rate-page .store-extra-benefits-conditions>div{
-  display:grid;grid-template-columns:125px minmax(0,1fr);gap:12px;align-items:start;
-  padding:11px 12px;border-radius:10px;background:#eaf4f2;
-}
-.rate-page .store-extra-benefits-conditions strong{color:#164c4c;font-size:14px;line-height:1.5}
-.rate-page .store-extra-benefits-conditions span{color:#426168;font-size:14px;line-height:1.6}
-.rate-page #mobile-result .store-extra-benefits-footnote{
-  margin:10px 0 14px;color:#5b7379;font-size:14px!important;line-height:1.7;
+  color:#087468;font-size:17px;font-weight:900;
 }
 .rate-page #store-benefit-request{
-  display:block;width:100%;min-height:54px;padding:12px 14px;border:0;border-radius:11px;
-  background:#0e756c;color:#fff;font:inherit;font-size:16px;font-weight:900;
-  line-height:1.4;text-align:center;cursor:pointer;
+  display:block;width:100%;min-height:55px;padding:12px 14px;
+  border:0;border-radius:11px;background:#0e756c;color:#fff;
+  font:inherit;font-size:17px;font-weight:900;line-height:1.45;
+  text-align:center;cursor:pointer;
 }
-.rate-page #store-benefit-request:hover{background:#0a635b}
+.rate-page #store-benefit-request:hover{background:#095e56}
 .rate-page #store-benefit-request:focus-visible{outline:3px solid #e6aa3d;outline-offset:3px}
 .rate-page .store-benefit-request-status{
-  display:block;margin-top:11px;color:#506e75;font-size:13.5px;line-height:1.6;
+  display:block;margin:9px 0 0;color:#647b80;font-size:13px;line-height:1.6;
+}
+.rate-page .store-extra-benefits-details{
+  margin-top:13px;padding-top:11px;border-top:1px solid #dae8e4;
+}
+.rate-page .store-extra-benefits-details>summary{
+  color:#3f656b;font-size:14px;font-weight:750;line-height:1.6;
+  cursor:pointer;text-underline-offset:3px;
+}
+.rate-page .store-extra-benefits-details>summary:focus-visible{
+  outline:3px solid #e6aa3d;outline-offset:2px;
+}
+.rate-page .store-extra-benefits-conditions{padding:9px 0 0}
+.rate-page #mobile-result .store-extra-benefits-conditions p{
+  margin:7px 0;color:#45636a;font-size:14px!important;line-height:1.65;
+}
+.rate-page .store-extra-benefits-conditions p strong{
+  display:block;color:#194c50;font-size:14px;
+}
+.rate-page #mobile-result .store-extra-benefits-conditions .store-extra-benefits-footnote{
+  padding-top:8px;margin-top:12px;border-top:1px solid #dfebe8;
+  color:#657e83;font-size:13px!important;
 }
 @media(max-width:640px){
-  .rate-page #mobile-result .store-extra-benefits{padding:15px 13px;margin:16px 0}
-  .rate-page .store-extra-benefits-prices{padding:5px 11px}
+  .rate-page #mobile-result .store-extra-benefits{padding:16px 14px;margin:14px 0}
+  .rate-page .store-extra-benefits-prices{padding:4px 11px}
   .rate-page .store-extra-benefits-prices>div{align-items:start;gap:8px}
   .rate-page .store-extra-benefits-prices span{font-size:13.5px}
-  .rate-page .store-extra-benefits-prices strong{font-size:14px}
-  .rate-page .store-extra-benefits-conditions>div{grid-template-columns:1fr;gap:3px}
-  .rate-page #store-benefit-request{font-size:16px;min-height:56px}
+  .rate-page .store-extra-benefits-prices strong{font-size:14px;max-width:53%}
+  .rate-page .store-extra-benefits-prices .store-extra-benefits-final strong{font-size:16px}
+  .rate-page #store-benefit-request{min-height:56px;font-size:16px}
 }
