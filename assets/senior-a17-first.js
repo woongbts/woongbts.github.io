@@ -13,17 +13,18 @@
   const carrier=()=>document.getElementById('purpose-carrier')?.value||'all';
   const join=()=>document.getElementById('purpose-join')?.value||'번호이동';
   const pension=()=>Boolean(document.getElementById('purpose-pension')?.checked);
+  const welfareType=()=>pension()?'basic_pension':'none';
   const won=n=>Math.round(n).toLocaleString('ko-KR')+'원';
   const safePrice=q=>q?.known===true&&Number.isFinite(Number(q.monthly))&&Number(q.monthly)>=0&&Number(q.planFee)===33000;
   async function quote(item,kind){
-    const body={device_id:item.id,plan_id:item.planId,join_type:join(),method:kind,months:24,welfare_type:'none'};
+    const body={device_id:item.id,plan_id:item.planId,join_type:join(),method:kind,months:24,welfare_type:welfareType()};
     const response=await fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
     if(!response.ok)throw Error('quote '+response.status);
     const data=await response.json();
     return data?.ok===true?data.quote:null;
   }
   function quoteFor(item){
-    const key=[item.id,join()].join(':');
+    const key=[item.id,join(),welfareType()].join(':');
     if(!cache.has(key)){
       const task=Promise.allSettled([quote(item,'support'),quote(item,'contract')]).then(out=>{
         const choices=out.map((o,i)=>o.status==='fulfilled'?{q:o.value,method:i===0?'support':'contract'}:null)
@@ -36,7 +37,7 @@
   }
   function linkFor(item,method){
     const params=new URLSearchParams({tab:'mobile',mode:'direct',c:item.carrier,j:join(),
-      d:item.id,p:item.planId,m:method||'contract',mo:'24',w:'none'});
+      d:item.id,p:item.planId,m:method||'contract',mo:'24',w:welfareType()});
     return '/rates.html?'+params.toString();
   }
   function createCard(item){
@@ -74,17 +75,22 @@
     const view=card._a17View;
     if(!view)return;
     const thisJoin=join();
+    const thisWelfare=welfareType();
     view.net.textContent=item.carrier+' · '+thisJoin;
     view.price.textContent='현재 조건 확인 중';
     view.note.textContent='24개월 기준 · 공시지원금·선택약정 계산 중';
     view.details.href=linkFor(item,'contract');
     const chosen=await quoteFor(item);
-    if(version!==cycle||!card.isConnected||join()!==thisJoin)return;
+    if(version!==cycle||!card.isConnected||join()!==thisJoin||welfareType()!==thisWelfare)return;
     if(chosen){
       view.price.textContent=won(chosen.q.monthly);
       card.dataset.selectedMethod=chosen.method;
+      const discountAmount=Number(chosen.q.welfare?.amount)||0;
+      const discountNote=thisWelfare==='basic_pension'
+        ? (discountAmount>0?'기초연금 통신비 감면 -'+won(discountAmount)+' 적용':'기초연금 감면 적용 여부 상담 확인')
+        : '복지할인 미적용';
       view.note.textContent=(chosen.method==='support'?'공시지원금':'선택약정 25%')+
-        ' · 24개월 단말 할부이자 포함 · '+(pension()?'기초연금 할인 별도 확인':'복지할인 미적용');
+        ' · 24개월 단말 할부이자 포함 · '+discountNote;
       view.details.href=linkFor(item,chosen.method);
     }else{
       view.price.textContent='매장 확인 필요';
