@@ -70,9 +70,35 @@ function assert(condition, message) {
   assert(await page.locator('.rental-card-guide-box a[href="cards/"]').count() === 1, '메인 제휴카드 비교 링크가 없습니다.');
   await page.waitForTimeout(80);
   assert(await page.locator('#recommend-progress').count() === 1, '모바일 추천상품 진행 표시가 없습니다.');
-  const recommendCardWidth = await page.locator('.recommend-card').first().evaluate(el => el.getBoundingClientRect().width);
-  const recommendGridWidth = await page.locator('#recommend-grid').evaluate(el => el.getBoundingClientRect().width);
-  assert(recommendCardWidth >= recommendGridWidth * 0.85, '모바일 추천상품 카드가 한 장 중심으로 보이지 않습니다.');
+  const recommendLayout = await page.evaluate(() => {
+    const grid=document.getElementById('recommend-grid'), card=grid?.querySelector('.recommend-card');
+    const progress=document.getElementById('recommend-progress');
+    return {
+      count:grid?.querySelectorAll('.recommend-card').length||0,
+      gridWidth:grid?.getBoundingClientRect().width||0,
+      cardWidth:card?.getBoundingClientRect().width||0,
+      display:grid?getComputedStyle(grid).display:'',
+      progressDisplay:progress?getComputedStyle(progress).display:''
+    };
+  });
+  assert(recommendLayout.count >= 4 && recommendLayout.display === 'grid',
+    '실제 추천상품 4개가 모바일 그리드에 표시되지 않습니다.');
+  assert(recommendLayout.cardWidth >= recommendLayout.gridWidth * 0.40 &&
+         recommendLayout.cardWidth <= recommendLayout.gridWidth * 0.57 &&
+         recommendLayout.progressDisplay === 'none',
+    '모바일에서 추천상품이 한 장씩이 아닌 두 열로 보이도록 수정해야 합니다.');
+
+  // First-screen search should open the actual catalog without making up prices.
+  const quickPage = await context.newPage();
+  await quickPage.goto('http://127.0.0.1:4173/rental/',{waitUntil:'domcontentloaded'});
+  await quickPage.locator('#rental-fast-find-input').fill('아이콘3');
+  await quickPage.locator('#rental-fast-find-form button[type="submit"]').click();
+  await quickPage.waitForSelector('#catalog-panel:not([hidden]) .catalog-card',{timeout:20000});
+  assert(await quickPage.locator('#catalog-search').inputValue() === '아이콘3',
+    '홈 화면 상품검색이 기존 카탈로그 검색어와 연결되지 않습니다.');
+  const firstQuickCard = await quickPage.locator('#product-grid .catalog-card').first().textContent();
+  assert(firstQuickCard.includes('아이콘3'),'홈 검색 결과에 실제 상품이 표시되지 않습니다.');
+  await quickPage.close();
   const coloredActions = await page.evaluate(() => {
     const recommended=document.querySelector('.recommend-card .recommend-link');
     const compare=document.querySelector('.recommend-card .compare-toggle.small');
