@@ -217,7 +217,7 @@
           <button class="compare-toggle" type="button" data-compare-product="${product.id}">비교담기</button>
           <div class="product-actions">
             <a class="btn primary" data-rental-product-id="${product.id}" data-rental-entry="catalog" href="${productHref(product)}">조건별 금액 보기</a>
-            <a class="btn ghost" href="http://pf.kakao.com/_nWwNT/chat" target="_blank" rel="noopener noreferrer">바로 상담</a>
+            <a class="btn ghost" href="https://pf.kakao.com/_xbrVrxb" target="_blank" rel="noopener noreferrer">바로 상담</a>
           </div>
         </div>
       </article>
@@ -759,6 +759,54 @@
     }
   };
 
+  // Homepage quick finder: reuse existing filters, prices and official product links.
+  const quickFinderForm = document.getElementById('rental-fast-find-form');
+  const quickFinderInput = document.getElementById('rental-fast-find-input');
+  const quickFinderStatus = document.getElementById('rental-fast-find-status');
+  async function launchQuickFinder(options = {}) {
+    const query = String(options.query || '').trim();
+    const category = String(options.category || '').trim();
+    if (quickFinderStatus) quickFinderStatus.textContent = '등록상품을 확인하고 있습니다…';
+    try {
+      await loadFullCatalog();
+      state.query = query;
+      state.category = category;
+      state.brand = '';
+      state.feature = '';
+      state.budget = 0;
+      state.management = '';
+      state.term = '';
+      state.sort = 'recommend';
+      if (searchInput) searchInput.value = query;
+      if (categoryFilter) categoryFilter.value = category;
+      if (budgetFilter) budgetFilter.value = '';
+      if (managementFilter) managementFilter.value = '';
+      if (termFilter) termFilter.value = '';
+      if (catalogSort) catalogSort.value = 'recommend';
+      brandFilters?.querySelectorAll('button').forEach(btn => btn.classList.toggle('active', !btn.dataset.brand));
+      document.querySelectorAll('[data-category-link]').forEach(link => link.classList.toggle('active', link.dataset.categoryLink === category));
+      openCatalog(true);
+      resetAndRender();
+      if (quickFinderStatus) quickFinderStatus.textContent = query
+        ? '“' + query + '” 검색 결과를 아래 상품 목록에서 확인하세요.'
+        : category ? category + ' 상품을 아래 목록에서 확인하세요.' : '등록된 전체 상품을 아래에서 확인하세요.';
+      trackRental('rental_catalog_search',null,{entry:'homepage_quick_search',category:category||'all'});
+      requestAnimationFrame(() => searchInput?.focus({preventScroll:true}));
+    } catch (_) {
+      if (quickFinderStatus) quickFinderStatus.textContent = '상품 목록을 불러오지 못했습니다. 잠시 후 다시 시도하거나 전화로 상담해 주세요.';
+    }
+  }
+  quickFinderForm?.addEventListener('submit', event => {
+    event.preventDefault();
+    void launchQuickFinder({query:quickFinderInput?.value||''});
+  });
+  document.querySelectorAll('[data-quick-rental-category]').forEach(button => {
+    button.addEventListener('click', () => {
+      if (quickFinderInput) quickFinderInput.value = '';
+      void launchQuickFinder({category:button.dataset.quickRentalCategory||''});
+    });
+  });
+
   catalogToggle?.addEventListener('click', async () => {
     if (catalogPanel?.hidden) {
       await loadFullCatalog();
@@ -804,6 +852,8 @@
     fetch('https://woongbi-consent.woongbts.workers.dev/api/recommendation-signals',{cache:'no-store',credentials:'omit'}).then(r=>r.ok?r.json():null).catch(()=>null)
   ])
     .then(([data,overrideData,signalData])=>{
+      // Quick search may have loaded the full catalog before featured data returns.
+      if(catalogLoaded){renderRecent();updateCompareUi();return;}
       salesSignals = new Map((signalData?.signals?.rental || []).map(row => [String(row.product_id), row]));
       products=Array.isArray(data.products)?data.products:[];
       applyCatalogOverrides(products, overrideData);
