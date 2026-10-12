@@ -32,6 +32,25 @@
 <link rel="stylesheet" href="assets/readability-20261007.css?v=20261007-2">
 <link rel="stylesheet" href="assets/ai-recommend.css?v=20261008-cost4">
 <link rel="stylesheet" href="assets/readability-20261009.css?v=20261009-1">
+  <style id="rental-kakao-header-layout">
+    /* Place rental chat beside the rental brand instead of at the far right. */
+    .site-header .rental-kakao-cta {
+      display:inline-flex;align-items:center;justify-content:center;
+      margin-left:0;flex:0 0 auto;min-height:44px;
+      box-sizing:border-box;white-space:nowrap;
+    }
+    /* Keep the two brands and chat reachable without squeezing the mobile header. */
+    @media (max-width:560px) {
+      .site-header .nav {
+        flex-wrap:wrap;column-gap:10px;row-gap:8px;padding:8px 0;
+      }
+      .site-header .nav>.brand { order:0; }
+      .site-header .nav>.nav-actions { order:1;margin-left:auto; }
+      .site-header .nav>.rental-kakao-cta {
+        order:2;width:100%;min-height:44px;margin:0;
+      }
+    }
+  </style>
   <style id="catalog-mobile-critical">
     @media (max-width:560px){
       .catalog-card{display:block!important}
@@ -68,6 +87,7 @@
         <img class="brand-mark" src="assets/woongbi-rental-mark.svg?v=20261003-mark2" alt="">
         <span>웅비렌탈<small>WOONGBI RENTAL</small></span>
       </a>
+      <a class="nav-cta rental-kakao-cta" href="https://pf.kakao.com/_xbrVrxb" target="_blank" rel="noopener noreferrer" aria-label="웅비렌탈 카카오톡 채널 상담">카톡 상담</a>
       <nav class="desktop-nav" aria-label="주요 메뉴">
         <a href="#recommendations">추천 상품</a>
         <a href="#how">이용 방법</a>
@@ -75,7 +95,6 @@
       </nav>
       <div class="nav-actions">
         <a class="nav-home-link" href="../" aria-label="웅비통신 홈페이지로 이동"><img src="assets/woongbi-telecom-mark.svg" alt=""><span><strong>웅비통신</strong><small>덕천만덕점</small></span></a>
-        <a class="nav-cta" href="http://pf.kakao.com/_nWwNT/chat" target="_blank" rel="noopener noreferrer">카톡 상담</a>
       </div>
     </div>
   </header>
