@@ -292,3 +292,104 @@
  .store-application-actions #store-application-cancel{min-height:48px;font-size:15px}
  .store-application-status{font-size:14px;line-height:1.5}
 }
+
+
+/* 2026-10-12 · Readable consultation dialog, including conditional discount inquiry.
+   Keep inputs, personal data handling and submission workflow unchanged. */
+.rate-page .store-application-dialog,
+.rate-page .store-application-success{color:#153f43}
+.rate-page .store-application-head>div>span{
+  font-size:15px;line-height:1.5;font-weight:950;
+}
+.rate-page .store-application-head>div>strong{
+  font-size:22px;line-height:1.45;font-weight:950;overflow-wrap:anywhere;
+}
+.rate-page .store-application-head>button{
+  width:44px;height:44px;font-size:24px;
+}
+.rate-page .store-application-intro{padding-top:16px;padding-bottom:16px}
+.rate-page .store-application-intro strong{font-size:18px;line-height:1.5}
+.rate-page .store-application-intro p{
+  font-size:16px;line-height:1.72;color:#40686b;
+}
+.rate-page .store-application-summary{
+  font-size:16px;line-height:1.75;padding:13px 14px;
+  overflow-wrap:anywhere;color:#34585d;
+}
+.rate-page .store-application-form{gap:16px}
+.rate-page .store-application-easy-heading>span{font-size:15px;line-height:1.5}
+.rate-page .store-application-easy-heading>strong{
+  font-size:21px;line-height:1.4;
+}
+.rate-page .store-application-easy-heading>small{
+  font-size:15px;line-height:1.55;color:#527470;
+}
+.rate-page .store-application-form>label{
+  font-size:18px;line-height:1.5;gap:9px;
+}
+.rate-page .store-application-form input[type=text],
+.rate-page .store-application-form input[type=tel],
+.rate-page .store-application-form input[type=email]{
+  min-height:55px;font-size:18px;padding:12px 14px;
+}
+.rate-page .store-application-form input::placeholder,
+.rate-page .store-application-form textarea::placeholder{
+  font-size:16px;color:#657e7b;opacity:1;
+}
+.rate-page .store-application-form textarea{
+  font-size:17px;line-height:1.65;min-height:130px;padding:13px 14px;
+}
+.rate-page .store-inquiry-optional>summary{
+  font-size:18px;line-height:1.5;min-height:48px;
+}
+.rate-page .store-inquiry-optional>summary small{
+  font-size:15px;line-height:1.5;white-space:nowrap;
+}
+.rate-page .store-inquiry-optional>label{
+  font-size:17px;line-height:1.5;
+}
+.rate-page .store-application-policy>summary{
+  font-size:16px;line-height:1.5;padding:13px 14px;
+}
+.rate-page .store-application-policy>div{
+  font-size:15px;line-height:1.65;
+}
+.rate-page .store-application-policy-state{
+  font-size:14px!important;line-height:1.6!important;
+}
+.rate-page .store-application-consent{
+  align-items:center;gap:11px!important;
+  font-size:16px!important;line-height:1.55;padding:14px!important;
+}
+.rate-page .store-application-consent input{
+  width:24px;height:24px;flex:0 0 24px;
+}
+.rate-page .store-application-actions #store-application-submit{
+  min-height:59px;font-size:19px;
+}
+.rate-page .store-application-actions #store-application-cancel{
+  min-height:54px;font-size:16px;
+}
+.rate-page .store-application-status{font-size:16px;line-height:1.6}
+.rate-page .store-internet-fields-head strong{font-size:17px}
+.rate-page .store-internet-fields-head small,
+.rate-page .store-payment-note{font-size:15px;line-height:1.65}
+.rate-page .store-internet-summary{font-size:17px;line-height:1.55}
+.rate-page .store-internet-summary small{font-size:14px}
+.rate-page .store-billing-methods>legend,
+.rate-page .store-billing-methods>label{font-size:16px;line-height:1.5}
+.rate-page .store-success-card>strong{font-size:22px;line-height:1.5}
+.rate-page .store-success-card>p{font-size:16px;line-height:1.7}
+.rate-page .store-success-card>small{font-size:14px;line-height:1.6}
+.rate-page .store-success-card button{min-height:52px;font-size:18px}
+@media(max-width:650px){
+ .rate-page .store-application-head{padding:15px 16px}
+ .rate-page .store-application-form{padding:17px 16px 22px}
+ .rate-page .store-application-intro{padding:15px 16px}
+ .rate-page .store-application-summary{margin:12px 16px 0}
+ .rate-page .store-application-easy-heading>strong{font-size:20px}
+ .rate-page .store-application-head>div>strong{font-size:21px}
+ .rate-page .store-application-intro strong{font-size:17px}
+ .rate-page .store-application-form>label{font-size:18px}
+ .rate-page .store-inquiry-optional>summary{flex-wrap:wrap}
+}
