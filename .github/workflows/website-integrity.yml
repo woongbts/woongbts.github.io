@@ -1,0 +1,26 @@
+name: Website integrity checks
+on:
+  push:
+    paths:
+      - 'rental/**'
+      - 'rates.html'
+      - 'assets/store-applications.js'
+      - 'assets/internet-ui.min.js'
+      - 'scripts/website-integrity-check.mjs'
+      - '.github/workflows/website-integrity.yml'
+  workflow_dispatch:
+  schedule:
+    - cron: '20 1 * * 1'
+permissions:
+  contents: read
+jobs:
+  static-integrity:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate public catalogue and website scripts
+        run: node scripts/website-integrity-check.mjs
