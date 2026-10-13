@@ -116,31 +116,28 @@ jobs:
               return []
 
           def merchant_image_candidates(session,p):
-            """Use the exact clvrental777.com product page rather than stale imported hotlinks."""
+            """Read the product photo from the exact clvrental777.com listing."""
             page=str(p.get('sourceUrl') or '').strip()
-            if not re.match(r'^https://(?:m\\.|www\\.)?clvrental777\\.com/model/compare\\.php\\?',page,re.I):
+            if not re.match(r'^https://(?:m\.|www\.)?clvrental777\.com/model/compare\.php\?',page,re.I):
               return []
             try:
               r=session.get(page,headers=headers,timeout=(5,12),allow_redirects=True)
               if r.status_code!=200:return []
               raw=html.unescape(r.text)
               candidates=[]
-
-              # Product-specific OG image appears before icons, banners, and detail strips.
-              for tag in re.findall(r'<meta\\b[^>]*>',raw,re.I):
-                if not re.search(r'og:image',tag,re.I):continue
-                m=re.search(r'content=["\\\']([^"\\\']+)',tag,re.I)
+              # OG preview image is the product's main photo.
+              for tag in re.findall(r'<meta\b[^>]*>',raw,re.I):
+                if 'og:image' not in tag.lower():continue
+                m=re.search(r'content=["\x27]([^"\x27]+)',tag,re.I)
                 if m:candidates.append(m.group(1))
-
               candidates.extend(re.findall(
-                r'https?://storage\\.bilrigo\\.com/data/thumbnails/[a-zA-Z0-9_./%-]+\\.(?:jpg|jpeg|png|webp)(?:\\?[^"\\\'<>\\s]*)?',
+                r'https?://storage[.]bilrigo[.]com/data/thumbnails/[a-zA-Z0-9_./%-]+[.](?:jpg|jpeg|png|webp)',
                 raw,re.I
               ))
               good=[]
               for candidate in candidates:
-                url=html.unescape(candidate).strip().split('\\x5c\\x5c')[0]
+                url=html.unescape(candidate).strip().split('?')[0].split('&')[0]
                 if not url.startswith('https://storage.bilrigo.com/data/thumbnails/'):continue
-                url=url.split('\\x26')[0].split('\\x3f')[0]
                 if url not in good:good.append(url)
               return good[:5]
             except Exception:
