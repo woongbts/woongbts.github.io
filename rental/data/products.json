@@ -50639,7 +50639,9 @@
       ],
       "manufacturer": "인홈",
       "rentalCompany": "복수 렌탈사",
-      "detailImages": [],
+      "detailImages": [
+        "assets/product-detail-images/clv-11552-former-hero.webp"
+      ],
       "options": [
         {
           "key": "rental-11552-1-60",
@@ -50768,10 +50770,13 @@
       "giftStatus": "customer-gift-calculated",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/230412/FH6gwkbWxLAtJuzBq2K7zywjWNgfFY.jpg",
       "importedFrom": "https://m.clvrental777.com/",
-      "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/230412/FH6gwkbWxLAtJuzBq2K7zywjWNgfFY.jpg",
+      "imageLocalizedFrom": "https://img.danuri.io/catalog-image/669/821/012/24247aabc03f4a169ad459d6da55e390.jpg",
       "imageRepresentative": true,
-      "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/230412/FH6gwkbWxLAtJuzBq2K7zywjWNgfFY.jpg",
-      "imageRepresentativeMethod": "existing"
+      "imageRepresentativeSource": "https://img.danuri.io/catalog-image/669/821/012/24247aabc03f4a169ad459d6da55e390.jpg",
+      "imageRepresentativeMethod": "verified-exact-model",
+      "imageOfficialSource": "https://img.danuri.io/catalog-image/669/821/012/24247aabc03f4a169ad459d6da55e390.jpg",
+      "imageOfficialPage": "https://www.enuri.com/detail.jsp?modelno=102403003",
+      "preserveOldHeroAsDetail": true
     },
     {
       "id": "clv-39184",
