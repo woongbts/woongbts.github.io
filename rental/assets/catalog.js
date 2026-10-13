@@ -300,9 +300,13 @@
     const minMonthly = m?.minMonthly ?? null;
     const maxGift = m?.maxGift ?? null;
     const image = imageCandidatesFor(product)[0] || '';
+    // Open the exact contract option shown on the recommendation card.
+    const href = productHref(product) + (m?.management && m?.term
+      ? '?mgmt=' + encodeURIComponent(m.management) + '&term=' + encodeURIComponent(m.term)
+      : '');
     return `
       <article class="recommend-card">
-        <a class="recommend-image" data-rental-product-id="${product.id}" data-rental-entry="recommend" href="${productHref(product)}">
+        <a class="recommend-image" data-rental-product-id="${product.id}" data-rental-entry="recommend" href="${href}">
           ${image ? '<img src="' + image + '" alt="' + product.name + '" loading="lazy" decoding="async">' : '<span class="recommend-fallback">W</span>'}
         </a>
         <div class="recommend-body">
@@ -315,7 +319,7 @@
             <strong>${maxGift == null ? '사은품 상담 확인' : '같은 조건 사은품 ' + won(maxGift)}</strong>
           </div>
           <small class="catalog-paired-note">동일 계약조건 기준 · 다른 옵션은 상세페이지에서 확인</small>
-          <div class="recommend-actions"><a class="recommend-link" data-rental-product-id="${product.id}" data-rental-entry="recommend" href="${productHref(product)}">조건 보기 →</a><button class="compare-toggle small" type="button" data-compare-product="${product.id}">비교담기</button></div>
+          <div class="recommend-actions"><a class="recommend-link" data-rental-product-id="${product.id}" data-rental-entry="recommend" href="${href}">조건 보기 →</a><button class="compare-toggle small" type="button" data-compare-product="${product.id}">비교담기</button></div>
         </div>
       </article>
     `;
@@ -415,6 +419,18 @@
           .forEach(p => {
             if (selected.length < 4) selected.push(p);
           });
+      }
+    }
+
+    // Keep the first two trusted picks; use one affordable cold/hot model
+    // and one entry-level sterilizing purifier in the lower two positions.
+    if (recommendCategory === '정수기' && recommendSortMode === 'recommend' && selected.length >= 2) {
+      const sk = candidates.find(p => p.id === 'clover-2202' &&
+        recommendationMetrics(p)?.minMonthly >= 30000 && recommendationMetrics(p)?.minMonthly < 50000);
+      const cuckoo = candidates.find(p => p.id === 'clover-2197' &&
+        recommendationMetrics(p)?.minMonthly >= 10000 && recommendationMetrics(p)?.minMonthly < 30000);
+      if (sk && cuckoo && !selected.slice(0, 2).some(p => p.id === sk.id || p.id === cuckoo.id)) {
+        selected = [...selected.slice(0, 2), sk, cuckoo];
       }
     }
 
