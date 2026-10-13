@@ -20,7 +20,8 @@ SHEETS.mkdir(parents=True, exist_ok=True)
 
 FONT = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", 17)
 SMALL = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", 13)
-face_cascade = (cv2.CascadeClassifier(cv2.data.haarcascades + "haarcascade_frontalface_default.xml")\n                if hasattr(cv2, "CascadeClassifier") and hasattr(cv2, "data") else None)
+face_cascade = (cv2.CascadeClassifier(cv2.data.haarcascades + "haarcascade_frontalface_default.xml")
+                if hasattr(cv2, "CascadeClassifier") and hasattr(cv2, "data") else None)
 
 data = json.loads(CATALOG.read_text(encoding="utf-8"))
 products = [
@@ -52,8 +53,10 @@ for index, p in enumerate(products, 1):
         # Face detection only suggests review; photo suitability requires context.
         face_sample = src.copy()
         face_sample.thumbnail((520,520))
-        gray = cv2.cvtColor(np.asarray(face_sample),cv2.COLOR_RGB2GRAY)
-        faces = face_cascade.detectMultiScale(gray,scaleFactor=1.12,minNeighbors=5,minSize=(28,28))
+        faces = []
+        if face_cascade is not None:
+            gray = cv2.cvtColor(np.asarray(face_sample),cv2.COLOR_RGB2GRAY)
+            faces = face_cascade.detectMultiScale(gray,scaleFactor=1.12,minNeighbors=5,minSize=(28,28))
         result["faceCount"] = len(faces)
         if len(faces):
             result["flags"].append("people-visible")
@@ -95,6 +98,7 @@ report = {
     "generatedAt":"2026-10-13",
     "scope":"visible catalog product covers",
     "products":len(records),
+    "faceDetectionAvailable":face_cascade is not None,
     "flagCounts":flags,
     "manualReviewNeeded":sum(bool(r["flags"]) for r in records),
     "contactSheets":pages,
