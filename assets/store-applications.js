@@ -666,6 +666,41 @@
   // Other site components may hand off a selected product to the same
   // secure, consent-gated form; no PII is put in query strings.
   window.WoongbiStoreApplication={open:openApplication};
+  function setupDirectQuoteChoices(){
+    for(const kind of ['mobile','internet']){
+      const box=$(kind+'-quote-choice');
+      const amount=$(kind==='mobile'?'monthly-total':'internet-total');
+      if(!box||!amount)continue;
+      const update=()=>{
+        const value=String(amount.textContent||'').trim();
+        const ctx=kind==='mobile'?selectedMobileContext():selectedInternetContext();
+        box.hidden=!(ctx&&ctx.product_name&&Number.isFinite(Number(ctx.monthly))&&/^[0-9,]+원$/.test(value));
+      };
+      new MutationObserver(update).observe(amount,{childList:true,subtree:true,characterData:true});
+      for(const id of (kind==='mobile'?['device-select','plan-select']:['internet-carrier','internet-product','tv-product','tv-count'])){
+        $(id)?.addEventListener('change',update);
+      }
+      update();
+      box.addEventListener('click',event=>{
+        const button=event.target.closest('[data-rate-quote-action]');
+        if(!button)return;
+        const ctx=kind==='mobile'?selectedMobileContext():selectedInternetContext();
+        if(!ctx||!Number.isFinite(Number(ctx.monthly))){event.preventDefault();alert('상품 조건을 먼저 선택해 주세요.');return;}
+        const action=button.dataset.rateQuoteAction;
+        if(action==='visit'){event.preventDefault();visitHandoff(ctx);return;}
+        trackStore(action==='phone'?'phone_click':'kakao_click',ctx);
+        if(action==='kakao'){
+          event.preventDefault();
+          const quote=quoteLines(ctx);
+          window.open('https://pf.kakao.com/_nWwNT/chat','_blank','noopener,noreferrer');
+          if(navigator.clipboard?.writeText)navigator.clipboard.writeText(quote).catch(()=>{});
+          const help=box.querySelector('p');
+          if(help)help.textContent='견적을 복사했어요. 카카오톡 대화창에 붙여 넣어 주세요. 복사가 안 됐다면 모델명과 요금제를 알려주세요.';
+        }
+      });
+    }
+  }
+
   function boot(){
     const form=$('store-application-form');
     form?.addEventListener('submit',submit);
@@ -698,6 +733,7 @@
       if(detail&&card)selectInternetCard(card);
     });
     ensureInternetSelectionBar();
+    setupDirectQuoteChoices();
 
     const observer=new MutationObserver(()=>queueMicrotask(decorateAll));
     ['studyphone-plan-list','mvno-recommend-list','mvno-plan-picker-list','wired-compare-results','purpose-results'].forEach(id=>{
