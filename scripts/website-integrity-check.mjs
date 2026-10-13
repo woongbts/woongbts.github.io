@@ -63,13 +63,13 @@ for(const dir of categoryGuides){
   for(const [,card] of cards){
     const link=card.match(/href="product\/([^/"]+)\/\?mgmt=([^&"]+)&amp;term=([^"]+)"/);
     const monthly=card.match(/월 렌탈료<strong>([\d,]+)원/);
-    const gift=card.match(/같은 조건 사은품<strong>([\d,]+)원/);
+    const gift=card.match(/같은 조건 사은품<strong>([\d,]+원|상담 확인)/);
     if(!link||!monthly||!gift){assert(false,'Incomplete price/benefit card on '+page);continue;}
     const id=decodeURIComponent(link[1]),mgmt=decodeURIComponent(link[2]),term=decodeURIComponent(link[3]);
     const p=productIndex.get(id);
     const matched=(p?.options||[]).some(o=>o.management===mgmt&&String(o.term)===term
       &&Number(o.monthly)===Number(monthly[1].replaceAll(',',''))
-      &&Number(o.gift)===Number(gift[1].replaceAll(',','')));
+      &&(gift[1]==='상담 확인' ? o.gift==null || o.gift==='' : Number(o.gift)===Number(gift[1].replace('원','').replaceAll(',',''))));
     assert(matched,'Price/gift mismatch: '+page+' / '+id+' ('+mgmt+' / '+term+')');
     checkedCategoryOffers++;
   }
