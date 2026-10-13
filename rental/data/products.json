@@ -1688,7 +1688,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230830171640_1.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230830171640_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230830171640_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230830171640_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-1857",
@@ -3463,7 +3466,10 @@
       "availability": "active",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/videoframe_1545.png",
       "imageSearchSource": "https://miso-customer-public.s3.ap-northeast-2.amazonaws.com/rental_img/20240625_airpurifier/LG/LGA6/LGA6_MAIN_1.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/videoframe_1545.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/videoframe_1545.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/videoframe_1545.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2171",
@@ -4132,7 +4138,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250724115035_1.jpg",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250724115035_1.jpg"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250724115035_1.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250724115035_1.jpg",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2210",
@@ -4323,7 +4332,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/wd323a_1_1.gif",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/wd323a_1_1.gif"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/wd323a_1_1.gif",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/wd323a_1_1.gif",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2136",
@@ -4536,7 +4548,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231110180952_1_1.gif",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231110180952_1_1.gif"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231110180952_1_1.gif",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231110180952_1_1.gif",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-1586",
@@ -4772,7 +4787,10 @@
       "sourceKind": "clover-public",
       "availability": "active",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231113113141_1_1.gif",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231113113141_1_1.gif"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231113113141_1_1.gif",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231113113141_1_1.gif",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-1758",
@@ -4855,7 +4873,10 @@
       "sourceKind": "clover-public",
       "availability": "active",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231113115226_1_1.gif",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231113115226_1_1.gif"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231113115226_1_1.gif",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231113115226_1_1.gif",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-1771",
@@ -5105,7 +5126,10 @@
       "sourceKind": "clover-public",
       "availability": "active",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230908154838_1.gif",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230908154838_1.gif"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230908154838_1.gif",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230908154838_1.gif",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2022",
@@ -5412,7 +5436,10 @@
       "sourceKind": "clover-public",
       "availability": "active",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230823150742_1.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230823150742_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230823150742_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230823150742_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-1840",
@@ -5472,7 +5499,10 @@
       "sourceKind": "clover-public",
       "availability": "active",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230823151017_1.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230823151017_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230823151017_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230823151017_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2024",
@@ -5670,7 +5700,10 @@
       "sourceKind": "clover-public",
       "availability": "active",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230823111245_1.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230823111245_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230823111245_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230823111245_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2081",
@@ -5729,7 +5762,10 @@
       "sourceKind": "clover-public",
       "availability": "active",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231215100638_1.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231215100638_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231215100638_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231215100638_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2082",
@@ -5788,7 +5824,10 @@
       "sourceKind": "clover-public",
       "availability": "active",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231215101029_1.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231215101029_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231215101029_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231215101029_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2023",
@@ -6014,7 +6053,10 @@
       "sourceKind": "clover-public",
       "availability": "active",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230823181743_1.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230823181743_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230823181743_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230823181743_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-1971",
@@ -6085,7 +6127,10 @@
       "sourceKind": "clover-public",
       "availability": "active",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230824095010_1.gif",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230824095010_1.gif"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230824095010_1.gif",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230824095010_1.gif",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-1820",
@@ -7781,7 +7826,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250823095710_1.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250823095710_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250823095710_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250823095710_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2206",
@@ -8020,7 +8068,7 @@
       "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250325103511_1.png",
       "imageRepresentative": true,
       "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250325103511_1.png",
-      "imageRepresentativeMethod": "original"
+      "imageRepresentativeMethod": "existing"
     },
     {
       "id": "clover-2161",
@@ -8107,7 +8155,7 @@
       "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250208115358_1.png",
       "imageRepresentative": true,
       "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250208115358_1.png",
-      "imageRepresentativeMethod": "original"
+      "imageRepresentativeMethod": "existing"
     },
     {
       "id": "clover-2156",
@@ -8168,7 +8216,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/id0101_5961_attimg_org.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/id0101_5961_attimg_org.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/id0101_5961_attimg_org.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/id0101_5961_attimg_org.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2031",
@@ -8387,7 +8438,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231017155108_1.gif",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231017155108_1.gif"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231017155108_1.gif",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231017155108_1.gif",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-1756",
@@ -8604,7 +8658,10 @@
       "sourceKind": "clover-public",
       "availability": "active",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/id0105_2884_attimg_org.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/id0105_2884_attimg_org.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/id0105_2884_attimg_org.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/id0105_2884_attimg_org.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-312",
@@ -8671,7 +8728,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/id0105_1844_attimg_org.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/id0105_1844_attimg_org.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/id0105_1844_attimg_org.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/id0105_1844_attimg_org.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-384",
@@ -8759,7 +8819,10 @@
       "imagePageUrl": "https://cowaycanada.ca/en/products/air-purifiers/AP-1523D.html",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/id0105_4598_attimg_org.png",
       "imageSearchSource": "https://cowaycanada.ca/assets/images/products/air/ap1523d/m-detail1-en.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/id0105_4598_attimg_org.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/id0105_4598_attimg_org.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/id0105_4598_attimg_org.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-282",
@@ -8866,7 +8929,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/id0105_4467_attimg_org.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/id0105_4467_attimg_org.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/id0105_4467_attimg_org.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/id0105_4467_attimg_org.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "chpci-8400n",
@@ -9434,7 +9500,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250714133317_1.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250714133317_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250714133317_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250714133317_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-1786",
@@ -9519,7 +9588,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/chpi-7400n_1_1.gif",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/chpi-7400n_1_1.gif"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/chpi-7400n_1_1.gif",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/chpi-7400n_1_1.gif",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-1785",
@@ -9604,7 +9676,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/chpi-7400n_1_2.gif",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/chpi-7400n_1_2.gif"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/chpi-7400n_1_2.gif",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/chpi-7400n_1_2.gif",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2187",
@@ -9667,7 +9742,10 @@
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250412105655_1.png",
       "imageSearchSource": "https://m.cowayrental.shop/web/product/big/202504/c63632489eee7053a75085cd2349ed87.jpg",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250412105655_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250412105655_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250412105655_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "chp-7220n",
@@ -10076,7 +10154,7 @@
       "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250924171528_1.png",
       "imageRepresentative": true,
       "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250924171528_1.png",
-      "imageRepresentativeMethod": "original"
+      "imageRepresentativeMethod": "existing"
     },
     {
       "id": "clover-2193",
@@ -10163,7 +10241,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250516152442_1.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250516152442_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250516152442_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250516152442_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2188",
@@ -10407,7 +10488,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/cpsi-8510l_1_1.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/cpsi-8510l_1_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/cpsi-8510l_1_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/cpsi-8510l_1_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-1724",
@@ -10487,7 +10571,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/chpi-7511l_1_1.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/chpi-7511l_1_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/chpi-7511l_1_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/chpi-7511l_1_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-1725",
@@ -10567,7 +10654,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/chpi-7511l_1_2.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/chpi-7511l_1_2.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/chpi-7511l_1_2.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/chpi-7511l_1_2.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "p-350n",
@@ -10820,7 +10910,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/chp-8310l_1_1.gif",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/chp-8310l_1_1.gif"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/chp-8310l_1_1.gif",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/chp-8310l_1_1.gif",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-1933",
@@ -10953,7 +11046,7 @@
       "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/cp-6340l_1_1.png",
       "imageRepresentative": true,
       "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/cp-6340l_1_1.png",
-      "imageRepresentativeMethod": "original"
+      "imageRepresentativeMethod": "existing"
     },
     {
       "id": "clover-1791",
@@ -11116,7 +11209,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/chp-5720l_1_1.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/chp-5720l_1_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/chp-5720l_1_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/chp-5720l_1_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-1764",
@@ -11225,7 +11321,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/chp-3140n_1_1.gif",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/chp-3140n_1_1.gif"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/chp-3140n_1_1.gif",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/chp-3140n_1_1.gif",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-1913",
@@ -11350,7 +11449,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/p-150n_1_1.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/p-150n_1_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/p-150n_1_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/p-150n_1_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-223",
@@ -11443,7 +11545,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/chpi-5801l_1_1.gif",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/chpi-5801l_1_1.gif"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/chpi-5801l_1_1.gif",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/chpi-5801l_1_1.gif",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-1808",
@@ -11507,7 +11612,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230629115700_1.gif",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230629115700_1.gif"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230629115700_1.gif",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230629115700_1.gif",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-1910",
@@ -11626,7 +11734,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/9875.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/9875.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/9875.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/9875.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2076",
@@ -11684,7 +11795,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/23.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/23.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/23.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/23.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2075",
@@ -11742,7 +11856,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231114164404_1.gif",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231114164404_1.gif"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231114164404_1.gif",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231114164404_1.gif",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-175",
@@ -11807,7 +11924,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/chp-5710l_1_1.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/chp-5710l_1_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/chp-5710l_1_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/chp-5710l_1_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-245",
@@ -11862,7 +11982,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/chp-5700r_1_1.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/chp-5700r_1_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/chp-5700r_1_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/chp-5700r_1_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-234",
@@ -11915,7 +12038,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/chp-700l_1_1.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/chp-700l_1_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/chp-700l_1_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/chp-700l_1_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-1766",
@@ -12022,7 +12148,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/chp-8200n_1_1.gif",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/chp-8200n_1_1.gif"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/chp-8200n_1_1.gif",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/chp-8200n_1_1.gif",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-1770",
@@ -12107,7 +12236,10 @@
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230629095706_1.gif",
       "imageSearchSource": "https://ljjlove369.cafe24.com/web/product/Induction%28Thum%29/CIR-F41GSs.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230629095706_1.gif"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230629095706_1.gif",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230629095706_1.gif",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-1877",
@@ -12297,7 +12429,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/id0101_4647_attimg_org.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/id0101_4647_attimg_org.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/id0101_4647_attimg_org.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/id0101_4647_attimg_org.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-1880",
@@ -12382,7 +12517,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/id0101_4646_attimg_org.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/id0101_4646_attimg_org.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/id0101_4646_attimg_org.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/id0101_4646_attimg_org.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-1881",
@@ -12469,7 +12607,10 @@
       "giftStatus": "matched",
       "imagePageUrl": "https://most.cowaymall.co.kr/shop/500018",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/id0101_4648_attimg_org.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/id0101_4648_attimg_org.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/id0101_4648_attimg_org.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/id0101_4648_attimg_org.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-1727",
@@ -12555,7 +12696,10 @@
       "giftStatus": "matched",
       "imagePageUrl": "https://coway-mall.kr/product/chr-04-%EC%BD%94%EC%9B%A8%EC%9D%B4-%ED%95%98%EC%9D%B4%EB%B8%8C%EB%A6%AC%EB%93%9C-%ED%94%84%EB%9D%BC%EC%9E%84s/569/",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/id0101_4649_attimg_org.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/id0101_4649_attimg_org.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/id0101_4649_attimg_org.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/id0101_4649_attimg_org.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-1726",
@@ -12643,7 +12787,10 @@
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/id0101_4650_attimg_org.png",
       "imageSearchSource": "https://cdn.imweb.me/thumbnail/20241213/11714a696ce28.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/id0101_4650_attimg_org.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/id0101_4650_attimg_org.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/id0101_4650_attimg_org.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2256",
@@ -12818,7 +12965,7 @@
       "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/251119142552_1.png",
       "imageRepresentative": true,
       "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/251119142552_1.png",
-      "imageRepresentativeMethod": "original"
+      "imageRepresentativeMethod": "existing"
     },
     {
       "id": "clover-2221",
@@ -12903,7 +13050,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250924170400_1.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250924170400_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250924170400_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250924170400_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-1353",
@@ -12983,7 +13133,10 @@
       "sourceKind": "clover-public",
       "availability": "active",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230630111957_1.gif",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230630111957_1.gif"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230630111957_1.gif",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230630111957_1.gif",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-1651",
@@ -13091,7 +13244,10 @@
       "availability": "active",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230630114033_1.gif",
       "imageSearchSource": "https://cdn.imweb.me/thumbnail/20220308/bfdd400f531a3.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230630114033_1.gif"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230630114033_1.gif",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230630114033_1.gif",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-1351",
@@ -13150,7 +13306,10 @@
       "sourceKind": "clover-public",
       "availability": "active",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230630112958_1.gif",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230630112958_1.gif"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230630112958_1.gif",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230630112958_1.gif",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2185",
@@ -13222,7 +13381,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250324141509_1.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250324141509_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250324141509_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250324141509_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-1371",
@@ -13294,7 +13456,10 @@
       "availability": "active",
       "imagePageUrl": "https://coway-m.com/sleep-care-mattress/?idx=573",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230630112613_1.gif",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230630112613_1.gif"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230630112613_1.gif",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230630112613_1.gif",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-1324",
@@ -13364,7 +13529,10 @@
       "imagePageUrl": "https://www.coway-mall.kr/product/detail.html?cate_no=73&display_group=1&product_no=519",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230630110632_1.gif",
       "imageSearchSource": "https://www.coway-mall.kr/web/product/small/202106/255a60f6987bdec5137fb0b7e565fe39.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230630110632_1.gif"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230630110632_1.gif",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230630110632_1.gif",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-1886",
@@ -13424,7 +13592,10 @@
       "giftStatus": "matched",
       "imagePageUrl": "https://coway-m.com/sleep-care-mattress/?idx=634",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230629155907_1.gif",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230629155907_1.gif"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230629155907_1.gif",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230629155907_1.gif",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-1890",
@@ -13495,7 +13666,10 @@
       "availability": "active",
       "imagePageUrl": "https://most.cowaymall.co.kr/shop/400005",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230630105625_1.gif",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230630105625_1.gif"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230630105625_1.gif",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230630105625_1.gif",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-1888",
@@ -13566,7 +13740,10 @@
       "availability": "active",
       "imagePageUrl": "https://m.xn--o39at6k1oeg4tvkk6gf.com/model/view.php?ca_id=003010&index_no=27199",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230630103539_1.gif",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230630103539_1.gif"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230630103539_1.gif",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230630103539_1.gif",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-1349",
@@ -13628,7 +13805,7 @@
       "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230629165528_1.gif",
       "imageRepresentative": true,
       "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230629165528_1.gif",
-      "imageRepresentativeMethod": "original"
+      "imageRepresentativeMethod": "existing"
     },
     {
       "id": "clover-1341",
@@ -13853,7 +14030,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231215113740_1.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231215113740_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231215113740_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231215113740_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-1326",
@@ -13912,7 +14092,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/id0101_2366_attimg_org.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/id0101_2366_attimg_org.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/id0101_2366_attimg_org.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/id0101_2366_attimg_org.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-1883",
@@ -14019,7 +14202,10 @@
       "sourceKind": "clover-public",
       "availability": "active",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/id0105_4569_attimg_org.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/id0105_4569_attimg_org.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/id0105_4569_attimg_org.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/id0105_4569_attimg_org.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-1304",
@@ -14079,7 +14265,10 @@
       "giftStatus": "matched",
       "imagePageUrl": "https://ib.cowaymall.co.kr/shop/400086",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/id0101_1635_attimg_org.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/id0101_1635_attimg_org.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/id0101_1635_attimg_org.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/id0101_1635_attimg_org.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2155",
@@ -14140,7 +14329,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/id0101_5101_attimg_org-1.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/id0101_5101_attimg_org-1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/id0101_5101_attimg_org-1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/id0101_5101_attimg_org-1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-1782",
@@ -14226,7 +14418,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250318140315_1.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250318140315_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250318140315_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250318140315_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-1895",
@@ -14328,7 +14523,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230630133346_1.gif",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230630133346_1.gif"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230630133346_1.gif",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230630133346_1.gif",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-393",
@@ -14381,7 +14579,10 @@
       "sourceKind": "clover-public",
       "availability": "active",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/id0105_1768_attimg_org.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/id0105_1768_attimg_org.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/id0105_1768_attimg_org.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/id0105_1768_attimg_org.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-1894",
@@ -14481,7 +14682,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230630132757_1.gif",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230630132757_1.gif"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230630132757_1.gif",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230630132757_1.gif",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-441",
@@ -14546,7 +14750,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230630131528_1.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230630131528_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230630131528_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/230630131528_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-674",
@@ -14722,7 +14929,10 @@
       "giftStatus": "matched",
       "imagePageUrl": "https://thefirst.cowaymall.co.kr/shop/200011",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/id0101_3716_attimg_org.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/id0101_3716_attimg_org.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/id0101_3716_attimg_org.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/id0101_3716_attimg_org.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2074",
@@ -15312,7 +15522,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231031180049_1_1.gif",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231031180049_1_1.gif"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231031180049_1_1.gif",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231031180049_1_1.gif",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2216",
@@ -15599,7 +15812,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/wp-50c90621n.gif",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/wp-50c90621n.gif"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/wp-50c90621n.gif",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/wp-50c90621n.gif",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2051",
@@ -15733,7 +15949,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250823103312_1.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250823103312_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250823103312_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250823103312_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2045",
@@ -15795,7 +16014,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231101131458_1_1.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231101131458_1_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231101131458_1_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231101131458_1_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2046",
@@ -15857,7 +16079,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231101132654_1.jpg",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231101132654_1.jpg"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231101132654_1.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231101132654_1.jpg",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2126",
@@ -15919,7 +16144,10 @@
       "giftStatus": "matched",
       "imagePageUrl": "https://www.roku-chungho.co.kr/user/product_detail?product_no=202306-1190",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/wp-46s9p510m_1_1.jpg",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/wp-46s9p510m_1_1.jpg"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/wp-46s9p510m_1_1.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/wp-46s9p510m_1_1.jpg",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2243",
@@ -16049,7 +16277,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/241211105634_1.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/241211105634_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/241211105634_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/241211105634_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2218",
@@ -16233,7 +16464,10 @@
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231101182504_1_1.png",
       "imageSearchSource": "https://www.daonhomesys.com/site_data/shop_product_mst/1735608646_bIyVkthx_WP-80S9P51.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231101182504_1_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231101182504_1_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231101182504_1_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2054",
@@ -16291,7 +16525,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/240911144100_1.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/240911144100_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/240911144100_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/240911144100_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2205",
@@ -16378,7 +16615,7 @@
       "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250620141411_1.png",
       "imageRepresentative": true,
       "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250620141411_1.png",
-      "imageRepresentativeMethod": "original"
+      "imageRepresentativeMethod": "existing"
     },
     {
       "id": "clover-2052",
@@ -16436,7 +16673,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231101151514_1_1.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231101151514_1_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231101151514_1_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231101151514_1_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-581",
@@ -16493,7 +16733,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231101165724_1_1.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231101165724_1_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231101165724_1_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231101165724_1_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-571",
@@ -16827,7 +17070,7 @@
       "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/ap-15h5170_1.jpg",
       "imageRepresentative": true,
       "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/ap-15h5170_1.jpg",
-      "imageRepresentativeMethod": "original"
+      "imageRepresentativeMethod": "existing"
     },
     {
       "id": "clover-2240",
@@ -17157,7 +17400,10 @@
       "sourceKind": "clover-public",
       "availability": "active",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/200814150435_1.jpg",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/200814150435_1.jpg"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/200814150435_1.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/200814150435_1.jpg",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2135",
@@ -17216,7 +17462,10 @@
       "availability": "active",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/av-06h3050_1.jpg",
       "imageSearchSource": "https://chungho-dobong.com/data/item/1618387792/thumb-20210412132459808084_500x500.jpg",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/av-06h3050_1.jpg"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/av-06h3050_1.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/av-06h3050_1.jpg",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-729",
@@ -17275,7 +17524,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250319163131_1.jpg",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250319163131_1.jpg"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250319163131_1.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250319163131_1.jpg",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2131",
@@ -17330,7 +17582,10 @@
       "sourceKind": "clover-public",
       "availability": "active",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/240529104116_1.jpg",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/240529104116_1.jpg"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/240529104116_1.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/240529104116_1.jpg",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-639",
@@ -19012,7 +19267,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/200814151912_1.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/200814151912_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/200814151912_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/200814151912_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-1690",
@@ -19475,7 +19733,10 @@
       "sourceKind": "clover-public",
       "availability": "active",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/hqps11cy0e_1_1.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/hqps11cy0e_1_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/hqps11cy0e_1_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/hqps11cy0e_1_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2125",
@@ -19658,7 +19919,10 @@
       "sourceKind": "clover-public",
       "availability": "active",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231113183056_1.jpg",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231113183056_1.jpg"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231113183056_1.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231113183056_1.jpg",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-1930",
@@ -19747,7 +20011,10 @@
       "sourceKind": "clover-public",
       "availability": "active",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/hqpm14cw2d_1_1.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/hqpm14cw2d_1_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/hqpm14cw2d_1_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/hqpm14cw2d_1_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-694",
@@ -19829,7 +20096,10 @@
       "sourceKind": "clover-public",
       "availability": "active",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/240906183957_1.gif",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/240906183957_1.gif"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/240906183957_1.gif",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/240906183957_1.gif",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2011",
@@ -19914,7 +20184,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231114094054_1_1.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231114094054_1_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231114094054_1_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231114094054_1_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2012",
@@ -20156,7 +20429,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231114100423_1_1.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231114100423_1_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231114100423_1_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231114100423_1_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-1817",
@@ -20319,7 +20595,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/251119171208_1.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/251119171208_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/251119171208_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/251119171208_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2220",
@@ -20403,7 +20682,10 @@
       "sourceKind": "clover-public",
       "availability": "active",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/20250828_132406.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/20250828_132406.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/20250828_132406.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/20250828_132406.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-1905",
@@ -20485,7 +20767,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231114104008_1.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231114104008_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231114104008_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231114104008_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-236",
@@ -20568,7 +20853,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231114104531_1.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231114104531_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231114104531_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231114104531_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2073",
@@ -20661,7 +20949,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/d58c28e8c6dcae16755e8c80a9eb051d.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/d58c28e8c6dcae16755e8c80a9eb051d.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/d58c28e8c6dcae16755e8c80a9eb051d.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/d58c28e8c6dcae16755e8c80a9eb051d.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-235",
@@ -21014,7 +21305,10 @@
       "sourceKind": "clover-public",
       "availability": "active",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/1708ac8be99cf4d11cef1dbf3e081b75.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/1708ac8be99cf4d11cef1dbf3e081b75.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/1708ac8be99cf4d11cef1dbf3e081b75.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/1708ac8be99cf4d11cef1dbf3e081b75.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-1899",
@@ -21071,7 +21365,10 @@
       "sourceKind": "clover-public",
       "availability": "active",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/260206103054_1.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/260206103054_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/260206103054_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/260206103054_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-1901",
@@ -21220,7 +21517,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/e7bd214e85b2359fa220bb1c50eb0a4b.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/e7bd214e85b2359fa220bb1c50eb0a4b.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/e7bd214e85b2359fa220bb1c50eb0a4b.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/e7bd214e85b2359fa220bb1c50eb0a4b.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-256",
@@ -21355,7 +21655,10 @@
       "imagePageUrl": "https://huborn-biz.co.kr/product/%EB%A0%8C%ED%83%88-%ED%98%84%EB%8C%80-%EB%8D%94%ED%99%88-%EB%9F%AD%EC%85%94%EB%A6%ACq-m-l50qe0j-hlm1950qe0-72%EA%B0%9C%EC%9B%94-%EC%95%BD%EC%A0%95-%EB%93%B1%EB%A1%9D%EB%B9%84-%EB%AC%B4%EB%A3%8C/48857/category/870/display/1/",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/200224065521_460.png",
       "imageSearchSource": "https://huborn-biz.co.kr/web/product/small/202402/b3ab12e30423cb413d27081b0f0cc586.jpg",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/200224065521_460.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/200224065521_460.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/200224065521_460.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-259",
@@ -21421,7 +21724,10 @@
       "sourceKind": "clover-public",
       "availability": "active",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/200224065521_454.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/200224065521_454.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/200224065521_454.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/200224065521_454.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-261",
@@ -21612,7 +21918,10 @@
       "availability": "active",
       "imagePageUrl": "https://test1.rental-shop.net/html/dh_product/prod_list/?cate_no=5-133-386",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/200224065521_427.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/200224065521_427.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/200224065521_427.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/200224065521_427.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-273",
@@ -21853,7 +22162,10 @@
       "sourceKind": "clover-public",
       "availability": "active",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/200224065521_468.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/200224065521_468.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/200224065521_468.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/200224065521_468.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-254",
@@ -21915,7 +22227,10 @@
       "imagePageUrl": "https://www.hyundai-rentalcare.co.kr/user/product_detail?product_no=202004-0234",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/200224065521_466.png",
       "imageSearchSource": "https://huborn-biz.co.kr/web/product/small/202402/b3ab12e30423cb413d27081b0f0cc586.jpg",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/200224065521_466.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/200224065521_466.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/200224065521_466.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "cp-aqs100ewh",
@@ -22223,7 +22538,10 @@
       "sourceKind": "clover-public",
       "availability": "active",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/260411095512_1.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/260411095512_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/260411095512_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/260411095512_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2110",
@@ -22318,7 +22636,10 @@
       "sourceKind": "clover-public",
       "availability": "active",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/cp-ahs100h_1.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/cp-ahs100h_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/cp-ahs100h_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/cp-ahs100h_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2140",
@@ -22414,7 +22735,10 @@
       "sourceKind": "clover-public",
       "availability": "active",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/cp-ahsc100hew_1.gif",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/cp-ahsc100hew_1.gif"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/cp-ahsc100hew_1.gif",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/cp-ahsc100hew_1.gif",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2236",
@@ -22602,7 +22926,10 @@
       "sourceKind": "clover-public",
       "availability": "active",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250827174216_1.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250827174216_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250827174216_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250827174216_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2197",
@@ -22892,7 +23219,7 @@
       "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/351b697b-c6ef-410e-a201-35d33d2806ef.jpg",
       "imageRepresentative": true,
       "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/351b697b-c6ef-410e-a201-35d33d2806ef.jpg",
-      "imageRepresentativeMethod": "original"
+      "imageRepresentativeMethod": "existing"
     },
     {
       "id": "clover-2237",
@@ -23084,7 +23411,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/661910538_nuqeqyav_ac-35u10fws_1.jpg",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/661910538_nuqeqyav_ac-35u10fws_1.jpg"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/661910538_nuqeqyav_ac-35u10fws_1.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/661910538_nuqeqyav_ac-35u10fws_1.jpg",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-446",
@@ -23170,7 +23500,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/661910538_kawdnrxz_ac-25w10fwh_1.jpg",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/661910538_kawdnrxz_ac-25w10fwh_1.jpg"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/661910538_kawdnrxz_ac-25w10fwh_1.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/661910538_kawdnrxz_ac-25w10fwh_1.jpg",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-1603",
@@ -23356,7 +23689,10 @@
       "sourceKind": "clover-public",
       "availability": "active",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231103161608_1_1.gif",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231103161608_1_1.gif"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231103161608_1_1.gif",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231103161608_1_1.gif",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-1812",
@@ -23458,7 +23794,10 @@
       "sourceKind": "clover-public",
       "availability": "active",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/cp-abs100_1.gif",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/cp-abs100_1.gif"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/cp-abs100_1.gif",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/cp-abs100_1.gif",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2253",
@@ -23751,7 +24090,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231103142304_1_1.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231103142304_1_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231103142304_1_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231103142304_1_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2015",
@@ -23855,7 +24197,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/240910173324_1.gif",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/240910173324_1.gif"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/240910173324_1.gif",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/240910173324_1.gif",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2143",
@@ -23950,7 +24295,7 @@
       "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/240723171616_1_1.jpg",
       "imageRepresentative": true,
       "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/240723171616_1_1.jpg",
-      "imageRepresentativeMethod": "original"
+      "imageRepresentativeMethod": "existing"
     },
     {
       "id": "clover-1702",
@@ -24036,7 +24381,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/cp-u011_1.gif",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/cp-u011_1.gif"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/cp-u011_1.gif",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/cp-u011_1.gif",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-1829",
@@ -24884,7 +25232,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/661910538_ztouanqc_ac-17t20fwh_1.jpg",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/661910538_ztouanqc_ac-17t20fwh_1.jpg"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/661910538_ztouanqc_ac-17t20fwh_1.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/661910538_ztouanqc_ac-17t20fwh_1.jpg",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2068",
@@ -25566,7 +25917,7 @@
       "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/661910538_cwn9mait_ac-12r10fnw_1.jpg",
       "imageRepresentative": true,
       "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/661910538_cwn9mait_ac-12r10fnw_1.jpg",
-      "imageRepresentativeMethod": "original"
+      "imageRepresentativeMethod": "existing"
     },
     {
       "id": "clover-2065",
@@ -26070,7 +26421,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/200224065058_591.jpg",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/200224065058_591.jpg"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/200224065058_591.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/200224065058_591.jpg",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-528",
@@ -26757,7 +27111,7 @@
       "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/1.png",
       "imageRepresentative": true,
       "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/1.png",
-      "imageRepresentativeMethod": "original"
+      "imageRepresentativeMethod": "existing"
     },
     {
       "id": "clover-2093",
@@ -26820,7 +27174,10 @@
       "imagePageUrl": "https://rental.lghellovision.net/product/view.do?idx=501",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/whp-3300_1_1.png",
       "imageSearchSource": "https://rentalcdn.lghellovision.net/uploads/product/5RlaHXInOK.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/whp-3300_1_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/whp-3300_1_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/whp-3300_1_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-1589",
@@ -27394,7 +27751,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250319165406_1.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250319165406_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250319165406_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250319165406_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2181",
@@ -27486,7 +27846,10 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250319170555_1.png",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250319170555_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250319170555_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250319170555_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2183",
@@ -27818,7 +28181,10 @@
       "imagePageUrl": "https://the-rental.kr/shop_view/?idx=4085",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231114115452_1_1.png",
       "imageSearchSource": "https://cdn.imweb.me/thumbnail/20230501/4d2c9ff7d3a08.jpg",
-      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231114115452_1_1.png"
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231114115452_1_1.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231114115452_1_1.png",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clover-2034",
@@ -28283,7 +28649,7 @@
       "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/240524/jy9FwcetDTz4QMAyLURwffUWtWuRYQ.jpg",
       "imageRepresentative": true,
       "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/240524/jy9FwcetDTz4QMAyLURwffUWtWuRYQ.jpg",
-      "imageRepresentativeMethod": "original"
+      "imageRepresentativeMethod": "existing"
     },
     {
       "id": "clv-13528",
@@ -28334,7 +28700,7 @@
       "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/230713/dlGxsrrMYvb5m24cVAZeRHFfqADTPU.jpg",
       "imageRepresentative": true,
       "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/230713/dlGxsrrMYvb5m24cVAZeRHFfqADTPU.jpg",
-      "imageRepresentativeMethod": "original"
+      "imageRepresentativeMethod": "existing"
     },
     {
       "id": "clv-5733",
@@ -28407,7 +28773,7 @@
       "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/211026/HJ9TpBlPaN2rCfSBs5yD2d3nbNuVb6.jpg",
       "imageRepresentative": true,
       "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/211026/HJ9TpBlPaN2rCfSBs5yD2d3nbNuVb6.jpg",
-      "imageRepresentativeMethod": "original"
+      "imageRepresentativeMethod": "existing"
     },
     {
       "id": "clv-8081",
@@ -28458,7 +28824,7 @@
       "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/220526/mlcGJ8qnHZHg6pAAA5KzlJkTjXR3GS.jpg",
       "imageRepresentative": true,
       "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/220526/mlcGJ8qnHZHg6pAAA5KzlJkTjXR3GS.jpg",
-      "imageRepresentativeMethod": "original"
+      "imageRepresentativeMethod": "existing"
     },
     {
       "id": "clv-12646",
@@ -28586,7 +28952,7 @@
       "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/230525/GnNp5489AssvBq6brzhwCST9h8uk3Z.jpg",
       "imageRepresentative": true,
       "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/230525/GnNp5489AssvBq6brzhwCST9h8uk3Z.jpg",
-      "imageRepresentativeMethod": "original"
+      "imageRepresentativeMethod": "existing"
     },
     {
       "id": "clv-12617",
@@ -28725,7 +29091,7 @@
       "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/230525/HASmXDvn9BeTBStr6tpHEFUy8skZLK.jpg",
       "imageRepresentative": true,
       "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/230525/HASmXDvn9BeTBStr6tpHEFUy8skZLK.jpg",
-      "imageRepresentativeMethod": "original"
+      "imageRepresentativeMethod": "existing"
     },
     {
       "id": "clv-36320",
@@ -28963,7 +29329,7 @@
       "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/251202/KDtjLS3ptJBURAYWjn47ge3Rvgx9wB.jpg",
       "imageRepresentative": true,
       "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/251202/KDtjLS3ptJBURAYWjn47ge3Rvgx9wB.jpg",
-      "imageRepresentativeMethod": "original"
+      "imageRepresentativeMethod": "existing"
     },
     {
       "id": "clv-36310",
@@ -29102,7 +29468,7 @@
       "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/251202/LRzpJeLHKgYZcfQYepDVeyTwRxZtD2.jpg",
       "imageRepresentative": true,
       "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/251202/LRzpJeLHKgYZcfQYepDVeyTwRxZtD2.jpg",
-      "imageRepresentativeMethod": "original"
+      "imageRepresentativeMethod": "existing"
     },
     {
       "id": "clv-35940",
@@ -29241,7 +29607,7 @@
       "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/251202/5nWXTQwgZmEZx8VhL4jxapRSU4DHe4.jpg",
       "imageRepresentative": true,
       "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/251202/5nWXTQwgZmEZx8VhL4jxapRSU4DHe4.jpg",
-      "imageRepresentativeMethod": "original"
+      "imageRepresentativeMethod": "existing"
     },
     {
       "id": "clv-58159",
@@ -29347,7 +29713,7 @@
       "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/260608/3xLSHvGx7b9kXp4g1KdELXgX6qMppM.jpg",
       "imageRepresentative": true,
       "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/260608/3xLSHvGx7b9kXp4g1KdELXgX6qMppM.jpg",
-      "imageRepresentativeMethod": "original"
+      "imageRepresentativeMethod": "existing"
     },
     {
       "id": "clv-55935",
@@ -29420,7 +29786,7 @@
       "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/260331/3kRPNfzCnlJUN5e8rqs3SWBRFy3wQS.jpg",
       "imageRepresentative": true,
       "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/260331/3kRPNfzCnlJUN5e8rqs3SWBRFy3wQS.jpg",
-      "imageRepresentativeMethod": "original"
+      "imageRepresentativeMethod": "existing"
     },
     {
       "id": "clv-35750",
@@ -29658,7 +30024,7 @@
       "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/251127/btbkvqbD9hF8PDSMLtWejbSPajHj95.jpg",
       "imageRepresentative": true,
       "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/251127/btbkvqbD9hF8PDSMLtWejbSPajHj95.jpg",
-      "imageRepresentativeMethod": "original"
+      "imageRepresentativeMethod": "existing"
     },
     {
       "id": "clv-35755",
@@ -29863,7 +30229,7 @@
       "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/251127/CgYjcYD29vzFJhJpKDlEesp89eu65F.jpg",
       "imageRepresentative": true,
       "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/251127/CgYjcYD29vzFJhJpKDlEesp89eu65F.jpg",
-      "imageRepresentativeMethod": "original"
+      "imageRepresentativeMethod": "existing"
     },
     {
       "id": "clv-35925",
@@ -30002,7 +30368,7 @@
       "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/251127/aDk1PSQqsngWE6LRmecvHv5l1aZZWX.jpg",
       "imageRepresentative": true,
       "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/251127/aDk1PSQqsngWE6LRmecvHv5l1aZZWX.jpg",
-      "imageRepresentativeMethod": "original"
+      "imageRepresentativeMethod": "existing"
     },
     {
       "id": "clv-35765",
@@ -30207,7 +30573,7 @@
       "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/251127/ACFBBbaGtGt9u1pCwqAfVsHYgxVyg2.jpg",
       "imageRepresentative": true,
       "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/251127/ACFBBbaGtGt9u1pCwqAfVsHYgxVyg2.jpg",
-      "imageRepresentativeMethod": "original"
+      "imageRepresentativeMethod": "existing"
     },
     {
       "id": "clv-35950",
@@ -30313,7 +30679,7 @@
       "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/251127/vKFPUxyrPnKAwUyPNlaQ8g5fvjmUrp.jpg",
       "imageRepresentative": true,
       "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/251127/vKFPUxyrPnKAwUyPNlaQ8g5fvjmUrp.jpg",
-      "imageRepresentativeMethod": "original"
+      "imageRepresentativeMethod": "existing"
     },
     {
       "id": "clv-21916",
@@ -30452,7 +30818,7 @@
       "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/251128/fbuZxY51yM6dGp56ZAjCzUxncz2p8T.jpg",
       "imageRepresentative": true,
       "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/251128/fbuZxY51yM6dGp56ZAjCzUxncz2p8T.jpg",
-      "imageRepresentativeMethod": "original"
+      "imageRepresentativeMethod": "existing"
     },
     {
       "id": "clv-55590",
@@ -30591,7 +30957,7 @@
       "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/260317/qbuA3XyMzCvnTVcz7wTdHkfGVXPlYx.jpg",
       "imageRepresentative": true,
       "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/260317/qbuA3XyMzCvnTVcz7wTdHkfGVXPlYx.jpg",
-      "imageRepresentativeMethod": "original"
+      "imageRepresentativeMethod": "existing"
     },
     {
       "id": "clv-55543",
@@ -30664,7 +31030,7 @@
       "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/260317/ja72z6szfK5BMayjwsDgNKPD39pqun.jpg",
       "imageRepresentative": true,
       "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/260317/ja72z6szfK5BMayjwsDgNKPD39pqun.jpg",
-      "imageRepresentativeMethod": "original"
+      "imageRepresentativeMethod": "existing"
     },
     {
       "id": "clv-18652",
@@ -30770,7 +31136,7 @@
       "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/251128/6xYVs3ES4cDANrlLdyQ5LyUZGapnjj.jpg",
       "imageRepresentative": true,
       "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/251128/6xYVs3ES4cDANrlLdyQ5LyUZGapnjj.jpg",
-      "imageRepresentativeMethod": "original"
+      "imageRepresentativeMethod": "existing"
     },
     {
       "id": "clv-18656",
@@ -30876,7 +31242,7 @@
       "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/251128/4KQDCywnXJRVAALrcbScP2EKBdfuGd.jpg",
       "imageRepresentative": true,
       "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/251128/4KQDCywnXJRVAALrcbScP2EKBdfuGd.jpg",
-      "imageRepresentativeMethod": "original"
+      "imageRepresentativeMethod": "existing"
     },
     {
       "id": "clv-6816",
@@ -31015,7 +31381,7 @@
       "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/251127/DpB1nTny43mAZdLmPrp9l5Fk551XPh.jpg",
       "imageRepresentative": true,
       "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/251127/DpB1nTny43mAZdLmPrp9l5Fk551XPh.jpg",
-      "imageRepresentativeMethod": "original"
+      "imageRepresentativeMethod": "existing"
     },
     {
       "id": "clv-6817",
@@ -31187,7 +31553,7 @@
       "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/251127/W6j5g2hCJjJnScglwelpZd9wJ9Lkth.jpg",
       "imageRepresentative": true,
       "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/251127/W6j5g2hCJjJnScglwelpZd9wJ9Lkth.jpg",
-      "imageRepresentativeMethod": "original"
+      "imageRepresentativeMethod": "existing"
     },
     {
       "id": "clv-7666",
@@ -31359,7 +31725,7 @@
       "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/251127/tYLYJqxx7yTdlsVgByKQ4AULbgPAxl.jpg",
       "imageRepresentative": true,
       "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/251127/tYLYJqxx7yTdlsVgByKQ4AULbgPAxl.jpg",
-      "imageRepresentativeMethod": "original"
+      "imageRepresentativeMethod": "existing"
     },
     {
       "id": "clv-4236",
@@ -31531,7 +31897,7 @@
       "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/251127/lgl8Nuwl6XQ3vM5AxyNqeKPD5scC8T.jpg",
       "imageRepresentative": true,
       "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/251127/lgl8Nuwl6XQ3vM5AxyNqeKPD5scC8T.jpg",
-      "imageRepresentativeMethod": "original"
+      "imageRepresentativeMethod": "existing"
     },
     {
       "id": "clv-4243",
@@ -31670,7 +32036,7 @@
       "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/251127/fRm57ZRhmVvHXkHa2b3LjqvShJNPle.jpg",
       "imageRepresentative": true,
       "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/251127/fRm57ZRhmVvHXkHa2b3LjqvShJNPle.jpg",
-      "imageRepresentativeMethod": "original"
+      "imageRepresentativeMethod": "existing"
     },
     {
       "id": "clv-4244",
@@ -31743,7 +32109,7 @@
       "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/251127/kfP2twgJK5KZbsXvxCgZr33GHtw44p.jpg",
       "imageRepresentative": true,
       "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/251127/kfP2twgJK5KZbsXvxCgZr33GHtw44p.jpg",
-      "imageRepresentativeMethod": "original"
+      "imageRepresentativeMethod": "existing"
     },
     {
       "id": "clv-4245",
@@ -31816,7 +32182,7 @@
       "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/251127/dy3yyxmn4uBkVSp33XbhkElm7BuKSR.jpg",
       "imageRepresentative": true,
       "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/251127/dy3yyxmn4uBkVSp33XbhkElm7BuKSR.jpg",
-      "imageRepresentativeMethod": "original"
+      "imageRepresentativeMethod": "existing"
     },
     {
       "id": "clv-39209",
@@ -31933,7 +32299,7 @@
       "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/250526/CAW6LPBhTUM3kcxnp4VLkYXveqxpyB.jpg",
       "imageRepresentative": true,
       "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/250526/CAW6LPBhTUM3kcxnp4VLkYXveqxpyB.jpg",
-      "imageRepresentativeMethod": "original"
+      "imageRepresentativeMethod": "existing"
     },
     {
       "id": "clv-12811",
@@ -32061,7 +32427,7 @@
       "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/230607/lb8ZVG6SQ83NgFLU8LRgFzvkC6brUh.jpg",
       "imageRepresentative": true,
       "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/230607/lb8ZVG6SQ83NgFLU8LRgFzvkC6brUh.jpg",
-      "imageRepresentativeMethod": "original"
+      "imageRepresentativeMethod": "existing"
     },
     {
       "id": "clv-12807",
@@ -32134,7 +32500,7 @@
       "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/230607/JqzRHn3xyB6mGxVeFtL8kTuegqD5VT.jpg",
       "imageRepresentative": true,
       "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/230607/JqzRHn3xyB6mGxVeFtL8kTuegqD5VT.jpg",
-      "imageRepresentativeMethod": "original"
+      "imageRepresentativeMethod": "existing"
     },
     {
       "id": "clv-11828",
@@ -32295,7 +32661,7 @@
       "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/230421/GJb6puz6prfa91jfSvrmgMUQJUpBPF.jpg",
       "imageRepresentative": true,
       "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/230421/GJb6puz6prfa91jfSvrmgMUQJUpBPF.jpg",
-      "imageRepresentativeMethod": "original"
+      "imageRepresentativeMethod": "existing"
     },
     {
       "id": "clv-11538",
@@ -32456,7 +32822,7 @@
       "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/230412/p1zTYnWhESaXsnTRqRksxABLtLbhG5.jpg",
       "imageRepresentative": true,
       "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/230412/p1zTYnWhESaXsnTRqRksxABLtLbhG5.jpg",
-      "imageRepresentativeMethod": "original"
+      "imageRepresentativeMethod": "existing"
     },
     {
       "id": "clv-12830",
@@ -32529,7 +32895,7 @@
       "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/230607/YEWu6Wp8ldU1AlaXfqKcNuqxdY4ECF.jpg",
       "imageRepresentative": true,
       "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/230607/YEWu6Wp8ldU1AlaXfqKcNuqxdY4ECF.jpg",
-      "imageRepresentativeMethod": "original"
+      "imageRepresentativeMethod": "existing"
     },
     {
       "id": "clv-12810",
@@ -32657,7 +33023,7 @@
       "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/230607/zs4SHxzMJLra3y6ULZRH14tqyFUWJX.jpg",
       "imageRepresentative": true,
       "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/230607/zs4SHxzMJLra3y6ULZRH14tqyFUWJX.jpg",
-      "imageRepresentativeMethod": "original"
+      "imageRepresentativeMethod": "existing"
     },
     {
       "id": "clv-12809",
@@ -32785,7 +33151,7 @@
       "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/230607/zpD4QbckBj7rstRB8sBUHlqFpGcKzH.jpg",
       "imageRepresentative": true,
       "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/230607/zpD4QbckBj7rstRB8sBUHlqFpGcKzH.jpg",
-      "imageRepresentativeMethod": "original"
+      "imageRepresentativeMethod": "existing"
     },
     {
       "id": "clv-58086",
@@ -32858,7 +33224,7 @@
       "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/260602/RNJVB24NYMPTf3kMyzT4TA3Tv1dp7N.jpg",
       "imageRepresentative": true,
       "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/260602/RNJVB24NYMPTf3kMyzT4TA3Tv1dp7N.jpg",
-      "imageRepresentativeMethod": "original"
+      "imageRepresentativeMethod": "existing"
     },
     {
       "id": "clv-57332",
@@ -32931,7 +33297,7 @@
       "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/260428/XDFRBK9bgp4HLh4ft6BwEqUHBLxEQB.jpg",
       "imageRepresentative": true,
       "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/260428/XDFRBK9bgp4HLh4ft6BwEqUHBLxEQB.jpg",
-      "imageRepresentativeMethod": "original"
+      "imageRepresentativeMethod": "existing"
     },
     {
       "id": "clv-50899",
@@ -32943,7 +33309,7 @@
       "rawCategory": "TV·디지털",
       "color": "",
       "page": "product.html?id=clv-50899",
-      "image": "https://storage.bilrigo.com/data/thumbnails/251201/6YpHLefubw4sa8j7tn6zGcrfVdtezt.jpg",
+      "image": "assets/product-images/clv-50899.webp",
       "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=50899&ca_id=008001",
       "tags": [
         "TV·디지털",
@@ -32978,7 +33344,11 @@
       "availability": "active",
       "giftStatus": "customer-gift-calculated",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/251201/6YpHLefubw4sa8j7tn6zGcrfVdtezt.jpg",
-      "importedFrom": "https://m.clvrental777.com/"
+      "importedFrom": "https://m.clvrental777.com/",
+      "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/251201/rCRRCBKRxVYCALxHxtszUlA6ELXblv.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/251201/rCRRCBKRxVYCALxHxtszUlA6ELXblv.jpg",
+      "imageRepresentativeMethod": "merchant"
     },
     {
       "id": "clv-23910",
@@ -33150,7 +33520,7 @@
       "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/250910/rsYEkxZvFTE6ZcK7GvgKDD4KmqCZKv.jpg",
       "imageRepresentative": true,
       "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/250910/rsYEkxZvFTE6ZcK7GvgKDD4KmqCZKv.jpg",
-      "imageRepresentativeMethod": "original"
+      "imageRepresentativeMethod": "existing"
     },
     {
       "id": "clv-24212",
@@ -33322,7 +33692,7 @@
       "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/250910/9YKg7dXeMXcy4xy4Ltabmp25PmTZw1.jpg",
       "imageRepresentative": true,
       "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/250910/9YKg7dXeMXcy4xy4Ltabmp25PmTZw1.jpg",
-      "imageRepresentativeMethod": "original"
+      "imageRepresentativeMethod": "existing"
     },
     {
       "id": "clv-24207",
@@ -33494,7 +33864,7 @@
       "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/250910/taHQV3E1tDvCJPhXPaVn5w185JGFd7.jpg",
       "imageRepresentative": true,
       "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/250910/taHQV3E1tDvCJPhXPaVn5w185JGFd7.jpg",
-      "imageRepresentativeMethod": "original"
+      "imageRepresentativeMethod": "existing"
     },
     {
       "id": "clv-46173",
@@ -33578,7 +33948,7 @@
       "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/260211/H3h6zblYRnF1x7YtRHW8Wj7bgELjkW.jpg",
       "imageRepresentative": true,
       "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/260211/H3h6zblYRnF1x7YtRHW8Wj7bgELjkW.jpg",
-      "imageRepresentativeMethod": "original"
+      "imageRepresentativeMethod": "existing"
     },
     {
       "id": "clv-56311",
@@ -33651,7 +34021,7 @@
       "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/260408/wyunslcerH2bbQkQ697hWwvyQywXg4.jpg",
       "imageRepresentative": true,
       "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/260408/wyunslcerH2bbQkQ697hWwvyQywXg4.jpg",
-      "imageRepresentativeMethod": "original"
+      "imageRepresentativeMethod": "existing"
     },
     {
       "id": "clv-56636",
@@ -33663,7 +34033,7 @@
       "rawCategory": "세탁·건조·의류관리",
       "color": "",
       "page": "product.html?id=clv-56636",
-      "image": "https://storage.bilrigo.com/data/thumbnails/260414/1rpzVQRQUt1ZpAmBlHjzWApqZ6Rw6k.jpg",
+      "image": "assets/product-images/clv-56636.webp",
       "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=56636&ca_id=009001",
       "tags": [
         "세탁·건조·의류관리",
@@ -33753,7 +34123,11 @@
       "availability": "active",
       "giftStatus": "customer-gift-calculated",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/260414/1rpzVQRQUt1ZpAmBlHjzWApqZ6Rw6k.jpg",
-      "importedFrom": "https://m.clvrental777.com/"
+      "importedFrom": "https://m.clvrental777.com/",
+      "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/260414/Ym51yb2RZhcEWahUW5hDRFmCERPJZM.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/260414/Ym51yb2RZhcEWahUW5hDRFmCERPJZM.jpg",
+      "imageRepresentativeMethod": "merchant"
     },
     {
       "id": "clv-56065",
@@ -33765,7 +34139,7 @@
       "rawCategory": "세탁·건조·의류관리",
       "color": "",
       "page": "product.html?id=clv-56065",
-      "image": "https://storage.bilrigo.com/data/thumbnails/260401/QZWArUkf3VsG3c55SHC7tnnCCAgqvB.jpg",
+      "image": "assets/product-images/clv-56065.webp",
       "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=56065&ca_id=009001",
       "tags": [
         "세탁·건조·의류관리",
@@ -33855,7 +34229,11 @@
       "availability": "active",
       "giftStatus": "customer-gift-calculated",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/260401/QZWArUkf3VsG3c55SHC7tnnCCAgqvB.jpg",
-      "importedFrom": "https://m.clvrental777.com/"
+      "importedFrom": "https://m.clvrental777.com/",
+      "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/260401/XE9YpqZq8MYCqThkPGPn2BRkSNRcMp.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/260401/XE9YpqZq8MYCqThkPGPn2BRkSNRcMp.jpg",
+      "imageRepresentativeMethod": "merchant"
     },
     {
       "id": "clv-48939",
@@ -33867,7 +34245,7 @@
       "rawCategory": "세탁·건조·의류관리",
       "color": "",
       "page": "product.html?id=clv-48939",
-      "image": "https://storage.bilrigo.com/data/thumbnails/260211/eqncjTrV9fEVMH4w2knDpmVdQEmjZV.jpg",
+      "image": "assets/product-images/clv-48939.webp",
       "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=48939&ca_id=009001",
       "tags": [
         "세탁·건조·의류관리",
@@ -33957,7 +34335,11 @@
       "availability": "active",
       "giftStatus": "customer-gift-calculated",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/260211/eqncjTrV9fEVMH4w2knDpmVdQEmjZV.jpg",
-      "importedFrom": "https://m.clvrental777.com/"
+      "importedFrom": "https://m.clvrental777.com/",
+      "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/260211/wJKGJPJvtG77B81ThPal2rdR4EkSsB.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/260211/wJKGJPJvtG77B81ThPal2rdR4EkSsB.jpg",
+      "imageRepresentativeMethod": "merchant"
     },
     {
       "id": "clv-57861",
@@ -33969,7 +34351,7 @@
       "rawCategory": "세탁·건조·의류관리",
       "color": "",
       "page": "product.html?id=clv-57861",
-      "image": "https://storage.bilrigo.com/data/thumbnails/260518/5ucNTyHDwUJxZAeuPqfNadrX53TUfW.jpg",
+      "image": "assets/product-images/clv-57861.webp",
       "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=57861&ca_id=009001",
       "tags": [
         "세탁·건조·의류관리",
@@ -34125,7 +34507,11 @@
       "availability": "active",
       "giftStatus": "customer-gift-calculated",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/260518/5ucNTyHDwUJxZAeuPqfNadrX53TUfW.jpg",
-      "importedFrom": "https://m.clvrental777.com/"
+      "importedFrom": "https://m.clvrental777.com/",
+      "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/260518/MTUPt8KWq1gly8Qc8zGlCERTUMgatz.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/260518/MTUPt8KWq1gly8Qc8zGlCERTUMgatz.jpg",
+      "imageRepresentativeMethod": "merchant"
     },
     {
       "id": "clv-48684",
@@ -34137,7 +34523,7 @@
       "rawCategory": "세탁·건조·의류관리",
       "color": "",
       "page": "product.html?id=clv-48684",
-      "image": "https://storage.bilrigo.com/data/thumbnails/260211/R1JBzD6hGHXSS33mSLPAAlZsLTJw1H.jpg",
+      "image": "assets/product-images/clv-48684.webp",
       "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=48684&ca_id=009001",
       "tags": [
         "세탁·건조·의류관리",
@@ -34293,7 +34679,11 @@
       "availability": "active",
       "giftStatus": "customer-gift-calculated",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/260211/R1JBzD6hGHXSS33mSLPAAlZsLTJw1H.jpg",
-      "importedFrom": "https://m.clvrental777.com/"
+      "importedFrom": "https://m.clvrental777.com/",
+      "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/260211/JYDR677G88v2TghFSErL1HtGPcRZLa.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/260211/JYDR677G88v2TghFSErL1HtGPcRZLa.jpg",
+      "imageRepresentativeMethod": "merchant"
     },
     {
       "id": "clv-57856",
@@ -34305,7 +34695,7 @@
       "rawCategory": "세탁·건조·의류관리",
       "color": "",
       "page": "product.html?id=clv-57856",
-      "image": "https://storage.bilrigo.com/data/thumbnails/260518/kqST1RN2crMx9V6wq2MdEgKVWHQvLh.jpg",
+      "image": "assets/product-images/clv-57856.webp",
       "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=57856&ca_id=009001",
       "tags": [
         "세탁·건조·의류관리",
@@ -34428,7 +34818,11 @@
       "availability": "active",
       "giftStatus": "customer-gift-calculated",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/260518/kqST1RN2crMx9V6wq2MdEgKVWHQvLh.jpg",
-      "importedFrom": "https://m.clvrental777.com/"
+      "importedFrom": "https://m.clvrental777.com/",
+      "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/260518/lVsd4zVnNGDv6PLbzFHaNuYVy9xmQg.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/260518/lVsd4zVnNGDv6PLbzFHaNuYVy9xmQg.jpg",
+      "imageRepresentativeMethod": "merchant"
     },
     {
       "id": "clv-20680",
@@ -34440,7 +34834,7 @@
       "rawCategory": "세탁·건조·의류관리",
       "color": "",
       "page": "product.html?id=clv-20680",
-      "image": "https://storage.bilrigo.com/data/thumbnails/240329/fjhqUkwzrRKYazRW6E73Ztg1CpSBKw.jpg",
+      "image": "assets/product-images/clv-20680.webp",
       "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=20680&ca_id=009001",
       "tags": [
         "세탁·건조·의류관리",
@@ -34563,7 +34957,11 @@
       "availability": "active",
       "giftStatus": "customer-gift-calculated",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/240329/fjhqUkwzrRKYazRW6E73Ztg1CpSBKw.jpg",
-      "importedFrom": "https://m.clvrental777.com/"
+      "importedFrom": "https://m.clvrental777.com/",
+      "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/240329/TfQAJYRaVprXzCFtq1Ryb8zWDnfucN.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/240329/TfQAJYRaVprXzCFtq1Ryb8zWDnfucN.jpg",
+      "imageRepresentativeMethod": "merchant"
     },
     {
       "id": "clv-57876",
@@ -34575,7 +34973,7 @@
       "rawCategory": "세탁·건조·의류관리",
       "color": "",
       "page": "product.html?id=clv-57876",
-      "image": "https://storage.bilrigo.com/data/thumbnails/260518/wfMz9uv1tsCZXSly3LlJLbxqVqVenz.jpg",
+      "image": "assets/product-images/clv-57876.webp",
       "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=57876&ca_id=009001",
       "tags": [
         "세탁·건조·의류관리",
@@ -34698,7 +35096,11 @@
       "availability": "active",
       "giftStatus": "customer-gift-calculated",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/260518/wfMz9uv1tsCZXSly3LlJLbxqVqVenz.jpg",
-      "importedFrom": "https://m.clvrental777.com/"
+      "importedFrom": "https://m.clvrental777.com/",
+      "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/260518/7gL4k2AHLj5UPEsemQS9uEWmkl9Brd.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/260518/7gL4k2AHLj5UPEsemQS9uEWmkl9Brd.jpg",
+      "imageRepresentativeMethod": "merchant"
     },
     {
       "id": "clv-59505",
@@ -34710,7 +35112,7 @@
       "rawCategory": "세탁·건조·의류관리",
       "color": "",
       "page": "product.html?id=clv-59505",
-      "image": "https://storage.bilrigo.com/data/thumbnails/260707/qLHy2dU2r7XSlkHKLyXuc5h4vbWxqP.jpg",
+      "image": "assets/product-images/clv-59505.webp",
       "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=59505&ca_id=009001",
       "tags": [
         "세탁·건조·의류관리",
@@ -34767,7 +35169,11 @@
       "availability": "active",
       "giftStatus": "customer-gift-calculated",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/260707/qLHy2dU2r7XSlkHKLyXuc5h4vbWxqP.jpg",
-      "importedFrom": "https://m.clvrental777.com/"
+      "importedFrom": "https://m.clvrental777.com/",
+      "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/260707/vyKAlBX1CMXCJG2KZQLaZDvgUmScPz.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/260707/vyKAlBX1CMXCJG2KZQLaZDvgUmScPz.jpg",
+      "imageRepresentativeMethod": "merchant"
     },
     {
       "id": "clv-20690",
@@ -34779,7 +35185,7 @@
       "rawCategory": "세탁·건조·의류관리",
       "color": "",
       "page": "product.html?id=clv-20690",
-      "image": "https://storage.bilrigo.com/data/thumbnails/240329/9ZWNczNLHPAGJP2rl1Muufs9zZF5EJ.jpg",
+      "image": "assets/product-images/clv-20690.webp",
       "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=20690&ca_id=009001",
       "tags": [
         "세탁·건조·의류관리",
@@ -34935,7 +35341,11 @@
       "availability": "active",
       "giftStatus": "customer-gift-calculated",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/240329/9ZWNczNLHPAGJP2rl1Muufs9zZF5EJ.jpg",
-      "importedFrom": "https://m.clvrental777.com/"
+      "importedFrom": "https://m.clvrental777.com/",
+      "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/240329/CjPZx7TvrunFb2UuBXA4t6ZJ3GF2W7.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/240329/CjPZx7TvrunFb2UuBXA4t6ZJ3GF2W7.jpg",
+      "imageRepresentativeMethod": "merchant"
     },
     {
       "id": "clv-61048",
@@ -34947,7 +35357,7 @@
       "rawCategory": "세탁·건조·의류관리",
       "color": "",
       "page": "product.html?id=clv-61048",
-      "image": "https://storage.bilrigo.com/data/thumbnails/260909/ejh8BZQXWgyj97ceLEKam7AFdxHpDP.jpg",
+      "image": "assets/product-images/clv-61048.webp",
       "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=61048&ca_id=009001",
       "tags": [
         "세탁·건조·의류관리",
@@ -35015,7 +35425,11 @@
       "availability": "active",
       "giftStatus": "customer-gift-calculated",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/260909/ejh8BZQXWgyj97ceLEKam7AFdxHpDP.jpg",
-      "importedFrom": "https://m.clvrental777.com/"
+      "importedFrom": "https://m.clvrental777.com/",
+      "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/260909/SgPKuQtYvZLEe9zuWgAB3vd6cn6VSp.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/260909/SgPKuQtYvZLEe9zuWgAB3vd6cn6VSp.jpg",
+      "imageRepresentativeMethod": "merchant"
     },
     {
       "id": "clv-44134",
@@ -35027,7 +35441,7 @@
       "rawCategory": "세탁·건조·의류관리",
       "color": "",
       "page": "product.html?id=clv-44134",
-      "image": "https://storage.bilrigo.com/data/thumbnails/260211/VaGyHw6nKBYCHqXwp5GG9rvveCuTdR.jpg",
+      "image": "assets/product-images/clv-44134.webp",
       "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=44134&ca_id=009001",
       "tags": [
         "세탁·건조·의류관리",
@@ -35183,7 +35597,11 @@
       "availability": "active",
       "giftStatus": "customer-gift-calculated",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/260211/VaGyHw6nKBYCHqXwp5GG9rvveCuTdR.jpg",
-      "importedFrom": "https://m.clvrental777.com/"
+      "importedFrom": "https://m.clvrental777.com/",
+      "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/260211/WnEbsaqmgeNxK6Nk8sCbJcC7CYnVMf.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/260211/WnEbsaqmgeNxK6Nk8sCbJcC7CYnVMf.jpg",
+      "imageRepresentativeMethod": "merchant"
     },
     {
       "id": "clv-56215",
@@ -35195,7 +35613,7 @@
       "rawCategory": "세탁·건조·의류관리",
       "color": "",
       "page": "product.html?id=clv-56215",
-      "image": "https://storage.bilrigo.com/data/thumbnails/260407/DEp46aczAEb1SANk4MmbChNHdj29Np.jpg",
+      "image": "assets/product-images/clv-56215.webp",
       "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=56215&ca_id=009001",
       "tags": [
         "세탁·건조·의류관리",
@@ -35252,7 +35670,11 @@
       "availability": "active",
       "giftStatus": "customer-gift-calculated",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/260407/DEp46aczAEb1SANk4MmbChNHdj29Np.jpg",
-      "importedFrom": "https://m.clvrental777.com/"
+      "importedFrom": "https://m.clvrental777.com/",
+      "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/260407/1bvUBmtnGqtFUSJw7exGrQEXWK27YJ.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/260407/1bvUBmtnGqtFUSJw7exGrQEXWK27YJ.jpg",
+      "imageRepresentativeMethod": "merchant"
     },
     {
       "id": "clv-45244",
@@ -35264,7 +35686,7 @@
       "rawCategory": "세탁·건조·의류관리",
       "color": "",
       "page": "product.html?id=clv-45244",
-      "image": "https://storage.bilrigo.com/data/thumbnails/260211/cAKsPqcJFFV1YHkXrTFe3jAyN3KeFY.jpg",
+      "image": "assets/product-images/clv-45244.webp",
       "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=45244&ca_id=009001",
       "tags": [
         "세탁·건조·의류관리",
@@ -35420,7 +35842,11 @@
       "availability": "active",
       "giftStatus": "customer-gift-calculated",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/260211/cAKsPqcJFFV1YHkXrTFe3jAyN3KeFY.jpg",
-      "importedFrom": "https://m.clvrental777.com/"
+      "importedFrom": "https://m.clvrental777.com/",
+      "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/260211/WtltYCcjGeF8mR33Ht6Bsav2EpCjRC.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/260211/WtltYCcjGeF8mR33Ht6Bsav2EpCjRC.jpg",
+      "imageRepresentativeMethod": "merchant"
     },
     {
       "id": "clv-16268",
@@ -35432,7 +35858,7 @@
       "rawCategory": "세탁·건조·의류관리",
       "color": "",
       "page": "product.html?id=clv-16268",
-      "image": "https://storage.bilrigo.com/data/thumbnails/231005/1696466169_6779_vdgr7S1wxhdsYBNC1RAsPK7zXuh47s.jpg",
+      "image": "assets/product-images/clv-16268.webp",
       "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=16268&ca_id=009001",
       "tags": [
         "세탁·건조·의류관리",
@@ -35555,7 +35981,11 @@
       "availability": "active",
       "giftStatus": "customer-gift-calculated",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/231005/1696466169_6779_vdgr7S1wxhdsYBNC1RAsPK7zXuh47s.jpg",
-      "importedFrom": "https://m.clvrental777.com/"
+      "importedFrom": "https://m.clvrental777.com/",
+      "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/231005/1696466169_6779_vdgr7S1wxhdsYBNC1RAsPK7zXuh47s.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/231005/1696466169_6779_vdgr7S1wxhdsYBNC1RAsPK7zXuh47s.jpg",
+      "imageRepresentativeMethod": "merchant"
     },
     {
       "id": "clv-56776",
@@ -35567,7 +35997,7 @@
       "rawCategory": "세탁·건조·의류관리",
       "color": "",
       "page": "product.html?id=clv-56776",
-      "image": "https://storage.bilrigo.com/data/thumbnails/260417/vEh51FhAqQUYcHVUYXAnTwHz2efFQ1.jpg",
+      "image": "assets/product-images/clv-56776.webp",
       "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=56776&ca_id=009001",
       "tags": [
         "세탁·건조·의류관리",
@@ -35624,7 +36054,11 @@
       "availability": "active",
       "giftStatus": "customer-gift-calculated",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/260417/vEh51FhAqQUYcHVUYXAnTwHz2efFQ1.jpg",
-      "importedFrom": "https://m.clvrental777.com/"
+      "importedFrom": "https://m.clvrental777.com/",
+      "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/260417/Dzu3nheP4j5B9tG91aYtlnfWLjg4Z8.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/260417/Dzu3nheP4j5B9tG91aYtlnfWLjg4Z8.jpg",
+      "imageRepresentativeMethod": "merchant"
     },
     {
       "id": "clv-55141",
@@ -35636,7 +36070,7 @@
       "rawCategory": "세탁·건조·의류관리",
       "color": "",
       "page": "product.html?id=clv-55141",
-      "image": "https://storage.bilrigo.com/data/thumbnails/260306/4aYZzdDrKMBg6jMNedMaFA63NvtGZF.jpg",
+      "image": "assets/product-images/clv-55141.webp",
       "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=55141&ca_id=009001",
       "tags": [
         "세탁·건조·의류관리",
@@ -35792,7 +36226,11 @@
       "availability": "active",
       "giftStatus": "customer-gift-calculated",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/260306/4aYZzdDrKMBg6jMNedMaFA63NvtGZF.jpg",
-      "importedFrom": "https://m.clvrental777.com/"
+      "importedFrom": "https://m.clvrental777.com/",
+      "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/260306/9394ksuKqXEW3NCjKXqZf1gZVf28DM.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/260306/9394ksuKqXEW3NCjKXqZf1gZVf28DM.jpg",
+      "imageRepresentativeMethod": "merchant"
     },
     {
       "id": "clv-25420",
@@ -35804,7 +36242,7 @@
       "rawCategory": "세탁·건조·의류관리",
       "color": "",
       "page": "product.html?id=clv-25420",
-      "image": "https://storage.bilrigo.com/data/thumbnails/260309/g1zrKmA8qajW2M1qYmNm1bjKBUcF7B.jpg",
+      "image": "assets/product-images/clv-25420.webp",
       "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=25420&ca_id=009001",
       "tags": [
         "세탁·건조·의류관리",
@@ -35861,7 +36299,11 @@
       "availability": "active",
       "giftStatus": "customer-gift-calculated",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/260309/g1zrKmA8qajW2M1qYmNm1bjKBUcF7B.jpg",
-      "importedFrom": "https://m.clvrental777.com/"
+      "importedFrom": "https://m.clvrental777.com/",
+      "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/260309/1TlfeUzcyc9tCUHgq97uKxdjTdYMTa.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/260309/1TlfeUzcyc9tCUHgq97uKxdjTdYMTa.jpg",
+      "imageRepresentativeMethod": "merchant"
     },
     {
       "id": "clv-3722",
@@ -35873,7 +36315,7 @@
       "rawCategory": "세탁·건조·의류관리",
       "color": "",
       "page": "product.html?id=clv-3722",
-      "image": "https://storage.bilrigo.com/data/thumbnails/260309/jSz5MVhKmtPvZUcfK4jEHd8HGtHGDT.jpg",
+      "image": "assets/product-images/clv-3722.webp",
       "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=3722&ca_id=009001",
       "tags": [
         "세탁·건조·의류관리",
@@ -36062,7 +36504,11 @@
       "availability": "active",
       "giftStatus": "customer-gift-calculated",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/260309/jSz5MVhKmtPvZUcfK4jEHd8HGtHGDT.jpg",
-      "importedFrom": "https://m.clvrental777.com/"
+      "importedFrom": "https://m.clvrental777.com/",
+      "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/260309/R4BECtAFAWBD3aW5CXJshzfutxLLEV.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/260309/R4BECtAFAWBD3aW5CXJshzfutxLLEV.jpg",
+      "imageRepresentativeMethod": "merchant"
     },
     {
       "id": "clv-3723",
@@ -36074,7 +36520,7 @@
       "rawCategory": "세탁·건조·의류관리",
       "color": "",
       "page": "product.html?id=clv-3723",
-      "image": "https://storage.bilrigo.com/data/thumbnails/260309/EC3QyRajfUTtMqm5Dgm89ULs3SlGnK.jpg",
+      "image": "assets/product-images/clv-3723.webp",
       "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=3723&ca_id=009001",
       "tags": [
         "세탁·건조·의류관리",
@@ -36230,7 +36676,11 @@
       "availability": "active",
       "giftStatus": "customer-gift-calculated",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/260309/EC3QyRajfUTtMqm5Dgm89ULs3SlGnK.jpg",
-      "importedFrom": "https://m.clvrental777.com/"
+      "importedFrom": "https://m.clvrental777.com/",
+      "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/260309/MDEju9MgeLfB1KJgdDz6r2vFNAK8N3.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/260309/MDEju9MgeLfB1KJgdDz6r2vFNAK8N3.jpg",
+      "imageRepresentativeMethod": "merchant"
     },
     {
       "id": "clv-10316",
@@ -36242,7 +36692,7 @@
       "rawCategory": "세탁·건조·의류관리",
       "color": "",
       "page": "product.html?id=clv-10316",
-      "image": "https://storage.bilrigo.com/data/thumbnails/260309/VhhrtR8LXDuLNAsAXwLm7HrhBV245x.jpg",
+      "image": "assets/product-images/clv-10316.webp",
       "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=10316&ca_id=009001",
       "tags": [
         "세탁·건조·의류관리",
@@ -36431,7 +36881,11 @@
       "availability": "active",
       "giftStatus": "customer-gift-calculated",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/260309/VhhrtR8LXDuLNAsAXwLm7HrhBV245x.jpg",
-      "importedFrom": "https://m.clvrental777.com/"
+      "importedFrom": "https://m.clvrental777.com/",
+      "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/260309/ePLxdmwStpdTRgls7nTjGNF7LVDvfn.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/260309/ePLxdmwStpdTRgls7nTjGNF7LVDvfn.jpg",
+      "imageRepresentativeMethod": "merchant"
     },
     {
       "id": "clv-55624",
@@ -36443,7 +36897,7 @@
       "rawCategory": "세탁·건조·의류관리",
       "color": "",
       "page": "product.html?id=clv-55624",
-      "image": "https://storage.bilrigo.com/data/thumbnails/260317/xatXU99kCKyuYx6EFUrFt3A4GHsegp.jpg",
+      "image": "assets/product-images/clv-55624.webp",
       "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=55624&ca_id=009002",
       "tags": [
         "세탁·건조·의류관리",
@@ -36533,7 +36987,11 @@
       "availability": "active",
       "giftStatus": "customer-gift-calculated",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/260317/xatXU99kCKyuYx6EFUrFt3A4GHsegp.jpg",
-      "importedFrom": "https://m.clvrental777.com/"
+      "importedFrom": "https://m.clvrental777.com/",
+      "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/260317/g6mq5fS5A8tEQSgkDvWkkmWJX8tjgF.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/260317/g6mq5fS5A8tEQSgkDvWkkmWJX8tjgF.jpg",
+      "imageRepresentativeMethod": "merchant"
     },
     {
       "id": "clv-57866",
@@ -36545,7 +37003,7 @@
       "rawCategory": "세탁·건조·의류관리",
       "color": "",
       "page": "product.html?id=clv-57866",
-      "image": "https://storage.bilrigo.com/data/thumbnails/260518/dFKkVFZhdUGeEXTN3AmpH679BEfA5j.jpg",
+      "image": "assets/product-images/clv-57866.webp",
       "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=57866&ca_id=009002",
       "tags": [
         "세탁·건조·의류관리",
@@ -36668,7 +37126,11 @@
       "availability": "active",
       "giftStatus": "customer-gift-calculated",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/260518/dFKkVFZhdUGeEXTN3AmpH679BEfA5j.jpg",
-      "importedFrom": "https://m.clvrental777.com/"
+      "importedFrom": "https://m.clvrental777.com/",
+      "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/260518/DYbzCmezCqRvaxxYxGZuLzrKP2l4ZG.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/260518/DYbzCmezCqRvaxxYxGZuLzrKP2l4ZG.jpg",
+      "imageRepresentativeMethod": "merchant"
     },
     {
       "id": "clv-21702",
@@ -36680,7 +37142,7 @@
       "rawCategory": "세탁·건조·의류관리",
       "color": "",
       "page": "product.html?id=clv-21702",
-      "image": "https://storage.bilrigo.com/data/thumbnails/260309/CeVDNCUYSCVgPpQyLUYWxZa1jCPMfP.jpg",
+      "image": "assets/product-images/clv-21702.webp",
       "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=21702&ca_id=009002",
       "tags": [
         "세탁·건조·의류관리",
@@ -36803,7 +37265,11 @@
       "availability": "active",
       "giftStatus": "customer-gift-calculated",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/260309/CeVDNCUYSCVgPpQyLUYWxZa1jCPMfP.jpg",
-      "importedFrom": "https://m.clvrental777.com/"
+      "importedFrom": "https://m.clvrental777.com/",
+      "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/260309/md3nezAXuaGEtAZkwYplATjC25rNGN.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/260309/md3nezAXuaGEtAZkwYplATjC25rNGN.jpg",
+      "imageRepresentativeMethod": "merchant"
     },
     {
       "id": "clv-57829",
@@ -36815,7 +37281,7 @@
       "rawCategory": "세탁·건조·의류관리",
       "color": "",
       "page": "product.html?id=clv-57829",
-      "image": "https://storage.bilrigo.com/data/thumbnails/260514/RCMLqRJBd6qHLU3HAvdeawkCvc7PGf.jpg",
+      "image": "assets/product-images/clv-57829.webp",
       "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=57829&ca_id=009002",
       "tags": [
         "세탁·건조·의류관리",
@@ -36872,7 +37338,11 @@
       "availability": "active",
       "giftStatus": "customer-gift-calculated",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/260514/RCMLqRJBd6qHLU3HAvdeawkCvc7PGf.jpg",
-      "importedFrom": "https://m.clvrental777.com/"
+      "importedFrom": "https://m.clvrental777.com/",
+      "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/260514/vGshJxNqMYPNXqfaY1wTLzyTPGFqk5.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/260514/vGshJxNqMYPNXqfaY1wTLzyTPGFqk5.jpg",
+      "imageRepresentativeMethod": "merchant"
     },
     {
       "id": "clv-43739",
@@ -36884,7 +37354,7 @@
       "rawCategory": "세탁·건조·의류관리",
       "color": "",
       "page": "product.html?id=clv-43739",
-      "image": "https://storage.bilrigo.com/data/thumbnails/260309/zqS3x18LcT29fbnR7NY5mYenc9gKYX.jpg",
+      "image": "assets/product-images/clv-43739.webp",
       "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=43739&ca_id=009002",
       "tags": [
         "세탁·건조·의류관리",
@@ -36974,7 +37444,11 @@
       "availability": "active",
       "giftStatus": "customer-gift-calculated",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/260309/zqS3x18LcT29fbnR7NY5mYenc9gKYX.jpg",
-      "importedFrom": "https://m.clvrental777.com/"
+      "importedFrom": "https://m.clvrental777.com/",
+      "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/260309/SCjdJg6XzSFTtd9aVJ2jTgamNHgy2T.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/260309/SCjdJg6XzSFTtd9aVJ2jTgamNHgy2T.jpg",
+      "imageRepresentativeMethod": "merchant"
     },
     {
       "id": "clv-24367",
@@ -36986,7 +37460,7 @@
       "rawCategory": "세탁·건조·의류관리",
       "color": "",
       "page": "product.html?id=clv-24367",
-      "image": "https://storage.bilrigo.com/data/thumbnails/260309/NrGAdJmL82q1HJla53VYs1L832TWTz.jpg",
+      "image": "assets/product-images/clv-24367.webp",
       "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=24367&ca_id=009002",
       "tags": [
         "세탁·건조·의류관리",
@@ -37109,7 +37583,11 @@
       "availability": "active",
       "giftStatus": "customer-gift-calculated",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/260309/NrGAdJmL82q1HJla53VYs1L832TWTz.jpg",
-      "importedFrom": "https://m.clvrental777.com/"
+      "importedFrom": "https://m.clvrental777.com/",
+      "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/260309/ye4GZ3LSYF6QELQwgANyGQ9wSCU6N8.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/260309/ye4GZ3LSYF6QELQwgANyGQ9wSCU6N8.jpg",
+      "imageRepresentativeMethod": "merchant"
     },
     {
       "id": "clv-21457",
@@ -37121,7 +37599,7 @@
       "rawCategory": "세탁·건조·의류관리",
       "color": "",
       "page": "product.html?id=clv-21457",
-      "image": "https://storage.bilrigo.com/data/thumbnails/260309/AxFGd8e8NKCbugRhnFhrZjqZN7Z39v.jpg",
+      "image": "assets/product-images/clv-21457.webp",
       "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=21457&ca_id=009002",
       "tags": [
         "세탁·건조·의류관리",
@@ -37277,7 +37755,11 @@
       "availability": "active",
       "giftStatus": "customer-gift-calculated",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/260309/AxFGd8e8NKCbugRhnFhrZjqZN7Z39v.jpg",
-      "importedFrom": "https://m.clvrental777.com/"
+      "importedFrom": "https://m.clvrental777.com/",
+      "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/260309/QKZ3fuVfaHtJH4ACGY3hQTU21FQE7k.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/260309/QKZ3fuVfaHtJH4ACGY3hQTU21FQE7k.jpg",
+      "imageRepresentativeMethod": "merchant"
     },
     {
       "id": "clv-49464",
@@ -37289,7 +37771,7 @@
       "rawCategory": "세탁·건조·의류관리",
       "color": "",
       "page": "product.html?id=clv-49464",
-      "image": "https://storage.bilrigo.com/data/thumbnails/251020/HWYdexna7fdhaxg9PNB81hJ6eqgUqa.jpg",
+      "image": "assets/product-images/clv-49464.webp",
       "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=49464&ca_id=009002",
       "tags": [
         "세탁·건조·의류관리",
@@ -37445,7 +37927,11 @@
       "availability": "active",
       "giftStatus": "customer-gift-calculated",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/251020/HWYdexna7fdhaxg9PNB81hJ6eqgUqa.jpg",
-      "importedFrom": "https://m.clvrental777.com/"
+      "importedFrom": "https://m.clvrental777.com/",
+      "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/251020/hcUBJgqw4ZKk4VUJ2aVf85bdmz8H6A.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/251020/hcUBJgqw4ZKk4VUJ2aVf85bdmz8H6A.jpg",
+      "imageRepresentativeMethod": "merchant"
     },
     {
       "id": "clv-46018",
@@ -37457,7 +37943,7 @@
       "rawCategory": "세탁·건조·의류관리",
       "color": "",
       "page": "product.html?id=clv-46018",
-      "image": "https://storage.bilrigo.com/data/thumbnails/250901/a6tjFzclXccJr1yrplftszHuPwChK3.jpg",
+      "image": "assets/product-images/clv-46018.webp",
       "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=46018&ca_id=009002",
       "tags": [
         "세탁·건조·의류관리",
@@ -37657,7 +38143,11 @@
       "availability": "active",
       "giftStatus": "customer-gift-calculated",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/250901/a6tjFzclXccJr1yrplftszHuPwChK3.jpg",
-      "importedFrom": "https://m.clvrental777.com/"
+      "importedFrom": "https://m.clvrental777.com/",
+      "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/250901/d3QS8eSk4WDYBcTH9s3HVTT9N9sxRn.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/250901/d3QS8eSk4WDYBcTH9s3HVTT9N9sxRn.jpg",
+      "imageRepresentativeMethod": "merchant"
     },
     {
       "id": "clv-46746",
@@ -37669,7 +38159,7 @@
       "rawCategory": "세탁·건조·의류관리",
       "color": "",
       "page": "product.html?id=clv-46746",
-      "image": "https://storage.bilrigo.com/data/thumbnails/250908/swectQcU9mklMj7vh279TWxJD2bAFE.jpg",
+      "image": "assets/product-images/clv-46746.webp",
       "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=46746&ca_id=009002",
       "tags": [
         "세탁·건조·의류관리",
@@ -37726,7 +38216,11 @@
       "availability": "active",
       "giftStatus": "customer-gift-calculated",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/250908/swectQcU9mklMj7vh279TWxJD2bAFE.jpg",
-      "importedFrom": "https://m.clvrental777.com/"
+      "importedFrom": "https://m.clvrental777.com/",
+      "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/250908/DZ75jXsYlNYGAnNpaJAskaA72LGLCU.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/250908/DZ75jXsYlNYGAnNpaJAskaA72LGLCU.jpg",
+      "imageRepresentativeMethod": "merchant"
     },
     {
       "id": "clv-14541",
@@ -37738,7 +38232,7 @@
       "rawCategory": "세탁·건조·의류관리",
       "color": "",
       "page": "product.html?id=clv-14541",
-      "image": "https://storage.bilrigo.com/data/thumbnails/260309/AXrkbAw3mcMNew8uzzrhFF3c9b8eh3.jpg",
+      "image": "assets/product-images/clv-14541.webp",
       "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=14541&ca_id=009002",
       "tags": [
         "세탁·건조·의류관리",
@@ -37828,7 +38322,11 @@
       "availability": "active",
       "giftStatus": "customer-gift-calculated",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/260309/AXrkbAw3mcMNew8uzzrhFF3c9b8eh3.jpg",
-      "importedFrom": "https://m.clvrental777.com/"
+      "importedFrom": "https://m.clvrental777.com/",
+      "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/260309/yFXq3YTeLVY82XyBwVl68WNaGeD4mw.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/260309/yFXq3YTeLVY82XyBwVl68WNaGeD4mw.jpg",
+      "imageRepresentativeMethod": "merchant"
     },
     {
       "id": "clv-46751",
@@ -37840,7 +38338,7 @@
       "rawCategory": "세탁·건조·의류관리",
       "color": "",
       "page": "product.html?id=clv-46751",
-      "image": "https://storage.bilrigo.com/data/thumbnails/260309/nJGWebbbcVsey3sDBLHYEFwJwj8aYG.jpg",
+      "image": "assets/product-images/clv-46751.webp",
       "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=46751&ca_id=009002",
       "tags": [
         "세탁·건조·의류관리",
@@ -37897,7 +38395,11 @@
       "availability": "active",
       "giftStatus": "customer-gift-calculated",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/260309/nJGWebbbcVsey3sDBLHYEFwJwj8aYG.jpg",
-      "importedFrom": "https://m.clvrental777.com/"
+      "importedFrom": "https://m.clvrental777.com/",
+      "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/260309/BXYZPM4DMzhx2cejCGzfvF1jVemPWK.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/260309/BXYZPM4DMzhx2cejCGzfvF1jVemPWK.jpg",
+      "imageRepresentativeMethod": "merchant"
     },
     {
       "id": "clv-19804",
@@ -37909,7 +38411,7 @@
       "rawCategory": "세탁·건조·의류관리",
       "color": "",
       "page": "product.html?id=clv-19804",
-      "image": "https://storage.bilrigo.com/data/thumbnails/260309/n4kulHJu8bDmn5vr3AFtyQHbABp4Pp.jpg",
+      "image": "assets/product-images/clv-19804.webp",
       "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=19804&ca_id=009002",
       "tags": [
         "세탁·건조·의류관리",
@@ -38065,7 +38567,11 @@
       "availability": "active",
       "giftStatus": "customer-gift-calculated",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/260309/n4kulHJu8bDmn5vr3AFtyQHbABp4Pp.jpg",
-      "importedFrom": "https://m.clvrental777.com/"
+      "importedFrom": "https://m.clvrental777.com/",
+      "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/260309/NVQHeRSS5XurNpHUYLDLBW55sEBk8l.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/260309/NVQHeRSS5XurNpHUYLDLBW55sEBk8l.jpg",
+      "imageRepresentativeMethod": "merchant"
     },
     {
       "id": "clv-4315",
@@ -38077,7 +38583,7 @@
       "rawCategory": "세탁·건조·의류관리",
       "color": "",
       "page": "product.html?id=clv-4315",
-      "image": "https://storage.bilrigo.com/data/thumbnails/260309/agW6bJsQ7TLdhsdFU1JGrHmY9qxnY1.jpg",
+      "image": "assets/product-images/clv-4315.webp",
       "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=4315&ca_id=009002",
       "tags": [
         "세탁·건조·의류관리",
@@ -38233,7 +38739,11 @@
       "availability": "active",
       "giftStatus": "customer-gift-calculated",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/260309/agW6bJsQ7TLdhsdFU1JGrHmY9qxnY1.jpg",
-      "importedFrom": "https://m.clvrental777.com/"
+      "importedFrom": "https://m.clvrental777.com/",
+      "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/260309/CgwVnYNJAmS1HbgkTkFyEPKzm3F2cL.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/260309/CgwVnYNJAmS1HbgkTkFyEPKzm3F2cL.jpg",
+      "imageRepresentativeMethod": "merchant"
     },
     {
       "id": "clv-24953",
@@ -38245,7 +38755,7 @@
       "rawCategory": "세탁·건조·의류관리",
       "color": "",
       "page": "product.html?id=clv-24953",
-      "image": "https://storage.bilrigo.com/data/thumbnails/240802/19xj5v76W3NWp9aZzVjAT7ZBtNguXT.jpg",
+      "image": "assets/product-images/clv-24953.webp",
       "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=24953&ca_id=009002",
       "tags": [
         "세탁·건조·의류관리",
@@ -38423,7 +38933,11 @@
       "availability": "active",
       "giftStatus": "customer-gift-calculated",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/240802/19xj5v76W3NWp9aZzVjAT7ZBtNguXT.jpg",
-      "importedFrom": "https://m.clvrental777.com/"
+      "importedFrom": "https://m.clvrental777.com/",
+      "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/240802/y1DrQvMd4GfyydhlJ12s5k4g6UEUSd.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/240802/y1DrQvMd4GfyydhlJ12s5k4g6UEUSd.jpg",
+      "imageRepresentativeMethod": "merchant"
     },
     {
       "id": "clv-56059",
@@ -38435,7 +38949,7 @@
       "rawCategory": "세탁·건조·의류관리",
       "color": "",
       "page": "product.html?id=clv-56059",
-      "image": "https://storage.bilrigo.com/data/thumbnails/260401/TcEPhVPt1yjZ5GX8UMxPEd5VeMvGyM.jpg",
+      "image": "assets/product-images/clv-56059.webp",
       "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=56059&ca_id=009006",
       "tags": [
         "세탁·건조·의류관리",
@@ -38492,7 +39006,11 @@
       "availability": "active",
       "giftStatus": "customer-gift-calculated",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/260401/TcEPhVPt1yjZ5GX8UMxPEd5VeMvGyM.jpg",
-      "importedFrom": "https://m.clvrental777.com/"
+      "importedFrom": "https://m.clvrental777.com/",
+      "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/260401/3hvfxNsa6FXHF7pm6WuH54AR7EV2eP.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/260401/3hvfxNsa6FXHF7pm6WuH54AR7EV2eP.jpg",
+      "imageRepresentativeMethod": "merchant"
     },
     {
       "id": "clv-21442",
@@ -38504,7 +39022,7 @@
       "rawCategory": "세탁·건조·의류관리",
       "color": "",
       "page": "product.html?id=clv-21442",
-      "image": "https://storage.bilrigo.com/data/thumbnails/260309/dkC5eaZDS8m4MxeFJX6ygJMwxahPSq.jpg",
+      "image": "assets/product-images/clv-21442.webp",
       "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=21442&ca_id=009006",
       "tags": [
         "세탁·건조·의류관리",
@@ -38660,7 +39178,11 @@
       "availability": "active",
       "giftStatus": "customer-gift-calculated",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/260309/dkC5eaZDS8m4MxeFJX6ygJMwxahPSq.jpg",
-      "importedFrom": "https://m.clvrental777.com/"
+      "importedFrom": "https://m.clvrental777.com/",
+      "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/260309/wUR4EfZBT2ZD3VpdmwTAX1GaedKJD6.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/260309/wUR4EfZBT2ZD3VpdmwTAX1GaedKJD6.jpg",
+      "imageRepresentativeMethod": "merchant"
     },
     {
       "id": "clv-57875",
@@ -38672,7 +39194,7 @@
       "rawCategory": "세탁·건조·의류관리",
       "color": "",
       "page": "product.html?id=clv-57875",
-      "image": "https://storage.bilrigo.com/data/thumbnails/260518/YCFeqEwRyWHTkbdZurJt6hCmWLcGye.jpg",
+      "image": "assets/product-images/clv-57875.webp",
       "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=57875&ca_id=009006",
       "tags": [
         "세탁·건조·의류관리",
@@ -38828,7 +39350,11 @@
       "availability": "active",
       "giftStatus": "customer-gift-calculated",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/260518/YCFeqEwRyWHTkbdZurJt6hCmWLcGye.jpg",
-      "importedFrom": "https://m.clvrental777.com/"
+      "importedFrom": "https://m.clvrental777.com/",
+      "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/260518/guztGv5vgJbvtdRmULA2kxsZp758A2.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/260518/guztGv5vgJbvtdRmULA2kxsZp758A2.jpg",
+      "imageRepresentativeMethod": "merchant"
     },
     {
       "id": "clv-20676",
@@ -38967,7 +39493,7 @@
       "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/240329/L27GReClxBCXpXEl8ENBwUyQ4H89Hl.jpg",
       "imageRepresentative": true,
       "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/240329/L27GReClxBCXpXEl8ENBwUyQ4H89Hl.jpg",
-      "imageRepresentativeMethod": "original"
+      "imageRepresentativeMethod": "existing"
     },
     {
       "id": "clv-21467",
@@ -38979,7 +39505,7 @@
       "rawCategory": "세탁·건조·의류관리",
       "color": "",
       "page": "product.html?id=clv-21467",
-      "image": "https://storage.bilrigo.com/data/thumbnails/260309/XJVe6menUvmmZqyvJKeyLaExWgBU7B.jpg",
+      "image": "assets/product-images/clv-21467.webp",
       "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=21467&ca_id=009006",
       "tags": [
         "세탁·건조·의류관리",
@@ -39135,7 +39661,11 @@
       "availability": "active",
       "giftStatus": "customer-gift-calculated",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/260309/XJVe6menUvmmZqyvJKeyLaExWgBU7B.jpg",
-      "importedFrom": "https://m.clvrental777.com/"
+      "importedFrom": "https://m.clvrental777.com/",
+      "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/260309/zUwLzYENbY81QA6CSX2E1tr1QUaVjj.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/260309/zUwLzYENbY81QA6CSX2E1tr1QUaVjj.jpg",
+      "imageRepresentativeMethod": "merchant"
     },
     {
       "id": "clv-21712",
@@ -39147,7 +39677,7 @@
       "rawCategory": "세탁·건조·의류관리",
       "color": "",
       "page": "product.html?id=clv-21712",
-      "image": "https://storage.bilrigo.com/data/thumbnails/260309/CZXE4Xhj6G7b1pnlepzj3fqxFv11LL.jpg",
+      "image": "assets/product-images/clv-21712.webp",
       "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=21712&ca_id=009006",
       "tags": [
         "세탁·건조·의류관리",
@@ -39270,7 +39800,11 @@
       "availability": "active",
       "giftStatus": "customer-gift-calculated",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/260309/CZXE4Xhj6G7b1pnlepzj3fqxFv11LL.jpg",
-      "importedFrom": "https://m.clvrental777.com/"
+      "importedFrom": "https://m.clvrental777.com/",
+      "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/260309/DhPKYdyqQC1VPrCbYKx8pm3uG1yDln.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/260309/DhPKYdyqQC1VPrCbYKx8pm3uG1yDln.jpg",
+      "imageRepresentativeMethod": "merchant"
     },
     {
       "id": "clv-52779",
@@ -39282,7 +39816,7 @@
       "rawCategory": "세탁·건조·의류관리",
       "color": "",
       "page": "product.html?id=clv-52779",
-      "image": "https://storage.bilrigo.com/data/thumbnails/260120/6T8dwlfezlu5TpYxf47GBQp8UzBn2m.jpg",
+      "image": "assets/product-images/clv-52779.webp",
       "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=52779&ca_id=009003",
       "tags": [
         "세탁·건조·의류관리",
@@ -39471,7 +40005,11 @@
       "availability": "active",
       "giftStatus": "customer-gift-calculated",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/260120/6T8dwlfezlu5TpYxf47GBQp8UzBn2m.jpg",
-      "importedFrom": "https://m.clvrental777.com/"
+      "importedFrom": "https://m.clvrental777.com/",
+      "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/260120/UM9Scggf1eQNgfBA2shyalskGSnecd.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/260120/UM9Scggf1eQNgfBA2shyalskGSnecd.jpg",
+      "imageRepresentativeMethod": "merchant"
     },
     {
       "id": "clv-11457",
@@ -39483,7 +40021,7 @@
       "rawCategory": "세탁·건조·의류관리",
       "color": "",
       "page": "product.html?id=clv-11457",
-      "image": "https://storage.bilrigo.com/data/thumbnails/230411/b3cvy3lpdyZwaZqKrSADlxb6mUY6Cg.jpg",
+      "image": "assets/product-images/clv-11457.webp",
       "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=11457&ca_id=009003",
       "tags": [
         "세탁·건조·의류관리",
@@ -39639,7 +40177,11 @@
       "availability": "active",
       "giftStatus": "customer-gift-calculated",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/230411/b3cvy3lpdyZwaZqKrSADlxb6mUY6Cg.jpg",
-      "importedFrom": "https://m.clvrental777.com/"
+      "importedFrom": "https://m.clvrental777.com/",
+      "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/230411/6wrSq66kasJWSvejuXQk2GDhCUCwv7.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/230411/6wrSq66kasJWSvejuXQk2GDhCUCwv7.jpg",
+      "imageRepresentativeMethod": "merchant"
     },
     {
       "id": "clv-11214",
@@ -39651,7 +40193,7 @@
       "rawCategory": "세탁·건조·의류관리",
       "color": "",
       "page": "product.html?id=clv-11214",
-      "image": "https://storage.bilrigo.com/data/thumbnails/230410/ACnJ8CFE62pgcU6rWLHj3MGarNGK7u.jpg",
+      "image": "assets/product-images/clv-11214.webp",
       "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=11214&ca_id=009003",
       "tags": [
         "세탁·건조·의류관리",
@@ -39873,7 +40415,11 @@
       "availability": "active",
       "giftStatus": "customer-gift-calculated",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/230410/ACnJ8CFE62pgcU6rWLHj3MGarNGK7u.jpg",
-      "importedFrom": "https://m.clvrental777.com/"
+      "importedFrom": "https://m.clvrental777.com/",
+      "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/230410/JayduTnTw9VUlWXujxbg99XDGMNZ5Z.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/230410/JayduTnTw9VUlWXujxbg99XDGMNZ5Z.jpg",
+      "imageRepresentativeMethod": "merchant"
     },
     {
       "id": "clv-11221",
@@ -39885,7 +40431,7 @@
       "rawCategory": "세탁·건조·의류관리",
       "color": "",
       "page": "product.html?id=clv-11221",
-      "image": "https://storage.bilrigo.com/data/thumbnails/230410/81xqlzmYqCGglcUn72ncScp4nMcSdv.jpg",
+      "image": "assets/product-images/clv-11221.webp",
       "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=11221&ca_id=009003",
       "tags": [
         "세탁·건조·의류관리",
@@ -40107,7 +40653,11 @@
       "availability": "active",
       "giftStatus": "customer-gift-calculated",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/230410/81xqlzmYqCGglcUn72ncScp4nMcSdv.jpg",
-      "importedFrom": "https://m.clvrental777.com/"
+      "importedFrom": "https://m.clvrental777.com/",
+      "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/230410/11NjyXACRjzcLGEgqF7t4cWp2EtNk6.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/230410/11NjyXACRjzcLGEgqF7t4cWp2EtNk6.jpg",
+      "imageRepresentativeMethod": "merchant"
     },
     {
       "id": "clv-57097",
@@ -40119,7 +40669,7 @@
       "rawCategory": "세탁·건조·의류관리",
       "color": "",
       "page": "product.html?id=clv-57097",
-      "image": "https://storage.bilrigo.com/data/thumbnails/260422/5Ttx5RejuhMzKAKqRbLJ9qF58eP8Ec.jpg",
+      "image": "assets/product-images/clv-57097.webp",
       "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=57097&ca_id=009003",
       "tags": [
         "세탁·건조·의류관리",
@@ -40209,7 +40759,11 @@
       "availability": "active",
       "giftStatus": "customer-gift-calculated",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/260422/5Ttx5RejuhMzKAKqRbLJ9qF58eP8Ec.jpg",
-      "importedFrom": "https://m.clvrental777.com/"
+      "importedFrom": "https://m.clvrental777.com/",
+      "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/260422/TqYgTrz45sJ4aADLPWCfrYuQwnXmja.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/260422/TqYgTrz45sJ4aADLPWCfrYuQwnXmja.jpg",
+      "imageRepresentativeMethod": "merchant"
     },
     {
       "id": "clv-24986",
@@ -40221,7 +40775,7 @@
       "rawCategory": "냉장고·김치냉장고",
       "color": "",
       "page": "product.html?id=clv-24986",
-      "image": "https://storage.bilrigo.com/data/thumbnails/240805/ybaNrJH3F9A3PK6xw9TkV3g6MwKEeA.jpg",
+      "image": "assets/product-images/clv-24986.webp",
       "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=24986&ca_id=004001",
       "tags": [
         "냉장고·김치냉장고",
@@ -40410,7 +40964,11 @@
       "availability": "active",
       "giftStatus": "customer-gift-calculated",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/240805/ybaNrJH3F9A3PK6xw9TkV3g6MwKEeA.jpg",
-      "importedFrom": "https://m.clvrental777.com/"
+      "importedFrom": "https://m.clvrental777.com/",
+      "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/240805/Pn918WarQWqaTRqnsnJsF4q4q6jXqa.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/240805/Pn918WarQWqaTRqnsnJsF4q4q6jXqa.jpg",
+      "imageRepresentativeMethod": "merchant"
     },
     {
       "id": "clv-24985",
@@ -40422,7 +40980,7 @@
       "rawCategory": "냉장고·김치냉장고",
       "color": "",
       "page": "product.html?id=clv-24985",
-      "image": "https://storage.bilrigo.com/data/thumbnails/240805/naUJNxFEPMkNzDCmMspsZLtFGlxxN4.jpg",
+      "image": "assets/product-images/clv-24985.webp",
       "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=24985&ca_id=004001",
       "tags": [
         "냉장고·김치냉장고",
@@ -40578,7 +41136,11 @@
       "availability": "active",
       "giftStatus": "customer-gift-calculated",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/240805/naUJNxFEPMkNzDCmMspsZLtFGlxxN4.jpg",
-      "importedFrom": "https://m.clvrental777.com/"
+      "importedFrom": "https://m.clvrental777.com/",
+      "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/240805/wpmKbvUCVAtZ2SdtCflDxhhUbMHsaC.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/240805/wpmKbvUCVAtZ2SdtCflDxhhUbMHsaC.jpg",
+      "imageRepresentativeMethod": "merchant"
     },
     {
       "id": "clv-24984",
@@ -40926,7 +41488,7 @@
       "rawCategory": "냉장고·김치냉장고",
       "color": "",
       "page": "product.html?id=clv-45254",
-      "image": "https://storage.bilrigo.com/data/thumbnails/250807/gQSUXyd4y4n9NZ3sCRgNjAf2vdPwNd.jpg",
+      "image": "assets/product-images/clv-45254.webp",
       "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=45254&ca_id=004001",
       "tags": [
         "냉장고·김치냉장고",
@@ -41049,7 +41611,11 @@
       "availability": "active",
       "giftStatus": "customer-gift-calculated",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/250807/gQSUXyd4y4n9NZ3sCRgNjAf2vdPwNd.jpg",
-      "importedFrom": "https://m.clvrental777.com/"
+      "importedFrom": "https://m.clvrental777.com/",
+      "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/250807/gQSUXyd4y4n9NZ3sCRgNjAf2vdPwNd.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/250807/gQSUXyd4y4n9NZ3sCRgNjAf2vdPwNd.jpg",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clv-37719",
@@ -41937,7 +42503,7 @@
       "rawCategory": "냉장고·김치냉장고",
       "color": "",
       "page": "product.html?id=clv-37199",
-      "image": "https://storage.bilrigo.com/data/thumbnails/250407/nQgYAR8p6vuppjvxwaGCjdXPlFmmEF.jpg",
+      "image": "assets/product-images/clv-37199.webp",
       "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=37199&ca_id=004001",
       "tags": [
         "냉장고·김치냉장고",
@@ -42060,7 +42626,11 @@
       "availability": "active",
       "giftStatus": "customer-gift-calculated",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/250407/nQgYAR8p6vuppjvxwaGCjdXPlFmmEF.jpg",
-      "importedFrom": "https://m.clvrental777.com/"
+      "importedFrom": "https://m.clvrental777.com/",
+      "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/250407/nQgYAR8p6vuppjvxwaGCjdXPlFmmEF.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/250407/nQgYAR8p6vuppjvxwaGCjdXPlFmmEF.jpg",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clv-55421",
@@ -42447,7 +43017,7 @@
       "rawCategory": "냉장고·김치냉장고",
       "color": "",
       "page": "product.html?id=clv-61034",
-      "image": "https://storage.bilrigo.com/data/thumbnails/260904/QpQfLBLfkC4Nx46GMDgC7MmlBxFrDt.jpg",
+      "image": "assets/product-images/clv-61034.webp",
       "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=61034&ca_id=004002",
       "tags": [
         "냉장고·김치냉장고",
@@ -42504,7 +43074,11 @@
       "availability": "active",
       "giftStatus": "customer-gift-calculated",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/260904/QpQfLBLfkC4Nx46GMDgC7MmlBxFrDt.jpg",
-      "importedFrom": "https://m.clvrental777.com/"
+      "importedFrom": "https://m.clvrental777.com/",
+      "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/260904/QpQfLBLfkC4Nx46GMDgC7MmlBxFrDt.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/260904/QpQfLBLfkC4Nx46GMDgC7MmlBxFrDt.jpg",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clv-28185",
@@ -43577,7 +44151,7 @@
       "rawCategory": "냉장고·김치냉장고",
       "color": "",
       "page": "product.html?id=clv-32696",
-      "image": "https://storage.bilrigo.com/data/thumbnails/250117/KRTmB7dwB5sEDJbtdqpZPEg5avMwGD.jpg",
+      "image": "assets/product-images/clv-32696.webp",
       "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=32696&ca_id=004002",
       "tags": [
         "냉장고·김치냉장고",
@@ -43766,7 +44340,11 @@
       "availability": "active",
       "giftStatus": "customer-gift-calculated",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/250117/KRTmB7dwB5sEDJbtdqpZPEg5avMwGD.jpg",
-      "importedFrom": "https://m.clvrental777.com/"
+      "importedFrom": "https://m.clvrental777.com/",
+      "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/250117/KRTmB7dwB5sEDJbtdqpZPEg5avMwGD.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/250117/KRTmB7dwB5sEDJbtdqpZPEg5avMwGD.jpg",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clv-50559",
@@ -43905,7 +44483,7 @@
       "rawCategory": "주방가전",
       "color": "",
       "page": "product.html?id=clv-45948",
-      "image": "https://storage.bilrigo.com/data/thumbnails/250829/BVtuuzSPTpvyuh2VQNA94lXQ7Jls9u.jpg",
+      "image": "assets/product-images/clv-45948.webp",
       "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=45948&ca_id=006001",
       "tags": [
         "주방가전",
@@ -43995,7 +44573,11 @@
       "availability": "active",
       "giftStatus": "customer-gift-calculated",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/250829/BVtuuzSPTpvyuh2VQNA94lXQ7Jls9u.jpg",
-      "importedFrom": "https://m.clvrental777.com/"
+      "importedFrom": "https://m.clvrental777.com/",
+      "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/250829/BVtuuzSPTpvyuh2VQNA94lXQ7Jls9u.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/250829/BVtuuzSPTpvyuh2VQNA94lXQ7Jls9u.jpg",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clv-52649",
@@ -44804,7 +45386,7 @@
       "rawCategory": "에어컨·청소기",
       "color": "",
       "page": "product.html?id=clv-37614",
-      "image": "https://storage.bilrigo.com/data/thumbnails/251128/1ub6raSKYgkHejx6nF2cW69FHtaV45.jpg",
+      "image": "assets/product-images/clv-37614.webp",
       "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=37614&ca_id=043001",
       "tags": [
         "에어컨·청소기",
@@ -45026,7 +45608,11 @@
       "availability": "active",
       "giftStatus": "customer-gift-calculated",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/251128/1ub6raSKYgkHejx6nF2cW69FHtaV45.jpg",
-      "importedFrom": "https://m.clvrental777.com/"
+      "importedFrom": "https://m.clvrental777.com/",
+      "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/251128/1ub6raSKYgkHejx6nF2cW69FHtaV45.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/251128/1ub6raSKYgkHejx6nF2cW69FHtaV45.jpg",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clv-36325",
@@ -45038,7 +45624,7 @@
       "rawCategory": "에어컨·청소기",
       "color": "",
       "page": "product.html?id=clv-36325",
-      "image": "https://storage.bilrigo.com/data/thumbnails/250324/V9AnmpEeQF5mkfbfS7Q56vkpt7BeK5.jpg",
+      "image": "assets/product-images/clv-36325.webp",
       "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=36325&ca_id=043002",
       "tags": [
         "에어컨·청소기",
@@ -45161,7 +45747,11 @@
       "availability": "active",
       "giftStatus": "customer-gift-calculated",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/250324/V9AnmpEeQF5mkfbfS7Q56vkpt7BeK5.jpg",
-      "importedFrom": "https://m.clvrental777.com/"
+      "importedFrom": "https://m.clvrental777.com/",
+      "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/250324/V9AnmpEeQF5mkfbfS7Q56vkpt7BeK5.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/250324/V9AnmpEeQF5mkfbfS7Q56vkpt7BeK5.jpg",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clv-36335",
@@ -45410,7 +46000,7 @@
       "rawCategory": "에어컨·청소기",
       "color": "",
       "page": "product.html?id=clv-35775",
-      "image": "https://storage.bilrigo.com/data/thumbnails/251127/gQMYRFQANZdHXXuFbtMKHh8U3TE1MB.jpg",
+      "image": "assets/product-images/clv-35775.webp",
       "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=35775&ca_id=043002",
       "tags": [
         "에어컨·청소기",
@@ -45599,7 +46189,11 @@
       "availability": "active",
       "giftStatus": "customer-gift-calculated",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/251127/gQMYRFQANZdHXXuFbtMKHh8U3TE1MB.jpg",
-      "importedFrom": "https://m.clvrental777.com/"
+      "importedFrom": "https://m.clvrental777.com/",
+      "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/251127/6FFgb37ACKUjdvapcl7cbbd4nKrjtb.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/251127/6FFgb37ACKUjdvapcl7cbbd4nKrjtb.jpg",
+      "imageRepresentativeMethod": "merchant"
     },
     {
       "id": "clv-36295",
@@ -45746,7 +46340,7 @@
       "rawCategory": "에어컨·청소기",
       "color": "",
       "page": "product.html?id=clv-57567",
-      "image": "https://storage.bilrigo.com/data/thumbnails/260507/KdjQmAZSgKXeCDSmn6K7db4nHssyeC.jpg",
+      "image": "assets/product-images/clv-57567.webp",
       "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=57567&ca_id=043003",
       "tags": [
         "에어컨·청소기",
@@ -45869,7 +46463,11 @@
       "availability": "active",
       "giftStatus": "customer-gift-calculated",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/260507/KdjQmAZSgKXeCDSmn6K7db4nHssyeC.jpg",
-      "importedFrom": "https://m.clvrental777.com/"
+      "importedFrom": "https://m.clvrental777.com/",
+      "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/260507/s1k19uJJmSUg6FyU8AZj2YWKCy1EKh.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/260507/s1k19uJJmSUg6FyU8AZj2YWKCy1EKh.jpg",
+      "imageRepresentativeMethod": "merchant"
     },
     {
       "id": "clv-35760",
@@ -46217,7 +46815,7 @@
       "rawCategory": "에어컨·청소기",
       "color": "",
       "page": "product.html?id=clv-35965",
-      "image": "https://storage.bilrigo.com/data/thumbnails/251202/8LCCLvjKbjltN1exG7l8yUuaKwBzTH.jpg",
+      "image": "assets/product-images/clv-35965.webp",
       "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=35965&ca_id=043003",
       "tags": [
         "에어컨·청소기",
@@ -46307,7 +46905,11 @@
       "availability": "active",
       "giftStatus": "customer-gift-calculated",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/251202/8LCCLvjKbjltN1exG7l8yUuaKwBzTH.jpg",
-      "importedFrom": "https://m.clvrental777.com/"
+      "importedFrom": "https://m.clvrental777.com/",
+      "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/251202/8LCCLvjKbjltN1exG7l8yUuaKwBzTH.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/251202/8LCCLvjKbjltN1exG7l8yUuaKwBzTH.jpg",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clv-6818",
@@ -46589,7 +47191,7 @@
       "rawCategory": "에어컨·청소기",
       "color": "",
       "page": "product.html?id=clv-4998",
-      "image": "https://storage.bilrigo.com/data/thumbnails/251202/FSD3KV7HA4Qm52Awtb7lH8Q2BPHPjq.jpg",
+      "image": "assets/product-images/clv-4998.webp",
       "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=4998&ca_id=043009",
       "tags": [
         "에어컨·청소기",
@@ -46712,7 +47314,11 @@
       "availability": "active",
       "giftStatus": "customer-gift-calculated",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/251202/FSD3KV7HA4Qm52Awtb7lH8Q2BPHPjq.jpg",
-      "importedFrom": "https://m.clvrental777.com/"
+      "importedFrom": "https://m.clvrental777.com/",
+      "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/251202/FSD3KV7HA4Qm52Awtb7lH8Q2BPHPjq.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/251202/FSD3KV7HA4Qm52Awtb7lH8Q2BPHPjq.jpg",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clv-4999",
@@ -47747,7 +48353,7 @@
       "rawCategory": "건강·뷰티",
       "color": "",
       "page": "product.html?id=clv-3402",
-      "image": "https://storage.bilrigo.com/data/thumbnails/210113/5pZrPKYMD696G6tuvGs9CyM9NatLyW.jpg",
+      "image": "assets/product-images/clv-3402.webp",
       "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=3402&ca_id=005001",
       "tags": [
         "안마의자",
@@ -47870,7 +48476,11 @@
       "availability": "active",
       "giftStatus": "customer-gift-calculated",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/210113/5pZrPKYMD696G6tuvGs9CyM9NatLyW.jpg",
-      "importedFrom": "https://m.clvrental777.com/"
+      "importedFrom": "https://m.clvrental777.com/",
+      "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/210113/5pZrPKYMD696G6tuvGs9CyM9NatLyW.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/210113/5pZrPKYMD696G6tuvGs9CyM9NatLyW.jpg",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clv-10950",
@@ -48224,7 +48834,7 @@
       "rawCategory": "건강·뷰티",
       "color": "",
       "page": "product.html?id=clv-41629",
-      "image": "https://storage.bilrigo.com/data/thumbnails/251111/dJBQFt8Mar7xT13buHMv5ZUvLkhEDR.jpg",
+      "image": "assets/product-images/clv-41629.webp",
       "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=41629&ca_id=005001",
       "tags": [
         "안마의자",
@@ -48281,7 +48891,11 @@
       "availability": "active",
       "giftStatus": "customer-gift-calculated",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/251111/dJBQFt8Mar7xT13buHMv5ZUvLkhEDR.jpg",
-      "importedFrom": "https://m.clvrental777.com/"
+      "importedFrom": "https://m.clvrental777.com/",
+      "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/251111/dJBQFt8Mar7xT13buHMv5ZUvLkhEDR.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/251111/dJBQFt8Mar7xT13buHMv5ZUvLkhEDR.jpg",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clv-18889",
@@ -48864,7 +49478,7 @@
       "rawCategory": "건강·뷰티",
       "color": "",
       "page": "product.html?id=clv-10410",
-      "image": "https://storage.bilrigo.com/data/thumbnails/251111/BD6aFk2Tu67xsP2Mep2GR8C74Suc3W.jpg",
+      "image": "assets/product-images/clv-10410.webp",
       "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=10410&ca_id=005001",
       "tags": [
         "안마의자",
@@ -48910,7 +49524,11 @@
       "availability": "active",
       "giftStatus": "customer-gift-calculated",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/251111/BD6aFk2Tu67xsP2Mep2GR8C74Suc3W.jpg",
-      "importedFrom": "https://m.clvrental777.com/"
+      "importedFrom": "https://m.clvrental777.com/",
+      "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/251111/MYDlrkRvlD74V4Cl2DuMRHCb5nUYSa.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/251111/MYDlrkRvlD74V4Cl2DuMRHCb5nUYSa.jpg",
+      "imageRepresentativeMethod": "merchant"
     },
     {
       "id": "clv-4267",
@@ -49443,7 +50061,7 @@
       "rawCategory": "가구·침대",
       "color": "",
       "page": "product.html?id=clv-11537",
-      "image": "https://storage.bilrigo.com/data/thumbnails/230412/JxwEhU1YBNR1frlylvvAlketd6DW6P.jpg",
+      "image": "assets/product-images/clv-11537.webp",
       "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=11537&ca_id=003002",
       "tags": [
         "가구·침대",
@@ -49588,7 +50206,11 @@
       "availability": "active",
       "giftStatus": "customer-gift-calculated",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/230412/JxwEhU1YBNR1frlylvvAlketd6DW6P.jpg",
-      "importedFrom": "https://m.clvrental777.com/"
+      "importedFrom": "https://m.clvrental777.com/",
+      "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/230412/JxwEhU1YBNR1frlylvvAlketd6DW6P.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/230412/JxwEhU1YBNR1frlylvvAlketd6DW6P.jpg",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clv-11552",
@@ -49600,7 +50222,7 @@
       "rawCategory": "가구·침대",
       "color": "",
       "page": "product.html?id=clv-11552",
-      "image": "https://storage.bilrigo.com/data/thumbnails/230412/FH6gwkbWxLAtJuzBq2K7zywjWNgfFY.jpg",
+      "image": "assets/product-images/clv-11552.webp",
       "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=11552&ca_id=003002",
       "tags": [
         "가구·침대",
@@ -49745,7 +50367,11 @@
       "availability": "active",
       "giftStatus": "customer-gift-calculated",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/230412/FH6gwkbWxLAtJuzBq2K7zywjWNgfFY.jpg",
-      "importedFrom": "https://m.clvrental777.com/"
+      "importedFrom": "https://m.clvrental777.com/",
+      "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/230412/FH6gwkbWxLAtJuzBq2K7zywjWNgfFY.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/230412/FH6gwkbWxLAtJuzBq2K7zywjWNgfFY.jpg",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clv-39184",
@@ -49870,7 +50496,7 @@
       "rawCategory": "가구·침대",
       "color": "",
       "page": "product.html?id=clv-39174",
-      "image": "https://storage.bilrigo.com/data/thumbnails/250526/Shdfsh2TB9QLZt4hSdGUSDnNSdcrFL.jpg",
+      "image": "assets/product-images/clv-39174.webp",
       "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=39174&ca_id=003002",
       "tags": [
         "매트리스·프레임",
@@ -49971,7 +50597,11 @@
       "availability": "active",
       "giftStatus": "customer-gift-calculated",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/250526/Shdfsh2TB9QLZt4hSdGUSDnNSdcrFL.jpg",
-      "importedFrom": "https://m.clvrental777.com/"
+      "importedFrom": "https://m.clvrental777.com/",
+      "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/250526/Shdfsh2TB9QLZt4hSdGUSDnNSdcrFL.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/250526/Shdfsh2TB9QLZt4hSdGUSDnNSdcrFL.jpg",
+      "imageRepresentativeMethod": "original"
     },
     {
       "id": "clv-39214",
@@ -50421,7 +51051,7 @@
       "rawCategory": "가구·침대",
       "color": "",
       "page": "product.html?id=clv-5901",
-      "image": "https://storage.bilrigo.com/data/thumbnails/211108/Wxc2P8D82NDWFZ158AfHj71qn9TJdL.jpg",
+      "image": "assets/product-images/clv-5901.webp",
       "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=5901&ca_id=003002",
       "tags": [
         "매트리스·프레임",
@@ -50467,7 +51097,11 @@
       "availability": "active",
       "giftStatus": "customer-gift-calculated",
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/211108/Wxc2P8D82NDWFZ158AfHj71qn9TJdL.jpg",
-      "importedFrom": "https://m.clvrental777.com/"
+      "importedFrom": "https://m.clvrental777.com/",
+      "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/211108/TSWLYqbTCyLvHXNndEVXbTGTu27rg7.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/211108/TSWLYqbTCyLvHXNndEVXbTGTu27rg7.jpg",
+      "imageRepresentativeMethod": "merchant"
     },
     {
       "id": "clv-12827",
