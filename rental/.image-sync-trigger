@@ -19,3 +19,5 @@ Refresh: model-search representative product cuts before detail images
 Refresh 2026-10-13: localize 184 newly imported Clover products (clv- IDs), including Smart Cara 400 Pro X. Retain exact-product images and do not substitute unrelated stock photos.
 
 Refresh: 2026-10-13 merchant product thumbnails; repair all 184 imported CLV items using exact clvrental777.com sourceUrl, localize and verify.
+
+Retry 2026-10-13 after concurrent runs: process remaining 140 nonlocalized clv products with validated exact merchant thumbnail parser; no parallel image-localization jobs.
