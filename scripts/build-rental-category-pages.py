@@ -150,6 +150,7 @@ def page(category, slug, title, desc, products, policy_date):
     </div></section>
   </main>
   <footer class="footer"><div class="wrap footer-inner"><div><strong>웅비렌탈</strong><span>웅비통신 덕천만덕점</span></div><div><a href="tel:0513437677">051-343-7677</a><span>부산 북구 만덕대로178번길 17</span></div></div><div class="wrap footer-note">상품·요금·프로모션·사은품 조건은 변경될 수 있으며 최종 접수 전 상담을 통해 확인합니다.</div></footer>
+  <script src="/rental/assets/category-image-fallback.js?v=20261013-1" defer></script>
   <script src="/assets/analytics-config.js?v=20260929-2" defer></script>
   <script src="/assets/conversion-tracker.min.js?v=20261004-ops1" defer></script>
   <script src="/assets/site-analytics.min.js?v=20261004-source1" defer></script>
