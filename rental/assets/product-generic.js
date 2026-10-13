@@ -17,7 +17,7 @@
   const autoApplyRequested = params.get('apply') === '1';
   const aiEntryRequested = params.get('from') === 'ai';
   const won = n => Number(n).toLocaleString('ko-KR') + '원';
-  const IMAGE_REV = '20261003-7f78334';
+  const IMAGE_REV = '20261013-productcuts3';
   const RENTAL_ENTRY_KEY = 'wb_rental_entry_v1';
   const RECENT_KEY = 'wb_rental_recent_v1';
   const RENTAL_APPLY_SUCCESS_KEY = 'wb_rental_apply_success_v1';
