@@ -198,7 +198,11 @@
     "image": "https://storage.bilrigo.com/data/thumbnails/251121/GGWmMUUdmD4DKygMu9DFLDCGaHxx6H.jpg"
   },
   "clv-1579": {
-    "image": "https://storage.bilrigo.com/data/thumbnails/200414/2CFFQnTEqxukZQnKslD9ENREBGcq2Q.jpg"
+    "image": "https://storage.bilrigo.com/data/thumbnails/200414/2CFFQnTEqxukZQnKslD9ENREBGcq2Q.jpg",
+    "officialImage": "https://rentalshop.site/_data/file/goodsImages/49ae873dcffa9fabfde620cc48b0b7e6.png",
+    "officialPageUrl": "https://daebak.rental-shop.net/html/dh_prod/prod_view/12156",
+    "manualVerifiedProduct": "비에스푸디 음식물처리기 RFW-M1000",
+    "keepOldImageAsDetail": true
   },
   "clv-52649": {
     "image": "https://storage.bilrigo.com/data/thumbnails/260115/jWuUtyL3rXr6HRADDAeHnp6plXamVS.jpg",
@@ -450,5 +454,11 @@
       "https://storage.bilrigo.com/data/editor/2604/4c44aa10952f64de5ef885a889902ca0_1777277447_4004.jpg",
       "https://storage.bilrigo.com/data/editor/2604/4c44aa10952f64de5ef885a889902ca0_1777277449_2843.jpg"
     ]
+  },
+  "clover-1913": {
+    "officialImage": "https://cdn.imweb.me/thumbnail/20220413/112707ee0075e.png",
+    "officialPageUrl": "https://coway-m.com/water-care-all/?idx=503",
+    "manualVerifiedProduct": "코웨이 프라임 베이직 P-6320L",
+    "keepOldImageAsDetail": false
   }
 }
