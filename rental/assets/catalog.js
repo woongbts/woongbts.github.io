@@ -30,7 +30,7 @@
   const RECOMMEND_CATEGORIES = ['정수기','공기청정기','비데·연수기','안마의자','매트리스·프레임'];
   // Water purifier main-card lineup: premium choices plus one affordable and one mid-range.
   // These are only preferred defaults; category tabs and monthly/gift sorting still work.
-  const WATER_PURIFIER_HOME_IDS = ['chp-7220n','clover-2242','clover-2254','clover-1702'];
+  const WATER_PURIFIER_HOME_IDS = ['chp-7220n','clover-2242','clover-2202','clover-2197'];
   let recommendCategory = '정수기';
   let recommendSortMode = 'recommend';
   const state = { query: '', brand: '', category: '', feature: '', budget: 0, management: '', term: '', sort: 'recommend', limit: PAGE_SIZE };
@@ -419,18 +419,6 @@
           .forEach(p => {
             if (selected.length < 4) selected.push(p);
           });
-      }
-    }
-
-    // Keep the first two trusted picks; use one affordable cold/hot model
-    // and one entry-level sterilizing purifier in the lower two positions.
-    if (recommendCategory === '정수기' && recommendSortMode === 'recommend' && selected.length >= 2) {
-      const sk = candidates.find(p => p.id === 'clover-2202' &&
-        recommendationMetrics(p)?.minMonthly >= 30000 && recommendationMetrics(p)?.minMonthly < 50000);
-      const cuckoo = candidates.find(p => p.id === 'clover-2197' &&
-        recommendationMetrics(p)?.minMonthly >= 10000 && recommendationMetrics(p)?.minMonthly < 30000);
-      if (sk && cuckoo && !selected.slice(0, 2).some(p => p.id === sk.id || p.id === cuckoo.id)) {
-        selected = [...selected.slice(0, 2), sk, cuckoo];
       }
     }
 
