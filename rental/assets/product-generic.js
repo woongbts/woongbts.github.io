@@ -1218,8 +1218,9 @@
         const giftOverride = giftData?.products?.[item.id];
         if (giftOverride && item.sourceKind === 'clover-import') Object.assign(item, giftOverride);
         const detailOverride = galleryData?.products?.[item.id];
-        if (detailOverride?.detailImages?.length && !(item.detailImages || []).length) {
-          item.detailImages = detailOverride.detailImages;
+        if (detailOverride?.detailImages?.length) {
+          // The vendor's verified feature gallery comes before any former thumbnail.
+          item.detailImages = [...new Set([...detailOverride.detailImages, ...(item.detailImages || [])])];
         }
       });
       initialize(data);
