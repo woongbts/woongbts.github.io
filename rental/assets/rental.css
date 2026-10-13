@@ -1160,3 +1160,8 @@
  .product-alternative-card>div>a,.rental-cross-sell-box a{transition:none!important}
 }
 
+
+/* Product detail gallery shortcut and mobile-friendly vertical image story */
+.generic-detail-jump{display:inline-flex;align-items:center;justify-content:center;margin:20px 0 14px;min-height:46px;padding:12px 20px;font-size:16px!important;font-weight:850;text-align:center;line-height:1.4;text-decoration:none}
+.generic-detail-images img{display:block;max-width:100%;height:auto;object-fit:contain}
+@media(max-width:600px){.generic-detail-jump{width:100%;font-size:16px!important}.generic-detail-images{width:100%;overflow:hidden}}
