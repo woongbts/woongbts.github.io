@@ -1379,6 +1379,23 @@
         "https://storage.bilrigo.com/data/editor/2505/4283734357e638b462b73e2e83cd7c3c_1748586749_6627.jpg"
       ],
       "detailImageSource": "https://m.clvrental777.com/model/compare.php?model_idx=11552&ca_id=003002"
+    },
+    "cp-7211n-v2": {
+      "detailImages": [
+        "https://storage.bilrigo.com/data/editor/2606/b8b2fe9ac224ddf81deb89e88fac2c8e_1780288605_0802.jpg"
+      ],
+      "detailImageSource": "https://m.billigo.kr/shop/view.php?ca_id=022002&index_no=143534",
+      "verifiedModel": "CP-7211N_V2"
     }
-  }
+  },
+  "unavailable": [
+    {
+      "id": "clv-4244",
+      "reason": "원본 거래사이트 상품 상세자료 확인 불가"
+    },
+    {
+      "id": "clv-4245",
+      "reason": "원본 거래사이트 상품 상세자료 확인 불가"
+    }
+  ]
 }
