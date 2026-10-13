@@ -115,6 +115,37 @@ jobs:
             except Exception:
               return []
 
+          def merchant_image_candidates(session,p):
+            """Use the exact clvrental777.com product page rather than stale imported hotlinks."""
+            page=str(p.get('sourceUrl') or '').strip()
+            if not re.match(r'^https://(?:m\\.|www\\.)?clvrental777\\.com/model/compare\\.php\\?',page,re.I):
+              return []
+            try:
+              r=session.get(page,headers=headers,timeout=(5,12),allow_redirects=True)
+              if r.status_code!=200:return []
+              raw=html.unescape(r.text)
+              candidates=[]
+
+              # Product-specific OG image appears before icons, banners, and detail strips.
+              for tag in re.findall(r'<meta\\b[^>]*>',raw,re.I):
+                if not re.search(r'og:image',tag,re.I):continue
+                m=re.search(r'content=["\\\']([^"\\\']+)',tag,re.I)
+                if m:candidates.append(m.group(1))
+
+              candidates.extend(re.findall(
+                r'https?://storage\\.bilrigo\\.com/data/thumbnails/[a-zA-Z0-9_./%-]+\\.(?:jpg|jpeg|png|webp)(?:\\?[^"\\\'<>\\s]*)?',
+                raw,re.I
+              ))
+              good=[]
+              for candidate in candidates:
+                url=html.unescape(candidate).strip().split('\\x5c\\x5c')[0]
+                if not url.startswith('https://storage.bilrigo.com/data/thumbnails/'):continue
+                url=url.split('\\x26')[0].split('\\x3f')[0]
+                if url not in good:good.append(url)
+              return good[:5]
+            except Exception:
+              return []
+
           def image_search_candidates(session,p):
             model=str(p.get('model') or '').strip()
             brand=str(p.get('brand') or '').strip()
@@ -224,6 +255,24 @@ jobs:
             session=requests.Session()
             referer=p.get('sourceUrl') or 'https://woongbi.vip-rental.com/'
 
+            # For imported clvrental777.com offers, resolve the current product thumbnail
+            # from its exact merchant listing page and keep a local copy.
+            if pid.startswith('clv-'):
+              for merchant_url in merchant_image_candidates(session,p):
+                im=fetch_img(session,merchant_url,referer)
+                if im is None:continue
+                try:
+                  im=ImageOps.exif_transpose(im)
+                  if im.width<120 or im.height<120:continue
+                  if im.mode not in ('RGB','RGBA'):
+                    im=im.convert('RGBA' if 'transparency' in im.info else 'RGB')
+                  im.thumbnail((1000,1000),Image.Resampling.LANCZOS)
+                  if im.mode=='RGBA':im.save(dest,'WEBP',quality=88,method=6)
+                  else:im.convert('RGB').save(dest,'WEBP',quality=88,method=6)
+                  return {'ok':True,'id':pid,'rel':rel,'from':merchant_url,'size':list(im.size),'representative':True,'method':'merchant'}
+                except Exception:
+                  pass
+
             # 1) Exact original Woongbi Rental list thumbnail.
             if preferred:
               try:
@@ -328,8 +377,9 @@ jobs:
           representative=sum(1 for r in ok if r.get('representative'))
           exact_original=sum(1 for r in ok if r.get('method')=='original')
           searched_rep=sum(1 for r in ok if r.get('method')=='search')
+          merchant_rep=sum(1 for r in ok if r.get('method')=='merchant')
           preserved=sum(1 for r in ok if r.get('preferredFailed'))
-          report={'generatedAt':'2026-10-03','visibleProducts':len(targets),'localizedOrExisting':len(ok),'representativeReady':representative,'representativeOriginal':exact_original,'representativeSearch':searched_rep,'preservedFallback':preserved,'failed':len(fail),'changedProducts':changed,'failures':fail}
+          report={'generatedAt':'2026-10-03','visibleProducts':len(targets),'localizedOrExisting':len(ok),'representativeReady':representative,'representativeOriginal':exact_original,'representativeSearch':searched_rep,'representativeMerchant':merchant_rep,'preservedFallback':preserved,'failed':len(fail),'changedProducts':changed,'failures':fail}
           report_path.write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
           print(json.dumps({k:v for k,v in report.items() if k!='failures'},ensure_ascii=False),flush=True)
           PY
