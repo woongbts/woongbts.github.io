@@ -1172,3 +1172,28 @@
 .catalog-paired-note{display:block;margin:9px 0 2px;color:#46636b;font-size:13px;font-weight:650;line-height:1.6}
 .rental-guide-grid{grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr))}
 @media(max-width:620px){.rental-fast-find-links button{min-height:44px;padding:9px 13px}.catalog-paired-note{font-size:13px}}
+
+/* 2026-10-13: readable rental recommendations and amount grouping */
+.money-nowrap{white-space:nowrap;word-break:keep-all;overflow-wrap:normal}
+.recommend-prices{min-width:0}
+.recommend-prices .recommend-monthly,.recommend-prices .recommend-gift{display:block;line-height:1.5;word-break:keep-all}
+.recommend-prices .recommend-gift span:first-child{display:inline}
+.recommend-capability{display:inline-flex;align-items:center;margin:0 0 12px;padding:5px 10px;border-radius:9px;background:#e9f6f3;color:#0c6259;font-size:14px;font-weight:850;line-height:1.45}
+.recommend-body .recommend-contract{display:block;color:#326a68;font-size:14px!important;font-weight:850!important;line-height:1.5;margin:4px 0}
+.recommend-body .catalog-paired-note{font-size:12.5px!important;line-height:1.5}
+.catalog-card .catalog-prices strong{overflow-wrap:normal;word-break:keep-all}
+.catalog-prices .gift strong{white-space:nowrap;font-variant-numeric:tabular-nums}
+@media(max-width:720px){
+  .recommend-grid{display:flex!important;grid-template-columns:none!important;overflow-x:auto!important;gap:14px!important;scroll-snap-type:x mandatory!important;scroll-padding-inline:3px;scrollbar-width:none;-webkit-overflow-scrolling:touch;padding-bottom:14px!important}
+  .recommend-grid::-webkit-scrollbar{display:none}
+  .recommend-card{flex:0 0 min(85vw,390px)!important;min-width:0;scroll-snap-align:start;display:flex;flex-direction:column}
+  .recommend-card .recommend-body{padding:18px!important;flex:1}
+  .recommend-card .recommend-prices strong{font-size:clamp(16px,4vw,20px)!important}
+  .catalog-grid{grid-template-columns:minmax(0,1fr)!important}
+  .catalog-prices{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .catalog-prices strong{font-size:clamp(13px,3.8vw,18px)!important}
+}
+@media(max-width:360px){
+  .catalog-prices{grid-template-columns:1fr}
+  .recommend-card{flex-basis:calc(100vw - 44px)!important}
+}
