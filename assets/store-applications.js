@@ -577,9 +577,8 @@
     const quote=current.quote_text||quoteLines(current);
     trackStore('store_quick_consult',current);
     // Open the Kakao chat in the original click gesture, before clipboard settles.
-    const windowRef=window.open('https://pf.kakao.com/_nWwNT/chat','_blank','noopener,noreferrer');
+    window.open('https://pf.kakao.com/_nWwNT/chat','_blank','noopener,noreferrer');
     const status=$('store-application-status');
-    if(!windowRef&&status)status.textContent='팝업이 차단되면 카카오톡 상담 버튼을 눌러주세요.';
     if(navigator.clipboard?.writeText){
       navigator.clipboard.writeText(quote).then(()=>{if(status)status.textContent='선택하신 견적을 복사했어요. 카톡 대화창에 붙여 넣어주세요.';}).catch(()=>{if(status)status.textContent='상품 조건 복사가 막혔어요. 제품명과 견적을 카카오톡에 전달해 주세요.';});
     }else if(status)status.textContent='카카오톡 대화창에 상품명과 원하는 조건을 알려주세요.';
