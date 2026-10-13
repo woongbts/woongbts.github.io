@@ -1125,10 +1125,19 @@
     const detailBox = $('#generic-detail-images');
     if (detailSection && detailBox && detailImages.length) {
       detailBox.innerHTML = detailImages.map((src, index) =>
-        '<img src="' + src + '" alt="' + product.name + ' 상세 이미지 ' + (index + 1) + '" loading="lazy" decoding="async" referrerpolicy="no-referrer">'
+        '<img src="' + src + '" alt="' + product.name + ' 상세 이미지 ' + (index + 1) + '" width="920" height="1100" loading="lazy" decoding="async" referrerpolicy="no-referrer">'
       ).join('');
       detailBox.querySelectorAll('img').forEach(image => image.addEventListener('error', () => image.remove()));
       detailSection.hidden = false;
+      detailSection.style.scrollMarginTop = '96px';
+      if (!document.getElementById('generic-detail-jump')) {
+        const jump = document.createElement('a');
+        jump.id = 'generic-detail-jump';
+        jump.className = 'btn primary generic-detail-jump';
+        jump.href = '#generic-source-detail';
+        jump.textContent = '제품 특징 이미지 자세히 보기 ↓';
+        $('#generic-recommend-audience')?.closest('.generic-recommend-block')?.after(jump);
+      }
     }
 
     const preferred = (product.options || []).find(o =>
