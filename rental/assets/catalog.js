@@ -133,11 +133,11 @@
 
   function visual(product) {
     const placeholder = '<div class="catalog-image-placeholder"><span class="placeholder-mark">W</span><strong>이미지 불러오는 중</strong><small>' + (product.model || '') + '</small></div>';
-    if (!product.image && !(product.detailImages || []).length) {
-      return '<div class="catalog-image-slot">' + placeholder + '</div>';
+    if (!product.image && !product.imageSourceOriginal && !(product.detailImages || []).length) {
+      return '<div class="catalog-image-slot">' + placeholder.replace('이미지 불러오는 중', '상품 이미지 준비 중') + '</div>';
     }
     return '<div class="catalog-image-slot">' +
-      '<img class="catalog-product-image" data-product-id="' + product.id + '" alt="' + product.name + '" loading="lazy" decoding="async">' +
+      '<img class="catalog-product-image" data-product-id="' + product.id + '" alt="' + product.name + '" loading="eager" decoding="async">' +
       placeholder +
       '</div>';
   }
@@ -161,6 +161,10 @@
           img.src = candidates[index];
         } else {
           showPlaceholder();
+          if (placeholder) {
+            const status = placeholder.querySelector('strong');
+            if (status) status.textContent = '상품 이미지 확인 중';
+          }
           img.removeAttribute('src');
         }
       };
