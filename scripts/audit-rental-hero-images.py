@@ -4,6 +4,7 @@
 Diagnostic-only: never auto-replace a model with an unrelated image.
 The generated contact sheets enable a human to verify product-only photos.
 """
+import base64
 import json
 import re
 from pathlib import Path
@@ -87,7 +88,9 @@ for start in range(0,len(preview),per_sheet):
     for j,tile in enumerate(chunk):
         sheet.paste(tile,((j%columns)*192,(j//columns)*190))
     name = f"hero-{start//per_sheet+1:02}.jpg"
-    sheet.save(SHEETS/name,"JPEG",quality=82,optimize=True)
+    sheet.save(SHEETS/name,"JPEG",quality=76,optimize=True)
+    # Text companion lets the image sheets be reviewed through GitHub tools.
+    (SHEETS/(name+".b64")).write_text(base64.b64encode((SHEETS/name).read_bytes()).decode("ascii"),encoding="ascii")
     pages.append({"file":f"assets/product-image-audit/{name}","fromIndex":start+1,
                   "toIndex":min(start+per_sheet,len(preview))})
 flags = {}
