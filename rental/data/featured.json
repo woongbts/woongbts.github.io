@@ -5214,6 +5214,208 @@
         "BEREX 프라임",
         "60개월"
       ]
+    },
+    {
+      "id": "clover-2202",
+      "sourceId": "2202",
+      "brand": "SK매직",
+      "name": "초소형 플러스 직수 냉온정수기",
+      "model": "WPUJAC115",
+      "category": "정수기",
+      "rawCategory": "정수기",
+      "color": "내츄럴화이트 / 뉴트럴실버",
+      "page": "product.html?id=clover-2202",
+      "image": "assets/product-images/clover-2202.webp",
+      "sourceUrl": "https://woongbi.vip-rental.com/categ/1057/2202",
+      "tags": [
+        "정수기",
+        "냉온",
+        "직수",
+        "셀프"
+      ],
+      "promo": "기존 웅비렌탈 공개 상품 조건 기준",
+      "shortDescription": "초소형 · 직수형 · 냉수·온수 특징을 갖춘 정수기 제품입니다.",
+      "highlights": [
+        "초소형",
+        "직수형",
+        "냉수·온수",
+        "방문관리 / 셀프관리"
+      ],
+      "manufacturer": "SK매직",
+      "rentalCompany": "SK매직",
+      "detailImages": [
+        "https://static.skmagic.com/image/editor/goods_desc/202506/1749012900048773.jpg",
+        "https://static.skmagic.com/image/editor/goods_desc/202506/1749012908370046.gif",
+        "https://static.skmagic.com/image/editor/goods_desc/202506/1749012916844812.jpg",
+        "https://static.skmagic.com/image/editor/goods_desc/202506/1749012925179245.gif",
+        "https://static.skmagic.com/image/editor/goods_desc/202506/1749012931700388.jpg",
+        "https://static.skmagic.com/image/editor/goods_desc/202506/1749012938806121.gif",
+        "https://static.skmagic.com/image/editor/goods_desc/202506/1749012945288722.jpg",
+        "https://static.skmagic.com/image/editor/goods_desc/202506/1749012951520049.gif",
+        "https://static.skmagic.com/image/editor/goods_desc/202506/1749012957989447.gif",
+        "https://static.skmagic.com/image/editor/goods_desc/202506/1749012964469761.gif",
+        "https://static.skmagic.com/image/editor/goods_desc/202506/1749012971088389.jpg",
+        "https://static.skmagic.com/image/editor/goods_desc/202506/1749012977322390.gif",
+        "https://static.skmagic.com/image/editor/goods_desc/202506/1749012984646897.gif",
+        "https://static.skmagic.com/image/editor/goods_desc/202506/1749012991062213.jpg",
+        "https://static.skmagic.com/image/editor/goods_desc/202506/1749012998515178.gif",
+        "https://static.skmagic.com/image/editor/goods_desc/202506/1749013005698734.jpg"
+      ],
+      "options": [
+        {
+          "key": "visit-option-36",
+          "management": "visit-option",
+          "managementLabel": "방문형",
+          "term": 36,
+          "monthly": 41900,
+          "card": null,
+          "gift": 155000,
+          "care": "방문형",
+          "sourceOption": "(방문형)36",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "visit-option-60",
+          "management": "visit-option",
+          "managementLabel": "방문형",
+          "term": 60,
+          "monthly": 36400,
+          "card": null,
+          "gift": 230000,
+          "care": "방문형",
+          "sourceOption": "(방문형)60",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "self-option-36",
+          "management": "self-option",
+          "managementLabel": "셀프형",
+          "term": 36,
+          "monthly": 38900,
+          "card": null,
+          "gift": 155000,
+          "care": "셀프형",
+          "sourceOption": "(셀프형)36",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "self-option-60",
+          "management": "self-option",
+          "managementLabel": "셀프형",
+          "term": 60,
+          "monthly": 33400,
+          "card": null,
+          "gift": 230000,
+          "care": "셀프형",
+          "sourceOption": "(셀프형)60",
+          "giftPolicyMonth": "2026-10"
+        }
+      ],
+      "sourceKind": "clover-public",
+      "availability": "active",
+      "giftStatus": "matched",
+      "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/0.png",
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/0.png",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/0.png",
+      "imageRepresentativeMethod": "existing"
+    },
+    {
+      "id": "clover-2197",
+      "sourceId": "2197",
+      "brand": "CUCKOO",
+      "name": "살균 직수 정수기",
+      "model": "CP-AKS011",
+      "category": "정수기",
+      "rawCategory": "정수기",
+      "color": "어스그레이지 / 어스핑크 / 그레이스블루",
+      "page": "product.html?id=clover-2197",
+      "image": "assets/product-images/clover-2197.webp",
+      "sourceUrl": "https://woongbi.vip-rental.com/categ/1068/2197",
+      "tags": [
+        "정수기",
+        "직수",
+        "셀프"
+      ],
+      "promo": "기존 웅비렌탈 공개 상품 조건 기준",
+      "shortDescription": "직수형 · 살균 기능 · 살균 직수 특징을 갖춘 정수기 제품입니다.",
+      "highlights": [
+        "직수형",
+        "살균 기능",
+        "살균 직수",
+        "방문관리 / 셀프관리"
+      ],
+      "manufacturer": "쿠쿠전자",
+      "rentalCompany": "쿠쿠전자",
+      "detailImages": [
+        "https://gi.esmplus.com/cuckoohs/spec/CP-AKS011EG/01.jpg",
+        "https://gi.esmplus.com/cuckoohs/spec/CP-AKS011EG/02.jpg",
+        "https://gi.esmplus.com/cuckoohs/spec/CP-AKS011EG/03.jpg",
+        "https://gi.esmplus.com/cuckoohs/spec/CP-AKS011EG/04.jpg",
+        "https://gi.esmplus.com/cuckoohs/spec/CP-AKS011EG/05.jpg",
+        "https://gi.esmplus.com/cuckoohs/spec/CP-AKS011EG/06.jpg",
+        "https://gi.esmplus.com/cuckoohs/spec/CP-AKS011EG/07.jpg",
+        "https://gi.esmplus.com/cuckoohs/spec/CP-AKS011EG/08.jpg",
+        "https://gi.esmplus.com/cuckoohs/spec/CP-AKS011EG/09.jpg"
+      ],
+      "options": [
+        {
+          "key": "visit-option-36",
+          "management": "visit-option",
+          "managementLabel": "방문형",
+          "term": 36,
+          "monthly": 23900,
+          "card": null,
+          "gift": 55000,
+          "care": "방문형",
+          "sourceOption": "(방문형)36",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "visit-option-60",
+          "management": "visit-option",
+          "managementLabel": "방문형",
+          "term": 60,
+          "monthly": 18900,
+          "card": null,
+          "gift": 90000,
+          "care": "방문형",
+          "sourceOption": "(방문형)60",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "self-option-36",
+          "management": "self-option",
+          "managementLabel": "셀프형",
+          "term": 36,
+          "monthly": 21900,
+          "card": null,
+          "gift": 50000,
+          "care": "셀프형",
+          "sourceOption": "(셀프형)36",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "self-option-60",
+          "management": "self-option",
+          "managementLabel": "셀프형",
+          "term": 60,
+          "monthly": 16900,
+          "card": null,
+          "gift": 75000,
+          "care": "셀프형",
+          "sourceOption": "(셀프형)60",
+          "giftPolicyMonth": "2026-10"
+        }
+      ],
+      "sourceKind": "clover-public",
+      "availability": "active",
+      "giftStatus": "matched",
+      "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250520144816_1.jpg",
+      "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250520144816_1.jpg",
+      "imageRepresentative": true,
+      "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250520144816_1.jpg",
+      "imageRepresentativeMethod": "existing"
     }
   ]
 }
