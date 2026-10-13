@@ -7615,16 +7615,16 @@
       "name": "베로 음식물처리기 3L",
       "category": "주방가전",
       "model": "",
-      "method": "existing",
-      "source": "https://storage.bilrigo.com/data/thumbnails/260115/jWuUtyL3rXr6HRADDAeHnp6plXamVS.jpg",
+      "method": "official",
+      "source": "https://hulec.co.kr/web/product/big/202601/f5f02023ef79bd766fd52733a053594a.jpg",
       "flags": [],
       "dimensions": [
-        600,
-        600
+        650,
+        650
       ],
-      "lightBackgroundFraction": 0.62,
+      "lightBackgroundFraction": 0.691,
       "faceCount": 0,
-      "fileBytes": 4634
+      "fileBytes": 5550
     },
     {
       "index": 417,
@@ -7633,16 +7633,16 @@
       "name": "히트 음식물처리기 4L",
       "category": "주방가전",
       "model": "",
-      "method": "existing",
-      "source": "https://storage.bilrigo.com/data/thumbnails/260115/H6RCRdGcL4eTD7jb9AwT7C48F6KUa8.jpg",
+      "method": "official",
+      "source": "https://hulec.co.kr/web/upload/HIT_s_1.jpg",
       "flags": [],
       "dimensions": [
-        600,
-        600
+        1000,
+        1000
       ],
-      "lightBackgroundFraction": 0.571,
+      "lightBackgroundFraction": 0.507,
       "faceCount": 0,
-      "fileBytes": 5498
+      "fileBytes": 16352
     },
     {
       "index": 418,
