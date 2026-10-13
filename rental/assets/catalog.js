@@ -40,7 +40,7 @@
   const COMPARE_KEY = 'wb_rental_compare_v1';
 
   const won = n => Number(n).toLocaleString('ko-KR') + '원';
-  const IMAGE_REV = '20261013-productcuts3';
+  const IMAGE_REV = '20261013-productcuts4';
   const RENTAL_ENTRY_KEY = 'wb_rental_entry_v1';
   const rentalAnalyticsPath = product => '/rental/product/' + encodeURIComponent(String(product?.id || 'unknown'));
   function rememberRentalEntry(entry) {
