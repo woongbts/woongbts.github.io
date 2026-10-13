@@ -49,6 +49,7 @@ jobs:
             for p in products:
               ov=overrides.get(str(p.get('id') or ''),{})
               if ov.get('imagePageUrl'):p['imagePageUrl']=ov['imagePageUrl']
+              if ov.get('imageAlternates'):p['imageAlternates']=ov['imageAlternates'][:8]
               if ov.get('image'):
                 p.setdefault('imageSourceOriginal',p.get('image'))
                 p['imageSearchSource']=ov['image']
@@ -261,11 +262,18 @@ jobs:
             if pid.startswith('clv-'):
               override_url=str(p.get('imageSearchSource') or '').strip()
               merchant_urls=([override_url] if override_url.startswith('https://storage.bilrigo.com/data/thumbnails/') else [])
+              for alt in p.get('imageAlternates') or []:
+                if alt.startswith('https://storage.bilrigo.com/data/') and alt not in merchant_urls:
+                  merchant_urls.append(alt)
               if not merchant_urls:
                 merchant_urls=merchant_image_candidates(session,p)
-              for merchant_url in merchant_urls:
+              for priority,merchant_url in enumerate(merchant_urls):
                 im=fetch_img(session,merchant_url,referer)
+                if im is None:
+                  proxy='https://images.weserv.nl/?url='+quote(merchant_url,safe='')+'&w=1200&output=png&q=92'
+                  im=fetch_img(session,proxy,'https://images.weserv.nl/')
                 if im is None:continue
+                if priority and product_cut_score(im,priority)<48:continue
                 try:
                   im=ImageOps.exif_transpose(im)
                   if im.width<120 or im.height<120:continue
