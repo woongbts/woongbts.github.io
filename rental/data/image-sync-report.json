@@ -1,12 +1,1273 @@
 {
   "generatedAt": "2026-10-03",
-  "visibleProducts": 294,
-  "localizedOrExisting": 294,
-  "representativeReady": 160,
-  "representativeOriginal": 159,
-  "representativeSearch": 1,
-  "preservedFallback": 134,
-  "failed": 0,
-  "changedProducts": 12,
-  "failures": []
+  "visibleProducts": 478,
+  "localizedOrExisting": 338,
+  "representativeReady": 216,
+  "representativeOriginal": 56,
+  "representativeSearch": 0,
+  "preservedFallback": 122,
+  "failed": 140,
+  "changedProducts": 56,
+  "failures": [
+    {
+      "ok": false,
+      "id": "clv-50899",
+      "brand": "LG",
+      "name": "[현장] 울트라 HD AI TV 65인치",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=50899&ca_id=008001",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-56636",
+      "brand": "삼성",
+      "name": "그랑데 AI 세탁기 25kg + 건조기 21kg + 상단 설치 키트 (화이트)",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=56636&ca_id=009001",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-56065",
+      "brand": "LG",
+      "name": "트롬 워시타워 세탁기 23kg + 건조기 20kg (릴리 화이트)",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=56065&ca_id=009001",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-48939",
+      "brand": "삼성",
+      "name": "AI 세탁기 21kg + 건조기 21kg (화이트) + 상단 설치 키트",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=48939&ca_id=009001",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-57861",
+      "brand": "삼성",
+      "name": "비스포크 AI 콤보 세탁기 25kg + 건조기 18kg (화이트)",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=57861&ca_id=009001",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-48684",
+      "brand": "LG",
+      "name": "트롬 오브제컬렉션 워시콤보 세탁기 24kg + 건조기 15kg (네이처 베이지)",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=48684&ca_id=009001",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-57856",
+      "brand": "삼성",
+      "name": "비스포크 AI 콤보 세탁기 25kg + 건조기 18kg (다크스틸)",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=57856&ca_id=009001",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-20680",
+      "brand": "LG",
+      "name": "트롬 오브제컬렉션 워시콤보 세탁기 25kg + 건조기 15kg (네이처 그린)",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=20680&ca_id=009001",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-57876",
+      "brand": "삼성",
+      "name": "비스포크 AI 콤보 세탁기 25kg + 건조기 20kg (그레이지)",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=57876&ca_id=009001",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-59505",
+      "brand": "LG",
+      "name": "트롬 오브제컬렉션 워시타워 세탁기 23kg + 건조기 21kg (네이처 그린/네이처 베이지)",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=59505&ca_id=009001",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-20690",
+      "brand": "LG",
+      "name": "트롬 오브제컬렉션 워시콤보 세탁기 25kg + 건조기 15kg (릴리 화이트)",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=20690&ca_id=009001",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-61048",
+      "brand": "로보락",
+      "name": "[현장] Zeo X 올인원 세탁기 11kg + 건조기 6kg (블랙)",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=61048&ca_id=009001",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-44134",
+      "brand": "삼성",
+      "name": "AI 세탁기 25kg (화이트)",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=44134&ca_id=009001",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-56215",
+      "brand": "LG",
+      "name": "트롬 세탁기 24kg (화이트)",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=56215&ca_id=009001",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-45244",
+      "brand": "삼성",
+      "name": "비스포크 AI 세탁기 21kg (화이트)",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=45244&ca_id=009001",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-16268",
+      "brand": "삼성",
+      "name": "그랑데 세탁기 19kg (화이트)",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=16268&ca_id=009001",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-56776",
+      "brand": "LG",
+      "name": "트롬 세탁기 17kg (글로우 에센스 화이트)",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=56776&ca_id=009001",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-55141",
+      "brand": "LG",
+      "name": "트롬 세탁기 12kg (릴리 화이트)",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=55141&ca_id=009001",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-25420",
+      "brand": "LG",
+      "name": "트롬 세탁기 9kg (화이트)",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=25420&ca_id=009001",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-3722",
+      "brand": "삼성",
+      "name": "그랑데 통버블 세탁기 23kg (블랙 캐비어)",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=3722&ca_id=009001",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-3723",
+      "brand": "삼성",
+      "name": "그랑데 통버블 세탁기 21kg (블랙 캐비어)",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=3723&ca_id=009001",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-10316",
+      "brand": "LG",
+      "name": "통돌이 세탁기 17kg (미드 프리 실버)",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=10316&ca_id=009001",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-55624",
+      "brand": "삼성",
+      "name": "AI 세탁기 25kg + 건조기 21kg + 상단 설치 키트 (블랙캐비어)",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=55624&ca_id=009002",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-57866",
+      "brand": "삼성",
+      "name": "비스포크 AI 콤보 세탁기 25kg + 건조기 18kg (그레이지)",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=57866&ca_id=009002",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-21702",
+      "brand": "LG",
+      "name": "트롬 오브제컬렉션 워시콤보 세탁기 25kg + 건조기 15kg + 키높이 수납함 (네이처 그린)",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=21702&ca_id=009002",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-57829",
+      "brand": "LG",
+      "name": "트롬 오브제컬렉션 워시타워 세탁기 25kg + 건조기 20kg (오브제컬렉션 릴리 화이트/릴리 화이트)",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=57829&ca_id=009002",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-43739",
+      "brand": "삼성",
+      "name": "비스포크 AI 콤보 세탁기 25kg + 건조기 18kg (블랙캐비어)",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=43739&ca_id=009002",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-24367",
+      "brand": "LG",
+      "name": "트롬 오브제컬렉션 워시콤보 세탁기 25kg + 건조기 15kg + 키높이 수납함 (네이처 베이지)",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=24367&ca_id=009002",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-21457",
+      "brand": "LG",
+      "name": "트롬 오브제컬렉션 워시콤보 세탁기 25kg + 건조기 15kg + 미니워시 (모던 스테인레스)",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=21457&ca_id=009002",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-49464",
+      "brand": "LG",
+      "name": "트롬 AI 오브제컬렉션 건조기 25kg (스페이스 블랙)",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=49464&ca_id=009002",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-46018",
+      "brand": "삼성",
+      "name": "AI 건조기 21kg (블랙캐비어)",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=46018&ca_id=009002",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-46746",
+      "brand": "LG",
+      "name": "트롬 건조기 20kg (화이트)",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=46746&ca_id=009002",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-14541",
+      "brand": "LG",
+      "name": "트롬 건조기 19kg (화이트)",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=14541&ca_id=009002",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-46751",
+      "brand": "LG",
+      "name": "트롬 오브제컬렉션 건조기 18kg (모던 스테인리스)",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=46751&ca_id=009002",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-19804",
+      "brand": "LG",
+      "name": "트롬 듀얼 인버터 히트펌프 건조기 10kg (화이트)",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=19804&ca_id=009002",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-4315",
+      "brand": "삼성",
+      "name": "건조기 9kg (화이트)",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=4315&ca_id=009002",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-24953",
+      "brand": "미닉스",
+      "name": "PRO 플러스 미니 건조기 3.5kg (그레이지)",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=24953&ca_id=009002",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-56059",
+      "brand": "LG",
+      "name": "트롬 오브제컬렉션 워시타워 세탁기 24kg + 건조기 20kg (릴리 화이트)",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=56059&ca_id=009006",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-21442",
+      "brand": "LG",
+      "name": "트롬 오브제컬렉션 워시콤보 세탁기 25kg + 건조기 15kg + 미니워시 (네이처 그린)",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=21442&ca_id=009006",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-57875",
+      "brand": "삼성",
+      "name": "비스포크 AI 콤보 세탁기 25kg + 건조기 20kg (화이트)",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=57875&ca_id=009006",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-21467",
+      "brand": "LG",
+      "name": "트롬 오브제컬렉션 워시콤보 세탁기 25kg + 건조기 15kg + 미니워시 (릴리 화이트)",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=21467&ca_id=009006",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-21712",
+      "brand": "LG",
+      "name": "트롬 오브제컬렉션 워시콤보 세탁기 25kg + 건조기 15kg + 미니워시 (네이처 베이지)",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=21712&ca_id=009006",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-52779",
+      "brand": "LG",
+      "name": "오브제컬렉션 NEW 스타일러 일반용량 (블랙틴트미러)",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=52779&ca_id=009003",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-11457",
+      "brand": "삼성",
+      "name": "비스포크 에어드레서 일반용량 (코타 화이트)",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=11457&ca_id=009003",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-11214",
+      "brand": "삼성",
+      "name": "비스포크 에어드레서 일반용량 (새틴 베이지)",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=11214&ca_id=009003",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-11221",
+      "brand": "삼성",
+      "name": "비스포크 에어드레서 일반용량 (크리스탈 미러)",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=11221&ca_id=009003",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-57097",
+      "brand": "삼성",
+      "name": "비스포크 AI 에어드레서 대용량 (클린화이트)",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=57097&ca_id=009003",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-24986",
+      "brand": "삼성",
+      "name": "비스포크 양문형 냉장고 852L (코타 PCM 화이트)",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=24986&ca_id=004001",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-24985",
+      "brand": "삼성",
+      "name": "양문형 냉장고 852L (젠틀 실버)",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=24985&ca_id=004001",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-24984",
+      "brand": "삼성",
+      "name": "양문형 냉장고 852L (젠틀 블랙)",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=24984&ca_id=004001",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-27740",
+      "brand": "삼성",
+      "name": "비스포크 양문형 냉장고 846L (코타 화이트)",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=27740&ca_id=004001",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-45254",
+      "brand": "LG",
+      "name": "디오스 AI 오브제컬렉션 냉장고 832L (오브제컬렉션 크림 그레이/에센스 화이트)",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=45254&ca_id=004001",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-37719",
+      "brand": "삼성",
+      "name": "비스포크 AI 4도어 냉장고 905L (코타 화이트)",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=37719&ca_id=004001",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-45694",
+      "brand": "삼성",
+      "name": "비스포크 양문형 냉장고 845L (코타 PCM 화이트)",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=45694&ca_id=004001",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-37729",
+      "brand": "삼성",
+      "name": "비스포크 AI 4도어 냉장고 905L (에센셜 화이트/에센셜 베이지)",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=37729&ca_id=004001",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-56539",
+      "brand": "LG",
+      "name": "디오스 AI 오브제컬렉션 냉장고 870L (오브제컬렉션 베이지/베이지)",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=56539&ca_id=004001",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-46456",
+      "brand": "삼성",
+      "name": "비스포크 AI 4도어 냉장고 902L (에센셜 베이지)",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=46456&ca_id=004001",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-46446",
+      "brand": "삼성",
+      "name": "비스포크 AI 4도어 냉장고 902L (에센셜 다크메탈)",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=46446&ca_id=004001",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-37199",
+      "brand": "삼성",
+      "name": "비스포크 AI 4도어 냉장고 884L (에센셜 화이트/에센셜 베이지)",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=37199&ca_id=004001",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-55421",
+      "brand": "삼성",
+      "name": "비스포크 AI 하이브리드 4도어 냉장고 901L (코타 화이트)",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=55421&ca_id=004001",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-37644",
+      "brand": "삼성",
+      "name": "비스포크 AI 하이브리드 4도어 냉장고 874L (새틴 화이트)",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=37644&ca_id=004001",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-49924",
+      "brand": "삼성",
+      "name": "[현장] 비스포크 AI 하이브리드 4도어 냉장고 874L (새틴 베이지)",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=49924&ca_id=004001",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-27790",
+      "brand": "삼성",
+      "name": "김치플러스 스탠드형 3도어 김치냉장고 328L (리파인드 이녹스)",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=27790&ca_id=004002",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-61034",
+      "brand": "삼성",
+      "name": "[현장] 비스포크 김치플러스 3도어 김치냉장고 328L (에센셜 화이트)",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=61034&ca_id=004002",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-28185",
+      "brand": "삼성",
+      "name": "비스포크 김치플러스 3도어 김치냉장고 328L (에센셜 화이트)",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=28185&ca_id=004002",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-47626",
+      "brand": "삼성",
+      "name": "비스포크 AI 김치플러스 4도어 김치냉장고 490L (에센셜 다크메탈)",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=47626&ca_id=004002",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-47941",
+      "brand": "삼성",
+      "name": "비스포크 AI 김치플러스 4도어 키친핏 Max 김치냉장고 420L (에센셜 화이트)",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=47941&ca_id=004002",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-47951",
+      "brand": "삼성",
+      "name": "비스포크 AI 김치플러스 4도어 김치냉장고 490L (에센셜 화이트)",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=47951&ca_id=004002",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-47936",
+      "brand": "삼성",
+      "name": "비스포크 AI 김치플러스 4도어 키친핏 Max 김치냉장고 420L (에센셜 화이트/에센셜 베이지)",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=47936&ca_id=004002",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-47946",
+      "brand": "삼성",
+      "name": "비스포크 AI 김치플러스 4도어 김치냉장고 490L (에센셜 화이트/에센셜 베이지)",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=47946&ca_id=004002",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-46466",
+      "brand": "삼성",
+      "name": "비스포크 AI 김치플러스 4도어 김치냉장고 490L (코타 화이트)",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=46466&ca_id=004002",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-49099",
+      "brand": "삼성",
+      "name": "비스포크 AI 김치플러스 4도어 김치냉장고 583L (코타 화이트)",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=49099&ca_id=004002",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-49199",
+      "brand": "삼성",
+      "name": "김치플러스 뚜껑형 김치냉장고 221L (세린 실버)",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=49199&ca_id=004002",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-32696",
+      "brand": "하이얼",
+      "name": "미니 스탠드형 1도어 김치냉장고 120L (화이트)",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=32696&ca_id=004002",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-50559",
+      "brand": "미닉스",
+      "name": "더 플렌더 MAX 음식물처리기 3L (그레이지)",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=50559&ca_id=006001",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-1579",
+      "brand": "비에스푸디",
+      "name": "음식물처리기",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=1579&ca_id=006001",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-45948",
+      "brand": "쿠쿠",
+      "name": "에코웨일 건조분쇄형 강력건조통 음식물처리기 2L (노블화이트)",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=45948&ca_id=006001",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-52649",
+      "brand": "휴렉",
+      "name": "베로 음식물처리기 3L",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=52649&ca_id=006001",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-52654",
+      "brand": "휴렉",
+      "name": "히트 음식물처리기 4L",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=52654&ca_id=006001",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-46313",
+      "brand": "스마트카라",
+      "name": "400 Pro X 음식물처리기 2L (스노우 화이트)",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=46313&ca_id=006001",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-47016",
+      "brand": "쿠쿠",
+      "name": "에코웨일 미생물 음식물처리기 12.5L (노블 화이트)",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=47016&ca_id=006001",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-3137",
+      "brand": "싱크스타",
+      "name": "The 프리미엄 아모르 음식물 처리기",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=3137&ca_id=006001",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-46323",
+      "brand": "스마트카라",
+      "name": "400 Pro X 음식물처리기 2L + 스토리지 타워 (스노우 화이트)",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=46323&ca_id=006001",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-7216",
+      "brand": "싱크스타",
+      "name": "New 미라클 음식물처리기",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=7216&ca_id=006001",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-59355",
+      "brand": "휴렉",
+      "name": "지니 디스포저 음식물 처리기",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=59355&ca_id=006001",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-39664",
+      "brand": "삼성",
+      "name": "AI 무풍 콤보 벽걸이 에어컨 7평형 (화이트)",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=39664&ca_id=043001",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-37614",
+      "brand": "삼성",
+      "name": "AI 무풍 콤보 벽걸이 에어컨 11평형",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=37614&ca_id=043001",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-36325",
+      "brand": "삼성",
+      "name": "AI Q9000 스탠드 에어컨 17평형 (화이트/베이지)",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=36325&ca_id=043002",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-36335",
+      "brand": "삼성",
+      "name": "AI Q9000 스탠드 에어컨 17평형 (화이트/그레이)",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=36335&ca_id=043002",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-35970",
+      "brand": "삼성",
+      "name": "비스포크 AI 무풍 클래식 스탠드 에어컨 17평형 (화이트/그레이)",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=35970&ca_id=043002",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-35775",
+      "brand": "삼성",
+      "name": "비스포크 AI 스탠드 에어컨 19평형 (메탈 화이트)",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=35775&ca_id=043002",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-36295",
+      "brand": "삼성",
+      "name": "AI Q9000 2in1 에어컨 17평형+6평형 (화이트/베이지)",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=36295&ca_id=043003",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-57567",
+      "brand": "LG",
+      "name": "휘센 AI 오브제컬렉션 뷰II 1시리즈 2in1 에어컨 18평형+6평형 (에센스 화이트)",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=57567&ca_id=043003",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-35760",
+      "brand": "삼성",
+      "name": "비스포크 AI 2in1 에어컨 17평형+6평형 (메탈 화이트)",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=35760&ca_id=043003",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-35770",
+      "brand": "삼성",
+      "name": "비스포크 AI 2in1 에어컨 19평형+6평형 (메탈 화이트)",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=35770&ca_id=043003",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-35965",
+      "brand": "삼성",
+      "name": "비스포크 AI 무풍 클래식 2in1 에어컨 17평형+6평형 (화이트/그레이)",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=35965&ca_id=043003",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-6818",
+      "brand": "LG",
+      "name": "천장형 1WAY 에어컨 6평형 단상",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=6818&ca_id=043009",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-4655",
+      "brand": "LG",
+      "name": "천장형 1WAY 에어컨 10평형",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=4655&ca_id=043009",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-4998",
+      "brand": "LG",
+      "name": "천장형 1WAY 에어컨 12평형",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=4998&ca_id=043009",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-4999",
+      "brand": "LG",
+      "name": "천장형 1WAY 에어컨 15평형",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=4999&ca_id=043009",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-5000",
+      "brand": "LG",
+      "name": "천장형 1WAY 에어컨 18평형",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=5000&ca_id=043009",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-12523",
+      "brand": "삼성",
+      "name": "4WAY 무풍 천장형 에어컨 23평형 단상",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=12523&ca_id=043009",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-36540",
+      "brand": "LG",
+      "name": "천장형 4WAY 에어컨 30평형 단상",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=36540&ca_id=043009",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-36535",
+      "brand": "LG",
+      "name": "천장형 4WAY 에어컨 40평형 삼상",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=36535&ca_id=043009",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-773",
+      "brand": "고고런5",
+      "name": "런닝머신",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=773&ca_id=005003",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-1456",
+      "brand": "고고런5",
+      "name": "로잉머신 듀얼레일",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=1456&ca_id=005003",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-1618",
+      "brand": "비에스소닉",
+      "name": "음파운동기",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=1618&ca_id=005003",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-27715",
+      "brand": "시어드코리아",
+      "name": "가정용 스텝밀 시어드클라임 S",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=27715&ca_id=005003",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-25660",
+      "brand": "시어드코리아",
+      "name": "무동력 트레드밀 슬래드러너",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=25660&ca_id=005003",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-32371",
+      "brand": "누하스",
+      "name": "뉴클래식 패브릭 안마의자 (파우더블루)",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=32371&ca_id=005001",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-3402",
+      "brand": "웰모아",
+      "name": "안마의자 아토 (딥브라운)",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=3402&ca_id=005001",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-10950",
+      "brand": "브람스",
+      "name": "안마의자 루시",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=10950&ca_id=005001",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-19158",
+      "brand": "누하스",
+      "name": "뉴클래식 가죽 안마의자 (엘더화이트)",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=19158&ca_id=005001",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-10402",
+      "brand": "파나소닉",
+      "name": "안마의자 EP-MA05 (민트화이트)",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=10402&ca_id=005001",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-51064",
+      "brand": "브람스",
+      "name": "안마의자 더블핏",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=51064&ca_id=005001",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-41629",
+      "brand": "브람스",
+      "name": "안마의자 원더모션",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=41629&ca_id=005001",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-18889",
+      "brand": "누하스",
+      "name": "누캄포 패브릭L 안마의자 (멜로우 샌드)",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=18889&ca_id=005001",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-8932",
+      "brand": "브람스",
+      "name": "안마의자 루카S",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=8932&ca_id=005001",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-32366",
+      "brand": "리쏘",
+      "name": "안마의자 오스카 PT",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=32366&ca_id=005001",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-20604",
+      "brand": "코지마",
+      "name": "안마의자 코지더블 (베이지)",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=20604&ca_id=005001",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-21610",
+      "brand": "파나소닉",
+      "name": "안마의자 EP-MA22 (그린)",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=21610&ca_id=005001",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-15521",
+      "brand": "코지마",
+      "name": "안마의자 더블모션 (웜그레이/블랙)",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=15521&ca_id=005001",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-801",
+      "brand": "코지마",
+      "name": "안마의자 마스터",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=801&ca_id=005001",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-10410",
+      "brand": "파나소닉",
+      "name": "안마의자 EP-MAF1 (베이지)",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=10410&ca_id=005001",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-4267",
+      "brand": "코지마",
+      "name": "안마의자 레전드 시그니쳐",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=4267&ca_id=005001",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-10401",
+      "brand": "코지마",
+      "name": "안마의자 뉴에라",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=10401&ca_id=005001",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-10411",
+      "brand": "파나소닉",
+      "name": "안마의자 리얼프로 EP-MAJ7 (아이보리)",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=10411&ca_id=005001",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-10412",
+      "brand": "파나소닉",
+      "name": "안마의자 리얼프로 EP-MAK1 (블랙)",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=10412&ca_id=005001",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-11825",
+      "brand": "인홈",
+      "name": "라온 슬림형 저상형 침대 SS",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=11825&ca_id=003002",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-11537",
+      "brand": "인홈",
+      "name": "라온 슬림형 저상형 침대 SS + Q",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=11537&ca_id=003002",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-11552",
+      "brand": "인홈",
+      "name": "안나 매립형 침대 SS",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=11552&ca_id=003002",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-39184",
+      "brand": "라클라우드",
+      "name": "시에스타 호텔식 침대 프레임+매트리스 세트 (Q) (네추럴 브라운)",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=39184&ca_id=003002",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-39174",
+      "brand": "라클라우드",
+      "name": "시에스타 호텔식 침대 프레임+매트리스 세트 (LK) (네추럴 오크)",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=39174&ca_id=003002",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-39214",
+      "brand": "라클라우드",
+      "name": "시에스타 호텔식 침대 프레임+매트리스+패널 세트 (트윈) (네추럴 브라운)",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=39214&ca_id=003002",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-11858",
+      "brand": "헨지디자인",
+      "name": "엘린 침대 SS",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=11858&ca_id=003002",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-11857",
+      "brand": "헨지디자인",
+      "name": "크레토 침대 K",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=11857&ca_id=003002",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-5901",
+      "brand": "한국갤러리",
+      "name": "몬드리안 침대프레임 + 시그니처 매트리스 세트 + 협탁2개",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=5901&ca_id=003002",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-12827",
+      "brand": "퍼니챗",
+      "name": "아리아 조야원단 4인용 카우치 아쿠아텍스 좌측 배치형 패브릭 스윙소파 (라이트 그레이)",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=12827&ca_id=003005",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-12804",
+      "brand": "퍼니챗",
+      "name": "샤르니 조야원단 4인용 패브릭 코너형 스윙소파 (핑크/아이보리)",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=12804&ca_id=003005",
+      "searched": []
+    },
+    {
+      "ok": false,
+      "id": "clv-12794",
+      "brand": "퍼니챗",
+      "name": "샤르니 조야원단 6인용 패브릭 코너형 스윙소파 (핑크/아이보리)",
+      "model": "",
+      "sourceUrl": "https://m.clvrental777.com/model/compare.php?model_idx=12794&ca_id=003005",
+      "searched": []
+    }
+  ]
 }
