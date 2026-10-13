@@ -193,13 +193,9 @@
 
   function renderProduct(product) {
     const validOptions = Array.isArray(product.options) ? product.options.filter(o => isSellableOption(o) && Number.isFinite(Number(o.monthly))) : [];
-    const monthlyValues = validOptions.map(o => Number(o.monthly));
-    const giftValues = validOptions
-      .filter(o => o.gift !== null && o.gift !== undefined && o.gift !== '')
-      .map(o => Number(o.gift))
-      .filter(Number.isFinite);
-    const minMonthly = monthlyValues.length ? Math.min(...monthlyValues) : null;
-    const maxGift = giftValues.length ? Math.max(...giftValues) : null;
+    const pairedOffer = recommendationMetrics(product);
+    const minMonthly = pairedOffer?.minMonthly ?? null;
+    const maxGift = pairedOffer?.maxGift ?? null;
     const managements = [...new Set(validOptions.map(o => optionLabel(o.managementLabel)).filter(Boolean))].slice(0,3).join(' · ');
     const tags = (product.tags || []).slice(0, 5).map(t => '<span>' + t + '</span>').join('');
     const highlights = (product.highlights || []).slice(0, 4).map(t => '<li>' + t + '</li>').join('');
@@ -218,8 +214,9 @@
           <ul class="catalog-highlights">${highlights}</ul>
           <div class="catalog-prices">
             <div><small>월 렌탈료</small><strong>${minMonthly == null ? '상담 확인' : won(minMonthly) + '부터'}</strong></div>
-            <div class="gift"><small>고객사은품</small><strong>${maxGift == null ? '상담 확인' : '최대 ' + won(maxGift)}</strong></div>
+            <div class="gift"><small>같은 조건 고객사은품</small><strong>${maxGift == null ? '상담 확인' : won(maxGift)}</strong></div>
           </div>
+          <p class="catalog-paired-note">※ 위 월요금·사은품은 동일 옵션 기준이며, 계약기간·관리방식은 상세페이지에서 확인하세요.</p>
           <p class="promo">${product.promo || '최신 프로모션 상담 확인'}</p>
           <p class="catalog-meta">${managements || '상세 조건 확인'}</p>
           <button class="compare-toggle" type="button" data-compare-product="${product.id}">비교담기</button>
@@ -244,20 +241,23 @@
     return BRAND_PREFERENCE.find(x => x.test(brand)) || {rank:99, label:''};
   }
 
+  // Customer-facing monthly price and gift MUST belong to the same contract.
   function recommendationMetrics(product) {
     const validOptions = Array.isArray(product.options)
-      ? product.options.filter(o => isSellableOption(o) && Number.isFinite(Number(o.monthly)))
+      ? product.options.filter(o => isSellableOption(o) && Number.isFinite(Number(o.monthly)) && Number(o.monthly) >= 0)
       : [];
     if (!validOptions.length) return null;
-    const gifts = validOptions
-      .filter(o => o.gift !== null && o.gift !== undefined && o.gift !== '')
-      .map(o => Number(o.gift))
-      .filter(Number.isFinite);
-    const monthly = validOptions.map(o => Number(o.monthly)).filter(Number.isFinite);
-    if (!gifts.length || !monthly.length) return null;
+    const candidate = [...validOptions].sort((a,b) =>
+      Number(a.monthly)-Number(b.monthly) ||
+      (Number.isFinite(Number(b.gift))?Number(b.gift):-1) - (Number.isFinite(Number(a.gift))?Number(a.gift):-1)
+    )[0];
+    const gift = candidate.gift == null || candidate.gift === '' ? null : Number(candidate.gift);
     return {
-      maxGift: Math.max(...gifts),
-      minMonthly: Math.min(...monthly)
+      minMonthly:Number(candidate.monthly),
+      maxGift:Number.isFinite(gift) && gift>=0 ? gift : null,
+      term:candidate.term,
+      management:candidate.managementLabel || candidate.management || '',
+      optionKey:candidate.key || ''
     };
   }
 
@@ -302,8 +302,9 @@
           <h3>${product.name}</h3>
           <div class="recommend-prices">
             <span>월 ${minMonthly == null ? '상담 확인' : won(minMonthly) + '부터'}</span>
-            <strong>${maxGift == null ? '고객사은품 상담 확인' : '고객사은품 최대 ' + won(maxGift)}</strong>
+            <strong>${maxGift == null ? '사은품 상담 확인' : '같은 조건 사은품 ' + won(maxGift)}</strong>
           </div>
+          <small class="catalog-paired-note">동일 계약조건 기준 · 다른 옵션은 상세페이지에서 확인</small>
           <div class="recommend-actions"><a class="recommend-link" data-rental-product-id="${product.id}" data-rental-entry="recommend" href="${productHref(product)}">조건 보기 →</a><button class="compare-toggle small" type="button" data-compare-product="${product.id}">비교담기</button></div>
         </div>
       </article>
