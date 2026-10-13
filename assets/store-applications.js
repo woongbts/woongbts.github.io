@@ -105,11 +105,13 @@
     const easyTitle=$('store-application-intro-title'),easyDescription=$('store-application-intro-description');
     if(easyTitle)easyTitle.textContent='먼저 연락받으실 정보를 입력하세요.';
     if(easyDescription)easyDescription.textContent=ctx.category==='internet'
-      ?'연락처를 입력한 뒤 설치정보를 확인합니다. 신청만으로 가입이나 결제가 확정되지 않습니다.'
+      ?'정식 설치상담 접수는 설치정보가 필요합니다. 이름·전화번호만으로 먼저 문의하려면 간편 카톡 상담을 선택하세요.'
       :'매장에서 정확한 요금·재고·가입조건을 확인하고 연락드립니다. 개통·결제는 확정되지 않습니다.';
     const internetFields=$('store-internet-fields');
     const submitBtn=$('store-application-submit');
-    if(submitBtn)submitBtn.textContent=ctx.category==='internet'?'다음 · 설치정보 입력':'이 조건으로 상담 신청';
+    if(submitBtn)submitBtn.textContent=ctx.category==='internet'?'다음 · 정식 설치정보 입력':'이 조건으로 상담 신청';
+    const quickKakao=$('store-application-quick-kakao');
+    if(quickKakao)quickKakao.hidden=ctx.category!=='internet';
     const fallback=$('store-application-fallback');if(fallback)fallback.hidden=true;
     if(dialog)dialog.dataset.applicationCategory=ctx.category;
     const isInternet=ctx.category==='internet';
@@ -570,6 +572,18 @@
     section.scrollIntoView({behavior:'smooth',block:'start'});
     return true;
   }
+  function quickKakaoConsultation(){
+    if(!current)return;
+    const quote=current.quote_text||quoteLines(current);
+    trackStore('store_quick_consult',current);
+    // Open the Kakao chat in the original click gesture, before clipboard settles.
+    const windowRef=window.open('https://pf.kakao.com/_nWwNT/chat','_blank','noopener,noreferrer');
+    const status=$('store-application-status');
+    if(!windowRef&&status)status.textContent='팝업이 차단되면 카카오톡 상담 버튼을 눌러주세요.';
+    if(navigator.clipboard?.writeText){
+      navigator.clipboard.writeText(quote).then(()=>{if(status)status.textContent='선택하신 견적을 복사했어요. 카톡 대화창에 붙여 넣어주세요.';}).catch(()=>{if(status)status.textContent='상품 조건 복사가 막혔어요. 제품명과 견적을 카카오톡에 전달해 주세요.';});
+    }else if(status)status.textContent='카카오톡 대화창에 상품명과 원하는 조건을 알려주세요.';
+  }
   function showApplicationFallback(){
     const box=$('store-application-fallback');
     if(box)box.hidden=false;
@@ -637,7 +651,7 @@
     const active=document.querySelector('.rate-tab.active')?.dataset.tab||new URLSearchParams(location.search).get('wbtab')||new URLSearchParams(location.search).get('tab')||'mobile';
     const link=$('rate-cross-sell-primary');if(!link)return;
     if(active==='internet'){
-      link.href='/rates.html?src=internet-crosssell';
+      link.href='/rates.html?tab=mobile&src=internet-crosssell';
       link.querySelector('b').textContent='휴대폰 요금도 같이 계산';
       link.querySelector('small').textContent='인터넷과 묶을 휴대폰 요금까지 같이 확인해 보세요.';
       link.querySelector('span').textContent='휴대폰 계산 →';
@@ -664,6 +678,7 @@
       }
     },true);
     $('store-application-fallback-copy')?.addEventListener('click',copyApplicationQuote);
+    $('store-application-quick-kakao')?.addEventListener('click',quickKakaoConsultation);
     $('store-internet-fields')?.addEventListener('toggle',()=>{
       if(current?.category!=='internet')return;
       const open=$('store-internet-fields').open;
