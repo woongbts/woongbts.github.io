@@ -1,0 +1,203 @@
+{
+  "generatedAt": "2026-10-13",
+  "note": "Matching image URLs extracted from vendor item pages; no hero images used as product details.",
+  "products": {
+    "clv-50559": {
+      "detailImages": [
+        "https://storage.bilrigo.com/data/editor/2511/55c99e6d29700653ca2c7849ef5c17a7_1763706168_887.jpg",
+        "https://storage.bilrigo.com/data/editor/2511/55c99e6d29700653ca2c7849ef5c17a7_1763706171_0884.gif",
+        "https://storage.bilrigo.com/data/editor/2511/55c99e6d29700653ca2c7849ef5c17a7_1763706171_2142.jpg",
+        "https://storage.bilrigo.com/data/editor/2511/55c99e6d29700653ca2c7849ef5c17a7_1763706173_272.gif",
+        "https://storage.bilrigo.com/data/editor/2511/55c99e6d29700653ca2c7849ef5c17a7_1763706173_3767.jpg",
+        "https://storage.bilrigo.com/data/editor/2511/55c99e6d29700653ca2c7849ef5c17a7_1763706175_2851.gif",
+        "https://storage.bilrigo.com/data/editor/2511/55c99e6d29700653ca2c7849ef5c17a7_1763706175_379.jpg",
+        "https://storage.bilrigo.com/data/editor/2511/55c99e6d29700653ca2c7849ef5c17a7_1763706177_4308.gif",
+        "https://storage.bilrigo.com/data/editor/2511/55c99e6d29700653ca2c7849ef5c17a7_1763706177_5672.jpg",
+        "https://storage.bilrigo.com/data/editor/2511/55c99e6d29700653ca2c7849ef5c17a7_1763706179_6526.gif",
+        "https://storage.bilrigo.com/data/editor/2511/55c99e6d29700653ca2c7849ef5c17a7_1763706194_923.jpg",
+        "https://storage.bilrigo.com/data/editor/2511/55c99e6d29700653ca2c7849ef5c17a7_1763706195_3617.gif",
+        "https://storage.bilrigo.com/data/editor/2511/55c99e6d29700653ca2c7849ef5c17a7_1763706195_4331.jpg",
+        "https://storage.bilrigo.com/data/editor/2511/55c99e6d29700653ca2c7849ef5c17a7_1763706196_3098.gif",
+        "https://storage.bilrigo.com/data/editor/2511/55c99e6d29700653ca2c7849ef5c17a7_1763706196_3884.jpg",
+        "https://storage.bilrigo.com/data/editor/2511/55c99e6d29700653ca2c7849ef5c17a7_1763706197_4754.gif",
+        "https://storage.bilrigo.com/data/editor/2511/55c99e6d29700653ca2c7849ef5c17a7_1763706197_676.jpg",
+        "https://storage.bilrigo.com/data/editor/2511/55c99e6d29700653ca2c7849ef5c17a7_1763706198_7996.gif",
+        "https://storage.bilrigo.com/data/editor/2511/55c99e6d29700653ca2c7849ef5c17a7_1763706198_8873.jpg",
+        "https://storage.bilrigo.com/data/editor/2511/55c99e6d29700653ca2c7849ef5c17a7_1763706200_1834.gif",
+        "https://storage.bilrigo.com/data/editor/2511/55c99e6d29700653ca2c7849ef5c17a7_1763706221_7124.jpg",
+        "https://storage.bilrigo.com/data/editor/2511/55c99e6d29700653ca2c7849ef5c17a7_1763706223_2293.gif",
+        "https://storage.bilrigo.com/data/editor/2511/55c99e6d29700653ca2c7849ef5c17a7_1763706223_359.jpg",
+        "https://storage.bilrigo.com/data/editor/2511/55c99e6d29700653ca2c7849ef5c17a7_1763706226_0345.gif",
+        "https://storage.bilrigo.com/data/editor/2511/55c99e6d29700653ca2c7849ef5c17a7_1763706226_1473.jpg",
+        "https://storage.bilrigo.com/data/editor/2511/55c99e6d29700653ca2c7849ef5c17a7_1763706227_9645.gif",
+        "https://storage.bilrigo.com/data/editor/2511/55c99e6d29700653ca2c7849ef5c17a7_1763706228_0543.jpg",
+        "https://storage.bilrigo.com/data/editor/2511/55c99e6d29700653ca2c7849ef5c17a7_1763706230_4031.gif",
+        "https://storage.bilrigo.com/data/editor/2511/55c99e6d29700653ca2c7849ef5c17a7_1763706230_5345.jpg",
+        "https://storage.bilrigo.com/data/editor/2511/55c99e6d29700653ca2c7849ef5c17a7_1763706233_1528.gif",
+        "https://storage.bilrigo.com/data/editor/2511/55c99e6d29700653ca2c7849ef5c17a7_1763706243_6428.jpg",
+        "https://storage.bilrigo.com/data/editor/2511/55c99e6d29700653ca2c7849ef5c17a7_1763706244_8155.gif",
+        "https://storage.bilrigo.com/data/editor/2511/55c99e6d29700653ca2c7849ef5c17a7_1763706244_9174.jpg",
+        "https://storage.bilrigo.com/data/editor/2511/55c99e6d29700653ca2c7849ef5c17a7_1763706246_4948.gif",
+        "https://storage.bilrigo.com/data/editor/2511/55c99e6d29700653ca2c7849ef5c17a7_1763706246_585.jpg",
+        "https://storage.bilrigo.com/data/editor/2511/55c99e6d29700653ca2c7849ef5c17a7_1763706247_6121.gif",
+        "https://storage.bilrigo.com/data/editor/2511/55c99e6d29700653ca2c7849ef5c17a7_1763706247_7015.jpg",
+        "https://storage.bilrigo.com/data/editor/2511/55c99e6d29700653ca2c7849ef5c17a7_1763706249_4582.gif",
+        "https://storage.bilrigo.com/data/editor/2511/55c99e6d29700653ca2c7849ef5c17a7_1763706249_5777.jpg",
+        "https://storage.bilrigo.com/data/editor/2511/55c99e6d29700653ca2c7849ef5c17a7_1763706251_6908.gif",
+        "https://storage.bilrigo.com/data/editor/2511/55c99e6d29700653ca2c7849ef5c17a7_1763706263_2488.gif",
+        "https://storage.bilrigo.com/data/editor/2511/55c99e6d29700653ca2c7849ef5c17a7_1763706263_3306.jpg",
+        "https://storage.bilrigo.com/data/editor/2511/55c99e6d29700653ca2c7849ef5c17a7_1763706264_1165.gif",
+        "https://storage.bilrigo.com/data/editor/2511/55c99e6d29700653ca2c7849ef5c17a7_1763706264_1935.jpg",
+        "https://storage.bilrigo.com/data/editor/2511/55c99e6d29700653ca2c7849ef5c17a7_1763706265_8084.gif",
+        "https://storage.bilrigo.com/data/editor/2511/55c99e6d29700653ca2c7849ef5c17a7_1763706265_9082.jpg",
+        "https://storage.bilrigo.com/data/editor/2511/55c99e6d29700653ca2c7849ef5c17a7_1763706267_5933.gif",
+        "https://storage.bilrigo.com/data/editor/2511/55c99e6d29700653ca2c7849ef5c17a7_1763706267_6801.jpg",
+        "https://storage.bilrigo.com/data/editor/2511/55c99e6d29700653ca2c7849ef5c17a7_1763706268_6542.gif",
+        "https://storage.bilrigo.com/data/editor/2511/55c99e6d29700653ca2c7849ef5c17a7_1763706268_73.jpg",
+        "https://storage.bilrigo.com/data/editor/2511/55c99e6d29700653ca2c7849ef5c17a7_1763706280_7879.gif",
+        "https://storage.bilrigo.com/data/editor/2511/55c99e6d29700653ca2c7849ef5c17a7_1763706280_8551.jpg",
+        "https://storage.bilrigo.com/data/editor/2511/55c99e6d29700653ca2c7849ef5c17a7_1763706281_0901.gif",
+        "https://storage.bilrigo.com/data/editor/2511/55c99e6d29700653ca2c7849ef5c17a7_1763706281_1548.jpg",
+        "https://storage.bilrigo.com/data/editor/2511/55c99e6d29700653ca2c7849ef5c17a7_1763706282_0953.gif",
+        "https://storage.bilrigo.com/data/editor/2511/55c99e6d29700653ca2c7849ef5c17a7_1763706282_187.jpg",
+        "https://storage.bilrigo.com/data/editor/2511/55c99e6d29700653ca2c7849ef5c17a7_1763706284_0723.gif",
+        "https://storage.bilrigo.com/data/editor/2511/55c99e6d29700653ca2c7849ef5c17a7_1763706284_2299.jpg",
+        "https://storage.bilrigo.com/data/editor/2511/55c99e6d29700653ca2c7849ef5c17a7_1763706286_0466.gif",
+        "https://storage.bilrigo.com/data/editor/2511/55c99e6d29700653ca2c7849ef5c17a7_1763706286_1385.jpg",
+        "https://storage.bilrigo.com/data/editor/2511/55c99e6d29700653ca2c7849ef5c17a7_1763706295_126.gif",
+        "https://storage.bilrigo.com/data/editor/2511/55c99e6d29700653ca2c7849ef5c17a7_1763706295_211.jpg",
+        "https://storage.bilrigo.com/data/editor/2511/55c99e6d29700653ca2c7849ef5c17a7_1763706296_7225.gif",
+        "https://storage.bilrigo.com/data/editor/2511/55c99e6d29700653ca2c7849ef5c17a7_1763706296_8216.jpg",
+        "https://storage.bilrigo.com/data/editor/2511/55c99e6d29700653ca2c7849ef5c17a7_1763706298_2365.gif",
+        "https://storage.bilrigo.com/data/editor/2511/55c99e6d29700653ca2c7849ef5c17a7_1763706298_339.jpg",
+        "https://storage.bilrigo.com/data/editor/2511/55c99e6d29700653ca2c7849ef5c17a7_1763706299_4447.gif",
+        "https://storage.bilrigo.com/data/editor/2511/55c99e6d29700653ca2c7849ef5c17a7_1763706299_8863.jpg",
+        "https://storage.bilrigo.com/data/editor/2609/3eb48385aa2475e6bb56c75f30cbb68e_1790726607_7026.jpg"
+      ],
+      "detailImageSource": "https://m.clvrental777.com/model/compare.php?model_idx=50559&ca_id=006001"
+    },
+    "clv-45948": {
+      "detailImages": [
+        "https://storage.bilrigo.com/data/editor/2508/9341b7e6b65f62f0025b1bd270b4e1ad_1756447142_9853.jpg"
+      ],
+      "detailImageSource": "https://m.clvrental777.com/model/compare.php?model_idx=45948&ca_id=006001"
+    },
+    "clv-46313": {
+      "detailImages": [
+        "https://storage.bilrigo.com/data/editor/2509/751da9a155407578261605c68e718216_1756953414_5992_copy.jpg"
+      ],
+      "detailImageSource": "https://m.clvrental777.com/model/compare.php?model_idx=46313&ca_id=006001"
+    },
+    "clv-47016": {
+      "detailImages": [
+        "https://storage.bilrigo.com/data/editor/2509/abd2b147866b2ed4948788df906284a7_1757308238_2341.jpg"
+      ],
+      "detailImageSource": "https://m.clvrental777.com/model/compare.php?model_idx=47016&ca_id=006001"
+    },
+    "clv-3137": {
+      "detailImages": [
+        "https://storage.bilrigo.com/data/editor/2509/1ca76073f103ba36750cd87ad069d0cd_1757311355_3059.jpg"
+      ],
+      "detailImageSource": "https://m.clvrental777.com/model/compare.php?model_idx=3137&ca_id=006001"
+    },
+    "clv-46323": {
+      "detailImages": [
+        "https://storage.bilrigo.com/data/editor/2509/751da9a155407578261605c68e718216_1756953414_5992_copy_copy.jpg"
+      ],
+      "detailImageSource": "https://m.clvrental777.com/model/compare.php?model_idx=46323&ca_id=006001"
+    },
+    "clv-7216": {
+      "detailImages": [
+        "https://storage.bilrigo.com/data/editor/2509/1ca76073f103ba36750cd87ad069d0cd_1757311378_896.jpg"
+      ],
+      "detailImageSource": "https://m.clvrental777.com/model/compare.php?model_idx=7216&ca_id=006001"
+    },
+    "clv-23052": {
+      "detailImages": [
+        "https://storage.bilrigo.com/data/editor/2603/e48368fdd654141fadad3722ca7774d9_1773896728_4807.jpg",
+        "https://storage.bilrigo.com/data/editor/2405/d89d77432160b2ee1e1087e74dbeb37d_1716541723_0804.jpg",
+        "https://storage.bilrigo.com/data/editor/2405/d89d77432160b2ee1e1087e74dbeb37d_1716541723_6248.jpg"
+      ],
+      "detailImageSource": "https://m.clvrental777.com/model/compare.php?model_idx=23052&ca_id=010"
+    },
+    "clv-13528": {
+      "detailImages": [
+        "https://storage.bilrigo.com/data/editor/2603/e48368fdd654141fadad3722ca7774d9_1773896699_9721.jpg",
+        "https://storage.bilrigo.com/data/editor/2307/99dadf2581c87880b6c0ad8b83b0e6e6_1689214949_4894.jpg"
+      ],
+      "detailImageSource": "https://m.clvrental777.com/model/compare.php?model_idx=13528&ca_id=010"
+    },
+    "clv-5733": {
+      "detailImages": [
+        "https://storage.bilrigo.com/data/editor/2111/f49e5f48a839050461b3df8fbd2c1fbf_1635899435_4931.jpg"
+      ],
+      "detailImageSource": "https://m.clvrental777.com/model/compare.php?model_idx=5733&ca_id=010"
+    },
+    "clv-8081": {
+      "detailImages": [
+        "https://storage.bilrigo.com/data/editor/2404/c75e7030fabfd9dbb1b2bc8058628ec8_1711934545_2417.png"
+      ],
+      "detailImageSource": "https://m.clvrental777.com/model/compare.php?model_idx=8081&ca_id=010"
+    },
+    "clv-12646": {
+      "detailImages": [
+        "https://storage.bilrigo.com/data/editor/2307/414ffc6e520ab17661e2b7c98d432ef6_1688521613_7827.jpg",
+        "https://storage.bilrigo.com/data/editor/2507/11d561a208dda6754723f5896d0ee30d_1753332823_6336.jpg",
+        "https://storage.bilrigo.com/data/editor/2305/c51a4bd45fb1d15d8eed8d314967955f_1684996539_5428_copy.jpg"
+      ],
+      "detailImageSource": "https://m.clvrental777.com/model/compare.php?model_idx=12646&ca_id=010"
+    },
+    "clv-12617": {
+      "detailImages": [
+        "https://storage.bilrigo.com/data/editor/2607/64ff1529786289e8011d4997e4ccc36a_1784527379_9033.jpg",
+        "https://storage.bilrigo.com/data/editor/2607/64ff1529786289e8011d4997e4ccc36a_1784527289_1097.jpg"
+      ],
+      "detailImageSource": "https://m.clvrental777.com/model/compare.php?model_idx=12617&ca_id=043"
+    },
+    "clv-36320": {
+      "detailImages": [
+        "https://storage.bilrigo.com/data/editor/2503/d0be414ebbb027e139e03e6cc98c870a_1742789153_8047.jpg",
+        "https://storage.bilrigo.com/data/editor/2503/d0be414ebbb027e139e03e6cc98c870a_1742789155_3191.jpg"
+      ],
+      "detailImageSource": "https://m.clvrental777.com/model/compare.php?model_idx=36320&ca_id=043"
+    },
+    "clv-36310": {
+      "detailImages": [
+        "https://storage.bilrigo.com/data/editor/2503/d0be414ebbb027e139e03e6cc98c870a_1742789037_1236.jpg",
+        "https://storage.bilrigo.com/data/editor/2503/d0be414ebbb027e139e03e6cc98c870a_1742789039_1254.jpg"
+      ],
+      "detailImageSource": "https://m.clvrental777.com/model/compare.php?model_idx=36310&ca_id=043"
+    },
+    "clv-35940": {
+      "detailImages": [
+        "https://storage.bilrigo.com/data/editor/2503/d0be414ebbb027e139e03e6cc98c870a_1742791615_1159.jpg",
+        "https://storage.bilrigo.com/data/editor/2503/d0be414ebbb027e139e03e6cc98c870a_1742791616_6158.jpg"
+      ],
+      "detailImageSource": "https://m.clvrental777.com/model/compare.php?model_idx=35940&ca_id=043"
+    },
+    "clv-58159": {
+      "detailImages": [
+        "https://storage.bilrigo.com/data/editor/2606/7e90f01170c0f11714c61d5e5dfea38c_1780877949_8975.jpg"
+      ],
+      "detailImageSource": "https://m.clvrental777.com/model/compare.php?model_idx=58159&ca_id=043"
+    },
+    "clv-55935": {
+      "detailImages": [
+        "https://storage.bilrigo.com/data/editor/2607/e27bae90af4b4171ad31e491106b2950_1784791308_9504.png"
+      ],
+      "detailImageSource": "https://m.clvrental777.com/model/compare.php?model_idx=55935&ca_id=043"
+    },
+    "clv-35750": {
+      "detailImages": [
+        "https://storage.bilrigo.com/data/editor/2503/ebffed2ea7c35e81902359cec2b341f7_1741850903_9833.png"
+      ],
+      "detailImageSource": "https://m.clvrental777.com/model/compare.php?model_idx=35750&ca_id=043"
+    },
+    "clv-35755": {
+      "detailImages": [
+        "https://storage.bilrigo.com/data/editor/2503/ebffed2ea7c35e81902359cec2b341f7_1741850968_3939.png"
+      ],
+      "detailImageSource": "https://m.clvrental777.com/model/compare.php?model_idx=35755&ca_id=043"
+    }
+  }
+}
