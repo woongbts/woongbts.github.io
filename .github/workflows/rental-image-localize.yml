@@ -49,6 +49,10 @@ jobs:
             for p in products:
               ov=overrides.get(str(p.get('id') or ''),{})
               if ov.get('imagePageUrl'):p['imagePageUrl']=ov['imagePageUrl']
+              if ov.get('officialImage') and ov.get('manualVerifiedProduct'):
+                p['imageOfficialSource']=ov['officialImage']
+                p['imageOfficialPage']=ov.get('officialPageUrl') or ''
+                p['preserveOldHeroAsDetail']=bool(ov.get('keepOldImageAsDetail'))
               if ov.get('imageAlternates'):p['imageAlternates']=ov['imageAlternates'][:8]
               if ov.get('image'):
                 p.setdefault('imageSourceOriginal',p.get('image'))
@@ -250,6 +254,31 @@ jobs:
             preferred=str(p.get('imageSourceOriginal') or '').strip()
             current_from=str(p.get('imageLocalizedFrom') or '').strip()
 
+            # Exact product-only photos manually verified against a manufacturer
+            # take priority even over an earlier locally saved promotional photo.
+            official=str(p.get('imageOfficialSource') or '').strip()
+            if official.startswith('https://') and p.get('manualVerifiedProduct') is None:
+              session=requests.Session()
+              im=fetch_img(session,official,p.get('imageOfficialPage') or '')
+              if im is not None and im.width>=200 and im.height>=200:
+                try:
+                  detail_rel=''
+                  if p.get('preserveOldHeroAsDetail') and dest.exists() and dest.stat().st_size>1500:
+                    import shutil
+                    detail_rel=f'assets/product-detail-images/{pid}-former-hero.webp'
+                    detail_dest=root/'rental'/detail_rel
+                    detail_dest.parent.mkdir(parents=True,exist_ok=True)
+                    if not detail_dest.exists():shutil.copy2(dest,detail_dest)
+                  im=ImageOps.exif_transpose(im)
+                  if im.mode not in ('RGB','RGBA'):
+                    im=im.convert('RGBA' if 'transparency' in im.info else 'RGB')
+                  im.thumbnail((1000,1000),Image.Resampling.LANCZOS)
+                  if im.mode=='RGBA':im.save(dest,'WEBP',quality=89,method=6)
+                  else:im.convert('RGB').save(dest,'WEBP',quality=89,method=6)
+                  return {'ok':True,'id':pid,'rel':rel,'from':official,'size':list(im.size),'representative':True,'method':'official','detailPhoto':detail_rel}
+                except Exception as ex:
+                  print('official image processing failed',pid,str(ex)[:120],flush=True)
+
             # Already reviewed/generated as a representative product cut.
             if dest.exists() and dest.stat().st_size>1500 and p.get('imageRepresentative') is True:
               return {'ok':True,'id':pid,'rel':rel,'from':p.get('imageRepresentativeSource') or current_from,'existing':True,'representative':True}
@@ -378,6 +407,10 @@ jobs:
                 p['image']=rel
                 changed+=1
               if r.get('from'):p['imageLocalizedFrom']=r['from']
+              if r.get('detailPhoto'):
+                details=list(p.get('detailImages') or [])
+                if r['detailPhoto'] not in details:details.insert(0,r['detailPhoto'])
+                p['detailImages']=details
               if r.get('representative'):
                 p['imageRepresentative']=True
                 p['imageRepresentativeSource']=r.get('from')
@@ -391,8 +424,9 @@ jobs:
           exact_original=sum(1 for r in ok if r.get('method')=='original')
           searched_rep=sum(1 for r in ok if r.get('method')=='search')
           merchant_rep=sum(1 for r in ok if r.get('method')=='merchant')
+          official_rep=sum(1 for r in ok if r.get('method')=='official')
           preserved=sum(1 for r in ok if r.get('preferredFailed'))
-          report={'generatedAt':'2026-10-03','visibleProducts':len(targets),'localizedOrExisting':len(ok),'representativeReady':representative,'representativeOriginal':exact_original,'representativeSearch':searched_rep,'representativeMerchant':merchant_rep,'preservedFallback':preserved,'failed':len(fail),'changedProducts':changed,'failures':fail}
+          report={'generatedAt':'2026-10-03','visibleProducts':len(targets),'localizedOrExisting':len(ok),'representativeReady':representative,'representativeOriginal':exact_original,'representativeSearch':searched_rep,'representativeMerchant':merchant_rep,'representativeOfficial':official_rep,'preservedFallback':preserved,'failed':len(fail),'changedProducts':changed,'failures':fail}
           report_path.write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
           print(json.dumps({k:v for k,v in report.items() if k!='failures'},ensure_ascii=False),flush=True)
           PY
@@ -400,7 +434,7 @@ jobs:
         run: |
           git config user.name "woongbi-image-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add rental/data/products.json rental/data/image-sync-report.json rental/assets/product-images rental/data/image-overrides.json
+          git add rental/data/products.json rental/data/image-sync-report.json rental/assets/product-images rental/assets/product-detail-images rental/data/image-overrides.json
           if git diff --cached --quiet; then exit 0; fi
           git commit -m "Localize rental product images"
           git pull --rebase origin main
