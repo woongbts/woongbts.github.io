@@ -188,3 +188,29 @@ body.plan-picker-opened{overflow:hidden;touch-action:auto}
     color:#183c48;
   }
 }
+
+
+/* 2026-10-13 · readable quote explanations and compact installment/welfare controls */
+.rate-page #mobile-form{align-content:start!important;grid-auto-rows:max-content!important;align-self:start}
+.rate-page #mobile-form .mobile-term-welfare-row{align-items:start!important;align-content:start!important;grid-auto-rows:max-content!important;gap:12px!important;padding:12px 13px;margin:0;border:1px solid #cfe6e4;border-radius:14px;background:#f4fbfa}
+.rate-page #mobile-form .mobile-term-welfare-row>label{display:flex!important;flex-direction:column!important;justify-content:flex-start!important;align-self:start!important;min-width:0;gap:7px!important;color:#185b5b!important;font-size:16px!important;font-weight:900!important}
+.rate-page #mobile-form .mobile-term-welfare-row select{width:100%;min-height:47px!important;font-size:15px!important;font-weight:750!important}
+.rate-page #mobile-form .mobile-term-welfare-row select:disabled{opacity:1}
+.rate-page .field-help,.rate-page .plan-picker-note,.rate-page .plan-picker-mode-note,.rate-page .plan-filter-hint,.rate-page .data-note,.rate-page .quote-amount-note,.rate-page .quote-next-step,.rate-page .quote-condition-note p,.rate-page .extra-support-disclaimer,.rate-page .rate-warning,.rate-page .wired-compare-note,.rate-page .internet-availability-note,.rate-page .store-benefit-request-status,.rate-page .plan-quick-shortcuts span,.rate-page .result-breakdown span,.rate-page .monthly-total-help{font-size:clamp(15px,1.35vw,17px)!important;line-height:1.7!important;word-break:keep-all}
+.rate-page .quote-condition-note{background:#eef8fb!important;border:1px solid #bedfe9!important;border-radius:14px;padding:16px!important}
+.rate-page .quote-condition-note>strong,.rate-page .quote-condition-note strong{color:#075e88!important;font-size:17px!important}
+.rate-page .quote-amount-note,.rate-page .data-note{color:#1f6067!important;font-weight:730!important}
+.rate-page .rate-warning{color:#604721!important;background:#fff7e7!important;border:1px solid #f1dcad!important;padding:14px 16px!important;border-radius:12px}
+.rate-page #mobile-form .auto-box>span{font-size:15px!important;line-height:1.5!important;font-weight:820!important}
+.rate-page #mobile-form .auto-box>strong{font-size:17px!important}
+.rate-page #mobile-form .auto-box>small{font-size:14.5px!important}
+.rate-page .quote-next-step{color:#1e6470!important;font-weight:700}
+.rate-page .rate-quote-choice{margin:16px 0;border:1px solid #b9dcd8;background:#f2faf8;border-radius:16px;padding:16px}
+.rate-page .rate-quote-choice>strong{display:block;font-size:19px;color:#144e4a;margin-bottom:5px}
+.rate-page .rate-quote-choice>p{font-size:15px;line-height:1.6;color:#365b61;margin:0 0 12px}
+.rate-page .rate-quote-choice-links{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
+.rate-page .rate-quote-choice-links>a,.rate-page .rate-quote-choice-links>button{display:flex;align-items:center;justify-content:center;min-height:49px;border-radius:12px;border:1px solid #277977;text-decoration:none;font-size:16px;font-weight:900;padding:10px 12px;text-align:center;cursor:pointer}
+.rate-page .rate-quote-choice-links .primary{background:#08796e;color:#fff}
+.rate-page .rate-quote-choice-links .secondary{background:#fff;color:#155e64}
+.rate-page .rate-quote-choice-links .phone{background:#e9f2fd;color:#145886}
+@media(max-width:640px){.rate-page #mobile-form .mobile-term-welfare-row{grid-template-columns:1fr!important;padding:12px!important}.rate-page .rate-quote-choice-links{grid-template-columns:1fr}.rate-page .rate-quote-choice-links>a,.rate-page .rate-quote-choice-links>button{min-height:49px}.rate-page #mobile-form{gap:12px!important}}
