@@ -181,13 +181,11 @@
     if(management)management.textContent=optionLabel(v?.managementLabel||v?.management||'')||'상담 확인';
   }
   function productMetrics(p) {
-    const options=(p?.options||[]).filter(isSellableOption);
-    const monthly=options.map(o=>Number(o.monthly)).filter(n=>Number.isFinite(n)&&n>0);
-    const gifts=options.filter(o=>o.gift!==null&&o.gift!==undefined&&o.gift!=='').map(o=>Number(o.gift)).filter(n=>Number.isFinite(n)&&n>=0);
-    return {
-      minMonthly:monthly.length?Math.min(...monthly):null,
-      maxGift:gifts.length?Math.max(...gifts):null
-    };
+    const option=(p?.options||[]).filter(o=>isSellableOption(o)&&Number.isFinite(Number(o.monthly))&&Number(o.monthly)>0)
+      .sort((a,b)=>Number(a.monthly)-Number(b.monthly)||(Number(b.gift)||0)-(Number(a.gift)||0))[0];
+    if(!option)return {minMonthly:null,maxGift:null};
+    const gift=option.gift==null||option.gift===''?null:Number(option.gift);
+    return {minMonthly:Number(option.monthly),maxGift:Number.isFinite(gift)&&gift>=0?gift:null};
   }
   function renderAlternatives() {
     const section=$('#product-alternatives'),grid=$('#product-alternative-grid'),v=currentVariant();
@@ -221,7 +219,7 @@
       return '<article class="product-alternative-card">'+
         '<a class="product-alternative-image" href="'+href+'">'+(image?'<img src="'+image+'" alt="'+p.name+'" loading="lazy" decoding="async">':'<span>W</span>')+'</a>'+
         '<div><small>'+reason+'</small><strong>'+brandLabel(p.brand)+' · '+p.name+'</strong>'+
-        '<p>월 '+(m.minMonthly==null?'상담 확인':won(m.minMonthly)+'부터')+(m.maxGift==null?'':' · 사은품 최대 '+won(m.maxGift))+'</p>'+
+        '<p>월 '+(m.minMonthly==null?'상담 확인':won(m.minMonthly)+'부터')+(m.maxGift==null?'':' · 같은 조건 사은품 '+won(m.maxGift))+'</p>'+
         '<a href="'+href+'">조건 비교하기 →</a></div></article>';
     }).join('');
   }
