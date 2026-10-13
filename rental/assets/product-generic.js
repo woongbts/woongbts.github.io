@@ -303,7 +303,7 @@
     }
   }
   const imageCandidatesFor = product => {
-    const raw = [product.image, product.imageSourceOriginal, ...((product.detailImages || []).slice(0, 3))].filter(Boolean);
+    const raw = [product.image, product.imageSourceOriginal].filter(Boolean);
     const candidates = [];
     raw.forEach(src => {
       const value = String(src || '').trim();
@@ -1120,13 +1120,14 @@
         : `상품 기본정보는 기존 웅비렌탈 판매자료와 ${policyMonthText(policyGeneratedAt)} 정책을 기준으로 정리했습니다.`;
     }
 
-    const detailImages = (product.detailImages || []).filter(Boolean).slice(0, 24);
+    const detailImages = [...new Set((product.detailImages || []).filter(Boolean))].slice(0, 120);
     const detailSection = $('#generic-source-detail');
     const detailBox = $('#generic-detail-images');
     if (detailSection && detailBox && detailImages.length) {
       detailBox.innerHTML = detailImages.map((src, index) =>
         '<img src="' + src + '" alt="' + product.name + ' 상세 이미지 ' + (index + 1) + '" loading="lazy" decoding="async" referrerpolicy="no-referrer">'
       ).join('');
+      detailBox.querySelectorAll('img').forEach(image => image.addEventListener('error', () => image.remove()));
       detailSection.hidden = false;
     }
 
@@ -1204,15 +1205,22 @@
       .catch(() => null),
     fetch('data/catalog-overrides.json', {cache:'no-store'})
       .then(r => r.ok ? r.json() : null)
+      .catch(() => null),
+    fetch('data/clover-detail-gallery.json', {cache:'no-store'})
+      .then(r => r.ok ? r.json() : null)
       .catch(() => null)
   ])
-    .then(([data, giftData, overrideData]) => {
+    .then(([data, giftData, overrideData, galleryData]) => {
       applyPolicyMonth(giftData?.generatedAt || data?.updatedAt || '');
       (data.products || []).forEach(item => {
         const catalogOverride = overrideData?.products?.[item.id];
         if (catalogOverride) Object.assign(item, catalogOverride);
         const giftOverride = giftData?.products?.[item.id];
         if (giftOverride && item.sourceKind === 'clover-import') Object.assign(item, giftOverride);
+        const detailOverride = galleryData?.products?.[item.id];
+        if (detailOverride?.detailImages?.length && !(item.detailImages || []).length) {
+          item.detailImages = detailOverride.detailImages;
+        }
       });
       initialize(data);
     })
