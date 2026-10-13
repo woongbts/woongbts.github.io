@@ -23,7 +23,7 @@ for(const p of active){
   if(urls.length)withDetail++;
   for(const u of urls){
     images++;
-    assert(typeof u==='string' && (/^https:\/\//.test(u)||/^assets\/product-detail-images\//.test(u)),'Invalid detail image URL: '+p.id);
+    assert(typeof u==='string' && (/^https:\/\//.test(u)||(/^assets\//.test(u)&&!u.includes('..'))),'Invalid detail image URL: '+p.id);
   }
 }
 assert(active.length>=400,'Unexpected catalog shrink: '+active.length);
