@@ -282,7 +282,10 @@
     "image": "https://storage.bilrigo.com/data/thumbnails/250114/RVwewVTScz2bHTyATeRarMdNyWrc1v.jpg"
   },
   "clv-10950": {
-    "image": "https://storage.bilrigo.com/data/thumbnails/230329/R8SSA1Zl9acjSGequwMjdGSWZXjUXN.jpg"
+    "image": "https://storage.bilrigo.com/data/thumbnails/230329/R8SSA1Zl9acjSGequwMjdGSWZXjUXN.jpg",
+    "imageAlternates": [
+      "https://storage.bilrigo.com/data/editor/2303/edcbab5df07e5b47282f34a93c3390c1_1680049820_1569.jpg"
+    ]
   },
   "clv-19158": {
     "image": "https://storage.bilrigo.com/data/thumbnails/240220/vnUjPyYt81l7rZZx3yyy7eCrncnxh1.jpg"
@@ -306,48 +309,134 @@
     "image": "https://storage.bilrigo.com/data/thumbnails/251111/Nrpg213rRyTTgkH8vanhC4epBsnZ9q.jpg"
   },
   "clv-21610": {
-    "image": "https://storage.bilrigo.com/data/thumbnails/251111/kTcH9lG1qKUGT7Fp1SDFe2JXGzk4ja.jpg"
+    "image": "https://storage.bilrigo.com/data/thumbnails/251111/kTcH9lG1qKUGT7Fp1SDFe2JXGzk4ja.jpg",
+    "imageAlternates": [
+      "https://storage.bilrigo.com/data/editor/2502/33182baa17287338b38942ac57bc3846_1739854184_1421.jpg"
+    ]
   },
   "clv-15521": {
-    "image": "https://storage.bilrigo.com/data/thumbnails/230831/reLhEGbCJE2AJ5vFwTXQbTvDKnGJsH.jpg"
+    "image": "https://storage.bilrigo.com/data/thumbnails/230831/reLhEGbCJE2AJ5vFwTXQbTvDKnGJsH.jpg",
+    "imageAlternates": [
+      "https://storage.bilrigo.com/data/editor/2308/a81ceb2426842b168638bcf87480188a_1693459611_0571.jpg",
+      "https://storage.bilrigo.com/data/editor/2608/c6817c6231565e8acb89ce1f243893d5_1787020403_4913.jpg"
+    ]
   },
   "clv-801": {
-    "image": "https://storage.bilrigo.com/data/thumbnails/251112/lGYzXThJRb65F8wAs71JSryuhNJ2eJ.jpg"
+    "image": "https://storage.bilrigo.com/data/thumbnails/251112/lGYzXThJRb65F8wAs71JSryuhNJ2eJ.jpg",
+    "imageAlternates": [
+      "https://storage.bilrigo.com/data/thumbnails/191114/eTAY7XD66ACqjFqun6CDaZmFQLNfFS.jpg",
+      "https://storage.bilrigo.com/data/editor/1912/2de9d0d9759ae648c75184f58670042f_1576217262_6031.jpg",
+      "https://storage.bilrigo.com/data/editor/1912/2de9d0d9759ae648c75184f58670042f_1576217357_0283.jpg",
+      "https://storage.bilrigo.com/data/editor/1912/2de9d0d9759ae648c75184f58670042f_1576217357_1466.jpg",
+      "https://storage.bilrigo.com/data/editor/1912/2de9d0d9759ae648c75184f58670042f_1576217357_6458.jpg",
+      "https://storage.bilrigo.com/data/editor/1912/2de9d0d9759ae648c75184f58670042f_1576217449_9169.jpg"
+    ]
   },
   "clv-4267": {
-    "image": "https://storage.bilrigo.com/data/thumbnails/251111/TLQRy7Tw7uKb34AqdhcmyAZXS9yj4G.jpg"
+    "image": "https://storage.bilrigo.com/data/thumbnails/251111/TLQRy7Tw7uKb34AqdhcmyAZXS9yj4G.jpg",
+    "imageAlternates": [
+      "https://storage.bilrigo.com/data/editor/2104/7031293f8761d065ba6f13a9bd341c47_1619507755_4046.jpg",
+      "https://storage.bilrigo.com/data/editor/2104/7031293f8761d065ba6f13a9bd341c47_1619507755_6029.jpg",
+      "https://storage.bilrigo.com/data/editor/2104/7031293f8761d065ba6f13a9bd341c47_1619507755_8054.jpg",
+      "https://storage.bilrigo.com/data/editor/2104/7031293f8761d065ba6f13a9bd341c47_1619507755_9298.jpg",
+      "https://storage.bilrigo.com/data/editor/2104/7031293f8761d065ba6f13a9bd341c47_1619507777_2939.jpg"
+    ]
   },
   "clv-10401": {
-    "image": "https://storage.bilrigo.com/data/thumbnails/251111/fxYVWxSeNsC2Z8wYVqV8qdjHqEbvS7.jpg"
+    "image": "https://storage.bilrigo.com/data/thumbnails/251111/fxYVWxSeNsC2Z8wYVqV8qdjHqEbvS7.jpg",
+    "imageAlternates": [
+      "https://storage.bilrigo.com/data/editor/2301/4fb9cc60059e1c1e9221090dd58a7d6b_1675133367_8139.jpg",
+      "https://storage.bilrigo.com/data/editor/2301/4fb9cc60059e1c1e9221090dd58a7d6b_1675133368_219.jpg",
+      "https://storage.bilrigo.com/data/editor/2301/4fb9cc60059e1c1e9221090dd58a7d6b_1675133368_2535.jpg",
+      "https://storage.bilrigo.com/data/editor/2301/4fb9cc60059e1c1e9221090dd58a7d6b_1675133368_3035.jpg",
+      "https://storage.bilrigo.com/data/editor/2301/4fb9cc60059e1c1e9221090dd58a7d6b_1675133368_4068.jpg",
+      "https://storage.bilrigo.com/data/editor/2301/4fb9cc60059e1c1e9221090dd58a7d6b_1675133377_0341.jpg"
+    ]
   },
   "clv-10411": {
-    "image": "https://storage.bilrigo.com/data/thumbnails/251111/HBpCZMsStwXaXMEfyHWLyGrgwPnh9q.jpg"
+    "image": "https://storage.bilrigo.com/data/thumbnails/251111/HBpCZMsStwXaXMEfyHWLyGrgwPnh9q.jpg",
+    "imageAlternates": [
+      "https://storage.bilrigo.com/data/editor/2502/33182baa17287338b38942ac57bc3846_1739855977_7966.jpg"
+    ]
   },
   "clv-10412": {
-    "image": "https://storage.bilrigo.com/data/thumbnails/251111/YZaswQACYXgTngUuE2ewEz7Y83fxyC.jpg"
+    "image": "https://storage.bilrigo.com/data/thumbnails/251111/YZaswQACYXgTngUuE2ewEz7Y83fxyC.jpg",
+    "imageAlternates": [
+      "https://storage.bilrigo.com/data/editor/2502/33182baa17287338b38942ac57bc3846_1739856137_4801.jpg"
+    ]
   },
   "clv-11825": {
-    "image": "https://storage.bilrigo.com/data/thumbnails/230421/11825_w9f9Rl7XSyXlUTklHzQZB5EVgKyJmS.jpg"
+    "image": "https://storage.bilrigo.com/data/thumbnails/230421/11825_w9f9Rl7XSyXlUTklHzQZB5EVgKyJmS.jpg",
+    "imageAlternates": [
+      "https://storage.bilrigo.com/data/thumbnails/250828/FMVaAgwks39fukkcscVz9cNujfKTy7.jpg",
+      "https://storage.bilrigo.com/data/editor/2304/509127be765e7a94a38a769cc953a5ef_1682052335_1984_copy.jpg",
+      "https://storage.bilrigo.com/data/editor/2405/1a9cbd1c262eff60e934c3dc84742338_1716168661_2482.jpg",
+      "https://storage.bilrigo.com/data/editor/2304/509127be765e7a94a38a769cc953a5ef_1682052339_1477_copy.jpg",
+      "https://storage.bilrigo.com/data/editor/2304/509127be765e7a94a38a769cc953a5ef_1682052340_8477_copy.jpg",
+      "https://storage.bilrigo.com/data/editor/2505/4283734357e638b462b73e2e83cd7c3c_1748588421_203.jpg"
+    ]
   },
   "clv-39184": {
-    "image": "https://storage.bilrigo.com/data/thumbnails/250526/LaHyzmkwlNnU35rStwdA4776dPFGbW.jpg"
+    "image": "https://storage.bilrigo.com/data/thumbnails/250526/LaHyzmkwlNnU35rStwdA4776dPFGbW.jpg",
+    "imageAlternates": [
+      "https://storage.bilrigo.com/data/editor/2505/2fa3fe34bd2b771a7e9127ea66cd8d64_1747713814_2377.jpg",
+      "https://storage.bilrigo.com/data/editor/2505/7fe06a4d13278fbbdefbd0b20374fd98_1747723073_153.jpg",
+      "https://storage.bilrigo.com/data/editor/2505/7fe06a4d13278fbbdefbd0b20374fd98_1747723073_5973.jpg",
+      "https://storage.bilrigo.com/data/editor/2505/7fe06a4d13278fbbdefbd0b20374fd98_1747723073_889.jpg",
+      "https://storage.bilrigo.com/data/editor/2505/7fe06a4d13278fbbdefbd0b20374fd98_1747723074_1517.jpg",
+      "https://storage.bilrigo.com/data/editor/2608/c0569e6896aaa38f15e7c39c2a8ea85c_1788166267_805.jpg"
+    ]
   },
   "clv-39214": {
-    "image": "https://storage.bilrigo.com/data/thumbnails/250418/mJ9SBpFXdJXCLQJVsvpAddSUyDEVDJ.jpg"
+    "image": "https://storage.bilrigo.com/data/thumbnails/250418/mJ9SBpFXdJXCLQJVsvpAddSUyDEVDJ.jpg",
+    "imageAlternates": [
+      "https://storage.bilrigo.com/data/editor/2505/7fe06a4d13278fbbdefbd0b20374fd98_1747723219_8311.jpg",
+      "https://storage.bilrigo.com/data/editor/2505/7fe06a4d13278fbbdefbd0b20374fd98_1747723220_3166.jpg",
+      "https://storage.bilrigo.com/data/editor/2505/7fe06a4d13278fbbdefbd0b20374fd98_1747723220_7233.jpg",
+      "https://storage.bilrigo.com/data/editor/2505/7fe06a4d13278fbbdefbd0b20374fd98_1747723221_0721.jpg"
+    ]
   },
   "clv-11858": {
-    "image": "https://storage.bilrigo.com/data/thumbnails/230425/Aqrb3fjQ2Q7zGcFcM5K4pAzxA8vDVT.jpg"
+    "image": "https://storage.bilrigo.com/data/thumbnails/230425/Aqrb3fjQ2Q7zGcFcM5K4pAzxA8vDVT.jpg",
+    "imageAlternates": [
+      "https://storage.bilrigo.com/data/editor/2606/8de892807a15219def0040c7a8abfed5_1782780333_6312.jpg",
+      "https://storage.bilrigo.com/data/editor/2304/162f1c818f8a9a7105bb27b2879059a0_1682391010_5861.jpg"
+    ]
   },
   "clv-11857": {
-    "image": "https://storage.bilrigo.com/data/thumbnails/230425/1711616135_3307_8hYnN1mmdtzPS22jNFkm9NpCjXadf5.png"
+    "image": "https://storage.bilrigo.com/data/thumbnails/230425/1711616135_3307_8hYnN1mmdtzPS22jNFkm9NpCjXadf5.png",
+    "imageAlternates": [
+      "https://storage.bilrigo.com/data/editor/2606/8de892807a15219def0040c7a8abfed5_1782780333_6312.jpg",
+      "https://storage.bilrigo.com/data/editor/2403/8b9806c4aeccc8995529e362960987d5_1711616132_7558.png"
+    ]
   },
   "clv-12827": {
-    "image": "https://storage.bilrigo.com/data/thumbnails/230607/BgxhW9Tjy4NSZsAWzTxcN97HwsPmx2.jpg"
+    "image": "https://storage.bilrigo.com/data/thumbnails/230607/BgxhW9Tjy4NSZsAWzTxcN97HwsPmx2.jpg",
+    "imageAlternates": [
+      "https://storage.bilrigo.com/data/editor/2406/c696155f6b91f902d74faf2569befb0c_1719216608_4014.jpg",
+      "https://storage.bilrigo.com/data/editor/2406/c696155f6b91f902d74faf2569befb0c_1719216608_5933.jpg",
+      "https://storage.bilrigo.com/data/editor/2406/c696155f6b91f902d74faf2569befb0c_1719216609_0172.jpg",
+      "https://storage.bilrigo.com/data/editor/2406/c696155f6b91f902d74faf2569befb0c_1719216609_3574.jpg",
+      "https://storage.bilrigo.com/data/editor/2406/c696155f6b91f902d74faf2569befb0c_1719216609_7408.jpg",
+      "https://storage.bilrigo.com/data/editor/2505/4283734357e638b462b73e2e83cd7c3c_1748584404_9956.jpg"
+    ]
   },
   "clv-12804": {
-    "image": "https://storage.bilrigo.com/data/thumbnails/230607/GJSjfVQGYS39zFEZPaNX3yCCzLTWf5.jpg"
+    "image": "https://storage.bilrigo.com/data/thumbnails/230607/GJSjfVQGYS39zFEZPaNX3yCCzLTWf5.jpg",
+    "imageAlternates": [
+      "https://storage.bilrigo.com/data/editor/2604/4c44aa10952f64de5ef885a889902ca0_1777277589_628.jpg",
+      "https://storage.bilrigo.com/data/editor/2604/4c44aa10952f64de5ef885a889902ca0_1777277591_6174.jpg",
+      "https://storage.bilrigo.com/data/editor/2604/4c44aa10952f64de5ef885a889902ca0_1777277597_61.jpg",
+      "https://storage.bilrigo.com/data/editor/2604/4c44aa10952f64de5ef885a889902ca0_1777277599_2409.jpg"
+    ]
   },
   "clv-12794": {
-    "image": "https://storage.bilrigo.com/data/thumbnails/230607/lyrrxh4beplQwGWgZbevpnCvf23kxw.jpg"
+    "image": "https://storage.bilrigo.com/data/thumbnails/230607/lyrrxh4beplQwGWgZbevpnCvf23kxw.jpg",
+    "imageAlternates": [
+      "https://storage.bilrigo.com/data/editor/2604/4c44aa10952f64de5ef885a889902ca0_1777277440_5272.jpg",
+      "https://storage.bilrigo.com/data/editor/2604/4c44aa10952f64de5ef885a889902ca0_1777277443_1285.jpg",
+      "https://storage.bilrigo.com/data/editor/2604/4c44aa10952f64de5ef885a889902ca0_1777277447_4004.jpg",
+      "https://storage.bilrigo.com/data/editor/2604/4c44aa10952f64de5ef885a889902ca0_1777277449_2843.jpg"
+    ]
   }
 }
