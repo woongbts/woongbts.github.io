@@ -60,7 +60,14 @@
   };
   function applyPolicyMonth(value) {
     const text = policyMonthText(value);
-    document.querySelectorAll('[data-policy-month]').forEach(el => { el.textContent = text; });
+    const raw = String(value||'').slice(0,10);
+    const parsed = /^\d{4}-\d{2}-\d{2}$/.test(raw) ? new Date(raw+'T00:00:00') : null;
+    const age = parsed && !Number.isNaN(parsed.getTime()) ? Math.floor((Date.now()-parsed.getTime())/86400000) : null;
+    const fullText = text + (/^\d{4}-\d{2}-\d{2}$/.test(raw) ? ' · 자료갱신 '+raw.replace(/-/g,'.') : '');
+    document.querySelectorAll('[data-policy-month]').forEach(el => {
+      el.textContent = fullText + (Number.isFinite(age) && age>45?' · 최신 조건 상담 필수':'');
+      el.classList.toggle('is-stale',Number.isFinite(age) && age>45);
+    });
   }
   const localImageUrl = src => {
     const value = String(src || '').trim();
