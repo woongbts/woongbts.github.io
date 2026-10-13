@@ -28,6 +28,9 @@
 
   const PAGE_SIZE = window.matchMedia('(max-width:560px)').matches ? 8 : 12;
   const RECOMMEND_CATEGORIES = ['정수기','공기청정기','비데·연수기','안마의자','매트리스·프레임'];
+  // Water purifier main-card lineup: premium choices plus one affordable and one mid-range.
+  // These are only preferred defaults; category tabs and monthly/gift sorting still work.
+  const WATER_PURIFIER_HOME_IDS = ['chp-7220n','clover-2242','clover-2254','clover-1702'];
   let recommendCategory = '정수기';
   let recommendSortMode = 'recommend';
   const state = { query: '', brand: '', category: '', feature: '', budget: 0, management: '', term: '', sort: 'recommend', limit: PAGE_SIZE };
@@ -380,6 +383,13 @@
         })
         .slice(0, 4);
     } else {
+      // Keep the original first two cards and explicitly display the affordable
+      // CUCKOO and mid-priced SK Magic options in the third/fourth slots.
+      if (recommendCategory === '정수기') {
+        selected = WATER_PURIFIER_HOME_IDS
+          .map(id => candidates.find(p => String(p.id) === id))
+          .filter(Boolean);
+      }
       const preferredGroups = BRAND_PREFERENCE.map(pref => ({
         pref,
         items: candidates
@@ -387,10 +397,11 @@
           .sort((a,b) => recommendationScore(b) - recommendationScore(a))
       }));
 
-      // 기본 추천은 매장 선호 브랜드 순서를 지키면서 월요금과 사은품의 균형이 좋은 상품을 한 개씩 보여준다.
+      // Fill only missing slots so disabled or removed products never leave gaps.
       preferredGroups.forEach(group => {
         if (selected.length >= 4) return;
-        if (group.items.length) selected.push(group.items[0]);
+        const next = group.items.find(item => !selected.includes(item));
+        if (next) selected.push(next);
       });
 
       // 해당 품목에 선호 브랜드가 없으면 남은 상품 중 조건 균형이 좋은 순서로 채운다.
