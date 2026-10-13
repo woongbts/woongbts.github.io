@@ -244,9 +244,9 @@
 .hero-copy .hero-points li:last-child{grid-column:1/-1}
 
 /* Stable catalog image loading/fallback */
-.catalog-image-slot{width:100%;height:205px;display:flex;align-items:center;justify-content:center;margin:auto;min-height:0}
-.catalog-image-slot .catalog-product-image{display:none;width:100%;height:100%;max-width:100%;object-fit:contain;object-position:center;margin:0}
-.catalog-image-slot .catalog-product-image.is-ready{display:block}
+.catalog-image-slot{width:100%;height:205px;position:relative;display:flex;align-items:center;justify-content:center;margin:auto;min-height:0}
+.catalog-image-slot .catalog-product-image{display:block;position:absolute;inset:0;opacity:0;width:100%;height:100%;max-width:100%;object-fit:contain;object-position:center;margin:0}
+.catalog-image-slot .catalog-product-image.is-ready{opacity:1}
 .catalog-image-slot .catalog-image-placeholder{width:100%;height:100%;margin:0}
 .catalog-image-slot .catalog-image-placeholder[hidden]{display:none!important}
 
