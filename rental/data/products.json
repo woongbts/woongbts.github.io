@@ -44721,7 +44721,9 @@
       ],
       "manufacturer": "휴렉",
       "rentalCompany": "복수 렌탈사",
-      "detailImages": [],
+      "detailImages": [
+        "assets/product-detail-images/clv-52649-former-hero.webp"
+      ],
       "options": [
         {
           "key": "rental-52649-1-36",
@@ -44763,10 +44765,13 @@
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/260115/phzvuxPxbzNCedYGUtQRtNk8hAvP2Y.jpg",
       "importedFrom": "https://m.clvrental777.com/",
       "imageSearchSource": "https://storage.bilrigo.com/data/thumbnails/260115/jWuUtyL3rXr6HRADDAeHnp6plXamVS.jpg",
-      "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/260115/jWuUtyL3rXr6HRADDAeHnp6plXamVS.jpg",
+      "imageLocalizedFrom": "https://hulec.co.kr/web/product/big/202601/f5f02023ef79bd766fd52733a053594a.jpg",
       "imageRepresentative": true,
-      "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/260115/jWuUtyL3rXr6HRADDAeHnp6plXamVS.jpg",
-      "imageRepresentativeMethod": "existing"
+      "imageRepresentativeSource": "https://hulec.co.kr/web/product/big/202601/f5f02023ef79bd766fd52733a053594a.jpg",
+      "imageRepresentativeMethod": "official",
+      "imageOfficialSource": "https://hulec.co.kr/web/product/big/202601/f5f02023ef79bd766fd52733a053594a.jpg",
+      "imageOfficialPage": "https://hulec.co.kr/",
+      "preserveOldHeroAsDetail": true
     },
     {
       "id": "clv-52654",
@@ -44795,7 +44800,9 @@
       ],
       "manufacturer": "휴렉",
       "rentalCompany": "LG헬로렌탈",
-      "detailImages": [],
+      "detailImages": [
+        "assets/product-detail-images/clv-52654-former-hero.webp"
+      ],
       "options": [
         {
           "key": "rental-52654-1-60",
@@ -44837,10 +44844,13 @@
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/260115/PA3gJJuQrdmBTq2blLq4XVBbb3N2Tw.jpg",
       "importedFrom": "https://m.clvrental777.com/",
       "imageSearchSource": "https://storage.bilrigo.com/data/thumbnails/260115/H6RCRdGcL4eTD7jb9AwT7C48F6KUa8.jpg",
-      "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/260115/H6RCRdGcL4eTD7jb9AwT7C48F6KUa8.jpg",
+      "imageLocalizedFrom": "https://hulec.co.kr/web/upload/HIT_s_1.jpg",
       "imageRepresentative": true,
-      "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/260115/H6RCRdGcL4eTD7jb9AwT7C48F6KUa8.jpg",
-      "imageRepresentativeMethod": "existing"
+      "imageRepresentativeSource": "https://hulec.co.kr/web/upload/HIT_s_1.jpg",
+      "imageRepresentativeMethod": "official",
+      "imageOfficialSource": "https://hulec.co.kr/web/upload/HIT_s_1.jpg",
+      "imageOfficialPage": "https://hulec.co.kr/",
+      "preserveOldHeroAsDetail": true
     },
     {
       "id": "clv-46313",
