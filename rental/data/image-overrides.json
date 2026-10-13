@@ -222,7 +222,11 @@
     "image": "https://storage.bilrigo.com/data/thumbnails/251110/1dvtmaz44lJH4wu1qQXUTU1Pr4Duun.jpg"
   },
   "clv-59355": {
-    "image": "https://storage.bilrigo.com/data/thumbnails/260702/HARwhq2HvwPUR2QBgJBG4Tf9HwnXTN.jpg"
+    "image": "https://storage.bilrigo.com/data/thumbnails/260702/HARwhq2HvwPUR2QBgJBG4Tf9HwnXTN.jpg",
+    "officialImage": "https://hulec.co.kr/web/upload/gini.jpg",
+    "officialPageUrl": "https://hulec.co.kr/product/intro3.html",
+    "manualVerifiedProduct": "휴렉 지니 설치형",
+    "keepOldImageAsDetail": true
   },
   "clv-39664": {
     "image": "https://storage.bilrigo.com/data/thumbnails/250425/pHCk9JMvyLcmfYxkTAXk4sAcL8QlEL.jpg"
