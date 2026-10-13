@@ -70,7 +70,7 @@
   };
   const productHref = product => product?.id ? 'product/' + encodeURIComponent(String(product.id)) + '/' : (product?.page || '#');
   const imageCandidatesFor = product => {
-    const raw = [product.image, product.imageSourceOriginal, ...((product.detailImages || []).slice(0, 3))].filter(Boolean);
+    const raw = [product.image, product.imageSourceOriginal].filter(Boolean);
     const candidates = [];
     raw.forEach(src => {
       const value = String(src || '').trim();
