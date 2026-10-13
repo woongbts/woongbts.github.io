@@ -214,3 +214,42 @@ body.plan-picker-opened{overflow:hidden;touch-action:auto}
 .rate-page .rate-quote-choice-links .secondary{background:#fff;color:#155e64}
 .rate-page .rate-quote-choice-links .phone{background:#e9f2fd;color:#145886}
 @media(max-width:640px){.rate-page #mobile-form .mobile-term-welfare-row{grid-template-columns:1fr!important;padding:12px!important}.rate-page .rate-quote-choice-links{grid-template-columns:1fr}.rate-page .rate-quote-choice-links>a,.rate-page .rate-quote-choice-links>button{min-height:49px}.rate-page #mobile-form{gap:12px!important}}
+
+
+/* 2026-10-13 · calculator screenshot polish: clearer field labels and no floating-looking selects */
+.rate-page #mobile-form>.field-row,
+.rate-page #mobile-form>.field-row.two{align-content:start!important;align-items:start!important;grid-auto-rows:max-content!important;row-gap:10px!important}
+.rate-page #mobile-form>.field-row:not(.mobile-term-welfare-row)>label,
+.rate-page #mobile-form>label{display:flex!important;flex-direction:column!important;align-self:start!important;justify-content:flex-start!important;gap:7px!important;min-height:0!important}
+.rate-page #mobile-form>.field-row>label,
+.rate-page #mobile-form>label,
+.rate-page #mobile-form .device-brand-filter>span,
+.rate-page #mobile-form .plan-picker-label>span{font-size:17px!important;font-weight:900!important;color:#164e62!important;line-height:1.5!important}
+.rate-page #mobile-form select:not(.plan-select-native),
+.rate-page #mobile-form input[type="search"]{font-size:16.5px!important;font-weight:780!important;line-height:1.4!important;min-height:52px!important;color:#163d51!important}
+.rate-page #mobile-form .device-brand-filter>small,
+.rate-page #mobile-form .mobile-plan-picker small,
+.rate-page #mobile-form .field-help{font-size:15.5px!important;line-height:1.7!important;color:#315e69!important}
+.rate-page #mobile-form .device-brand-filter,
+.rate-page #mobile-form .mobile-plan-picker{margin-top:0!important;margin-bottom:0!important}
+.rate-page #mobile-form .device-brand-filter>span,
+.rate-page #mobile-form .plan-picker-label>span{display:block!important;margin-bottom:6px!important}
+.rate-page #mobile-form .mobile-term-welfare-row{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:12px!important;align-items:start!important;margin:0!important;padding:13px!important;min-height:0!important}
+.rate-page #mobile-form .mobile-term-welfare-row>label{margin:0!important;padding:0!important;height:auto!important;min-height:0!important;line-height:1.5!important;gap:6px!important}
+.rate-page #mobile-form .mobile-term-welfare-row>label>select{display:block!important;margin:0!important;min-height:51px!important;height:auto!important}
+.rate-page #mobile-form .auto-grid{align-items:stretch}
+.rate-page #mobile-form .auto-box>span{font-size:16px!important;color:#285467!important;font-weight:900!important}
+.rate-page #mobile-form .auto-box>strong{font-size:19px!important;color:#0e587a!important;font-variant-numeric:tabular-nums}
+.rate-page #mobile-result .result-breakdown{border-color:#c4e1e4!important}
+.rate-page #mobile-result .result-breakdown>div{font-size:16px!important;line-height:1.6!important;gap:15px}
+.rate-page #mobile-result .result-breakdown>div>span{font-size:15.5px!important;color:#44616d!important;font-weight:770!important}
+.rate-page #mobile-result .result-breakdown>div>strong,
+.rate-page #mobile-result .result-breakdown>div>b{font-size:17px!important;color:#153f58!important;font-weight:900!important;font-variant-numeric:tabular-nums}
+.rate-page .mobile-easy-intro .mobile-easy-steps li{font-size:14px!important;line-height:1.5!important;font-weight:830!important}
+.rate-page .mobile-easy-intro>p{font-size:15px!important;color:#315f64!important}
+@media(max-width:640px){
+  .rate-page #mobile-form .mobile-term-welfare-row{grid-template-columns:1fr!important}
+  .rate-page #mobile-form>.field-row>label,.rate-page #mobile-form>label{font-size:16px!important}
+  .rate-page #mobile-form .mobile-term-welfare-row{padding:12px!important}
+  .rate-page #mobile-result .result-breakdown>div{align-items:baseline}
+}
