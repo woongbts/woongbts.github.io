@@ -269,7 +269,8 @@
       minMonthly:Number(candidate.monthly),
       maxGift:Number.isFinite(gift) && gift>=0 ? gift : null,
       term:candidate.term,
-      management:candidate.managementLabel || candidate.management || '',
+      management:candidate.management || '',
+      managementLabel:candidate.managementLabel || candidate.management || '',
       optionKey:candidate.key || ''
     };
   }
@@ -312,7 +313,7 @@
   }
   function selectedContractLabel(metrics) {
     return metrics && metrics.term
-      ? String(metrics.term)+'개월 · '+String(metrics.management||'관리방식 확인')
+      ? String(metrics.term)+'개월 · '+String(metrics.managementLabel||'관리방식 확인')
       : '계약기간 · 관리방식 상세 확인';
   }
 
