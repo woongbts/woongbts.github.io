@@ -393,3 +393,7 @@
  .rate-page .store-application-form>label{font-size:18px}
  .rate-page .store-inquiry-optional>summary{flex-wrap:wrap}
 }
+
+/* Two ways to consult: secure formal application or quick Kakao estimate */
+#store-application-quick-kakao:not([hidden]){display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:10px 16px;border-radius:12px;border:1px solid #1376b5;background:#edf8ff;color:#0b5f95;font-size:15px;font-weight:850;cursor:pointer}
+#store-application-quick-kakao[hidden]{display:none!important}
