@@ -1118,7 +1118,14 @@
         : `상품 기본정보는 기존 웅비렌탈 판매자료와 ${policyMonthText(policyGeneratedAt)} 정책을 기준으로 정리했습니다.`;
     }
 
-    const detailImages = [...new Set((product.detailImages || []).filter(Boolean))].slice(0, 120);
+    const detailImages = [...new Set((product.detailImages || []).filter(Boolean))].slice(0, 120)
+      .map(src => {
+        const value=String(src).trim();
+        // GitHub Pages is HTTPS: load legacy HTTP manufacturer image assets through an HTTPS image proxy.
+        return /^http:\/\//i.test(value)
+          ? 'https://images.weserv.nl/?url='+encodeURIComponent(value.replace(/^https?:\/\//i,''))+'&w=1100&output=webp'
+          : value;
+      });
     const detailSection = $('#generic-source-detail');
     const detailBox = $('#generic-detail-images');
     if (detailSection && detailBox && detailImages.length) {
