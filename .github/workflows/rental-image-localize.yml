@@ -275,7 +275,7 @@ jobs:
                   im.thumbnail((1000,1000),Image.Resampling.LANCZOS)
                   if im.mode=='RGBA':im.save(dest,'WEBP',quality=89,method=6)
                   else:im.convert('RGB').save(dest,'WEBP',quality=89,method=6)
-                  return {'ok':True,'id':pid,'rel':rel,'from':official,'size':list(im.size),'representative':True,'method':'official','detailPhoto':detail_rel}
+                  return {'ok':True,'id':pid,'rel':rel,'from':official,'size':list(im.size),'representative':True,'method':('official' if urlparse(official).hostname in ('hulec.co.kr','www.hulec.co.kr') else 'verified-exact-model'),'detailPhoto':detail_rel}
                 except Exception as ex:
                   print('official image processing failed',pid,str(ex)[:120],flush=True)
 
