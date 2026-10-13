@@ -45250,7 +45250,9 @@
       ],
       "manufacturer": "휴렉",
       "rentalCompany": "복수 렌탈사",
-      "detailImages": [],
+      "detailImages": [
+        "assets/product-detail-images/clv-59355-former-hero.webp"
+      ],
       "options": [
         {
           "key": "rental-59355-1-48",
@@ -45292,10 +45294,13 @@
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/260702/Nj1g8xKWWFWD8XebYyQFqB6fxp8er5.jpg",
       "importedFrom": "https://m.clvrental777.com/",
       "imageSearchSource": "https://storage.bilrigo.com/data/thumbnails/260702/HARwhq2HvwPUR2QBgJBG4Tf9HwnXTN.jpg",
-      "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/260702/HARwhq2HvwPUR2QBgJBG4Tf9HwnXTN.jpg",
+      "imageLocalizedFrom": "https://hulec.co.kr/web/upload/gini.jpg",
       "imageRepresentative": true,
-      "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/260702/HARwhq2HvwPUR2QBgJBG4Tf9HwnXTN.jpg",
-      "imageRepresentativeMethod": "existing"
+      "imageRepresentativeSource": "https://hulec.co.kr/web/upload/gini.jpg",
+      "imageRepresentativeMethod": "official",
+      "imageOfficialSource": "https://hulec.co.kr/web/upload/gini.jpg",
+      "imageOfficialPage": "https://hulec.co.kr/product/intro3.html",
+      "preserveOldHeroAsDetail": true
     },
     {
       "id": "clv-39664",
@@ -48840,7 +48845,7 @@
       "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/230329/R8SSA1Zl9acjSGequwMjdGSWZXjUXN.jpg",
       "imageRepresentative": true,
       "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/230329/R8SSA1Zl9acjSGequwMjdGSWZXjUXN.jpg",
-      "imageRepresentativeMethod": "merchant"
+      "imageRepresentativeMethod": "existing"
     },
     {
       "id": "clv-19158",
@@ -49629,7 +49634,7 @@
       "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/251111/kTcH9lG1qKUGT7Fp1SDFe2JXGzk4ja.jpg",
       "imageRepresentative": true,
       "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/251111/kTcH9lG1qKUGT7Fp1SDFe2JXGzk4ja.jpg",
-      "imageRepresentativeMethod": "merchant"
+      "imageRepresentativeMethod": "existing"
     },
     {
       "id": "clv-15521",
@@ -49707,7 +49712,7 @@
       "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/230831/reLhEGbCJE2AJ5vFwTXQbTvDKnGJsH.jpg",
       "imageRepresentative": true,
       "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/230831/reLhEGbCJE2AJ5vFwTXQbTvDKnGJsH.jpg",
-      "imageRepresentativeMethod": "merchant"
+      "imageRepresentativeMethod": "existing"
     },
     {
       "id": "clv-801",
@@ -49789,7 +49794,7 @@
       "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/251112/lGYzXThJRb65F8wAs71JSryuhNJ2eJ.jpg",
       "imageRepresentative": true,
       "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/251112/lGYzXThJRb65F8wAs71JSryuhNJ2eJ.jpg",
-      "imageRepresentativeMethod": "merchant"
+      "imageRepresentativeMethod": "existing"
     },
     {
       "id": "clv-10410",
@@ -49987,7 +49992,7 @@
       "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/251111/TLQRy7Tw7uKb34AqdhcmyAZXS9yj4G.jpg",
       "imageRepresentative": true,
       "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/251111/TLQRy7Tw7uKb34AqdhcmyAZXS9yj4G.jpg",
-      "imageRepresentativeMethod": "merchant"
+      "imageRepresentativeMethod": "existing"
     },
     {
       "id": "clv-10401",
@@ -50124,7 +50129,7 @@
       "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/251111/fxYVWxSeNsC2Z8wYVqV8qdjHqEbvS7.jpg",
       "imageRepresentative": true,
       "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/251111/fxYVWxSeNsC2Z8wYVqV8qdjHqEbvS7.jpg",
-      "imageRepresentativeMethod": "merchant"
+      "imageRepresentativeMethod": "existing"
     },
     {
       "id": "clv-10411",
@@ -50190,7 +50195,7 @@
       "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/251111/HBpCZMsStwXaXMEfyHWLyGrgwPnh9q.jpg",
       "imageRepresentative": true,
       "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/251111/HBpCZMsStwXaXMEfyHWLyGrgwPnh9q.jpg",
-      "imageRepresentativeMethod": "merchant"
+      "imageRepresentativeMethod": "existing"
     },
     {
       "id": "clv-10412",
@@ -50256,7 +50261,7 @@
       "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/251111/YZaswQACYXgTngUuE2ewEz7Y83fxyC.jpg",
       "imageRepresentative": true,
       "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/251111/YZaswQACYXgTngUuE2ewEz7Y83fxyC.jpg",
-      "imageRepresentativeMethod": "merchant"
+      "imageRepresentativeMethod": "existing"
     },
     {
       "id": "clv-11825",
@@ -50426,7 +50431,7 @@
       "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/230421/11825_w9f9Rl7XSyXlUTklHzQZB5EVgKyJmS.jpg",
       "imageRepresentative": true,
       "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/230421/11825_w9f9Rl7XSyXlUTklHzQZB5EVgKyJmS.jpg",
-      "imageRepresentativeMethod": "merchant"
+      "imageRepresentativeMethod": "existing"
     },
     {
       "id": "clv-11537",
@@ -50874,7 +50879,7 @@
       "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/250526/LaHyzmkwlNnU35rStwdA4776dPFGbW.jpg",
       "imageRepresentative": true,
       "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/250526/LaHyzmkwlNnU35rStwdA4776dPFGbW.jpg",
-      "imageRepresentativeMethod": "merchant"
+      "imageRepresentativeMethod": "existing"
     },
     {
       "id": "clv-39174",
@@ -51170,7 +51175,7 @@
       "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/250418/mJ9SBpFXdJXCLQJVsvpAddSUyDEVDJ.jpg",
       "imageRepresentative": true,
       "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/250418/mJ9SBpFXdJXCLQJVsvpAddSUyDEVDJ.jpg",
-      "imageRepresentativeMethod": "merchant"
+      "imageRepresentativeMethod": "existing"
     },
     {
       "id": "clv-11858",
@@ -51314,7 +51319,7 @@
       "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/230425/Aqrb3fjQ2Q7zGcFcM5K4pAzxA8vDVT.jpg",
       "imageRepresentative": true,
       "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/230425/Aqrb3fjQ2Q7zGcFcM5K4pAzxA8vDVT.jpg",
-      "imageRepresentativeMethod": "merchant"
+      "imageRepresentativeMethod": "existing"
     },
     {
       "id": "clv-11857",
@@ -51458,7 +51463,7 @@
       "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/230425/1711616135_3307_8hYnN1mmdtzPS22jNFkm9NpCjXadf5.png",
       "imageRepresentative": true,
       "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/230425/1711616135_3307_8hYnN1mmdtzPS22jNFkm9NpCjXadf5.png",
-      "imageRepresentativeMethod": "merchant"
+      "imageRepresentativeMethod": "existing"
     },
     {
       "id": "clv-5901",
@@ -51602,7 +51607,7 @@
       "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/230607/BgxhW9Tjy4NSZsAWzTxcN97HwsPmx2.jpg",
       "imageRepresentative": true,
       "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/230607/BgxhW9Tjy4NSZsAWzTxcN97HwsPmx2.jpg",
-      "imageRepresentativeMethod": "merchant"
+      "imageRepresentativeMethod": "existing"
     },
     {
       "id": "clv-12804",
@@ -51682,7 +51687,7 @@
       "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/230607/GJSjfVQGYS39zFEZPaNX3yCCzLTWf5.jpg",
       "imageRepresentative": true,
       "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/230607/GJSjfVQGYS39zFEZPaNX3yCCzLTWf5.jpg",
-      "imageRepresentativeMethod": "merchant"
+      "imageRepresentativeMethod": "existing"
     },
     {
       "id": "clv-12794",
@@ -51762,7 +51767,7 @@
       "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/230607/lyrrxh4beplQwGWgZbevpnCvf23kxw.jpg",
       "imageRepresentative": true,
       "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/230607/lyrrxh4beplQwGWgZbevpnCvf23kxw.jpg",
-      "imageRepresentativeMethod": "merchant"
+      "imageRepresentativeMethod": "existing"
     }
   ]
 }
