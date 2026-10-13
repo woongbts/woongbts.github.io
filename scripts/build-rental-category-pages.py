@@ -80,7 +80,7 @@ def metrics(product):
 def image_url(product):
     value = str(product.get("image") or product.get("imageSourceOriginal") or "").strip()
     if value.startswith("assets/"):
-        return "/rental/" + value
+        return "/rental/" + value + "?v=20261013-productcuts4"
     return value
 
 
