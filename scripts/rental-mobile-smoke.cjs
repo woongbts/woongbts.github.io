@@ -214,6 +214,11 @@ function assert(condition, message) {
 
   await page.locator('#catalog-toggle').click();
   await page.waitForSelector('.catalog-card');
+  // Regression: display:none + loading=lazy once left rental cards stuck on a W placeholder on iOS.
+  await page.waitForFunction(() => {
+    const images=[...document.querySelectorAll('#product-grid .catalog-card .catalog-product-image')].slice(0,3);
+    return images.length===3 && images.every(img => img.naturalWidth>0 && img.classList.contains('is-ready') && getComputedStyle(img).display!=='none');
+  }, null, {timeout:20000});
   assert(fullCatalogRequests >= 1, '전체 상품 열기 후 products.json이 로드되지 않았습니다.');
 
   await page.locator('[data-category-link="매트리스·프레임"]').click();
