@@ -25,7 +25,7 @@
   <meta name="twitter:image" content="https://woongbts.github.io/assets/woongbi-rates-og-20260918.jpg">
   <link rel="icon" type="image/svg+xml" href="assets/woongbi-mark.svg">
   <link rel="manifest" href="/manifest.webmanifest"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="apple-mobile-web-app-title" content="웅비통신">
-  <link rel="stylesheet" href="assets/rates.css?v=20261009-kids-layout2">
+  <link rel="stylesheet" href="assets/rates.css?v=20261013-readability4">
   <link rel="stylesheet" href="assets/readability-20260921.css?v=20260929-2">
 <link rel="stylesheet" href="/assets/customer-polish.css?v=20260930-3"><link rel="stylesheet" href="/assets/mvno-easy.css?v=20260930-7"><link rel="stylesheet" href="/assets/store-applications.css?v=20261013-quick-kakao2"><link rel="stylesheet" href="/assets/quick-order.css?v=20261008-2"><link rel="stylesheet" href="/assets/device-browser.css?v=20261007-3"><link rel="stylesheet" href="/assets/plan-quick-tools.css?v=20261007-1"><link rel="stylesheet" href="/assets/mobile-readability-20261007.css?v=20261007-3"><link rel="stylesheet" href="/assets/readability-uplift-20261007.css?v=20261007-3"><link rel="stylesheet" href="/assets/prepaid-recommend.css?v=20261007-1"><link rel="stylesheet" href="/assets/rates-easy-journey.css?v=20261008-senior3"><link rel="stylesheet" href="/assets/store-extra-benefits.css?v=20261012-3"><link rel="stylesheet" href="/assets/senior-a17-first.css?v=20261009-a17first1"></head>
 <body class="rate-page">
@@ -259,7 +259,7 @@
                   </section>
                 </div>
               </div>
-              <div class="field-row two">
+              <div class="field-row two mobile-term-welfare-row">
                 <label>할부개월<select id="installment-months" disabled><option value="24">24개월</option></select></label>
                 <label>복지할인 유형<select id="welfare-type">
                   <option value="none">미적용</option>
@@ -327,6 +327,10 @@
                 <button type="button" class="primary" id="consult-quote">이 조건으로 상담하기</button>
                 <small id="quote-action-status" aria-live="polite"></small>
               </div>
+              <section class="rate-quote-choice" id="mobile-quote-choice" hidden aria-label="휴대폰 견적 다음 단계">
+                <strong>이 견적으로 어떻게 상담받을까요?</strong><p>선택한 휴대폰과 요금제 조건을 그대로 이어서 문의할 수 있어요.</p>
+                <div class="rate-quote-choice-links"><button type="button" class="primary" data-rate-quote-action="visit" data-rate-kind="mobile">매장 방문 예약</button><button type="button" class="secondary" data-rate-quote-action="kakao" data-rate-kind="mobile">견적 들고 카톡 상담</button><a class="phone" href="tel:0513437677" data-rate-quote-action="phone" data-rate-kind="mobile">전화 상담</a></div>
+              </section>
               <p class="quote-next-step">카카오톡 상담은 견적을 복사한 뒤 채팅창에 붙여넣어 주세요. 전화 상담은 선택한 기종·요금제와 아래 견적번호를 함께 말씀해 주세요.</p>
               <details class="calc-explain" id="calc-explain">
                 <summary>왜 이 금액인가요?</summary>
@@ -612,6 +616,10 @@
                 <button type="button" id="add-mobile-to-wired">휴대폰도 같이 계산</button>
                 <small id="wired-quote-status" aria-live="polite"></small>
               </div>
+              <section class="rate-quote-choice" id="internet-quote-choice" hidden aria-label="인터넷 견적 다음 단계">
+                <strong>이 인터넷·TV 조건으로 상담받기</strong><p>설치주소별 가능 상품과 설치비·사은품은 최종 상담에서 확인합니다.</p>
+                <div class="rate-quote-choice-links"><button type="button" class="primary" data-rate-quote-action="visit" data-rate-kind="internet">매장 상담 예약</button><button type="button" class="secondary" data-rate-quote-action="kakao" data-rate-kind="internet">견적 들고 카톡 상담</button><a class="phone" href="tel:0513437677" data-rate-quote-action="phone" data-rate-kind="internet">전화 상담</a></div>
+              </section>
               <div class="data-note">※ 고객사은품은 설치 후 1주일 이내 지급되며, 1년 이내 미납·정지 또는 해지 시 지급된 사은품 금액은 반환해 주셔야 합니다. TV 2대 이상은 동일 주소·동일 명의의 추가 TV 기준으로 계산하며, 복수단말 제공 여부와 세부 요금은 상품별로 달라질 수 있습니다.</div>
               <div class="rate-warning">표시 금액은 등록된 3년 약정 기준입니다. 셋톱박스·공유기·추가 회선·프로모션 등 최종 가입 조건에 따라 실제 청구액은 달라질 수 있습니다.</div>
               <div class="rate-actions"><a href="tel:0513437677">전화로 최종 확인</a><a class="kakao" href="http://pf.kakao.com/_nWwNT/chat" target="_blank" rel="noopener noreferrer">카카오톡 문의</a></div>
