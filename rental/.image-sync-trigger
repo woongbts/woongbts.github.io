@@ -15,3 +15,5 @@ Retry: final Hyundai same-series fallback image
 Refresh: use original Woongbi Rental representative thumbnails for all active products
 Refresh: storefront session + direct vshop thumbnail assets
 Refresh: model-search representative product cuts before detail images
+
+Refresh 2026-10-13: localize 184 newly imported Clover products (clv- IDs), including Smart Cara 400 Pro X. Retain exact-product images and do not substitute unrelated stock photos.
