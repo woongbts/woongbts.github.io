@@ -8,6 +8,10 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: rental-image-localize
+  cancel-in-progress: false
+
 jobs:
   localize:
     runs-on: ubuntu-latest
@@ -255,7 +259,11 @@ jobs:
             # For imported clvrental777.com offers, resolve the current product thumbnail
             # from its exact merchant listing page and keep a local copy.
             if pid.startswith('clv-'):
-              for merchant_url in merchant_image_candidates(session,p):
+              override_url=str(p.get('imageSearchSource') or '').strip()
+              merchant_urls=([override_url] if override_url.startswith('https://storage.bilrigo.com/data/thumbnails/') else [])
+              if not merchant_urls:
+                merchant_urls=merchant_image_candidates(session,p)
+              for merchant_url in merchant_urls:
                 im=fetch_img(session,merchant_url,referer)
                 if im is None:continue
                 try:
