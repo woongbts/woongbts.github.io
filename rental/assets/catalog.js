@@ -81,6 +81,10 @@
         const mirror = 'https://raw.githubusercontent.com/woongbts/woongbts.github.io/main/rental/' + value + '?v=' + IMAGE_REV;
         if (!candidates.includes(mirror)) candidates.push(mirror);
       }
+      if (/^https:\/\/storage\.bilrigo\.com\/data\/thumbnails\//i.test(value)) {
+        const proxy = 'https://images.weserv.nl/?url=' + encodeURIComponent(value.replace(/^https?:\/\//, '')) + '&w=900&output=webp';
+        if (!candidates.includes(proxy)) candidates.push(proxy);
+      }
     });
     return candidates;
   };
