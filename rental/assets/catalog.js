@@ -206,13 +206,16 @@
     const pairedOffer = recommendationMetrics(product);
     const minMonthly = pairedOffer?.minMonthly ?? null;
     const maxGift = pairedOffer?.maxGift ?? null;
+    const optionHref = productHref(product) + (pairedOffer?.management && pairedOffer?.term
+      ? '?mgmt=' + encodeURIComponent(pairedOffer.management) + '&term=' + encodeURIComponent(pairedOffer.term)
+      : '');
     const managements = [...new Set(validOptions.map(o => optionLabel(o.managementLabel)).filter(Boolean))].slice(0,3).join(' · ');
     const tags = (product.tags || []).slice(0, 5).map(t => '<span>' + t + '</span>').join('');
     const highlights = (product.highlights || []).slice(0, 4).map(t => '<li>' + t + '</li>').join('');
 
     return `
       <article class="catalog-card">
-        <a class="catalog-visual" data-rental-product-id="${product.id}" data-rental-entry="catalog" href="${productHref(product)}" aria-label="${product.name} 상세보기">
+        <a class="catalog-visual" data-rental-product-id="${product.id}" data-rental-entry="catalog" href="${optionHref}" aria-label="${product.name} 상세보기">
           <span class="brand-label">${brandLabel(product.brand)}</span>
           ${visual(product)}
         </a>
@@ -226,12 +229,12 @@
             <div><small>월 렌탈료</small><strong>${minMonthly == null ? '상담 확인' : won(minMonthly) + '부터'}</strong></div>
             <div class="gift"><small>같은 조건 고객사은품</small><strong>${maxGift == null ? '상담 확인' : won(maxGift)}</strong></div>
           </div>
-          <p class="catalog-paired-note">※ 위 월요금·사은품은 동일 옵션 기준이며, 계약기간·관리방식은 상세페이지에서 확인하세요.</p>
+          <p class="catalog-paired-note">※ 위 월요금·사은품은 동일 옵션 기준 · ${selectedContractLabel(pairedOffer)} · 다른 계약조건은 상세 확인</p>
           <p class="promo">${product.promo || '최신 프로모션 상담 확인'}</p>
           <p class="catalog-meta">${managements || '상세 조건 확인'}</p>
           <button class="compare-toggle" type="button" data-compare-product="${product.id}">비교담기</button>
           <div class="product-actions">
-            <a class="btn primary" data-rental-product-id="${product.id}" data-rental-entry="catalog" href="${productHref(product)}">조건별 금액 보기</a>
+            <a class="btn primary" data-rental-product-id="${product.id}" data-rental-entry="catalog" href="${optionHref}">조건별 금액 보기</a>
             <a class="btn ghost" href="https://pf.kakao.com/_xbrVrxb" target="_blank" rel="noopener noreferrer">바로 상담</a>
           </div>
         </div>
@@ -295,11 +298,30 @@
     return m.maxGift - (m.minMonthly * 1.55) - (over * 4.5) + salesBoost;
   }
 
+  // Display only capabilities stated in catalog names; never infer an unlisted feature.
+  function productCapability(product) {
+    if (product.category !== '정수기') return '';
+    const name = String(product.name||'');
+    if (/얼음/.test(name)) return '얼음 · 냉온 기능은 상세 확인';
+    if (/냉온/.test(name)) return '냉수 · 온수 · 정수';
+    if (/냉정|냉수/.test(name)) return '냉수 · 정수';
+    if (/살균/.test(name)) return '살균 · 직수' + (/직수/.test(name)?'':' 기능 확인');
+    if (/정수전용|무전원|언더싱크/.test(name)) return '정수전용';
+    if (/직수/.test(name)) return '직수정수기';
+    return '정수기 · 상세기능 확인';
+  }
+  function selectedContractLabel(metrics) {
+    return metrics && metrics.term
+      ? String(metrics.term)+'개월 · '+String(metrics.management||'관리방식 확인')
+      : '계약기간 · 관리방식 상세 확인';
+  }
+
   function recommendationCard(product) {
     const m = recommendationMetrics(product);
     const minMonthly = m?.minMonthly ?? null;
     const maxGift = m?.maxGift ?? null;
     const image = imageCandidatesFor(product)[0] || '';
+    const capability = productCapability(product);
     // Open the exact contract option shown on the recommendation card.
     const href = productHref(product) + (m?.management && m?.term
       ? '?mgmt=' + encodeURIComponent(m.management) + '&term=' + encodeURIComponent(m.term)
@@ -314,11 +336,13 @@
             <small>${brandLabel(product.brand)} · ${product.model || product.category || ''}</small>
           </div>
           <h3>${product.name}</h3>
+          ${capability ? '<div class="recommend-capability">'+capability+'</div>' : ''}
           <div class="recommend-prices">
-            <span>월 ${minMonthly == null ? '상담 확인' : won(minMonthly) + '부터'}</span>
-            <strong>${maxGift == null ? '사은품 상담 확인' : '같은 조건 사은품 ' + won(maxGift)}</strong>
+            <span class="recommend-monthly">월 ${minMonthly == null ? '상담 확인' : '<b class="money-nowrap">'+won(minMonthly)+'</b>부터'}</span>
+            <strong class="recommend-gift"><span>같은 조건 사은품</span> <span class="money-nowrap">${maxGift == null ? '상담 확인' : won(maxGift)}</span></strong>
           </div>
-          <small class="catalog-paired-note">동일 계약조건 기준 · 다른 옵션은 상세페이지에서 확인</small>
+          <small class="recommend-contract">${selectedContractLabel(m)}</small>
+          <small class="catalog-paired-note">표시 요금·사은품은 동일 옵션 기준 · 다른 옵션은 상세에서 확인</small>
           <div class="recommend-actions"><a class="recommend-link" data-rental-product-id="${product.id}" data-rental-entry="recommend" href="${href}">조건 보기 →</a><button class="compare-toggle small" type="button" data-compare-product="${product.id}">비교담기</button></div>
         </div>
       </article>
