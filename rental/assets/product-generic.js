@@ -379,8 +379,8 @@
     if(/자가|셀프/.test(text))traits.push('자가관리');
     const lead=traits.slice(0,3).join('·');
     return lead
-      ? name+'은(는) '+lead+'을 중요하게 보는 분이 비교하기 좋은 '+category+'입니다. 월요금과 관리방식, 계약기간을 함께 확인해 보세요.'
-      : name+'은(는) 월요금·관리방식·계약기간을 함께 비교해 선택하기 좋은 '+category+'입니다. 실제 설치와 최신 프로모션은 상담 시 다시 확인합니다.';
+      ? name+' 제품은 '+lead+'을 중요하게 보는 분이 비교하기 좋은 '+category+'입니다. 월요금과 관리방식, 계약기간을 함께 확인해 보세요.'
+      : name+' 제품은 월요금·관리방식·계약기간을 함께 비교해 선택하기 좋은 '+category+'입니다. 실제 설치와 최신 프로모션은 상담 시 다시 확인합니다.';
   }
   function recommendAudience(p) {
     const text=[p?.name,p?.model,p?.category,...(p?.tags||[]),...(p?.highlights||[])].filter(Boolean).join(' ');
