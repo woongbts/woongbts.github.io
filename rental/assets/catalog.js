@@ -137,7 +137,7 @@
 
   function visual(product) {
     const placeholder = '<div class="catalog-image-placeholder"><span class="placeholder-mark">W</span><strong>이미지 불러오는 중</strong><small>' + (product.model || '') + '</small></div>';
-    if (!product.image && !product.imageSourceOriginal && !(product.detailImages || []).length) {
+    if (!product.image && !product.imageSourceOriginal) {
       return '<div class="catalog-image-slot">' + placeholder.replace('이미지 불러오는 중', '상품 이미지 준비 중') + '</div>';
     }
     return '<div class="catalog-image-slot">' +
@@ -812,7 +812,7 @@
   document.querySelectorAll('[data-quick-rental-category]').forEach(button => {
     button.addEventListener('click', () => {
       if (quickFinderInput) quickFinderInput.value = '';
-      void launchQuickFinder({category:button.dataset.quickRentalCategory||''});
+      void launchQuickFinder({category:button.dataset.quickRentalCategory||'',query:button.dataset.quickRentalQuery||''});
     });
   });
 
@@ -871,7 +871,12 @@
       renderRecommendations();
       renderRecent();
       updateCompareUi();
-      if(location.hash==='#products') return loadFullCatalog().then(()=>openCatalog());
+      if(location.hash==='#products') {
+        const search = new URLSearchParams(location.search);
+        const query = search.get('q') || '';
+        const category = search.get('category') || '';
+        return query || category ? launchQuickFinder({query,category}) : loadFullCatalog().then(()=>openCatalog());
+      }
     })
-    .catch(()=>loadFullCatalog().then(()=>{renderRecent();updateCompareUi();if(location.hash==='#products')openCatalog()}));
+    .catch(()=>loadFullCatalog().then(()=>{renderRecent();updateCompareUi();if(location.hash==='#products'){const params=new URLSearchParams(location.search);const q=params.get('q')||'',category=params.get('category')||'';if(q||category)void launchQuickFinder({query:q,category});else openCatalog();}}));
 })();
