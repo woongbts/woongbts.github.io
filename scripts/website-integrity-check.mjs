@@ -43,5 +43,44 @@ assert(read('rates.html').includes('id="store-application-quick-kakao"'),'Secure
 for(const p of ['rental/assets/catalog.js','rental/assets/product-generic.js','assets/store-applications.js','assets/internet-ui.min.js','rental/assets/ai-recommend.js']){
   try{new vm.Script(read(p),{filename:p});}catch(e){errors.push('JavaScript parse error '+p+': '+e.message);}
 }
-console.log(JSON.stringify({activeProducts:active.length,withDetail,percent:(100*withDetail/active.length).toFixed(1),detailImageReferences:images,checkedScripts:5,errors},null,2));
+// Ensure that every advertised category price and gift is a REAL matched contract option.
+// Fail CI when a source catalogue update leaves a static landing page showing stale figures.
+const categoryGuides=['water-purifier','air-purifier','bidet','massage-chair','mattress','laundry','kitchen-appliance','tv-digital','furniture-bed','health-beauty','home-appliance','refrigerator','leisure-auto','aircon-cleaner'];
+const productIndex=new Map(products.map(p=>[String(p.id),p]));
+const warnings=[];
+let checkedCategoryOffers=0;
+for(const dir of categoryGuides){
+  const page='rental/'+dir+'/index.html';
+  assert(fs.existsSync(page),'Missing category landing page: '+page);
+  if(!fs.existsSync(page))continue;
+  const html=read(page);
+  const sourceDate=html.match(/data-source-date="(\d{4}-\d{2}-\d{2})"/)?.[1]||'';
+  if(sourceDate){
+    const age=Math.floor((Date.now()-new Date(sourceDate+'T00:00:00Z').getTime())/86400000);
+    if(Number.isFinite(age)&&age>45)warnings.push('Old category price policy '+page+': '+sourceDate+' ('+age+' days)');
+  }
+  const cards=[...html.matchAll(/<article class="category-product">([\s\S]*?)<\/article>/g)];
+  for(const [,card] of cards){
+    const link=card.match(/href="product\/([^/"]+)\/\?mgmt=([^&"]+)&amp;term=([^"]+)"/);
+    const monthly=card.match(/월 렌탈료<strong>([\d,]+)원/);
+    const gift=card.match(/같은 조건 사은품<strong>([\d,]+)원/);
+    if(!link||!monthly||!gift){assert(false,'Incomplete price/benefit card on '+page);continue;}
+    const id=decodeURIComponent(link[1]),mgmt=decodeURIComponent(link[2]),term=decodeURIComponent(link[3]);
+    const p=productIndex.get(id);
+    const matched=(p?.options||[]).some(o=>o.management===mgmt&&String(o.term)===term
+      &&Number(o.monthly)===Number(monthly[1].replaceAll(',',''))
+      &&Number(o.gift)===Number(gift[1].replaceAll(',','')));
+    assert(matched,'Price/gift mismatch: '+page+' / '+id+' ('+mgmt+' / '+term+')');
+    checkedCategoryOffers++;
+  }
+}
+assert(checkedCategoryOffers>=100,'Unexpectedly few verified category offers: '+checkedCategoryOffers);
+// Conversion events contain product IDs and anonymous funnel stages, not customer contact details.
+const tracker=read('assets/conversion-tracker.min.js');
+const funnel=read('assets/funnel-observer.js');
+for(const evt of ['rental_product_view','rental_apply_open','rental_apply_submit','rental_apply_success','store_apply_open','store_apply_submit','store_apply_success','rate_calculator_start','mobile_quote_result_view','internet_compare_view']){
+  assert(tracker.includes('"'+evt+'"')||tracker.includes("'"+evt+"'"),'Funnel event not supported by conversion sender: '+evt);
+}
+assert(funnel.includes("rate_calculator_start")&&funnel.includes("mobile_quote_result_view"),'Missing telecom quote-funnel instrumentation');
+console.log(JSON.stringify({activeProducts:active.length,withDetail,percent:(100*withDetail/active.length).toFixed(1),detailImageReferences:images,checkedScripts:5,checkedCategoryOffers,warnings,errors},null,2));
 if(errors.length)process.exit(1);
