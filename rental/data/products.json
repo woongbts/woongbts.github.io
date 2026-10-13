@@ -11395,10 +11395,13 @@
       "availability": "active",
       "giftStatus": "matched",
       "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/p-6320l_1_1.png",
-      "imageLocalizedFrom": "https://gw.alicdn.com/imgextra/i1/754272513/T2vVK6Xv8XXXXXXXXX_!!754272513.jpg",
+      "imageLocalizedFrom": "https://cdn.imweb.me/thumbnail/20220413/112707ee0075e.png",
       "imageRepresentative": true,
-      "imageRepresentativeSource": "https://gw.alicdn.com/imgextra/i1/754272513/T2vVK6Xv8XXXXXXXXX_!!754272513.jpg",
-      "imageRepresentativeMethod": "existing"
+      "imageRepresentativeSource": "https://cdn.imweb.me/thumbnail/20220413/112707ee0075e.png",
+      "imageRepresentativeMethod": "verified-exact-model",
+      "imageOfficialSource": "https://cdn.imweb.me/thumbnail/20220413/112707ee0075e.png",
+      "imageOfficialPage": "https://coway-m.com/water-care-all/?idx=503",
+      "preserveOldHeroAsDetail": false
     },
     {
       "id": "clover-181",
@@ -44563,7 +44566,9 @@
       ],
       "manufacturer": "비에스푸디",
       "rentalCompany": "BS ON",
-      "detailImages": [],
+      "detailImages": [
+        "assets/product-detail-images/clv-1579-former-hero.webp"
+      ],
       "options": [
         {
           "key": "rental-1579-1-48",
@@ -44583,10 +44588,13 @@
       "imageSourceOriginal": "https://storage.bilrigo.com/data/thumbnails/200414/zJRD66YlMyUT8Cx4cnb7wz5x2d3ghj.jpg",
       "importedFrom": "https://m.clvrental777.com/",
       "imageSearchSource": "https://storage.bilrigo.com/data/thumbnails/200414/2CFFQnTEqxukZQnKslD9ENREBGcq2Q.jpg",
-      "imageLocalizedFrom": "https://storage.bilrigo.com/data/thumbnails/200414/2CFFQnTEqxukZQnKslD9ENREBGcq2Q.jpg",
+      "imageLocalizedFrom": "https://rentalshop.site/_data/file/goodsImages/49ae873dcffa9fabfde620cc48b0b7e6.png",
       "imageRepresentative": true,
-      "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/200414/2CFFQnTEqxukZQnKslD9ENREBGcq2Q.jpg",
-      "imageRepresentativeMethod": "existing"
+      "imageRepresentativeSource": "https://rentalshop.site/_data/file/goodsImages/49ae873dcffa9fabfde620cc48b0b7e6.png",
+      "imageRepresentativeMethod": "verified-exact-model",
+      "imageOfficialSource": "https://rentalshop.site/_data/file/goodsImages/49ae873dcffa9fabfde620cc48b0b7e6.png",
+      "imageOfficialPage": "https://daebak.rental-shop.net/html/dh_prod/prod_view/12156",
+      "preserveOldHeroAsDetail": true
     },
     {
       "id": "clv-45948",
