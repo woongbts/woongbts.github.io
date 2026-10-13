@@ -20,7 +20,7 @@ SHEETS.mkdir(parents=True, exist_ok=True)
 
 FONT = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", 17)
 SMALL = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", 13)
-face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + "haarcascade_frontalface_default.xml")
+face_cascade = (cv2.CascadeClassifier(cv2.data.haarcascades + "haarcascade_frontalface_default.xml")\n                if hasattr(cv2, "CascadeClassifier") and hasattr(cv2, "data") else None)
 
 data = json.loads(CATALOG.read_text(encoding="utf-8"))
 products = [
