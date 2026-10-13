@@ -1,3 +1,4 @@
+# Regenerate all category pages after 478/478 localized rental photos (2026-10-13).
 #!/usr/bin/env python3
 """Generate SEO category landing pages for Woongbi Rental."""
 from __future__ import annotations
