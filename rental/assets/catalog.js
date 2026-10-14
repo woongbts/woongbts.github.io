@@ -43,6 +43,18 @@
   const COMPARE_KEY = 'wb_rental_compare_v1';
 
   const won = n => Number(n).toLocaleString('ko-KR') + '원';
+  // Customer gifts are quoted in full thousands; monthly rental fees stay exact.
+  const giftInThousands = value => {
+    if (value == null || value === '') return null;
+    const amount = Number(value);
+    return Number.isFinite(amount) && amount >= 0 ? Math.floor(amount / 1000) * 1000 : null;
+  };
+  const normalizeGiftOptions = product => {
+    if (!Array.isArray(product?.options)) return;
+    product.options.forEach(option => {
+      if (option.gift != null && option.gift !== '') option.gift = giftInThousands(option.gift);
+    });
+  };
   const IMAGE_REV = '20261013-productcuts4';
   const RENTAL_ENTRY_KEY = 'wb_rental_entry_v1';
   const rentalAnalyticsPath = product => '/rental/product/' + encodeURIComponent(String(product?.id || 'unknown'));
@@ -784,7 +796,7 @@
       products = Array.isArray(data.products) ? data.products.filter(p=>p.availability!=='inactive'&&!/접수불가|접수중지/.test(String(p.name||''))) : [];
       applyCatalogOverrides(products, overrideData);
       const overrides=giftData?.products||{};
-      products.forEach(p=>{const ov=overrides[p.id];if(ov&&p.sourceKind==='clover-import')Object.assign(p,ov)});
+      products.forEach(p=>{const ov=overrides[p.id];if(ov&&p.sourceKind==='clover-import')Object.assign(p,ov);normalizeGiftOptions(p)});
       applyPolicyMonth(giftData?.generatedAt||data?.updatedAt||'');
       catalogLoaded=true;
       setupFilters();
