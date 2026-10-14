@@ -17,6 +17,18 @@
   const autoApplyRequested = params.get('apply') === '1';
   const aiEntryRequested = params.get('from') === 'ai';
   const won = n => Number(n).toLocaleString('ko-KR') + '원';
+  // Customer gift amounts are rounded down, never monthly fees or card discounts.
+  const giftInThousands = value => {
+    if (value == null || value === '') return null;
+    const amount = Number(value);
+    return Number.isFinite(amount) && amount >= 0 ? Math.floor(amount / 1000) * 1000 : null;
+  };
+  const normalizeGiftOptions = item => {
+    if (!Array.isArray(item?.options)) return;
+    item.options.forEach(option => {
+      if (option.gift != null && option.gift !== '') option.gift = giftInThousands(option.gift);
+    });
+  };
   const IMAGE_REV = '20261013-productcuts4';
   const RENTAL_ENTRY_KEY = 'wb_rental_entry_v1';
   const RECENT_KEY = 'wb_rental_recent_v1';
@@ -1000,7 +1012,7 @@
       management:optionLabel(current.v.managementLabel||current.v.management),
       term:current.v.term??null,
       monthly:current.v.monthly??null,
-      gift:current.v.gift??null,
+      gift:giftInThousands(current.v.gift),
       product_url:applicationProductUrl(),
       attribution:(()=>{try{const c=window.woongbiSiteAnalyticsContext?.()||{};return{source:c.source||'direct',campaign:c.campaign||'',landing_path:c.landing_path||location.pathname};}catch{return{source:'direct',campaign:'',landing_path:location.pathname};}})()
     };
@@ -1231,6 +1243,7 @@
         if (catalogOverride) Object.assign(item, catalogOverride);
         const giftOverride = giftData?.products?.[item.id];
         if (giftOverride && item.sourceKind === 'clover-import') Object.assign(item, giftOverride);
+        normalizeGiftOptions(item);
         const detailOverride = galleryData?.products?.[item.id];
         if (detailOverride?.detailImages?.length) {
           // The vendor's verified feature gallery comes before any former thumbnail.
