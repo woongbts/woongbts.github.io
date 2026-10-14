@@ -20,6 +20,12 @@
   const cardWrap = card ? card.closest('.quote-card') : null;
 
   const won = n => Number(n).toLocaleString('ko-KR') + '원';
+  const giftWon = value => {
+    if (value == null || value === '') return '상담 확인';
+    const amount = Number(value);
+    return Number.isFinite(amount) && amount >= 0
+      ? won(Math.floor(amount / 1000) * 1000) : '상담 확인';
+  };
   let product = null;
   let state = { management: '', term: '' };
 
@@ -77,11 +83,11 @@
     const hasCard = variant.card !== null && variant.card !== undefined && Number.isFinite(Number(variant.card));
     if (cardWrap) cardWrap.hidden = !hasCard;
     if (card && hasCard) card.textContent = won(variant.card);
-    if (gift) gift.textContent = won(variant.gift);
+    if (gift) gift.textContent = giftWon(variant.gift);
     if (care) care.textContent = variant.care;
     if (modalCard && hasCard) modalCard.textContent = '월 ' + won(variant.card);
     if (stickyMonthly) stickyMonthly.textContent = won(variant.monthly);
-    if (stickyGift) stickyGift.textContent = won(variant.gift);
+    if (stickyGift) stickyGift.textContent = giftWon(variant.gift);
     if (stickySelection) stickySelection.textContent = variant.managementLabel + ' · ' + variant.term + '개월';
 
     managementBox.querySelectorAll('button').forEach(btn => {
