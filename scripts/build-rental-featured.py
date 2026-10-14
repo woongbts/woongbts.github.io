@@ -26,7 +26,7 @@ def metrics(product):
     gifts = [int(o["gift"]) for o in options if isinstance(o.get("gift"), (int, float))]
     if not gifts:
         return None
-    return min(monthly), max(gifts)
+    return min(monthly), (max(gifts) // 1000) * 1000
 
 def score(product):
     value = metrics(product)
