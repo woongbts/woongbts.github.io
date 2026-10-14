@@ -71,7 +71,7 @@ def metrics(product):
     gifts = []
     for o in options:
         try:
-            gifts.append(int(o.get("gift")))
+            gifts.append((int(o.get("gift")) // 1000) * 1000)
         except (TypeError, ValueError):
             pass
     return min(monthly), max(gifts) if gifts else None
