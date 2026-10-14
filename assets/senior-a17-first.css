@@ -1,6 +1,6 @@
 /* Senior smartphone: first-party A17 priority cards. Other calculator views unaffected. */
 #purpose-results .purpose-a17-priority{
-  display:flex;flex-direction:column;gap:10px;min-width:0;margin:10px 0;
+  display:flex;flex-direction:column;align-self:start;gap:10px;min-width:0;margin:0;
   padding:20px;border:1.5px solid #b5d8d2;border-radius:18px;background:#fff;
   box-shadow:0 8px 24px rgba(16,60,82,.07);color:#163c45;
 }
@@ -28,7 +28,7 @@
 #purpose-results .purpose-a17-priority .purpose-card-total span{font-size:14px;color:#536e75}
 #purpose-results .purpose-a17-priority .purpose-card-total b{font-size:23px;color:#103f53}
 #purpose-results .purpose-a17-priority .quote-amount-note{margin:0;font-size:14px;line-height:1.6}
-#purpose-results .purpose-a17-priority .purpose-card-actions{display:flex;flex-wrap:wrap;gap:9px}
+#purpose-results .purpose-a17-priority .purpose-card-actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:6px}
 #purpose-results .purpose-a17-priority .senior-a17-details{
   display:inline-flex;justify-content:center;align-items:center;flex:1;min-height:48px;
   border-radius:11px;background:#175c79;color:#fff;text-align:center;
