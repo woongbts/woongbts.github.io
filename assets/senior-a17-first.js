@@ -121,6 +121,7 @@
         '요금제: '+item.planName+' / 월 33,000원',
         '선택한 할인방식: '+(method==='support'?'공시지원금':'선택약정 25%'),
         '예상 월 납부액: '+(selected?won(selected.monthly):'매장 확인 필요'),
+        ...(welfareType()==='basic_pension'?['기초연금 할인: '+(Number(selected?.welfare?.amount)>0?'-'+won(selected.welfare.amount):'적용 여부 상담 확인')]:[]),
         ...(selected?.total24!=null?['24개월 예상 총부담: '+won(selected.total24)]:[]),
         '매장 추가지원금·가족/인터넷 결합 미반영',
         '※ 실제 가입 가능 여부·지원금·복지 자격은 상담 시 최종 확인합니다.'
@@ -151,8 +152,9 @@
     const selected=method?available[method]:null;
     view.currentQuote=selected;
     card.dataset.selectedMethod=method||'contract';
+    const welfareDiscount=Number(selected?.welfare?.amount)||0;
     view.title.textContent='예상 월 납부액 · '+(method==='support'?'공시지원금':'선택약정 25%')+
-      (thisWelfare==='basic_pension'?' · 기초연금 할인 포함':'');
+      (thisWelfare==='basic_pension'?(welfareDiscount>0?' · 기초연금 할인 포함':' · 기초연금 할인 확인 필요'):'');
     view.price.textContent=selected?won(selected.monthly):'매장 확인 필요';
     view.breakdown.replaceChildren();
     const addRow=(label,value)=>{
