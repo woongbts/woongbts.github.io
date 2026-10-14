@@ -51,6 +51,12 @@
   };
 
   const won = value => Number(value).toLocaleString('ko-KR') + '원';
+  // Gift quotes use whole thousands; leave monthly prices untouched.
+  const giftInThousands = value => {
+    if (value == null || value === '') return null;
+    const amount = Number(value);
+    return Number.isFinite(amount) && amount >= 0 ? Math.floor(amount / 1000) * 1000 : null;
+  };
   const escapeHtml = value => String(value ?? '')
     .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
     .replace(/"/g,'&quot;').replace(/'/g,'&#39;');
@@ -131,6 +137,9 @@
       if (product.sourceKind === 'clover-import' && giftOverrides[product.id]) {
         Object.assign(product, giftOverrides[product.id]);
       }
+      (product.options || []).forEach(option => {
+        if (option.gift != null && option.gift !== '') option.gift = giftInThousands(option.gift);
+      });
     });
     return list;
   }
