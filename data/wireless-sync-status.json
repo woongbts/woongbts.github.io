@@ -1,0 +1,181 @@
+{
+  "checked_at": "2026-10-15T20:00:44+09:00",
+  "source": "https://www.xeronote.co.kr",
+  "result": "validated",
+  "counts": {
+    "devices": 126,
+    "plans": 570,
+    "supports": 48
+  },
+  "devices_by_carrier": {
+    "SKT": 44,
+    "KT": 41,
+    "LGU+": 41
+  },
+  "deferred_devices": [
+    {
+      "carrier": "SKT",
+      "source_id": "3059",
+      "name": "iPhone Duo 1TB",
+      "model_code": "A3720-1TB",
+      "release_date": "2026-10-23",
+      "retail_price": 4191000,
+      "reason": "not_released_yet"
+    },
+    {
+      "carrier": "SKT",
+      "source_id": "3053",
+      "name": "iPhone Duo 256GB",
+      "model_code": "A3720-256",
+      "release_date": "2026-10-23",
+      "retail_price": 3300000,
+      "reason": "not_released_yet"
+    },
+    {
+      "carrier": "SKT",
+      "source_id": "3062",
+      "name": "iPhone Duo 2TB",
+      "model_code": "A3720-2TB",
+      "release_date": "2026-10-23",
+      "retail_price": 5093000,
+      "reason": "not_released_yet"
+    },
+    {
+      "carrier": "SKT",
+      "source_id": "3056",
+      "name": "iPhone Duo 512GB",
+      "model_code": "A3720-512",
+      "release_date": "2026-10-23",
+      "retail_price": 3597000,
+      "reason": "not_released_yet"
+    },
+    {
+      "carrier": "SKT",
+      "source_id": "1458",
+      "name": "유심단독(단말미포함)5G",
+      "model_code": "USEDPHONE(5G)",
+      "release_date": "0000-00-00",
+      "retail_price": 0,
+      "reason": "invalid_release_date"
+    },
+    {
+      "carrier": "SKT",
+      "source_id": "740",
+      "name": "유심단독(단말미포함)LTE",
+      "model_code": "USEDPHONE(LTE)",
+      "release_date": "0000-00-00",
+      "retail_price": 0,
+      "reason": "invalid_release_date"
+    },
+    {
+      "carrier": "KT",
+      "source_id": "3060",
+      "name": "iPhone Duo 1TB",
+      "model_code": "A3720-1TB",
+      "release_date": "2026-10-23",
+      "retail_price": 4191000,
+      "reason": "not_released_yet"
+    },
+    {
+      "carrier": "KT",
+      "source_id": "3054",
+      "name": "iPhone Duo 256GB",
+      "model_code": "A3720-256",
+      "release_date": "2026-10-23",
+      "retail_price": 3300000,
+      "reason": "not_released_yet"
+    },
+    {
+      "carrier": "KT",
+      "source_id": "3063",
+      "name": "iPhone Duo 2TB",
+      "model_code": "A3720-2TB",
+      "release_date": "2026-10-23",
+      "retail_price": 5093000,
+      "reason": "not_released_yet"
+    },
+    {
+      "carrier": "KT",
+      "source_id": "3057",
+      "name": "iPhone Duo 512GB",
+      "model_code": "A3720-512",
+      "release_date": "2026-10-23",
+      "retail_price": 3597000,
+      "reason": "not_released_yet"
+    },
+    {
+      "carrier": "KT",
+      "source_id": "1459",
+      "name": "유심단독(단말미포함)5G",
+      "model_code": "USEDPHONE(5G)",
+      "release_date": "0000-00-00",
+      "retail_price": 0,
+      "reason": "invalid_release_date"
+    },
+    {
+      "carrier": "KT",
+      "source_id": "741",
+      "name": "유심단독(단말미포함)LTE",
+      "model_code": "USEDPHONE(LTE)",
+      "release_date": "0000-00-00",
+      "retail_price": 0,
+      "reason": "invalid_release_date"
+    },
+    {
+      "carrier": "LGU+",
+      "source_id": "3061",
+      "name": "iPhone Duo 1TB",
+      "model_code": "A3720-1TB",
+      "release_date": "2026-10-23",
+      "retail_price": 4191000,
+      "reason": "not_released_yet"
+    },
+    {
+      "carrier": "LGU+",
+      "source_id": "3055",
+      "name": "iPhone Duo 256GB",
+      "model_code": "A3720-256",
+      "release_date": "2026-10-23",
+      "retail_price": 3300000,
+      "reason": "not_released_yet"
+    },
+    {
+      "carrier": "LGU+",
+      "source_id": "3064",
+      "name": "iPhone Duo 2TB",
+      "model_code": "A3720-2TB",
+      "release_date": "2026-10-23",
+      "retail_price": 5093000,
+      "reason": "not_released_yet"
+    },
+    {
+      "carrier": "LGU+",
+      "source_id": "3058",
+      "name": "iPhone Duo 512GB",
+      "model_code": "A3720-512",
+      "release_date": "2026-10-23",
+      "retail_price": 3597000,
+      "reason": "not_released_yet"
+    },
+    {
+      "carrier": "LGU+",
+      "source_id": "1460",
+      "name": "유심단독(단말미포함)5G",
+      "model_code": "USEDPHONE(5G)",
+      "release_date": "0000-00-00",
+      "retail_price": 0,
+      "reason": "invalid_release_date"
+    },
+    {
+      "carrier": "LGU+",
+      "source_id": "742",
+      "name": "유심단독(단말미포함)LTE",
+      "model_code": "USEDPHONE(LTE)",
+      "release_date": "0000-00-00",
+      "retail_price": 0,
+      "reason": "invalid_release_date"
+    }
+  ],
+  "run_id": "38724093556",
+  "unverified_subsidy_entries_skipped": 42
+}
