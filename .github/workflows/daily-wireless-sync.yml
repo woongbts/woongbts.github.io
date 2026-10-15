@@ -4,6 +4,11 @@ on:
   schedule:
     - cron: '10 2 * * *' # around 11:10 Asia/Seoul; GitHub may run late
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/scripts/daily_wireless_sync.py'
+      - '.github/workflows/daily-wireless-sync.yml'
 
 permissions:
   contents: write
@@ -90,7 +95,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          git add data/catalog.json data/plans.json data/supports.json data/support-notice.json
+          git add data/catalog.json data/plans.json data/supports.json data/support-notice.json data/wireless-sync-status.json
           if git diff --cached --quiet; then
             echo 'No verified wireless data changes'
             exit 0
@@ -100,3 +105,18 @@ jobs:
           git commit -m "Daily wireless data refresh $(TZ=Asia/Seoul date +%F)"
           git pull --rebase origin main
           git push origin HEAD:main
+
+      - name: Preserve Zeronote sync status
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: wireless-sync-status-${{ github.run_id }}
+          path: data/wireless-sync-status.json
+          retention-days: 90
+          if-no-files-found: ignore
+
+      - name: Explain failed refresh
+        if: failure()
+        run: |
+          echo '### 제로노트 갱신 실패' >> "$GITHUB_STEP_SUMMARY"
+          echo '이번 실행은 최신 반영 완료가 아닙니다. 기존 검증 데이터를 유지하며, 실패 단계의 로그를 확인해야 합니다.' >> "$GITHUB_STEP_SUMMARY"

@@ -1,10 +1,47 @@
 """Offline safeguards for the daily Zeronote subsidy import."""
 import unittest
 from urllib.error import HTTPError
-from daily_wireless_sync import verified_primary_or_official_support, valid_public_support, ROOT
+from datetime import date
+from daily_wireless_sync import verified_primary_or_official_support, valid_public_support, ROOT, select_current_devices
 
 
 class DailyWirelessSyncTests(unittest.TestCase):
+    def source_device(self, **changes):
+        return dict(device_idx="3062", model_name="Source phone", device_name="MODEL",
+                    release_dt="2026-10-15", factory_price="1,000,000", **changes)
+
+    def test_future_expensive_model_does_not_block_released_models(self):
+        future = self.source_device()
+        future.update(release_dt="2026-10-23", factory_price="5,093,000")
+        current = self.source_device()
+        candidates, deferred = select_current_devices([future, current], "SKT", date(2026, 10, 15))
+        self.assertEqual(candidates, [(2, current)])
+        self.assertEqual(deferred[0]["reason"], "not_released_yet")
+        self.assertEqual(deferred[0]["retail_price"], 5093000)
+
+    def test_release_day_is_reconsidered_automatically(self):
+        device = self.source_device()
+        device["release_dt"] = "2026-10-23"
+        self.assertEqual(select_current_devices([device], "KT", date(2026, 10, 22))[0], [])
+        self.assertEqual(select_current_devices([device], "KT", date(2026, 10, 23)), ([(1, device)], []))
+
+    def test_invalid_current_price_is_deferred_without_fabricating_a_price(self):
+        for bad_price in ("5,093,000", "", "-1", "0"):
+            device = self.source_device()
+            device["factory_price"] = bad_price
+            candidates, deferred = select_current_devices([device], "SKT", date(2026, 10, 15))
+            self.assertEqual(candidates, [])
+            self.assertEqual(deferred[0]["reason"], "retail_price_out_of_range")
+            self.assertEqual(device["factory_price"], bad_price)
+
+    def test_invalid_date_is_deferred_but_old_stock_is_not_reintroduced(self):
+        invalid, old = self.source_device(), self.source_device()
+        invalid["release_dt"], old["release_dt"] = "2026-99-99", "2020-01-01"
+        candidates, deferred = select_current_devices([invalid, old], "LGU+", date(2026, 10, 15))
+        self.assertEqual(candidates, [])
+        self.assertEqual(len(deferred), 1)
+        self.assertEqual(deferred[0]["reason"], "invalid_release_date")
+
     def test_zeronote_is_the_explicit_default(self):
         self.assertTrue(ROOT.startswith("https://"))
 

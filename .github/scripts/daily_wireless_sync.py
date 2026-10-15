@@ -110,6 +110,41 @@ def clean(value):
     return " ".join(str(value or "").replace("\t", " ").split())
 
 
+def select_current_devices(raw_devices, carrier, today=TODAY_DATE):
+    """Defer source rows that cannot be sold today; reconsider on every run.
+
+    Do not loosen price validation or invent a price to accept a source row.
+    Dataset-level completeness checks still fail closed after this filtering.
+    """
+    candidates, deferred = [], []
+    cutoff = (today - timedelta(days=RECENT_DEVICE_DAYS)).isoformat()
+    for order, device in enumerate(raw_devices, 1):
+        release = clean(device.get("release_dt"))
+        price = money(device.get("factory_price"))
+        model_code = clean(device.get("device_name"))
+        reason = None
+        try:
+            release_date = datetime.strptime(release, "%Y-%m-%d").date()
+        except ValueError:
+            reason = "invalid_release_date"
+        else:
+            if release_date > today:
+                reason = "not_released_yet"
+            elif release < cutoff and model_code not in PINNED_MODEL_CODES:
+                continue
+        if reason is None and (price is None or not 0 < price <= 5000000):
+            reason = "retail_price_out_of_range"
+        if reason:
+            deferred.append({
+                "carrier": carrier, "source_id": str(device.get("device_idx") or ""),
+                "name": clean(device.get("model_name")), "model_code": model_code,
+                "release_date": release, "retail_price": price, "reason": reason,
+            })
+        else:
+            candidates.append((order, device))
+    return candidates, deferred
+
+
 def clean_plan_text(value):
     # Collapse repeated + separators from public plan feeds.
     return re.sub(r"\+{2,}", "+", clean(value))
@@ -300,6 +335,7 @@ def main():
     official_corrections = 0
     unverified_support_skipped = 0
     lgu_official_disabled = False
+    deferred_devices = []
 
     for api_carrier, carrier, prefix in CARRIERS:
         device_payload = get_json(
@@ -315,18 +351,10 @@ def main():
             },
         )
         raw_devices = device_payload.get("data") or []
-        candidates = []
-        for order, device in enumerate(raw_devices, 1):
-            price = money(device.get("factory_price"))
-            release = clean(device.get("release_dt"))
-            if price is None or price <= 0 or release in ("", "0000-00-00"):
-                continue
-            # Source order is RELEASE_DT_DESC. Keep recent devices only so legacy stock
-            # cannot leak back into customer calculators or recommendations.
-            model_code = clean(device.get("device_name"))
-            if release < RECENT_DEVICE_CUTOFF and model_code not in PINNED_MODEL_CODES:
-                continue
-            candidates.append((order, device))
+        candidates, deferred = select_current_devices(raw_devices, carrier)
+        deferred_devices.extend(deferred)
+        for item in deferred:
+            print("[DEFERRED] " + json.dumps(item, ensure_ascii=False), flush=True)
 
         def fetch_device(item):
             order, device = item
@@ -591,6 +619,24 @@ def main():
     (BASE / "supports.json").write_text(
         json.dumps(supports, ensure_ascii=False, separators=(",", ":")), encoding="utf-8"
     )
+    status = {
+        "checked_at": datetime.now(ZoneInfo("Asia/Seoul")).isoformat(timespec="seconds"),
+        "source": ROOT, "result": "validated", "counts": new_counts,
+        "devices_by_carrier": by_carrier, "deferred_devices": deferred_devices,
+        "run_id": os.environ.get("GITHUB_RUN_ID", ""),
+        "unverified_subsidy_entries_skipped": unverified_support_skipped,
+    }
+    (BASE / "wireless-sync-status.json").write_text(
+        json.dumps(status, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+    )
+    summary = os.environ.get("GITHUB_STEP_SUMMARY")
+    if summary:
+        with open(summary, "a", encoding="utf-8") as stream:
+            stream.write(f"\n### 제로노트 수집 상태\n\n확인: {status['checked_at']}\n\n"
+                         f"기종 {new_counts['devices']}개 / 요금제 {new_counts['plans']}개 / "
+                         f"지원금 스케줄 {new_counts['supports']}개\n\n"
+                         f"출시 예정·검증 보류: {len(deferred_devices)}개 "
+                         "(매 실행마다 다시 확인, 상세 내역은 wireless-sync-status.json)\n")
 
     print(
         json.dumps(
