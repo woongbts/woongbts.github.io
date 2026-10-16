@@ -29,6 +29,36 @@
   <link rel="manifest" href="manifest.webmanifest?v=20261003-blue3">
 <link rel="stylesheet" href="assets/rental.css?v=20261009-clarity2">
 <link rel="stylesheet" href="assets/readability-20261007.css?v=20261007-2">
+
+  <style>
+    /* Product page: keep the optional card comparison compact until requested. */
+    .product-page .product-card-section{padding:24px 0!important;background:#f7fafc}
+    .product-page .affiliate-card-fold{border:1px solid #cbdfe9;border-radius:18px;overflow:hidden;background:#fff;box-shadow:0 5px 20px rgba(19,65,91,.045)}
+    .product-page .affiliate-card-fold>summary{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:18px 22px;cursor:pointer;list-style:none}
+    .product-page .affiliate-card-fold>summary::-webkit-details-marker{display:none}
+    .product-page .affiliate-card-fold>summary:focus-visible{outline:3px solid #168fd1;outline-offset:-4px;border-radius:16px}
+    .product-page .affiliate-card-fold-copy{display:flex;flex-direction:column;gap:5px;min-width:0}
+    .product-page .affiliate-card-fold-copy .eyebrow{font-size:13px!important;line-height:1.4}
+    .product-page .affiliate-card-fold-copy>strong{font-size:clamp(17px,2.2vw,21px)!important;font-weight:900;line-height:1.45;color:#173f58}
+    .product-page .affiliate-card-fold-copy>small{font-size:14px!important;font-weight:700;line-height:1.5;color:#54717b}
+    .product-page .affiliate-card-fold-action{flex:0 0 auto;display:inline-flex;align-items:center;gap:10px;padding:10px 13px;border-radius:12px;background:#e7f3fc;color:#1266a4;font-size:15px;font-weight:900;white-space:nowrap}
+    .product-page .affiliate-card-fold-chevron{font-size:24px;font-weight:900;line-height:1;transition:transform .2s ease}
+    .product-page .affiliate-card-fold[open] .affiliate-card-fold-chevron{transform:rotate(180deg)}
+    .product-page .affiliate-card-fold[open] .affiliate-card-fold-action{background:#dcedfb}
+    .product-page .affiliate-card-fold-content{padding:0 22px 22px;border-top:1px solid #e6eff5}
+    .product-page .affiliate-card-fold-all{display:inline-flex;align-items:center;justify-content:center;margin-top:16px;padding:10px 15px;min-height:46px;border-radius:11px;background:#155e9c;color:#fff;text-decoration:none;font-size:15px;font-weight:900}
+    .product-page .affiliate-card-fold-all:hover{background:#0f4b7d}
+    .product-page .generic-source-detail{scroll-margin-top:96px}
+    @media(max-width:600px){
+      .product-page .product-card-section{padding:16px 0!important}
+      .product-page .affiliate-card-fold>summary{align-items:flex-start;flex-direction:column;gap:12px;padding:16px}
+      .product-page .affiliate-card-fold-copy>small{font-size:14px!important}
+      .product-page .affiliate-card-fold-action{width:100%;justify-content:center;min-height:44px;font-size:15px}
+      .product-page .affiliate-card-fold-content{padding:0 15px 16px}
+      .product-page .affiliate-card-fold-all{width:100%}
+    }
+    @media(prefers-reduced-motion:reduce){.product-page .affiliate-card-fold-chevron{transition:none}}
+  </style>
 </head>
 <body>
   <header class="site-header">
@@ -188,15 +218,32 @@
 
     <section class="section product-card-section" id="affiliate-card-section" hidden>
       <div class="wrap">
-        <div class="product-card-head">
-          <div><p class="eyebrow dark">제휴카드 할인</p><h2 id="affiliate-card-title">제휴카드로 월 부담을 더 낮출 수 있어요.</h2><p>전월실적과 자동납부 조건을 충족하면 카드사 청구할인이 적용될 수 있습니다.</p></div>
-          <a id="affiliate-card-all-link" href="cards/">전체 제휴카드 보기 →</a>
-        </div>
-        <div id="affiliate-card-preview" class="affiliate-card-preview"></div>
-        <p class="affiliate-card-caution">※ 제휴카드 할인·프로모션·연회비·실적 제외항목은 카드사 정책에 따라 변경될 수 있으므로 발급 전 최신 조건을 확인해 주세요.</p>
+        <details class="affiliate-card-fold" id="affiliate-card-fold">
+          <summary>
+            <span class="affiliate-card-fold-copy">
+              <span class="eyebrow dark">제휴카드 할인</span>
+              <strong id="affiliate-card-title">제휴카드로 월 부담을 더 낮출 수 있어요.</strong>
+              <small>전월실적과 자동납부 조건에 따른 카드별 할인 혜택을 확인하세요.</small>
+            </span>
+            <span class="affiliate-card-fold-action" aria-hidden="true">카드 혜택 펼쳐보기 <span class="affiliate-card-fold-chevron">⌄</span></span>
+          </summary>
+          <div class="affiliate-card-fold-content">
+            <a id="affiliate-card-all-link" class="affiliate-card-fold-all" href="cards/">전체 제휴카드 보기 →</a>
+            <div id="affiliate-card-preview" class="affiliate-card-preview"></div>
+            <p class="affiliate-card-caution">※ 제휴카드 할인·프로모션·연회비·실적 제외항목은 카드사 정책에 따라 변경될 수 있으므로 발급 전 최신 조건을 확인해 주세요.</p>
+          </div>
+        </details>
       </div>
     </section>
 
+    <section class="section generic-source-detail" id="generic-source-detail" hidden>
+      <div class="wrap detail-image-wrap">
+        <p class="eyebrow dark">제품 상세</p>
+        <h2>제품 특징을 이미지로 자세히 확인하세요.</h2>
+        <p class="detail-image-note">제조사·렌탈사에서 제공된 판매용 상세자료를 기준으로 표시합니다. 실제 색상·구성·프로모션은 상담 시 최신 조건을 확인해 주세요.</p>
+        <div id="generic-detail-images" class="generic-detail-images"></div>
+      </div>
+    </section>
     <section class="section product-alternatives-section" id="product-alternatives" hidden>
       <div class="wrap">
         <p class="eyebrow dark">다른 선택도 비교</p>
@@ -239,14 +286,6 @@
       </div>
     </section>
 
-    <section class="section generic-source-detail" id="generic-source-detail" hidden>
-      <div class="wrap detail-image-wrap">
-        <p class="eyebrow dark">제품 상세</p>
-        <h2>제품 특징을 이미지로 자세히 확인하세요.</h2>
-        <p class="detail-image-note">제조사·렌탈사에서 제공된 판매용 상세자료를 기준으로 표시합니다. 실제 색상·구성·프로모션은 상담 시 최신 조건을 확인해 주세요.</p>
-        <div id="generic-detail-images" class="generic-detail-images"></div>
-      </div>
-    </section>
   </main>
 
   <div class="sticky-quote" aria-label="선택 조건 요약">
