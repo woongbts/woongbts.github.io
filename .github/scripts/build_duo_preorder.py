@@ -56,11 +56,13 @@ block = START + '\n' + CAMPAIGN + '\n' + DIALOG + '\n' + END
 if START in text:
     before, rest = text.split(START, 1)
     _, after = rest.split(END, 1)
-    text = before + block + after
-else:
-    marker = '<section class="content modern-services" id="services">'
-    assert marker in text
-    text = text.replace(marker, block + '\n' + marker, 1)
+    text = before + after
+# Keep the campaign inside the hero, directly below the trust rail. The legacy
+# homepage inserts its review preview after the hero asynchronously; inserting
+# after the hero would let that preview jump above the campaign again.
+trust_rail = text.index('class="home-trust-rail"')
+hero_end = text.index('</section>', trust_rail)
+text = text[:hero_end] + block + '\n' + text[hero_end:]
 css = f'<link rel="stylesheet" href="/assets/iphone-duo-preorder.css?v={VERSION}">'
 js = f'<script src="/assets/iphone-duo-preorder.js?v={VERSION}" defer></script>'
 if 'href="/assets/iphone-duo-preorder.css?' not in text:
