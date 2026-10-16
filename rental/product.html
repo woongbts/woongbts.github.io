@@ -57,6 +57,21 @@
       .product-page .affiliate-card-fold-content{padding:0 15px 16px}
       .product-page .affiliate-card-fold-all{width:100%}
     }
+
+    /* Monthly rental quote: visible at a glance, including on small phones. */
+    .product-page .quote-box{border:2px solid #b9d9f4;box-shadow:0 5px 18px rgba(27,97,161,.08)}
+    .product-page .quote-main{padding:22px 18px;background:linear-gradient(145deg,#edf6ff 0%,#ffffff 90%);box-shadow:inset 0 0 0 2px #2389d0}
+    .product-page .quote-main small{font-size:16px!important;font-weight:900!important;color:#17639d!important;letter-spacing:-.02em}
+    .product-page #monthly-fee{display:block;margin-top:8px;font-size:clamp(31px,3.7vw,42px)!important;font-weight:950!important;line-height:1.25!important;letter-spacing:-.045em;color:#0759a5!important;overflow-wrap:anywhere;font-variant-numeric:tabular-nums}
+    .product-page .quote-gift{padding:22px 18px}
+    .product-page .quote-gift small{font-size:15px!important;font-weight:850!important}
+    .product-page .sticky-price strong{color:#1163ae!important;font-weight:950!important;font-variant-numeric:tabular-nums}
+    @media(max-width:560px){
+      .product-page .quote-main{padding:20px 17px}
+      .product-page #monthly-fee{font-size:clamp(32px,8.5vw,39px)!important;line-height:1.25!important}
+      .product-page .quote-gift{padding:18px 17px}
+      .product-page .sticky-price strong{font-size:clamp(16px,4.2vw,19px)!important;line-height:1.2!important}
+    }
     @media(prefers-reduced-motion:reduce){.product-page .affiliate-card-fold-chevron{transition:none}}
   </style>
 </head>
