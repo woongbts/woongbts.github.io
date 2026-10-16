@@ -2,10 +2,26 @@
 import unittest
 from urllib.error import HTTPError
 from datetime import date
-from daily_wireless_sync import verified_primary_or_official_support, valid_public_support, ROOT, select_current_devices
+from daily_wireless_sync import verified_primary_or_official_support, valid_public_support, ROOT, select_current_devices, valid_device_price
 
 
 class DailyWirelessSyncTests(unittest.TestCase):
+    def test_approved_duo_preorders_work_for_all_carriers_only_from_start_date(self):
+        for carrier, code in [('SKT', 'A3720-2TB'), ('KT', 'AIPD-2T'), ('LGU+', 'UIPD-2T')]:
+            device = self.source_device()
+            device.update(device_name=code, release_dt='2026-10-23', factory_price='5,093,000')
+            self.assertEqual(select_current_devices([device], carrier, date(2026, 10, 15))[0], [])
+            self.assertEqual(select_current_devices([device], carrier, date(2026, 10, 16)), ([(1, device)], []))
+            device['release_dt'] = '2026-11-23'
+            self.assertEqual(select_current_devices([device], carrier, date(2026, 10, 16))[0], [])
+
+    def test_duo_price_exception_does_not_relax_other_model_checks(self):
+        self.assertTrue(valid_device_price(5093000, 'A3720-2TB'))
+        self.assertFalse(valid_device_price(5093000, 'UNAPPROVED'))
+        self.assertFalse(valid_device_price(6000001, 'A3720-2TB'))
+        self.assertFalse(valid_device_price(-1, 'A3720-2TB'))
+        self.assertFalse(valid_device_price(None, 'A3720-2TB'))
+
     def source_device(self, **changes):
         return dict(device_idx="3062", model_name="Source phone", device_name="MODEL",
                     release_dt="2026-10-15", factory_price="1,000,000", **changes)

@@ -1,6 +1,6 @@
 {
   "meta": {
-    "version": 2,
+    "version": 3,
     "description": "웅비통신 고객 화면용 기기 보정 데이터입니다."
   },
   "pinned_devices": {
@@ -61,6 +61,80 @@
         "film_attached": "미부착",
         "external_memory": "미지원"
       }
+    }
+  },
+  "preorder_models": {
+    "A3720-256": {
+      "display_name": "아이폰 듀오 256GB",
+      "starts_on": "2026-10-16",
+      "release_on": "2026-10-23",
+      "max_retail_price": 5000000
+    },
+    "A3720-512": {
+      "display_name": "아이폰 듀오 512GB",
+      "starts_on": "2026-10-16",
+      "release_on": "2026-10-23",
+      "max_retail_price": 5000000
+    },
+    "A3720-1TB": {
+      "display_name": "아이폰 듀오 1TB",
+      "starts_on": "2026-10-16",
+      "release_on": "2026-10-23",
+      "max_retail_price": 5000000
+    },
+    "A3720-2TB": {
+      "display_name": "아이폰 듀오 2TB",
+      "starts_on": "2026-10-16",
+      "release_on": "2026-10-23",
+      "max_retail_price": 6000000
+    },
+    "AIPD-256": {
+      "display_name": "아이폰 듀오 256GB",
+      "starts_on": "2026-10-16",
+      "release_on": "2026-10-23",
+      "max_retail_price": 5000000
+    },
+    "AIPD-512": {
+      "display_name": "아이폰 듀오 512GB",
+      "starts_on": "2026-10-16",
+      "release_on": "2026-10-23",
+      "max_retail_price": 5000000
+    },
+    "AIPD-1T": {
+      "display_name": "아이폰 듀오 1TB",
+      "starts_on": "2026-10-16",
+      "release_on": "2026-10-23",
+      "max_retail_price": 5000000
+    },
+    "AIPD-2T": {
+      "display_name": "아이폰 듀오 2TB",
+      "starts_on": "2026-10-16",
+      "release_on": "2026-10-23",
+      "max_retail_price": 6000000
+    },
+    "UIPD-256": {
+      "display_name": "아이폰 듀오 256GB",
+      "starts_on": "2026-10-16",
+      "release_on": "2026-10-23",
+      "max_retail_price": 5000000
+    },
+    "UIPD-512": {
+      "display_name": "아이폰 듀오 512GB",
+      "starts_on": "2026-10-16",
+      "release_on": "2026-10-23",
+      "max_retail_price": 5000000
+    },
+    "UIPD-1T": {
+      "display_name": "아이폰 듀오 1TB",
+      "starts_on": "2026-10-16",
+      "release_on": "2026-10-23",
+      "max_retail_price": 5000000
+    },
+    "UIPD-2T": {
+      "display_name": "아이폰 듀오 2TB",
+      "starts_on": "2026-10-16",
+      "release_on": "2026-10-23",
+      "max_retail_price": 6000000
     }
   }
 }
