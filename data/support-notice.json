@@ -38,12 +38,12 @@
       "after": 365000
     }
   ],
-  "refresh_change_count": 3,
-  "notice_total_count": 129,
-  "support_amount_change_count": 129,
-  "support_entry_added_count": 6882,
-  "support_entry_removed_count": 0,
-  "support_delta_count": 7011,
-  "refresh_run_id": null,
-  "checked_at": "2026-10-16T11:13:21+09:00"
+  "refresh_change_count": 0,
+  "notice_total_count": 0,
+  "support_amount_change_count": 0,
+  "support_entry_added_count": 0,
+  "support_entry_removed_count": 42,
+  "support_delta_count": 42,
+  "refresh_run_id": "38839499080",
+  "checked_at": "2026-10-16T11:17:38+09:00"
 }
