@@ -156,6 +156,12 @@
     if (v?.term != null) link.searchParams.set('term', String(v.term));
     return link.toString();
   }
+  function currentProductSectionUrl(section) {
+    // Clean product routes use a /rental/ base for assets; a bare hash would go home.
+    const link=new URL(location.href);
+    link.hash=section;
+    return link.toString();
+  }
   function totalRentEstimate(v) {
     const monthly=Number(v?.monthly),term=Number(v?.term);
     if(!Number.isFinite(monthly)||monthly<=0||!Number.isFinite(term)||term<=0)return null;
@@ -1168,7 +1174,7 @@
         const jump = document.createElement('a');
         jump.id = 'generic-detail-jump';
         jump.className = 'btn primary generic-detail-jump';
-        jump.href = '#generic-source-detail';
+        jump.href = currentProductSectionUrl('generic-source-detail');
         jump.textContent = '제품 특징 이미지 자세히 보기 ↓';
         $('#generic-recommend-audience')?.closest('.generic-recommend-block')?.after(jump);
       }
