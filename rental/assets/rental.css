@@ -1290,3 +1290,42 @@
   .affiliate-card-dialog .affiliate-detail-section.promo td:nth-child(2)::before{content:"총 할인"}
   .affiliate-card-dialog .affiliate-detail-section td:nth-child(3)::before{content:"적용 예상 월"}
 }
+
+/* Rental application dialog: readable product, form and consent information. */
+.rental-apply-dialog{font-size:16px;line-height:1.65;color:#173f42}
+.rental-apply-dialog .rental-apply-head span{font-size:14px;color:#3f6567}
+.rental-apply-dialog .rental-apply-head strong{font-size:25px;font-weight:850;line-height:1.4;word-break:keep-all}
+.rental-apply-dialog .rental-apply-head button{width:44px;height:44px;flex:none;font-size:27px}
+.rental-apply-dialog .rental-apply-summary{padding:20px}
+.rental-apply-dialog .rental-apply-summary small{font-size:14px;color:#3f6567}
+.rental-apply-dialog .rental-apply-summary strong{font-size:20px;font-weight:850;line-height:1.5;overflow-wrap:anywhere}
+.rental-apply-dialog .rental-apply-summary p{font-size:16px;line-height:1.8;color:#345e62}
+.rental-apply-dialog .rental-apply-gift-note{font-size:16px!important;line-height:1.7!important;color:#80500b!important;padding:12px 14px}
+.rental-apply-dialog .rental-apply-gift-return-note{font-size:14px!important;line-height:1.75!important;color:#6c4d2b!important}
+.rental-apply-dialog .rental-apply-grid{gap:20px 16px}
+.rental-apply-dialog .rental-apply-grid label,.rental-apply-dialog .rental-inquiry-label,.rental-apply-dialog .rental-billing-inner>label{display:flex;flex-direction:column;gap:8px;font-size:17px;font-weight:800;line-height:1.5;color:#264f53;min-width:0}
+.rental-apply-dialog .rental-apply-grid em,.rental-apply-dialog .rental-apply-grid label>span,.rental-apply-dialog .rental-inquiry-label>span{font-size:14px;font-weight:700}
+.rental-apply-dialog .rental-apply-grid label>span,.rental-apply-dialog .rental-inquiry-label>span{color:#506d70}
+.rental-apply-dialog .rental-apply-grid input,.rental-apply-dialog .rental-inquiry-label textarea,.rental-apply-dialog #rental-apply-issuer{box-sizing:border-box;width:100%;min-width:0;min-height:52px;padding:13px 14px;font:inherit;font-size:17px;font-weight:600;line-height:1.5;border:1px solid #b9cfcc;border-radius:11px;background:#fff;color:#173f42}
+.rental-apply-dialog input::placeholder,.rental-apply-dialog textarea::placeholder{color:#596f72;opacity:1;font-weight:500}
+.rental-apply-dialog .rental-billing-optional>summary{font-size:17px;line-height:1.6;color:#264f53;padding:15px}
+.rental-apply-dialog .rental-billing-optional>summary small{font-size:13px;color:#3f6567}
+.rental-apply-dialog .rental-billing-methods label{font-size:16px;line-height:1.5;min-height:48px;color:#264f53}
+.rental-apply-dialog .rental-billing p{font-size:15px;line-height:1.8;color:#5e614f}
+.rental-apply-dialog .rental-consent-box{gap:16px;padding:18px}
+.rental-apply-dialog .rental-consent-check b{font-size:17px;line-height:1.6;color:#264f53}
+.rental-apply-dialog .rental-consent-check small{font-size:15px;line-height:1.8;color:#426569}
+.rental-apply-dialog .rental-consent-box summary{font-size:16px;line-height:1.6;padding:7px 0;color:#245d59}
+.rental-apply-dialog .rental-consent-box details div,.rental-apply-dialog .rental-consent-box details p{font-size:15px;line-height:1.85;color:#345e62;overflow-wrap:anywhere}
+.rental-apply-dialog .rental-marketing-note{font-size:15px;line-height:1.8;color:#426569}
+.rental-apply-dialog .rental-apply-status{font-size:16px;line-height:1.7}
+.rental-apply-dialog .rental-apply-submit{font-size:19px;font-weight:850;min-height:56px}
+@media(max-width:560px){
+  .rental-apply-dialog .rental-apply-head strong{font-size:23px}
+  .rental-apply-dialog .rental-apply-summary{padding:16px}
+  .rental-apply-dialog .rental-apply-summary strong{font-size:19px}
+  .rental-apply-dialog .rental-consent-box{padding:14px}
+  .rental-apply-dialog .rental-consent-check b{font-size:16px}
+  .rental-apply-dialog .rental-billing-methods{grid-template-columns:1fr}
+  .rental-apply-dialog .rental-billing-methods label{justify-content:flex-start}
+}
