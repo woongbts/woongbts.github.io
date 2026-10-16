@@ -845,3 +845,11 @@ body.home-modern{
 /* 2026-10-07 CTA cleanup */
 .hero-grid.hero-grid-single{grid-template-columns:minmax(0,1fr)}
 .hero-grid.hero-grid-single .hero-copy{max-width:820px}
+
+/* Balance the rental link with the telecom brand on desktop headers. */
+@media(min-width:641px){
+  .home-modern .top .rental-badge{min-height:54px;padding:5px 10px;gap:8px}
+  .home-modern .top .rental-badge img{width:42px;height:42px}
+  .home-modern .top .rental-badge-copy strong{font-size:18px;line-height:1.15}
+  .home-modern .top .rental-badge-copy small{font-size:9px;line-height:1.2}
+}
