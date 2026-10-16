@@ -58,9 +58,18 @@ async function requestAnswer(payload,signal){
   if(!response.ok||typeof data.answer!=='string'||!data.answer.trim())throw new Error('AI response unavailable');
   return data.answer;
 }
+function formatAnswer(node,text){
+  // Recognize emphasis only; never interpret server text as HTML or links.
+  const pattern=/\*\*([^*\n]+)\*\*/g;let end=0;
+  for(const match of text.matchAll(pattern)){
+    node.appendChild(document.createTextNode(text.slice(end,match.index)));
+    const strong=document.createElement('strong');strong.textContent=match[1];node.appendChild(strong);end=match.index+match[0].length;
+  }
+  node.appendChild(document.createTextNode(text.slice(end)));
+}
 function addMessage(text,role){
   const row=document.createElement('div');row.className='wb-ai-row '+role;
-  const bubble=document.createElement('div');bubble.className='wb-ai-bubble';bubble.textContent=text;row.appendChild(bubble);messages.appendChild(row);messages.scrollTop=messages.scrollHeight;return bubble;
+  const bubble=document.createElement('div');bubble.className='wb-ai-bubble';if(role==='bot')formatAnswer(bubble,text);else bubble.textContent=text;row.appendChild(bubble);messages.appendChild(row);messages.scrollTop=messages.scrollHeight;return bubble;
 }
 const welcome=addMessage('안녕하세요! 어떤 상품이 궁금하세요?\n아래에서 고르거나 편하게 질문해 주세요.','bot');
 function updateContext(){
