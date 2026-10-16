@@ -1197,3 +1197,34 @@
   .catalog-prices{grid-template-columns:1fr}
   .recommend-card{flex-basis:calc(100vw - 44px)!important}
 }
+
+/* Price-first sticky quote: clear monthly cost and gift, 2026-10-16. */
+.sticky-quote{border-top:2px solid #b9d8ec;box-shadow:0 -6px 24px rgba(20,61,80,.1)}
+.sticky-quote .sticky-quote-inner{grid-template-columns:minmax(130px,1fr) minmax(160px,1fr) minmax(160px,1fr) auto auto!important;gap:16px!important;align-items:center}
+.sticky-quote .sticky-copy{min-width:0}
+.sticky-quote .sticky-copy strong{font-size:17px!important;line-height:1.4;overflow-wrap:anywhere}
+.sticky-quote .sticky-price,.sticky-quote .sticky-gift{min-width:0;padding:10px 16px;border-radius:14px;display:block!important}
+.sticky-quote .sticky-price{background:#eaf4ff;border:1px solid #c3dcf5}
+.sticky-quote .sticky-gift{background:#fff4df;border:1px solid #f0d4a3}
+.sticky-quote .sticky-price span,.sticky-quote .sticky-gift span{font-size:14px!important;font-weight:800;line-height:1.35!important;color:#355b72}
+.sticky-quote #sticky-monthly,.sticky-quote #sticky-gift{display:block;margin-top:3px;font-size:clamp(25px,2.4vw,32px)!important;font-weight:900;line-height:1.2!important;letter-spacing:-.035em;font-variant-numeric:tabular-nums;white-space:nowrap!important}
+.sticky-quote #sticky-monthly{color:#0759a5!important}
+.sticky-quote #sticky-gift{color:#9b4b00!important}
+.sticky-quote #rental-apply-sticky,.sticky-quote #rental-kakao-sticky{min-height:50px!important;font-size:16px!important;font-weight:900}
+.product-page{padding-bottom:calc(112px + env(safe-area-inset-bottom,0px))}
+@media(max-width:900px){
+  .sticky-quote .sticky-copy{display:none!important}
+  .sticky-quote .sticky-quote-inner{grid-template-columns:minmax(130px,1fr) minmax(130px,1fr) auto auto!important;gap:10px!important}
+}
+@media(max-width:640px){
+  .sticky-quote .sticky-quote-inner{width:100%!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:7px 9px!important}
+  .sticky-quote .sticky-price,.sticky-quote .sticky-gift{padding:8px 12px!important;grid-row:1!important}
+  .sticky-quote .sticky-price{grid-column:1!important}
+  .sticky-quote .sticky-gift{grid-column:2!important}
+  .sticky-quote .sticky-price span,.sticky-quote .sticky-gift span{font-size:13px!important}
+  .sticky-quote #sticky-monthly,.sticky-quote #sticky-gift{font-size:clamp(23px,6.4vw,28px)!important}
+  .sticky-quote #rental-apply-sticky,.sticky-quote #rental-kakao-sticky{grid-row:2!important;min-height:44px!important;width:100%;padding:8px!important;font-size:15px!important}
+  .sticky-quote #rental-apply-sticky{grid-column:1!important}
+  .sticky-quote #rental-kakao-sticky{grid-column:2!important}
+  .product-page{padding-bottom:calc(152px + env(safe-area-inset-bottom,0px))}
+}
