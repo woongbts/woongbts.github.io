@@ -21,7 +21,7 @@ assert.match(homeCss,/bottom:calc\(80px/,'homepage pill moved lower');
 
 assert.match(chat,/\.wb-ai-launcher>span\{display:none!important\}/,'old label hidden in compact view');
 assert.match(homeCss,/#woongbi-ai-launcher\.wb-ai-launcher>span\{display:none!important\}/,'homepage hides old label');
-assert.match(rates,/ai-chat\.min\.js\?v=20261008-pos4/);
-assert.match(loader,/ai-chat\.min\.js\?v=20261008-pos4/);
+assert.match(rates,/ai-chat\.min\.js\?v=20261016-chatux1/);
+assert.match(loader,/ai-chat\.min\.js\?v=20261016-chatux1/);
 assert.match(homepage,/quick-order\.css\?v=20261008-pos4/);
 console.log('AI launchers: readable mobile pill and new cache references passed.');

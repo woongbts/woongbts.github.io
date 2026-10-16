@@ -14,7 +14,7 @@
     if(started)return;started=true;
     Promise.allSettled([
       load('/assets/home-recommend-api.min.js?v=20261009-a17-33'),
-      load('/assets/ai-chat.min.js?v=20261008-pos4')
+      load('/assets/ai-chat.min.js?v=20261016-chatux1')
     ]);
   }
   ['pointerdown','touchstart','keydown'].forEach(type=>window.addEventListener(type,start,{once:true,passive:true}));
