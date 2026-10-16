@@ -173,6 +173,8 @@
     return null;
   }
   function ownershipLabel() {
+    const source=product?.contractConditions;
+    if(source?.ownershipText)return source.ownershipText;
     const value=contractValue(['ownershipTransfer','ownership','ownershipPeriod','ownershipTerm']);
     if(value==null)return '상담 확인';
     if(typeof value==='boolean')return value?'계약조건 충족 후 이전':'소유권 이전 없음';
@@ -180,6 +182,13 @@
     return String(value);
   }
   function mandatoryTermLabel() {
+    const source=product?.contractConditions;
+    if(source?.mandatoryText){
+      const terms=source.mandatoryTerms||[],selected=Number(currentVariant()?.term);
+      if(terms.length===1)return terms[0]+'개월';
+      if(terms.includes(selected))return selected+'개월';
+      return source.mandatoryText;
+    }
     const value=contractValue(['mandatoryTerm','minimumTerm','obligationTerm','requiredTerm']);
     if(value==null)return '상담 확인';
     const n=Number(value);
@@ -191,6 +200,14 @@
     if(mandatory)mandatory.textContent=mandatoryTermLabel();
     if(ownership)ownership.textContent=ownershipLabel();
     if(management)management.textContent=optionLabel(v?.managementLabel||v?.management||'')||'상담 확인';
+    const box=term?.closest('.contract-key-box'),source=product?.contractConditions;
+    let note=box?.querySelector('.contract-source-note');
+    if(box&&source){
+      if(!note){note=document.createElement('p');note.className='contract-source-note';box.appendChild(note);}
+      const unmatched=(source.mandatoryTerms||[]).length>1&&!source.mandatoryTerms.includes(Number(v?.term));
+      note.textContent='원본 상품 조건 확인 '+source.checkedAt+(unmatched?' · 선택한 '+v.term+'개월은 원문 의무사용기간에 명시되지 않았습니다.':' · 의무사용과 소유권 이전 조건은 서로 다를 수 있습니다.');
+      const link=document.createElement('a');link.href=source.sourceUrl;link.textContent='원본 조건 보기';link.target='_blank';link.rel='noopener noreferrer';note.append(' ',link);
+    }else if(note)note.remove();
   }
   function productMetrics(p) {
     const option=(p?.options||[]).filter(o=>isSellableOption(o)&&Number.isFinite(Number(o.monthly))&&Number(o.monthly)>0)
@@ -1234,15 +1251,19 @@
       .catch(() => null),
     fetch('data/clover-detail-gallery.json', {cache:'no-store'})
       .then(r => r.ok ? r.json() : null)
+      .catch(() => null),
+    fetch('data/contract-conditions.json', {cache:'no-store'})
+      .then(r => r.ok ? r.json() : null)
       .catch(() => null)
   ])
-    .then(([data, giftData, overrideData, galleryData]) => {
+    .then(([data, giftData, overrideData, galleryData, contractData]) => {
       applyPolicyMonth(giftData?.generatedAt || data?.updatedAt || '');
       (data.products || []).forEach(item => {
         const catalogOverride = overrideData?.products?.[item.id];
         if (catalogOverride) Object.assign(item, catalogOverride);
         const giftOverride = giftData?.products?.[item.id];
         if (giftOverride && item.sourceKind === 'clover-import') Object.assign(item, giftOverride);
+        if(contractData?.products?.[item.id])item.contractConditions={...contractData.products[item.id],checkedAt:contractData.checkedAt};
         normalizeGiftOptions(item);
         const detailOverride = galleryData?.products?.[item.id];
         if (detailOverride?.detailImages?.length) {
