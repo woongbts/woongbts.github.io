@@ -1228,3 +1228,65 @@
   .sticky-quote #rental-kakao-sticky{grid-column:2!important}
   .product-page{padding-bottom:calc(152px + env(safe-area-inset-bottom,0px))}
 }
+
+/* Affiliate-card dialog: readable spending tiers and complete eligibility terms. */
+.affiliate-card-dialog{width:min(840px,calc(100% - 24px));font-size:16px;line-height:1.65}
+.affiliate-card-dialog .affiliate-card-dialog-head span{font-size:14px;color:#126d9b}
+.affiliate-card-dialog .affiliate-card-dialog-head strong{font-size:23px;font-weight:850;line-height:1.4}
+.affiliate-card-dialog .affiliate-card-dialog-head button{width:44px;height:44px;flex:none;font-size:27px}
+.affiliate-card-dialog .affiliate-card-dialog-summary span{font-size:15px;line-height:1.6;padding:12px}
+.affiliate-card-dialog .affiliate-card-dialog-summary span b{font-size:17px}
+.affiliate-card-dialog .affiliate-card-dialog-summary strong{font-size:22px;font-weight:900;color:#076354;padding:13px}
+.affiliate-card-dialog .affiliate-card-dialog-content{gap:20px}
+.affiliate-card-dialog .affiliate-detail-card{min-width:0;padding:22px}
+.affiliate-card-dialog .affiliate-detail-card-head small{font-size:14px;color:#126d9b}
+.affiliate-card-dialog .affiliate-detail-card-head h3{font-size:22px;font-weight:850;line-height:1.4;margin-top:7px}
+.affiliate-card-dialog .affiliate-detail-card-head p{font-size:15px;line-height:1.7;color:#4e686b;margin-top:9px}
+.affiliate-card-dialog .affiliate-detail-section{margin-top:22px}
+.affiliate-card-dialog .affiliate-detail-section h4{font-size:18px;font-weight:850;line-height:1.5;color:#244f52;margin-bottom:12px}
+.affiliate-card-dialog .affiliate-detail-section table{table-layout:fixed;font-size:16px;line-height:1.6;font-variant-numeric:tabular-nums}
+.affiliate-card-dialog .affiliate-detail-section th,.affiliate-card-dialog .affiliate-detail-section td{padding:13px 10px;overflow-wrap:anywhere;vertical-align:middle}
+.affiliate-card-dialog .affiliate-detail-section th{font-size:14px;color:#395d61;background:#edf4f4}
+.affiliate-card-dialog .affiliate-detail-section th:first-child{width:36%}
+.affiliate-card-dialog .affiliate-detail-section td{color:#31575b;font-weight:600}
+.affiliate-card-dialog .affiliate-detail-section td:nth-child(2){font-size:20px;color:#075e56;font-weight:900;letter-spacing:-.025em}
+.affiliate-card-dialog .affiliate-detail-section td:nth-child(3){font-size:20px;color:#124e72;font-weight:900;letter-spacing:-.025em}
+.affiliate-card-dialog .affiliate-detail-section td small{font-size:14px;font-weight:750;color:#8a4a08;line-height:1.55;margin-top:5px}
+.affiliate-card-dialog .affiliate-detail-section.promo{padding:16px;background:#fff6e5;border:1px solid #ecd9b6}
+.affiliate-card-dialog .affiliate-detail-section.promo h4{color:#805013}
+.affiliate-card-dialog .affiliate-detail-period{font-size:15px;font-weight:600;line-height:1.65;color:#705d3d}
+.affiliate-card-dialog .affiliate-detail-section dl{grid-template-columns:90px minmax(0,1fr);gap:10px;padding:13px 12px;margin:10px 0}
+.affiliate-card-dialog .affiliate-detail-section dt{font-size:14px;font-weight:850;line-height:1.7;color:#365d61}
+.affiliate-card-dialog .affiliate-detail-section dd,.affiliate-card-dialog .affiliate-detail-section ul{font-size:15px;font-weight:550;line-height:1.8;color:#34575b;overflow-wrap:anywhere}
+.affiliate-card-dialog .affiliate-detail-section li+li{margin-top:8px}
+.affiliate-card-dialog .affiliate-detail-verified{font-size:14px;color:#526d70;line-height:1.7}
+.affiliate-card-dialog .affiliate-card-dialog-foot p{color:#4e686b;font-weight:550}
+@media(max-width:560px){
+  .affiliate-card-dialog{width:calc(100% - 12px)}
+  .affiliate-card-dialog .affiliate-card-dialog-head,.affiliate-card-dialog .affiliate-card-dialog-content,.affiliate-card-dialog .affiliate-card-dialog-foot{padding-left:12px;padding-right:12px}
+  .affiliate-card-dialog .affiliate-card-dialog-head strong{font-size:21px}
+  .affiliate-card-dialog .affiliate-detail-card{padding:13px}
+  .affiliate-card-dialog .affiliate-detail-card-head h3{font-size:20px}
+  .affiliate-card-dialog .affiliate-detail-section.promo{padding:10px}
+  .affiliate-card-dialog .affiliate-detail-section th,.affiliate-card-dialog .affiliate-detail-section td{padding:12px 5px}
+  .affiliate-card-dialog .affiliate-detail-section table{font-size:15px}
+  .affiliate-card-dialog .affiliate-detail-section th{font-size:13px}
+  .affiliate-card-dialog .affiliate-detail-section td:nth-child(2),.affiliate-card-dialog .affiliate-detail-section td:nth-child(3){font-size:17px;letter-spacing:-.04em}
+  .affiliate-card-dialog .affiliate-detail-section td small{font-size:13px}
+  .affiliate-card-dialog .affiliate-detail-section dl{grid-template-columns:minmax(0,1fr);gap:4px;padding:12px 10px}
+}
+
+@media(max-width:560px){
+  .affiliate-card-dialog .affiliate-card-dialog-head strong{word-break:keep-all;font-size:20px}
+  .affiliate-card-dialog .affiliate-card-dialog-summary strong{word-break:keep-all;font-size:20px;line-height:1.6}
+  .affiliate-card-dialog .affiliate-detail-section table,.affiliate-card-dialog .affiliate-detail-section tbody{display:block;width:100%}
+  .affiliate-card-dialog .affiliate-detail-section thead{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+  .affiliate-card-dialog .affiliate-detail-section tbody tr{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border:1px solid #d9e6e3;border-radius:10px;margin-top:10px;overflow:hidden}
+  .affiliate-card-dialog .affiliate-detail-section td{border:0;padding:10px 7px}
+  .affiliate-card-dialog .affiliate-detail-section td:first-child{grid-column:1/-1;background:#edf4f4;font-size:15px;font-weight:800}
+  .affiliate-card-dialog .affiliate-detail-section td:nth-child(2),.affiliate-card-dialog .affiliate-detail-section td:nth-child(3){font-size:18px;letter-spacing:-.035em}
+  .affiliate-card-dialog .affiliate-detail-section td:nth-child(2)::before,.affiliate-card-dialog .affiliate-detail-section td:nth-child(3)::before{display:block;margin-bottom:5px;font-size:13px;font-weight:700;line-height:1.5;letter-spacing:0;color:#395d61}
+  .affiliate-card-dialog .affiliate-detail-section td:nth-child(2)::before{content:"월 할인"}
+  .affiliate-card-dialog .affiliate-detail-section.promo td:nth-child(2)::before{content:"총 할인"}
+  .affiliate-card-dialog .affiliate-detail-section td:nth-child(3)::before{content:"적용 예상 월"}
+}
