@@ -29,6 +29,7 @@ CATEGORY_SLUGS = {
 }
 
 STATIC = {
+    "https://woongbts.github.io/iphone-duo/": ["iphone-duo/index.html","assets/iphone-duo-preorder.js","assets/iphone-duo-preorder.css"],
     "https://woongbts.github.io/": ["index.html","assets/site-pro.css","assets/readability-20260921.css","assets/ai-chat.min.js","assets/analytics-config.js","assets/conversion-tracker.min.js","assets/site-analytics.min.js"],
     "https://woongbts.github.io/rates.html": ["rates.html","assets/rates.min.js","assets/rates.css","assets/conversion-tracker.min.js","sw.js","data/catalog.json","data/plans.json","data/supports.json","data/mvno-postpaid.json","data/prepaid.json","data/internet.json"],
     "https://woongbts.github.io/manduk-mobile.html": ["manduk-mobile.html"],
@@ -62,6 +63,7 @@ def entry(loc,lastmod,changefreq="weekly",priority="0.5"):
 def main():
     rows=['<?xml version="1.0" encoding="UTF-8"?>','<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
     priorities={
+      "https://woongbts.github.io/iphone-duo/":("daily","0.8"),
       "https://woongbts.github.io/":("weekly","1.0"),
       "https://woongbts.github.io/rates.html":("daily","0.9"),
       "https://woongbts.github.io/manduk-mobile.html":("weekly","0.8"),
