@@ -38,6 +38,7 @@ if not STORE_OVERRIDES_PATH.exists():
 _store_overrides = json.loads(STORE_OVERRIDES_PATH.read_text(encoding="utf-8"))
 PINNED_DEVICE_META = copy.deepcopy(_store_overrides.get("pinned_devices") or {})
 PINNED_MODEL_CODES = set(PINNED_DEVICE_META)
+PREORDER_MODELS = copy.deepcopy(_store_overrides.get("preorder_models") or {})
 
 
 def get_json(path, params=None, attempts=4):
@@ -110,6 +111,17 @@ def clean(value):
     return " ".join(str(value or "").replace("\t", " ").split())
 
 
+def valid_device_price(price, model_code):
+    limit = int((PREORDER_MODELS.get(model_code) or {}).get("max_retail_price", 5000000))
+    return type(price) is int and 0 < price <= limit
+
+
+def preorder_enabled(device, today=TODAY_DATE):
+    rule = PREORDER_MODELS.get(clean(device.get("device_name"))) or {}
+    return (bool(rule) and rule.get("starts_on", "9999-12-31") <= today.isoformat()
+            and clean(device.get("release_dt")) == rule.get("release_on"))
+
+
 def select_current_devices(raw_devices, carrier, today=TODAY_DATE):
     """Defer source rows that cannot be sold today; reconsider on every run.
 
@@ -128,11 +140,11 @@ def select_current_devices(raw_devices, carrier, today=TODAY_DATE):
         except ValueError:
             reason = "invalid_release_date"
         else:
-            if release_date > today:
+            if release_date > today and not preorder_enabled(device, today):
                 reason = "not_released_yet"
             elif release < cutoff and model_code not in PINNED_MODEL_CODES:
                 continue
-        if reason is None and (price is None or not 0 < price <= 5000000):
+        if reason is None and not valid_device_price(price, model_code):
             reason = "retail_price_out_of_range"
         if reason:
             deferred.append({
@@ -282,7 +294,7 @@ def validate_dataset(old_catalog, old_plans, old_supports, catalog, plan_data, s
             raise RuntimeError("device without id")
         device_ids.add(did)
         price = device.get("retail_price")
-        if price is None or not (0 < int(price) <= 5000000):
+        if not valid_device_price(price, clean(device.get("model_code"))):
             raise RuntimeError(f"invalid retail price: {did}={price}")
         for join_type, ids in (device.get("eligible_plan_ids_by_join_type") or {}).items():
             if join_type not in {"기기변경", "번호이동", "신규가입"}:
@@ -502,6 +514,16 @@ def main():
                 }
             )
             model_code = clean(device.get("device_name"))
+            preorder_rule = PREORDER_MODELS.get(model_code)
+            if preorder_rule:
+                current_device = all_devices[-1]
+                current_device["source_name"] = current_device["name"]
+                current_device["name"] = preorder_rule["display_name"]
+                if current_device["release_date"] > TODAY:
+                    current_device["sale_status"] = "preorder"
+                    current_device["name"] += " (사전예약)"
+                    current_device["preorder_starts_on"] = preorder_rule["starts_on"]
+                    current_device["preorder_release_date"] = preorder_rule["release_on"]
             if model_code in PINNED_DEVICE_META:
                 all_devices[-1].update(copy.deepcopy(PINNED_DEVICE_META[model_code]))
             per_device_support[(carrier, device_id)] = support_by_join

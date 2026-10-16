@@ -1,49 +1,49 @@
 {
   "version": 1,
-  "id": "c245efe6809c7f90",
-  "date": "2026-10-08",
-  "checked_on": "2026-10-15",
+  "id": "659bed12a4937e4d",
+  "date": "2026-10-16",
+  "checked_on": "2026-10-16",
   "changes": [
     {
-      "carrier": "KT",
-      "device_id": "KT-XD-2889",
-      "device": "Moto g77",
-      "plan_id": "KT-XP-2616",
-      "plan": "키즈20",
-      "monthly_fee": 20000,
+      "carrier": "SKT",
+      "device_id": "SKT-XD-2896",
+      "device": "갤럭시 Wide9",
+      "plan_id": "SKT-XP-2945",
+      "plan": "라이트 39",
+      "monthly_fee": 39000,
       "join": "기기변경",
-      "before": 60000,
-      "after": 300000
+      "before": 78000,
+      "after": 365000
     },
     {
-      "carrier": "KT",
-      "device_id": "KT-XD-2889",
-      "device": "Moto g77",
-      "plan_id": "KT-XP-2616",
-      "plan": "키즈20",
-      "monthly_fee": 20000,
+      "carrier": "SKT",
+      "device_id": "SKT-XD-2896",
+      "device": "갤럭시 Wide9",
+      "plan_id": "SKT-XP-2945",
+      "plan": "라이트 39",
+      "monthly_fee": 39000,
       "join": "번호이동",
-      "before": 247000,
-      "after": 300000
+      "before": 78000,
+      "after": 365000
     },
     {
-      "carrier": "KT",
-      "device_id": "KT-XD-2889",
-      "device": "Moto g77",
-      "plan_id": "KT-XP-2616",
-      "plan": "키즈20",
-      "monthly_fee": 20000,
+      "carrier": "SKT",
+      "device_id": "SKT-XD-2896",
+      "device": "갤럭시 Wide9",
+      "plan_id": "SKT-XP-2945",
+      "plan": "라이트 39",
+      "monthly_fee": 39000,
       "join": "신규가입",
-      "before": 247000,
-      "after": 300000
+      "before": 78000,
+      "after": 365000
     }
   ],
-  "refresh_change_count": 0,
-  "notice_total_count": 0,
-  "support_amount_change_count": 0,
-  "support_entry_added_count": 0,
+  "refresh_change_count": 3,
+  "notice_total_count": 129,
+  "support_amount_change_count": 129,
+  "support_entry_added_count": 6882,
   "support_entry_removed_count": 0,
-  "support_delta_count": 0,
-  "refresh_run_id": "38724093556",
-  "checked_at": "2026-10-15T20:00:46+09:00"
+  "support_delta_count": 7011,
+  "refresh_run_id": null,
+  "checked_at": "2026-10-16T11:13:21+09:00"
 }
