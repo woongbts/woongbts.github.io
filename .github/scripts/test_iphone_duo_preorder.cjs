@@ -21,6 +21,18 @@ assert.match(page, /id="duo-calc-carrier"/,'Duo calculator carrier picker exists
 const landingLinks=[...page.matchAll(/data-duo-calc="([^"]+)"/g)].map(m=>m[1]);
 assert.deepEqual(landingLinks,['256GB','256GB','512GB','1TB'],'hero and every capacity have calculator links');
 assert.match(page,/아이폰 듀오 요금 계산하기/,'prominent calculator CTA is present');
+const ratesPage=fs.readFileSync('rates.html','utf8');
+const mobileDirect=fs.readFileSync('assets/rates-deeplink.js','utf8');
+assert.ok(ratesPage.includes('rates-deeplink.js?v=20261017-duo-direct-fix1'),
+  'calculator must load the updated deep-link selection preservation');
+assert.ok(mobileDirect.includes('if(requestedDevice&&requestedPlan)'),
+  'direct calculator deeplink must prioritize restoring device and plan');
+assert.ok(mobileDirect.includes("if(device.value!==requestedDevice)setSelect('device-select',requestedDevice)"),
+  'deep link must reselect the requested phone if init redraws the dropdown');
+assert.ok(mobileDirect.includes("if(plan.value!==requestedPlan)setSelect('plan-select',requestedPlan)"),
+  'deep link must reselect the requested plan to calculate a numeric quote');
+assert.ok(mobileDirect.indexOf('if(requestedDevice&&requestedPlan)')<mobileDirect.indexOf('const applyBrand='),
+  'brand filter must not clear an already restored deep-linked phone');
 const makeUrl=context.window.WoongbiDuoPreorder.buildCalculatorUrl;
 assert.match(page,/<option value="SKT">SKT<\/option>/,'SKT selectable on landing');
 for(const [carrier,plan,ids] of [
