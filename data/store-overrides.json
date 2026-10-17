@@ -1,6 +1,6 @@
 {
   "meta": {
-    "version": 3,
+    "version": 4,
     "description": "웅비통신 고객 화면용 기기 보정 데이터입니다."
   },
   "pinned_devices": {
@@ -131,6 +131,30 @@
       "max_retail_price": 5000000
     },
     "UIPD-2T": {
+      "display_name": "아이폰 듀오 2TB",
+      "starts_on": "2026-10-16",
+      "release_on": "2026-10-23",
+      "max_retail_price": 6000000
+    },
+    "IP_DUO_256GW": {
+      "display_name": "아이폰 듀오 256GB",
+      "starts_on": "2026-10-16",
+      "release_on": "2026-10-23",
+      "max_retail_price": 5000000
+    },
+    "IP_DUO_512GW": {
+      "display_name": "아이폰 듀오 512GB",
+      "starts_on": "2026-10-16",
+      "release_on": "2026-10-23",
+      "max_retail_price": 5000000
+    },
+    "IP_DUO_1TW": {
+      "display_name": "아이폰 듀오 1TB",
+      "starts_on": "2026-10-16",
+      "release_on": "2026-10-23",
+      "max_retail_price": 5000000
+    },
+    "IP_DUO_2TW": {
       "display_name": "아이폰 듀오 2TB",
       "starts_on": "2026-10-16",
       "release_on": "2026-10-23",
