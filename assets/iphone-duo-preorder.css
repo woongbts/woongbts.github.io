@@ -31,3 +31,19 @@
   .duo-section .duo-film figcaption{font-size:13px}
   .duo-dialog .duo-fields label{font-size:16px}
 }
+
+
+/* iPhone Duo reservation -> monthly calculator handoff */
+.duo-calc-carrier{display:inline-flex;align-items:center;gap:12px;flex-wrap:wrap;margin:12px 0 0;padding:10px 14px;border:1px solid #b8d4da;border-radius:12px;background:#fff;color:#133e51;font-size:16px;font-weight:850}
+.duo-calc-carrier select{min-height:42px;min-width:100px;padding:8px 34px 8px 12px;border:1px solid #9ebacb;border-radius:9px;color:#103c52;background:#f8fcff;font:inherit;font-weight:850;cursor:pointer}
+.duo-section .duo-copy .duo-calc-note{font-size:14px;font-weight:600;line-height:1.6;color:#466273;margin:8px 0 0}
+.duo-actions .duo-calc-link{background:#185b88;color:#fff;border-color:#185b88;box-shadow:0 7px 16px #12466427}
+.duo-actions .duo-calc-link:hover,.duo-model-calc:hover{background:#103f64;border-color:#103f64;color:#fff}
+.duo-model-calc{display:flex;align-items:center;justify-content:center;text-align:center;margin-top:20px;padding:13px 12px;min-height:48px;border-radius:11px;border:1px solid #185b88;background:#185b88;color:#fff;text-decoration:none;font-size:16px;font-weight:850;transition:background .15s}
+.duo-page :is(.duo-calc-link,.duo-model-calc,.duo-calc-carrier select):focus-visible{outline:3px solid #087b76;outline-offset:3px}
+@media(max-width:640px){
+ .duo-actions .duo-calc-link{grid-column:1/-1}
+ .duo-calc-carrier{width:100%;justify-content:space-between}
+ .duo-section .duo-copy .duo-calc-note{font-size:14px}
+ .duo-model-calc{font-size:16px}
+}
