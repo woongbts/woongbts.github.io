@@ -22,7 +22,9 @@ const landingLinks=[...page.matchAll(/data-duo-calc="([^"]+)"/g)].map(m=>m[1]);
 assert.deepEqual(landingLinks,['256GB','256GB','512GB','1TB'],'hero and every capacity have calculator links');
 assert.match(page,/아이폰 듀오 요금 계산하기/,'prominent calculator CTA is present');
 const makeUrl=context.window.WoongbiDuoPreorder.buildCalculatorUrl;
+assert.match(page,/<option value="SKT">SKT<\/option>/,'SKT selectable on landing');
 for(const [carrier,plan,ids] of [
+  ['SKT','SKT-XP-969',{'256GB':'SKT-XD-3053','512GB':'SKT-XD-3056','1TB':'SKT-XD-3059'}],
   ['KT','KT-XP-2605',{'256GB':'KT-XD-3054','512GB':'KT-XD-3057','1TB':'KT-XD-3060'}],
   ['LGU+','LG-XP-2512',{'256GB':'LG-XD-3055','512GB':'LG-XD-3058','1TB':'LG-XD-3061'}]
 ]){
@@ -34,7 +36,7 @@ for(const [carrier,plan,ids] of [
       assert.equal(url.searchParams.get(key),val,carrier+' '+capacity+' '+key);
   }
 }
-assert.throws(()=>makeUrl('SKT','256GB'),'no fabricated SKT device');
+
 assert.throws(()=>makeUrl('KT','2TB'),'preorder page only advertises 256GB, 512GB and 1TB');
 const initialHref=page.match(/data-duo-calc="256GB" href="([^"]+)"/)?.[1];
 assert.ok(initialHref?.includes('KT-XD-3054'),'calculator remains functional before JS hydration');
@@ -48,6 +50,10 @@ assert.ok(initialHref?.includes('KT-XD-3054'),'calculator remains functional bef
  const ctx={window:{},document:doc,Date,URLSearchParams};
  vm.createContext(ctx);vm.runInContext(source,ctx);boot();
  assert.ok(cards[2].href.includes('KT-XD-3060'));
+ nodes['duo-calc-carrier'].value='SKT';changed();
+ assert.ok(cards[0].href.includes('SKT-XD-3053'));
+ assert.ok(cards[1].href.includes('SKT-XD-3056'));
+ assert.ok(cards[2].href.includes('SKT-XD-3059'));
  nodes['duo-calc-carrier'].value='LGU+';changed();
  assert.ok(cards[0].href.includes('LG-XD-3055'));
  assert.ok(cards[1].href.includes('LG-XD-3058'));
