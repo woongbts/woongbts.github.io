@@ -354,6 +354,7 @@ function assert(condition, message) {
   assert(Number((await page.locator('#card-fee').textContent()).replace(/[^0-9]/g,''))===Math.max(0,changedMonthly-17000),'계약기간 변경 시 같은 카드로 다시 계산해야 합니다.');
   await page.locator('#rental-card-select').selectOption('');
   assert(Number((await page.locator('#card-fee').textContent()).replace(/[^0-9]/g,''))===changedMonthly,'미적용 선택 시 기본 렌탈료로 돌아가야 합니다.');
+  await page.locator('#affiliate-card-fold:not([open]) > summary').click();
   await page.locator('.rental-card-shortcut').nth(1).click();
   assert(await page.locator('#rental-card-select').inputValue()==='마이 코웨이 하나카드','하단 카드 버튼과 계산기 선택이 연결돼야 합니다.');
   await page.locator('#rental-card-tier').selectOption('basic-0');
