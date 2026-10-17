@@ -1,54 +1,18 @@
 {
-  "checked_at": "2026-10-17T15:55:01+09:00",
+  "checked_at": "2026-10-17T19:41:15+09:00",
   "source": "https://www.xeronote.co.kr",
   "result": "validated",
   "counts": {
-    "devices": 134,
+    "devices": 138,
     "plans": 570,
     "supports": 49
   },
   "devices_by_carrier": {
-    "SKT": 44,
+    "SKT": 48,
     "KT": 45,
     "LGU+": 45
   },
   "deferred_devices": [
-    {
-      "carrier": "SKT",
-      "source_id": "3059",
-      "name": "iPhone Duo 1TB",
-      "model_code": "IP_DUO_1TW",
-      "release_date": "2026-10-23",
-      "retail_price": 4191000,
-      "reason": "not_released_yet"
-    },
-    {
-      "carrier": "SKT",
-      "source_id": "3053",
-      "name": "iPhone Duo 256GB",
-      "model_code": "IP_DUO_256GW",
-      "release_date": "2026-10-23",
-      "retail_price": 3300000,
-      "reason": "not_released_yet"
-    },
-    {
-      "carrier": "SKT",
-      "source_id": "3062",
-      "name": "iPhone Duo 2TB",
-      "model_code": "IP_DUO_2TW",
-      "release_date": "2026-10-23",
-      "retail_price": 5093000,
-      "reason": "not_released_yet"
-    },
-    {
-      "carrier": "SKT",
-      "source_id": "3056",
-      "name": "iPhone Duo 512GB",
-      "model_code": "IP_DUO_512GW",
-      "release_date": "2026-10-23",
-      "retail_price": 3597000,
-      "reason": "not_released_yet"
-    },
     {
       "carrier": "SKT",
       "source_id": "1458",
@@ -104,6 +68,6 @@
       "reason": "invalid_release_date"
     }
   ],
-  "run_id": "39011527852",
+  "run_id": "39025677203",
   "unverified_subsidy_entries_skipped": 42
 }

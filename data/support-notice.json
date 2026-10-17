@@ -41,9 +41,9 @@
   "refresh_change_count": 0,
   "notice_total_count": 0,
   "support_amount_change_count": 0,
-  "support_entry_added_count": 0,
+  "support_entry_added_count": 1092,
   "support_entry_removed_count": 0,
-  "support_delta_count": 0,
-  "refresh_run_id": "39011527852",
-  "checked_at": "2026-10-17T15:55:03+09:00"
+  "support_delta_count": 1092,
+  "refresh_run_id": "39025677203",
+  "checked_at": "2026-10-17T19:41:16+09:00"
 }
