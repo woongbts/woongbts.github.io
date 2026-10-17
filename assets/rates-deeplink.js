@@ -63,8 +63,43 @@
   function restoreMobileDirect(){
     if(requested!=='mobile'||params.get('purpose')||params.get('mode')!=='direct')return;
     const brand=params.get('brand');
+    const requestedDevice=params.get('d'),requestedPlan=params.get('p');
     waitFor(()=>document.querySelector('[data-mobile-mode="direct"]'),mode=>{
-      mode.click();
+      if(!mode.classList.contains('active'))mode.click();
+      // The calculator's own deep-link handler already restores the device and
+      // plan when data is ready. Clicking a brand tab *afterwards* would redraw
+      // the device picker and clear both values, leaving the quote as "—".
+      // Reconcile the exact selected device/plan without resetting the brand.
+      if(requestedDevice&&requestedPlan){
+        const restoreQuote=()=>{
+          const device=document.getElementById('device-select');
+          const plan=document.getElementById('plan-select');
+          if(!device||!plan)return false;
+          const carrier=params.get('c'),join=params.get('j');
+          if(['SKT','KT','LGU+'].includes(carrier)){
+            const select=document.getElementById('carrier');
+            if(select&&select.value!==carrier)setSelect('carrier',carrier);
+          }
+          if(['번호이동','기기변경','신규가입'].includes(join)){
+            const select=document.getElementById('join-type');
+            if(select&&select.value!==join)setSelect('join-type',join);
+          }
+          if(![...device.options].some(option=>option.value===requestedDevice))return false;
+          if(device.value!==requestedDevice)setSelect('device-select',requestedDevice);
+          if(![...plan.options].some(option=>option.value===requestedPlan))return false;
+          if(plan.value!==requestedPlan)setSelect('plan-select',requestedPlan);
+          const method=params.get('m'),months=params.get('mo'),welfare=params.get('w');
+          if(['support','contract'].includes(method)&&document.getElementById('discount-method')?.value!==method)
+            setSelect('discount-method',method);
+          if(months&&document.getElementById('installment-months')?.value!==months)
+            setSelect('installment-months',months);
+          if(welfare&&document.getElementById('welfare-type')?.value!==welfare)
+            setSelect('welfare-type',welfare);
+          return device.value===requestedDevice&&plan.value===requestedPlan;
+        };
+        waitFor(restoreQuote,()=>setTimeout(()=>document.getElementById('mobile-form')?.scrollIntoView({behavior:'auto',block:'start'}),100),120);
+        return;
+      }
       if(['apple','samsung','other','all'].includes(brand)){
         const applyBrand=()=>{
           document.querySelector('[data-device-brand="'+brand+'"]')?.click();
