@@ -3,8 +3,9 @@
   const won = n => Math.round(n).toLocaleString('ko-KR')+'원';
   function estimate(card, tier, quote, options={}) {
     const unavailable = reason => ({available:false, reason});
-    if(!card || !tier) return unavailable('카드와 전월실적 구간을 선택해 주세요.');
+    if(!card) return unavailable('카드를 선택해 주세요.');
     if(card.category!=='POST') return unavailable('단말기 카드 할부가 필요한 상품입니다. 아래 할부금액·기간·수수료 조건을 확인해 주세요.');
+    if(!tier) return unavailable('전월실적 구간을 선택해 주세요.');
     if(!quote?.known || !Number.isFinite(quote.monthly) || !Number.isFinite(quote.service)) return unavailable('기종·요금제를 선택하고 월 납부액 계산을 완료해 주세요.');
     if(!options.confirmed) return unavailable('아래 카드별 조건을 확인하고 조건 충족 여부를 선택해 주세요.');
     if(!tier.verified || card.calculation==='details') return unavailable('이 카드는 별도 조건이 있어 원문 혜택을 먼저 확인해 주세요.');
@@ -88,7 +89,7 @@
   function renderResult(){
     const card=selectedCard();if(!card)return;
     result=estimate(card,selectedTier(),quote(),{month:Number(month.value),confirmed:confirmed.checked});
-    const box=$('mobile-card-result');box.hidden=false;
+    const box=$('mobile-card-result');box.hidden=card.category!=='POST';
     $('mobile-card-result-status').textContent=result.available?'선택한 카드 조건을 충족한 경우의 예상 월 부담입니다.':result.reason;
     $('mobile-card-before').textContent=quote()?.known?won(quote().monthly):'—';
     $('mobile-card-discount').textContent=result.available?'−'+won(result.discount):'—';
