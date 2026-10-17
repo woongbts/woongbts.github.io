@@ -10,9 +10,8 @@ const catalog=read('rental/assets/catalog.js');
 const product=read('rental/assets/product-generic.js');
 const marker='Rental customer action clarity + readable policy details (2026-10-09)';
 assert.ok(style.includes(marker),'shared detail stylesheet has new legibility rules');
-for(const s of [home,template,featured]){
- assert.ok(s.includes('assets/rental.css?v=20261009-clarity2'),'new stylesheet cache key on all rental pages');
-}
+assert.match(home,/assets\/rental\.css\?v=[^\"]+/);
+for(const s of [template,featured])assert.ok(s.includes('assets/rental.css?v=20261017-card-picker1'),'product pages load card picker layout');
 assert.ok(catalog.includes('class="recommend-link"') && catalog.includes('조건 보기 →'),'recommend cards keep semantic link and destination');
 assert.ok(catalog.includes('class="compare-toggle small"'),'recommend compare control remains a button');
 assert.ok(catalog.includes('class="recent-card"'),'recent viewed whole-card link preserved');

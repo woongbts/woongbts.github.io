@@ -9,6 +9,7 @@ on:
       - 'assets/conversion-tracker.min.js'
       - 'assets/site-analytics.min.js'
       - 'scripts/rental-mobile-smoke.cjs'
+      - '.github/scripts/test_rental_card_calculator.cjs'
       - '.github/workflows/rental-mobile-smoke.yml'
   workflow_dispatch:
 
@@ -24,6 +25,10 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Validate optional card calculation
+        run: |
+          node --check rental/assets/product-generic.js
+          node .github/scripts/test_rental_card_calculator.cjs
       - name: Install Playwright
         run: |
           mkdir -p /tmp/woongbi-playwright

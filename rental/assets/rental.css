@@ -1370,3 +1370,20 @@
   .product-page #affiliate-card-fold .affiliate-card-fold-action{width:100%;justify-content:space-between}
   .product-page .product-alternative-card{grid-template-columns:80px minmax(0,1fr);gap:12px}
 }
+
+/* Optional card scenario stays separate from the rental contract amount. */
+.rental-card-calculator{grid-column:1/-1;min-width:0;display:block;width:100%;padding-bottom:18px;margin-bottom:18px;border-bottom:1px solid #c9dcdf}
+.rental-card-calculator>strong{display:block;font-size:21px;color:#123f50;margin-bottom:14px}
+.rental-card-calculator label:not(.rental-card-confirm){display:block;font-size:17px;font-weight:850;margin:14px 0 7px;color:#244e59}
+.rental-card-calculator select,.rental-card-calculator input[type=number]{display:block;box-sizing:border-box;width:100%;max-width:100%;min-width:0;min-height:52px;padding:12px;border:1px solid #a8cbd0;border-radius:10px;background:#fff;color:#143d49;font:inherit;font-size:17px;font-weight:800;white-space:nowrap;text-overflow:ellipsis}
+.rental-card-calculator p{font-size:16px!important;line-height:1.75!important;color:#345b65!important;margin:12px 0!important;overflow-wrap:anywhere}
+.rental-card-confirm{display:flex!important;align-items:flex-start;gap:10px;margin:16px 0;padding:14px;background:#fff4d9;border-radius:10px;font-size:16px!important;line-height:1.7;font-weight:750;color:#684509}
+.rental-card-confirm input{flex:0 0 22px;width:22px;height:22px;margin-top:3px;accent-color:#087d72}
+.rental-card-shortcut{margin-top:14px;padding:12px;border:1px solid #a6c9c5;border-radius:10px;background:#e6f4f1;color:#08665e;font:inherit;font-size:16px;font-weight:850;cursor:pointer}
+.rental-card-calculator [hidden]{display:none!important}
+
+.quote-card-burden[hidden]{display:none!important}
+
+#generic-card-row{scroll-margin-top:90px}
+#rental-card-calculator .rental-card-confirm span{font-size:16px!important;line-height:1.7}
+#generic-card-row #card-fee{font-size:32px!important;font-weight:950;line-height:1.3}
