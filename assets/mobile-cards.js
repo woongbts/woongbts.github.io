@@ -48,6 +48,7 @@
   const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const safeUrl=u=>{try{const x=new URL(u);return x.protocol==='https:'?x.href:''}catch{return ''}};
   let payload=null,carrier='',context=null,selected='',tierId='',result=null,restored=false;
+  const initialParams=new URLSearchParams(location.search);
   const type=$('mobile-card-type'),select=$('mobile-card-select'),tierSelect=$('mobile-card-tier');
   const month=$('mobile-card-month'),confirmed=$('mobile-card-confirmed');
   const selectedCard=()=>payload?.cards.find(c=>c.id===selected&&c.carrier===carrier)||null;
@@ -81,6 +82,7 @@
     $('mobile-card-control').hidden=card.category!=='POST'||!tiers.length||card.calculation==='details';
     $('mobile-card-light-note').hidden=card.category==='POST';
     $('mobile-card-tier-list').innerHTML=tiers.map(t=>`<div><span>${esc(t.label)}</span><strong>월 ${card.calculation.includes('percent')?'최대 ':''}${won(t.amount)}</strong></div>`).join('');
+    $('mobile-card-tier-list').hidden=card.category==='POST'&&card.calculation!=='details';
     renderResult();
   }
   function renderResult(){
@@ -96,6 +98,7 @@
     syncUrl();
   }
   function appendUrl(url){
+    if(!restored)return url;
     for(const key of ['ccard','ctier','cmonth','celigible'])url.searchParams.delete(key);
     if(selectedCard()){
       url.searchParams.set('ccard',selected);if(tierId)url.searchParams.set('ctier',tierId);
@@ -116,6 +119,15 @@
     return lines;
   }
   window.WoongbiMobileCards={estimate,appendUrl,quoteLines};
+  function restoreSelection(){
+    // Card data and the core calculator load independently. Wait for the actual
+    // handset and plan before validating the shared carrier and card identity.
+    if(restored||!payload||!$('device-select')?.value||!$('plan-select')?.value)return;
+    restored=true;
+    const card=payload.cards.find(c=>c.id===initialParams.get('ccard')&&c.carrier===carrier);
+    if(card){selected=card.id;type.value=card.category;tierId=initialParams.get('ctier')||'';month.value=initialParams.get('cmonth')||'1';confirmed.checked=initialParams.get('celigible')==='1'}
+    updateOptions();
+  }
   function updateContext(){
     const next=$('carrier')?.value||'';
     const signature=[$('device-select')?.value,$('plan-select')?.value,next].join('|');
@@ -123,9 +135,10 @@
     context=signature;
     if(next!==carrier){carrier=next;selected='';resetConditions();updateOptions()}
     else renderResult();
+    restoreSelection();
   }
-  type.addEventListener('change',()=>{selected='';resetConditions();updateOptions();syncUrl()});
-  select.addEventListener('change',()=>{selected=select.value;resetConditions();renderCard();syncUrl()});
+  type.addEventListener('change',()=>{restored=true;selected='';resetConditions();updateOptions();syncUrl()});
+  select.addEventListener('change',()=>{restored=true;selected=select.value;resetConditions();renderCard();syncUrl()});
   tierSelect.addEventListener('change',()=>{tierId=tierSelect.value;confirmed.checked=false;renderResult()});
   month.addEventListener('input',renderResult);confirmed.addEventListener('change',renderResult);
   ['carrier','join-type','device-select','plan-select','discount-method','installment-months','welfare-type'].forEach(id=>$(id)?.addEventListener('change',()=>{updateContext();syncUrl()}));
@@ -134,8 +147,6 @@
   fetch('data/mobile-affiliate-cards.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('cards');return r.json()}).then(data=>{
     if(data.schemaVersion!==1||!Array.isArray(data.cards))throw Error('schema');
     payload=data;carrier=$('carrier').value;
-    const params=new URLSearchParams(location.search),card=payload.cards.find(c=>c.id===params.get('ccard')&&c.carrier===carrier);
-    if(card){selected=card.id;type.value=card.category;tierId=params.get('ctier')||'';month.value=params.get('cmonth')||'1';confirmed.checked=params.get('celigible')==='1'}
-    restored=true;updateOptions();
+    updateOptions();restoreSelection();
   }).catch(()=>{$('mobile-card-count').textContent='카드 정보를 불러오지 못했습니다. 새로고침 후 다시 확인해 주세요.';select.disabled=true});
 })();
