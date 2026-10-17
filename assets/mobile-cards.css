@@ -3,7 +3,7 @@
 .mobile-affiliate-cards>p,.mobile-affiliate-cards small{font-size:15px;line-height:1.65;color:#456571}
 .mobile-affiliate-cards label{display:block;margin:15px 0;font-size:16px;font-weight:850;line-height:1.5}
 .mobile-affiliate-cards select,.mobile-affiliate-cards input[type=number]{box-sizing:border-box;width:100%;max-width:100%;min-height:50px;padding:11px;border:1px solid #a7c6ce;border-radius:10px;font:inherit;font-size:16px;color:#153f4c;background:#fff}
-.mobile-affiliate-cards select{white-space:normal}
+.mobile-affiliate-cards select{white-space:nowrap!important;text-overflow:ellipsis}
 .mobile-card-identity{display:flex;align-items:center;gap:18px;margin:20px 0;padding:17px;border-radius:14px;background:#fff;border:1px solid #d4e4e4}
 .mobile-card-identity img{width:130px;height:100px;object-fit:contain;flex-shrink:0}
 .mobile-card-identity strong{display:block;font-size:19px;line-height:1.5;overflow-wrap:anywhere}

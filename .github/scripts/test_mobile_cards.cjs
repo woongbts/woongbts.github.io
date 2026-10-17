@@ -47,7 +47,7 @@ assert.equal(estimate(card('154'),promo,quote,{...options,today:'2099-12-01'}).a
 assert.equal(estimate(card('154'),promo,quote,{...options,month:25}).available,false,'promotion term matters');
 assert.equal(estimate(card('243'),card('243').tiers.find(t=>t.minSpend===200000),quote,options).available,false,'conflicting source row cannot become a discount');
 const html=fs.readFileSync('rates.html','utf8'),source=fs.readFileSync('src/rates.js','utf8');
-assert.ok(html.includes('mobile-card-title')&&html.includes('mobile-cards.js?v=20261017-cards5'));
+assert.ok(html.includes('mobile-card-title')&&html.includes('mobile-cards.js?v=20261017-cards6'));
 assert.ok(source.includes('WoongbiMobileCards?.quoteLines')&&source.includes('WoongbiMobileCards?.appendUrl'),'card scenario survives copy and share');
 console.log('Telecom cards: three carriers, '+data.cards.length+' card variants, images, caps, percentage rules, eligibility, expiry, financing separation and quote handoff PASS');
 // Reproduce a cold shared link: card JSON arrives before core device/plan data.
@@ -73,7 +73,7 @@ async function testColdSharedLink(){
  field('carrier').value='KT';field('device-select').value='device';field('plan-select').value='plan';
  field('monthly-total').textContent='60,000원';current=quote;events['woongbi:quote-ready']();
  assert.equal(field('mobile-card-select').value,selected.id);
- assert.ok(field('mobile-card-select').options.some(o=>o.value===selected.id&&o.text===selected.name+' · '+benefitSummary(selected)),'actual dropdown includes amount overview');
+ assert.ok(field('mobile-card-select').options.some(o=>o.value===selected.id&&o.text===benefitSummary(selected)+' · '+selected.name),'actual dropdown includes amount overview');
  assert.equal(field('mobile-card-tier').value,tier.id);
  assert.equal(field('mobile-card-confirmed').checked,true);
  assert.ok(window.WoongbiMobileCards.quoteLines().some(line=>line.includes(selected.name)));

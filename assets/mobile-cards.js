@@ -69,7 +69,7 @@
   function resetConditions(){tierId='';confirmed.checked=false;month.value='1'}
   function updateOptions(){
     const cards=(payload?.cards||[]).filter(c=>c.carrier===carrier&&c.category===type.value);
-    setOptions(select,'카드 미적용 · 기본 견적 유지',cards.map(c=>[`${c.name} · ${benefitSummary(c)}`,c.id]));
+    setOptions(select,'카드 미적용 · 기본 견적 유지',cards.map(c=>[`${benefitSummary(c)} · ${c.name}`,c.id]));
     select.value=cards.some(c=>c.id===selected)?selected:'';selected=select.value;
     $('mobile-card-count').textContent=payload?`${carrier} ${cards.length}개 · 제로노트 확인 ${payload.checkedAt}`:'카드 정보를 불러오는 중입니다.';
     renderCard();
