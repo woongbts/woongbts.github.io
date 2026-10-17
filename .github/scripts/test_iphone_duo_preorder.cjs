@@ -16,6 +16,43 @@ assert.match(page,/<h1 id="duo-title">iPhone Duo/);
 assert.doesNotMatch(source,/localStorage|sessionStorage/,'no personal data browser storage');
 const context={window:{},document:{readyState:'loading',addEventListener(){}},Date,URLSearchParams};
 vm.createContext(context);vm.runInContext(source,context);
+// All links must open the *selected* Duo model/volume in the existing live calculator.
+assert.match(page, /id="duo-calc-carrier"/,'Duo calculator carrier picker exists');
+const landingLinks=[...page.matchAll(/data-duo-calc="([^"]+)"/g)].map(m=>m[1]);
+assert.deepEqual(landingLinks,['256GB','256GB','512GB','1TB'],'hero and every capacity have calculator links');
+assert.match(page,/아이폰 듀오 요금 계산하기/,'prominent calculator CTA is present');
+const makeUrl=context.window.WoongbiDuoPreorder.buildCalculatorUrl;
+for(const [carrier,plan,ids] of [
+  ['KT','KT-XP-2605',{'256GB':'KT-XD-3054','512GB':'KT-XD-3057','1TB':'KT-XD-3060'}],
+  ['LGU+','LG-XP-2512',{'256GB':'LG-XD-3055','512GB':'LG-XD-3058','1TB':'LG-XD-3061'}]
+]){
+  for(const [capacity,device] of Object.entries(ids)){
+    const url=new URL('https://woongbts.github.io'+makeUrl(carrier,capacity));
+    assert.equal(url.pathname,'/rates.html');
+    for(const [key,val] of Object.entries({tab:'mobile',mode:'direct',brand:'apple',c:carrier,
+      j:'번호이동',d:device,p:plan,m:'contract',mo:'24',w:'none'}))
+      assert.equal(url.searchParams.get(key),val,carrier+' '+capacity+' '+key);
+  }
+}
+assert.throws(()=>makeUrl('SKT','256GB'),'no fabricated SKT device');
+assert.throws(()=>makeUrl('KT','2TB'),'preorder page only advertises 256GB, 512GB and 1TB');
+const initialHref=page.match(/data-duo-calc="256GB" href="([^"]+)"/)?.[1];
+assert.ok(initialHref?.includes('KT-XD-3054'),'calculator remains functional before JS hydration');
+{
+ let boot,changed;
+ const nodes={'duo-calc-carrier':{value:'KT',addEventListener:(type,callback)=>{if(type==='change')changed=callback}}};
+ const cards=['256GB','512GB','1TB'].map(capacity=>({dataset:{duoCalc:capacity},setAttribute(){}}));
+ const doc={readyState:'loading',addEventListener:(name,cb)=>{if(name==='DOMContentLoaded')boot=cb},
+   getElementById:id=>nodes[id]||null,
+   querySelectorAll:selector=>selector==='[data-duo-calc]'?cards:[]};
+ const ctx={window:{},document:doc,Date,URLSearchParams};
+ vm.createContext(ctx);vm.runInContext(source,ctx);boot();
+ assert.ok(cards[2].href.includes('KT-XD-3060'));
+ nodes['duo-calc-carrier'].value='LGU+';changed();
+ assert.ok(cards[0].href.includes('LG-XD-3055'));
+ assert.ok(cards[1].href.includes('LG-XD-3058'));
+ assert.ok(cards[2].href.includes('LG-XD-3061'));
+}
 const build=context.window.WoongbiDuoPreorder.buildPayload;
 const values={name:'검수테스트',phone:'010-0000-0000',carrier:'KT',model:'512GB',color:'나이트 스카이',inquiry:'평일 오후 연락 희망',consent:'on'};
 const payload=build(values,'POLICY-TEST');
