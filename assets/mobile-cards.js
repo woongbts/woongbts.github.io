@@ -22,17 +22,19 @@
     let discount=Number(tier.amount)||0;
     if(card.calculation==='family-percent'){
       const rate=month<=24?.25:.15;
-      const cap=tier.minSpend>=700000?25000:17000;
+      const baseTier=card.tiers.find(t=>!t.promotion&&t.minSpend===tier.minSpend);
+      if(!baseTier)return unavailable('비율 할인한도를 원문에서 확인해 주세요.');
+      const cap=baseTier.amount;
       discount=Math.min(Math.floor(service*rate),cap);
       if(tier.promotion){
-        if(service<68000) return unavailable('이 프로모션은 통신요금 68,000원 이상 조건입니다. 기본 구간으로 비교해 주세요.');
-        discount=Math.min(discount+7000,tier.amount);
+        if(!Number.isFinite(card.promotionMinBill))return unavailable('프로모션 최소 통신요금 조건을 원문에서 확인해 주세요.');
+        if(service<card.promotionMinBill) return unavailable(`이 프로모션은 통신요금 ${won(card.promotionMinBill)} 이상 조건입니다. 기본 구간으로 비교해 주세요.`);
+        discount=Math.min(discount+Math.max(0,tier.amount-cap),tier.amount);
       }
     } else if(card.calculation==='kbank-percent'){
-      const spend=tier.minSpend;
-      const rate=spend>=1000000?.2:spend>=500000?.1:.05;
-      if(service<(spend>=1000000?40000:100000)) return unavailable('해당 구간의 최소 통신요금 조건을 충족하지 않습니다.');
-      discount=Math.min(Math.floor(service*rate),tier.amount);
+      if(!Number.isFinite(tier.rate)||!Number.isFinite(tier.minBill))return unavailable('비율 할인 및 최소 통신요금 조건을 원문에서 확인해 주세요.');
+      if(service<tier.minBill) return unavailable('해당 구간의 최소 통신요금 조건을 충족하지 않습니다.');
+      discount=Math.min(Math.floor(service*tier.rate),tier.amount);
     } else if(card.calculation==='ibk-percent') discount=Math.min(Math.floor(service*.05),50000);
     if(card.id==='74'&&service<10000) return unavailable('이 카드는 통신료 10,000원 이상 조건입니다.');
     discount=Math.max(0,Math.min(discount,service,quote.monthly));

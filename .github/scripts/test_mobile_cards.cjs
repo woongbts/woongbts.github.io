@@ -3,12 +3,12 @@ const fs=require('node:fs'),assert=require('node:assert/strict');
 const {estimate}=require('../../assets/mobile-cards.js');
 const data=JSON.parse(fs.readFileSync('data/mobile-affiliate-cards.json','utf8'));
 const quote={known:true,monthly:60000,service:33000};
-const options={confirmed:true,month:1,today:data.checkedAt};
+const options={confirmed:true,month:1,today:'2026-10-17'};
 // Model fixtures stay independent of current card IDs, removals and live policy amounts.
 const fixtureCards=[
- {id:'154',category:'POST',calculation:'fixed',checkedAt:data.checkedAt,promotion:'new-card promotion',promotionDeadline:'2026-10-31',promotionMonths:24,tiers:[{id:'a',minSpend:400000,amount:8000,verified:true},{id:'p',minSpend:400000,amount:28000,promotion:true,verified:true}]},
+ {id:'154',category:'POST',calculation:'fixed',checkedAt:'2026-10-17',promotion:'new-card promotion',promotionDeadline:'2026-10-31',promotionMonths:24,tiers:[{id:'a',minSpend:400000,amount:8000,verified:true},{id:'p',minSpend:400000,amount:28000,promotion:true,verified:true}]},
  {id:'80',category:'POST',calculation:'family-percent',tiers:[{id:'a',minSpend:300000,amount:17000,verified:true}]},
- {id:'126',category:'POST',calculation:'kbank-percent',tiers:[{id:'a',minSpend:200000,amount:5000,verified:true}]},
+ {id:'126',category:'POST',calculation:'kbank-percent',tiers:[{id:'a',minSpend:200000,amount:5000,rate:.05,minBill:100000,verified:true}]},
  {id:'391',category:'POST',calculation:'ibk-percent',tiers:[{id:'a',minSpend:1000000,amount:50000,verified:true}]},
  {id:'376',category:'PRE',calculation:'fixed',tiers:[{id:'a',minSpend:800000,amount:25000,verified:true}]},
  {id:'186',category:'POST',calculation:'fixed',basicMonths:36,tiers:[{id:'a',minSpend:1000000,amount:22000,verified:true}]},
@@ -35,6 +35,8 @@ assert.equal(estimate(card('391'),basic('391'),quote,options).discount,1650,'IBK
 assert.equal(estimate(card('376'),basic('376'),quote,options).available,false,'card financing must not be subtracted from carrier financing');
 assert.equal(estimate(card('186'),basic('186'),quote,{...options,month:37}).available,false,'limited term cannot be extrapolated forever');
 const promo=card('154').tiers.find(t=>t.promotion);
+assert.equal(estimate(card('154'),promo,quote,options).discount,28000,'eligible promotion has its own amount');
+assert.equal(estimate(card('126'),basic('126'),{known:true,monthly:130000,service:100000},options).discount,5000,'cashback percentage uses actual telecom bill');
 assert.equal(estimate(card('154'),promo,quote,{...options,today:'2099-12-01'}).available,false,'stale promotions must stop');
 assert.equal(estimate(card('154'),promo,quote,{...options,month:25}).available,false,'promotion term matters');
 assert.equal(estimate(card('243'),card('243').tiers.find(t=>t.minSpend===200000),quote,options).available,false,'conflicting source row cannot become a discount');

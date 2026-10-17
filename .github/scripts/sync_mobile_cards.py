@@ -110,6 +110,13 @@ def normalize(detail, carrier, checked):
     if deadlines:
         y,m,d = map(int, deadlines[0]); y += 2000 if y<100 else 0
         expiry = f'{y:04}-{m:02}-{d:02}'
+    promo_bill=re.search(r'통신\s*(?:요금|료)\s*([\d,]+)\s*원\s*이상',promo)
+    if calculation=='kbank-percent':
+        for tier in tiers:
+            for line in benefit.splitlines():
+                m=re.search(r'전월실적\s*(\d+)만원\s*이상\s*&\s*통신요금\s*(\d+)만원\s*이상시\s*통신요금의\s*(\d+)%',line)
+                if m and int(m[1])*10000==tier['minSpend']:
+                    tier['rate']=int(m[3])/100;tier['minBill']=int(m[2])*10000
     return {
         'id': idx, 'carrier': carrier, 'name': clean(detail['card_name']),
         'category': detail['category'], 'type': detail['card_type'],
@@ -123,6 +130,7 @@ def normalize(detail, carrier, checked):
         'tiers': tiers, 'calculation': calculation,
         'basicMonths': period_months, 'promotionMonths': promo_months,
         'promotionDeadline': expiry, 'checkedAt': checked,
+        'promotionMinBill': int(promo_bill[1].replace(',','')) if promo_bill else None,
         'installments': [{'months': integer(d.get('installment_month')),
                           'interest': str(d.get('interest') or '')} for d in detail.get('div') or []],
         'sourceUrl': BASE+'/api/data/get_card_info.php?card_idx='+idx,
