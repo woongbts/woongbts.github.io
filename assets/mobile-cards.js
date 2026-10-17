@@ -1,6 +1,16 @@
 (() => {
   'use strict';
   const won = n => Math.round(n).toLocaleString('ko-KR')+'원';
+  function benefitSummary(card) {
+    if(card.calculation==='details')return '별도 조건 확인';
+    // Keep time-limited promotions and unverified source rows out of the overview.
+    const amounts=card.tiers.filter(t=>t.verified&&!t.promotion&&Number.isFinite(t.minSpend)&&Number.isFinite(t.amount)&&t.amount>0).map(t=>t.amount);
+    if(!amounts.length)return '혜택 조건 확인';
+    const low=Math.min(...amounts),high=Math.max(...amounts);
+    if(card.calculation.includes('percent'))return `월 최대 ${won(high)} 한도`;
+    const range=low===high?won(high):`${low.toLocaleString('ko-KR')}~${won(high)}`;
+    return `월 ${range} ${card.category==='PRE'?'혜택 · 할부형':'할인'}`;
+  }
   function estimate(card, tier, quote, options={}) {
     const unavailable = reason => ({available:false, reason});
     if(!card) return unavailable('카드를 선택해 주세요.');
@@ -41,7 +51,7 @@
     discount=Math.max(0,Math.min(discount,service,quote.monthly));
     return {available:true, discount, before:quote.monthly, after:Math.max(0,quote.monthly-discount)};
   }
-  if(typeof module!=='undefined'&&module.exports) module.exports={estimate};
+  if(typeof module!=='undefined'&&module.exports) module.exports={estimate,benefitSummary};
   if(typeof document==='undefined') return;
   const $=id=>document.getElementById(id);
   const section=$('mobile-affiliate-cards');
@@ -59,7 +69,7 @@
   function resetConditions(){tierId='';confirmed.checked=false;month.value='1'}
   function updateOptions(){
     const cards=(payload?.cards||[]).filter(c=>c.carrier===carrier&&c.category===type.value);
-    setOptions(select,'카드 미적용 · 기본 견적 유지',cards.map(c=>[c.name,c.id]));
+    setOptions(select,'카드 미적용 · 기본 견적 유지',cards.map(c=>[`${c.name} · ${benefitSummary(c)}`,c.id]));
     select.value=cards.some(c=>c.id===selected)?selected:'';selected=select.value;
     $('mobile-card-count').textContent=payload?`${carrier} ${cards.length}개 · 제로노트 확인 ${payload.checkedAt}`:'카드 정보를 불러오는 중입니다.';
     renderCard();
