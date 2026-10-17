@@ -1,0 +1,77 @@
+name: Monthly telecom affiliate cards
+
+on:
+  schedule:
+    - cron: '10 2 5 * *' # monthly 5th, 11:10 Asia/Seoul; GitHub may run late
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/scripts/sync_mobile_cards.py'
+      - '.github/workflows/monthly-mobile-cards.yml'
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: monthly-telecom-affiliate-cards
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - name: Test complete-snapshot and card calculation safeguards
+        run: |
+          python3 .github/scripts/test_mobile_cards.py
+          node .github/scripts/test_mobile_cards.cjs
+      - name: Refresh all three carriers and card images from Zeronote
+        run: python3 .github/scripts/sync_mobile_cards.py
+      - name: Validate imported data and calculator
+        run: |
+          node .github/scripts/test_mobile_cards.cjs
+          node --check assets/mobile-cards.js
+          python3 .github/scripts/build_rates_asset.py --check
+          python3 .github/scripts/validate_site.py
+      - name: Commit complete verified snapshot
+        run: |
+          set -euo pipefail
+          git add data/mobile-affiliate-cards.json assets/mobile-cards/
+          if ! git diff --cached --quiet; then
+            git config user.name 'woongbts-card-sync'
+            git config user.email 'actions@users.noreply.github.com'
+            git commit -m "Monthly telecom cards refresh $(TZ=Asia/Seoul date +%F)"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
+          python3 - <<'PY' >> "$GITHUB_STEP_SUMMARY"
+          import json
+          x=json.load(open('data/mobile-affiliate-cards.json'))
+          print('### 통신 3사 제휴카드 갱신')
+          print('제로노트 확인일:',x['checkedAt'])
+          for carrier,count in x['counts'].items(): print('-',carrier,str(count)+'개')
+          print('전체 카드·이미지 검증 후 반영. 청구할인/카드할부 및 기본/프로모션을 구분합니다.')
+          PY
+      # GITHUB_TOKEN commits do not start another Pages build. Publish explicitly.
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'
+      - name: Publish refreshed site
+        id: deployment
+        uses: actions/deploy-pages@v4
+      - name: Preserve failure status
+        if: failure()
+        run: |
+          echo '### 제휴카드 갱신 또는 배포 실패' >> "$GITHUB_STEP_SUMMARY"
+          echo '완료로 간주하지 않습니다. 수집 실패 시 기존 데이터가 보존되며, 배포 실패 시 저장소와 게시 상태를 구분해 확인해야 합니다.' >> "$GITHUB_STEP_SUMMARY"

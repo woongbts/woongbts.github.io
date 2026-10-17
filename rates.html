@@ -27,7 +27,8 @@
   <link rel="manifest" href="/manifest.webmanifest"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="apple-mobile-web-app-title" content="웅비통신">
   <link rel="stylesheet" href="assets/rates.css?v=20261013-readability5">
   <link rel="stylesheet" href="assets/readability-20260921.css?v=20260929-2">
-<link rel="stylesheet" href="/assets/customer-polish.css?v=20260930-3"><link rel="stylesheet" href="/assets/mvno-easy.css?v=20260930-7"><link rel="stylesheet" href="/assets/store-applications.css?v=20261013-quick-kakao2"><link rel="stylesheet" href="/assets/quick-order.css?v=20261008-2"><link rel="stylesheet" href="/assets/device-browser.css?v=20261007-3"><link rel="stylesheet" href="/assets/plan-quick-tools.css?v=20261007-1"><link rel="stylesheet" href="/assets/mobile-readability-20261007.css?v=20261007-3"><link rel="stylesheet" href="/assets/readability-uplift-20261007.css?v=20261007-3"><link rel="stylesheet" href="/assets/prepaid-recommend.css?v=20261007-1"><link rel="stylesheet" href="/assets/rates-easy-journey.css?v=20261008-senior3"><link rel="stylesheet" href="/assets/store-extra-benefits.css?v=20261016-price1"><link rel="stylesheet" href="/assets/senior-a17-first.css?v=20261014-a17-unified2"></head>
+<link rel="stylesheet" href="/assets/customer-polish.css?v=20260930-3"><link rel="stylesheet" href="/assets/mvno-easy.css?v=20260930-7"><link rel="stylesheet" href="/assets/store-applications.css?v=20261013-quick-kakao2"><link rel="stylesheet" href="/assets/quick-order.css?v=20261008-2"><link rel="stylesheet" href="/assets/device-browser.css?v=20261007-3"><link rel="stylesheet" href="/assets/plan-quick-tools.css?v=20261007-1"><link rel="stylesheet" href="/assets/mobile-readability-20261007.css?v=20261007-3"><link rel="stylesheet" href="/assets/readability-uplift-20261007.css?v=20261007-3"><link rel="stylesheet" href="/assets/prepaid-recommend.css?v=20261007-1"><link rel="stylesheet" href="/assets/rates-easy-journey.css?v=20261008-senior3"><link rel="stylesheet" href="/assets/store-extra-benefits.css?v=20261016-price1"><link rel="stylesheet" href="/assets/senior-a17-first.css?v=20261014-a17-unified2">  <link rel="stylesheet" href="assets/mobile-cards.css?v=20261017-cards1">
+</head>
 <body class="rate-page">
   <header class="rate-top">
     <div class="rate-wrap rate-nav">
@@ -282,7 +283,7 @@
             <div class="rate-card rate-result" id="mobile-result">
               <span class="result-label">예상 월 납부액</span>
               <strong id="monthly-total">—</strong>
-              <p class="monthly-total-help">월 단말기 할부금 + 월 통신요금</p>
+              <p class="monthly-total-help">월 단말기 할부금 + 월 통신요금 · 제휴카드 미반영</p>
               <p class="quote-amount-note">위 금액은 매장 추가지원금·가족/인터넷 결합 미반영 예상치입니다.<br>추가 혜택 적용 여부와 최종 금액은 아래에서 확인 요청할 수 있습니다.</p>
               <section class="mobile-compare result-method-compare" id="mobile-compare" aria-live="polite">
                 <div class="compare-head"><div><strong>할인방식 바로 비교</strong><span>같은 기종·요금제에서 공시지원금과 선택약정의 월 납부액을 비교하세요.</span></div><b id="compare-best">조건을 선택해 주세요</b></div>
@@ -308,6 +309,30 @@
               </div>
               <p id="calc-summary">통신사, 가입유형, 할인방식, 기종, 요금제를 선택하면 자동으로 계산됩니다.</p>
               <div class="quote-condition-note"><strong>금액과 함께 확인해 주세요</strong><p>월 납부액은 단말기 할부금과 통신요금의 합계입니다. 할부금에는 연 5.9% 기준 이자가 포함됩니다. 선택한 복지할인은 자격 확인이 필요하며, 가족·인터넷 결합과 매장 추가지원금은 이 휴대폰 계산에 포함하지 않습니다.</p><p>요금제 유지 기간·부가서비스·재고·최종 가입 조건은 상담에서 확인해 주세요.</p></div>
+              <section class="mobile-affiliate-cards" id="mobile-affiliate-cards" aria-labelledby="mobile-card-title">
+                <h3 id="mobile-card-title">제휴카드로 더 줄일 수 있을까요?</h3>
+                <p>선택한 통신사의 카드 혜택을 비교해 보세요. 카드 발급·자동납부·전월실적 조건에 따라 청구할인 또는 캐시백이 적용됩니다.</p>
+                <small id="mobile-card-count" role="status">카드 정보를 불러오는 중입니다.</small>
+                <label>카드 할인 방식<select id="mobile-card-type"><option value="POST">통신요금 청구할인·캐시백</option><option value="PRE">단말기 카드 할부형 · 조건 비교</option></select></label>
+                <label>제휴카드<select id="mobile-card-select"><option value="">카드 미적용 · 기본 견적 유지</option></select></label>
+                <div id="mobile-card-detail" hidden>
+                  <div class="mobile-card-identity"><img id="mobile-card-image" alt="" width="160" height="110"><div><small id="mobile-card-kind"></small><strong id="mobile-card-name"></strong><small id="mobile-card-fee"></small></div></div>
+                  <p id="mobile-card-installments"></p>
+                  <div id="mobile-card-tier-list" class="mobile-card-tier-list" aria-label="카드별 혜택 구간"></div>
+                  <div id="mobile-card-control">
+                    <div class="mobile-card-controls"><label>전월실적·혜택 구간<select id="mobile-card-tier"><option value="">전월실적·혜택 구간을 선택하세요</option></select></label><label>할인 적용 회차<input id="mobile-card-month" type="number" min="1" max="120" value="1" inputmode="numeric"></label></div>
+                    <small>첫 할인 적용월은 1회차입니다. 카드별 혜택 시작일·제공기간은 아래 조건에서 확인하세요.</small>
+                    <label class="mobile-card-confirmation"><input id="mobile-card-confirmed" type="checkbox"><span>전월실적·자동납부 및 아래 카드별 조건을 충족하는 경우로 비교할게요. 프로모션은 신규발급·신청·등록기한 조건까지 충족해야 합니다.</span></label>
+                  </div>
+                  <p id="mobile-card-light-note" class="mobile-card-light-note" hidden>이 카드는 지정된 단말기 카드 할부를 이용해야 표시된 혜택을 받을 수 있습니다. 카드 할부금·기간·수수료에 따라 총 납부액이 달라지므로 기존 통신사 할부 견적에서 할인액만 차감하지 않습니다. 위 구간은 카드 할부 이용 시 혜택이며 청구할인 카드와 중복 적용하지 않습니다.</p>
+                  <div class="mobile-card-result" id="mobile-card-result" aria-live="polite" hidden>
+                    <p id="mobile-card-result-status"></p>
+                    <div class="mobile-card-amounts" id="mobile-card-amounts"><div><span>카드 적용 전 월 납부액</span><strong id="mobile-card-before">—</strong></div><div><span>카드 할인·캐시백 예상</span><strong id="mobile-card-discount">—</strong></div><div><span>혜택 반영 후 예상 월 부담</span><strong id="mobile-card-after">—</strong></div></div>
+                    <small>통신요금 부분을 기준으로 할인한도를 계산하며 단말 할부금은 할인대상 금액에 포함하지 않습니다. 캐시백은 지급 시점이 다를 수 있어 실제 청구액과 다릅니다. 연회비·가족카드 실적 등 추가 조건은 별도입니다.</small>
+                  </div>
+                  <details class="mobile-card-terms"><summary>카드 혜택·프로모션·실적 제외 자세히 보기</summary><h4>기본 혜택과 적용기간</h4><p id="mobile-card-benefit"></p><h4>신규발급·프로모션 조건</h4><p id="mobile-card-promotion"></p><h4>전월실적·유의사항</h4><p id="mobile-card-conditions"></p><div class="mobile-card-links"><a id="mobile-card-issuer" target="_blank" rel="noopener noreferrer" hidden>카드사 안내 보기 ↗</a><a id="mobile-card-source" target="_blank" rel="noopener noreferrer">제로노트에서 확인 ↗</a></div></details>
+                </div>
+              </section>
               <section class="store-extra-benefits" id="store-extra-benefits" aria-labelledby="store-extra-benefits-title">
                 <div class="store-extra-benefits-heading">
                   <span>매장 추가 할인 혜택</span>
@@ -724,7 +749,7 @@
   <script src="assets/quote-handoff.js?v=20261012-benefit1" defer></script>
   <script src="/assets/plan-eligibility.js?v=20260930-3" defer></script>
 <script src="/assets/mvno-api-bridge.min.js?v=20261001-1" defer></script><script src="/assets/mvno-display.js?v=20261001-1" defer></script><script src="/assets/studyphone-api-bridge.min.js?v=20261001-1" defer></script><script src="/assets/wired-master.js?v=20261006-master4"></script>
-<script src="/assets/internet-api-bridge.min.js?v=20261006-master6" defer></script><script src="/assets/plan-recommend-api-bridge.min.js?v=20261001-1" defer></script><script src="assets/rates.min.js?v=20261012-benefit1" defer></script>
+<script src="/assets/internet-api-bridge.min.js?v=20261006-master6" defer></script><script src="/assets/plan-recommend-api-bridge.min.js?v=20261001-1" defer></script><script src="assets/mobile-cards.js?v=20261017-cards1" defer></script><script src="assets/rates.min.js?v=20261017-cards1" defer></script>
 <script src="/assets/quote-advice.js?v=20261006-1" defer></script>
 <script src="/assets/kids-promos-data.js?v=20261006-data1" defer></script>
 <script src="/assets/funnel-observer.js?v=20261006-1" defer></script><script src="/assets/internet-ui.min.js?v=20261013-policyage1" defer></script><script src="/assets/rates-deeplink.js?v=20261008-purpose4" defer></script><script src="/assets/rates-easy-journey.js?v=20261008-senior4" defer></script><script src="/assets/senior-a17-first.js?v=20261014-a17-unified3" defer></script><script src="/assets/store-applications.js?v=20261013-simple1" defer></script><script src="/assets/store-extra-benefits.js?v=20261012-1" defer></script>
