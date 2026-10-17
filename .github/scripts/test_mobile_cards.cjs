@@ -41,6 +41,35 @@ assert.equal(estimate(card('154'),promo,quote,{...options,today:'2099-12-01'}).a
 assert.equal(estimate(card('154'),promo,quote,{...options,month:25}).available,false,'promotion term matters');
 assert.equal(estimate(card('243'),card('243').tiers.find(t=>t.minSpend===200000),quote,options).available,false,'conflicting source row cannot become a discount');
 const html=fs.readFileSync('rates.html','utf8'),source=fs.readFileSync('src/rates.js','utf8');
-assert.ok(html.includes('mobile-card-title')&&html.includes('mobile-cards.js?v=20261017-cards1'));
+assert.ok(html.includes('mobile-card-title')&&html.includes('mobile-cards.js?v=20261017-cards2'));
 assert.ok(source.includes('WoongbiMobileCards?.quoteLines')&&source.includes('WoongbiMobileCards?.appendUrl'),'card scenario survives copy and share');
 console.log('Telecom cards: three carriers, '+data.cards.length+' card variants, images, caps, percentage rules, eligibility, expiry, financing separation and quote handoff PASS');
+// Reproduce a cold shared link: card JSON arrives before core device/plan data.
+async function testColdSharedLink(){
+ const vm=require('node:vm'),fields={},events={};
+ function field(id){return fields[id]||=( {id,value:'',textContent:'',hidden:false,checked:false,
+  addEventListener(){},replaceChildren(...options){this.options=options;this.value=options[0]?.value||''}} )}
+ const selected=data.cards.find(c=>c.carrier==='KT'&&c.category==='POST'&&c.tiers.some(t=>!t.promotion&&t.verified));
+ const tier=selected.tiers.find(t=>!t.promotion&&t.verified);
+ const url=new URL('https://woongbts.github.io/rates.html?c=KT&d=device&p=plan');
+ for(const [key,value] of Object.entries({ccard:selected.id,ctier:tier.id,cmonth:'1',celigible:'1'}))url.searchParams.set(key,value);
+ field('carrier').value='SKT';field('mobile-card-type').value='POST';field('monthly-total').textContent='—';
+ let current=null;
+ const window={addEventListener:(name,fn)=>events[name]=fn,WoongbiQuoteApi:{getCurrent:()=>current}};
+ const ctx={window,URL,URLSearchParams,console,Date,Option:function(text,value){this.text=text;this.value=value},
+  document:{getElementById:field,documentElement:{dataset:{quoteApi:'ready'}}},
+  location:{search:url.search,href:url.href},history:{replaceState(){}},
+  fetch:async()=>({ok:true,json:async()=>data})};
+ vm.createContext(ctx);vm.runInContext(fs.readFileSync('assets/mobile-cards.js','utf8'),ctx);
+ await new Promise(setImmediate);
+ assert.equal(field('mobile-card-select').value,'','must wait for the core carrier');
+ assert.equal(window.WoongbiMobileCards.appendUrl(new URL(url)).searchParams.get('ccard'),selected.id,'pending card URL must survive core URL updates');
+ field('carrier').value='KT';field('device-select').value='device';field('plan-select').value='plan';
+ field('monthly-total').textContent='60,000원';current=quote;events['woongbi:quote-ready']();
+ assert.equal(field('mobile-card-select').value,selected.id);
+ assert.equal(field('mobile-card-tier').value,tier.id);
+ assert.equal(field('mobile-card-confirmed').checked,true);
+ assert.ok(window.WoongbiMobileCards.quoteLines().some(line=>line.includes(selected.name)));
+ console.log('Cold shared-card link restores after independent calculator loading PASS');
+}
+testColdSharedLink().catch(error=>{console.error(error);process.exitCode=1});
