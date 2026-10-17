@@ -52,6 +52,31 @@ def request(path, binary=False):
             time.sleep(attempt + 1)
 
 
+
+# Xeronote explicitly marks some "included spend" sections unverified, while
+# retaining detailed exclusions. Preserve genuine source inclusions when they
+# appear in a later refresh. Only replace literal missing placeholders.
+# Official rules checked 2026-10-17:
+# SKT Hyundai: https://www.hyundaicard.com/HCSP/hdc_SKT_ed3_MSKTE3_2606.html
+# LGU+ Hyundai: https://www.hyundaicard.com/cpu/ug/CPUUG2001_0405.hc?c=02904
+# KB T-economy: https://card.kbcard.com/CRD/DVIEW/HCAMCXPRICAC0076?cooperationcode=04288&mainCC=a
+# Hana U+ Family: https://m.hanacard.co.kr/MPACMM101M.web?CD_PD_SEQ=14109
+SPEND_INCLUDED_OFFICIAL = {
+    "68": "전월 1일~말일 국내외 일시불 및 할부 이용금액(아래 실적 제외 항목은 미포함). 할부금액은 이용월에 전액 합산하고, 교통·해외 등 무승인 거래는 매입 접수월에 반영. ※ 하나카드 공식 안내 기준",
+    "80": "전월 1일~말일 국내외 일시불 및 할부 이용금액(아래 실적 제외 항목은 미포함). 할부금액은 이용월에 전액 합산하고, 교통·해외 등 무승인 거래는 매입 접수월에 반영. ※ 하나카드 공식 안내 기준",
+    "218": "전월 1일~말일 본인·가족카드의 일시불 및 할부 이용금액(아래 실적 제외 항목은 미포함). 사후 승인 가맹점은 매출전표 접수월 기준. ※ 현대카드 공식 안내 기준",
+    "224": "전월 1일~말일 본인·가족카드의 일시불 및 할부 이용금액(아래 실적 제외 항목은 미포함). 사후 승인 가맹점은 매출전표 접수월 기준. ※ 현대카드 공식 안내 기준",
+    "243": "전월 1일~말일 본인·가족카드의 일시불 및 할부 승인금액(아래 실적 제외 항목은 미포함). 해외 이용분은 매입 완료 기준이며, 취소분은 취소전표 접수월에 차감. ※ KB국민카드 공식 안내 기준",
+    "322": "전월 1일~말일 본인·가족카드의 일시불 및 할부 이용금액(아래 실적 제외 항목은 미포함). 사후 승인 가맹점은 매출전표 접수월 기준. ※ 현대카드 공식 안내 기준",
+    "328": "전월 1일~말일 본인·가족카드의 일시불 및 할부 이용금액(아래 실적 제외 항목은 미포함). 사후 승인 가맹점은 매출전표 접수월 기준. ※ 현대카드 공식 안내 기준"
+}
+SPEND_INCLUDED_FALLBACK = "해당 카드의 일반 결제 이용금액 중 아래 ‘전월실적 미포함’ 항목에 해당하지 않는 금액(카드사에서 인정하는 거래에 한함).\n\n※ 포함되는 개별 업종과 해외·할부·교통·간편결제 인정 여부는 제공된 자료에 별도 기재되지 않아 카드사 상품설명서 확인이 필요합니다."
+
+def normalize_spend_inclusion(conditions, card_idx):
+    placeholder = r'■\s*전월\s*실적\s*포함\s*[:：]\s*미\s*확인'
+    replacement = '■ 전월실적 포함 : ' + SPEND_INCLUDED_OFFICIAL.get(str(card_idx), SPEND_INCLUDED_FALLBACK)
+    return re.sub(placeholder, lambda _: replacement, conditions, count=1)
+
 def normalize(detail, carrier, checked):
     idx = str(detail['card_idx'])
     benefit, promo = clean(detail.get('benefit')), clean(detail.get('promotion_contents'))
@@ -126,7 +151,7 @@ def normalize(detail, carrier, checked):
         'minFinancing': integer(detail.get('min_charge')),
         'contact': clean(detail.get('issue_contact')), 'issueMethod': clean(detail.get('issue_method')),
         'issueUrl': detail.get('issue_url') or '', 'benefit': benefit,
-        'conditions': clean(detail.get('contents')), 'promotion': promo,
+        'conditions': normalize_spend_inclusion(clean(detail.get('contents')), idx), 'promotion': promo,
         'tiers': tiers, 'calculation': calculation,
         'basicMonths': period_months, 'promotionMonths': promo_months,
         'promotionDeadline': expiry, 'checkedAt': checked,
