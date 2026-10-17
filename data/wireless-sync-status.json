@@ -1,5 +1,5 @@
 {
-  "checked_at": "2026-10-16T16:07:27+09:00",
+  "checked_at": "2026-10-17T15:55:01+09:00",
   "source": "https://www.xeronote.co.kr",
   "result": "validated",
   "counts": {
@@ -104,6 +104,6 @@
       "reason": "invalid_release_date"
     }
   ],
-  "run_id": "38864960025",
+  "run_id": "39011527852",
   "unverified_subsidy_entries_skipped": 42
 }
