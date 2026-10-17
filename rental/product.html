@@ -27,7 +27,7 @@
   <link rel="icon" href="assets/woongbi-rental-icon-32.png?v=20261003-blue3" sizes="32x32" type="image/png">
   <link rel="apple-touch-icon" sizes="180x180" href="assets/woongbi-rental-icon-180.png?v=20261003-blue3">
   <link rel="manifest" href="manifest.webmanifest?v=20261003-blue3">
-<link rel="stylesheet" href="assets/rental.css?v=20261009-clarity2">
+<link rel="stylesheet" href="assets/rental.css?v=20261017-card-picker1">
 <link rel="stylesheet" href="assets/readability-20261007.css?v=20261007-2">
 
   <style>
@@ -154,6 +154,19 @@
             <span id="total-rent-note">월요금 × 계약기간 단순 환산</span>
           </div>
           <div class="quote-card quote-card-burden" id="generic-card-row" hidden>
+            <div class="rental-card-calculator" id="rental-card-calculator">
+              <strong>제휴카드 할인 선택</strong>
+              <label for="rental-card-select">제휴카드</label>
+              <select id="rental-card-select"><option value="">카드 미적용 · 기본 렌탈료</option></select>
+              <div id="rental-card-controls" hidden>
+                <label for="rental-card-tier">전월실적 · 혜택 구간</label>
+                <select id="rental-card-tier"><option value="">구간을 선택하세요</option></select>
+                <div id="rental-card-promo-month-row" hidden><label for="rental-card-month">프로모션 할인 적용 회차</label><input id="rental-card-month" type="number" min="1" max="120" value="1"></div>
+                <p id="rental-card-selection-info"></p>
+                <label class="rental-card-confirm"><input id="rental-card-confirmed" type="checkbox"><span>전월실적·자동납부 등 카드 조건을 충족한다고 가정해 비교합니다. 프로모션 선택 시 신규발급 대상·등록·제공기간 조건도 확인했습니다.</span></label>
+              </div>
+              <p id="rental-card-status" role="status">카드 미적용 금액입니다.</p>
+            </div>
             <div class="card-burden-title"><span>제휴카드 적용 예상 월</span><b id="card-fee">-</b></div>
             <div class="card-burden-breakdown">
               <span>월 렌탈료 <b id="card-base-monthly">-</b></span>
@@ -306,7 +319,7 @@
   <div class="sticky-quote" aria-label="선택 조건 요약">
     <div class="sticky-quote-inner">
       <div class="sticky-copy"><span>현재 선택</span><strong id="sticky-selection">조건 선택</strong></div>
-      <div class="sticky-price"><span>월</span><strong id="sticky-monthly">-</strong></div>
+      <div class="sticky-price"><span>월 · 카드 미적용</span><strong id="sticky-monthly">-</strong></div>
       <div class="sticky-gift"><span>고객사은품</span><strong id="sticky-gift">-</strong></div>
       <button id="rental-apply-sticky" type="button">신청하기</button>
       <a id="rental-kakao-sticky" data-rental-consult href="https://pf.kakao.com/_xbrVrxb" target="_blank" rel="noopener noreferrer">상담하기</a>
@@ -412,6 +425,6 @@
   <script src="/assets/analytics-config.js?v=20260929-2" defer></script>
   <script src="/assets/conversion-tracker.min.js?v=20261006-funnel1" defer></script>
   <script src="/assets/site-analytics.min.js?v=20261005-growth3" defer></script>
-  <script src="assets/product-generic.js?v=20261014-gift-thousands1" defer></script>
+  <script src="assets/product-generic.js?v=20261017-card-picker1" defer></script>
 </body>
 </html>

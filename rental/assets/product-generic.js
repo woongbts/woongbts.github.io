@@ -263,7 +263,7 @@
     if(!product||!v)return '';
     const total=totalRentEstimate(v);
     const cardDiscount=currentAffiliateExample?Number(currentAffiliateExample.discount||0):null;
-    const cardMonthly=Number.isFinite(Number(v.monthly))&&Number.isFinite(cardDiscount)?Math.max(0,Number(v.monthly)-cardDiscount):null;
+    const cardMonthly=v.monthly!=null&&Number.isFinite(Number(v.monthly))&&cardDiscount!=null&&Number.isFinite(cardDiscount)?Math.max(0,Number(v.monthly)-cardDiscount):null;
     return [
       '[웅비렌탈 한눈견적]',
       '상품: '+[brandLabel(product.brand),product.name].filter(Boolean).join(' '),
@@ -272,7 +272,7 @@
       '월 렌탈료: '+(v.monthly==null?'상담 확인':won(v.monthly)),
       total?'총 예상 렌탈료: '+won(total.total)+' (월요금×'+total.term+'개월 단순 환산)':'총 예상 렌탈료: 프로모션/세부조건 상담 확인',
       '고객사은품: '+(v.gift==null?'상담 확인':won(v.gift)),
-      cardMonthly==null?'':'제휴카드 기본 예시 적용 월: '+won(cardMonthly),
+      cardMonthly==null?'':'제휴카드 선택: '+currentAffiliateExample.card.name+' · '+cardSpendLabel(currentAffiliateExample.spend)+' · '+(currentAffiliateExample.promo?'프로모션':'기본 할인')+' / 적용 예상 월 '+won(cardMonthly),
       '설치비: 면제',
       '설치 일정: 재고·지역·렌탈사 일정 확인 후 안내',
       '상품 링크: '+selectedProductUrl(),
@@ -440,8 +440,29 @@
     return '전월 '+Math.round(n/10000).toLocaleString('ko-KR')+'만원 이상';
   }
   function cardDiscountedMonthly(monthly,discount) {
+    if(monthly==null||monthly===''||discount==null||discount==='')return null;
     const m=Number(monthly),d=Number(discount);
-    return Number.isFinite(m)&&Number.isFinite(d)?Math.max(0,m-d):null;
+    return Number.isFinite(m)&&m>=0&&Number.isFinite(d)&&d>=0?Math.max(0,m-d):null;
+  }
+  function rentalCardTiers(card,today=new Date().toLocaleDateString('sv-SE',{timeZone:'Asia/Seoul'})) {
+    const valid=t=>Number.isFinite(t.spend)&&t.spend>0&&Number.isFinite(t.discount)&&t.discount>0;
+    const basic=(card?.tiers||[]).filter(valid).map((t,i)=>({...t,key:'basic-'+i,promo:false}));
+    const dates=String(card?.promo?.period||'').match(/\d{4}-\d{2}-\d{2}/g)||[];
+    const duration=String(card?.promo?.duration||'').match(/(\d+)\s*(회|개월|년)/);
+    const months=duration?Number(duration[1])*(duration[2]==='년'?12:1):0;
+    if(dates.length!==2||today<dates[0]||today>dates[1]||!months)return basic;
+    return basic.concat((card.promo.tiers||[]).filter(valid).map((t,i)=>({...t,key:'promo-'+i,promo:true,months})));
+  }
+  function rentalCardEstimate(card,tier,monthly,confirmed,month,today) {
+    const before=cardDiscountedMonthly(monthly,0);
+    if(before==null)return {available:false,reason:'월 렌탈료가 있는 상품 옵션을 선택해 주세요.'};
+    if(!card)return {available:false,reason:'카드 미적용 · 기본 렌탈료입니다.'};
+    const match=rentalCardTiers(card,today).find(t=>t.key===tier);
+    if(!match)return {available:false,reason:'전월실적·혜택 구간을 선택해 주세요. 종료된 프로모션은 계산하지 않습니다.'};
+    if(match.promo&&(!Number.isInteger(month)||month<1||month>match.months))return {available:false,reason:'선택한 프로모션은 최대 '+match.months+'회까지입니다. 적용 회차를 확인해 주세요.'};
+    if(!confirmed)return {available:false,reason:'카드별 조건을 확인하고 아래 비교 체크항목을 선택해 주세요.'};
+    const discount=Math.min(before,match.discount);
+    return {available:true,before,discount,after:before-discount,tier:match};
   }
   function cardDetailHtml(card,provider,monthly) {
     const base=(card.tiers||[]).map(t=>{
@@ -484,10 +505,10 @@
     if(title)title.textContent=provider.name+' 제휴카드 상세';
     if(all)all.href='cards/?provider='+encodeURIComponent(provider.id);
     if(summary){
-      const example=currentAffiliateExample||defaultCardExample(provider);
+      const example=currentAffiliateExample;
       const applied=example?cardDiscountedMonthly(variant.monthly,example.discount):null;
       summary.innerHTML='<span>현재 월 렌탈료 <b>'+(variant.monthly==null?'상담 확인':won(variant.monthly))+'</b></span>'+
-        (example?'<span>기본 예시 <b>'+example.card.name+' · '+cardSpendLabel(example.spend)+' · '+won(example.discount)+' 할인</b></span>':'')+
+        (example?'<span>선택한 카드 <b>'+example.card.name+' · '+cardSpendLabel(example.spend)+' · '+won(example.discount)+' 할인</b></span>':'')+
         (applied==null?'':'<strong>적용 예상 월 '+won(applied)+'</strong>');
     }
     if(content)content.innerHTML=(provider.cards||[]).map(card=>cardDetailHtml(card,provider,variant.monthly)).join('');
@@ -512,116 +533,74 @@
       .finally(()=>{affiliateCardsPromise=null;});
     return affiliateCardsPromise;
   }
-  function cardTierCandidates(provider) {
-    return (provider?.cards||[]).flatMap(card => (card.tiers||[])
-      .map(tier => ({
-        card,
-        spend:Number(tier.spend),
-        discount:Number(tier.discount),
-        promo:Boolean(card.promo)
-      }))
-      .filter(row => Number.isFinite(row.spend) && row.spend>0 && Number.isFinite(row.discount) && row.discount>0));
+  function renderRentalCardEstimate() {
+    const v=currentVariant(),card=currentAffiliateProvider?.cards?.find(c=>c.name===rentalCardName);
+    const answer=rentalCardEstimate(card,rentalTierKey,v?.monthly,$('#rental-card-confirmed')?.checked,Number($('#rental-card-month')?.value||1));
+    const rent=cardDiscountedMonthly(v?.monthly,0);
+    currentAffiliateExample=answer.available?{card,spend:answer.tier.spend,discount:answer.discount,promo:answer.tier.promo}:null;
+    $('#card-fee').textContent=rent==null?'—':won(answer.available?answer.after:rent);
+    $('#card-base-monthly').textContent=rent==null?'—':won(rent);
+    $('#card-discount').textContent=answer.available?'−'+won(answer.discount):won(0);
+    $('#rental-card-status').textContent=answer.available?'선택한 조건 충족 시의 예상 월요금입니다.':answer.reason;
+    $('#card-fee-note').textContent=answer.available?[card.name,cardSpendLabel(answer.tier.spend),answer.tier.promo?'신규발급 프로모션':'기본 할인','연회비 별도'].join(' · '):'제휴카드 미적용 · 위 월 렌탈료와 같습니다.';
   }
-  function defaultCardExample(provider) {
-    const rows=cardTierCandidates(provider);
-    if(!rows.length)return null;
-    rows.sort((a,b)=>a.spend-b.spend || b.discount-a.discount || Number(a.promo)-Number(b.promo));
-    return rows[0];
-  }
-  function applyCardEstimate(example,monthly) {
-    const row=$('#generic-card-row'),fee=$('#card-fee'),note=$('#card-fee-note');
-    if(!row||!fee)return;
-    const rent=Number(monthly);
-    if(!example||!Number.isFinite(rent)){
-      row.hidden=true;
-      return;
-    }
-    const discount=Math.max(0,Number(example.discount||0));
-    const discounted=Math.max(0,rent-discount);
-    row.hidden=false;
-    fee.textContent=won(discounted);
-    const baseEl=$('#card-base-monthly'),discountEl=$('#card-discount');
-    if(baseEl)baseEl.textContent=won(rent);
-    if(discountEl)discountEl.textContent='-' + won(discount);
-    if(note)note.textContent=[
-      example.card?.name||'제휴카드',
-      '전월 '+Math.round(example.spend/10000)+'만원',
-      (example.promo?'프로모션 ':'기본 ')+won(discount)+' 할인',
-      example.promo?'프로모션 조건 확인':''
-    ].filter(Boolean).join(' · ');
+  function renderRentalCardControls() {
+    const card=currentAffiliateProvider?.cards?.find(c=>c.name===rentalCardName);
+    $('#rental-card-controls').hidden=!card;
+    const tiers=rentalCardTiers(card);
+    const tierSelect=$('#rental-card-tier');
+    tierSelect.replaceChildren(new Option('전월실적·혜택 구간을 선택하세요',''),...tiers.map(t=>new Option('월 '+won(t.discount)+' 할인 · '+(t.promo?'신규발급 추가 포함 · ':'기본 · ')+cardSpendLabel(t.spend),t.key)));
+    if(!tiers.some(t=>t.key===rentalTierKey))rentalTierKey='';
+    tierSelect.value=rentalTierKey;
+    $('#rental-card-promo-month-row').hidden=!tiers.find(t=>t.key===rentalTierKey)?.promo;
+    const info=$('#rental-card-selection-info');
+    info.textContent=card?['연회비 '+(card.annualFee||'카드사 안내 확인'),card.autopayRequired?'렌탈요금 카드 자동납부 필수':'',card.promo&&rentalTierKey.startsWith('promo-')?[card.promo.period,card.promo.duration,card.promo.eligibility,card.promo.activation].filter(Boolean).join(' · '):'신규발급 추가 할인·실적 제외항목은 카드조건 보기에서 확인하세요.'].filter(Boolean).join(' · '):'';
+    renderRentalCardEstimate();
   }
   async function renderAffiliateCards() {
     const section=$('#affiliate-card-section'),box=$('#affiliate-card-preview'),link=$('#affiliate-card-all-link'),title=$('#affiliate-card-title');
     if(!section||!box||!product)return;
+    currentAffiliateExample=null;
     const variant=currentVariant();
     const renderKey=[product.id,variant?.management,variant?.term,variant?.monthly].join('|');
     try{
       const data=await loadAffiliateCardsData();
       if([product.id,currentVariant()?.management,currentVariant()?.term,currentVariant()?.monthly].join('|')!==renderKey)return;
       const provider=affiliateProviderMatch(data,product,variant);
+      if(provider?.id!==currentAffiliateProvider?.id){rentalCardName='';rentalTierKey='';$('#rental-card-confirmed').checked=false;$('#rental-card-month').value='1';}
       currentAffiliateProvider=provider||null;
-      if(!provider||!(provider.cards||[]).length){
-        section.hidden=true;
-        if(variant?.card!=null){
-          const row=$('#generic-card-row'),fee=$('#card-fee'),note=$('#card-fee-note');
-          if(row)row.hidden=false;
-          if(fee)fee.textContent=won(variant.card);
-          const baseEl=$('#card-base-monthly'),discountEl=$('#card-discount');
-          if(baseEl)baseEl.textContent=variant.monthly==null?'상담 확인':won(variant.monthly);
-          if(discountEl)discountEl.textContent=variant.monthly!=null&&variant.card!=null?'-'+won(Math.max(0,Number(variant.monthly)-Number(variant.card))):'상담 확인';
-          if(note)note.textContent='상품 등록 제휴카드 적용 예시 · 최종 조건 상담 확인';
-        }else{
-          const row=$('#generic-card-row'); if(row)row.hidden=true;
-        }
-        return;
-      }
+      if(!provider?.cards?.length){section.hidden=true;$('#generic-card-row').hidden=true;return;}
       section.hidden=false;
+      $('#generic-card-row').hidden=false;
       if(title)title.textContent=provider.name+' 제휴카드 할인도 같이 비교해 보세요.';
       if(link)link.href='cards/?provider='+encodeURIComponent(provider.id);
-
-      const defaultExample=defaultCardExample(provider);
-      currentAffiliateExample=defaultExample;
-      applyCardEstimate(defaultExample,variant?.monthly);
-
-      box.innerHTML=(provider.cards||[]).slice(0,3).map(card=>{
-        const max=card.maxDiscount||Math.max(0,...(card.tiers||[]).map(t=>Number(t.discount)||0));
-        const tiers=(card.tiers||[]).slice(0,3).map(t=>{
-          const monthly=Number(variant?.monthly);
-          const discounted=Number.isFinite(monthly)?Math.max(0,monthly-Number(t.discount||0)):null;
-          return '<button type="button" class="affiliate-card-tier" data-card-name="'+String(card.name||'').replace(/"/g,'&quot;')+'" data-card-spend="'+Number(t.spend)+'" data-card-discount="'+Number(t.discount)+'" data-card-promo="'+(card.promo?'1':'0')+'"><span>전월 '+Math.round(Number(t.spend)/10000)+'만원</span><b>'+won(t.discount)+' 할인</b>'+(discounted==null?'':'<i>적용 월 '+won(discounted)+'</i>')+'</button>';
-        }).join('');
-        return '<article><small>'+provider.name+'</small><strong>'+card.name+'</strong><div>'+tiers+'</div><em>월 최대 '+won(max)+' 할인</em></article>';
-      }).join('');
-
-      box.onclick=event=>{
-        const button=event.target.closest('.affiliate-card-tier');
-        if(!button)return;
-        box.querySelectorAll('.affiliate-card-tier.active').forEach(el=>el.classList.remove('active'));
-        button.classList.add('active');
-        currentAffiliateExample={
-          card:{name:button.dataset.cardName||'',promo:button.dataset.cardPromo==='1'},
-          spend:Number(button.dataset.cardSpend),
-          discount:Number(button.dataset.cardDiscount),
-          promo:button.dataset.cardPromo==='1'
-        };
-        applyCardEstimate(currentAffiliateExample,currentVariant()?.monthly);
-        $('#generic-card-row')?.scrollIntoView({behavior:'smooth',block:'center'});
-        trackRental('rental_card_estimate',{
-          card:button.dataset.cardName||'',
-          spend:button.dataset.cardSpend||'',
-          discount:button.dataset.cardDiscount||''
-        });
-      };
+      const select=$('#rental-card-select');
+      select.replaceChildren(new Option('카드 미적용 · 기본 렌탈료',''),...provider.cards.map(card=>{
+        const values=rentalCardTiers(card).filter(t=>!t.promo).map(t=>t.discount);
+        const range=values.length?'월 '+(Math.min(...values)===Math.max(...values)?won(values[0]):Math.min(...values).toLocaleString('ko-KR')+'~'+won(Math.max(...values)))+' 할인':'혜택 조건 확인';
+        return new Option(range+' · '+card.name,card.name);
+      }));
+      if(!provider.cards.some(c=>c.name===rentalCardName)){rentalCardName='';rentalTierKey='';}
+      select.value=rentalCardName;select.disabled=false;
+      select.onchange=()=>{rentalCardName=select.value;rentalTierKey='';$('#rental-card-confirmed').checked=false;$('#rental-card-month').value='1';renderRentalCardControls();};
+      $('#rental-card-tier').onchange=()=>{rentalTierKey=$('#rental-card-tier').value;$('#rental-card-confirmed').checked=false;renderRentalCardControls();};
+      $('#rental-card-confirmed').onchange=renderRentalCardEstimate;
+      $('#rental-card-month').oninput=renderRentalCardEstimate;
+      renderRentalCardControls();
+      // Keep the lower section as a shortcut to the same calculator, without a second selection state.
+      box.replaceChildren(...provider.cards.map(card=>{
+        const article=document.createElement('article'),name=document.createElement('strong'),button=document.createElement('button');
+        name.textContent=card.name;button.type='button';button.className='rental-card-shortcut';button.textContent='이 카드로 할인 계산하기 ↑';
+        button.onclick=()=>{rentalCardName=card.name;rentalTierKey='';select.value=card.name;$('#rental-card-confirmed').checked=false;renderRentalCardControls();$('#generic-card-row').scrollIntoView({behavior:'smooth',block:'center'});};
+        article.append(name,button);return article;
+      }));
     }catch(_){
-      section.hidden=true;
-      if(variant?.card!=null){
-        const row=$('#generic-card-row'),fee=$('#card-fee'),note=$('#card-fee-note');
-        if(row)row.hidden=false;
-        if(fee)fee.textContent=won(variant.card);
-        if(note)note.textContent='상품 등록 제휴카드 적용 예시 · 최종 조건 상담 확인';
-      }else{
-        const row=$('#generic-card-row'); if(row)row.hidden=true;
-      }
+      if([product.id,currentVariant()?.management,currentVariant()?.term,currentVariant()?.monthly].join('|')!==renderKey)return;
+      currentAffiliateExample=null;currentAffiliateProvider=null;
+      section.hidden=true;$('#generic-card-row').hidden=false;$('#rental-card-calculator').hidden=false;
+      $('#rental-card-select').replaceChildren(new Option('카드 정보를 불러오지 못했습니다',''));$('#rental-card-select').disabled=true;
+      $('#rental-card-controls').hidden=true;$('#rental-card-status').textContent='카드 정보를 불러오지 못해 기본 렌탈료만 표시합니다. 새로고침 후 다시 확인해 주세요.';
+      $('#card-fee').textContent=variant?.monthly==null?'—':won(variant.monthly);$('#card-base-monthly').textContent=$('#card-fee').textContent;$('#card-discount').textContent=won(0);$('#card-fee-note').textContent='카드 할인 미적용';
     }
   }
   const $ = sel => document.querySelector(sel);
@@ -747,6 +726,7 @@
   let affiliateCardsPromise = null;
   let currentAffiliateProvider = null;
   let currentAffiliateExample = null;
+  let rentalCardName = '', rentalTierKey = '';
 
   function optionSet() {
     return (product.options || []).filter(o => isSellableOption(o) && o.management === state.management);
