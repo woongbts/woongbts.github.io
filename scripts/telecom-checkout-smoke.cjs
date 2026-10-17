@@ -35,6 +35,18 @@ function check(ok,message){if(!ok)throw Error(message);}
  });
  check(geometry.ai&&geometry.ai.left>=0&&geometry.ai.right<=geometry.width+1,'AI button horizontal clipping: '+JSON.stringify(geometry));
  check(geometry.bar&&geometry.ai.bottom<=geometry.bar.top+1,'AI button covered by mobile action bar: '+JSON.stringify(geometry));
+ // Preorder SKT deep link must survive brand-filter initialization and keep
+ // both selections; previously the late brand click reset them to blanks.
+ await page.goto(origin+'/iphone-duo/',{waitUntil:'domcontentloaded'});
+ await page.locator('#duo-calc-carrier').selectOption('SKT');
+ await page.locator('.duo-model [data-duo-calc="256GB"]').click();
+ await page.waitForURL(/\\/rates\\.html\\?/,{timeout:10000});
+ await page.waitForFunction(()=>document.getElementById('device-select')?.value==='SKT-XD-3053'&&document.getElementById('plan-select')?.value==='SKT-XP-969',null,{timeout:25000});
+ check(await page.locator('#carrier').inputValue()==='SKT','Duo deep link lost SKT carrier');
+ check(await page.locator('#join-type').inputValue()==='번호이동','Duo deep link lost number port');
+ check(await page.locator('#discount-method').inputValue()==='contract','Duo deep link lost contract discount');
+ console.log('SKT DUO CHECKOUT',await page.locator('#device-select').inputValue(),await page.locator('#plan-select').inputValue(),
+  'monthly=',await page.locator('#monthly-total').textContent());
  for(const purpose of names){
   await page.goto(origin+'/rates.html?tab=mobile&purpose='+purpose+'&src=home-easy',{waitUntil:'domcontentloaded'});
   await page.waitForTimeout(1100);
