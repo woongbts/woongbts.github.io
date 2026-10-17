@@ -89,7 +89,7 @@
   function renderResult(){
     const card=selectedCard();if(!card)return;
     result=estimate(card,selectedTier(),quote(),{month:Number(month.value),confirmed:confirmed.checked});
-    const box=$('mobile-card-result');box.hidden=card.category!=='POST';
+    const box=$('mobile-card-result');box.hidden=card.category!=='POST'||card.calculation==='details';
     $('mobile-card-result-status').textContent=result.available?'선택한 카드 조건을 충족한 경우의 예상 월 부담입니다.':result.reason;
     $('mobile-card-before').textContent=quote()?.known?won(quote().monthly):'—';
     $('mobile-card-discount').textContent=result.available?'−'+won(result.discount):'—';
