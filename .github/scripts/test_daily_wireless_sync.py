@@ -7,9 +7,17 @@ from daily_wireless_sync import verified_primary_or_official_support, valid_publ
 
 class DailyWirelessSyncTests(unittest.TestCase):
     def test_approved_duo_preorders_work_for_all_carriers_only_from_start_date(self):
-        for carrier, code in [('SKT', 'A3720-2TB'), ('KT', 'AIPD-2T'), ('LGU+', 'UIPD-2T')]:
+        # Actual 2026-10-17 Zeronote SKT model codes differ from the placeholder A3720 codes.
+        for carrier, code, price in [
+            ('SKT', 'IP_DUO_256GW', '3,300,000'),
+            ('SKT', 'IP_DUO_512GW', '3,597,000'),
+            ('SKT', 'IP_DUO_1TW', '4,191,000'),
+            ('SKT', 'IP_DUO_2TW', '5,093,000'),
+            ('KT', 'AIPD-2T', '5,093,000'),
+            ('LGU+', 'UIPD-2T', '5,093,000'),
+        ]:
             device = self.source_device()
-            device.update(device_name=code, release_dt='2026-10-23', factory_price='5,093,000')
+            device.update(device_name=code, release_dt='2026-10-23', factory_price=price)
             self.assertEqual(select_current_devices([device], carrier, date(2026, 10, 15))[0], [])
             self.assertEqual(select_current_devices([device], carrier, date(2026, 10, 16)), ([(1, device)], []))
             device['release_dt'] = '2026-11-23'
