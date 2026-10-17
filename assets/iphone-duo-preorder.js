@@ -5,6 +5,27 @@
   const CARRIERS=['SKT','KT','LGU+','상담 후 결정'];
   const MODELS=['256GB','512GB','1TB'];
   const COLORS=['스타 화이트','나이트 스카이','상담 후 결정'];
+  // Preorder devices currently published in the quote catalog (2026-10-17).
+  // SKT Duo is not in the current catalog; do not link to an invented device ID.
+  const DUO_QUOTE={
+    KT:{plan:'KT-XP-2605',devices:{'256GB':'KT-XD-3054','512GB':'KT-XD-3057','1TB':'KT-XD-3060'}},
+    'LGU+':{plan:'LG-XP-2512',devices:{'256GB':'LG-XD-3055','512GB':'LG-XD-3058','1TB':'LG-XD-3061'}}
+  };
+  function buildCalculatorUrl(carrier='KT',model='256GB'){
+    const entry=DUO_QUOTE[carrier];
+    if(!entry||!MODELS.includes(model))throw Error('요금 계산 기준 통신사 또는 용량을 확인해 주세요.');
+    const q=new URLSearchParams({tab:'mobile',mode:'direct',brand:'apple',c:carrier,j:'번호이동',
+      d:entry.devices[model],p:entry.plan,m:'contract',mo:'24',w:'none'});
+    return '/rates.html?'+q.toString();
+  }
+  function syncCalculatorLinks(){
+    const carrier=$('duo-calc-carrier')?.value||'KT';
+    document.querySelectorAll('[data-duo-calc]').forEach(link=>{
+      const model=link.dataset.duoCalc;
+      link.href=buildCalculatorUrl(carrier,model);
+      link.setAttribute('aria-label','아이폰 듀오 '+model+' '+carrier+' 예상 월요금 계산하기');
+    });
+  }
   let policy=null,busy=false,lastSubmission='',opener=null,openedAt=0;
   const $=id=>document.getElementById(id);
   function buildPayload(values,policyVersion){
@@ -26,7 +47,7 @@
       quote_text:'[웅비통신 아이폰 듀오 사전예약 상담]\n'+detail+'\n신청 후 매장에서 확인하고 연락드립니다.',
       policy_version:policyVersion,processing_consent:true};
   }
-  window.WoongbiDuoPreorder={buildPayload};
+  window.WoongbiDuoPreorder={buildPayload,buildCalculatorUrl};
   function setStatus(message){$('duo-form-status').textContent=message;}
   async function loadPolicy(){
     const submit=$('duo-submit');submit.disabled=true;
@@ -83,6 +104,8 @@
     finally{busy=false;$('duo-submit').disabled=false;}
   }
   function boot(){
+    $('duo-calc-carrier')?.addEventListener('change',syncCalculatorLinks);
+    syncCalculatorLinks();
     const dialog=$('duo-dialog');if(!dialog)return;
     document.querySelectorAll('[data-duo-open]').forEach(button=>{
       button.addEventListener('click',()=>open(button));
