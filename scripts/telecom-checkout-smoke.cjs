@@ -40,7 +40,7 @@ function check(ok,message){if(!ok)throw Error(message);}
  await page.goto(origin+'/iphone-duo/',{waitUntil:'domcontentloaded'});
  await page.locator('#duo-calc-carrier').selectOption('SKT');
  await page.locator('.duo-model [data-duo-calc="256GB"]').click();
- await page.waitForURL(/\\/rates\\.html\\?/,{timeout:10000});
+ await page.waitForURL(url=>url.pathname==='/rates.html'&&url.searchParams.get('d')==='SKT-XD-3053',{timeout:10000});
  await page.waitForFunction(()=>document.getElementById('device-select')?.value==='SKT-XD-3053'&&document.getElementById('plan-select')?.value==='SKT-XP-969',null,{timeout:25000});
  check(await page.locator('#carrier').inputValue()==='SKT','Duo deep link lost SKT carrier');
  check(await page.locator('#join-type').inputValue()==='번호이동','Duo deep link lost number port');
