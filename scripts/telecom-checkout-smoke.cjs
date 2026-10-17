@@ -41,7 +41,25 @@ function check(ok,message){if(!ok)throw Error(message);}
  await page.locator('#duo-calc-carrier').selectOption('SKT');
  await page.locator('.duo-model [data-duo-calc="256GB"]').click();
  await page.waitForURL(url=>url.pathname==='/rates.html'&&url.searchParams.get('d')==='SKT-XD-3053',{timeout:10000});
- await page.waitForFunction(()=>document.getElementById('device-select')?.value==='SKT-XD-3053'&&document.getElementById('plan-select')?.value==='SKT-XP-969',null,{timeout:25000});
+ try{
+  await page.waitForFunction(()=>document.getElementById('device-select')?.value==='SKT-XD-3053'&&document.getElementById('plan-select')?.value==='SKT-XP-969',null,{timeout:14000});
+ }catch(error){
+  console.log('DUO_DEEPLINK_DIAGNOSTIC',JSON.stringify(await page.evaluate(()=>({
+   url:location.href,mode:document.querySelector('[data-mobile-mode].active')?.dataset.mobileMode,
+   carrier:document.getElementById('carrier')?.value,join:document.getElementById('join-type')?.value,
+   device:document.getElementById('device-select')?.value,
+   deviceCount:document.getElementById('device-select')?.options?.length,
+   duoOption:[...document.getElementById('device-select')?.options||[]].find(o=>o.value==='SKT-XD-3053')?.textContent,
+   search:document.getElementById('device-search')?.value,
+   brand:document.querySelector('[data-device-brand].active')?.dataset.deviceBrand,
+   plan:document.getElementById('plan-select')?.value,planCount:document.getElementById('plan-select')?.options?.length,
+   targetPlan:[...document.getElementById('plan-select')?.options||[]].find(o=>o.value==='SKT-XP-969')?.textContent,
+   monthly:document.getElementById('monthly-total')?.textContent,
+   note:document.getElementById('mobile-data-note')?.textContent
+  }))));
+  throw error;
+ }
+
  check(await page.locator('#carrier').inputValue()==='SKT','Duo deep link lost SKT carrier');
  check(await page.locator('#join-type').inputValue()==='번호이동','Duo deep link lost number port');
  check(await page.locator('#discount-method').inputValue()==='contract','Duo deep link lost contract discount');
