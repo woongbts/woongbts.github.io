@@ -117,6 +117,12 @@ def valid_device_price(price, model_code):
 
 
 def preorder_enabled(device, today=TODAY_DATE):
+    """Use the source's *carrier-specific* model code, including SKT IP_DUO_*.
+
+    Preorders are visible only from their approved start date and only when
+    the source release date exactly matches a configured model. SKT Duo's
+    published IP_DUO_* codes must not be confused with earlier A3720 placeholders.
+    """
     rule = PREORDER_MODELS.get(clean(device.get("device_name"))) or {}
     return (bool(rule) and rule.get("starts_on", "9999-12-31") <= today.isoformat()
             and clean(device.get("release_dt")) == rule.get("release_on"))
