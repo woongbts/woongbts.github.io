@@ -82,10 +82,9 @@
     $('mobile-card-fee').textContent=`연회비 국내 ${card.annualDomestic===null?'원문 참고':won(card.annualDomestic)} / 해외 ${card.annualInternational===null?'원문 참고':won(card.annualInternational)}`;
     $('mobile-card-kind').textContent=card.category==='PRE'?'단말기 카드 할부형':'통신요금 청구할인·캐시백형';
     $('mobile-card-benefit').textContent=card.benefit;
-    $('mobile-card-conditions').textContent=card.conditions||'아래 제로노트 및 카드사 안내를 확인해 주세요.';
+    $('mobile-card-conditions').textContent=card.conditions||'카드사 안내 또는 매장 상담으로 확인해 주세요.';
     $('mobile-card-promotion').textContent=card.promotion||'현재 별도 프로모션 안내가 없습니다.';
     const issue=safeUrl(card.issueUrl),link=$('mobile-card-issuer');link.hidden=!issue;if(issue)link.href=issue;
-    $('mobile-card-source').href='https://www.xeronote.co.kr/consult/mobile.php';
     $('mobile-card-installments').textContent=card.category==='PRE'?`최소 카드 할부금액 ${card.minFinancing===null?'원문 참고':won(card.minFinancing)} · `+card.installments.map(d=>`${d.months}개월 / 연 ${d.interest}%`).join(' · '):'통신요금 자동납부 및 카드별 전월실적·이용조건 기준';
     const tiers=card.tiers.filter(t=>t.verified&&t.minSpend!==null);
     setOptions(tierSelect,'전월실적·혜택 구간을 선택하세요',tiers.map(t=>[`${t.label} · ${card.calculation.includes('percent')?'월 최대 ':''}${won(t.amount)}${t.promotion?' (조건 충족 시)':''}`,t.id]));
