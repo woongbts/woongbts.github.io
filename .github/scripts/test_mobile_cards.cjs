@@ -2,6 +2,16 @@
 const fs=require('node:fs'),assert=require('node:assert/strict');
 const {estimate,benefitSummary}=require('../../assets/mobile-cards.js');
 const data=JSON.parse(fs.readFileSync('data/mobile-affiliate-cards.json','utf8'));
+const missingSpendIncluded=/■\\s*전월\\s*실적\\s*포함\\s*[:：]\\s*미\\s*확인/;
+assert.ok(data.cards.every(c=>!missingSpendIncluded.test(c.conditions)),
+  'affiliate-card inclusion sections must not show unqualified 미확인');
+for(const id of ['322','328','218','224','243','80','68']){
+  const card=data.cards.find(c=>c.id===id);
+  assert.ok(card?.conditions.includes('공식 안내 기준'), 'verified spending rule missing: '+id);
+}
+const sync=fs.readFileSync('.github/scripts/sync_mobile_cards.py','utf8');
+assert.ok(sync.includes('normalize_spend_inclusion(clean(detail.get(\'contents\')), idx)'),
+  'monthly Xeronote refresh must preserve verified inclusion wording');
 const quote={known:true,monthly:60000,service:33000};
 const options={confirmed:true,month:1,today:'2026-10-17'};
 // Model fixtures stay independent of current card IDs, removals and live policy amounts.
