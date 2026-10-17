@@ -1,6 +1,6 @@
 'use strict';
 const fs=require('node:fs'),assert=require('node:assert/strict');
-const {estimate}=require('../../assets/mobile-cards.js');
+const {estimate,benefitSummary}=require('../../assets/mobile-cards.js');
 const data=JSON.parse(fs.readFileSync('data/mobile-affiliate-cards.json','utf8'));
 const quote={known:true,monthly:60000,service:33000};
 const options={confirmed:true,month:1,today:'2026-10-17'};
@@ -34,6 +34,12 @@ assert.equal(estimate(card('126'),basic('126'),quote,options).available,false,'m
 assert.equal(estimate(card('391'),basic('391'),quote,options).discount,1650,'IBK 5 percent, not its 50000 cap');
 assert.equal(estimate(card('376'),basic('376'),quote,options).available,false,'card financing must not be subtracted from carrier financing');
 assert.equal(estimate(card('186'),basic('186'),quote,{...options,month:37}).available,false,'limited term cannot be extrapolated forever');
+assert.equal(benefitSummary(card('154')),'월 8,000원 할인','new-card promotion must not inflate basic overview');
+assert.equal(benefitSummary({...card('154'),tiers:[...card('154').tiers,{amount:20000,minSpend:1000000,verified:true}]}),'월 8,000~20,000원 할인');
+assert.equal(benefitSummary(card('80')),'월 최대 17,000원 한도','percentage cap must be labelled a limit');
+assert.equal(benefitSummary(card('376')),'월 25,000원 혜택 · 할부형');
+assert.equal(benefitSummary(card('243')),'혜택 조건 확인','unverified source row must not become a claimed discount');
+assert.equal(benefitSummary({...card('154'),calculation:'details'}),'별도 조건 확인');
 const promo=card('154').tiers.find(t=>t.promotion);
 assert.equal(estimate(card('154'),promo,quote,options).discount,28000,'eligible promotion has its own amount');
 assert.equal(estimate(card('126'),basic('126'),{known:true,monthly:130000,service:100000},options).discount,5000,'cashback percentage uses actual telecom bill');
@@ -41,7 +47,7 @@ assert.equal(estimate(card('154'),promo,quote,{...options,today:'2099-12-01'}).a
 assert.equal(estimate(card('154'),promo,quote,{...options,month:25}).available,false,'promotion term matters');
 assert.equal(estimate(card('243'),card('243').tiers.find(t=>t.minSpend===200000),quote,options).available,false,'conflicting source row cannot become a discount');
 const html=fs.readFileSync('rates.html','utf8'),source=fs.readFileSync('src/rates.js','utf8');
-assert.ok(html.includes('mobile-card-title')&&html.includes('mobile-cards.js?v=20261017-cards4'));
+assert.ok(html.includes('mobile-card-title')&&html.includes('mobile-cards.js?v=20261017-cards5'));
 assert.ok(source.includes('WoongbiMobileCards?.quoteLines')&&source.includes('WoongbiMobileCards?.appendUrl'),'card scenario survives copy and share');
 console.log('Telecom cards: three carriers, '+data.cards.length+' card variants, images, caps, percentage rules, eligibility, expiry, financing separation and quote handoff PASS');
 // Reproduce a cold shared link: card JSON arrives before core device/plan data.
@@ -67,6 +73,7 @@ async function testColdSharedLink(){
  field('carrier').value='KT';field('device-select').value='device';field('plan-select').value='plan';
  field('monthly-total').textContent='60,000원';current=quote;events['woongbi:quote-ready']();
  assert.equal(field('mobile-card-select').value,selected.id);
+ assert.ok(field('mobile-card-select').options.some(o=>o.value===selected.id&&o.text===selected.name+' · '+benefitSummary(selected)),'actual dropdown includes amount overview');
  assert.equal(field('mobile-card-tier').value,tier.id);
  assert.equal(field('mobile-card-confirmed').checked,true);
  assert.ok(window.WoongbiMobileCards.quoteLines().some(line=>line.includes(selected.name)));
