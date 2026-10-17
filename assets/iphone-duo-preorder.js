@@ -5,9 +5,10 @@
   const CARRIERS=['SKT','KT','LGU+','상담 후 결정'];
   const MODELS=['256GB','512GB','1TB'];
   const COLORS=['스타 화이트','나이트 스카이','상담 후 결정'];
-  // Preorder devices currently published in the quote catalog (2026-10-17).
-  // SKT Duo is not in the current catalog; do not link to an invented device ID.
+  // Carrier-specific Duo IDs confirmed from Zeronote's public device list
+  // (2026-10-17). The wireless sync enables SKT preorder IDs in catalog.json.
   const DUO_QUOTE={
+    SKT:{plan:'SKT-XP-969',devices:{'256GB':'SKT-XD-3053','512GB':'SKT-XD-3056','1TB':'SKT-XD-3059'}},
     KT:{plan:'KT-XP-2605',devices:{'256GB':'KT-XD-3054','512GB':'KT-XD-3057','1TB':'KT-XD-3060'}},
     'LGU+':{plan:'LG-XP-2512',devices:{'256GB':'LG-XD-3055','512GB':'LG-XD-3058','1TB':'LG-XD-3061'}}
   };
