@@ -1,0 +1,33 @@
+.mobile-affiliate-cards{margin:24px 0;padding:22px;border:2px solid #b5d6d5;border-radius:18px;background:#f7fbfa;color:#153f4c;min-width:0}
+.mobile-affiliate-cards h3{margin:0 0 9px;font-size:23px;line-height:1.4;font-weight:900}
+.mobile-affiliate-cards>p,.mobile-affiliate-cards small{font-size:15px;line-height:1.65;color:#456571}
+.mobile-affiliate-cards label{display:block;margin:15px 0;font-size:16px;font-weight:850;line-height:1.5}
+.mobile-affiliate-cards select,.mobile-affiliate-cards input[type=number]{box-sizing:border-box;width:100%;max-width:100%;min-height:50px;padding:11px;border:1px solid #a7c6ce;border-radius:10px;font:inherit;font-size:16px;color:#153f4c;background:#fff}
+.mobile-affiliate-cards select{white-space:normal}
+.mobile-card-identity{display:flex;align-items:center;gap:18px;margin:20px 0;padding:17px;border-radius:14px;background:#fff;border:1px solid #d4e4e4}
+.mobile-card-identity img{width:130px;height:100px;object-fit:contain;flex-shrink:0}
+.mobile-card-identity strong{display:block;font-size:19px;line-height:1.5;overflow-wrap:anywhere}
+.mobile-card-identity small{display:block;margin-top:6px}
+.mobile-card-tier-list{display:grid;gap:7px;max-height:280px;overflow-y:auto}
+.mobile-card-tier-list>div{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:5px 15px;padding:10px 13px;border-radius:9px;background:#eaf4f3;font-size:15px}
+.mobile-card-tier-list strong{font-size:18px;color:#087568}
+.mobile-card-controls{display:grid;grid-template-columns:minmax(0,2fr) minmax(110px,1fr);gap:15px}
+.mobile-card-confirmation{display:flex!important;gap:10px;align-items:flex-start;padding:14px;background:#fff6dd;border-radius:10px;color:#6a4506}
+.mobile-card-confirmation input{width:22px;height:22px;flex-shrink:0;margin:2px 0 0;accent-color:#087d72}
+.mobile-card-result{margin-top:20px;padding:18px;border:1px solid #aad1ca;border-radius:13px;background:#fff}
+.mobile-card-result p{margin:0 0 14px;font-size:16px;line-height:1.7;font-weight:800}
+.mobile-card-amounts{display:grid;gap:12px}
+.mobile-card-amounts>div{display:flex;justify-content:space-between;gap:12px;align-items:baseline;flex-wrap:wrap;font-size:16px}
+.mobile-card-amounts strong{font-size:22px;color:#126f69}
+.mobile-card-amounts>div:last-child{padding-top:14px;border-top:1px solid #d7e7e5;font-weight:900}
+.mobile-card-amounts>div:last-child strong{font-size:32px;font-weight:950;color:#075c82}
+.mobile-card-result small{display:block;margin-top:16px}
+.mobile-card-terms{margin-top:17px;border:1px solid #cfdfdf;border-radius:12px;background:#fff;padding:14px}
+.mobile-card-terms summary{min-height:32px;cursor:pointer;font-size:17px;font-weight:900}
+.mobile-card-terms h4{margin:20px 0 8px;font-size:17px;color:#096b65}
+.mobile-card-terms p{white-space:pre-wrap;overflow-wrap:anywhere;font-size:16px;line-height:1.8;color:#264955}
+.mobile-card-links{display:flex;gap:14px;flex-wrap:wrap;margin-top:16px}
+.mobile-card-links a{padding:11px;border:1px solid #9fbfc6;border-radius:9px;color:#125c74;font-size:16px;font-weight:850;text-decoration:none}
+.mobile-card-light-note{padding:15px;border-radius:11px;background:#fff3dc;font-size:16px;font-weight:750;line-height:1.8;color:#6a4708}
+.mobile-affiliate-cards [hidden]{display:none!important}
+@media(max-width:600px){.mobile-affiliate-cards{padding:16px}.mobile-card-controls{grid-template-columns:1fr;gap:0}.mobile-card-identity{gap:12px;align-items:flex-start;flex-direction:column}.mobile-card-identity img{width:160px;height:110px}.mobile-card-amounts>div:last-child strong{font-size:29px}}
