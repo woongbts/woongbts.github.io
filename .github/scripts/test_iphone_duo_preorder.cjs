@@ -21,6 +21,18 @@ assert.match(page, /id="duo-calc-carrier"/,'Duo calculator carrier picker exists
 const landingLinks=[...page.matchAll(/data-duo-calc="([^"]+)"/g)].map(m=>m[1]);
 assert.deepEqual(landingLinks,['256GB','256GB','512GB','1TB'],'hero and every capacity have calculator links');
 assert.match(page,/아이폰 듀오 요금 계산하기/,'prominent calculator CTA is present');
+assert.match(page, /class="duo-phone-btn" href="tel:0513437677"/, 'phone CTA next to Kakao');
+assert.match(page, /class="duo-kakao-btn" href="https:\/\/pf\.kakao\.com\/_nWwNT\/chat"/, 'Kakao CTA moved next to phone');
+assert.ok(page.indexOf('class="duo-phone-btn"')<page.indexOf('class="duo-kakao-btn"'), 'phone then Kakao button order');
+assert.equal((page.match(/class="duo-kakao-btn"/g)||[]).length,1,'only one main Kakao CTA');
+assert.match(page,/class="duo-models" role="group" aria-label="아이폰 듀오 용량별 출고가"/,'compact price cards grouped');
+for(const won of ['3,300,000원','3,597,000원','4,191,000원'])assert.ok(page.includes(won),'preserve original MSRP '+won);
+assert.equal((page.match(/class="duo-model-calc"/g)||[]).length,3,'each capacity still has a quote link');
+const duoStyle=fs.readFileSync('assets/iphone-duo-preorder.css','utf8');
+assert.match(duoStyle,/\.duo-page \.duo-copy \.duo-actions/,'balanced CTA grid scoped to landing');
+assert.match(duoStyle,/\.duo-page \.duo-models/,'compact unified price group');
+assert.match(duoStyle,/@media\(max-width:640px\)/,'mobile three-column price layout');
+
 const ratesPage=fs.readFileSync('rates.html','utf8');
 const mobileDirect=fs.readFileSync('assets/rates-deeplink.js','utf8');
 assert.ok(ratesPage.includes('rates-deeplink.js?v=20261017-duo-direct-fix1'),
