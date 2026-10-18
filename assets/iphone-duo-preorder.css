@@ -47,3 +47,149 @@
  .duo-section .duo-copy .duo-calc-note{font-size:14px}
  .duo-model-calc{font-size:16px}
 }
+
+
+/* Compact Duo price set and balanced contact row */
+/* Scope these overrides to the Duo landing: the home-page promo is unchanged. */
+.duo-page .duo-copy .duo-actions{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:10px;
+}
+.duo-page .duo-copy .duo-actions > .duo-primary,
+.duo-page .duo-copy .duo-actions > .duo-calc-link{
+  grid-column:1/-1;
+  width:100%;
+}
+.duo-page .duo-copy .duo-actions > .duo-phone-btn,
+.duo-page .duo-copy .duo-actions > .duo-kakao-btn{
+  width:100%;
+  min-width:0;
+  padding:12px 8px;
+  text-align:center;
+  font-size:16px;
+  font-weight:850;
+}
+.duo-page .duo-copy .duo-actions > .duo-kakao-btn{
+  border-color:#ead343;
+  background:#fee500;
+  color:#27220b;
+}
+.duo-page .duo-copy .duo-actions > .duo-kakao-btn:hover{
+  background:#f6db00;
+}
+.duo-page .duo-details{
+  padding-top:22px;
+  padding-bottom:32px;
+}
+.duo-page .duo-details > h2{
+  margin:0 0 14px;
+  font-size:clamp(19px,2.2vw,24px);
+}
+.duo-page .duo-models{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:0;
+  overflow:hidden;
+  border:1px solid #c9dce6;
+  border-radius:16px;
+  background:#fff;
+  box-shadow:0 8px 24px #103c520a;
+}
+.duo-page .duo-model{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:space-between;
+  min-width:0;
+  padding:15px 12px 13px;
+  border:0;
+  border-radius:0;
+  text-align:center;
+  background:transparent;
+}
+.duo-page .duo-model:not(:last-child){
+  border-right:1px solid #e0e9ee;
+}
+.duo-page .duo-model h3{
+  margin:0 0 7px;
+  color:#173e51;
+  font-size:18px;
+  font-weight:850;
+  line-height:1.25;
+}
+.duo-page .duo-model strong{
+  display:block;
+  color:#006e69;
+  font-size:clamp(14px,1.65vw,20px);
+  font-weight:900;
+  line-height:1.4;
+  letter-spacing:-.025em;
+  white-space:nowrap;
+  font-variant-numeric:tabular-nums;
+}
+.duo-page .duo-model .duo-model-calc{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:100%;
+  min-height:40px;
+  margin-top:12px;
+  padding:8px 6px;
+  border:1px solid #185b88;
+  border-radius:9px;
+  background:#185b88;
+  color:#fff;
+  text-decoration:none;
+  font-size:14px;
+  font-weight:800;
+  line-height:1.25;
+  white-space:nowrap;
+}
+.duo-page .duo-model .duo-model-calc:hover{
+  background:#103f64;
+}
+.duo-page .duo-details .duo-bottom-actions .duo-primary{
+  width:100%;
+}
+@media(max-width:640px){
+  .duo-page .duo-copy .duo-actions{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:9px;
+  }
+  .duo-page .duo-copy .duo-actions > .duo-phone-btn,
+  .duo-page .duo-copy .duo-actions > .duo-kakao-btn{
+    font-size:15px;
+    min-height:52px;
+    padding:10px 6px;
+  }
+  .duo-page .duo-details{
+    padding-top:18px;
+    padding-bottom:25px;
+  }
+  .duo-page .duo-details > h2{
+    margin-bottom:11px;
+    font-size:20px;
+  }
+  .duo-page .duo-models{
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    border-radius:13px;
+  }
+  .duo-page .duo-model{
+    padding:12px 4px 10px;
+  }
+  .duo-page .duo-model h3{
+    margin-bottom:7px;
+    font-size:16px;
+  }
+  .duo-page .duo-model strong{
+    font-size:clamp(11px,3.2vw,13px);
+    letter-spacing:-.045em;
+  }
+  .duo-page .duo-model .duo-model-calc{
+    font-size:12px;
+    min-height:35px;
+    padding:7px 2px;
+    margin-top:10px;
+  }
+}
