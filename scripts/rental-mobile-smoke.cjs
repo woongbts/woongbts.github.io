@@ -521,9 +521,16 @@ function assert(condition, message) {
       '제휴카드 '+key+' 글씨가 여전히 작거나 얇습니다: '+JSON.stringify(row));
   }
   assert(cardStyle.provider.height>=44,'제휴카드 렌탈사 선택 버튼의 터치 높이가 부족합니다.');
-  await cardsPage.locator('.affiliate-card .card-detail summary').last().click();
-  assert(await cardsPage.locator('.affiliate-card .card-detail[open]').count()===1,
-    '제휴카드 실적·유의사항 펼치기가 동작하지 않습니다.');
+  // Issuing/spending cautions open by default; verify this specific disclosure
+  // toggles in both directions without assuming only one card can be open.
+  const cardDetail=cardsPage.locator('.affiliate-card .card-detail:not(.promo-detail)').last();
+  const detailWasOpen=await cardDetail.getAttribute('open')!==null;
+  await cardDetail.locator('summary').click();
+  assert((await cardDetail.getAttribute('open')!==null)!==detailWasOpen,
+    '제휴카드 실적·유의사항 접기/펼치기가 동작하지 않습니다.');
+  await cardDetail.locator('summary').click();
+  assert((await cardDetail.getAttribute('open')!==null)===detailWasOpen,
+    '제휴카드 실적·유의사항을 원래 상태로 되돌릴 수 없습니다.');
   await cardsPage.locator('[data-provider="skmagic"]').click();
   await cardsPage.waitForFunction(()=>document.querySelector('#card-grid .affiliate-card h3')?.textContent.includes('SK'));
   assert(await cardsPage.locator('#card-grid .affiliate-card').count()===3,
