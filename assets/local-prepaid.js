@@ -7,7 +7,7 @@ const fmt=(v)=>typeof v==='number'?v.toLocaleString('ko-KR')+'원':'매장 문�
 const apply=(root,plan,index)=>{
  const put=(key,val)=>{const n=root.querySelector('[data-plan-'+key+']');if(n)n.textContent=val};
  put('name',plan.name);put('price',fmt(plan.monthly_fee));put('data',plan.data||'상담 시 확인');put('voice',plan.voice||'상담 시 확인');put('sms',plan.sms||'상담 시 확인');
- const link=root.querySelector('[data-plan-link]');if(link){const u=new URL('/rates.html',location.origin);u.searchParams.set('wbtab','prepaid');u.searchParams.set('utm_campaign','prepaid-'+(document.body.dataset.region||'local'));u.searchParams.set('utm_medium','internal');u.searchParams.set('utm_content','plan-'+plan.id);u.hash='prepaid-recommend';link.href=u.pathname+u.search+u.hash;link.setAttribute('aria-label',plan.name+' 예상요금 비교하기')}
+ const link=root.querySelector('[data-plan-link]');if(link){const u=new URL('/rates.html',location.origin);u.searchParams.set('wbtab','prepaid');u.searchParams.set('utm_campaign','prepaid-'+(document.body.dataset.region||'local'));u.searchParams.set('utm_medium','internal');u.searchParams.set('utm_content','plan-'+plan.id);u.searchParams.set('pp',plan.id);u.searchParams.set('pprov',plan.provider_id);u.hash='prepaid-form';link.href=u.pathname+u.search+u.hash;link.textContent='이 요금제로 상담하기 →';link.setAttribute('aria-label',plan.name+' 선택한 상태로 예상요금 확인 및 상담하기')}
  root.hidden=false;
 };
 async function init(){const els=[...document.querySelectorAll('[data-plan-id]')];if(!els.length)return;
