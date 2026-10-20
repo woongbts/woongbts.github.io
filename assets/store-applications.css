@@ -12,6 +12,9 @@
   cursor:pointer;
 }
 .store-apply-btn:hover{background:#0b635d}
+/* Prepaid booking links look and behave like the existing application buttons. */
+.rate-panel[data-panel="prepaid"] a.store-apply-btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;text-align:center;text-decoration:none;line-height:1.4;font-size:15px}
+.rate-panel[data-panel="prepaid"] a.store-apply-btn:focus-visible{outline:3px solid #e59b00;outline-offset:3px}
 .store-studyphone-item,
 .store-mvno-picker-item{display:grid;gap:7px}
 .store-studyphone-item>.studyphone-plan-card,
