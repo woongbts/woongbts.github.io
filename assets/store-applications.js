@@ -3,6 +3,7 @@
   const API='https://woongbi-consent.woongbts.workers.dev';
   const $=id=>document.getElementById(id);
   const CATEGORY_LABEL={mobile:'휴대폰',studyphone:'공신폰',mvno:'알뜰폰',prepaid:'선불폰',internet:'인터넷·TV'};
+  const PREPAID_BOOKING_URL='https://booking.naver.com/booking/6/bizes/281910/items/3498000?area=pll&lang=ko&service-target=map-pc&startDate=2026-10-20&theme=place';
   let policy=null,current=null,openedAt=0,lastSubmit=null;
   let salesSignals=new Map();
   let selectedInternetCard=null;
@@ -371,23 +372,32 @@
       wrap.append(apply);
     });
   }
+  function prepaidBookingLink(){
+    const link=document.createElement('a');
+    link.className='store-apply-btn';
+    link.textContent='방문상담예약';
+    link.href=PREPAID_BOOKING_URL;
+    link.target='_blank';
+    link.rel='noopener noreferrer';
+    return link;
+  }
   function renderPrepaidProducts(){
     const select=$('prepaid-plan'),provider=$('prepaid-provider'),host=$('store-prepaid-products');
     if(!select||!host)return;
     const plans=[...select.options].filter(x=>x.value);
     host.hidden=!provider?.value||!plans.length;
     if(host.hidden){host.innerHTML='';return}
-    const title=document.createElement('div');title.className='store-prepaid-head';title.innerHTML='<strong>신청 가능한 선불 요금제</strong><small>요금제를 고르면 매장에서 확인 후 연락드립니다.</small>';
+    const title=document.createElement('div');title.className='store-prepaid-head';title.innerHTML='<strong>매장 방문 상담 가능한 선불 요금제</strong><small>선불폰 가입·개통은 매장 방문으로 진행됩니다. 원하시는 요금제를 고르고 방문상담을 예약해 주세요.</small>';
     const list=document.createElement('div');list.className='store-prepaid-list';
     plans.forEach(option=>{
       const row=document.createElement('article');
       const name=cleanPlanName(option.textContent),price=(option.textContent.match(/[0-9,]+원/)||[])[0]||'요금 상담 확인';
       row.innerHTML='<div><strong></strong><small></small></div>';
       row.querySelector('strong').textContent=name;row.querySelector('small').textContent=price;
-      const apply=makeApplyButton('신청하기');
+      const apply=prepaidBookingLink();
+      apply.setAttribute('aria-label',name+' 방문상담예약 · 네이버 예약 새 창');
       apply.addEventListener('click',()=>{
         select.value=option.value;select.dispatchEvent(new Event('change',{bubbles:true}));
-        setTimeout(()=>openApplication(prepaidContext(option.value)),30);
       });
       row.append(apply);list.append(row);
     });
@@ -535,17 +545,23 @@
     ];
     specs.forEach(([category,selector,getContext])=>{
       const host=document.querySelector(selector);if(!host||host.querySelector('[data-store-selected-apply="'+category+'"]'))return;
-      const button=makeApplyButton('온라인 신청하기');button.dataset.storeSelectedApply=category;
-      button.addEventListener('click',()=>{
+      const button=category==='prepaid'?prepaidBookingLink():makeApplyButton('온라인 신청하기');
+      button.dataset.storeSelectedApply=category;
+      if(category!=='prepaid')button.addEventListener('click',()=>{
         const ctx=getContext();
         if(!ctx){alert('먼저 상품이나 요금제를 선택해 주세요.');return}
         openApplication(ctx);
       });
       const share=document.createElement('button');share.type='button';share.className='store-share-btn';share.dataset.storeShare=category;share.textContent='같은 조건 공유';
       share.addEventListener('click',()=>shareCondition(category,getContext));
-      host.append(button,share,visitButton(getContext));
+      if(category==='prepaid')host.append(button,share);
+      else host.append(button,share,visitButton(getContext));
       if(!host.querySelector('.store-apply-trust')){
-        const trust=document.createElement('small');trust.className='store-apply-trust';trust.textContent='신청만으로 개통·계약 확정 X · 개인정보 암호화 저장 · 매장에서 최종 조건 재확인';host.append(trust);
+        const trust=document.createElement('small');trust.className='store-apply-trust';
+        trust.textContent=category==='prepaid'
+          ?'선불폰은 매장 방문 후 본인 확인과 가입 조건 확인을 거쳐 개통됩니다. 방문상담예약은 네이버 예약으로 연결됩니다.'
+          :'신청만으로 개통·계약 확정 X · 개인정보 암호화 저장 · 매장에서 최종 조건 재확인';
+        host.append(trust);
       }
     });
   }
