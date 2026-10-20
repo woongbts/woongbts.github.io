@@ -41,7 +41,7 @@
       provider.addEventListener('change',stopOnManualChange);
       plan.addEventListener('change',stopOnManualChange);
       const reconcile=()=>{
-        if(userChanged||++tries>55){
+        if(userChanged||++tries>240){
           clearInterval(timer);
           provider.removeEventListener('change',stopOnManualChange);
           plan.removeEventListener('change',stopOnManualChange);
