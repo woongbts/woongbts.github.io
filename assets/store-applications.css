@@ -428,7 +428,7 @@
   grid-column:1 / -1;justify-self:stretch;
 }
 .rate-page #purpose-results .purpose-card-actions > .store-visit-btn{
-  min-height:52px;font-size:16px;
+  min-height:52px;font-size:16px!important;
 }
 @media(max-width:640px){
   .rate-page .store-visit-btn{min-height:52px;font-size:16px;}
