@@ -253,3 +253,19 @@ body.plan-picker-opened{overflow:hidden;touch-action:auto}
   .rate-page #mobile-form .mobile-term-welfare-row{padding:12px!important}
   .rate-page #mobile-result .result-breakdown>div{align-items:baseline}
 }
+
+/* 2026-10-20 · one clear row of quote consultation actions (mobile calculator only) */
+.rate-page #mobile-quote-choice .rate-quote-choice-links > button,
+.rate-page #mobile-quote-choice .rate-quote-choice-links > a{
+  box-sizing:border-box;width:100%;min-width:0;min-height:54px;
+  font-size:16px;line-height:1.4;
+}
+.rate-page #mobile-quote-choice .rate-quote-choice-links .secondary{
+  background:#fee500;border-color:#e1c900;color:#3c1e1e;
+}
+.rate-page #mobile-quote-choice .rate-quote-choice-links .phone{
+  border-color:#b2d4fc;
+}
+.rate-page #mobile-quote-choice .rate-quote-choice-links > :is(button,a):focus-visible{
+  outline:3px solid #dc7d12;outline-offset:3px;
+}
