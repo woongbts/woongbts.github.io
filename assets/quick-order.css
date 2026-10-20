@@ -108,3 +108,17 @@ body.home-modern .hero-grid.hero-grid-single .hero-actions{margin-top:15px}
     box-sizing:border-box!important;
   }
 }
+
+/* Make the three prepaid monthly charges immediately readable on colored picks. */
+body.home-modern #quick-order[data-active-category="prepaid"] .home-order-option .home-order-monthly{
+  display:inline-flex;align-items:center;justify-content:center;
+  margin-top:9px;padding:6px 11px;border-radius:9px;
+  background:#fff;color:#254ba3!important;
+  font-size:17px!important;font-weight:950!important;line-height:1.35;
+  letter-spacing:-.01em;font-variant-numeric:tabular-nums;
+}
+@media(max-width:480px){
+  body.home-modern #quick-order[data-active-category="prepaid"] .home-order-option .home-order-monthly{
+    font-size:16px!important;padding:6px 9px;
+  }
+}
