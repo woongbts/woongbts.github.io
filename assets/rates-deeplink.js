@@ -29,43 +29,93 @@
       if(provider)waitFor(()=>setSelect('mvno-provider',provider),()=>setTimeout(selectPlan,80));else selectPlan();
     }
     if(requested==='prepaid'&&params.get('pp')){
-      const planId=params.get('pp');
-      const providerId=params.get('pprov');
-      // Keep both selects consistent: the catalog and other tab handlers may
-      // populate/reset their values shortly after the deep-link runs.
-      let tries=0, stable=0, userChanged=false;
+      const requestedPlanId=params.get('pp');
       const provider=document.getElementById('prepaid-provider');
       const plan=document.getElementById('prepaid-plan');
       if(!provider||!plan)return;
-      const stopOnManualChange=e=>{if(e.isTrusted)userChanged=true;};
-      provider.addEventListener('change',stopOnManualChange);
-      plan.addEventListener('change',stopOnManualChange);
-      const reconcile=()=>{
-        if(userChanged||++tries>240){
-          clearInterval(timer);
-          provider.removeEventListener('change',stopOnManualChange);
-          plan.removeEventListener('change',stopOnManualChange);
-          return;
-        }
-        const providerReady=!providerId||[...provider.options].some(o=>o.value===providerId);
-        if(!providerReady)return;
-        if(providerId&&provider.value!==providerId)setSelect('prepaid-provider',providerId);
-        const planReady=[...plan.options].some(o=>o.value===planId);
-        if(planReady&&plan.value!==planId)setSelect('prepaid-plan',planId);
-        if(providerReady&&planReady&&(!providerId||provider.value===providerId)&&plan.value===planId)stable++;
-        else stable=0;
-        if(stable>=8){
-          clearInterval(timer);
-          provider.removeEventListener('change',stopOnManualChange);
-          plan.removeEventListener('change',stopOnManualChange);
-          // Home prepaid picks should land on the selected plan, not above the recommendation cards.
-          if(/^home-easy-(light|data|unlimited)$/.test(params.get('src')||'')){
-            requestAnimationFrame(()=>document.getElementById('prepaid-form')?.scrollIntoView({behavior:'auto',block:'start'}));
+      // This must work even if the large phone catalog or its UI handler never finishes.
+      const fallbackCatalog={
+        providers:[{id:'FREETLG',name:'프리티(LGU+망)',network:'LGU+'}],
+        plans:[
+          {id:'PRE-FREETLG-1521',provider_id:'FREETLG',name:'선불데이터300MB+1Mbps',network:'LGU+',monthly_fee:29700,data:'300MB+1Mbps 무제한',voice:'무제한',sms:'무제한'},
+          {id:'PRE-FREETLG-1879',provider_id:'FREETLG',name:'선불 데이터 10.3G',network:'LGU+',monthly_fee:38300,data:'10.3GB+3Mbps 무제한',voice:'무제한',sms:'문자무제한'},
+          {id:'PRE-FREETLG-1523',provider_id:'FREETLG',name:'선불 데이터안심 11G',network:'LGU+',monthly_fee:55000,data:'11GB+일 2GB+3Mbps 무제한',voice:'무제한',sms:'무제한'}
+        ]
+      };
+      let catalog=fallbackCatalog;
+      let fromLiveCatalog=false,manualChange=false,focusDone=false,ticks=0;
+      const getById=id=>document.getElementById(id);
+      const hasOption=(select,value)=>[...select.options].some(option=>option.value===value);
+      const currency=amount=>Number(amount).toLocaleString('ko-KR')+'원';
+      const notifyChange=element=>element.dispatchEvent(new Event('change',{bubbles:true}));
+      const onUserChange=event=>{if(event.isTrusted)manualChange=true;};
+      provider.addEventListener('change',onUserChange);
+      plan.addEventListener('change',onUserChange);
+      function restorePrepaid(){
+        if(manualChange)return false;
+        const chosen=catalog.plans.find(item=>item.id===requestedPlanId);
+        if(!chosen)return false;
+        const providerId=chosen.provider_id||params.get('pprov')||'FREETLG';
+        const company=catalog.providers.find(item=>item.id===providerId);
+        // Populate missing providers independently of the main calculator's loader.
+        if(!hasOption(provider,providerId)){
+          for(const item of catalog.providers){
+            if(!hasOption(provider,item.id))provider.add(new Option(item.name,item.id));
           }
         }
-      };
-      const timer=setInterval(reconcile,180);
-      reconcile();
+        if(!hasOption(provider,providerId))return false;
+        if(provider.value!==providerId){provider.value=providerId;notifyChange(provider);}
+        // Provider change callbacks can clear the plan select before data is ready.
+        const list=catalog.plans.filter(item=>item.provider_id===providerId);
+        if(!hasOption(plan,requestedPlanId)){
+          plan.replaceChildren(new Option('요금제를 선택하세요',''));
+          list.forEach(item=>plan.add(new Option(item.name+' · '+currency(item.monthly_fee),item.id)));
+        }
+        plan.disabled=false;
+        if(!hasOption(plan,requestedPlanId))return false;
+        if(plan.value!==requestedPlanId){plan.value=requestedPlanId;notifyChange(plan);}
+        if(plan.value!==requestedPlanId||provider.value!==providerId)return false;
+        // A secondary safety net if rates.min.js has not registered its handlers.
+        const setText=(id,value)=>{
+          const node=getById(id);
+          if(node&&node.textContent!==value)node.textContent=value;
+        };
+        setText('prepaid-network',chosen.network||company?.network||'LGU+');
+        setText('prepaid-fee-view',currency(chosen.monthly_fee));
+        setText('prepaid-total',currency(chosen.monthly_fee));
+        setText('prepaid-summary',(company?.name||'프리티(LGU+망)')+' · '+chosen.name+' · 월 '+currency(chosen.monthly_fee)+' 기준입니다.');
+        setText('prepaid-detail','데이터 '+chosen.data+' · 통화 '+chosen.voice+' · 문자 '+chosen.sms+'. 충전·유심·개통 조건은 매장에서 최종 확인합니다.'+
+          (fromLiveCatalog?'':' (마지막 등록 요금 기준)'));
+        if(!focusDone&&/^home-easy-(light|data|unlimited)$/.test(params.get('src')||'')){
+          focusDone=true;
+          requestAnimationFrame(()=>getById('prepaid-form')?.scrollIntoView({behavior:'auto',block:'start'}));
+        }
+        return true;
+      }
+      // Display the linked choice immediately, then replace the fallback with the live catalog.
+      restorePrepaid();
+      fetch('/data/prepaid.json?v=20261020-prepaid-direct4',{cache:'no-store'})
+        .then(response=>{if(!response.ok)throw Error('prepaid-catalog-'+response.status);return response.json();})
+        .then(data=>{
+          if(!Array.isArray(data.providers)||!Array.isArray(data.plans))throw Error('invalid-prepaid-catalog');
+          catalog=data;fromLiveCatalog=true;
+          restorePrepaid();
+        })
+        .catch(()=>{
+          const status=getById('prepaid-quote-status');
+          if(status)status.textContent='선불폰 요금 데이터 갱신을 확인하지 못했습니다. 표시 금액은 매장에서 다시 확인해 주세요.';
+        });
+      // Other deferred scripts may reset the dropdowns much later. Repair only
+      // the original deep-linked selection; stop as soon as a person changes it.
+      const timer=setInterval(()=>{
+        if(manualChange||++ticks>240){
+          clearInterval(timer);
+          provider.removeEventListener('change',onUserChange);
+          plan.removeEventListener('change',onUserChange);
+          return;
+        }
+        restorePrepaid();
+      },250);
     }
   }
   function restoreMobilePurpose(){
