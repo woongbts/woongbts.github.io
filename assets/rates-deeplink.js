@@ -29,9 +29,39 @@
       if(provider)waitFor(()=>setSelect('mvno-provider',provider),()=>setTimeout(selectPlan,80));else selectPlan();
     }
     if(requested==='prepaid'&&params.get('pp')){
-      const provider=params.get('pprov');
-      const selectPlan=()=>waitFor(()=>setSelect('prepaid-plan',params.get('pp')),()=>{});
-      if(provider)waitFor(()=>setSelect('prepaid-provider',provider),()=>setTimeout(selectPlan,80));else selectPlan();
+      const planId=params.get('pp');
+      const providerId=params.get('pprov');
+      // Keep both selects consistent: the catalog and other tab handlers may
+      // populate/reset their values shortly after the deep-link runs.
+      let tries=0, stable=0, userChanged=false;
+      const provider=document.getElementById('prepaid-provider');
+      const plan=document.getElementById('prepaid-plan');
+      if(!provider||!plan)return;
+      const stopOnManualChange=e=>{if(e.isTrusted)userChanged=true;};
+      provider.addEventListener('change',stopOnManualChange);
+      plan.addEventListener('change',stopOnManualChange);
+      const reconcile=()=>{
+        if(userChanged||++tries>55){
+          clearInterval(timer);
+          provider.removeEventListener('change',stopOnManualChange);
+          plan.removeEventListener('change',stopOnManualChange);
+          return;
+        }
+        const providerReady=!providerId||[...provider.options].some(o=>o.value===providerId);
+        if(!providerReady)return;
+        if(providerId&&provider.value!==providerId)setSelect('prepaid-provider',providerId);
+        const planReady=[...plan.options].some(o=>o.value===planId);
+        if(planReady&&plan.value!==planId)setSelect('prepaid-plan',planId);
+        if(providerReady&&planReady&&(!providerId||provider.value===providerId)&&plan.value===planId)stable++;
+        else stable=0;
+        if(stable>=8){
+          clearInterval(timer);
+          provider.removeEventListener('change',stopOnManualChange);
+          plan.removeEventListener('change',stopOnManualChange);
+        }
+      };
+      const timer=setInterval(reconcile,180);
+      reconcile();
     }
   }
   function restoreMobilePurpose(){
