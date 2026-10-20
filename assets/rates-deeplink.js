@@ -58,6 +58,10 @@
           clearInterval(timer);
           provider.removeEventListener('change',stopOnManualChange);
           plan.removeEventListener('change',stopOnManualChange);
+          // Home prepaid picks should land on the selected plan, not above the recommendation cards.
+          if(/^home-easy-(light|data|unlimited)$/.test(params.get('src')||'')){
+            requestAnimationFrame(()=>document.getElementById('prepaid-form')?.scrollIntoView({behavior:'auto',block:'start'}));
+          }
         }
       };
       const timer=setInterval(reconcile,180);
