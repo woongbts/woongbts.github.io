@@ -1,0 +1,102 @@
+/* 2026-10-20 | KT M모바일 공신폰 가독성 향상.
+   Scoped only to the studyphone tab; do not change other rate calculators. */
+.rate-page .rate-panel[data-panel="studyphone"] .studyphone-brand{
+  font-size:14px;line-height:1.5;padding:8px 12px
+}
+.rate-page .rate-panel[data-panel="studyphone"] .studyphone-device>span{
+  font-size:15px;line-height:1.5;opacity:.94
+}
+.rate-page .rate-panel[data-panel="studyphone"] .studyphone-device>b{
+  font-size:17px;line-height:1.5;opacity:1
+}
+.rate-page .rate-panel[data-panel="studyphone"] .studyphone-tags span{
+  font-size:13px;line-height:1.5;padding:7px 10px
+}
+.rate-page .rate-panel[data-panel="studyphone"] .studyphone-product>p{
+  font-size:16px;line-height:1.75;color:rgba(255,255,255,.94)
+}
+.rate-page .rate-panel[data-panel="studyphone"] .studyphone-specs>div{
+  min-width:0;padding:14px
+}
+.rate-page .rate-panel[data-panel="studyphone"] .studyphone-specs span,
+.rate-page .rate-panel[data-panel="studyphone"] .studyphone-plan-info span{
+  font-size:14px;line-height:1.5;opacity:.92;font-weight:750;margin-bottom:6px
+}
+.rate-page .rate-panel[data-panel="studyphone"] .studyphone-specs strong{
+  font-size:16px;line-height:1.5;overflow-wrap:anywhere
+}
+.rate-page .rate-panel[data-panel="studyphone"] .studyphone-picker{
+  margin-top:22px;padding-top:21px
+}
+.rate-page .rate-panel[data-panel="studyphone"] .studyphone-picker label{
+  gap:10px;font-size:17px;line-height:1.5;
+  color:#fff;font-weight:900
+}
+.rate-page .rate-panel[data-panel="studyphone"] .studyphone-picker select{
+  display:block;width:100%;min-width:0;min-height:56px;
+  font-family:inherit;font-size:17px;font-weight:800;line-height:1.5;
+  padding:13px 15px;background:#fff;color:#153d49;
+  border:2px solid #d6e9ee;border-radius:13px;
+}
+.rate-page .rate-panel[data-panel="studyphone"] .studyphone-picker select option{
+  font-size:17px;color:#153d49;background:#fff
+}
+.rate-page .rate-panel[data-panel="studyphone"] .studyphone-plan-info{
+  gap:10px;margin-top:12px
+}
+.rate-page .rate-panel[data-panel="studyphone"] .studyphone-plan-info>div{
+  min-width:0;padding:14px 15px
+}
+.rate-page .rate-panel[data-panel="studyphone"] .studyphone-plan-info strong{
+  display:block;font-size:18px;line-height:1.45;
+  font-weight:900;overflow-wrap:anywhere
+}
+.rate-page .rate-panel[data-panel="studyphone"] .studyphone-list-head h3{
+  font-size:23px;line-height:1.4
+}
+.rate-page .rate-panel[data-panel="studyphone"] .studyphone-list-head p{
+  font-size:15px;line-height:1.65
+}
+.rate-page .rate-panel[data-panel="studyphone"] .studyphone-plan-card{
+  gap:9px;min-height:46px;padding:16px
+}
+.rate-page .rate-panel[data-panel="studyphone"] .studyphone-plan-card>span{
+  font-size:17px;line-height:1.5
+}
+.rate-page .rate-panel[data-panel="studyphone"] .studyphone-plan-card>strong{
+  font-size:22px;line-height:1.4
+}
+.rate-page .rate-panel[data-panel="studyphone"] .studyphone-plan-card>small{
+  font-size:14px;line-height:1.6
+}
+.rate-page .rate-panel[data-panel="studyphone"] .studyphone-plan-card>div{
+  font-size:14px;line-height:1.55
+}
+.rate-page .rate-panel[data-panel="studyphone"] .studyphone-plan-card b{
+  font-size:15px
+}
+.rate-page .rate-panel[data-panel="studyphone"] .studyphone-plan-card .studyphone-card-total b{
+  font-size:17px
+}
+.rate-page .rate-panel[data-panel="studyphone"] .studyphone-note{
+  font-size:15px;line-height:1.65
+}
+.rate-page .rate-panel[data-panel="studyphone"] .store-studyphone-item>.store-apply-btn,
+.rate-page .rate-panel[data-panel="studyphone"] .consult-copy-tools>.store-apply-btn{
+  font-size:16px;min-height:48px
+}
+@media(max-width:600px){
+  .rate-page .rate-panel[data-panel="studyphone"] .studyphone-product{padding:18px}
+  .rate-page .rate-panel[data-panel="studyphone"] .studyphone-plan-info{
+    grid-template-columns:repeat(2,minmax(0,1fr))
+  }
+  .rate-page .rate-panel[data-panel="studyphone"] .studyphone-plan-info>div{
+    padding:13px
+  }
+  .rate-page .rate-panel[data-panel="studyphone"] .studyphone-specs strong{
+    font-size:15px
+  }
+  .rate-page .rate-panel[data-panel="studyphone"] .studyphone-picker select{
+    font-size:16px
+  }
+}
