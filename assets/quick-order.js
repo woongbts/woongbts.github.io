@@ -7,6 +7,18 @@
   const explanation=document.getElementById('home-order-choice-description');
   if(!choices||!heading||!explanation)return;
   const base='/rates.html?tab=';
+  // These IDs match the calculator's popular prepaid cards.
+  // Initial prices are from the catalog; refresh when the catalog changes.
+  const prepaidPicks=[
+    {id:'PRE-FREETLG-1521',title:'가볍게 사용',spec:'300MB + 1Mbps 무제한',monthly:29700,src:'home-easy-light'},
+    {id:'PRE-FREETLG-1879',title:'데이터 넉넉하게',spec:'10.3GB + 3Mbps 무제한',monthly:38300,src:'home-easy-data'},
+    {id:'PRE-FREETLG-1523',title:'데이터 무제한 선호',spec:'11GB + 매일 2GB + 3Mbps 무제한',monthly:55000,src:'home-easy-unlimited'}
+  ];
+  const prepaidItems=()=>prepaidPicks.map(p=>[
+    p.title,p.spec,
+    base+'prepaid&pp='+encodeURIComponent(p.id)+'&pprov=FREETLG&src='+p.src,
+    p.monthly
+  ]);
   const options={
     mobile:{
       heading:'어떤 휴대폰이 필요하세요?',
@@ -29,11 +41,7 @@
     prepaid:{
       heading:'선불폰 사용량을 골라보세요',
       info:'매장에서 자주 선택하는 선불 요금제 3종을 먼저 확인하세요.',
-      items:[
-        ['가볍게 사용','300MB + 1Mbps 상품부터 보기',base+'prepaid&src=home-easy-light'],
-        ['데이터 넉넉하게','10.3GB 상품부터 보기',base+'prepaid&src=home-easy-data'],
-        ['데이터 무제한 선호','안심 11GB 상품부터 보기',base+'prepaid&src=home-easy-unlimited']
-      ]
+      items:prepaidItems()
     },
     internet:{
       heading:'인터넷 속도와 TV만 선택하세요',
@@ -77,7 +85,7 @@
     heading.textContent=entry.heading;
     explanation.textContent=entry.info;
     choices.replaceChildren();
-    entry.items.forEach(([title,description,url])=>{
+    entry.items.forEach(([title,description,url,monthly])=>{
       const link=document.createElement('a');
       link.className='home-order-option';
       link.href=url;
@@ -85,7 +93,15 @@
       const label=document.createElement('strong');label.textContent=title;
       const note=document.createElement('small');note.textContent=description;
       const arrow=document.createElement('span');arrow.className='home-order-arrow';arrow.setAttribute('aria-hidden','true');arrow.textContent='→';
-      copy.append(label,note);link.append(copy,arrow);
+      copy.append(label,note);
+      if(category==='prepaid'&&Number.isFinite(monthly)&&monthly>0){
+        const fee=document.createElement('span');
+        fee.className='home-order-monthly';
+        fee.textContent='월정액 '+monthly.toLocaleString('ko-KR')+'원';
+        copy.append(fee);
+        link.setAttribute('aria-label',title+' · '+description+' · 월정액 '+monthly.toLocaleString('ko-KR')+'원 · 요금계산기에서 선택');
+      }
+      link.append(copy,arrow);
       link.addEventListener('click',()=>{try{window.woongbiTrackConversion?.('home_quick_order_continue',{category})}catch{}});
       choices.append(link);
     });
@@ -100,4 +116,22 @@
     try{window.woongbiTrackConversion?.('home_quick_order_category',{category:link.dataset.quickCategory})}catch{}
   }));
   selectCategory('mobile');
+  // The calculator catalog is the source of truth for future fee changes.
+  fetch('/data/prepaid.json?v=20261020-home-picks1',{cache:'no-cache'})
+    .then(response=>{if(!response.ok)throw new Error('prepaid catalog unavailable');return response.json();})
+    .then(data=>{
+      const byId=new Map((data.plans||[]).map(plan=>[plan.id,plan]));
+      let updated=false;
+      prepaidPicks.forEach(pick=>{
+        const plan=byId.get(pick.id);
+        const fee=Number(plan?.monthly_fee);
+        if(plan?.provider_id!=='FREETLG'||!Number.isFinite(fee)||fee<=0||fee===pick.monthly)return;
+        pick.monthly=fee;
+        updated=true;
+      });
+      if(updated){
+        options.prepaid.items=prepaidItems();
+        if(root.dataset.activeCategory==='prepaid')selectCategory('prepaid');
+      }
+    }).catch(()=>{ /* Keep last confirmed catalog prices if offline. */ });
 })();
