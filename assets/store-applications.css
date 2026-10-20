@@ -400,3 +400,40 @@
 /* Two ways to consult: secure formal application or quick Kakao estimate */
 #store-application-quick-kakao:not([hidden]){display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:10px 16px;border-radius:12px;border:1px solid #1376b5;background:#edf8ff;color:#0b5f95;font-size:15px;font-weight:850;cursor:pointer}
 #store-application-quick-kakao[hidden]{display:none!important}
+
+/* Visit booking CTA: clear contrast and aligned full-width placement (2026-10-20). */
+.rate-page .store-visit-btn,
+.rate-page .consult-copy-tools > .store-visit-btn,
+.rate-page .wired-quote-tools > .store-visit-btn,
+.rate-page .purpose-card-actions > .store-visit-btn{
+  display:flex;align-items:center;justify-content:center;
+  box-sizing:border-box;width:100%;min-width:0;min-height:52px;
+  padding:12px 16px;border:2px solid #1758a9;border-radius:12px;
+  background:linear-gradient(135deg,#2677d5 0%,#1454a5 100%);
+  color:#fff;font:inherit;font-size:16px;font-weight:900;line-height:1.4;
+  text-align:center;cursor:pointer;
+  box-shadow:0 5px 15px rgba(20,84,165,.2);
+  transition:background .16s ease,box-shadow .16s ease,transform .16s ease;
+}
+.rate-page .store-visit-btn:hover{
+  background:linear-gradient(135deg,#1d66bd 0%,#0d4489 100%);
+  box-shadow:0 7px 18px rgba(20,84,165,.27);
+  transform:translateY(-1px);
+}
+.rate-page .store-visit-btn:focus-visible{
+  outline:3px solid #f7ae46;outline-offset:3px;
+}
+.rate-page .consult-copy-tools > .store-visit-btn,
+.rate-page .wired-quote-tools > .store-visit-btn{
+  grid-column:1 / -1;justify-self:stretch;
+}
+.rate-page #purpose-results .purpose-card-actions > .store-visit-btn{
+  min-height:52px;font-size:16px;
+}
+@media(max-width:640px){
+  .rate-page .store-visit-btn{min-height:52px;font-size:16px;}
+}
+@media(prefers-reduced-motion:reduce){
+  .rate-page .store-visit-btn{transition:none;}
+  .rate-page .store-visit-btn:hover{transform:none;}
+}
