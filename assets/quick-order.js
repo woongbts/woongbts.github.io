@@ -65,7 +65,6 @@
       heading:'편한 방법으로 방문을 준비하세요',
       info:'매장 방문 전 전화나 예약으로 상담 시간을 확인해 주세요.',
       items:[
-        ['선택한 상품으로 방문 예약','예약 전 상담내용 확인·복사','/visit.html?src=home-easy'],
         ['전화 상담','051-343-7677로 바로 전화','tel:0513437677'],
         ['매장 위치 보기','남산정역 3번 출구 인근','https://naver.me/xLNYT8fk']
       ]
@@ -111,6 +110,8 @@
   }
   buttons.forEach(link=>link.addEventListener('click',event=>{
     if(event.ctrlKey||event.metaKey||event.shiftKey||event.altKey||event.button!==0)return;
+    // Visiting customers go straight to the booking screen, without a second booking button.
+    if(link.dataset.quickCategory==='visit')return;
     event.preventDefault();
     selectCategory(link.dataset.quickCategory,true);
     try{window.woongbiTrackConversion?.('home_quick_order_category',{category:link.dataset.quickCategory})}catch{}
