@@ -110,8 +110,6 @@
   }
   buttons.forEach(link=>link.addEventListener('click',event=>{
     if(event.ctrlKey||event.metaKey||event.shiftKey||event.altKey||event.button!==0)return;
-    // Visiting customers go straight to the booking screen, without a second booking button.
-    if(link.dataset.quickCategory==='visit')return;
     event.preventDefault();
     selectCategory(link.dataset.quickCategory,true);
     try{window.woongbiTrackConversion?.('home_quick_order_category',{category:link.dataset.quickCategory})}catch{}
