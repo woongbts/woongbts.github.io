@@ -2,7 +2,7 @@
   "version": 1,
   "id": "8741dbdae73d3e63",
   "date": "2026-10-16",
-  "checked_on": "2026-10-19",
+  "checked_on": "2026-10-20",
   "changes": [
     {
       "carrier": "SKT",
@@ -44,6 +44,6 @@
   "support_entry_added_count": 0,
   "support_entry_removed_count": 0,
   "support_delta_count": 0,
-  "refresh_run_id": "39217674201",
-  "checked_at": "2026-10-19T16:44:52+09:00"
+  "refresh_run_id": "39386591253",
+  "checked_at": "2026-10-20T16:29:02+09:00"
 }
