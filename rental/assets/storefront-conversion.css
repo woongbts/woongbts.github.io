@@ -161,3 +161,62 @@
   #recommendations .recommend-body{padding:9px!important}
   #recommendations .recommend-prices strong{font-size:13.5px!important}
 }
+
+/* 2026-10-22 featured rental amount emphasis.
+   Scoped to recommendation cards across all category tabs, not catalog/details. */
+#recommendations .recommend-prices{
+  display:grid;grid-template-columns:minmax(0,1fr);gap:9px;
+  min-width:0;margin:0 0 12px;
+}
+#recommendations .recommend-prices .recommend-monthly,
+#recommendations .recommend-prices .recommend-gift{
+  display:block;box-sizing:border-box;min-width:0;margin:0;
+  padding:11px 12px 12px;border-radius:13px;text-align:left;
+}
+#recommendations .recommend-prices .recommend-monthly{
+  background:linear-gradient(135deg,#edf7ff,#e5f2ff);
+  border:2px solid #bddcfa;
+}
+#recommendations .recommend-prices .recommend-gift{
+  background:linear-gradient(135deg,#fff9ec,#fff0d3);
+  border:2px solid #f2d29a;
+}
+#recommendations .recommend-prices .recommend-price-label{
+  display:block;margin:0 0 4px;font-size:13px!important;
+  font-weight:850!important;line-height:1.4!important;letter-spacing:-.01em;
+}
+#recommendations .recommend-prices .recommend-monthly .recommend-price-label{color:#225b8e!important}
+#recommendations .recommend-prices .recommend-gift .recommend-price-label{color:#885016!important}
+#recommendations .recommend-prices .recommend-amount-value{
+  display:inline-block;max-width:100%;font-size:clamp(18px,1.75vw,23px)!important;
+  font-weight:950!important;line-height:1.25!important;letter-spacing:-.045em;
+  font-variant-numeric:tabular-nums;white-space:nowrap;word-break:keep-all;
+  overflow-wrap:normal;
+}
+#recommendations .recommend-prices .recommend-monthly .recommend-amount-value{color:#0758a8!important}
+#recommendations .recommend-prices .recommend-gift .recommend-amount-value{color:#985000!important}
+#recommendations .recommend-prices .recommend-start-label{
+  display:inline;margin-left:3px;font-size:12px!important;
+  line-height:1.4!important;font-weight:750!important;color:#3c6891!important;
+}
+@media(max-width:560px){
+  #recommendations .recommend-prices{gap:7px;margin-bottom:10px}
+  #recommendations .recommend-prices .recommend-monthly,
+  #recommendations .recommend-prices .recommend-gift{
+    padding:9px 9px 10px;border-radius:11px;
+  }
+  #recommendations .recommend-prices .recommend-price-label{
+    font-size:12px!important;margin-bottom:3px;
+  }
+  #recommendations .recommend-prices .recommend-amount-value{
+    font-size:clamp(16px,4.4vw,20px)!important;letter-spacing:-.05em;
+  }
+  #recommendations .recommend-prices .recommend-start-label{
+    font-size:11px!important;margin-left:2px;
+  }
+}
+@media(max-width:360px){
+  #recommendations .recommend-prices .recommend-monthly,
+  #recommendations .recommend-prices .recommend-gift{padding-inline:7px}
+  #recommendations .recommend-prices .recommend-amount-value{font-size:15px!important}
+}
