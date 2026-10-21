@@ -5214,6 +5214,146 @@
         "BEREX 프라임",
         "60개월"
       ]
+    },
+    {
+      "id": "clover-2202",
+      "brand": "SK매직",
+      "name": "초소형 플러스 직수 냉온정수기",
+      "model": "WPUJAC115",
+      "category": "정수기",
+      "page": "product.html?id=clover-2202",
+      "image": "assets/product-images/clover-2202.webp",
+      "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/0.png",
+      "detailImages": [
+        "https://static.skmagic.com/image/editor/goods_desc/202506/1749012900048773.jpg"
+      ],
+      "availability": "active",
+      "sourceKind": "clover-public",
+      "options": [
+        {
+          "key": "visit-option-36",
+          "management": "visit-option",
+          "managementLabel": "방문형",
+          "term": 36,
+          "monthly": 41900,
+          "card": null,
+          "gift": 155000,
+          "care": "방문형",
+          "sourceOption": "(방문형)36",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "visit-option-60",
+          "management": "visit-option",
+          "managementLabel": "방문형",
+          "term": 60,
+          "monthly": 36400,
+          "card": null,
+          "gift": 230000,
+          "care": "방문형",
+          "sourceOption": "(방문형)60",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "self-option-36",
+          "management": "self-option",
+          "managementLabel": "셀프형",
+          "term": 36,
+          "monthly": 38900,
+          "card": null,
+          "gift": 155000,
+          "care": "셀프형",
+          "sourceOption": "(셀프형)36",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "self-option-60",
+          "management": "self-option",
+          "managementLabel": "셀프형",
+          "term": 60,
+          "monthly": 33400,
+          "card": null,
+          "gift": 230000,
+          "care": "셀프형",
+          "sourceOption": "(셀프형)60",
+          "giftPolicyMonth": "2026-10"
+        }
+      ],
+      "highlights": [
+        "초소형",
+        "직수형",
+        "냉수·온수"
+      ]
+    },
+    {
+      "id": "clover-2197",
+      "brand": "CUCKOO",
+      "name": "살균 직수 정수기",
+      "model": "CP-AKS011",
+      "category": "정수기",
+      "page": "product.html?id=clover-2197",
+      "image": "assets/product-images/clover-2197.webp",
+      "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250520144816_1.jpg",
+      "detailImages": [
+        "https://gi.esmplus.com/cuckoohs/spec/CP-AKS011EG/01.jpg"
+      ],
+      "availability": "active",
+      "sourceKind": "clover-public",
+      "options": [
+        {
+          "key": "visit-option-36",
+          "management": "visit-option",
+          "managementLabel": "방문형",
+          "term": 36,
+          "monthly": 23900,
+          "card": null,
+          "gift": 55000,
+          "care": "방문형",
+          "sourceOption": "(방문형)36",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "visit-option-60",
+          "management": "visit-option",
+          "managementLabel": "방문형",
+          "term": 60,
+          "monthly": 18900,
+          "card": null,
+          "gift": 90000,
+          "care": "방문형",
+          "sourceOption": "(방문형)60",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "self-option-36",
+          "management": "self-option",
+          "managementLabel": "셀프형",
+          "term": 36,
+          "monthly": 21900,
+          "card": null,
+          "gift": 50000,
+          "care": "셀프형",
+          "sourceOption": "(셀프형)36",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "self-option-60",
+          "management": "self-option",
+          "managementLabel": "셀프형",
+          "term": 60,
+          "monthly": 16900,
+          "card": null,
+          "gift": 75000,
+          "care": "셀프형",
+          "sourceOption": "(셀프형)60",
+          "giftPolicyMonth": "2026-10"
+        }
+      ],
+      "highlights": [
+        "직수형",
+        "살균 기능",
+        "살균 직수"
+      ]
     }
   ]
 }
