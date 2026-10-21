@@ -269,3 +269,44 @@ body.plan-picker-opened{overflow:hidden;touch-action:auto}
 .rate-page #mobile-quote-choice .rate-quote-choice-links > :is(button,a):focus-visible{
   outline:3px solid #dc7d12;outline-offset:3px;
 }
+
+
+/* 2026-10-21 · internet/TV comparison gift emphasis */
+.rate-page .rate-panel[data-panel="internet"] .wired-compare-card > div{
+  box-sizing:border-box;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:6px 10px;
+  margin-top:6px;
+  padding:10px 12px;
+  border:1px solid #f2ca99;
+  border-left:4px solid #e97721;
+  border-radius:10px;
+  background:#fff4e7;
+  line-height:1.45;
+}
+.rate-page .rate-panel[data-panel="internet"] .wired-compare-card > div em{
+  color:#96501a;
+  font-size:15px!important;
+  font-style:normal;
+  font-weight:850;
+}
+.rate-page .rate-panel[data-panel="internet"] .wired-compare-card > div b{
+  margin-left:auto;
+  color:#b4440b;
+  font-size:clamp(19px,1.65vw,22px)!important;
+  font-weight:950;
+  line-height:1.3;
+  font-variant-numeric:tabular-nums;
+  white-space:nowrap;
+}
+@media (max-width:760px){
+  .rate-page .rate-panel[data-panel="internet"] .wired-compare-card > div{
+    padding:12px 13px;
+    gap:8px 10px;
+  }
+  .rate-page .rate-panel[data-panel="internet"] .wired-compare-card > div em{font-size:16px!important}
+  .rate-page .rate-panel[data-panel="internet"] .wired-compare-card > div b{font-size:21px!important}
+}
