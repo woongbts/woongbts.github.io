@@ -10,6 +10,8 @@ OVERRIDES = ROOT / "rental/data/catalog-overrides.json"
 OUT = ROOT / "rental/data/featured.json"
 
 CATEGORIES = ["정수기", "공기청정기", "비데·연수기", "안마의자", "매트리스·프레임"]
+# Keep homepage four recommended purifiers in the lightweight featured payload.
+HOME_RECOMMENDED_IDS = ("chp-7220n", "clover-2242", "clover-2202", "clover-2197")
 PREFS = [
     re.compile(r"coway|코웨이", re.I),
     re.compile(r"퓨리케어|lg", re.I),
@@ -90,6 +92,17 @@ def main():
         for group in groups:
             for product in group:
                 chosen[str(product.get("id"))] = product
+
+    # The category rankings can exclude affordable featured models; pin those
+    # still active in the full catalog so the homepage never loses its four picks.
+    by_id = {str(product.get("id")): product for product in merged}
+    for product_id in HOME_RECOMMENDED_IDS:
+        product = by_id.get(product_id)
+        if (product and product.get("availability") != "inactive"
+                and product.get("category") == "정수기"
+                and not re.search(r"단종|접수불가|접수중지", str(product.get("name") or ""))
+                and metrics(product)):
+            chosen[product_id] = product
 
     output = {
         "generatedAt": gifts.get("generatedAt") or data.get("updatedAt") or "",
