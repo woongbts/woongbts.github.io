@@ -351,8 +351,8 @@
           <h3>${product.name}</h3>
           ${capability ? '<div class="recommend-capability">'+capability+'</div>' : ''}
           <div class="recommend-prices">
-            <span class="recommend-monthly">월 ${minMonthly == null ? '상담 확인' : '<b class="money-nowrap">'+won(minMonthly)+'</b>부터'}</span>
-            <strong class="recommend-gift"><span>같은 조건 사은품</span> <span class="money-nowrap">${maxGift == null ? '상담 확인' : won(maxGift)}</span></strong>
+            <span class="recommend-monthly"><span class="recommend-price-label">월 렌탈료</span><b class="recommend-amount-value money-nowrap">${minMonthly == null ? '상담 확인' : won(minMonthly)}</b>${minMonthly == null ? '' : '<span class="recommend-start-label">부터</span>'}</span>
+            <strong class="recommend-gift"><span class="recommend-price-label">같은 조건 사은품 혜택</span><span class="recommend-amount-value money-nowrap">${maxGift == null ? '상담 확인' : won(maxGift)}</span></strong>
           </div>
           <small class="recommend-contract">${selectedContractLabel(m)}</small>
           <small class="catalog-paired-note">표시 요금·사은품은 동일 옵션 기준 · 다른 옵션은 상세에서 확인</small>
