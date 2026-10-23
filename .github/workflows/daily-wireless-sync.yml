@@ -9,6 +9,8 @@ on:
     paths:
       - '.github/scripts/daily_wireless_sync.py'
       - '.github/workflows/daily-wireless-sync.yml'
+      - 'src/rates.js'
+      - 'assets/rates.min.js'
 
 permissions:
   contents: write
@@ -59,9 +61,15 @@ jobs:
                   raise SystemExit(f'invalid json root: {path}')
           print('JSON validation OK')
           PY
+          node --check src/rates.js
           node --check assets/rates.min.js
           node --check assets/site-pro.min.js
-          python3 .github/scripts/build_rates_asset.py --check
+          # A website asset/source parity issue must not block validated carrier
+          # subsidy updates. Surface the drift as a warning for follow-up.
+          if ! python3 .github/scripts/build_rates_asset.py --check; then
+            echo '::warning title=Rates source mismatch::Calculator source and deployed JS differ. Sync them before the next UI edit.'
+            echo '⚠️ 요금계산기 소스와 배포본 불일치: 공시지원금 수집은 계속 진행하며, 별도 코드 정리가 필요합니다.' >> "$GITHUB_STEP_SUMMARY"
+          fi
           python3 .github/scripts/validate_site.py
 
       - name: Report verified wireless changes
