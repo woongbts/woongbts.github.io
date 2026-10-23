@@ -4,14 +4,15 @@ const vm=require('node:vm');
 const source=fs.readFileSync('assets/iphone-duo-preorder.js','utf8');
 const home=fs.readFileSync('index.html','utf8');
 const page=fs.readFileSync('iphone-duo/index.html','utf8');
-for(const html of [home,page]){
+assert.doesNotMatch(home,/iphone18-promo|iphone-duo|duo-name/,'ended Duo reservation is not promoted on homepage');
+for(const html of [page]){
  const ids=[...html.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]);
  assert.equal(ids.length,new Set(ids).size,'no duplicate IDs');
  for(const id of ['duo-name','duo-phone','duo-carrier','duo-model','duo-color','duo-inquiry','duo-consent'])assert.ok(ids.includes(id),id);
  assert.match(html,/preload="none"/,'video does not delay page load');
  assert.doesNotMatch(html,/\bautoplay\b/,'no unsolicited playback');
 }
-assert.match(home,/id="iphone18-promo" class="duo-section"/,'legacy iPhone 18 injection is replaced');
+// The historical Duo landing is retained separately, but the reservation entry was removed from home.
 assert.match(page,/<h1 id="duo-title">iPhone Duo/);
 assert.doesNotMatch(source,/localStorage|sessionStorage/,'no personal data browser storage');
 const context={window:{},document:{readyState:'loading',addEventListener(){}},Date,URLSearchParams};
