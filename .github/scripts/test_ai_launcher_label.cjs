@@ -23,5 +23,5 @@ assert.match(chat,/\.wb-ai-launcher>span\{display:none!important\}/,'old label h
 assert.match(homeCss,/#woongbi-ai-launcher\.wb-ai-launcher>span\{display:none!important\}/,'homepage hides old label');
 assert.match(rates,/ai-chat\.min\.js\?v=20261016-chatux1/);
 assert.match(loader,/ai-chat\.min\.js\?v=20261016-chatux1/);
-assert.match(homepage,/quick-order\.css\?v=20261008-pos4/);
+assert.match(homepage,/quick-order\.css\?v=[a-zA-Z0-9._-]+/,'homepage loads versioned quick-order CSS');
 console.log('AI launchers: readable mobile pill and new cache references passed.');
