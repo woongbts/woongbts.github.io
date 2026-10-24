@@ -1,11 +1,11 @@
 {
-  "checked_at": "2026-10-23T16:43:33+09:00",
+  "checked_at": "2026-10-24T16:15:41+09:00",
   "source": "https://www.xeronote.co.kr",
   "result": "validated",
   "counts": {
     "devices": 138,
     "plans": 570,
-    "supports": 52
+    "supports": 49
   },
   "devices_by_carrier": {
     "SKT": 48,
@@ -68,6 +68,6 @@
       "reason": "invalid_release_date"
     }
   ],
-  "run_id": "39919379960",
+  "run_id": "40073320613",
   "unverified_subsidy_entries_skipped": 42
 }
