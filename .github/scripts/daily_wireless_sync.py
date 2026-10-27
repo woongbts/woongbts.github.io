@@ -182,6 +182,8 @@ def handset_plan_rows(rows):
         "아웃도어",
         "tab",
         "태블릿",
+        "테블릿",
+        "함께쓰기",
         "watch",
         "워치",
         "포켓파이",
@@ -286,7 +288,7 @@ def validate_dataset(old_catalog, old_plans, old_supports, catalog, plan_data, s
         if re.search(r"(^|[^a-z0-9])[23]g([^a-z0-9]|$)", normalized_name, re.IGNORECASE):
             raise RuntimeError(f"legacy 2G/3G plan leaked into public catalog: {pid} {plan.get('name')}")
         blocked_plan_tokens = (
-            "아웃도어", "tab", "태블릿", "watch", "워치", "포켓파이",
+            "아웃도어", "tab", "태블릿", "테블릿", "함께쓰기", "watch", "워치", "포켓파이",
             "스마트기기", "데이터함께쓰기", "데이터쉐어링", "데이터셰어링",
             "아이패드", "ipad", "세컨드디바이스", "2nddevice", "wearable", "웨어러블", "데이터나눠쓰기",
         )
