@@ -11,6 +11,7 @@ class NoticeTests(unittest.TestCase):
         self.plans = {'mobile_plans': [
             {'id': 'p-main', 'name': '5G 테스트', 'monthly_fee': 69000, 'carrier': 'SKT'},
             {'id': 'p-other', 'name': '시니어 테스트', 'monthly_fee': 45000, 'carrier': 'SKT'},
+            {'id': 'p-tablet', 'name': '5G 함께쓰기 베이직_테블릿', 'monthly_fee': 5000, 'carrier': 'SKT'},
         ]}
         self.old = {'meta': {'updated_at': '2026-09-23'}, 'support_schedules': [
             {'carrier': 'SKT', 'device_ids': ['d'],
@@ -55,6 +56,30 @@ class NoticeTests(unittest.TestCase):
         self.assertEqual(result['date'], '2026-09-22')
         self.assertEqual(result['id'], 'old')
         self.assertEqual(result['checked_on'], '2026-10-08')
+
+    def test_tablet_plan_amount_change_is_never_customer_notice(self):
+        tablet = {'carrier': 'SKT', 'device_ids': ['d'], 'join_types': ['신규가입'],
+                  'amounts': {'p-tablet': 60000}}
+        self.old['support_schedules'].append(tablet)
+        replacement = copy.deepcopy(tablet)
+        replacement['amounts']['p-tablet'] = 160000
+        self.new['support_schedules'].append(replacement)
+        result = self.run_build()
+        self.assertEqual(result['support_amount_change_count'], 1)
+        self.assertEqual(result['refresh_change_count'], 0)
+        self.assertEqual(result['changes'], [])
+
+    def test_stale_previous_tablet_notice_is_removed(self):
+        old_notice = {
+            'version': 1, 'date': '2026-10-25', 'id': 'old',
+            'changes': [
+                {'plan': '5G 함께쓰기 베이직_테블릿', 'plan_id': 'p-tablet'},
+                {'plan': '5G 테스트', 'plan_id': 'p-main'},
+            ],
+        }
+        result = self.run_build(previous=old_notice)
+        self.assertEqual(result['refresh_change_count'], 0)
+        self.assertEqual([row['plan_id'] for row in result['changes']], ['p-main'])
 
     def test_added_and_removed_support_entries_are_not_money_deltas(self):
         old_extra = {'carrier': 'SKT', 'device_ids': ['d'],
