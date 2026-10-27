@@ -2,7 +2,7 @@
 import unittest
 from urllib.error import HTTPError
 from datetime import date
-from daily_wireless_sync import verified_primary_or_official_support, valid_public_support, ROOT, select_current_devices, valid_device_price
+from daily_wireless_sync import verified_primary_or_official_support, valid_public_support, ROOT, select_current_devices, valid_device_price, handset_plan_rows
 
 
 class DailyWirelessSyncTests(unittest.TestCase):
@@ -65,6 +65,17 @@ class DailyWirelessSyncTests(unittest.TestCase):
         self.assertEqual(candidates, [])
         self.assertEqual(len(deferred), 1)
         self.assertEqual(deferred[0]["reason"], "invalid_release_date")
+
+    def test_tablet_and_data_sharing_plan_typos_are_excluded(self):
+        rows = [
+            {'plan_name': '5G 함께쓰기 베이직_테블릿', 'join_yn': 'Y', 'except_yn': 'N'},
+            {'plan_name': '5G 함께쓰기 베이직_태블릿', 'join_yn': 'Y', 'except_yn': 'N'},
+            {'plan_name': '5G 일반 휴대폰 요금제', 'join_yn': 'Y', 'except_yn': 'N'},
+        ]
+        self.assertEqual(
+            [row['plan_name'] for row in handset_plan_rows(rows)],
+            ['5G 일반 휴대폰 요금제'],
+        )
 
     def test_zeronote_is_the_explicit_default(self):
         self.assertTrue(ROOT.startswith("https://"))
