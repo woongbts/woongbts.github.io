@@ -14,6 +14,20 @@ CARRIERS = ('SKT', 'KT', 'LGU+')
 # type, and up to this many examples from each carrier.
 MAX_NOTICE_PER_CARRIER = 16
 
+NON_HANDSET_PLAN_TOKENS = (
+    '아웃도어', 'tab', '태블릿', '테블릿', 'watch', '워치', '포켓파이',
+    '스마트기기', '데이터함께쓰기', '함께쓰기', '데이터쉐어링', '데이터셰어링',
+    '아이패드', 'ipad', '세컨드디바이스', '2nddevice', 'wearable', '웨어러블',
+    '데이터나눠쓰기',
+)
+
+
+def is_handset_plan_name(name):
+    normalized = ''.join(str(name or '').lower().split())
+    return not any(token in normalized for token in NON_HANDSET_PLAN_TOKENS)
+
+
+
 
 def support_delta_stats(old, new):
     old_keys, new_keys = set(old), set(new)
@@ -47,6 +61,8 @@ def build(old_supports, catalog, plans, supports, previous=None, checked_on=None
         plan = plan_map.get(pid)
         if not device or not plan or device.get('carrier') != carrier or plan.get('carrier', carrier) != carrier:
             continue
+        if not is_handset_plan_name(plan.get('name')):
+            continue
         fee = plan.get('monthly_fee')
         if type(fee) is not int or fee < 0:
             continue
@@ -79,6 +95,12 @@ def build(old_supports, catalog, plans, supports, previous=None, checked_on=None
         changes.append({k: v for k, v in row.items() if not k.startswith('_')})
     if not changes and previous:
         result = dict(previous)
+        # Keep a useful previous notice, but never keep stale tablet/data-sharing
+        # rows that slipped through an older feed or a carrier naming typo.
+        result['changes'] = [
+            row for row in (previous.get('changes') or [])
+            if not row.get('plan') or is_handset_plan_name(row.get('plan'))
+        ]
         result['refresh_change_count'] = 0
         result['notice_total_count'] = 0
         result['checked_on'] = checked_on
