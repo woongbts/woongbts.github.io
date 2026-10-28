@@ -26,6 +26,7 @@
       items:[
         ['효도폰','부모님께 필요한 기종 추천',base+'mobile&purpose=senior&src=home-easy'],
         ['키즈폰','아이 첫 휴대폰 추천',base+'mobile&purpose=kids&src=home-easy'],
+        ['공신폰','공부에 집중하는 휴대폰 · 갤럭시 A17',base+'studyphone&src=home-easy'],
         ['가성비폰','부담 적은 기종 추천',base+'mobile&purpose=value&src=home-easy'],
         ['프리미엄폰','최신·고성능 기종 추천',base+'mobile&purpose=premium&src=home-easy']
       ]
