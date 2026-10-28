@@ -2,14 +2,14 @@
   "version": 1,
   "id": "87f456ce241f061f",
   "date": "2026-10-25",
-  "checked_on": "2026-10-27",
+  "checked_on": "2026-10-28",
   "changes": [],
   "refresh_change_count": 0,
   "notice_total_count": 0,
   "support_amount_change_count": 0,
   "support_entry_added_count": 0,
-  "support_entry_removed_count": 144,
-  "support_delta_count": 144,
-  "refresh_run_id": "40488169621",
-  "checked_at": "2026-10-27T19:25:55+09:00"
+  "support_entry_removed_count": 0,
+  "support_delta_count": 0,
+  "refresh_run_id": "40656239787",
+  "checked_at": "2026-10-28T17:24:10+09:00"
 }
