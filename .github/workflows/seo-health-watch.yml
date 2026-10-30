@@ -1,4 +1,4 @@
-name: Woongbi SEO health watch
+name: 웅비통신 AI SEO 자동화 시스템
 on:
   workflow_dispatch:
   push:
@@ -34,3 +34,11 @@ jobs:
           python-version: '3.12'
       - name: Inspect metadata, sitemap URLs and analytics hooks
         run: python scripts/seo-health-check.py
+      - name: Preserve audit report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: seo-health-report-${{ github.run_id }}-${{ github.run_attempt }}
+          path: seo-health-report.json
+          if-no-files-found: warn
+          retention-days: 90
