@@ -48,9 +48,6 @@ def audit_page(location):
         errors.append('External/noncanonical sitemap address: ' + location)
         return
     path = unquote(url.path)
-    if path.startswith('/rental/product/') and path.endswith('/'):
-        # Virtual product URLs are served by the existing rental product router.
-        return
     relative = path.lstrip('/')
     if not relative or relative.endswith('/'):
         relative += 'index.html'
@@ -133,6 +130,10 @@ def main():
         if 'naver-site-verification' not in home:
             warnings.append('Naver site verification meta missing from home')
     result = {
+        'system': '웅비통신 AI SEO 자동화 시스템',
+        'checked_at_utc': dt.datetime.now(dt.timezone.utc).isoformat(),
+        'commit_sha': os.environ.get('GITHUB_SHA', 'local'),
+        'run_id': os.environ.get('GITHUB_RUN_ID', 'local'),
         'status': 'fail' if errors else 'pass',
         'static_pages_checked': len(scanned),
         'sitemap_url_entries': urls_seen,
@@ -140,11 +141,13 @@ def main():
         'warnings': warnings,
         'note': 'Technical SEO audit only; live rankings, traffic and conversions are not queried.'
     }
-    print(json.dumps(result, ensure_ascii=False, indent=2))
+    report = json.dumps(result, ensure_ascii=False, indent=2)
+    print(report)
+    Path(os.environ.get('SEO_REPORT_PATH', 'seo-health-report.json')).write_text(report + '\n', encoding='utf-8')
     summary = os.environ.get('GITHUB_STEP_SUMMARY')
     if summary:
         with open(summary, 'a', encoding='utf-8') as output:
-            output.write('## 웅비통신 SEO 정기 점검\n\n')
+            output.write('## 웅비통신 AI SEO 자동화 시스템 · 정기 점검\n\n')
             output.write(f'- 결과: **{result["status"].upper()}**\n')
             output.write(f'- 사이트맵 URL: {urls_seen}, 확인한 정적 페이지: {len(scanned)}\n')
             output.write(f'- 오류: {len(errors)}, 참고사항: {len(warnings)}\n')
