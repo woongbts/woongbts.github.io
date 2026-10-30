@@ -1,0 +1,36 @@
+name: Woongbi SEO health watch
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'sitemap.xml'
+      - 'rental/sitemap.xml'
+      - 'rental/food-disposer-sitemap.xml'
+      - 'robots.txt'
+      - 'scripts/seo-health-check.py'
+      - '.github/workflows/seo-health-watch.yml'
+  pull_request:
+    paths:
+      - 'sitemap.xml'
+      - 'rental/sitemap.xml'
+      - 'rental/food-disposer-sitemap.xml'
+      - 'robots.txt'
+      - '**/*.html'
+      - 'scripts/seo-health-check.py'
+  schedule:
+    # Daily at 16:20 KST (07:20 UTC).
+    - cron: '20 7 * * *'
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Inspect metadata, sitemap URLs and analytics hooks
+        run: python scripts/seo-health-check.py
