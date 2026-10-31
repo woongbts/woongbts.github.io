@@ -29,8 +29,8 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: '3.12'
       - name: Test product-page checks
@@ -39,7 +39,7 @@ jobs:
         run: python scripts/seo-health-check.py
       - name: Preserve audit report
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: seo-health-report-${{ github.run_id }}-${{ github.run_attempt }}
           path: seo-health-report.json
