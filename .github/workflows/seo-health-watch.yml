@@ -19,6 +19,8 @@ on:
       - 'robots.txt'
       - '**/*.html'
       - 'scripts/seo-health-check.py'
+      - 'scripts/test-seo-health-check.py'
+      - '.github/workflows/seo-health-watch.yml'
   schedule:
     # Daily at 16:20 KST (07:20 UTC).
     - cron: '20 7 * * *'
