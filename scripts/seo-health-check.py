@@ -120,7 +120,7 @@ def main():
         errors.append('robots.txt missing')
     else:
         txt = robots.read_text(encoding='utf-8')
-        for sitemap in ('sitemap.xml', 'rental/food-disposer-sitemap.xml'):
+        for sitemap in SITEMAPS:
             if SITE + '/' + sitemap not in txt:
                 errors.append('Robots sitemap declaration missing: ' + sitemap)
     for sitemap in SITEMAPS:
