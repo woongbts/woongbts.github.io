@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-03",
+  "generatedAt": "2026-11-03",
   "categories": [
     "정수기",
     "공기청정기",
@@ -8,6 +8,122 @@
     "매트리스·프레임"
   ],
   "products": [
+    {
+      "id": "clover-2248",
+      "brand": "청호나이스",
+      "name": "THE M 얼음 냉온정수기",
+      "model": "WI-37C90720N",
+      "category": "정수기",
+      "page": "product.html?id=clover-2248",
+      "image": "assets/product-images/clover-2248.webp",
+      "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/23.jpg",
+      "detailImages": [
+        "https://chungho.co.kr/newch/uploads/0_01[3].jpg"
+      ],
+      "availability": "active",
+      "sourceKind": "clover-public",
+      "options": [
+        {
+          "key": "visit-option-36",
+          "management": "visit-option",
+          "managementLabel": "방문형",
+          "term": 36,
+          "monthly": 53900,
+          "card": null,
+          "gift": 215000,
+          "care": "방문형",
+          "sourceOption": "(방문형)36",
+          "giftPolicyMonth": "2026-11"
+        },
+        {
+          "key": "visit-option-60",
+          "management": "visit-option",
+          "managementLabel": "방문형",
+          "term": 60,
+          "monthly": 46900,
+          "card": null,
+          "gift": 340000,
+          "care": "방문형",
+          "sourceOption": "(방문형)60",
+          "giftPolicyMonth": "2026-11"
+        },
+        {
+          "key": "self-option-36",
+          "management": "self-option",
+          "managementLabel": "셀프형",
+          "term": 36,
+          "monthly": 50900,
+          "card": null,
+          "gift": 210000,
+          "care": "셀프형",
+          "sourceOption": "(셀프형)36",
+          "giftPolicyMonth": "2026-11"
+        },
+        {
+          "key": "self-option-60",
+          "management": "self-option",
+          "managementLabel": "셀프형",
+          "term": 60,
+          "monthly": 43900,
+          "card": null,
+          "gift": 330000,
+          "care": "셀프형",
+          "sourceOption": "(셀프형)60",
+          "giftPolicyMonth": "2026-11"
+        }
+      ],
+      "highlights": [
+        "얼음 기능",
+        "냉수·온수",
+        "THE M 얼음"
+      ]
+    },
+    {
+      "id": "clover-2045",
+      "brand": "청호나이스",
+      "name": "얼음냉온정수기 NEW 700",
+      "model": "WI-70S90010M/WI-70S90020M",
+      "category": "정수기",
+      "page": "product.html?id=clover-2045",
+      "image": "assets/product-images/clover-2045.webp",
+      "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231101131458_1_1.png",
+      "detailImages": [
+        "https://clvrental777.com/data/editor/2309/3affee4f8dde2125eee1b266e8121ccc_1695183602_7057.jpg"
+      ],
+      "availability": "active",
+      "sourceKind": "clover-public",
+      "options": [
+        {
+          "key": "visit-option-36",
+          "management": "visit-option",
+          "managementLabel": "방문형",
+          "term": 36,
+          "monthly": 50900,
+          "card": null,
+          "gift": 310000,
+          "care": "방문형",
+          "sourceOption": "(방문형)36",
+          "giftPolicyMonth": "2026-11"
+        },
+        {
+          "key": "visit-option-60",
+          "management": "visit-option",
+          "managementLabel": "방문형",
+          "term": 60,
+          "monthly": 48900,
+          "card": null,
+          "gift": 365000,
+          "care": "방문형",
+          "sourceOption": "(방문형)60",
+          "giftPolicyMonth": "2026-11"
+        }
+      ],
+      "highlights": [
+        "얼음 기능",
+        "냉수·온수",
+        "방문관리"
+      ]
+    },
     {
       "id": "chp-7220n",
       "brand": "COWAY",
@@ -32,7 +148,7 @@
           "card": null,
           "gift": 205000,
           "care": "방문관리 · 4개월",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-60",
@@ -41,9 +157,9 @@
           "term": 60,
           "monthly": 35900,
           "card": null,
-          "gift": 250000,
+          "gift": 260000,
           "care": "방문관리 · 4개월",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-72",
@@ -54,7 +170,7 @@
           "card": null,
           "gift": 285000,
           "care": "방문관리 · 4개월",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-84",
@@ -65,7 +181,7 @@
           "card": null,
           "gift": 285000,
           "care": "방문관리 · 4개월",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-36",
@@ -76,7 +192,7 @@
           "card": null,
           "gift": 190000,
           "care": "자가관리",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-60",
@@ -85,9 +201,9 @@
           "term": 60,
           "monthly": 32900,
           "card": null,
-          "gift": 235000,
+          "gift": 245000,
           "care": "자가관리",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-72",
@@ -98,7 +214,7 @@
           "card": null,
           "gift": 265000,
           "care": "자가관리",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-84",
@@ -109,7 +225,7 @@
           "card": null,
           "gift": 265000,
           "care": "자가관리",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "highlights": [
@@ -119,86 +235,16 @@
       ]
     },
     {
-      "id": "clover-2248",
+      "id": "clover-2241",
       "brand": "청호나이스",
-      "name": "THE M 얼음 냉온정수기",
-      "model": "WI-37C90720N",
+      "name": "얼음 냉온정수기 550 P_할인 프로모션",
+      "model": "WI-55S9P510M",
       "category": "정수기",
-      "page": "product.html?id=clover-2248",
-      "image": "assets/product-images/clover-2248.webp",
-      "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/23.jpg",
+      "page": "product.html?id=clover-2241",
+      "image": "assets/product-images/clover-2241.webp",
+      "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/251209111040_1.jpg",
       "detailImages": [
-        "https://chungho.co.kr/newch/uploads/0_01[3].jpg"
-      ],
-      "availability": "active",
-      "sourceKind": "clover-public",
-      "options": [
-        {
-          "key": "visit-option-36",
-          "management": "visit-option",
-          "managementLabel": "방문형",
-          "term": 36,
-          "monthly": 53900,
-          "card": null,
-          "gift": 155000,
-          "care": "방문형",
-          "sourceOption": "(방문형)36",
-          "giftPolicyMonth": "2026-10"
-        },
-        {
-          "key": "visit-option-60",
-          "management": "visit-option",
-          "managementLabel": "방문형",
-          "term": 60,
-          "monthly": 46900,
-          "card": null,
-          "gift": 305000,
-          "care": "방문형",
-          "sourceOption": "(방문형)60",
-          "giftPolicyMonth": "2026-10"
-        },
-        {
-          "key": "self-option-36",
-          "management": "self-option",
-          "managementLabel": "셀프형",
-          "term": 36,
-          "monthly": 50900,
-          "card": null,
-          "gift": 150000,
-          "care": "셀프형",
-          "sourceOption": "(셀프형)36",
-          "giftPolicyMonth": "2026-10"
-        },
-        {
-          "key": "self-option-60",
-          "management": "self-option",
-          "managementLabel": "셀프형",
-          "term": 60,
-          "monthly": 43900,
-          "card": null,
-          "gift": 295000,
-          "care": "셀프형",
-          "sourceOption": "(셀프형)60",
-          "giftPolicyMonth": "2026-10"
-        }
-      ],
-      "highlights": [
-        "얼음 기능",
-        "냉수·온수",
-        "THE M 얼음"
-      ]
-    },
-    {
-      "id": "clover-2097",
-      "brand": "루헨스",
-      "name": "대용량 업소용 정수기",
-      "model": "WHP-3900",
-      "category": "정수기",
-      "page": "product.html?id=clover-2097",
-      "image": "assets/product-images/clover-2097.webp",
-      "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/240206181836_1.jpg",
-      "detailImages": [
-        "https://woongbi.vip-rental.com/_var/rental/vshop/94b1148b_(1).jpg"
+        "https://clvrental777.com/data/editor/2511/abc40e42c788ce6f5d2198cdb8489088_1764139978_9322.jpg"
       ],
       "availability": "active",
       "sourceKind": "clover-public",
@@ -208,320 +254,119 @@
           "management": "standard-option",
           "managementLabel": "기본 조건",
           "term": 36,
-          "monthly": 37900,
-          "card": null,
-          "gift": 190000,
-          "care": "기본 조건",
-          "sourceOption": "36",
-          "giftPolicyMonth": "2026-10"
-        },
-        {
-          "key": "standard-option-48",
-          "management": "standard-option",
-          "managementLabel": "기본 조건",
-          "term": 48,
-          "monthly": 33900,
-          "card": null,
-          "gift": 270000,
-          "care": "기본 조건",
-          "sourceOption": "48",
-          "giftPolicyMonth": "2026-10"
-        }
-      ],
-      "highlights": [
-        "대용량",
-        "대용량 업소용",
-        "36개월 / 48개월"
-      ]
-    },
-    {
-      "id": "chpi-7430n",
-      "brand": "COWAY",
-      "name": "아이콘 얼음냉온정수기 미니",
-      "model": "CHPI-7430N",
-      "category": "정수기",
-      "page": "product.html?id=chpi-7430n",
-      "image": "assets/product-images/chpi-7430n.webp",
-      "imageSourceOriginal": "https://cdn.rentre.kr/product-thumbnail/76a9f09a6e2e45aeaf1b245dc920f9fc.png",
-      "detailImages": [
-        "https://storage.bilrigo.com/data/editor/2507/11d561a208dda6754723f5896d0ee30d_1753334475_1731.jpg"
-      ],
-      "availability": "active",
-      "sourceKind": "clover-public",
-      "options": [
-        {
-          "key": "visit2-36",
-          "management": "visit2",
-          "managementLabel": "방문관리 2개월",
-          "term": 36,
-          "monthly": 52900,
-          "card": null,
-          "gift": 215000,
-          "care": "방문관리 · 2개월",
-          "giftPolicyMonth": "2026-10"
-        },
-        {
-          "key": "visit2-60",
-          "management": "visit2",
-          "managementLabel": "방문관리 2개월",
-          "term": 60,
-          "monthly": 49900,
-          "card": null,
-          "gift": 240000,
-          "care": "방문관리 · 2개월",
-          "giftPolicyMonth": "2026-10"
-        },
-        {
-          "key": "visit2-72",
-          "management": "visit2",
-          "managementLabel": "방문관리 2개월",
-          "term": 72,
-          "monthly": 47900,
-          "card": null,
-          "gift": 280000,
-          "care": "방문관리 · 2개월",
-          "giftPolicyMonth": "2026-10"
-        },
-        {
-          "key": "visit2-84",
-          "management": "visit2",
-          "managementLabel": "방문관리 2개월",
-          "term": 84,
           "monthly": 45900,
           "card": null,
-          "gift": 280000,
-          "care": "방문관리 · 2개월",
-          "giftPolicyMonth": "2026-10"
+          "gift": null,
+          "care": "기본 조건",
+          "sourceOption": "36"
         },
         {
-          "key": "visit4-36",
-          "management": "visit4",
-          "managementLabel": "방문관리 4개월",
-          "term": 36,
-          "monthly": 49900,
-          "card": null,
-          "gift": 215000,
-          "care": "방문관리 · 4개월",
-          "giftPolicyMonth": "2026-10"
-        },
-        {
-          "key": "visit4-60",
-          "management": "visit4",
-          "managementLabel": "방문관리 4개월",
+          "key": "standard-option-60",
+          "management": "standard-option",
+          "managementLabel": "기본 조건",
           "term": 60,
-          "monthly": 46900,
+          "monthly": 43900,
           "card": null,
-          "gift": 240000,
-          "care": "방문관리 · 4개월",
-          "giftPolicyMonth": "2026-10"
-        },
-        {
-          "key": "visit4-72",
-          "management": "visit4",
-          "managementLabel": "방문관리 4개월",
-          "term": 72,
-          "monthly": 44900,
-          "card": null,
-          "gift": 275000,
-          "care": "방문관리 · 4개월",
-          "giftPolicyMonth": "2026-10"
-        },
-        {
-          "key": "visit4-84",
-          "management": "visit4",
-          "managementLabel": "방문관리 4개월",
-          "term": 84,
-          "monthly": 42900,
-          "card": null,
-          "gift": 275000,
-          "care": "방문관리 · 4개월",
-          "giftPolicyMonth": "2026-10"
-        },
-        {
-          "key": "self-36",
-          "management": "self",
-          "managementLabel": "자가관리",
-          "term": 36,
-          "monthly": 47900,
-          "card": null,
-          "gift": 210000,
-          "care": "자가관리 · 4개월 필터",
-          "giftPolicyMonth": "2026-10"
-        },
-        {
-          "key": "self-60",
-          "management": "self",
-          "managementLabel": "자가관리",
-          "term": 60,
-          "monthly": 44900,
-          "card": null,
-          "gift": 230000,
-          "care": "자가관리 · 4개월 필터",
-          "giftPolicyMonth": "2026-10"
-        },
-        {
-          "key": "self-72",
-          "management": "self",
-          "managementLabel": "자가관리",
-          "term": 72,
-          "monthly": 42900,
-          "card": null,
-          "gift": 270000,
-          "care": "자가관리 · 4개월 필터",
-          "giftPolicyMonth": "2026-10"
-        },
-        {
-          "key": "self-84",
-          "management": "self",
-          "managementLabel": "자가관리",
-          "term": 84,
-          "monthly": 40900,
-          "card": null,
-          "gift": 270000,
-          "care": "자가관리 · 4개월 필터",
-          "giftPolicyMonth": "2026-10"
-        }
-      ],
-      "highlights": [
-        "얼음·냉수·온수",
-        "방문 2개월 / 4개월",
-        "자가관리 선택 가능"
-      ]
-    },
-    {
-      "id": "cp-aqs100ewh",
-      "brand": "CUCKOO",
-      "name": "제로 100 미니 얼음 냉온정수기",
-      "model": "CP-AQS100EWH",
-      "category": "정수기",
-      "page": "product-cp-aqs100ewh.html",
-      "image": "assets/product-images/cp-aqs100ewh.webp",
-      "imageSourceOriginal": "https://contents.lotteon.com/itemimage/20260429111206/LO/26/50/75/17/38/_2/65/07/51/73/9/LO2650751738_2650751739_1.jpg/dims/resizef/554X554/format/webp/optimize",
-      "detailImages": [
-        "https://gi.esmplus.com/cuckoohs/spec/CP-AQS100EWH/01.jpg"
-      ],
-      "availability": "active",
-      "sourceKind": "clover-public",
-      "options": [
-        {
-          "key": "visit-36",
-          "management": "visit",
-          "managementLabel": "방문관리",
-          "term": 36,
-          "monthly": 51900,
-          "card": 38900,
-          "gift": 205000,
-          "care": "방문형 4개월",
-          "giftPolicyMonth": "2026-10"
-        },
-        {
-          "key": "visit-60",
-          "management": "visit",
-          "managementLabel": "방문관리",
-          "term": 60,
-          "monthly": 44900,
-          "card": 31900,
-          "gift": 280000,
-          "care": "방문형 4개월",
-          "giftPolicyMonth": "2026-10"
-        },
-        {
-          "key": "self-36",
-          "management": "self",
-          "managementLabel": "셀프관리",
-          "term": 36,
-          "monthly": 48900,
-          "card": 35900,
-          "gift": 190000,
-          "care": "셀프형 12개월",
-          "giftPolicyMonth": "2026-10"
-        },
-        {
-          "key": "self-60",
-          "management": "self",
-          "managementLabel": "셀프관리",
-          "term": 60,
-          "monthly": 42900,
-          "card": 29900,
-          "gift": 265000,
-          "care": "셀프형 12개월",
-          "giftPolicyMonth": "2026-10"
-        }
-      ],
-      "highlights": [
-        "얼음·냉수·온수·정수",
-        "방문관리 / 셀프관리",
-        "초슬림 19cm 디자인"
-      ]
-    },
-    {
-      "id": "clover-2251",
-      "brand": "SK매직",
-      "name": "MEGA ICE 얼음냉온정수기",
-      "model": "WPUIAC506",
-      "category": "정수기",
-      "page": "product.html?id=clover-2251",
-      "image": "assets/product-images/clover-2251.webp",
-      "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/260506141127_1.jpg",
-      "detailImages": [
-        "https://static.skmagic.com/image/editor/goods_desc/202604/1777424053687684.png"
-      ],
-      "availability": "active",
-      "sourceKind": "clover-public",
-      "options": [
-        {
-          "key": "visit-option-36",
-          "management": "visit-option",
-          "managementLabel": "방문형",
-          "term": 36,
-          "monthly": 56900,
-          "card": null,
-          "gift": 215000,
-          "care": "방문형",
-          "sourceOption": "(방문형)36",
-          "giftPolicyMonth": "2026-10"
-        },
-        {
-          "key": "visit-option-60",
-          "management": "visit-option",
-          "managementLabel": "방문형",
-          "term": 60,
-          "monthly": 53900,
-          "card": null,
-          "gift": 330000,
-          "care": "방문형",
-          "sourceOption": "(방문형)60",
-          "giftPolicyMonth": "2026-10"
-        },
-        {
-          "key": "self-option-36",
-          "management": "self-option",
-          "managementLabel": "셀프형",
-          "term": 36,
-          "monthly": 55900,
-          "card": null,
-          "gift": 215000,
-          "care": "셀프형",
-          "sourceOption": "(셀프형)36",
-          "giftPolicyMonth": "2026-10"
-        },
-        {
-          "key": "self-option-60",
-          "management": "self-option",
-          "managementLabel": "셀프형",
-          "term": 60,
-          "monthly": 52900,
-          "card": null,
-          "gift": 330000,
-          "care": "셀프형",
-          "sourceOption": "(셀프형)60",
-          "giftPolicyMonth": "2026-10"
+          "gift": 305000,
+          "care": "기본 조건",
+          "sourceOption": "60",
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "highlights": [
         "얼음 기능",
         "냉수·온수",
-        "MEGA ICE"
+        "36개월 / 60개월"
+      ]
+    },
+    {
+      "id": "clover-2057",
+      "brand": "청호나이스",
+      "name": "냉온정수기 슈퍼 트리 (할인프로모션)",
+      "model": "WP-80S9P510M",
+      "category": "정수기",
+      "page": "product.html?id=clover-2057",
+      "image": "assets/product-images/clover-2057.webp",
+      "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/231101182504_1_1.png",
+      "detailImages": [
+        "https://woongbi.vip-rental.com/_var/rental/vshop/62971320146190.jpg"
+      ],
+      "availability": "active",
+      "sourceKind": "clover-public",
+      "options": [
+        {
+          "key": "standard-option-36",
+          "management": "standard-option",
+          "managementLabel": "기본 조건",
+          "term": 36,
+          "monthly": 48900,
+          "card": null,
+          "gift": 305000,
+          "care": "기본 조건",
+          "sourceOption": "36",
+          "giftPolicyMonth": "2026-11"
+        },
+        {
+          "key": "standard-option-60",
+          "management": "standard-option",
+          "managementLabel": "기본 조건",
+          "term": 60,
+          "monthly": 44900,
+          "card": null,
+          "gift": 285000,
+          "care": "기본 조건",
+          "sourceOption": "60",
+          "giftPolicyMonth": "2026-11"
+        }
+      ],
+      "highlights": [
+        "냉수·온수",
+        "36개월 / 60개월"
+      ]
+    },
+    {
+      "id": "clover-2218",
+      "brand": "청호나이스",
+      "name": "얼음 냉온정수기 550_할인 프로모션",
+      "model": "WI-55S90510M",
+      "category": "정수기",
+      "page": "product.html?id=clover-2218",
+      "image": "assets/product-images/clover-2218.webp",
+      "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250827160157_1.png",
+      "detailImages": [
+        "https://clvrental777.com/data/editor/2407/d26b63dbe6e63f2895e83e93113f33e7_1722393460_1862.jpg"
+      ],
+      "availability": "active",
+      "sourceKind": "clover-public",
+      "options": [
+        {
+          "key": "standard-option-36",
+          "management": "standard-option",
+          "managementLabel": "기본 조건",
+          "term": 36,
+          "monthly": 44900,
+          "card": null,
+          "gift": null,
+          "care": "기본 조건",
+          "sourceOption": "36"
+        },
+        {
+          "key": "standard-option-60",
+          "management": "standard-option",
+          "managementLabel": "기본 조건",
+          "term": 60,
+          "monthly": 42900,
+          "card": null,
+          "gift": 295000,
+          "care": "기본 조건",
+          "sourceOption": "60",
+          "giftPolicyMonth": "2026-11"
+        }
+      ],
+      "highlights": [
+        "얼음 기능",
+        "냉수·온수",
+        "36개월 / 60개월"
       ]
     },
     {
@@ -549,7 +394,7 @@
           "gift": 20000,
           "care": "방문형",
           "sourceOption": "(방문형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-36",
@@ -561,7 +406,7 @@
           "gift": 10000,
           "care": "셀프형",
           "sourceOption": "(셀프형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-option-60",
@@ -688,7 +533,7 @@
           "gift": 80000,
           "care": "기본 조건",
           "sourceOption": "36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "standard-option-60",
@@ -700,7 +545,7 @@
           "gift": 70000,
           "care": "기본 조건",
           "sourceOption": "60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "highlights": [
@@ -903,49 +748,267 @@
       ]
     },
     {
-      "id": "clover-2259",
-      "brand": "LG퓨리케어",
-      "name": "LG 퓨리케어 AI 오브제컬렉션 냉동얼음정수기",
-      "model": "WD724R(K/H/E)",
+      "id": "chpci-8400n",
+      "brand": "COWAY",
+      "name": "카페 얼음 냉온정수기",
+      "model": "CHPCI-8400N",
       "category": "정수기",
-      "page": "product.html?id=clover-2259",
-      "image": "assets/product-images/clover-2259.webp",
-      "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/260807133930_1.jpg",
+      "page": "product-chpci-8400n.html",
+      "image": "assets/product-images/chpci-8400n.webp",
+      "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/260922102759_1.png",
       "detailImages": [
-        "https://storage.bilrigo.com/data/editor/2607/26d5fadc6b5db75aeb305fdaea531391_1784507697_5157.jpg"
+        "https://storage.bilrigo.com/data/editor/2609/2767fcbfc83e554b78132235c8855649_1788226477_6784.jpg"
       ],
       "availability": "active",
       "sourceKind": "clover-public",
       "options": [
         {
-          "key": "visit-option-60",
-          "management": "visit-option",
-          "managementLabel": "방문형",
+          "key": "visit2-36",
+          "management": "visit2",
+          "managementLabel": "방문관리 2개월",
+          "term": 36,
+          "monthly": 64900,
+          "card": null,
+          "gift": 255000,
+          "care": "방문관리 · 2개월",
+          "giftPolicyMonth": "2026-11"
+        },
+        {
+          "key": "visit2-60",
+          "management": "visit2",
+          "managementLabel": "방문관리 2개월",
+          "term": 60,
+          "monthly": 61900,
+          "card": null,
+          "gift": 285000,
+          "care": "방문관리 · 2개월",
+          "giftPolicyMonth": "2026-11"
+        },
+        {
+          "key": "visit2-72",
+          "management": "visit2",
+          "managementLabel": "방문관리 2개월",
+          "term": 72,
+          "monthly": 59900,
+          "card": null,
+          "gift": 330000,
+          "care": "방문관리 · 2개월",
+          "giftPolicyMonth": "2026-11"
+        },
+        {
+          "key": "visit2-84",
+          "management": "visit2",
+          "managementLabel": "방문관리 2개월",
+          "term": 84,
+          "monthly": 57900,
+          "card": null,
+          "gift": 325000,
+          "care": "방문관리 · 2개월",
+          "giftPolicyMonth": "2026-11"
+        },
+        {
+          "key": "visit4-36",
+          "management": "visit4",
+          "managementLabel": "방문관리 4개월",
+          "term": 36,
+          "monthly": 61900,
+          "card": null,
+          "gift": 250000,
+          "care": "방문관리 · 4개월",
+          "giftPolicyMonth": "2026-11"
+        },
+        {
+          "key": "visit4-60",
+          "management": "visit4",
+          "managementLabel": "방문관리 4개월",
           "term": 60,
           "monthly": 57900,
           "card": null,
-          "gift": 315000,
-          "care": "방문형",
-          "sourceOption": "(방문형)60",
-          "giftPolicyMonth": "2026-10"
+          "gift": 280000,
+          "care": "방문관리 · 4개월",
+          "giftPolicyMonth": "2026-11"
         },
         {
-          "key": "visit-option-72",
-          "management": "visit-option",
-          "managementLabel": "방문형",
+          "key": "visit4-72",
+          "management": "visit4",
+          "managementLabel": "방문관리 4개월",
           "term": 72,
+          "monthly": 55900,
+          "card": null,
+          "gift": 320000,
+          "care": "방문관리 · 4개월",
+          "giftPolicyMonth": "2026-11"
+        },
+        {
+          "key": "visit4-84",
+          "management": "visit4",
+          "managementLabel": "방문관리 4개월",
+          "term": 84,
           "monthly": 53900,
           "card": null,
           "gift": 315000,
-          "care": "방문형",
-          "sourceOption": "(방문형)72",
-          "giftPolicyMonth": "2026-10"
+          "care": "방문관리 · 4개월",
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "highlights": [
-        "얼음 기능",
-        "방문관리",
-        "60개월 / 72개월"
+        "캡슐·분쇄원두·드립 커피",
+        "큰 얼음·작은 얼음 선택",
+        "6중 UV·고온수 살균"
+      ]
+    },
+    {
+      "id": "chpi-7430n",
+      "brand": "COWAY",
+      "name": "아이콘 얼음냉온정수기 미니",
+      "model": "CHPI-7430N",
+      "category": "정수기",
+      "page": "product.html?id=chpi-7430n",
+      "image": "assets/product-images/chpi-7430n.webp",
+      "imageSourceOriginal": "https://cdn.rentre.kr/product-thumbnail/76a9f09a6e2e45aeaf1b245dc920f9fc.png",
+      "detailImages": [
+        "https://storage.bilrigo.com/data/editor/2507/11d561a208dda6754723f5896d0ee30d_1753334475_1731.jpg"
+      ],
+      "availability": "active",
+      "sourceKind": "clover-public",
+      "options": [
+        {
+          "key": "visit2-36",
+          "management": "visit2",
+          "managementLabel": "방문관리 2개월",
+          "term": 36,
+          "monthly": 52900,
+          "card": null,
+          "gift": 215000,
+          "care": "방문관리 · 2개월",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "visit2-60",
+          "management": "visit2",
+          "managementLabel": "방문관리 2개월",
+          "term": 60,
+          "monthly": 49900,
+          "card": null,
+          "gift": 240000,
+          "care": "방문관리 · 2개월",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "visit2-72",
+          "management": "visit2",
+          "managementLabel": "방문관리 2개월",
+          "term": 72,
+          "monthly": 47900,
+          "card": null,
+          "gift": 280000,
+          "care": "방문관리 · 2개월",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "visit2-84",
+          "management": "visit2",
+          "managementLabel": "방문관리 2개월",
+          "term": 84,
+          "monthly": 45900,
+          "card": null,
+          "gift": 280000,
+          "care": "방문관리 · 2개월",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "visit4-36",
+          "management": "visit4",
+          "managementLabel": "방문관리 4개월",
+          "term": 36,
+          "monthly": 49900,
+          "card": null,
+          "gift": 215000,
+          "care": "방문관리 · 4개월",
+          "giftPolicyMonth": "2026-11"
+        },
+        {
+          "key": "visit4-60",
+          "management": "visit4",
+          "managementLabel": "방문관리 4개월",
+          "term": 60,
+          "monthly": 46900,
+          "card": null,
+          "gift": 240000,
+          "care": "방문관리 · 4개월",
+          "giftPolicyMonth": "2026-11"
+        },
+        {
+          "key": "visit4-72",
+          "management": "visit4",
+          "managementLabel": "방문관리 4개월",
+          "term": 72,
+          "monthly": 44900,
+          "card": null,
+          "gift": 275000,
+          "care": "방문관리 · 4개월",
+          "giftPolicyMonth": "2026-11"
+        },
+        {
+          "key": "visit4-84",
+          "management": "visit4",
+          "managementLabel": "방문관리 4개월",
+          "term": 84,
+          "monthly": 42900,
+          "card": null,
+          "gift": 275000,
+          "care": "방문관리 · 4개월",
+          "giftPolicyMonth": "2026-11"
+        },
+        {
+          "key": "self-36",
+          "management": "self",
+          "managementLabel": "자가관리",
+          "term": 36,
+          "monthly": 47900,
+          "card": null,
+          "gift": 210000,
+          "care": "자가관리 · 4개월 필터",
+          "giftPolicyMonth": "2026-11"
+        },
+        {
+          "key": "self-60",
+          "management": "self",
+          "managementLabel": "자가관리",
+          "term": 60,
+          "monthly": 44900,
+          "card": null,
+          "gift": 230000,
+          "care": "자가관리 · 4개월 필터",
+          "giftPolicyMonth": "2026-11"
+        },
+        {
+          "key": "self-72",
+          "management": "self",
+          "managementLabel": "자가관리",
+          "term": 72,
+          "monthly": 42900,
+          "card": null,
+          "gift": 270000,
+          "care": "자가관리 · 4개월 필터",
+          "giftPolicyMonth": "2026-11"
+        },
+        {
+          "key": "self-84",
+          "management": "self",
+          "managementLabel": "자가관리",
+          "term": 84,
+          "monthly": 40900,
+          "card": null,
+          "gift": 270000,
+          "care": "자가관리 · 4개월 필터",
+          "giftPolicyMonth": "2026-11"
+        }
+      ],
+      "highlights": [
+        "얼음·냉수·온수",
+        "방문 2개월 / 4개월",
+        "자가관리 선택 가능"
       ]
     },
     {
@@ -985,7 +1048,7 @@
           "gift": 315000,
           "care": "방문형",
           "sourceOption": "(방문형)72",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "highlights": [
@@ -995,16 +1058,62 @@
       ]
     },
     {
-      "id": "clover-2254",
-      "brand": "SK매직",
-      "name": "MEGA ICE 얼음냉온정수기 mini",
-      "model": "WPUIAC606",
+      "id": "clover-2259",
+      "brand": "LG퓨리케어",
+      "name": "LG 퓨리케어 AI 오브제컬렉션 냉동얼음정수기",
+      "model": "WD724R(K/H/E)",
       "category": "정수기",
-      "page": "product.html?id=clover-2254",
-      "image": "assets/product-images/clover-2254.webp",
-      "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/260613101406_1.png",
+      "page": "product.html?id=clover-2259",
+      "image": "assets/product-images/clover-2259.webp",
+      "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/260807133930_1.jpg",
       "detailImages": [
-        "https://static.skmagic.com/image/editor/goods_prom/202605/1779759404289781.png"
+        "https://storage.bilrigo.com/data/editor/2607/26d5fadc6b5db75aeb305fdaea531391_1784507697_5157.jpg"
+      ],
+      "availability": "active",
+      "sourceKind": "clover-public",
+      "options": [
+        {
+          "key": "visit-option-60",
+          "management": "visit-option",
+          "managementLabel": "방문형",
+          "term": 60,
+          "monthly": 57900,
+          "card": null,
+          "gift": 315000,
+          "care": "방문형",
+          "sourceOption": "(방문형)60",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "visit-option-72",
+          "management": "visit-option",
+          "managementLabel": "방문형",
+          "term": 72,
+          "monthly": 53900,
+          "card": null,
+          "gift": 315000,
+          "care": "방문형",
+          "sourceOption": "(방문형)72",
+          "giftPolicyMonth": "2026-11"
+        }
+      ],
+      "highlights": [
+        "얼음 기능",
+        "방문관리",
+        "60개월 / 72개월"
+      ]
+    },
+    {
+      "id": "clover-2202",
+      "brand": "SK매직",
+      "name": "초소형 플러스 직수 냉온정수기",
+      "model": "WPUJAC115",
+      "category": "정수기",
+      "page": "product.html?id=clover-2202",
+      "image": "assets/product-images/clover-2202.webp",
+      "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/0.png",
+      "detailImages": [
+        "https://static.skmagic.com/image/editor/goods_desc/202506/1749012900048773.jpg"
       ],
       "availability": "active",
       "sourceKind": "clover-public",
@@ -1014,9 +1123,9 @@
           "management": "visit-option",
           "managementLabel": "방문형",
           "term": 36,
-          "monthly": 48900,
+          "monthly": 41900,
           "card": null,
-          "gift": 175000,
+          "gift": 155000,
           "care": "방문형",
           "sourceOption": "(방문형)36",
           "giftPolicyMonth": "2026-10"
@@ -1026,9 +1135,9 @@
           "management": "visit-option",
           "managementLabel": "방문형",
           "term": 60,
-          "monthly": 45900,
+          "monthly": 36400,
           "card": null,
-          "gift": 275000,
+          "gift": 230000,
           "care": "방문형",
           "sourceOption": "(방문형)60",
           "giftPolicyMonth": "2026-10"
@@ -1038,30 +1147,236 @@
           "management": "self-option",
           "managementLabel": "셀프형",
           "term": 36,
-          "monthly": 46900,
+          "monthly": 38900,
           "card": null,
-          "gift": 180000,
+          "gift": 160000,
           "care": "셀프형",
           "sourceOption": "(셀프형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-60",
           "management": "self-option",
           "managementLabel": "셀프형",
           "term": 60,
-          "monthly": 44900,
+          "monthly": 33400,
           "card": null,
-          "gift": 275000,
+          "gift": 240000,
           "care": "셀프형",
           "sourceOption": "(셀프형)60",
+          "giftPolicyMonth": "2026-11"
+        }
+      ],
+      "highlights": [
+        "초소형",
+        "직수형",
+        "냉수·온수"
+      ]
+    },
+    {
+      "id": "clover-2196",
+      "brand": "SK매직",
+      "name": "원코크 플러스 얼음물 냉온정수기",
+      "model": "WPUIAC425",
+      "category": "정수기",
+      "page": "product.html?id=clover-2196",
+      "image": "assets/product-images/clover-2196.webp",
+      "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250517102434_1.png",
+      "detailImages": [
+        "https://static.skmagic.com/image/editor/goods_desc/202505/1747359086875103.jpg"
+      ],
+      "availability": "active",
+      "sourceKind": "clover-public",
+      "options": [
+        {
+          "key": "visit-option-36",
+          "management": "visit-option",
+          "managementLabel": "방문형",
+          "term": 36,
+          "monthly": 55900,
+          "card": null,
+          "gift": 170000,
+          "care": "방문형",
+          "sourceOption": "(방문형)36",
+          "giftPolicyMonth": "2026-11"
+        },
+        {
+          "key": "visit-option-60",
+          "management": "visit-option",
+          "managementLabel": "방문형",
+          "term": 60,
+          "monthly": 50400,
+          "card": null,
+          "gift": 260000,
+          "care": "방문형",
+          "sourceOption": "(방문형)60",
+          "giftPolicyMonth": "2026-11"
+        },
+        {
+          "key": "self-option-36",
+          "management": "self-option",
+          "managementLabel": "셀프형",
+          "term": 36,
+          "monthly": 54900,
+          "card": null,
+          "gift": 170000,
+          "care": "셀프형",
+          "sourceOption": "(셀프형)36",
+          "giftPolicyMonth": "2026-11"
+        },
+        {
+          "key": "self-option-60",
+          "management": "self-option",
+          "managementLabel": "셀프형",
+          "term": 60,
+          "monthly": 49400,
+          "card": null,
+          "gift": 255000,
+          "care": "셀프형",
+          "sourceOption": "(셀프형)60",
+          "giftPolicyMonth": "2026-11"
+        }
+      ],
+      "highlights": [
+        "얼음 기능",
+        "냉수·온수",
+        "원코크 플러스 얼음물"
+      ]
+    },
+    {
+      "id": "cp-aqs100ewh",
+      "brand": "CUCKOO",
+      "name": "제로 100 미니 얼음 냉온정수기",
+      "model": "CP-AQS100EWH",
+      "category": "정수기",
+      "page": "product-cp-aqs100ewh.html",
+      "image": "assets/product-images/cp-aqs100ewh.webp",
+      "imageSourceOriginal": "https://contents.lotteon.com/itemimage/20260429111206/LO/26/50/75/17/38/_2/65/07/51/73/9/LO2650751738_2650751739_1.jpg/dims/resizef/554X554/format/webp/optimize",
+      "detailImages": [
+        "https://gi.esmplus.com/cuckoohs/spec/CP-AQS100EWH/01.jpg"
+      ],
+      "availability": "active",
+      "sourceKind": "clover-public",
+      "options": [
+        {
+          "key": "visit-36",
+          "management": "visit",
+          "managementLabel": "방문관리",
+          "term": 36,
+          "monthly": 51900,
+          "card": 38900,
+          "gift": 205000,
+          "care": "방문형 4개월",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "visit-60",
+          "management": "visit",
+          "managementLabel": "방문관리",
+          "term": 60,
+          "monthly": 44900,
+          "card": 31900,
+          "gift": 280000,
+          "care": "방문형 4개월",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "self-36",
+          "management": "self",
+          "managementLabel": "셀프관리",
+          "term": 36,
+          "monthly": 48900,
+          "card": 35900,
+          "gift": 190000,
+          "care": "셀프형 12개월",
+          "giftPolicyMonth": "2026-10"
+        },
+        {
+          "key": "self-60",
+          "management": "self",
+          "managementLabel": "셀프관리",
+          "term": 60,
+          "monthly": 42900,
+          "card": 29900,
+          "gift": 265000,
+          "care": "셀프형 12개월",
           "giftPolicyMonth": "2026-10"
         }
       ],
       "highlights": [
-        "미니 사이즈",
-        "얼음 기능",
-        "냉수·온수"
+        "얼음·냉수·온수·정수",
+        "방문관리 / 셀프관리",
+        "초슬림 19cm 디자인"
+      ]
+    },
+    {
+      "id": "clover-1679",
+      "brand": "COWAY",
+      "name": "듀얼클린 가습공기청정기_12평형",
+      "model": "APMS-1020A",
+      "category": "공기청정기",
+      "page": "product.html?id=clover-1679",
+      "image": "assets/product-images/clover-1679.webp",
+      "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/id0105_2884_attimg_org.png",
+      "detailImages": [
+        "https://productinfo.cowaystatic.com/2_product-detail/2_aircare/APMS-1020A/APMS-1020A_detail_01.jpg"
+      ],
+      "availability": "active",
+      "sourceKind": "clover-public",
+      "options": [
+        {
+          "key": "visit-option-36",
+          "management": "visit-option",
+          "managementLabel": "방문관리",
+          "term": 36,
+          "monthly": 37400,
+          "card": null,
+          "gift": 210000,
+          "care": "방문관리",
+          "sourceOption": "(방문관리) 36",
+          "giftPolicyMonth": "2026-11"
+        },
+        {
+          "key": "self-option-36",
+          "management": "self-option",
+          "managementLabel": "자가관리",
+          "term": 36,
+          "monthly": 30400,
+          "card": null,
+          "gift": 190000,
+          "care": "자가관리",
+          "sourceOption": "(자가관리) 36",
+          "giftPolicyMonth": "2026-11"
+        },
+        {
+          "key": "visit-option-60",
+          "management": "visit-option",
+          "managementLabel": "방문관리",
+          "term": 60,
+          "monthly": 35400,
+          "card": null,
+          "gift": 210000,
+          "care": "방문관리",
+          "sourceOption": "(방문관리) 60",
+          "giftPolicyMonth": "2026-11"
+        },
+        {
+          "key": "self-option-60",
+          "management": "self-option",
+          "managementLabel": "자가관리",
+          "term": 60,
+          "monthly": 28400,
+          "card": null,
+          "gift": 190000,
+          "care": "자가관리",
+          "sourceOption": "(자가관리) 60",
+          "giftPolicyMonth": "2026-11"
+        }
+      ],
+      "highlights": [
+        "12평형",
+        "듀얼클린 가습",
+        "방문관리 / 셀프관리"
       ]
     },
     {
@@ -1181,7 +1496,7 @@
           "gift": 195000,
           "care": "셀프형",
           "sourceOption": "(셀프형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-60",
@@ -1193,7 +1508,7 @@
           "gift": 195000,
           "care": "셀프형",
           "sourceOption": "(셀프형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "highlights": [
@@ -1297,7 +1612,7 @@
           "gift": 210000,
           "care": "방문형",
           "sourceOption": "(방문형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-option-60",
@@ -1309,7 +1624,7 @@
           "gift": 210000,
           "care": "방문형",
           "sourceOption": "(방문형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-36",
@@ -1321,7 +1636,7 @@
           "gift": 210000,
           "care": "셀프형",
           "sourceOption": "(셀프형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-60",
@@ -1333,7 +1648,7 @@
           "gift": 210000,
           "care": "셀프형",
           "sourceOption": "(셀프형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "highlights": [
@@ -1364,10 +1679,10 @@
           "term": 36,
           "monthly": 38900,
           "card": null,
-          "gift": 205000,
+          "gift": 210000,
           "care": "방문형",
           "sourceOption": "(방문형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-option-60",
@@ -1387,10 +1702,10 @@
           "term": 36,
           "monthly": 36900,
           "card": null,
-          "gift": 195000,
+          "gift": 210000,
           "care": "셀프형",
           "sourceOption": "(셀프형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-60",
@@ -1402,83 +1717,13 @@
           "gift": 210000,
           "care": "셀프형",
           "sourceOption": "(셀프형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "highlights": [
         "10평형",
         "제습 기능",
         "듀얼클린 제습"
-      ]
-    },
-    {
-      "id": "clover-2232",
-      "brand": "COWAY",
-      "name": "히티브 온풍 공기청정기 5평형",
-      "model": "APH-0525F",
-      "category": "공기청정기",
-      "page": "product.html?id=clover-2232",
-      "image": "assets/product-images/clover-2232.webp",
-      "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/251119112530_1.png",
-      "detailImages": [
-        "https://clvrental777.com/data/editor/2511/7e0a9dee99807148c80f9a9e578b009b_1763449668_2727.jpg"
-      ],
-      "availability": "active",
-      "sourceKind": "clover-public",
-      "options": [
-        {
-          "key": "visit-option-36",
-          "management": "visit-option",
-          "managementLabel": "방문형",
-          "term": 36,
-          "monthly": 35900,
-          "card": null,
-          "gift": 195000,
-          "care": "방문형",
-          "sourceOption": "(방문형)36",
-          "giftPolicyMonth": "2026-10"
-        },
-        {
-          "key": "visit-option-60",
-          "management": "visit-option",
-          "managementLabel": "방문형",
-          "term": 60,
-          "monthly": 31400,
-          "card": null,
-          "gift": 195000,
-          "care": "방문형",
-          "sourceOption": "(방문형)60",
-          "giftPolicyMonth": "2026-10"
-        },
-        {
-          "key": "self-option-36",
-          "management": "self-option",
-          "managementLabel": "셀프형",
-          "term": 36,
-          "monthly": 32900,
-          "card": null,
-          "gift": 190000,
-          "care": "셀프형",
-          "sourceOption": "(셀프형)36",
-          "giftPolicyMonth": "2026-10"
-        },
-        {
-          "key": "self-option-60",
-          "management": "self-option",
-          "managementLabel": "셀프형",
-          "term": 60,
-          "monthly": 28400,
-          "card": null,
-          "gift": 190000,
-          "care": "셀프형",
-          "sourceOption": "(셀프형)60",
-          "giftPolicyMonth": "2026-10"
-        }
-      ],
-      "highlights": [
-        "5평형",
-        "온풍 기능",
-        "히티브 온풍"
       ]
     },
     {
@@ -1506,7 +1751,7 @@
           "gift": 10000,
           "care": "방문형",
           "sourceOption": "(방문형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-option-60",
@@ -1518,7 +1763,7 @@
           "gift": 5000,
           "care": "방문형",
           "sourceOption": "(방문형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "highlights": [
@@ -1619,9 +1864,10 @@
           "term": 36,
           "monthly": 19900,
           "card": null,
-          "gift": null,
+          "gift": 10000,
           "care": "방문형",
-          "sourceOption": "(방문형)36"
+          "sourceOption": "(방문형)36",
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-36",
@@ -1830,7 +2076,7 @@
           "gift": 235000,
           "care": "방문형",
           "sourceOption": "(방문형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-option-60",
@@ -1842,7 +2088,7 @@
           "gift": 235000,
           "care": "방문형",
           "sourceOption": "(방문형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-36",
@@ -1865,7 +2111,7 @@
           "gift": 235000,
           "care": "셀프형",
           "sourceOption": "(셀프형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "highlights": [
@@ -1898,7 +2144,7 @@
           "gift": 225000,
           "care": "방문형",
           "sourceOption": "(방문형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-option-60",
@@ -1910,7 +2156,7 @@
           "gift": 225000,
           "care": "방문형",
           "sourceOption": "(방문형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-36",
@@ -1922,7 +2168,7 @@
           "gift": 225000,
           "care": "셀프형",
           "sourceOption": "(셀프형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-60",
@@ -1934,7 +2180,7 @@
           "gift": 225000,
           "care": "셀프형",
           "sourceOption": "(셀프형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "highlights": [
@@ -1967,7 +2213,7 @@
           "gift": 225000,
           "care": "방문관리",
           "sourceOption": "(방문관리)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-option-60",
@@ -1979,7 +2225,7 @@
           "gift": 225000,
           "care": "방문관리",
           "sourceOption": "(방문관리)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-36",
@@ -1991,7 +2237,7 @@
           "gift": 225000,
           "care": "자가관리",
           "sourceOption": "(자가관리)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-60",
@@ -2003,7 +2249,7 @@
           "gift": 225000,
           "care": "자가관리",
           "sourceOption": "(자가관리)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "highlights": [
@@ -2037,7 +2283,7 @@
           "gift": 225000,
           "care": "기본 조건",
           "sourceOption": "36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "standard-option-60",
@@ -2049,7 +2295,7 @@
           "gift": 225000,
           "care": "기본 조건",
           "sourceOption": "60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "highlights": [
@@ -2150,7 +2396,7 @@
           "gift": 220000,
           "care": "방문형",
           "sourceOption": "(방문형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "highlights": [
@@ -2184,7 +2430,7 @@
           "gift": 110000,
           "care": "방문형",
           "sourceOption": "(방문형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-option-60",
@@ -2196,7 +2442,7 @@
           "gift": 145000,
           "care": "방문형",
           "sourceOption": "(방문형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-36",
@@ -2208,7 +2454,7 @@
           "gift": 90000,
           "care": "셀프형",
           "sourceOption": "(셀프형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-60",
@@ -2220,7 +2466,7 @@
           "gift": 115000,
           "care": "셀프형",
           "sourceOption": "(셀프형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "highlights": [
@@ -2324,7 +2570,7 @@
           "gift": 105000,
           "care": "방문형",
           "sourceOption": "(방문형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-36",
@@ -2394,7 +2640,7 @@
           "gift": 200000,
           "care": "방문관리",
           "sourceOption": "(방문관리)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-option-60",
@@ -2406,7 +2652,7 @@
           "gift": 200000,
           "care": "방문관리",
           "sourceOption": "(방문관리)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-36",
@@ -2418,7 +2664,7 @@
           "gift": 190000,
           "care": "자가관리",
           "sourceOption": "(자가관리)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-60",
@@ -2430,7 +2676,7 @@
           "gift": 190000,
           "care": "자가관리",
           "sourceOption": "(자가관리)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "highlights": [
@@ -2464,7 +2710,7 @@
           "gift": 195000,
           "care": "방문형",
           "sourceOption": "(방문형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-option-60",
@@ -2476,7 +2722,7 @@
           "gift": 195000,
           "care": "방문형",
           "sourceOption": "(방문형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-36",
@@ -2488,7 +2734,7 @@
           "gift": 190000,
           "care": "셀프형",
           "sourceOption": "(셀프형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-60",
@@ -2500,7 +2746,7 @@
           "gift": 190000,
           "care": "셀프형",
           "sourceOption": "(셀프형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "highlights": [
@@ -2534,7 +2780,7 @@
           "gift": 190000,
           "care": "기본 조건",
           "sourceOption": "36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "standard-option-60",
@@ -2546,7 +2792,7 @@
           "gift": 190000,
           "care": "기본 조건",
           "sourceOption": "60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "highlights": [
@@ -2580,7 +2826,7 @@
           "gift": 185000,
           "care": "방문형",
           "sourceOption": "(방문형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-option-60",
@@ -2592,7 +2838,7 @@
           "gift": 185000,
           "care": "방문형",
           "sourceOption": "(방문형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-36",
@@ -2604,7 +2850,7 @@
           "gift": 185000,
           "care": "셀프형",
           "sourceOption": "(셀프형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-60",
@@ -2616,7 +2862,7 @@
           "gift": 185000,
           "care": "셀프형",
           "sourceOption": "(셀프형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "highlights": [
@@ -2650,7 +2896,7 @@
           "gift": 180000,
           "care": "방문형",
           "sourceOption": "(방문형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-option-60",
@@ -2662,7 +2908,7 @@
           "gift": 180000,
           "care": "방문형",
           "sourceOption": "(방문형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-36",
@@ -2685,7 +2931,7 @@
           "gift": 170000,
           "care": "셀프형",
           "sourceOption": "(셀프형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "highlights": [
@@ -2902,10 +3148,10 @@
           "term": 36,
           "monthly": 15900,
           "card": null,
-          "gift": 40000,
+          "gift": 60000,
           "care": "기본 조건",
           "sourceOption": "36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "standard-option-48",
@@ -2914,10 +3160,10 @@
           "term": 48,
           "monthly": 13900,
           "card": null,
-          "gift": 40000,
+          "gift": 60000,
           "care": "기본 조건",
           "sourceOption": "48",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "highlights": [
@@ -2950,7 +3196,7 @@
           "gift": 105000,
           "care": "방문형",
           "sourceOption": "(방문형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-36",
@@ -3019,7 +3265,7 @@
           "gift": 205000,
           "care": "방문관리",
           "sourceOption": "(방문관리)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-option-60",
@@ -3031,7 +3277,7 @@
           "gift": 205000,
           "care": "방문관리",
           "sourceOption": "(방문관리)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-36",
@@ -3043,7 +3289,7 @@
           "gift": 195000,
           "care": "자가관리",
           "sourceOption": "(자가관리)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-60",
@@ -3055,7 +3301,7 @@
           "gift": 195000,
           "care": "자가관리",
           "sourceOption": "(자가관리)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "highlights": [
@@ -3089,7 +3335,7 @@
           "gift": 195000,
           "care": "방문형",
           "sourceOption": "(방문형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-option-60",
@@ -3101,7 +3347,7 @@
           "gift": 195000,
           "care": "방문형",
           "sourceOption": "(방문형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-36",
@@ -3124,7 +3370,7 @@
           "gift": 195000,
           "care": "셀프형",
           "sourceOption": "(셀프형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "highlights": [
@@ -3158,7 +3404,7 @@
           "gift": 100000,
           "care": "기본 조건",
           "sourceOption": "36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "standard-option-60",
@@ -3170,7 +3416,7 @@
           "gift": 95000,
           "care": "기본 조건",
           "sourceOption": "60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "highlights": [
@@ -3203,7 +3449,7 @@
           "gift": 80000,
           "care": "방문형",
           "sourceOption": "(방문형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "highlights": [
@@ -4805,7 +5051,7 @@
           "gift": 195000,
           "care": "토탈케어(슈퍼싱글",
           "sourceOption": "토탈케어(슈퍼싱글)84",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "highlights": [
@@ -4838,7 +5084,7 @@
           "gift": 165000,
           "care": "기본 조건",
           "sourceOption": "60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "standard-option-84",
@@ -4850,7 +5096,7 @@
           "gift": 175000,
           "care": "기본 조건",
           "sourceOption": "84",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "highlights": [
@@ -5213,76 +5459,6 @@
         "라지킹",
         "BEREX 프라임",
         "60개월"
-      ]
-    },
-    {
-      "id": "clover-2202",
-      "brand": "SK매직",
-      "name": "초소형 플러스 직수 냉온정수기",
-      "model": "WPUJAC115",
-      "category": "정수기",
-      "page": "product.html?id=clover-2202",
-      "image": "assets/product-images/clover-2202.webp",
-      "imageSourceOriginal": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/0.png",
-      "detailImages": [
-        "https://static.skmagic.com/image/editor/goods_desc/202506/1749012900048773.jpg"
-      ],
-      "availability": "active",
-      "sourceKind": "clover-public",
-      "options": [
-        {
-          "key": "visit-option-36",
-          "management": "visit-option",
-          "managementLabel": "방문형",
-          "term": 36,
-          "monthly": 41900,
-          "card": null,
-          "gift": 155000,
-          "care": "방문형",
-          "sourceOption": "(방문형)36",
-          "giftPolicyMonth": "2026-10"
-        },
-        {
-          "key": "visit-option-60",
-          "management": "visit-option",
-          "managementLabel": "방문형",
-          "term": 60,
-          "monthly": 36400,
-          "card": null,
-          "gift": 230000,
-          "care": "방문형",
-          "sourceOption": "(방문형)60",
-          "giftPolicyMonth": "2026-10"
-        },
-        {
-          "key": "self-option-36",
-          "management": "self-option",
-          "managementLabel": "셀프형",
-          "term": 36,
-          "monthly": 38900,
-          "card": null,
-          "gift": 155000,
-          "care": "셀프형",
-          "sourceOption": "(셀프형)36",
-          "giftPolicyMonth": "2026-10"
-        },
-        {
-          "key": "self-option-60",
-          "management": "self-option",
-          "managementLabel": "셀프형",
-          "term": 60,
-          "monthly": 33400,
-          "card": null,
-          "gift": 230000,
-          "care": "셀프형",
-          "sourceOption": "(셀프형)60",
-          "giftPolicyMonth": "2026-10"
-        }
-      ],
-      "highlights": [
-        "초소형",
-        "직수형",
-        "냉수·온수"
       ]
     },
     {
