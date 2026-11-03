@@ -79,3 +79,11 @@
 - 별도로 새 호스트에서 동작하지 않던 방문/전환 통계 클라이언트의 hostname 조건을 `woongbts.kr`로 수정(`assets/analytics-config.js`, `assets/site-analytics.min.js`, `assets/conversion-tracker.min.js`)하고 렌탈 상품 이미지의 한 기본 대체 주소를 새 도메인으로 수정. **통계 전송 서버의 CORS 허용 및 실제 저장 성공 여부는 아직 검증 전**이며, 집계 가능 여부를 확인하기 전 통계가 정상 수집된다고 단정하지 않는다.
 - 남은 수동 단계: 네이버 서치어드바이저에 새 `https://woongbts.kr` 속성 등록 및 소유 확인, 새 `https://woongbts.kr/sitemap.xml` 제출. Google Search Console에서 새 속성을 등록하고 필요시 Change of Address를 설정하며, 기존 `woongbts.github.io` 속성은 전환 추적 기간 동안 유지한다. 관리자 방문 제외 설정은 origin 별로 달라 새 도메인에서 재설정할 수 있다.
 - 추적 기준: 순위 상승 보장 없음. 11/03 이전과 이후의 노출·클릭·CTR·상담 전환을 새/기존 호스트로 구분하고, 변경 직후 수집 지연과 검색 순위 변동을 고려한다. 웹사이트 콘텐츠 내용이나 상품 가격은 이번 도메인 이전만으로 바꾸지 않았다.
+
+
+## 2026-11-03 네이버 새 도메인 소유확인과 웅비월드 경로
+- 사용자가 네이버 서치어드바이저의 **새 도메인 woongbts.kr 사이트 소유 확인**을 위해 HTML 확인 파일을 제공했다. 루트에 `naver22d7b61d628777189c73dc8c2625ef2b.html`을 추가했고 `https://woongbts.kr/naver22d7b61d628777189c73dc8c2625ef2b.html` 공개 주소에서 정확한 확인 문구가 노출되는 것을 검증했다. **파일 공개 검증이 소유 확인 버튼의 통과를 의미하지는 않는다.** 사용자가 서치어드바이저에서 [소유확인]을 직접 실행해야 한다.
+- 기존 웅비월드 링크모음(`links.html`)을 `https://woongbts.kr/world/`에서 동일한 디자인과 채널로 제공하도록 `world/index.html`을 생성했고, 로고 상대경로를 루트 절대경로로 수정했다. 기존 `/links.html`은 새 경로 canonical 및 클라이언트/메타 새 경로 이동을 추가해 호환을 유지한다. 홈페이지 및 만덕 지역 안내에서 새 웅비월드 경로로 직접 링크한다.
+- `.github/scripts/update_sitemap.py`의 정적 URL 매핑과 priority를 `/world/`로 바꿨으며 생성된 `https://woongbts.kr/sitemap.xml`에서 신규 URL이 등록된 것을 확인했다. HTTPS로 실제 `/world/`이 열리고 canonical도 일치하는 것을 확인했다.
+- GitHub Pages 배포 성공은 확인했다. 기존 Site regression guard의 'homepage recommendation categories changed' 오류는 별도 기존 회귀 검사 문제이며 이번 네이버 소유 확인 파일이나 웅비월드 경로의 실패라고 단정하지 않는다.
+- 서치어드바이저에서 소유 확인 완료 후 새 도메인의 `https://woongbts.kr/sitemap.xml`을 제출하고, 이후 사이트명 'Github' 변경 여부와 검색 수집/색인을 모니터링한다. `/world/`은 웅비통신 대표 사업 홈페이지를 대체하지 않는 개인·SNS 링크 허브로 유지한다.
