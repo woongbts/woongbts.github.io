@@ -290,6 +290,59 @@
       "image": "assets/mobile-cards/402-ba8293f9a5a6.jpg"
     },
     {
+      "id": "21",
+      "carrier": "SKT",
+      "name": "[하나] 하나 CLUB SK(모바일)",
+      "category": "POST",
+      "type": "CHARGE",
+      "annualDomestic": 6000,
+      "annualInternational": 7000,
+      "autopayRequired": true,
+      "minFinancing": 0,
+      "contact": "1599-6611",
+      "issueMethod": "전화발급",
+      "issueUrl": "https://m.hanacard.co.kr/MPACMM100M.web?CD_PD_SEQ=2572",
+      "benefit": "■ 청구할인 혜택\n\n전월실적 40만원이상 5,000원 할인\n\n전월실적 70만원이상 10,000원 할인\n\n전월실적 100만원이상 15,000원 할인\n\n■ 신규발급 시 당월 전월실적 30만원 미만이라도 5천원 할인제공\n\n■ 카드부가혜택\n\n※전월실적 20만원 이상시\n\nSK 스피드 메이트 엔진오일 교환시 25,000원할인/타이어 펑크 수리 무료/ 타이어 위치교환 무료(통합 연 1회/중복사용 불가)\n\nSK 스피드 메이트 워셔액 무료 보충(차량 정비시)\n\n※전월실적 40만원 이상시\n\n- SK 주유소 100원/L당 할인(주유비 월 30만원 한도/할인액 월 15,000원 한도)\n\n- SK 충전소 35원/L당 할인(충전비 월 20만원 한도)\n\n- CGV/ 롯데시네마/ 메가박스 홈페이지 예매 및 현장 할인(1만원 이상 결제시 월 1회) \n\n 3천원 할인(1Q 페이앱 이용시)/ 1,500원할인(1Q 페이앱 미이용시)\n\n- 아웃백/TGIF 청구할인(월 5천원 한도) \n\n 10% 청구할인(1Q 페이앱 이용시), 5% 청구할인(1Q 페이앱 미이용시)\n\n- 커피빈/ 스타벅스/ 앤젤리너스/ 할리스/ 카페베네 청구할인(월 5천원 한도)\n\n 5% 청구할인(1Q 페이앱 이용시), 2.5% 청구할인(1Q 페이앱 미이용시)롯데월드, 에버랜드, - - 시내버스/ 마을버스/ 광역버스/ 지하철/ 공항버그/ 공항철도 청구할인(월 5천원 한도)\n\n 7% 청구할인(1Q 페이앱 이용시), 3.5% 청구할인(1Q 페이앱 미이용시)롯데월드, 에버랜드,  - 자동화 기기 및 전자금융 수수료 월 10회 면제(카드 결제 계좌 KEB하나은행 이용시)\n\n- 환전 수수료 50% 우대(카드 결제 계좌 KEB하나은행 이용시)\n\n※전월실적 70만원 이상시\n\n- SK 주유소 150원/L당 할인(주유비 월 30만원 한도/할인액 월 22,000원 한도)\n\n- SK 충전소 70원/L당 할인(충전비 월 20만원 한도)\n\n※전월실적 100만원 이상시\n\n- 이마트/ 홈플러스/ 롯데마트 홈페이지 구매 및 현장 구매 할인 \n\n10%할인(카드 결제 계좌 KEB하나은행 이용시, 월 1만원 한도), 5%할인(카드 결제 계좌 타은행 이용시, 월 5천원 한도)\n\n- 학원(외국어/ 기능/ 컴퓨터/ 예,체능/ 보습/ 유치원/ 도서관 가맹점 할인\n\n10%할인(카드 결제 계좌 KEB하나은행 이용시, 월 1만원 한도), 5%할인(카드 결제 계좌 타은행 이용시, 월 5천원 한도)\n\n※ 혜택 제공 조건에 대해서는 카드사 홈페이지를 참고하시기 바랍니다\n\n※ 위 내용은 회사 및 제휴사의 사정에 따라 변경될 수 있습니다",
+      "conditions": "■ 전월실적 포함 : 제세공과금 등\n\n■ 전월실적 미포함 : SK통신요금, SK주유소/충전소 이용금액, 아파트관리비, 국세, 지방세, 등록금 등\n\n※ 기타 자세한 내용은 카드사로 문의바랍니다",
+      "promotion": "",
+      "tiers": [
+        {
+          "id": "16856",
+          "label": "40만원 이상",
+          "minSpend": 400000,
+          "amount": 5000,
+          "promotion": false,
+          "verified": true
+        },
+        {
+          "id": "16857",
+          "label": "70만원 이상",
+          "minSpend": 700000,
+          "amount": 10000,
+          "promotion": false,
+          "verified": true
+        },
+        {
+          "id": "16858",
+          "label": "100만원 이상",
+          "minSpend": 1000000,
+          "amount": 15000,
+          "promotion": false,
+          "verified": true
+        }
+      ],
+      "calculation": "fixed",
+      "basicMonths": null,
+      "promotionMonths": null,
+      "promotionDeadline": null,
+      "checkedAt": "2026-11-03",
+      "promotionMinBill": null,
+      "installments": [],
+      "sourceUrl": "https://www.xeronote.co.kr/api/data/get_card_info.php?card_idx=21",
+      "imageSource": "https://www.xeronote.co.kr/files/card/CARD_22080910_2.jpg",
+      "image": "assets/mobile-cards/21-50e388155d9c.jpg"
+    },
+    {
       "id": "410",
       "carrier": "SKT",
       "name": "[롯데] TELLO NE 롯데카드",
@@ -349,59 +402,6 @@
       "sourceUrl": "https://www.xeronote.co.kr/api/data/get_card_info.php?card_idx=410",
       "imageSource": "https://www.xeronote.co.kr/files/card/CARD_26110121.png",
       "image": "assets/mobile-cards/410-96b362180c29.png"
-    },
-    {
-      "id": "21",
-      "carrier": "SKT",
-      "name": "[하나] 하나 CLUB SK(모바일)",
-      "category": "POST",
-      "type": "CHARGE",
-      "annualDomestic": 6000,
-      "annualInternational": 7000,
-      "autopayRequired": true,
-      "minFinancing": 0,
-      "contact": "1599-6611",
-      "issueMethod": "전화발급",
-      "issueUrl": "https://m.hanacard.co.kr/MPACMM100M.web?CD_PD_SEQ=2572",
-      "benefit": "■ 청구할인 혜택\n\n전월실적 40만원이상 5,000원 할인\n\n전월실적 70만원이상 10,000원 할인\n\n전월실적 100만원이상 15,000원 할인\n\n■ 신규발급 시 당월 전월실적 30만원 미만이라도 5천원 할인제공\n\n■ 카드부가혜택\n\n※전월실적 20만원 이상시\n\nSK 스피드 메이트 엔진오일 교환시 25,000원할인/타이어 펑크 수리 무료/ 타이어 위치교환 무료(통합 연 1회/중복사용 불가)\n\nSK 스피드 메이트 워셔액 무료 보충(차량 정비시)\n\n※전월실적 40만원 이상시\n\n- SK 주유소 100원/L당 할인(주유비 월 30만원 한도/할인액 월 15,000원 한도)\n\n- SK 충전소 35원/L당 할인(충전비 월 20만원 한도)\n\n- CGV/ 롯데시네마/ 메가박스 홈페이지 예매 및 현장 할인(1만원 이상 결제시 월 1회) \n\n 3천원 할인(1Q 페이앱 이용시)/ 1,500원할인(1Q 페이앱 미이용시)\n\n- 아웃백/TGIF 청구할인(월 5천원 한도) \n\n 10% 청구할인(1Q 페이앱 이용시), 5% 청구할인(1Q 페이앱 미이용시)\n\n- 커피빈/ 스타벅스/ 앤젤리너스/ 할리스/ 카페베네 청구할인(월 5천원 한도)\n\n 5% 청구할인(1Q 페이앱 이용시), 2.5% 청구할인(1Q 페이앱 미이용시)롯데월드, 에버랜드, - - 시내버스/ 마을버스/ 광역버스/ 지하철/ 공항버그/ 공항철도 청구할인(월 5천원 한도)\n\n 7% 청구할인(1Q 페이앱 이용시), 3.5% 청구할인(1Q 페이앱 미이용시)롯데월드, 에버랜드,  - 자동화 기기 및 전자금융 수수료 월 10회 면제(카드 결제 계좌 KEB하나은행 이용시)\n\n- 환전 수수료 50% 우대(카드 결제 계좌 KEB하나은행 이용시)\n\n※전월실적 70만원 이상시\n\n- SK 주유소 150원/L당 할인(주유비 월 30만원 한도/할인액 월 22,000원 한도)\n\n- SK 충전소 70원/L당 할인(충전비 월 20만원 한도)\n\n※전월실적 100만원 이상시\n\n- 이마트/ 홈플러스/ 롯데마트 홈페이지 구매 및 현장 구매 할인 \n\n10%할인(카드 결제 계좌 KEB하나은행 이용시, 월 1만원 한도), 5%할인(카드 결제 계좌 타은행 이용시, 월 5천원 한도)\n\n- 학원(외국어/ 기능/ 컴퓨터/ 예,체능/ 보습/ 유치원/ 도서관 가맹점 할인\n\n10%할인(카드 결제 계좌 KEB하나은행 이용시, 월 1만원 한도), 5%할인(카드 결제 계좌 타은행 이용시, 월 5천원 한도)\n\n※ 혜택 제공 조건에 대해서는 카드사 홈페이지를 참고하시기 바랍니다\n\n※ 위 내용은 회사 및 제휴사의 사정에 따라 변경될 수 있습니다",
-      "conditions": "■ 전월실적 포함 : 제세공과금 등\n\n■ 전월실적 미포함 : SK통신요금, SK주유소/충전소 이용금액, 아파트관리비, 국세, 지방세, 등록금 등\n\n※ 기타 자세한 내용은 카드사로 문의바랍니다",
-      "promotion": "",
-      "tiers": [
-        {
-          "id": "16856",
-          "label": "40만원 이상",
-          "minSpend": 400000,
-          "amount": 5000,
-          "promotion": false,
-          "verified": true
-        },
-        {
-          "id": "16857",
-          "label": "70만원 이상",
-          "minSpend": 700000,
-          "amount": 10000,
-          "promotion": false,
-          "verified": true
-        },
-        {
-          "id": "16858",
-          "label": "100만원 이상",
-          "minSpend": 1000000,
-          "amount": 15000,
-          "promotion": false,
-          "verified": true
-        }
-      ],
-      "calculation": "fixed",
-      "basicMonths": null,
-      "promotionMonths": null,
-      "promotionDeadline": null,
-      "checkedAt": "2026-11-03",
-      "promotionMinBill": null,
-      "installments": [],
-      "sourceUrl": "https://www.xeronote.co.kr/api/data/get_card_info.php?card_idx=21",
-      "imageSource": "https://www.xeronote.co.kr/files/card/CARD_22080910_2.jpg",
-      "image": "assets/mobile-cards/21-50e388155d9c.jpg"
     },
     {
       "id": "22",
@@ -1106,6 +1106,76 @@
       "image": "assets/mobile-cards/132-8ad260b664a5.jpg"
     },
     {
+      "id": "406",
+      "carrier": "SKT",
+      "name": "[롯데] 롯데카드 T라이트",
+      "category": "PRE",
+      "type": "LIGHT",
+      "annualDomestic": 25000,
+      "annualInternational": 25000,
+      "autopayRequired": false,
+      "minFinancing": 100000,
+      "contact": "",
+      "issueMethod": "QR코드 또는 온라인 발급",
+      "issueUrl": "https://m.lottecard.co.kr/spa/card/booth?bId=106377&vtCdKndC=P15909-A15909",
+      "benefit": "■ 기본 할인(T라이트 할부 이용시)\n\n 전월실적 50만원 이상 8,000원 할인\n\n 전월실적 100만원 이상 10,000원 할인\n\n■ T라이트 할부 미이용시\n\n  전월실적 50만원 이상 5,000원 할인\n\n※ 혜택 제공 조건에 대해서는 카드사 홈페이지를 참고 하시기 바랍니다\n\n※ 위 내용은 회사 및 제휴사의 사정에 따라 변경될 수 있습니다",
+      "conditions": "■ 전월실적포함 : SKT 자동납부 통신요금\n\n■ 전월실적미포함 : T 라이트 롯데카드가 아닌 롯데카드 이용금액, 모든 무이자할부 이용금액, 거래 취소금액, 국세, 지방세, 건강보험, 국민연금, 고용보험, 산재보험, 초·중·고교 납입금, 대학(대학원) 등록금, 정부지원금(보육료, 육아학비 등), LH·SH 공사 공공임대료, 월세, 부동산 임대료, 장애인 고용부담금, 도시가스요금, 전기요금, 수도세, 아파트관리비, 공과금, 오토·스마트 캐시백 신청 이용금액, 기프트·선불카드 충전 및 구매, 포인트충전, 상품권(모바일 상품권 포함) 구매, 택시, 고속버스, 고속도로 통행요금, 대중교통(시내·광역·시외버스, 지하철), 무승인전표(자판기, 터널통행료, 항공 기내 이용 등), 관세납부, 벌금, 과태료, 민원 발급 수수료, 인지세, 송달료, 단기카드대출(현금서비스), 장기카드대출(카드론), 연회비, 이자 및 각종 수수료\n\n※ 기타 내용은 카드사로 문의 바랍니다",
+      "promotion": "■ 캐시백 프로모션 (~26.11.30까지 카드 발급 승인일 기준)\n\n- 조건 : 롯데카드 신규 고객(26.05.01 이후 무실적 고객 포함)으로 라이트 할부 10만원 이상 및 전월 실적 충족 시(기존 고객은 기본 할인만 제공)\n\n- 혜택 : 라이트할부 승인 익월부터 최대 24개월간 캐시백 적용\n\n  전월 실적 50만원 이상 사용 시 34,000원 캐시백(기본 8,000원+추가 26,000원)\n\n  전월 실적 100만원 이상 사용 시 35,000원 캐시백(기본 10,000원+추가 25,000원)\n\n * 캐시백 매월 8일 결제 계좌 입금\n\n * 프로모션 할인은 최대 24번 제공(발급월 포함 25개월 내)\n\n * 발급 월 캐시백 조건 충족하더라도 발급월 다음달 프로모션 금액으로 1회차 캐시백 적용(최대 24회)\n\n * 카드 발급일 기준 : 카드 발급을 카드사에서 승인한 날",
+      "tiers": [
+        {
+          "id": "19084",
+          "label": "50만원 이상",
+          "minSpend": 500000,
+          "amount": 8000,
+          "promotion": false,
+          "verified": true
+        },
+        {
+          "id": "19085",
+          "label": "100만원 이상",
+          "minSpend": 1000000,
+          "amount": 10000,
+          "promotion": false,
+          "verified": true
+        },
+        {
+          "id": "19086",
+          "label": "프로모션 50만원 이상",
+          "minSpend": 500000,
+          "amount": 34000,
+          "promotion": true,
+          "verified": true
+        },
+        {
+          "id": "19087",
+          "label": "프로모션 100만원 이상",
+          "minSpend": 1000000,
+          "amount": 35000,
+          "promotion": true,
+          "verified": true
+        }
+      ],
+      "calculation": "fixed",
+      "basicMonths": null,
+      "promotionMonths": 24,
+      "promotionDeadline": "2026-11-30",
+      "checkedAt": "2026-11-03",
+      "promotionMinBill": null,
+      "installments": [
+        {
+          "months": 24,
+          "interest": "5.9"
+        },
+        {
+          "months": 36,
+          "interest": "7.0"
+        }
+      ],
+      "sourceUrl": "https://www.xeronote.co.kr/api/data/get_card_info.php?card_idx=406",
+      "imageSource": "https://www.xeronote.co.kr/files/card/CARD_26091193.jpg",
+      "image": "assets/mobile-cards/406-51e863caa556.jpg"
+    },
+    {
       "id": "279",
       "carrier": "SKT",
       "name": "[KB] T 라이트 KB국민카드",
@@ -1190,76 +1260,6 @@
       "sourceUrl": "https://www.xeronote.co.kr/api/data/get_card_info.php?card_idx=279",
       "imageSource": "https://www.xeronote.co.kr/files/card/CARD_23042839.jpg",
       "image": "assets/mobile-cards/279-d7dc2f4ab03a.jpg"
-    },
-    {
-      "id": "406",
-      "carrier": "SKT",
-      "name": "[롯데] 롯데카드 T라이트",
-      "category": "PRE",
-      "type": "LIGHT",
-      "annualDomestic": 25000,
-      "annualInternational": 25000,
-      "autopayRequired": false,
-      "minFinancing": 100000,
-      "contact": "",
-      "issueMethod": "QR코드 또는 온라인 발급",
-      "issueUrl": "https://m.lottecard.co.kr/spa/card/booth?bId=106377&vtCdKndC=P15909-A15909",
-      "benefit": "■ 기본 할인(T라이트 할부 이용시)\n\n 전월실적 50만원 이상 8,000원 할인\n\n 전월실적 100만원 이상 10,000원 할인\n\n■ T라이트 할부 미이용시\n\n  전월실적 50만원 이상 5,000원 할인\n\n※ 혜택 제공 조건에 대해서는 카드사 홈페이지를 참고 하시기 바랍니다\n\n※ 위 내용은 회사 및 제휴사의 사정에 따라 변경될 수 있습니다",
-      "conditions": "■ 전월실적포함 : SKT 자동납부 통신요금\n\n■ 전월실적미포함 : T 라이트 롯데카드가 아닌 롯데카드 이용금액, 모든 무이자할부 이용금액, 거래 취소금액, 국세, 지방세, 건강보험, 국민연금, 고용보험, 산재보험, 초·중·고교 납입금, 대학(대학원) 등록금, 정부지원금(보육료, 육아학비 등), LH·SH 공사 공공임대료, 월세, 부동산 임대료, 장애인 고용부담금, 도시가스요금, 전기요금, 수도세, 아파트관리비, 공과금, 오토·스마트 캐시백 신청 이용금액, 기프트·선불카드 충전 및 구매, 포인트충전, 상품권(모바일 상품권 포함) 구매, 택시, 고속버스, 고속도로 통행요금, 대중교통(시내·광역·시외버스, 지하철), 무승인전표(자판기, 터널통행료, 항공 기내 이용 등), 관세납부, 벌금, 과태료, 민원 발급 수수료, 인지세, 송달료, 단기카드대출(현금서비스), 장기카드대출(카드론), 연회비, 이자 및 각종 수수료\n\n※ 기타 내용은 카드사로 문의 바랍니다",
-      "promotion": "■ 캐시백 프로모션 (~26.11.30까지 카드 발급 승인일 기준)\n\n- 조건 : 롯데카드 신규 고객(26.05.01 이후 무실적 고객 포함)으로 라이트 할부 10만원 이상 및 전월 실적 충족 시(기존 고객은 기본 할인만 제공)\n\n- 혜택 : 라이트할부 승인 익월부터 최대 24개월간 캐시백 적용\n\n  전월 실적 50만원 이상 사용 시 34,000원 캐시백(기본 8,000원+추가 26,000원)\n\n  전월 실적 100만원 이상 사용 시 35,000원 캐시백(기본 10,000원+추가 25,000원)\n\n * 캐시백 매월 8일 결제 계좌 입금\n\n * 프로모션 할인은 최대 24번 제공(발급월 포함 25개월 내)\n\n * 발급 월 캐시백 조건 충족하더라도 발급월 다음달 프로모션 금액으로 1회차 캐시백 적용(최대 24회)\n\n * 카드 발급일 기준 : 카드 발급을 카드사에서 승인한 날",
-      "tiers": [
-        {
-          "id": "19084",
-          "label": "50만원 이상",
-          "minSpend": 500000,
-          "amount": 8000,
-          "promotion": false,
-          "verified": true
-        },
-        {
-          "id": "19085",
-          "label": "100만원 이상",
-          "minSpend": 1000000,
-          "amount": 10000,
-          "promotion": false,
-          "verified": true
-        },
-        {
-          "id": "19086",
-          "label": "프로모션 50만원 이상",
-          "minSpend": 500000,
-          "amount": 34000,
-          "promotion": true,
-          "verified": true
-        },
-        {
-          "id": "19087",
-          "label": "프로모션 100만원 이상",
-          "minSpend": 1000000,
-          "amount": 35000,
-          "promotion": true,
-          "verified": true
-        }
-      ],
-      "calculation": "fixed",
-      "basicMonths": null,
-      "promotionMonths": 24,
-      "promotionDeadline": "2026-11-30",
-      "checkedAt": "2026-11-03",
-      "promotionMinBill": null,
-      "installments": [
-        {
-          "months": 24,
-          "interest": "5.9"
-        },
-        {
-          "months": 36,
-          "interest": "7.0"
-        }
-      ],
-      "sourceUrl": "https://www.xeronote.co.kr/api/data/get_card_info.php?card_idx=406",
-      "imageSource": "https://www.xeronote.co.kr/files/card/CARD_26091193.jpg",
-      "image": "assets/mobile-cards/406-51e863caa556.jpg"
     },
     {
       "id": "231",
@@ -2047,6 +2047,67 @@
       "image": "assets/mobile-cards/355-e11319ac57dd.jpg"
     },
     {
+      "id": "306",
+      "carrier": "KT",
+      "name": "[BC] KT DC Plus BC 바로카드",
+      "category": "POST",
+      "type": "CHARGE",
+      "annualDomestic": 12000,
+      "annualInternational": 12000,
+      "autopayRequired": true,
+      "minFinancing": 0,
+      "contact": "",
+      "issueMethod": "온라인발급",
+      "issueUrl": "https://paybooc.co.kr/app/paybooc/AppPbCard.do?exec=detail&cardGdsNo=103125&chnlCd=Mobile",
+      "benefit": "■ 기본 할인\n\n전월실적 30만원 이상 7,000원 할인\n\n전월실적 70만원 이상 13,000원 할인\n\n■ 최초 카드 발급 후 사용 등록일로부터 다음달 말일까지 30만원 미 충족 시, 7 or 13 or 15천원 청구할인 제공(프로모션 금액 반영)\n\n■ 카드 부가혜택\n\n- Mastercard Platinum 등급 기본 서비스 제공(상세 내용은 mastercard.co.kr에서 확인)\n\n- SK 주유소 1% 청구할인(전월 이용금액 조건 30만원 충족 시) : 인당 월 할인한도 1천원\n\n※ 혜택 제공 조건에 대해서는 카드사 홈페이지를 참고하시기 바랍니다\n\n※ 위 내용은 회사 및 제휴사의 사정에 따라 변경될 수 있습니다",
+      "conditions": "■ 전월실적 포함 : KT통신요금(유/무선), 개인보험료, 경쟁사 통신요금, 무이자 할부, 대중교통, 병원비, 학원비 포함\n\n■ 전월실적 미포함 : 아파트관리비, 단기카드대출(현금서비스), 장기카드대출(카드론), 연회비, 각종수수료/이자(할부수수료, SMS이용 수수료, 카드대출이자 등), 제세공과금(건강보험, 국민연금, 고용보험, 산재보험, 장애인고용부담금, 국세/지방세/관세, 전기요금, 우편요금, 상하수도/도시가스 요금, 여권발급비용, 과태료,범칙금, 벌과금,국가/공공기관/공공단체에서 개설한 가맹점 이용금액), 초/중/고교납입금, 대학등록금, 기프트/선불카드(포인트, 사이버머니 등 전자지급수단포함) 구매및충전, 상품권 구매금액\n\n※ 기타 자세한 내용은 카드사로 문의 바랍니다",
+      "promotion": "■ 추가 할인 프로모션(~ 26.11.30까지 자동 이체 등록 기준 )\n\n- 조건 : 기간 내 직전 6개월(26.05.01 이후) 무실적 고객이 기간 내 Master 및 BC Local 카드 브랜드로 최초 발급 후 자동 이체 등록 시 (단. 단일 통신비 1.5만원 이상 매출 발생 시)\n\n- 혜택: 최대 36개월간 매월 추가 할인 제공\n\n  전월 실적 30만원 이상 시 8,000원 할인(기본 7,000원 + 추가 1,000원)\n\n  전월 실적 70만원 이상 시 15,000원 할인(기본 13,000원 + 추가 2,000원)\n\n* 최초 카드 사용 등록일 다음 달 이내에 통신 요금 자동 납부가 시작 되어야 하며, 이후부터 횟수 차감 됨.",
+      "tiers": [
+        {
+          "id": "19269",
+          "label": "30만원 이상",
+          "minSpend": 300000,
+          "amount": 7000,
+          "promotion": false,
+          "verified": true
+        },
+        {
+          "id": "19270",
+          "label": "70만원 이상",
+          "minSpend": 700000,
+          "amount": 13000,
+          "promotion": false,
+          "verified": true
+        },
+        {
+          "id": "19271",
+          "label": "프로모션 30만원 이상",
+          "minSpend": 300000,
+          "amount": 8000,
+          "promotion": true,
+          "verified": true
+        },
+        {
+          "id": "19272",
+          "label": "프로모션 70만원 이상",
+          "minSpend": 700000,
+          "amount": 15000,
+          "promotion": true,
+          "verified": true
+        }
+      ],
+      "calculation": "fixed",
+      "basicMonths": null,
+      "promotionMonths": 36,
+      "promotionDeadline": "2026-11-30",
+      "checkedAt": "2026-11-03",
+      "promotionMinBill": null,
+      "installments": [],
+      "sourceUrl": "https://www.xeronote.co.kr/api/data/get_card_info.php?card_idx=306",
+      "imageSource": "https://www.xeronote.co.kr/files/card/CARD_23092604.jpg",
+      "image": "assets/mobile-cards/306-13f9d02a8333.jpg"
+    },
+    {
       "id": "283",
       "carrier": "KT",
       "name": "[신한] KT 가족만족 DC 신한카드",
@@ -2122,67 +2183,6 @@
       "sourceUrl": "https://www.xeronote.co.kr/api/data/get_card_info.php?card_idx=283",
       "imageSource": "https://www.xeronote.co.kr/files/card/CARD_26080180.jpg",
       "image": "assets/mobile-cards/283-77d6494059a6.jpg"
-    },
-    {
-      "id": "306",
-      "carrier": "KT",
-      "name": "[BC] KT DC Plus BC 바로카드",
-      "category": "POST",
-      "type": "CHARGE",
-      "annualDomestic": 12000,
-      "annualInternational": 12000,
-      "autopayRequired": true,
-      "minFinancing": 0,
-      "contact": "",
-      "issueMethod": "온라인발급",
-      "issueUrl": "https://paybooc.co.kr/app/paybooc/AppPbCard.do?exec=detail&cardGdsNo=103125&chnlCd=Mobile",
-      "benefit": "■ 기본 할인\n\n전월실적 30만원 이상 7,000원 할인\n\n전월실적 70만원 이상 13,000원 할인\n\n■ 최초 카드 발급 후 사용 등록일로부터 다음달 말일까지 30만원 미 충족 시, 7 or 13 or 15천원 청구할인 제공(프로모션 금액 반영)\n\n■ 카드 부가혜택\n\n- Mastercard Platinum 등급 기본 서비스 제공(상세 내용은 mastercard.co.kr에서 확인)\n\n- SK 주유소 1% 청구할인(전월 이용금액 조건 30만원 충족 시) : 인당 월 할인한도 1천원\n\n※ 혜택 제공 조건에 대해서는 카드사 홈페이지를 참고하시기 바랍니다\n\n※ 위 내용은 회사 및 제휴사의 사정에 따라 변경될 수 있습니다",
-      "conditions": "■ 전월실적 포함 : KT통신요금(유/무선), 개인보험료, 경쟁사 통신요금, 무이자 할부, 대중교통, 병원비, 학원비 포함\n\n■ 전월실적 미포함 : 아파트관리비, 단기카드대출(현금서비스), 장기카드대출(카드론), 연회비, 각종수수료/이자(할부수수료, SMS이용 수수료, 카드대출이자 등), 제세공과금(건강보험, 국민연금, 고용보험, 산재보험, 장애인고용부담금, 국세/지방세/관세, 전기요금, 우편요금, 상하수도/도시가스 요금, 여권발급비용, 과태료,범칙금, 벌과금,국가/공공기관/공공단체에서 개설한 가맹점 이용금액), 초/중/고교납입금, 대학등록금, 기프트/선불카드(포인트, 사이버머니 등 전자지급수단포함) 구매및충전, 상품권 구매금액\n\n※ 기타 자세한 내용은 카드사로 문의 바랍니다",
-      "promotion": "■ 추가 할인 프로모션(~ 26.11.30까지 자동 이체 등록 기준 )\n\n- 조건 : 기간 내 직전 6개월(26.05.01 이후) 무실적 고객이 기간 내 Master 및 BC Local 카드 브랜드로 최초 발급 후 자동 이체 등록 시 (단. 단일 통신비 1.5만원 이상 매출 발생 시)\n\n- 혜택: 최대 36개월간 매월 추가 할인 제공\n\n  전월 실적 30만원 이상 시 8,000원 할인(기본 7,000원 + 추가 1,000원)\n\n  전월 실적 70만원 이상 시 15,000원 할인(기본 13,000원 + 추가 2,000원)\n\n* 최초 카드 사용 등록일 다음 달 이내에 통신 요금 자동 납부가 시작 되어야 하며, 이후부터 횟수 차감 됨.",
-      "tiers": [
-        {
-          "id": "19269",
-          "label": "30만원 이상",
-          "minSpend": 300000,
-          "amount": 7000,
-          "promotion": false,
-          "verified": true
-        },
-        {
-          "id": "19270",
-          "label": "70만원 이상",
-          "minSpend": 700000,
-          "amount": 13000,
-          "promotion": false,
-          "verified": true
-        },
-        {
-          "id": "19271",
-          "label": "프로모션 30만원 이상",
-          "minSpend": 300000,
-          "amount": 8000,
-          "promotion": true,
-          "verified": true
-        },
-        {
-          "id": "19272",
-          "label": "프로모션 70만원 이상",
-          "minSpend": 700000,
-          "amount": 15000,
-          "promotion": true,
-          "verified": true
-        }
-      ],
-      "calculation": "fixed",
-      "basicMonths": null,
-      "promotionMonths": 36,
-      "promotionDeadline": "2026-11-30",
-      "checkedAt": "2026-11-03",
-      "promotionMinBill": null,
-      "installments": [],
-      "sourceUrl": "https://www.xeronote.co.kr/api/data/get_card_info.php?card_idx=306",
-      "imageSource": "https://www.xeronote.co.kr/files/card/CARD_23092604.jpg",
-      "image": "assets/mobile-cards/306-13f9d02a8333.jpg"
     },
     {
       "id": "126",
@@ -3016,6 +3016,76 @@
       "image": "assets/mobile-cards/282-826d60cecfec.jpg"
     },
     {
+      "id": "407",
+      "carrier": "KT",
+      "name": "[롯데] KT 할부 롯데 카드",
+      "category": "PRE",
+      "type": "LIGHT",
+      "annualDomestic": 25000,
+      "annualInternational": 25000,
+      "autopayRequired": false,
+      "minFinancing": 100000,
+      "contact": "",
+      "issueMethod": "QR코드 또는 온라인 발급",
+      "issueUrl": "https://m.lottecard.co.kr/spa/card/booth?bId=106378&vtCdKndC=P15912-A15912",
+      "benefit": "■ 기본 할인(장기 할부 이용시)\n\n 전월실적 50만원 이상 8,000원 할인\n\n 전월실적 100만원 이상 10,000원 할인\n\n■ 장기 할부 미이용시\n\n  전월실적 50만원 이상 5,000원 할인\n\n※ 혜택 제공 조건에 대해서는 카드사 홈페이지를 참고 하시기 바랍니다\n\n※ 위 내용은 회사 및 제휴사의 사정에 따라 변경될 수 있습니다",
+      "conditions": "■ 전월실적 포함 : 해당 카드의 일반 결제 이용금액 중 아래 ‘전월실적 미포함’ 항목에 해당하지 않는 금액(카드사에서 인정하는 거래에 한함).\n\n※ 포함되는 개별 업종과 해외·할부·교통·간편결제 인정 여부는 제공된 자료에 별도 기재되지 않아 카드사 상품설명서 확인이 필요합니다.\n\n■ 전월실적미포함 : KT 할부 롯데카드가 아닌 롯데카드 이용금액, 모든 무이자할부 이용금액,거래 취소금액,국세, 지방세, 건강보험, 국민연금, 고용보험, 산재보험, 초·중·고교 납입금,대학(대학원)등록금, 정부지원금(보육료, 육아학비 등), LH·SH 공사공공임대료, 월세, 부동산 임대료, 장애인 고용부담금, 도시가스요금,전기요금, 수도요금, 공과금, 아파트관리비, TV 수신료,오토·스마트 캐시백 신청 이용금액, 오토 할부서비스 이용금액, 기프트·선불카드,충전 및 구매, 포인트 충전, 상품권(모바일 상품권 포함)구매,ㆍ 택시, 고속버스, 고속도로, 통행요금, 대중교통(시내·광역·시외버스, 지하철),무승인전표(자판기, 터널통행료, 항공 기내 이용 등), 관세납부, 벌금, 과태료, 민원 발급 수수료, 인지세, 송달료, 단기카드대출(현금서비스), 장기카드대출(카드론), 연회비, 이자 및 각종 수수료, 기후동행카드(선불/후불교통)충전 및 결제\n\n※ 기타 내용은 카드사로 문의 바랍니다",
+      "promotion": "■ 추가 청구 할인 프로모션(~ 26.11.30까지 수퍼 할부 승인 기준)\n\n- 조건 : 기간 내 최초 발급(26.05.01 이후 무실적 및 모든 롯데 개인신용카드 결제 이력이 없는 회원) 및 장기 할부 수납 완료 후 전월 실적 충족 시\n\n- 혜택: 발급 익월 부터 최대 24개월간 매월 추가 청구 할인 제공\n\n  전월 실적 50만원 이상 시 34,000원 할인(기본 8,000원 + 추가 26,000원)\n\n  전월 실적 100만원 이상 시 35,000원 할인(기본 10,000원 + 추가 25,000원)\n\n※ 25.11월 프로모션 참여 고객이 '26.12월부터 통신비 자동이체 적용시, '27.01월부터 23개월차 적용(프로모션 기간 내 전월 실적 미 달성시 회차 차감 발생)",
+      "tiers": [
+        {
+          "id": "18947",
+          "label": "50만원 이상",
+          "minSpend": 500000,
+          "amount": 8000,
+          "promotion": false,
+          "verified": true
+        },
+        {
+          "id": "18948",
+          "label": "100만원 이상",
+          "minSpend": 1000000,
+          "amount": 10000,
+          "promotion": false,
+          "verified": true
+        },
+        {
+          "id": "18949",
+          "label": "프로모션 50만원 이상",
+          "minSpend": 500000,
+          "amount": 34000,
+          "promotion": true,
+          "verified": true
+        },
+        {
+          "id": "18950",
+          "label": "프로모션 100만원 이상",
+          "minSpend": 1000000,
+          "amount": 35000,
+          "promotion": true,
+          "verified": true
+        }
+      ],
+      "calculation": "fixed",
+      "basicMonths": null,
+      "promotionMonths": 24,
+      "promotionDeadline": "2026-11-30",
+      "checkedAt": "2026-11-03",
+      "promotionMinBill": null,
+      "installments": [
+        {
+          "months": 24,
+          "interest": "5.9"
+        },
+        {
+          "months": 36,
+          "interest": "7.0"
+        }
+      ],
+      "sourceUrl": "https://www.xeronote.co.kr/api/data/get_card_info.php?card_idx=407",
+      "imageSource": "https://www.xeronote.co.kr/files/card/CARD_26091658.png",
+      "image": "assets/mobile-cards/407-7dde50b7c860.png"
+    },
+    {
       "id": "394",
       "carrier": "KT",
       "name": "[우리] KT 36 Plus 우리카드",
@@ -3182,76 +3252,6 @@
       "sourceUrl": "https://www.xeronote.co.kr/api/data/get_card_info.php?card_idx=281",
       "imageSource": "https://www.xeronote.co.kr/files/card/CARD_23050203.jpg",
       "image": "assets/mobile-cards/281-3ae67de24ce0.jpg"
-    },
-    {
-      "id": "407",
-      "carrier": "KT",
-      "name": "[롯데] KT 할부 롯데 카드",
-      "category": "PRE",
-      "type": "LIGHT",
-      "annualDomestic": 25000,
-      "annualInternational": 25000,
-      "autopayRequired": false,
-      "minFinancing": 100000,
-      "contact": "",
-      "issueMethod": "QR코드 또는 온라인 발급",
-      "issueUrl": "https://m.lottecard.co.kr/spa/card/booth?bId=106378&vtCdKndC=P15912-A15912",
-      "benefit": "■ 기본 할인(장기 할부 이용시)\n\n 전월실적 50만원 이상 8,000원 할인\n\n 전월실적 100만원 이상 10,000원 할인\n\n■ 장기 할부 미이용시\n\n  전월실적 50만원 이상 5,000원 할인\n\n※ 혜택 제공 조건에 대해서는 카드사 홈페이지를 참고 하시기 바랍니다\n\n※ 위 내용은 회사 및 제휴사의 사정에 따라 변경될 수 있습니다",
-      "conditions": "■ 전월실적 포함 : 해당 카드의 일반 결제 이용금액 중 아래 ‘전월실적 미포함’ 항목에 해당하지 않는 금액(카드사에서 인정하는 거래에 한함).\n\n※ 포함되는 개별 업종과 해외·할부·교통·간편결제 인정 여부는 제공된 자료에 별도 기재되지 않아 카드사 상품설명서 확인이 필요합니다.\n\n■ 전월실적미포함 : KT 할부 롯데카드가 아닌 롯데카드 이용금액, 모든 무이자할부 이용금액,거래 취소금액,국세, 지방세, 건강보험, 국민연금, 고용보험, 산재보험, 초·중·고교 납입금,대학(대학원)등록금, 정부지원금(보육료, 육아학비 등), LH·SH 공사공공임대료, 월세, 부동산 임대료, 장애인 고용부담금, 도시가스요금,전기요금, 수도요금, 공과금, 아파트관리비, TV 수신료,오토·스마트 캐시백 신청 이용금액, 오토 할부서비스 이용금액, 기프트·선불카드,충전 및 구매, 포인트 충전, 상품권(모바일 상품권 포함)구매,ㆍ 택시, 고속버스, 고속도로, 통행요금, 대중교통(시내·광역·시외버스, 지하철),무승인전표(자판기, 터널통행료, 항공 기내 이용 등), 관세납부, 벌금, 과태료, 민원 발급 수수료, 인지세, 송달료, 단기카드대출(현금서비스), 장기카드대출(카드론), 연회비, 이자 및 각종 수수료, 기후동행카드(선불/후불교통)충전 및 결제\n\n※ 기타 내용은 카드사로 문의 바랍니다",
-      "promotion": "■ 추가 청구 할인 프로모션(~ 26.11.30까지 수퍼 할부 승인 기준)\n\n- 조건 : 기간 내 최초 발급(26.05.01 이후 무실적 및 모든 롯데 개인신용카드 결제 이력이 없는 회원) 및 장기 할부 수납 완료 후 전월 실적 충족 시\n\n- 혜택: 발급 익월 부터 최대 24개월간 매월 추가 청구 할인 제공\n\n  전월 실적 50만원 이상 시 34,000원 할인(기본 8,000원 + 추가 26,000원)\n\n  전월 실적 100만원 이상 시 35,000원 할인(기본 10,000원 + 추가 25,000원)\n\n※ 25.11월 프로모션 참여 고객이 '26.12월부터 통신비 자동이체 적용시, '27.01월부터 23개월차 적용(프로모션 기간 내 전월 실적 미 달성시 회차 차감 발생)",
-      "tiers": [
-        {
-          "id": "18947",
-          "label": "50만원 이상",
-          "minSpend": 500000,
-          "amount": 8000,
-          "promotion": false,
-          "verified": true
-        },
-        {
-          "id": "18948",
-          "label": "100만원 이상",
-          "minSpend": 1000000,
-          "amount": 10000,
-          "promotion": false,
-          "verified": true
-        },
-        {
-          "id": "18949",
-          "label": "프로모션 50만원 이상",
-          "minSpend": 500000,
-          "amount": 34000,
-          "promotion": true,
-          "verified": true
-        },
-        {
-          "id": "18950",
-          "label": "프로모션 100만원 이상",
-          "minSpend": 1000000,
-          "amount": 35000,
-          "promotion": true,
-          "verified": true
-        }
-      ],
-      "calculation": "fixed",
-      "basicMonths": null,
-      "promotionMonths": 24,
-      "promotionDeadline": "2026-11-30",
-      "checkedAt": "2026-11-03",
-      "promotionMinBill": null,
-      "installments": [
-        {
-          "months": 24,
-          "interest": "5.9"
-        },
-        {
-          "months": 36,
-          "interest": "7.0"
-        }
-      ],
-      "sourceUrl": "https://www.xeronote.co.kr/api/data/get_card_info.php?card_idx=407",
-      "imageSource": "https://www.xeronote.co.kr/files/card/CARD_26091658.png",
-      "image": "assets/mobile-cards/407-7dde50b7c860.png"
     },
     {
       "id": "167",
@@ -3536,51 +3536,6 @@
       "image": "assets/mobile-cards/218-83f47a53b275.jpg"
     },
     {
-      "id": "312",
-      "carrier": "LGU+",
-      "name": "[하나] LGU+ 더심플 하나카드",
-      "category": "POST",
-      "type": "CHARGE",
-      "annualDomestic": 25000,
-      "annualInternational": 25000,
-      "autopayRequired": true,
-      "minFinancing": 0,
-      "contact": "",
-      "issueMethod": "QR코드 또는 온라인 발급",
-      "issueUrl": "https://m.hanacard.co.kr/MPACMM101M.web?CD_PD_SEQ=17159",
-      "benefit": "■ 기본 할인 혜택\n\n전월실적 30만원이상 10,000원 할인\n\n전월실적 80만원이상 15,000원 할인\n\n■ 카드 사용등록일로부터 다음 달 말일까지는 지난달 카드 실적 30 만원 미만이어도 월 10,000원 할인 제공\n\n※ 혜택 제공 조건에 대해서는 카드사 홈페이지를 참고하시기 바랍니다\n\n※ 위 내용은 회사 및 제휴사의 사정에 따라 변경될 수 있습니다",
-      "conditions": "■ 전월실적 포함 : 해당 카드의 일반 결제 이용금액 중 아래 ‘전월실적 미포함’ 항목에 해당하지 않는 금액(카드사에서 인정하는 거래에 한함).\n\n※ 포함되는 개별 업종과 해외·할부·교통·간편결제 인정 여부는 제공된 자료에 별도 기재되지 않아 카드사 상품설명서 확인이 필요합니다.\n\n■ 전월실적 미포함 : 국세, 지방세, 공과금(인터넷/모바일 앱을 통한 공과금 납부 금액 포함), 수도/전기요금,도시가스 요금, 아파트관리비, 국민연금/고용보험료/산재보험료/건강보험료 납부 금액, 스쿨뱅킹, 초.중.고 학교 납입금, 대학등록금, 대학원등록금, 상품권 및 기프트카드 구매, 선불카드 및 선불전자지급수단(하나머니 등) 충전 금액, 부동산 임대료, 월납요금 할인 서비스 적용된 매출 전체 금액\n\n※ 기타 자세한 내용은 카드사로 문의 바랍니다.",
-      "promotion": "",
-      "tiers": [
-        {
-          "id": "16967",
-          "label": "30만원 이상",
-          "minSpend": 300000,
-          "amount": 10000,
-          "promotion": false,
-          "verified": true
-        },
-        {
-          "id": "16968",
-          "label": "80만원 이상",
-          "minSpend": 800000,
-          "amount": 15000,
-          "promotion": false,
-          "verified": true
-        }
-      ],
-      "calculation": "fixed",
-      "basicMonths": null,
-      "promotionMonths": null,
-      "promotionDeadline": null,
-      "checkedAt": "2026-11-03",
-      "promotionMinBill": null,
-      "installments": [],
-      "sourceUrl": "https://www.xeronote.co.kr/api/data/get_card_info.php?card_idx=312",
-      "imageSource": "https://www.xeronote.co.kr/files/card/CARD_23100358.jpg",
-      "image": "assets/mobile-cards/312-2f9b677d1ecf.jpg"
-    },
-    {
       "id": "240",
       "carrier": "LGU+",
       "name": "[롯데] LGU+ x LOCA 롯데카드",
@@ -3822,6 +3777,51 @@
       "image": "assets/mobile-cards/383-7056d116adec.jpg"
     },
     {
+      "id": "312",
+      "carrier": "LGU+",
+      "name": "[하나] LGU+ 더심플 하나카드",
+      "category": "POST",
+      "type": "CHARGE",
+      "annualDomestic": 25000,
+      "annualInternational": 25000,
+      "autopayRequired": true,
+      "minFinancing": 0,
+      "contact": "",
+      "issueMethod": "QR코드 또는 온라인 발급",
+      "issueUrl": "https://m.hanacard.co.kr/MPACMM101M.web?CD_PD_SEQ=17159",
+      "benefit": "■ 기본 할인 혜택\n\n전월실적 30만원이상 10,000원 할인\n\n전월실적 80만원이상 15,000원 할인\n\n■ 카드 사용등록일로부터 다음 달 말일까지는 지난달 카드 실적 30 만원 미만이어도 월 10,000원 할인 제공\n\n※ 혜택 제공 조건에 대해서는 카드사 홈페이지를 참고하시기 바랍니다\n\n※ 위 내용은 회사 및 제휴사의 사정에 따라 변경될 수 있습니다",
+      "conditions": "■ 전월실적 포함 : 해당 카드의 일반 결제 이용금액 중 아래 ‘전월실적 미포함’ 항목에 해당하지 않는 금액(카드사에서 인정하는 거래에 한함).\n\n※ 포함되는 개별 업종과 해외·할부·교통·간편결제 인정 여부는 제공된 자료에 별도 기재되지 않아 카드사 상품설명서 확인이 필요합니다.\n\n■ 전월실적 미포함 : 국세, 지방세, 공과금(인터넷/모바일 앱을 통한 공과금 납부 금액 포함), 수도/전기요금,도시가스 요금, 아파트관리비, 국민연금/고용보험료/산재보험료/건강보험료 납부 금액, 스쿨뱅킹, 초.중.고 학교 납입금, 대학등록금, 대학원등록금, 상품권 및 기프트카드 구매, 선불카드 및 선불전자지급수단(하나머니 등) 충전 금액, 부동산 임대료, 월납요금 할인 서비스 적용된 매출 전체 금액\n\n※ 기타 자세한 내용은 카드사로 문의 바랍니다.",
+      "promotion": "",
+      "tiers": [
+        {
+          "id": "16967",
+          "label": "30만원 이상",
+          "minSpend": 300000,
+          "amount": 10000,
+          "promotion": false,
+          "verified": true
+        },
+        {
+          "id": "16968",
+          "label": "80만원 이상",
+          "minSpend": 800000,
+          "amount": 15000,
+          "promotion": false,
+          "verified": true
+        }
+      ],
+      "calculation": "fixed",
+      "basicMonths": null,
+      "promotionMonths": null,
+      "promotionDeadline": null,
+      "checkedAt": "2026-11-03",
+      "promotionMinBill": null,
+      "installments": [],
+      "sourceUrl": "https://www.xeronote.co.kr/api/data/get_card_info.php?card_idx=312",
+      "imageSource": "https://www.xeronote.co.kr/files/card/CARD_23100358.jpg",
+      "image": "assets/mobile-cards/312-2f9b677d1ecf.jpg"
+    },
+    {
       "id": "208",
       "carrier": "LGU+",
       "name": "[농협] NH올원 LG U+ 카드",
@@ -3965,51 +3965,6 @@
       "image": "assets/mobile-cards/400-2efa4764f309.png"
     },
     {
-      "id": "359",
-      "carrier": "LGU+",
-      "name": "[KB]LG U+ 심플라이트Ⅱ 카드",
-      "category": "POST",
-      "type": "CHARGE",
-      "annualDomestic": 20000,
-      "annualInternational": 20000,
-      "autopayRequired": true,
-      "minFinancing": 0,
-      "contact": "1670-8704",
-      "issueMethod": "전화발급, 온라인 발급 가능",
-      "issueUrl": "https://card.kbcard.com/CRD/DVIEW/HCAMCXPRICAC0076?mainCC=a&cooperationcode=04294",
-      "benefit": "■ 청구할인 혜택\n\n전월실적 30만원이상 7,000원 할인\n\n전월실적 70만원이상 11,000원 할인\n\n■ 최초 발급받은 「KB국민 LG U+ 심플라이트Ⅱ카드」사용등록일(KB Pay 등 간편결제 등록 포함)로부터 다음달 말일까지는 전월 국내실적 30만원 미만 시에도 월 3천 5백원 한도까지만 할인 제공됩니다.(단, 최초 카드 사용등록월의 실적이 30만원 이상일 경우에는 다음달에 해당 실적 구간의 할인한도 적용)\n\n■ 할인금액보다 자동납부 승인금액이 작을 경우 승인금액만큼 할인 적용\n\n※ 혜택 제공 조건에 대해서는 카드사 홈페이지를 참고하시기 바랍니다\n\n※ 위 내용은 회사 및 제휴사의 사정에 따라 변경될 수 있습니다",
-      "conditions": "■ 전월실적 포함 : 해당 카드의 일반 결제 이용금액 중 아래 ‘전월실적 미포함’ 항목에 해당하지 않는 금액(카드사에서 인정하는 거래에 한함).\n\n※ 포함되는 개별 업종과 해외·할부·교통·간편결제 인정 여부는 제공된 자료에 별도 기재되지 않아 카드사 상품설명서 확인이 필요합니다.\n\n■ 전월 실적 미포함 : KB국민 LG U+ 심플라이트Ⅱ카드로 할인받은 이용 건(해당 매출 전체), 단기카드대출(현금서비스), 장기카드대출(카드론), 아파트관리비, 초/중/고 학교납입금 전체, 대학(원)등록금, 정부지원금(보육료/유치원보조비/바우처 이용금액 등), 각종 세금, 공과금(전기/수도), 4대 사회보험료(건강/연금/고용/산재), 각종 수수료 및 이자, 연체료, 연회비, 상품권 및 선불카드(선불전자지급수단 포함)구입/충전금액, 무승인전표(전국 시내버스 및 지하철, 공항버스, 자판기, 터널통행료, 항공기내 이용 등), 취소금액 등\n\n※ 기타 자세한 내용은 카드사로 문의바랍니다",
-      "promotion": "",
-      "tiers": [
-        {
-          "id": "16939",
-          "label": "30만원 이상",
-          "minSpend": 300000,
-          "amount": 7000,
-          "promotion": false,
-          "verified": true
-        },
-        {
-          "id": "16940",
-          "label": "70만원 이상",
-          "minSpend": 700000,
-          "amount": 11000,
-          "promotion": false,
-          "verified": true
-        }
-      ],
-      "calculation": "fixed",
-      "basicMonths": null,
-      "promotionMonths": null,
-      "promotionDeadline": null,
-      "checkedAt": "2026-11-03",
-      "promotionMinBill": null,
-      "installments": [],
-      "sourceUrl": "https://www.xeronote.co.kr/api/data/get_card_info.php?card_idx=359",
-      "imageSource": "https://www.xeronote.co.kr/files/card/CARD_24120399.jpg",
-      "image": "assets/mobile-cards/359-d2c7bba0fabc.jpg"
-    },
-    {
       "id": "164",
       "carrier": "LGU+",
       "name": "[삼성] LG U+ 삼성카드",
@@ -4090,6 +4045,51 @@
       "sourceUrl": "https://www.xeronote.co.kr/api/data/get_card_info.php?card_idx=164",
       "imageSource": "https://www.xeronote.co.kr/files/card/CARD_22123026.jpg",
       "image": "assets/mobile-cards/164-4bbe792685c3.jpg"
+    },
+    {
+      "id": "359",
+      "carrier": "LGU+",
+      "name": "[KB]LG U+ 심플라이트Ⅱ 카드",
+      "category": "POST",
+      "type": "CHARGE",
+      "annualDomestic": 20000,
+      "annualInternational": 20000,
+      "autopayRequired": true,
+      "minFinancing": 0,
+      "contact": "1670-8704",
+      "issueMethod": "전화발급, 온라인 발급 가능",
+      "issueUrl": "https://card.kbcard.com/CRD/DVIEW/HCAMCXPRICAC0076?mainCC=a&cooperationcode=04294",
+      "benefit": "■ 청구할인 혜택\n\n전월실적 30만원이상 7,000원 할인\n\n전월실적 70만원이상 11,000원 할인\n\n■ 최초 발급받은 「KB국민 LG U+ 심플라이트Ⅱ카드」사용등록일(KB Pay 등 간편결제 등록 포함)로부터 다음달 말일까지는 전월 국내실적 30만원 미만 시에도 월 3천 5백원 한도까지만 할인 제공됩니다.(단, 최초 카드 사용등록월의 실적이 30만원 이상일 경우에는 다음달에 해당 실적 구간의 할인한도 적용)\n\n■ 할인금액보다 자동납부 승인금액이 작을 경우 승인금액만큼 할인 적용\n\n※ 혜택 제공 조건에 대해서는 카드사 홈페이지를 참고하시기 바랍니다\n\n※ 위 내용은 회사 및 제휴사의 사정에 따라 변경될 수 있습니다",
+      "conditions": "■ 전월실적 포함 : 해당 카드의 일반 결제 이용금액 중 아래 ‘전월실적 미포함’ 항목에 해당하지 않는 금액(카드사에서 인정하는 거래에 한함).\n\n※ 포함되는 개별 업종과 해외·할부·교통·간편결제 인정 여부는 제공된 자료에 별도 기재되지 않아 카드사 상품설명서 확인이 필요합니다.\n\n■ 전월 실적 미포함 : KB국민 LG U+ 심플라이트Ⅱ카드로 할인받은 이용 건(해당 매출 전체), 단기카드대출(현금서비스), 장기카드대출(카드론), 아파트관리비, 초/중/고 학교납입금 전체, 대학(원)등록금, 정부지원금(보육료/유치원보조비/바우처 이용금액 등), 각종 세금, 공과금(전기/수도), 4대 사회보험료(건강/연금/고용/산재), 각종 수수료 및 이자, 연체료, 연회비, 상품권 및 선불카드(선불전자지급수단 포함)구입/충전금액, 무승인전표(전국 시내버스 및 지하철, 공항버스, 자판기, 터널통행료, 항공기내 이용 등), 취소금액 등\n\n※ 기타 자세한 내용은 카드사로 문의바랍니다",
+      "promotion": "",
+      "tiers": [
+        {
+          "id": "16939",
+          "label": "30만원 이상",
+          "minSpend": 300000,
+          "amount": 7000,
+          "promotion": false,
+          "verified": true
+        },
+        {
+          "id": "16940",
+          "label": "70만원 이상",
+          "minSpend": 700000,
+          "amount": 11000,
+          "promotion": false,
+          "verified": true
+        }
+      ],
+      "calculation": "fixed",
+      "basicMonths": null,
+      "promotionMonths": null,
+      "promotionDeadline": null,
+      "checkedAt": "2026-11-03",
+      "promotionMinBill": null,
+      "installments": [],
+      "sourceUrl": "https://www.xeronote.co.kr/api/data/get_card_info.php?card_idx=359",
+      "imageSource": "https://www.xeronote.co.kr/files/card/CARD_24120399.jpg",
+      "image": "assets/mobile-cards/359-d2c7bba0fabc.jpg"
     },
     {
       "id": "413",
