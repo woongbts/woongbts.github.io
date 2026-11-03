@@ -32,7 +32,7 @@ const pages=['rental/index.html','rental/food-waste-disposer/index.html','rental
 for(const p of pages)assert(fs.existsSync(p),'Missing discovery/SEO page: '+p);
 const home=read('rental/index.html');
 for(const q of ['data-quick-rental-query="음식물처리기"','data-quick-rental-category="안마의자"','food-waste-disposer/'])assert(home.includes(q),'Fast product search missing '+q);
-assert(read('rental/food-disposer-sitemap.xml').includes('https://woongbts.github.io/rental/food-waste-disposer/'),'Dedicated food disposal sitemap missing listing');
+assert(read('rental/food-disposer-sitemap.xml').includes('https://woongbts.kr/rental/food-waste-disposer/'),'Dedicated food disposal sitemap missing listing');
 assert(read('robots.txt').includes('food-disposer-sitemap.xml'),'Robots.txt must point to the dedicated site map');
 const catalog=read('rental/assets/catalog.js');
 assert(catalog.includes('const pairedOffer = recommendationMetrics(product);'),'Catalogue must display a paired rental option');
