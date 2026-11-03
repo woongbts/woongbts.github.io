@@ -51,7 +51,21 @@ const assert=require('node:assert/strict');
    const count=await cards.count();
    assert.ok(count>0,'recommendations present');
    for(let i=0;i<count;i++)assert.equal(await cards.nth(i).locator('.store-apply-btn').count(),1,'one application action per result');
-   console.log('PURPOSE_OK',purpose);
+   if(purpose==='value'){
+    await page.waitForSelector('#purpose-results .purpose-card[data-device-id="SKT-XD-3065"]',{timeout:16000});
+    const recommended=await page.locator('#purpose-results .purpose-card[data-device-id="SKT-XD-3065"]').first().innerText();
+    assert.match(recommended,/갤럭시 A18 LTE/,'SKT value category must recommend A18');
+    assert.match(recommended,/T플랜 세이브/,'A18 recommendation must show the verified 33k plan');
+    const layout=await page.evaluate(()=>{
+      const a=document.getElementById('purpose-carrier').getBoundingClientRect();
+      const b=document.getElementById('purpose-join').getBoundingClientRect();
+      return {carrierY:a.y,joinY:b.y,carrierH:a.height,joinH:b.height};
+    });
+    assert.ok(Math.abs(layout.carrierY-layout.joinY)<=4,'carrier and join select boxes must align on mobile: '+JSON.stringify(layout));
+    assert.ok(Math.abs(layout.carrierH-layout.joinH)<=4,'carrier and join controls must share height: '+JSON.stringify(layout));
+    console.log('A18_VALUE_AND_MOBILE_ALIGNMENT_OK',layout);
+  }
+  console.log('PURPOSE_OK',purpose);
  }
  await page.locator('#purpose-results .store-apply-btn').first().click();
  await page.locator('#store-application-dialog[open]').waitFor();
