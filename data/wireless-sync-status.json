@@ -1,16 +1,16 @@
 {
-  "checked_at": "2026-11-03T18:29:34+09:00",
+  "checked_at": "2026-11-04T08:07:16+09:00",
   "source": "https://www.xeronote.co.kr",
   "result": "validated",
   "counts": {
-    "devices": 141,
+    "devices": 114,
     "plans": 569,
-    "supports": 48
+    "supports": 44
   },
   "devices_by_carrier": {
-    "SKT": 49,
-    "KT": 46,
-    "LGU+": 46
+    "SKT": 40,
+    "KT": 37,
+    "LGU+": 37
   },
   "deferred_devices": [
     {
@@ -68,6 +68,6 @@
       "reason": "invalid_release_date"
     }
   ],
-  "run_id": "41611147263",
-  "unverified_subsidy_entries_skipped": 42
+  "run_id": "41736346176",
+  "unverified_subsidy_entries_skipped": 0
 }
