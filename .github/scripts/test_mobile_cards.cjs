@@ -1,6 +1,6 @@
 'use strict';
 const fs=require('node:fs'),assert=require('node:assert/strict');
-const {estimate,benefitSummary}=require('../../assets/mobile-cards.js');
+const {estimate,benefitSummary,optionLabel,conditionSummary}=require('../../assets/mobile-cards.js');
 const data=JSON.parse(fs.readFileSync('data/mobile-affiliate-cards.json','utf8'));
 const missingSpendIncluded=/■\s*전월\s*실적\s*포함\s*[:：]\s*미\s*확인/;
 assert.ok(data.cards.every(c=>!missingSpendIncluded.test(c.conditions)),
@@ -50,6 +50,15 @@ assert.equal(benefitSummary(card('80')),'월 최대 17,000원 한도','percentag
 assert.equal(benefitSummary(card('376')),'월 25,000원 혜택 · 할부형');
 assert.equal(benefitSummary(card('243')),'혜택 조건 확인','unverified source row must not become a claimed discount');
 assert.equal(benefitSummary({...card('154'),calculation:'details'}),'별도 조건 확인');
+const minimumFixture={...card('154'),name:'조건 테스트 카드',autopayRequired:true,
+ tiers:[...card('154').tiers,{minSpend:100000,amount:20000,promotion:true,verified:true},{minSpend:200000,amount:10000,verified:false}]};
+assert.equal(optionLabel(minimumFixture),'전월 40만원 이상 · 월 8,000원 할인 · 조건 테스트 카드','minimum must exclude promotion and unverified tiers');
+assert.equal(conditionSummary(minimumFixture),'기본 혜택 최소 전월실적 40만원 이상 · 통신요금 자동납부 필수');
+assert.equal(conditionSummary({...card('376'),minFinancing:50000}),'기본 혜택 최소 전월실적 80만원 이상 · 단말기 카드 할부 50,000원 이상');
+assert.ok(optionLabel({...minimumFixture,tiers:[]}).startsWith('전월실적 조건 확인'),'unknown minimum must never become zero');
+assert.ok(optionLabel({...minimumFixture,calculation:'details'}).startsWith('전월실적 조건 확인'),'special conditions must not imply a verified minimum');
+assert.ok(optionLabel({...minimumFixture,tiers:[{minSpend:null,amount:10000,verified:true}]}).startsWith('전월실적 조건 확인'));
+assert.ok(optionLabel({...minimumFixture,tiers:[{minSpend:250000,amount:10000,verified:true}]}).startsWith('전월 25만원 이상'));
 const promo=card('154').tiers.find(t=>t.promotion);
 assert.equal(estimate(card('154'),promo,quote,options).discount,28000,'eligible promotion has its own amount');
 assert.equal(estimate(card('126'),basic('126'),{known:true,monthly:130000,service:100000},options).discount,5000,'cashback percentage uses actual telecom bill');
@@ -57,7 +66,7 @@ assert.equal(estimate(card('154'),promo,quote,{...options,today:'2099-12-01'}).a
 assert.equal(estimate(card('154'),promo,quote,{...options,month:25}).available,false,'promotion term matters');
 assert.equal(estimate(card('243'),card('243').tiers.find(t=>t.minSpend===200000),quote,options).available,false,'conflicting source row cannot become a discount');
 const html=fs.readFileSync('rates.html','utf8'),source=fs.readFileSync('src/rates.js','utf8');
-assert.ok(html.includes('mobile-card-title')&&html.includes('mobile-cards.js?v=20261017-no-xeronote-link1'));
+assert.ok(html.includes('mobile-card-title')&&html.includes('mobile-cards.js?v=20261103-minimum-conditions1'));
 assert.ok(source.includes('WoongbiMobileCards?.quoteLines')&&source.includes('WoongbiMobileCards?.appendUrl'),'card scenario survives copy and share');
 console.log('Telecom cards: three carriers, '+data.cards.length+' card variants, images, caps, percentage rules, eligibility, expiry, financing separation and quote handoff PASS');
 // Reproduce a cold shared link: card JSON arrives before core device/plan data.
@@ -83,7 +92,12 @@ async function testColdSharedLink(){
  field('carrier').value='KT';field('device-select').value='device';field('plan-select').value='plan';
  field('monthly-total').textContent='60,000원';current=quote;events['woongbi:quote-ready']();
  assert.equal(field('mobile-card-select').value,selected.id);
- assert.ok(field('mobile-card-select').options.some(o=>o.value===selected.id&&o.text===benefitSummary(selected)+' · '+selected.name),'actual dropdown includes amount overview');
+ assert.ok(field('mobile-card-select').options.some(o=>o.value===selected.id&&o.text===optionLabel(selected)),'actual dropdown includes minimum spending and amount overview');
+ for(const option of field('mobile-card-select').options.filter(o=>o.value)){
+  const actual=data.cards.find(c=>c.id===option.value);
+  assert.equal(option.text,optionLabel(actual));
+ }
+ assert.equal(field('mobile-card-minimum').textContent,conditionSummary(selected),'selected card shows complete minimum conditions without opening terms');
  assert.equal(field('mobile-card-tier').value,tier.id);
  assert.equal(field('mobile-card-confirmed').checked,true);
  assert.ok(window.WoongbiMobileCards.quoteLines().some(line=>line.includes(selected.name)));

@@ -1,6 +1,24 @@
 (() => {
   'use strict';
   const won = n => Math.round(n).toLocaleString('ko-KR')+'원';
+  const spend = n => n>0&&n%10000===0?`${n/10000}만원`:won(n);
+  const basicTiers = card => card.calculation==='details'?[]:card.tiers.filter(t=>t.verified&&!t.promotion&&Number.isFinite(t.minSpend)&&t.minSpend>=0&&Number.isFinite(t.amount)&&t.amount>0);
+  function minimumSpend(card) {
+    const tiers=basicTiers(card);
+    return tiers.length?Math.min(...tiers.map(t=>t.minSpend)):null;
+  }
+  function optionLabel(card) {
+    const minimum=minimumSpend(card);
+    const condition=minimum===null?'전월실적 조건 확인':`전월 ${spend(minimum)} 이상`;
+    return `${condition} · ${benefitSummary(card)} · ${card.name}`;
+  }
+  function conditionSummary(card) {
+    const minimum=minimumSpend(card);
+    const conditions=[minimum===null?'최소 전월실적은 카드사 상세 조건 확인':`기본 혜택 최소 전월실적 ${spend(minimum)} 이상`];
+    if(card.autopayRequired)conditions.push('통신요금 자동납부 필수');
+    if(card.category==='PRE')conditions.push(Number.isFinite(card.minFinancing)&&card.minFinancing>0?`단말기 카드 할부 ${won(card.minFinancing)} 이상`:'단말기 카드 할부 조건 확인');
+    return conditions.join(' · ');
+  }
   function benefitSummary(card) {
     if(card.calculation==='details')return '별도 조건 확인';
     // Keep time-limited promotions and unverified source rows out of the overview.
@@ -51,7 +69,7 @@
     discount=Math.max(0,Math.min(discount,service,quote.monthly));
     return {available:true, discount, before:quote.monthly, after:Math.max(0,quote.monthly-discount)};
   }
-  if(typeof module!=='undefined'&&module.exports) module.exports={estimate,benefitSummary};
+  if(typeof module!=='undefined'&&module.exports) module.exports={estimate,benefitSummary,optionLabel,conditionSummary};
   if(typeof document==='undefined') return;
   const $=id=>document.getElementById(id);
   const section=$('mobile-affiliate-cards');
@@ -69,7 +87,7 @@
   function resetConditions(){tierId='';confirmed.checked=false;month.value='1'}
   function updateOptions(){
     const cards=(payload?.cards||[]).filter(c=>c.carrier===carrier&&c.category===type.value);
-    setOptions(select,'카드 미적용 · 기본 견적 유지',cards.map(c=>[`${benefitSummary(c)} · ${c.name}`,c.id]));
+    setOptions(select,'카드 미적용 · 기본 견적 유지',cards.map(c=>[optionLabel(c),c.id]));
     select.value=cards.some(c=>c.id===selected)?selected:'';selected=select.value;
     $('mobile-card-count').textContent=payload?`${carrier} ${cards.length}개 · 제로노트 확인 ${payload.checkedAt}`:'카드 정보를 불러오는 중입니다.';
     renderCard();
@@ -77,6 +95,7 @@
   function renderCard(){
     const card=selectedCard();$('mobile-card-detail').hidden=!card;
     if(!card){result=null;$('mobile-card-result').hidden=true;return}
+    $('mobile-card-minimum').textContent=conditionSummary(card);
     const artwork=$('mobile-card-image');artwork.src=card.image;artwork.alt=card.name+' 카드 이미지';
     $('mobile-card-name').textContent=card.name;
     $('mobile-card-fee').textContent=`연회비 국내 ${card.annualDomestic===null?'원문 참고':won(card.annualDomestic)} / 해외 ${card.annualInternational===null?'원문 참고':won(card.annualInternational)}`;
