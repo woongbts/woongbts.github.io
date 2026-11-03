@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "sourcePolicyDate": "2026-11-03",
-  "fingerprint": "ce53a13dcf649e5751b4e02de58543331dcdcc956d4c2ed55ee67992a73a6fd7",
+  "fingerprint": "876da5430f1864861b830d5752c420e0cc996f8c7f0a178b29e6a7952f2e6d40",
   "products": {
     "clover-2254": {
       "name": "MEGA ICE 얼음냉온정수기 mini",
@@ -599,6 +599,10 @@
       "name": "사계절 의류청정기 더블케어(FAD-02S)",
       "category": "생활가전"
     },
+    "clover-2262": {
+      "name": "에스프레카페 커피 얼음 냉온정수기",
+      "category": "정수기"
+    },
     "clover-2248": {
       "name": "THE M 얼음 냉온정수기",
       "category": "정수기"
@@ -726,6 +730,10 @@
     "clover-639": {
       "name": "가습공기청정기 AH1200_12평형",
       "category": "공기청정기"
+    },
+    "clover-1686": {
+      "name": "자가관리 냉온정수기 셀프",
+      "category": "정수기"
     },
     "clover-1624": {
       "name": "에어버블 비데",
@@ -1913,8 +1921,8 @@
       "category": "정수기",
       "management": "셀프형",
       "term": "36",
-      "monthly": 46900,
-      "gift": 150000
+      "monthly": 47900,
+      "gift": 145000
     },
     "clover-2254|셀프형|60": {
       "product_id": "clover-2254",
@@ -2111,8 +2119,8 @@
       "category": "정수기",
       "management": "방문형",
       "term": "36",
-      "monthly": 41900,
-      "gift": 155000
+      "monthly": 40900,
+      "gift": 160000
     },
     "clover-2202|방문형|60": {
       "product_id": "clover-2202",
@@ -2120,8 +2128,8 @@
       "category": "정수기",
       "management": "방문형",
       "term": "60",
-      "monthly": 36400,
-      "gift": 230000
+      "monthly": 35400,
+      "gift": 245000
     },
     "clover-2202|셀프형|36": {
       "product_id": "clover-2202",
@@ -2129,7 +2137,7 @@
       "category": "정수기",
       "management": "셀프형",
       "term": "36",
-      "monthly": 38900,
+      "monthly": 37900,
       "gift": 160000
     },
     "clover-2202|셀프형|60": {
@@ -2138,7 +2146,7 @@
       "category": "정수기",
       "management": "셀프형",
       "term": "60",
-      "monthly": 33400,
+      "monthly": 32400,
       "gift": 240000
     },
     "clover-2104|방문형|36": {
@@ -2229,7 +2237,7 @@
       "management": "방문형",
       "term": "60",
       "monthly": 20901,
-      "gift": null
+      "gift": 35000
     },
     "clover-2150|셀프형|36": {
       "product_id": "clover-2150",
@@ -2636,6 +2644,15 @@
       "monthly": 15900,
       "gift": 25000
     },
+    "clover-1779|방문형|36": {
+      "product_id": "clover-1779",
+      "name": "에코미니 정수기 그린4 (정수전용)",
+      "category": "정수기",
+      "management": "방문형",
+      "term": "36",
+      "monthly": 21900,
+      "gift": 35000
+    },
     "clover-1779|셀프형|36": {
       "product_id": "clover-1779",
       "name": "에코미니 정수기 그린4 (정수전용)",
@@ -2643,15 +2660,6 @@
       "management": "셀프형",
       "term": "36",
       "monthly": 18900,
-      "gift": 35000
-    },
-    "clover-1779|셀프형|60": {
-      "product_id": "clover-1779",
-      "name": "에코미니 정수기 그린4 (정수전용)",
-      "category": "정수기",
-      "management": "셀프형",
-      "term": "60",
-      "monthly": 15900,
       "gift": 35000
     },
     "clover-1860|방문형|36": {
@@ -2706,7 +2714,7 @@
       "management": "방문형",
       "term": "48",
       "monthly": 37900,
-      "gift": 145000
+      "gift": 130000
     },
     "clover-2173|방문형|60": {
       "product_id": "clover-2173",
@@ -2715,7 +2723,7 @@
       "management": "방문형",
       "term": "60",
       "monthly": 33900,
-      "gift": null
+      "gift": 140000
     },
     "clover-2173|셀프형|48": {
       "product_id": "clover-2173",
@@ -2724,7 +2732,7 @@
       "management": "셀프형",
       "term": "48",
       "monthly": 32900,
-      "gift": null
+      "gift": 115000
     },
     "clover-2173|셀프형|60": {
       "product_id": "clover-2173",
@@ -2733,7 +2741,7 @@
       "management": "셀프형",
       "term": "60",
       "monthly": 28900,
-      "gift": null
+      "gift": 125000
     },
     "clover-2201|방문형|48": {
       "product_id": "clover-2201",
@@ -2742,7 +2750,7 @@
       "management": "방문형",
       "term": "48",
       "monthly": 50900,
-      "gift": null
+      "gift": 160000
     },
     "clover-2201|방문형|60": {
       "product_id": "clover-2201",
@@ -2751,7 +2759,7 @@
       "management": "방문형",
       "term": "60",
       "monthly": 44900,
-      "gift": null
+      "gift": 170000
     },
     "clover-2201|셀프형|48": {
       "product_id": "clover-2201",
@@ -2760,7 +2768,7 @@
       "management": "셀프형",
       "term": "48",
       "monthly": 45900,
-      "gift": 145000
+      "gift": 150000
     },
     "clover-2201|셀프형|60": {
       "product_id": "clover-2201",
@@ -2769,7 +2777,7 @@
       "management": "셀프형",
       "term": "60",
       "monthly": 39900,
-      "gift": 225000
+      "gift": 155000
     },
     "clover-2171|방문형|48": {
       "product_id": "clover-2171",
@@ -2778,7 +2786,7 @@
       "management": "방문형",
       "term": "48",
       "monthly": 40900,
-      "gift": null
+      "gift": 135000
     },
     "clover-2171|방문형|60": {
       "product_id": "clover-2171",
@@ -2787,7 +2795,7 @@
       "management": "방문형",
       "term": "60",
       "monthly": 35901,
-      "gift": null
+      "gift": 145000
     },
     "clover-2171|셀프형|48": {
       "product_id": "clover-2171",
@@ -2796,7 +2804,7 @@
       "management": "셀프형",
       "term": "48",
       "monthly": 35900,
-      "gift": null
+      "gift": 125000
     },
     "clover-2171|셀프형|60": {
       "product_id": "clover-2171",
@@ -2805,7 +2813,7 @@
       "management": "셀프형",
       "term": "60",
       "monthly": 30900,
-      "gift": null
+      "gift": 130000
     },
     "clover-1810|방문형|48": {
       "product_id": "clover-1810",
@@ -2814,7 +2822,7 @@
       "management": "방문형",
       "term": "48",
       "monthly": 55900,
-      "gift": null
+      "gift": 170000
     },
     "clover-1810|방문형|72": {
       "product_id": "clover-1810",
@@ -2823,7 +2831,7 @@
       "management": "방문형",
       "term": "72",
       "monthly": 43900,
-      "gift": null
+      "gift": 195000
     },
     "clover-1810|셀프형|48": {
       "product_id": "clover-1810",
@@ -2832,7 +2840,7 @@
       "management": "셀프형",
       "term": "48",
       "monthly": 50900,
-      "gift": null
+      "gift": 160000
     },
     "clover-1810|셀프형|72": {
       "product_id": "clover-1810",
@@ -2841,7 +2849,7 @@
       "management": "셀프형",
       "term": "72",
       "monthly": 38900,
-      "gift": null
+      "gift": 180000
     },
     "clover-1809|방문형|48": {
       "product_id": "clover-1809",
@@ -2850,7 +2858,7 @@
       "management": "방문형",
       "term": "48",
       "monthly": 43900,
-      "gift": null
+      "gift": 145000
     },
     "clover-1809|방문형|72": {
       "product_id": "clover-1809",
@@ -2859,7 +2867,7 @@
       "management": "방문형",
       "term": "72",
       "monthly": 33900,
-      "gift": null
+      "gift": 160000
     },
     "clover-1809|셀프형|48": {
       "product_id": "clover-1809",
@@ -2868,7 +2876,7 @@
       "management": "셀프형",
       "term": "48",
       "monthly": 38900,
-      "gift": null
+      "gift": 130000
     },
     "clover-1809|셀프형|72": {
       "product_id": "clover-1809",
@@ -2877,7 +2885,7 @@
       "management": "셀프형",
       "term": "72",
       "monthly": 28900,
-      "gift": null
+      "gift": 140000
     },
     "clover-2258|방문형|60": {
       "product_id": "clover-2258",
@@ -2931,7 +2939,7 @@
       "management": "방문형",
       "term": "72",
       "monthly": 31901,
-      "gift": null
+      "gift": 215000
     },
     "clover-2230|셀프형|60": {
       "product_id": "clover-2230",
@@ -2967,7 +2975,7 @@
       "management": "방문형",
       "term": "72",
       "monthly": 30901,
-      "gift": null
+      "gift": 200000
     },
     "clover-2231|셀프형|60": {
       "product_id": "clover-2231",
@@ -3030,7 +3038,7 @@
       "management": "방문형",
       "term": "48",
       "monthly": 43900,
-      "gift": null
+      "gift": 140000
     },
     "clover-2210|방문형|60": {
       "product_id": "clover-2210",
@@ -3039,7 +3047,7 @@
       "management": "방문형",
       "term": "60",
       "monthly": 38900,
-      "gift": null
+      "gift": 220000
     },
     "clover-2210|셀프형|48": {
       "product_id": "clover-2210",
@@ -3048,7 +3056,7 @@
       "management": "셀프형",
       "term": "48",
       "monthly": 40900,
-      "gift": null
+      "gift": 135000
     },
     "clover-2210|셀프형|60": {
       "product_id": "clover-2210",
@@ -3057,7 +3065,7 @@
       "management": "셀프형",
       "term": "60",
       "monthly": 35900,
-      "gift": null
+      "gift": 210000
     },
     "clover-1927|방문형|48": {
       "product_id": "clover-1927",
@@ -3075,7 +3083,7 @@
       "management": "방문형",
       "term": "60",
       "monthly": 34901,
-      "gift": null
+      "gift": 205000
     },
     "clover-1927|셀프형|48": {
       "product_id": "clover-1927",
@@ -3111,7 +3119,7 @@
       "management": "방문형",
       "term": "72",
       "monthly": 21901,
-      "gift": null
+      "gift": 160000
     },
     "clover-2136|셀프형|60": {
       "product_id": "clover-2136",
@@ -3228,7 +3236,7 @@
       "management": "방문형",
       "term": "60",
       "monthly": 35900,
-      "gift": null
+      "gift": 215000
     },
     "clover-1758|방문형|72": {
       "product_id": "clover-1758",
@@ -3237,7 +3245,7 @@
       "management": "방문형",
       "term": "72",
       "monthly": 32901,
-      "gift": null
+      "gift": 235000
     },
     "clover-1758|셀프형|60": {
       "product_id": "clover-1758",
@@ -3264,7 +3272,7 @@
       "management": "빌트인",
       "term": "48",
       "monthly": 51100,
-      "gift": null
+      "gift": 130000
     },
     "clover-2184|빌트인|72": {
       "product_id": "clover-2184",
@@ -3273,7 +3281,7 @@
       "management": "빌트인",
       "term": "72",
       "monthly": 36100,
-      "gift": null
+      "gift": 140000
     },
     "clover-2184|스탠딩|48": {
       "product_id": "clover-2184",
@@ -3282,7 +3290,7 @@
       "management": "스탠딩",
       "term": "48",
       "monthly": 53600,
-      "gift": null
+      "gift": 135000
     },
     "clover-2184|스탠딩|72": {
       "product_id": "clover-2184",
@@ -3291,7 +3299,7 @@
       "management": "스탠딩",
       "term": "72",
       "monthly": 37900,
-      "gift": null
+      "gift": 145000
     },
     "clover-2019|빌트인|48": {
       "product_id": "clover-2019",
@@ -3300,7 +3308,7 @@
       "management": "빌트인",
       "term": "48",
       "monthly": 51000,
-      "gift": null
+      "gift": 130000
     },
     "clover-2019|빌트인|72": {
       "product_id": "clover-2019",
@@ -3318,7 +3326,7 @@
       "management": "스탠딩",
       "term": "48",
       "monthly": 53500,
-      "gift": null
+      "gift": 135000
     },
     "clover-2019|스탠딩|72": {
       "product_id": "clover-2019",
@@ -3327,7 +3335,7 @@
       "management": "스탠딩",
       "term": "72",
       "monthly": 38100,
-      "gift": 125000
+      "gift": 145000
     },
     "clover-153|라이트|48": {
       "product_id": "clover-153",
@@ -3336,7 +3344,7 @@
       "management": "라이트",
       "term": "48",
       "monthly": 61900,
-      "gift": 275000
+      "gift": 140000
     },
     "clover-153|라이트|72": {
       "product_id": "clover-153",
@@ -3345,7 +3353,7 @@
       "management": "라이트",
       "term": "72",
       "monthly": 44900,
-      "gift": null
+      "gift": 150000
     },
     "clover-153|프리미엄|48": {
       "product_id": "clover-153",
@@ -3354,7 +3362,7 @@
       "management": "프리미엄",
       "term": "48",
       "monthly": 64900,
-      "gift": 31450
+      "gift": 145000
     },
     "clover-153|프리미엄|72": {
       "product_id": "clover-153",
@@ -3363,7 +3371,7 @@
       "management": "프리미엄",
       "term": "72",
       "monthly": 47900,
-      "gift": null
+      "gift": 155000
     },
     "clover-1841|방문형|48": {
       "product_id": "clover-1841",
@@ -3372,7 +3380,7 @@
       "management": "방문형",
       "term": "48",
       "monthly": 48900,
-      "gift": null
+      "gift": 120000
     },
     "clover-1841|방문형|72": {
       "product_id": "clover-1841",
@@ -3381,7 +3389,7 @@
       "management": "방문형",
       "term": "72",
       "monthly": 35900,
-      "gift": null
+      "gift": 130000
     },
     "clover-1840|방문형|48": {
       "product_id": "clover-1840",
@@ -3390,7 +3398,7 @@
       "management": "방문형",
       "term": "48",
       "monthly": 47900,
-      "gift": 150000
+      "gift": 120000
     },
     "clover-1840|방문형|72": {
       "product_id": "clover-1840",
@@ -3399,7 +3407,7 @@
       "management": "방문형",
       "term": "72",
       "monthly": 34900,
-      "gift": 240000
+      "gift": 125000
     },
     "clover-1949|라이트|48": {
       "product_id": "clover-1949",
@@ -3408,7 +3416,7 @@
       "management": "라이트",
       "term": "48",
       "monthly": 51900,
-      "gift": null
+      "gift": 125000
     },
     "clover-1949|라이트|72": {
       "product_id": "clover-1949",
@@ -3417,7 +3425,7 @@
       "management": "라이트",
       "term": "72",
       "monthly": 37900,
-      "gift": null
+      "gift": 135000
     },
     "clover-2081|라이트|48": {
       "product_id": "clover-2081",
@@ -3426,7 +3434,7 @@
       "management": "라이트",
       "term": "48",
       "monthly": 33900,
-      "gift": null
+      "gift": 95000
     },
     "clover-2081|라이트|72": {
       "product_id": "clover-2081",
@@ -3435,7 +3443,7 @@
       "management": "라이트",
       "term": "72",
       "monthly": 24900,
-      "gift": 175000
+      "gift": 100000
     },
     "clover-2082|라이트|48": {
       "product_id": "clover-2082",
@@ -3444,7 +3452,7 @@
       "management": "라이트",
       "term": "48",
       "monthly": 30900,
-      "gift": null
+      "gift": 90000
     },
     "clover-2082|라이트|72": {
       "product_id": "clover-2082",
@@ -3453,7 +3461,7 @@
       "management": "라이트",
       "term": "72",
       "monthly": 22900,
-      "gift": 11100
+      "gift": 95000
     },
     "clover-1968|방문형|48": {
       "product_id": "clover-1968",
@@ -3462,7 +3470,7 @@
       "management": "방문형",
       "term": "48",
       "monthly": 131900,
-      "gift": null
+      "gift": 325000
     },
     "clover-1968|방문형|60": {
       "product_id": "clover-1968",
@@ -3471,7 +3479,7 @@
       "management": "방문형",
       "term": "60",
       "monthly": 112900,
-      "gift": null
+      "gift": 345000
     },
     "clover-1968|방문형|72": {
       "product_id": "clover-1968",
@@ -3480,7 +3488,7 @@
       "management": "방문형",
       "term": "72",
       "monthly": 98900,
-      "gift": null
+      "gift": 360000
     },
     "clover-1969|방문형|48": {
       "product_id": "clover-1969",
@@ -3489,7 +3497,7 @@
       "management": "방문형",
       "term": "48",
       "monthly": 80900,
-      "gift": 39200
+      "gift": 215000
     },
     "clover-1969|방문형|60": {
       "product_id": "clover-1969",
@@ -3498,7 +3506,7 @@
       "management": "방문형",
       "term": "60",
       "monthly": 68900,
-      "gift": 33400
+      "gift": 225000
     },
     "clover-1969|방문형|72": {
       "product_id": "clover-1969",
@@ -3507,7 +3515,7 @@
       "management": "방문형",
       "term": "72",
       "monthly": 60900,
-      "gift": 29500
+      "gift": 235000
     },
     "clover-1971|방문형|48": {
       "product_id": "clover-1971",
@@ -3516,7 +3524,7 @@
       "management": "방문형",
       "term": "48",
       "monthly": 74900,
-      "gift": 36300
+      "gift": 200000
     },
     "clover-1971|방문형|60": {
       "product_id": "clover-1971",
@@ -3525,7 +3533,7 @@
       "management": "방문형",
       "term": "60",
       "monthly": 60900,
-      "gift": 29500
+      "gift": 205000
     },
     "clover-1971|방문형|72": {
       "product_id": "clover-1971",
@@ -3534,7 +3542,7 @@
       "management": "방문형",
       "term": "72",
       "monthly": 50900,
-      "gift": null
+      "gift": 205000
     },
     "clover-1820|방문형|48": {
       "product_id": "clover-1820",
@@ -3552,7 +3560,7 @@
       "management": "방문형",
       "term": "60",
       "monthly": 39900,
-      "gift": null
+      "gift": 210000
     },
     "clover-1820|셀프형|48": {
       "product_id": "clover-1820",
@@ -3570,7 +3578,7 @@
       "management": "셀프형",
       "term": "60",
       "monthly": 36900,
-      "gift": null
+      "gift": 195000
     },
     "clover-1821|방문형|60": {
       "product_id": "clover-1821",
@@ -3588,7 +3596,7 @@
       "management": "방문형",
       "term": "72",
       "monthly": 36901,
-      "gift": null
+      "gift": 240000
     },
     "clover-1821|셀프형|60": {
       "product_id": "clover-1821",
@@ -3615,7 +3623,7 @@
       "management": "방문형",
       "term": "48",
       "monthly": 28900,
-      "gift": null
+      "gift": 105000
     },
     "clover-2118|방문형|60": {
       "product_id": "clover-2118",
@@ -3624,7 +3632,7 @@
       "management": "방문형",
       "term": "60",
       "monthly": 25901,
-      "gift": null
+      "gift": 115000
     },
     "clover-2118|셀프형|48": {
       "product_id": "clover-2118",
@@ -3633,7 +3641,7 @@
       "management": "셀프형",
       "term": "48",
       "monthly": 25900,
-      "gift": 12550
+      "gift": 100000
     },
     "clover-2118|셀프형|60": {
       "product_id": "clover-2118",
@@ -3642,7 +3650,7 @@
       "management": "셀프형",
       "term": "60",
       "monthly": 22900,
-      "gift": 11100
+      "gift": 105000
     },
     "clover-2172|방문형|48": {
       "product_id": "clover-2172",
@@ -3651,7 +3659,7 @@
       "management": "방문형",
       "term": "48",
       "monthly": 33900,
-      "gift": null
+      "gift": 120000
     },
     "clover-2172|방문형|60": {
       "product_id": "clover-2172",
@@ -3660,7 +3668,7 @@
       "management": "방문형",
       "term": "60",
       "monthly": 29900,
-      "gift": null
+      "gift": 125000
     },
     "clover-2227|방문형|48": {
       "product_id": "clover-2227",
@@ -3759,7 +3767,7 @@
       "management": "셀프형",
       "term": "36",
       "monthly": 21901,
-      "gift": null
+      "gift": 165000
     },
     "clover-2215|셀프형|60": {
       "product_id": "clover-2215",
@@ -3795,7 +3803,7 @@
       "management": "셀프형",
       "term": "36",
       "monthly": 30901,
-      "gift": null
+      "gift": 190000
     },
     "clover-2214|셀프형|60": {
       "product_id": "clover-2214",
@@ -3831,7 +3839,7 @@
       "management": "셀프형",
       "term": "36",
       "monthly": 44901,
-      "gift": null
+      "gift": 215000
     },
     "clover-2206|셀프형|60": {
       "product_id": "clover-2206",
@@ -3885,7 +3893,7 @@
       "management": "셀프형",
       "term": "36",
       "monthly": 58901,
-      "gift": null
+      "gift": 235000
     },
     "clover-2186|셀프형|60": {
       "product_id": "clover-2186",
@@ -4614,7 +4622,7 @@
       "management": "방문형",
       "term": "60",
       "monthly": 36901,
-      "gift": null
+      "gift": 220000
     },
     "clover-2194|셀프형|36": {
       "product_id": "clover-2194",
@@ -4704,7 +4712,7 @@
       "management": "방문형",
       "term": "60",
       "monthly": 37901,
-      "gift": null
+      "gift": 220000
     },
     "clover-2193|셀프형|36": {
       "product_id": "clover-2193",
@@ -4740,7 +4748,7 @@
       "management": "방문형",
       "term": "60",
       "monthly": 19901,
-      "gift": null
+      "gift": 170000
     },
     "clover-2188|셀프형|36": {
       "product_id": "clover-2188",
@@ -4785,7 +4793,7 @@
       "management": "셀프형",
       "term": "36",
       "monthly": 34901,
-      "gift": null
+      "gift": 190000
     },
     "clover-2255|셀프형|60": {
       "product_id": "clover-2255",
@@ -5298,7 +5306,7 @@
       "management": "셀프형",
       "term": "60",
       "monthly": 37901,
-      "gift": null
+      "gift": 295000
     },
     "clover-1770|셀프형|72": {
       "product_id": "clover-1770",
@@ -5325,7 +5333,7 @@
       "management": "방문형",
       "term": "72",
       "monthly": 71901,
-      "gift": null
+      "gift": 370000
     },
     "clover-1877|셀프형|60": {
       "product_id": "clover-1877",
@@ -5469,7 +5477,7 @@
       "management": "셀프형",
       "term": "60",
       "monthly": 17901,
-      "gift": null
+      "gift": 190000
     },
     "clover-1726|방문형|72": {
       "product_id": "clover-1726",
@@ -5514,7 +5522,7 @@
       "management": "셀프형",
       "term": "36",
       "monthly": 32901,
-      "gift": null
+      "gift": 195000
     },
     "clover-2256|셀프형|60": {
       "product_id": "clover-2256",
@@ -5550,7 +5558,7 @@
       "management": "셀프형",
       "term": "36",
       "monthly": 24901,
-      "gift": null
+      "gift": 170000
     },
     "clover-2233|셀프형|60": {
       "product_id": "clover-2233",
@@ -5568,7 +5576,7 @@
       "management": "토탈케어(라지킹",
       "term": "60",
       "monthly": 49900,
-      "gift": null
+      "gift": 210000
     },
     "clover-1651|토탈케어(킹|60": {
       "product_id": "clover-1651",
@@ -5640,7 +5648,7 @@
       "management": "토탈케어(슈퍼싱글",
       "term": "60",
       "monthly": 33900,
-      "gift": null
+      "gift": 185000
     },
     "clover-2185|토탈케어(퀸|60": {
       "product_id": "clover-2185",
@@ -5649,7 +5657,7 @@
       "management": "토탈케어(퀸",
       "term": "60",
       "monthly": 34900,
-      "gift": 170000
+      "gift": 185000
     },
     "clover-2185|토탈케어(슈퍼싱글|60": {
       "product_id": "clover-2185",
@@ -5712,7 +5720,7 @@
       "management": "토탈케어(퀸",
       "term": "60",
       "monthly": 40900,
-      "gift": null
+      "gift": 200000
     },
     "clover-1324|토탈케어(슈퍼싱글|60": {
       "product_id": "clover-1324",
@@ -5721,7 +5729,7 @@
       "management": "토탈케어(슈퍼싱글",
       "term": "60",
       "monthly": 34900,
-      "gift": null
+      "gift": 185000
     },
     "clover-1886|토탈케어(퀸|84": {
       "product_id": "clover-1886",
@@ -5730,7 +5738,7 @@
       "management": "토탈케어(퀸",
       "term": "84",
       "monthly": 32900,
-      "gift": 195000
+      "gift": 210000
     },
     "clover-1886|토탈케어(슈퍼싱글|84": {
       "product_id": "clover-1886",
@@ -5901,7 +5909,7 @@
       "management": "킹(K",
       "term": "60",
       "monthly": 38900,
-      "gift": null
+      "gift": 190000
     },
     "clover-1326|퀸(Q|60": {
       "product_id": "clover-1326",
@@ -5928,7 +5936,7 @@
       "management": "방문형",
       "term": "60",
       "monthly": 37901,
-      "gift": null
+      "gift": 210000
     },
     "clover-1883|셀프형|36": {
       "product_id": "clover-1883",
@@ -6173,6 +6181,24 @@
       "monthly": 40900,
       "gift": 230000
     },
+    "clover-2262|방문형|36": {
+      "product_id": "clover-2262",
+      "name": "에스프레카페 커피 얼음 냉온정수기",
+      "category": "정수기",
+      "management": "방문형",
+      "term": "36",
+      "monthly": 54900,
+      "gift": 225000
+    },
+    "clover-2262|방문형|60": {
+      "product_id": "clover-2262",
+      "name": "에스프레카페 커피 얼음 냉온정수기",
+      "category": "정수기",
+      "management": "방문형",
+      "term": "60",
+      "monthly": 48900,
+      "gift": 335000
+    },
     "clover-2248|방문형|36": {
       "product_id": "clover-2248",
       "name": "THE M 얼음 냉온정수기",
@@ -6306,7 +6332,7 @@
       "management": "방문형",
       "term": "60",
       "monthly": 32900,
-      "gift": null
+      "gift": 200000
     },
     "clover-2151|셀프형|36": {
       "product_id": "clover-2151",
@@ -6315,7 +6341,7 @@
       "management": "셀프형",
       "term": "36",
       "monthly": 37900,
-      "gift": null
+      "gift": 175000
     },
     "clover-2151|셀프형|60": {
       "product_id": "clover-2151",
@@ -6324,7 +6350,7 @@
       "management": "셀프형",
       "term": "60",
       "monthly": 28900,
-      "gift": null
+      "gift": 220000
     },
     "clover-2051|기본 조건|36": {
       "product_id": "clover-2051",
@@ -6441,7 +6467,7 @@
       "management": "방문형",
       "term": "36",
       "monthly": 19901,
-      "gift": null
+      "gift": 105000
     },
     "clover-2152|방문형|60": {
       "product_id": "clover-2152",
@@ -6459,7 +6485,7 @@
       "management": "기본 조건",
       "term": "36",
       "monthly": 44900,
-      "gift": null
+      "gift": 215000
     },
     "clover-2218|기본 조건|60": {
       "product_id": "clover-2218",
@@ -6477,7 +6503,7 @@
       "management": "기본 조건",
       "term": "36",
       "monthly": 45900,
-      "gift": null
+      "gift": 225000
     },
     "clover-2241|기본 조건|60": {
       "product_id": "clover-2241",
@@ -6513,7 +6539,7 @@
       "management": "기본 조건",
       "term": "36",
       "monthly": 26900,
-      "gift": null
+      "gift": 150000
     },
     "clover-2054|기본 조건|60": {
       "product_id": "clover-2054",
@@ -6549,7 +6575,7 @@
       "management": "셀프형",
       "term": "36",
       "monthly": 55900,
-      "gift": null
+      "gift": 225000
     },
     "clover-2205|셀프형|60": {
       "product_id": "clover-2205",
@@ -6558,7 +6584,7 @@
       "management": "셀프형",
       "term": "60",
       "monthly": 42900,
-      "gift": null
+      "gift": 225000
     },
     "clover-2052|기본 조건|36": {
       "product_id": "clover-2052",
@@ -6576,7 +6602,7 @@
       "management": "기본 조건",
       "term": "60",
       "monthly": 21900,
-      "gift": null
+      "gift": 130000
     },
     "clover-581|기본 조건|36": {
       "product_id": "clover-581",
@@ -6621,7 +6647,7 @@
       "management": "방문형",
       "term": "36",
       "monthly": 39900,
-      "gift": null
+      "gift": 170000
     },
     "clover-2260|방문형|60": {
       "product_id": "clover-2260",
@@ -6630,7 +6656,7 @@
       "management": "방문형",
       "term": "60",
       "monthly": 35900,
-      "gift": null
+      "gift": 170000
     },
     "clover-2246|방문형|36": {
       "product_id": "clover-2246",
@@ -6639,7 +6665,7 @@
       "management": "방문형",
       "term": "36",
       "monthly": 43900,
-      "gift": null
+      "gift": 190000
     },
     "clover-2246|방문형|60": {
       "product_id": "clover-2246",
@@ -6648,7 +6674,7 @@
       "management": "방문형",
       "term": "60",
       "monthly": 39900,
-      "gift": null
+      "gift": 240000
     },
     "clover-2234|방문형|36": {
       "product_id": "clover-2234",
@@ -6657,7 +6683,7 @@
       "management": "방문형",
       "term": "36",
       "monthly": 30900,
-      "gift": null
+      "gift": 185000
     },
     "clover-2234|방문형|60": {
       "product_id": "clover-2234",
@@ -6666,7 +6692,7 @@
       "management": "방문형",
       "term": "60",
       "monthly": 22900,
-      "gift": null
+      "gift": 150000
     },
     "clover-2240|기본 조건|36": {
       "product_id": "clover-2240",
@@ -6693,7 +6719,7 @@
       "management": "방문형",
       "term": "36",
       "monthly": 37900,
-      "gift": null
+      "gift": 190000
     },
     "clover-2127|방문형|60": {
       "product_id": "clover-2127",
@@ -6702,7 +6728,7 @@
       "management": "방문형",
       "term": "60",
       "monthly": 28900,
-      "gift": null
+      "gift": 165000
     },
     "clover-2130|방문형|36": {
       "product_id": "clover-2130",
@@ -6711,7 +6737,7 @@
       "management": "방문형",
       "term": "36",
       "monthly": 30900,
-      "gift": null
+      "gift": 150000
     },
     "clover-2130|방문형|60": {
       "product_id": "clover-2130",
@@ -6720,7 +6746,7 @@
       "management": "방문형",
       "term": "60",
       "monthly": 29900,
-      "gift": null
+      "gift": 170000
     },
     "clover-2130|셀프형|36": {
       "product_id": "clover-2130",
@@ -6729,7 +6755,7 @@
       "management": "셀프형",
       "term": "36",
       "monthly": 28900,
-      "gift": null
+      "gift": 145000
     },
     "clover-2130|셀프형|60": {
       "product_id": "clover-2130",
@@ -6738,7 +6764,7 @@
       "management": "셀프형",
       "term": "60",
       "monthly": 27900,
-      "gift": null
+      "gift": 165000
     },
     "clover-1623|기본 조건|36": {
       "product_id": "clover-1623",
@@ -6747,7 +6773,7 @@
       "management": "기본 조건",
       "term": "36",
       "monthly": 30900,
-      "gift": null
+      "gift": 160000
     },
     "clover-1623|기본 조건|60": {
       "product_id": "clover-1623",
@@ -6756,7 +6782,7 @@
       "management": "기본 조건",
       "term": "60",
       "monthly": 29900,
-      "gift": null
+      "gift": 170000
     },
     "clover-2135|방문형|36": {
       "product_id": "clover-2135",
@@ -6765,7 +6791,7 @@
       "management": "방문형",
       "term": "36",
       "monthly": 34900,
-      "gift": null
+      "gift": 135000
     },
     "clover-2135|방문형|48": {
       "product_id": "clover-2135",
@@ -6774,7 +6800,7 @@
       "management": "방문형",
       "term": "48",
       "monthly": 31900,
-      "gift": null
+      "gift": 145000
     },
     "clover-729|기본 조건|36": {
       "product_id": "clover-729",
@@ -6801,7 +6827,7 @@
       "management": "기본 조건",
       "term": "36",
       "monthly": 50900,
-      "gift": null
+      "gift": 295000
     },
     "clover-2131|기본 조건|60": {
       "product_id": "clover-2131",
@@ -6810,7 +6836,7 @@
       "management": "기본 조건",
       "term": "60",
       "monthly": 39900,
-      "gift": null
+      "gift": 225000
     },
     "clover-639|기본 조건|36": {
       "product_id": "clover-639",
@@ -6819,7 +6845,7 @@
       "management": "기본 조건",
       "term": "36",
       "monthly": 29900,
-      "gift": null
+      "gift": 175000
     },
     "clover-639|기본 조건|60": {
       "product_id": "clover-639",
@@ -6828,7 +6854,25 @@
       "management": "기본 조건",
       "term": "60",
       "monthly": 27900,
-      "gift": null
+      "gift": 175000
+    },
+    "clover-1686|기본 조건|36": {
+      "product_id": "clover-1686",
+      "name": "자가관리 냉온정수기 셀프",
+      "category": "정수기",
+      "management": "기본 조건",
+      "term": "36",
+      "monthly": 26900,
+      "gift": 125000
+    },
+    "clover-1686|기본 조건|60": {
+      "product_id": "clover-1686",
+      "name": "자가관리 냉온정수기 셀프",
+      "category": "정수기",
+      "management": "기본 조건",
+      "term": "60",
+      "monthly": 24900,
+      "gift": 125000
     },
     "clover-1624|기본 조건|36": {
       "product_id": "clover-1624",
@@ -6882,7 +6926,7 @@
       "management": "방문형/6개월반값",
       "term": "60",
       "monthly": 46900,
-      "gift": null
+      "gift": 295000
     },
     "clover-2166|스탠드|36": {
       "product_id": "clover-2166",
@@ -6891,7 +6935,7 @@
       "management": "스탠드",
       "term": "36",
       "monthly": 24901,
-      "gift": null
+      "gift": 90000
     },
     "clover-2166|카운터|36": {
       "product_id": "clover-2166",
@@ -6900,7 +6944,7 @@
       "management": "카운터",
       "term": "36",
       "monthly": 23901,
-      "gift": null
+      "gift": 90000
     },
     "clover-2166|스탠드|60": {
       "product_id": "clover-2166",
@@ -6909,7 +6953,7 @@
       "management": "스탠드",
       "term": "60",
       "monthly": 23900,
-      "gift": null
+      "gift": 155000
     },
     "clover-2166|카운터|60": {
       "product_id": "clover-2166",
@@ -6918,7 +6962,7 @@
       "management": "카운터",
       "term": "60",
       "monthly": 22900,
-      "gift": null
+      "gift": 150000
     },
     "clover-2257|방문형|36": {
       "product_id": "clover-2257",
@@ -6927,7 +6971,7 @@
       "management": "방문형",
       "term": "36",
       "monthly": 37900,
-      "gift": null
+      "gift": 140000
     },
     "clover-2257|셀프형|36": {
       "product_id": "clover-2257",
@@ -6936,7 +6980,7 @@
       "management": "셀프형",
       "term": "36",
       "monthly": 34900,
-      "gift": null
+      "gift": 140000
     },
     "clover-2257|방문형|60": {
       "product_id": "clover-2257",
@@ -6945,7 +6989,7 @@
       "management": "방문형",
       "term": "60",
       "monthly": 33900,
-      "gift": null
+      "gift": 205000
     },
     "clover-2257|셀프형|60": {
       "product_id": "clover-2257",
@@ -6954,7 +6998,7 @@
       "management": "셀프형",
       "term": "60",
       "monthly": 30900,
-      "gift": null
+      "gift": 210000
     },
     "clover-2111|방문형|36": {
       "product_id": "clover-2111",
@@ -6972,7 +7016,7 @@
       "management": "셀프형",
       "term": "36",
       "monthly": 33900,
-      "gift": null
+      "gift": 55000
     },
     "clover-2111|방문형/10개월반값|60": {
       "product_id": "clover-2111",
@@ -6981,7 +7025,7 @@
       "management": "방문형/10개월반값",
       "term": "60",
       "monthly": 32900,
-      "gift": null
+      "gift": 200000
     },
     "clover-2111|셀프형/10개월반값|60": {
       "product_id": "clover-2111",
@@ -6990,7 +7034,7 @@
       "management": "셀프형/10개월반값",
       "term": "60",
       "monthly": 29900,
-      "gift": null
+      "gift": 180000
     },
     "clover-2125|방문형|36": {
       "product_id": "clover-2125",
@@ -6999,7 +7043,7 @@
       "management": "방문형",
       "term": "36",
       "monthly": 24900,
-      "gift": null
+      "gift": 0
     },
     "clover-2125|셀프형|36": {
       "product_id": "clover-2125",
@@ -7008,7 +7052,7 @@
       "management": "셀프형",
       "term": "36",
       "monthly": 19900,
-      "gift": null
+      "gift": 0
     },
     "clover-2125|방문형|60": {
       "product_id": "clover-2125",
@@ -7017,7 +7061,7 @@
       "management": "방문형",
       "term": "60",
       "monthly": 21900,
-      "gift": null
+      "gift": 40000
     },
     "clover-2125|셀프형|60": {
       "product_id": "clover-2125",
@@ -7026,7 +7070,7 @@
       "management": "셀프형",
       "term": "60",
       "monthly": 16900,
-      "gift": null
+      "gift": 25000
     },
     "clover-1784|관리형|36": {
       "product_id": "clover-1784",
@@ -7035,7 +7079,7 @@
       "management": "관리형",
       "term": "36",
       "monthly": 31900,
-      "gift": null
+      "gift": 95000
     },
     "clover-1784|셀프형|36": {
       "product_id": "clover-1784",
@@ -7044,7 +7088,7 @@
       "management": "셀프형",
       "term": "36",
       "monthly": 25900,
-      "gift": null
+      "gift": 65000
     },
     "clover-1784|관리형|60": {
       "product_id": "clover-1784",
@@ -7053,7 +7097,7 @@
       "management": "관리형",
       "term": "60",
       "monthly": 28900,
-      "gift": null
+      "gift": 190000
     },
     "clover-1784|셀프형|60": {
       "product_id": "clover-1784",
@@ -7071,7 +7115,7 @@
       "management": "관리형",
       "term": "36",
       "monthly": 27900,
-      "gift": null
+      "gift": 15000
     },
     "clover-1930|셀프형|36": {
       "product_id": "clover-1930",
@@ -7080,7 +7124,7 @@
       "management": "셀프형",
       "term": "36",
       "monthly": 24901,
-      "gift": null
+      "gift": 5000
     },
     "clover-1930|관리형|60": {
       "product_id": "clover-1930",
@@ -7089,7 +7133,7 @@
       "management": "관리형",
       "term": "60",
       "monthly": 24900,
-      "gift": null
+      "gift": 40000
     },
     "clover-1930|셀프형|60": {
       "product_id": "clover-1930",
@@ -7098,7 +7142,7 @@
       "management": "셀프형",
       "term": "60",
       "monthly": 21900,
-      "gift": null
+      "gift": 25000
     },
     "clover-694|스탠드|36": {
       "product_id": "clover-694",
@@ -7107,7 +7151,7 @@
       "management": "스탠드",
       "term": "36",
       "monthly": 19901,
-      "gift": null
+      "gift": 70000
     },
     "clover-694|카운터|36": {
       "product_id": "clover-694",
@@ -7116,7 +7160,7 @@
       "management": "카운터",
       "term": "36",
       "monthly": 19900,
-      "gift": null
+      "gift": 75000
     },
     "clover-694|스탠드|60": {
       "product_id": "clover-694",
@@ -7125,7 +7169,7 @@
       "management": "스탠드",
       "term": "60",
       "monthly": 18901,
-      "gift": null
+      "gift": 100000
     },
     "clover-694|카운터|60": {
       "product_id": "clover-694",
@@ -7134,7 +7178,7 @@
       "management": "카운터",
       "term": "60",
       "monthly": 18900,
-      "gift": null
+      "gift": 105000
     },
     "clover-2011|스탠드|36": {
       "product_id": "clover-2011",
@@ -7188,7 +7232,7 @@
       "management": "카운터",
       "term": "36",
       "monthly": 31901,
-      "gift": null
+      "gift": 120000
     },
     "clover-2012|스탠드|60": {
       "product_id": "clover-2012",
@@ -7206,7 +7250,7 @@
       "management": "카운터",
       "term": "60",
       "monthly": 28901,
-      "gift": null
+      "gift": 120000
     },
     "clover-1719|기본 조건|36": {
       "product_id": "clover-1719",
@@ -7305,7 +7349,7 @@
       "management": "셀프형",
       "term": "36",
       "monthly": 16900,
-      "gift": 10000
+      "gift": 0
     },
     "clover-2235|방문형|60": {
       "product_id": "clover-2235",
@@ -7323,7 +7367,7 @@
       "management": "셀프형",
       "term": "60",
       "monthly": 15900,
-      "gift": null
+      "gift": 0
     },
     "clover-2220|방문형|36": {
       "product_id": "clover-2220",
@@ -7332,7 +7376,7 @@
       "management": "방문형",
       "term": "36",
       "monthly": 30900,
-      "gift": null
+      "gift": 115000
     },
     "clover-2220|셀프형|36": {
       "product_id": "clover-2220",
@@ -7341,7 +7385,7 @@
       "management": "셀프형",
       "term": "36",
       "monthly": 27900,
-      "gift": null
+      "gift": 110000
     },
     "clover-2220|방문형|60": {
       "product_id": "clover-2220",
@@ -7350,7 +7394,7 @@
       "management": "방문형",
       "term": "60",
       "monthly": 27901,
-      "gift": null
+      "gift": 150000
     },
     "clover-2220|셀프형|60": {
       "product_id": "clover-2220",
@@ -7359,7 +7403,7 @@
       "management": "셀프형",
       "term": "60",
       "monthly": 26900,
-      "gift": 25000
+      "gift": 145000
     },
     "clover-1905|방문형|36": {
       "product_id": "clover-1905",
@@ -7377,7 +7421,7 @@
       "management": "셀프형",
       "term": "36",
       "monthly": 36900,
-      "gift": null
+      "gift": 130000
     },
     "clover-1905|방문형|60": {
       "product_id": "clover-1905",
@@ -7386,7 +7430,7 @@
       "management": "방문형",
       "term": "60",
       "monthly": 36901,
-      "gift": null
+      "gift": 175000
     },
     "clover-1905|셀프형|60": {
       "product_id": "clover-1905",
@@ -7413,7 +7457,7 @@
       "management": "셀프형",
       "term": "36",
       "monthly": 23900,
-      "gift": null
+      "gift": 75000
     },
     "clover-236|방문형|60": {
       "product_id": "clover-236",
@@ -7422,7 +7466,7 @@
       "management": "방문형",
       "term": "60",
       "monthly": 23901,
-      "gift": null
+      "gift": 110000
     },
     "clover-236|셀프형|60": {
       "product_id": "clover-236",
@@ -7458,7 +7502,7 @@
       "management": "셀프형",
       "term": "36",
       "monthly": 21900,
-      "gift": null
+      "gift": 130000
     },
     "clover-2073|셀프형|60": {
       "product_id": "clover-2073",
@@ -7485,7 +7529,7 @@
       "management": "셀프형",
       "term": "36",
       "monthly": 20900,
-      "gift": null
+      "gift": 65000
     },
     "clover-235|방문형|60": {
       "product_id": "clover-235",
@@ -7539,7 +7583,7 @@
       "management": "셀프형",
       "term": "60",
       "monthly": 12900,
-      "gift": null
+      "gift": 0
     },
     "clover-241|방문형|36": {
       "product_id": "clover-241",
@@ -7557,7 +7601,7 @@
       "management": "셀프형",
       "term": "36",
       "monthly": 20900,
-      "gift": null
+      "gift": 65000
     },
     "clover-241|방문형|60": {
       "product_id": "clover-241",
@@ -7584,7 +7628,7 @@
       "management": "방문형",
       "term": "36",
       "monthly": 19900,
-      "gift": null
+      "gift": 85000
     },
     "clover-1898|방문형|60": {
       "product_id": "clover-1898",
@@ -7593,7 +7637,7 @@
       "management": "방문형",
       "term": "60",
       "monthly": 18900,
-      "gift": null
+      "gift": 110000
     },
     "clover-1898|셀프형|36": {
       "product_id": "clover-1898",
@@ -7602,7 +7646,7 @@
       "management": "셀프형",
       "term": "36",
       "monthly": 17900,
-      "gift": null
+      "gift": 85000
     },
     "clover-1898|셀프형|60": {
       "product_id": "clover-1898",
@@ -7611,7 +7655,7 @@
       "management": "셀프형",
       "term": "60",
       "monthly": 16900,
-      "gift": null
+      "gift": 110000
     },
     "clover-1899|기본 조건|60": {
       "product_id": "clover-1899",
@@ -7629,7 +7673,7 @@
       "management": "슬러지통x",
       "term": "48",
       "monthly": 32900,
-      "gift": 45000
+      "gift": 105000
     },
     "clover-1901|슬러지통o|48": {
       "product_id": "clover-1901",
@@ -7638,7 +7682,7 @@
       "management": "슬러지통o",
       "term": "48",
       "monthly": 33900,
-      "gift": null
+      "gift": 105000
     },
     "clover-1737|방문형|36": {
       "product_id": "clover-1737",
@@ -7683,7 +7727,7 @@
       "management": "기본 조건",
       "term": "72",
       "monthly": 33900,
-      "gift": null
+      "gift": 115000
     },
     "clover-256|기본 조건|60": {
       "product_id": "clover-256",
@@ -7692,7 +7736,7 @@
       "management": "기본 조건",
       "term": "60",
       "monthly": 38400,
-      "gift": null
+      "gift": 115000
     },
     "clover-257|기본 조건|72": {
       "product_id": "clover-257",
@@ -7701,7 +7745,7 @@
       "management": "기본 조건",
       "term": "72",
       "monthly": 44500,
-      "gift": 160000
+      "gift": 185000
     },
     "clover-257|기본 조건|60": {
       "product_id": "clover-257",
@@ -7710,7 +7754,7 @@
       "management": "기본 조건",
       "term": "60",
       "monthly": 50000,
-      "gift": 115000
+      "gift": 185000
     },
     "clover-259|기본 조건|72": {
       "product_id": "clover-259",
@@ -7719,7 +7763,7 @@
       "management": "기본 조건",
       "term": "72",
       "monthly": 37900,
-      "gift": null
+      "gift": 130000
     },
     "clover-259|기본 조건|60": {
       "product_id": "clover-259",
@@ -7728,7 +7772,7 @@
       "management": "기본 조건",
       "term": "60",
       "monthly": 42900,
-      "gift": null
+      "gift": 130000
     },
     "clover-268|기본 조건|72": {
       "product_id": "clover-268",
@@ -7737,7 +7781,7 @@
       "management": "기본 조건",
       "term": "72",
       "monthly": 43900,
-      "gift": 170000
+      "gift": 155000
     },
     "clover-268|기본 조건|60": {
       "product_id": "clover-268",
@@ -7746,7 +7790,7 @@
       "management": "기본 조건",
       "term": "60",
       "monthly": 49900,
-      "gift": null
+      "gift": 155000
     },
     "clover-271|기본 조건|72": {
       "product_id": "clover-271",
@@ -7755,7 +7799,7 @@
       "management": "기본 조건",
       "term": "72",
       "monthly": 54500,
-      "gift": 200000
+      "gift": 220000
     },
     "clover-271|기본 조건|60": {
       "product_id": "clover-271",
@@ -7764,7 +7808,7 @@
       "management": "기본 조건",
       "term": "60",
       "monthly": 61500,
-      "gift": null
+      "gift": 220000
     },
     "clover-273|기본 조건|72": {
       "product_id": "clover-273",
@@ -7773,7 +7817,7 @@
       "management": "기본 조건",
       "term": "72",
       "monthly": 49900,
-      "gift": null
+      "gift": 175000
     },
     "clover-273|기본 조건|60": {
       "product_id": "clover-273",
@@ -7782,7 +7826,7 @@
       "management": "기본 조건",
       "term": "60",
       "monthly": 56900,
-      "gift": null
+      "gift": 175000
     },
     "clover-252|기본 조건|72": {
       "product_id": "clover-252",
@@ -7791,7 +7835,7 @@
       "management": "기본 조건",
       "term": "72",
       "monthly": 28900,
-      "gift": 205000
+      "gift": 95000
     },
     "clover-252|기본 조건|60": {
       "product_id": "clover-252",
@@ -7800,7 +7844,7 @@
       "management": "기본 조건",
       "term": "60",
       "monthly": 32900,
-      "gift": null
+      "gift": 95000
     },
     "clover-254|기본 조건|72": {
       "product_id": "clover-254",
@@ -7809,7 +7853,7 @@
       "management": "기본 조건",
       "term": "72",
       "monthly": 37100,
-      "gift": null
+      "gift": 145000
     },
     "clover-254|기본 조건|60": {
       "product_id": "clover-254",
@@ -7818,7 +7862,7 @@
       "management": "기본 조건",
       "term": "60",
       "monthly": 41600,
-      "gift": null
+      "gift": 145000
     },
     "cp-aqs100ewh|방문관리|36": {
       "product_id": "cp-aqs100ewh",
@@ -7872,7 +7916,7 @@
       "management": "방문형/6개월 반값",
       "term": "60",
       "monthly": 43900,
-      "gift": null
+      "gift": 245000
     },
     "clover-1769|셀프형|36": {
       "product_id": "clover-1769",
@@ -7890,16 +7934,16 @@
       "management": "셀프형/6개월 반값",
       "term": "60",
       "monthly": 41900,
-      "gift": null
+      "gift": 230000
     },
-    "clover-2249|방문형 · 6개월 반값할인|36": {
+    "clover-2249|방문형 · 3개월 반값할인|36": {
       "product_id": "clover-2249",
       "name": "제로 100 슬림 플러스 얼음 정수기_반값할인",
       "category": "정수기",
-      "management": "방문형 · 6개월 반값할인",
+      "management": "방문형 · 3개월 반값할인",
       "term": "36",
       "monthly": 53900,
-      "gift": null
+      "gift": 220000
     },
     "clover-2249|방문형 · 6개월 반값할인|60": {
       "product_id": "clover-2249",
@@ -7908,16 +7952,16 @@
       "management": "방문형 · 6개월 반값할인",
       "term": "60",
       "monthly": 46900,
-      "gift": null
+      "gift": 300000
     },
-    "clover-2249|셀프형 · 6개월 반값할인|36": {
+    "clover-2249|셀프형 · 3개월 반값할인|36": {
       "product_id": "clover-2249",
       "name": "제로 100 슬림 플러스 얼음 정수기_반값할인",
       "category": "정수기",
-      "management": "셀프형 · 6개월 반값할인",
+      "management": "셀프형 · 3개월 반값할인",
       "term": "36",
       "monthly": 50900,
-      "gift": null
+      "gift": 205000
     },
     "clover-2249|셀프형 · 6개월 반값할인|60": {
       "product_id": "clover-2249",
@@ -7926,16 +7970,16 @@
       "management": "셀프형 · 6개월 반값할인",
       "term": "60",
       "monthly": 44900,
-      "gift": null
+      "gift": 290000
     },
-    "clover-2110|방문형 · 6개월 반값할인|36": {
+    "clover-2110|방문형 · 3개월 반값할인|36": {
       "product_id": "clover-2110",
       "name": "제로 100 슬림 얼음 정수기_반값할인",
       "category": "정수기",
-      "management": "방문형 · 6개월 반값할인",
+      "management": "방문형 · 3개월 반값할인",
       "term": "36",
       "monthly": 53900,
-      "gift": null
+      "gift": 210000
     },
     "clover-2110|방문형 · 6개월 반값할인|60": {
       "product_id": "clover-2110",
@@ -7944,16 +7988,16 @@
       "management": "방문형 · 6개월 반값할인",
       "term": "60",
       "monthly": 46900,
-      "gift": null
+      "gift": 290000
     },
-    "clover-2110|셀프형 · 6개월 반값할인|36": {
+    "clover-2110|셀프형 · 3개월 반값할인|36": {
       "product_id": "clover-2110",
       "name": "제로 100 슬림 얼음 정수기_반값할인",
       "category": "정수기",
-      "management": "셀프형 · 6개월 반값할인",
+      "management": "셀프형 · 3개월 반값할인",
       "term": "36",
       "monthly": 50900,
-      "gift": null
+      "gift": 195000
     },
     "clover-2110|셀프형 · 6개월 반값할인|60": {
       "product_id": "clover-2110",
@@ -7962,16 +8006,16 @@
       "management": "셀프형 · 6개월 반값할인",
       "term": "60",
       "monthly": 44900,
-      "gift": null
+      "gift": 280000
     },
-    "clover-2140|방문형 · 6개월 반값할인|36": {
+    "clover-2140|방문형 · 3개월 반값할인|36": {
       "product_id": "clover-2140",
       "name": "제로 100 슬림 바리스타 얼음 정수기_반값 할인",
       "category": "정수기",
-      "management": "방문형 · 6개월 반값할인",
+      "management": "방문형 · 3개월 반값할인",
       "term": "36",
       "monthly": 54900,
-      "gift": null
+      "gift": 215000
     },
     "clover-2140|방문형 · 6개월 반값할인|60": {
       "product_id": "clover-2140",
@@ -7980,16 +8024,16 @@
       "management": "방문형 · 6개월 반값할인",
       "term": "60",
       "monthly": 47900,
-      "gift": null
+      "gift": 295000
     },
-    "clover-2140|셀프형 · 6개월 반값할인|36": {
+    "clover-2140|셀프형 · 3개월 반값할인|36": {
       "product_id": "clover-2140",
       "name": "제로 100 슬림 바리스타 얼음 정수기_반값 할인",
       "category": "정수기",
-      "management": "셀프형 · 6개월 반값할인",
+      "management": "셀프형 · 3개월 반값할인",
       "term": "36",
       "monthly": 51900,
-      "gift": null
+      "gift": 200000
     },
     "clover-2140|셀프형 · 6개월 반값할인|60": {
       "product_id": "clover-2140",
@@ -7998,7 +8042,7 @@
       "management": "셀프형 · 6개월 반값할인",
       "term": "60",
       "monthly": 45900,
-      "gift": null
+      "gift": 285000
     },
     "clover-2236|방문형|36": {
       "product_id": "clover-2236",
@@ -8043,7 +8087,7 @@
       "management": "방문형 · 6개월 반값할인",
       "term": "36",
       "monthly": 39900,
-      "gift": null
+      "gift": 205000
     },
     "clover-2219|방문형 · 6개월 반값할인|60": {
       "product_id": "clover-2219",
@@ -8052,7 +8096,7 @@
       "management": "방문형 · 6개월 반값할인",
       "term": "60",
       "monthly": 34900,
-      "gift": null
+      "gift": 275000
     },
     "clover-2219|셀프형 · 6개월 반값할인|36": {
       "product_id": "clover-2219",
@@ -8061,7 +8105,7 @@
       "management": "셀프형 · 6개월 반값할인",
       "term": "36",
       "monthly": 36900,
-      "gift": null
+      "gift": 190000
     },
     "clover-2219|셀프형 · 6개월 반값할인|60": {
       "product_id": "clover-2219",
@@ -8070,7 +8114,7 @@
       "management": "셀프형 · 6개월 반값할인",
       "term": "60",
       "monthly": 32900,
-      "gift": null
+      "gift": 260000
     },
     "clover-2197|방문형|36": {
       "product_id": "clover-2197",
@@ -8331,7 +8375,7 @@
       "management": "방문형 · 6개월 반값할인",
       "term": "36",
       "monthly": 39900,
-      "gift": null
+      "gift": 175000
     },
     "clover-2067|방문형 · 6개월 반값할인|60": {
       "product_id": "clover-2067",
@@ -8340,7 +8384,7 @@
       "management": "방문형 · 6개월 반값할인",
       "term": "60",
       "monthly": 33900,
-      "gift": null
+      "gift": 235000
     },
     "clover-2067|셀프형 · 6개월 반값할인|36": {
       "product_id": "clover-2067",
@@ -8349,7 +8393,7 @@
       "management": "셀프형 · 6개월 반값할인",
       "term": "36",
       "monthly": 36900,
-      "gift": null
+      "gift": 160000
     },
     "clover-2067|셀프형 · 6개월 반값할인|60": {
       "product_id": "clover-2067",
@@ -8358,7 +8402,7 @@
       "management": "셀프형 · 6개월 반값할인",
       "term": "60",
       "monthly": 31900,
-      "gift": null
+      "gift": 220000
     },
     "clover-1812|방문형 · 6개월 반값할인|36": {
       "product_id": "clover-1812",
@@ -8367,7 +8411,7 @@
       "management": "방문형 · 6개월 반값할인",
       "term": "36",
       "monthly": 38900,
-      "gift": null
+      "gift": 170000
     },
     "clover-1812|방문형 · 6개월 반값할인|60": {
       "product_id": "clover-1812",
@@ -8376,7 +8420,7 @@
       "management": "방문형 · 6개월 반값할인",
       "term": "60",
       "monthly": 32900,
-      "gift": null
+      "gift": 225000
     },
     "clover-1812|셀프형 · 6개월 반값할인|36": {
       "product_id": "clover-1812",
@@ -8385,7 +8429,7 @@
       "management": "셀프형 · 6개월 반값할인",
       "term": "36",
       "monthly": 35900,
-      "gift": null
+      "gift": 155000
     },
     "clover-1812|셀프형 · 6개월 반값할인|60": {
       "product_id": "clover-1812",
@@ -8394,7 +8438,7 @@
       "management": "셀프형 · 6개월 반값할인",
       "term": "60",
       "monthly": 30900,
-      "gift": null
+      "gift": 215000
     },
     "clover-2253|방문형|36": {
       "product_id": "clover-2253",
@@ -8457,7 +8501,7 @@
       "management": "스탠드",
       "term": "36",
       "monthly": 25900,
-      "gift": 70000
+      "gift": 75000
     },
     "clover-1774|스탠드|60": {
       "product_id": "clover-1774",
@@ -8466,7 +8510,7 @@
       "management": "스탠드",
       "term": "60",
       "monthly": 21900,
-      "gift": 110000
+      "gift": 120000
     },
     "clover-1774|데스크|36": {
       "product_id": "clover-1774",
@@ -8619,7 +8663,7 @@
       "management": "스탠드",
       "term": "36",
       "monthly": 24900,
-      "gift": 65000
+      "gift": 70000
     },
     "clover-2063|스탠드|60": {
       "product_id": "clover-2063",
@@ -8628,7 +8672,7 @@
       "management": "스탠드",
       "term": "60",
       "monthly": 20900,
-      "gift": 105000
+      "gift": 110000
     },
     "clover-2063|데스크|36": {
       "product_id": "clover-2063",
@@ -8664,7 +8708,7 @@
       "management": "스탠드",
       "term": "60",
       "monthly": 19900,
-      "gift": 100000
+      "gift": 105000
     },
     "clover-2016|데스크|36": {
       "product_id": "clover-2016",
@@ -8970,7 +9014,7 @@
       "management": "방문형",
       "term": "36",
       "monthly": 22900,
-      "gift": null
+      "gift": 50000
     },
     "clover-2176|셀프형|36": {
       "product_id": "clover-2176",
@@ -8979,7 +9023,7 @@
       "management": "셀프형",
       "term": "36",
       "monthly": 19900,
-      "gift": null
+      "gift": 40000
     },
     "clover-2176|방문형|60": {
       "product_id": "clover-2176",
@@ -8988,7 +9032,7 @@
       "management": "방문형",
       "term": "60",
       "monthly": 20900,
-      "gift": null
+      "gift": 115000
     },
     "clover-2176|셀프형|60": {
       "product_id": "clover-2176",
@@ -8997,7 +9041,7 @@
       "management": "셀프형",
       "term": "60",
       "monthly": 17900,
-      "gift": null
+      "gift": 100000
     },
     "clover-2177|방문형|36": {
       "product_id": "clover-2177",
@@ -9024,7 +9068,7 @@
       "management": "방문형",
       "term": "60",
       "monthly": 21900,
-      "gift": null
+      "gift": 125000
     },
     "clover-2177|셀프형|60": {
       "product_id": "clover-2177",
@@ -9033,7 +9077,7 @@
       "management": "셀프형",
       "term": "60",
       "monthly": 18900,
-      "gift": null
+      "gift": 105000
     },
     "clover-2178|방문형|36": {
       "product_id": "clover-2178",
@@ -9338,8 +9382,8 @@
       "category": "정수기",
       "management": "기본 조건",
       "term": "36",
-      "monthly": 18900,
-      "gift": 25000
+      "monthly": 21900,
+      "gift": 50000
     },
     "clover-2096|기본 조건|48": {
       "product_id": "clover-2096",
@@ -9347,8 +9391,8 @@
       "category": "정수기",
       "management": "기본 조건",
       "term": "48",
-      "monthly": 16900,
-      "gift": 35000
+      "monthly": 18900,
+      "gift": 50000
     },
     "clover-2096|기본 조건|60": {
       "product_id": "clover-2096",
@@ -9356,8 +9400,8 @@
       "category": "정수기",
       "management": "기본 조건",
       "term": "60",
-      "monthly": 14900,
-      "gift": 35000
+      "monthly": 16900,
+      "gift": 50000
     },
     "clover-2097|기본 조건|36": {
       "product_id": "clover-2097",
@@ -9600,7 +9644,7 @@
       "management": "방문형",
       "term": "60",
       "monthly": 19900,
-      "gift": null
+      "gift": 215000
     },
     "clover-2180|셀프형|60": {
       "product_id": "clover-2180",
@@ -9672,7 +9716,7 @@
       "management": "방문형",
       "term": "60",
       "monthly": 17900,
-      "gift": null
+      "gift": 190000
     },
     "clover-2183|셀프형|60": {
       "product_id": "clover-2183",
@@ -9717,7 +9761,7 @@
       "management": "하프",
       "term": "60",
       "monthly": 22901,
-      "gift": null
+      "gift": 95000
     },
     "clover-1405|스탠드|36": {
       "product_id": "clover-1405",
@@ -10340,33 +10384,6 @@
       "monthly": 88600,
       "gift": 40000
     },
-    "clv-36310|현대유버스|60": {
-      "product_id": "clv-36310",
-      "name": "AI Q9000 2in1 에어컨 17평형+6평형 (화이트/그레이)",
-      "category": "에어컨·청소기",
-      "management": "현대유버스",
-      "term": "60",
-      "monthly": 61000,
-      "gift": 128100
-    },
-    "clv-36310|현대유버스|48": {
-      "product_id": "clv-36310",
-      "name": "AI Q9000 2in1 에어컨 17평형+6평형 (화이트/그레이)",
-      "category": "에어컨·청소기",
-      "management": "현대유버스",
-      "term": "48",
-      "monthly": 72200,
-      "gift": 121296
-    },
-    "clv-36310|현대유버스|36": {
-      "product_id": "clv-36310",
-      "name": "AI Q9000 2in1 에어컨 17평형+6평형 (화이트/그레이)",
-      "category": "에어컨·청소기",
-      "management": "현대유버스",
-      "term": "36",
-      "monthly": 91100,
-      "gift": 114786
-    },
     "clv-36310|이니렌탈|60": {
       "product_id": "clv-36310",
       "name": "AI Q9000 2in1 에어컨 17평형+6평형 (화이트/그레이)",
@@ -10447,33 +10464,6 @@
       "term": "36",
       "monthly": 98000,
       "gift": 176400
-    },
-    "clv-35940|현대유버스|60": {
-      "product_id": "clv-35940",
-      "name": "AI Q9000 2in1 에어컨 19평형+6평형 (화이트)",
-      "category": "에어컨·청소기",
-      "management": "현대유버스",
-      "term": "60",
-      "monthly": 71800,
-      "gift": 150780
-    },
-    "clv-35940|현대유버스|48": {
-      "product_id": "clv-35940",
-      "name": "AI Q9000 2in1 에어컨 19평형+6평형 (화이트)",
-      "category": "에어컨·청소기",
-      "management": "현대유버스",
-      "term": "48",
-      "monthly": 84900,
-      "gift": 142632
-    },
-    "clv-35940|현대유버스|36": {
-      "product_id": "clv-35940",
-      "name": "AI Q9000 2in1 에어컨 19평형+6평형 (화이트)",
-      "category": "에어컨·청소기",
-      "management": "현대유버스",
-      "term": "36",
-      "monthly": 107200,
-      "gift": 135072
     },
     "clv-35940|스마트렌탈|60": {
       "product_id": "clv-35940",
@@ -10907,33 +10897,6 @@
       "monthly": 77600,
       "gift": 97776
     },
-    "clv-35925|현대유버스|60": {
-      "product_id": "clv-35925",
-      "name": "AI Q9000 스탠드 에어컨 19평형 (화이트/베이지)",
-      "category": "에어컨·청소기",
-      "management": "현대유버스",
-      "term": "60",
-      "monthly": 53000,
-      "gift": 111300
-    },
-    "clv-35925|현대유버스|48": {
-      "product_id": "clv-35925",
-      "name": "AI Q9000 스탠드 에어컨 19평형 (화이트/베이지)",
-      "category": "에어컨·청소기",
-      "management": "현대유버스",
-      "term": "48",
-      "monthly": 62700,
-      "gift": 105336
-    },
-    "clv-35925|현대유버스|36": {
-      "product_id": "clv-35925",
-      "name": "AI Q9000 스탠드 에어컨 19평형 (화이트/베이지)",
-      "category": "에어컨·청소기",
-      "management": "현대유버스",
-      "term": "36",
-      "monthly": 79200,
-      "gift": 99792
-    },
     "clv-35925|이니렌탈|60": {
       "product_id": "clv-35925",
       "name": "AI Q9000 스탠드 에어컨 19평형 (화이트/베이지)",
@@ -11285,33 +11248,6 @@
       "monthly": 173400,
       "gift": 218484
     },
-    "clv-55590|현대유버스|60": {
-      "product_id": "clv-55590",
-      "name": "비스포크 AI 무풍콤보 갤러리 프로 청정 2in1 에어컨 19평형+6평형 (에센셜 화이트/에센셜 화이트)",
-      "category": "에어컨·청소기",
-      "management": "현대유버스",
-      "term": "60",
-      "monthly": 123900,
-      "gift": 260190
-    },
-    "clv-55590|현대유버스|48": {
-      "product_id": "clv-55590",
-      "name": "비스포크 AI 무풍콤보 갤러리 프로 청정 2in1 에어컨 19평형+6평형 (에센셜 화이트/에센셜 화이트)",
-      "category": "에어컨·청소기",
-      "management": "현대유버스",
-      "term": "48",
-      "monthly": 146500,
-      "gift": 246120
-    },
-    "clv-55590|현대유버스|36": {
-      "product_id": "clv-55590",
-      "name": "비스포크 AI 무풍콤보 갤러리 프로 청정 2in1 에어컨 19평형+6평형 (에센셜 화이트/에센셜 화이트)",
-      "category": "에어컨·청소기",
-      "management": "현대유버스",
-      "term": "36",
-      "monthly": 184800,
-      "gift": 232848
-    },
     "clv-55543|LG헬로렌탈|60": {
       "product_id": "clv-55543",
       "name": "비스포크 AI 무풍콤보 갤러리 프로 청정 스탠드 에어컨 17평형 (에센셜 화이트/에센셜 화이트)",
@@ -11555,33 +11491,6 @@
       "monthly": 100600,
       "gift": 126756
     },
-    "clv-6817|이니렌탈|60": {
-      "product_id": "clv-6817",
-      "name": "휘센 스탠드 에어컨 30평형 단상",
-      "category": "에어컨·청소기",
-      "management": "이니렌탈",
-      "term": "60",
-      "monthly": 73900,
-      "gift": 221700
-    },
-    "clv-6817|이니렌탈|48": {
-      "product_id": "clv-6817",
-      "name": "휘센 스탠드 에어컨 30평형 단상",
-      "category": "에어컨·청소기",
-      "management": "이니렌탈",
-      "term": "48",
-      "monthly": 86800,
-      "gift": 208320
-    },
-    "clv-6817|이니렌탈|36": {
-      "product_id": "clv-6817",
-      "name": "휘센 스탠드 에어컨 30평형 단상",
-      "category": "에어컨·청소기",
-      "management": "이니렌탈",
-      "term": "36",
-      "monthly": 109200,
-      "gift": 196560
-    },
     "clv-6817|스마트렌탈|60": {
       "product_id": "clv-6817",
       "name": "휘센 스탠드 에어컨 30평형 단상",
@@ -11636,6 +11545,33 @@
       "monthly": 119600,
       "gift": 150696
     },
+    "clv-6817|이니렌탈|60": {
+      "product_id": "clv-6817",
+      "name": "휘센 스탠드 에어컨 30평형 단상",
+      "category": "에어컨·청소기",
+      "management": "이니렌탈",
+      "term": "60",
+      "monthly": 80800,
+      "gift": 242400
+    },
+    "clv-6817|이니렌탈|48": {
+      "product_id": "clv-6817",
+      "name": "휘센 스탠드 에어컨 30평형 단상",
+      "category": "에어컨·청소기",
+      "management": "이니렌탈",
+      "term": "48",
+      "monthly": 95000,
+      "gift": 228000
+    },
+    "clv-6817|이니렌탈|36": {
+      "product_id": "clv-6817",
+      "name": "휘센 스탠드 에어컨 30평형 단상",
+      "category": "에어컨·청소기",
+      "management": "이니렌탈",
+      "term": "36",
+      "monthly": 119400,
+      "gift": 214920
+    },
     "clv-7666|BS ON|60": {
       "product_id": "clv-7666",
       "name": "휘센 스탠드 에어컨 40평형 단상",
@@ -11662,33 +11598,6 @@
       "term": "36",
       "monthly": 124800,
       "gift": 157248
-    },
-    "clv-7666|이니렌탈|60": {
-      "product_id": "clv-7666",
-      "name": "휘센 스탠드 에어컨 40평형 단상",
-      "category": "에어컨·청소기",
-      "management": "이니렌탈",
-      "term": "60",
-      "monthly": 90600,
-      "gift": 271800
-    },
-    "clv-7666|이니렌탈|48": {
-      "product_id": "clv-7666",
-      "name": "휘센 스탠드 에어컨 40평형 단상",
-      "category": "에어컨·청소기",
-      "management": "이니렌탈",
-      "term": "48",
-      "monthly": 106600,
-      "gift": 255840
-    },
-    "clv-7666|이니렌탈|36": {
-      "product_id": "clv-7666",
-      "name": "휘센 스탠드 에어컨 40평형 단상",
-      "category": "에어컨·청소기",
-      "management": "이니렌탈",
-      "term": "36",
-      "monthly": 134000,
-      "gift": 241200
     },
     "clv-7666|스마트렌탈|60": {
       "product_id": "clv-7666",
@@ -11744,6 +11653,33 @@
       "monthly": 149100,
       "gift": 187866
     },
+    "clv-7666|이니렌탈|60": {
+      "product_id": "clv-7666",
+      "name": "휘센 스탠드 에어컨 40평형 단상",
+      "category": "에어컨·청소기",
+      "management": "이니렌탈",
+      "term": "60",
+      "monthly": 97700,
+      "gift": 293100
+    },
+    "clv-7666|이니렌탈|48": {
+      "product_id": "clv-7666",
+      "name": "휘센 스탠드 에어컨 40평형 단상",
+      "category": "에어컨·청소기",
+      "management": "이니렌탈",
+      "term": "48",
+      "monthly": 114900,
+      "gift": 275760
+    },
+    "clv-7666|이니렌탈|36": {
+      "product_id": "clv-7666",
+      "name": "휘센 스탠드 에어컨 40평형 단상",
+      "category": "에어컨·청소기",
+      "management": "이니렌탈",
+      "term": "36",
+      "monthly": 144400,
+      "gift": 259920
+    },
     "clv-4236|BS ON|60": {
       "product_id": "clv-4236",
       "name": "인버터 스탠드 에어컨 63평형",
@@ -11770,33 +11706,6 @@
       "term": "36",
       "monthly": 204200,
       "gift": 257292
-    },
-    "clv-4236|이니렌탈|60": {
-      "product_id": "clv-4236",
-      "name": "인버터 스탠드 에어컨 63평형",
-      "category": "에어컨·청소기",
-      "management": "이니렌탈",
-      "term": "60",
-      "monthly": 157400,
-      "gift": 472200
-    },
-    "clv-4236|이니렌탈|48": {
-      "product_id": "clv-4236",
-      "name": "인버터 스탠드 에어컨 63평형",
-      "category": "에어컨·청소기",
-      "management": "이니렌탈",
-      "term": "48",
-      "monthly": 185100,
-      "gift": 444240
-    },
-    "clv-4236|이니렌탈|36": {
-      "product_id": "clv-4236",
-      "name": "인버터 스탠드 에어컨 63평형",
-      "category": "에어컨·청소기",
-      "management": "이니렌탈",
-      "term": "36",
-      "monthly": 232700,
-      "gift": 418860
     },
     "clv-4236|스마트렌탈|60": {
       "product_id": "clv-4236",
@@ -11852,6 +11761,33 @@
       "monthly": 246200,
       "gift": 310212
     },
+    "clv-4236|이니렌탈|60": {
+      "product_id": "clv-4236",
+      "name": "인버터 스탠드 에어컨 63평형",
+      "category": "에어컨·청소기",
+      "management": "이니렌탈",
+      "term": "60",
+      "monthly": 170600,
+      "gift": 511800
+    },
+    "clv-4236|이니렌탈|48": {
+      "product_id": "clv-4236",
+      "name": "인버터 스탠드 에어컨 63평형",
+      "category": "에어컨·청소기",
+      "management": "이니렌탈",
+      "term": "48",
+      "monthly": 200600,
+      "gift": 481440
+    },
+    "clv-4236|이니렌탈|36": {
+      "product_id": "clv-4236",
+      "name": "인버터 스탠드 에어컨 63평형",
+      "category": "에어컨·청소기",
+      "management": "이니렌탈",
+      "term": "36",
+      "monthly": 252200,
+      "gift": 453960
+    },
     "clv-4243|BS ON|60": {
       "product_id": "clv-4243",
       "name": "인버터 스탠드 에어컨 80평형 삼상",
@@ -11879,33 +11815,6 @@
       "monthly": 232700,
       "gift": 293202
     },
-    "clv-4243|이니렌탈|60": {
-      "product_id": "clv-4243",
-      "name": "인버터 스탠드 에어컨 80평형 삼상",
-      "category": "에어컨·청소기",
-      "management": "이니렌탈",
-      "term": "60",
-      "monthly": 177100,
-      "gift": 531300
-    },
-    "clv-4243|이니렌탈|48": {
-      "product_id": "clv-4243",
-      "name": "인버터 스탠드 에어컨 80평형 삼상",
-      "category": "에어컨·청소기",
-      "management": "이니렌탈",
-      "term": "48",
-      "monthly": 208300,
-      "gift": 499920
-    },
-    "clv-4243|이니렌탈|36": {
-      "product_id": "clv-4243",
-      "name": "인버터 스탠드 에어컨 80평형 삼상",
-      "category": "에어컨·청소기",
-      "management": "이니렌탈",
-      "term": "36",
-      "monthly": 261800,
-      "gift": 471240
-    },
     "clv-4243|현대유버스|60": {
       "product_id": "clv-4243",
       "name": "인버터 스탠드 에어컨 80평형 삼상",
@@ -11932,6 +11841,33 @@
       "term": "36",
       "monthly": 281100,
       "gift": 354186
+    },
+    "clv-4243|이니렌탈|60": {
+      "product_id": "clv-4243",
+      "name": "인버터 스탠드 에어컨 80평형 삼상",
+      "category": "에어컨·청소기",
+      "management": "이니렌탈",
+      "term": "60",
+      "monthly": 186900,
+      "gift": 560700
+    },
+    "clv-4243|이니렌탈|48": {
+      "product_id": "clv-4243",
+      "name": "인버터 스탠드 에어컨 80평형 삼상",
+      "category": "에어컨·청소기",
+      "management": "이니렌탈",
+      "term": "48",
+      "monthly": 219800,
+      "gift": 527520
+    },
+    "clv-4243|이니렌탈|36": {
+      "product_id": "clv-4243",
+      "name": "인버터 스탠드 에어컨 80평형 삼상",
+      "category": "에어컨·청소기",
+      "management": "이니렌탈",
+      "term": "36",
+      "monthly": 276300,
+      "gift": 497340
     },
     "clv-4244|이니렌탈|60": {
       "product_id": "clv-4244",
@@ -12662,33 +12598,6 @@
       "monthly": 65200,
       "gift": 117360
     },
-    "clv-23910|LG헬로렌탈|60": {
-      "product_id": "clv-23910",
-      "name": "더 세리프 QLED TV 55인치",
-      "category": "TV·디지털",
-      "management": "LG헬로렌탈",
-      "term": "60",
-      "monthly": 63100,
-      "gift": 227160
-    },
-    "clv-23910|LG헬로렌탈|48": {
-      "product_id": "clv-23910",
-      "name": "더 세리프 QLED TV 55인치",
-      "category": "TV·디지털",
-      "management": "LG헬로렌탈",
-      "term": "48",
-      "monthly": 76400,
-      "gift": 220032
-    },
-    "clv-23910|LG헬로렌탈|36": {
-      "product_id": "clv-23910",
-      "name": "더 세리프 QLED TV 55인치",
-      "category": "TV·디지털",
-      "management": "LG헬로렌탈",
-      "term": "36",
-      "monthly": 98300,
-      "gift": 212328
-    },
     "clv-24212|BS ON|60": {
       "product_id": "clv-24212",
       "name": "더 세리프 QLED TV 50인치",
@@ -12770,33 +12679,6 @@
       "monthly": 69500,
       "gift": 87570
     },
-    "clv-24212|LG헬로렌탈|60": {
-      "product_id": "clv-24212",
-      "name": "더 세리프 QLED TV 50인치",
-      "category": "TV·디지털",
-      "management": "LG헬로렌탈",
-      "term": "60",
-      "monthly": 60300,
-      "gift": 217080
-    },
-    "clv-24212|LG헬로렌탈|48": {
-      "product_id": "clv-24212",
-      "name": "더 세리프 QLED TV 50인치",
-      "category": "TV·디지털",
-      "management": "LG헬로렌탈",
-      "term": "48",
-      "monthly": 73700,
-      "gift": 212256
-    },
-    "clv-24212|LG헬로렌탈|36": {
-      "product_id": "clv-24212",
-      "name": "더 세리프 QLED TV 50인치",
-      "category": "TV·디지털",
-      "management": "LG헬로렌탈",
-      "term": "36",
-      "monthly": 94700,
-      "gift": 204552
-    },
     "clv-24207|BS ON|60": {
       "product_id": "clv-24207",
       "name": "더 세리프 QLED TV 43인치",
@@ -12823,33 +12705,6 @@
       "term": "36",
       "monthly": 58500,
       "gift": 73710
-    },
-    "clv-24207|LG헬로렌탈|60": {
-      "product_id": "clv-24207",
-      "name": "더 세리프 QLED TV 43인치",
-      "category": "TV·디지털",
-      "management": "LG헬로렌탈",
-      "term": "60",
-      "monthly": 40100,
-      "gift": 144360
-    },
-    "clv-24207|LG헬로렌탈|48": {
-      "product_id": "clv-24207",
-      "name": "더 세리프 QLED TV 43인치",
-      "category": "TV·디지털",
-      "management": "LG헬로렌탈",
-      "term": "48",
-      "monthly": 47800,
-      "gift": 137664
-    },
-    "clv-24207|LG헬로렌탈|36": {
-      "product_id": "clv-24207",
-      "name": "더 세리프 QLED TV 43인치",
-      "category": "TV·디지털",
-      "management": "LG헬로렌탈",
-      "term": "36",
-      "monthly": 61300,
-      "gift": 132408
     },
     "clv-24207|이니렌탈|60": {
       "product_id": "clv-24207",
@@ -13049,6 +12904,33 @@
       "monthly": 164200,
       "gift": 206892
     },
+    "clv-56065|스마트렌탈|60": {
+      "product_id": "clv-56065",
+      "name": "트롬 워시타워 세탁기 23kg + 건조기 20kg (릴리 화이트)",
+      "category": "세탁·건조·의류관리",
+      "management": "스마트렌탈",
+      "term": "60",
+      "monthly": 121900,
+      "gift": 329130
+    },
+    "clv-56065|스마트렌탈|48": {
+      "product_id": "clv-56065",
+      "name": "트롬 워시타워 세탁기 23kg + 건조기 20kg (릴리 화이트)",
+      "category": "세탁·건조·의류관리",
+      "management": "스마트렌탈",
+      "term": "48",
+      "monthly": 149000,
+      "gift": 321840
+    },
+    "clv-56065|스마트렌탈|36": {
+      "product_id": "clv-56065",
+      "name": "트롬 워시타워 세탁기 23kg + 건조기 20kg (릴리 화이트)",
+      "category": "세탁·건조·의류관리",
+      "management": "스마트렌탈",
+      "term": "36",
+      "monthly": 187500,
+      "gift": 303750
+    },
     "clv-56065|현대유버스|60": {
       "product_id": "clv-56065",
       "name": "트롬 워시타워 세탁기 23kg + 건조기 20kg (릴리 화이트)",
@@ -13075,6 +12957,33 @@
       "term": "36",
       "monthly": 187600,
       "gift": 236376
+    },
+    "clv-56065|이니렌탈|60": {
+      "product_id": "clv-56065",
+      "name": "트롬 워시타워 세탁기 23kg + 건조기 20kg (릴리 화이트)",
+      "category": "세탁·건조·의류관리",
+      "management": "이니렌탈",
+      "term": "60",
+      "monthly": 122900,
+      "gift": 368700
+    },
+    "clv-56065|이니렌탈|48": {
+      "product_id": "clv-56065",
+      "name": "트롬 워시타워 세탁기 23kg + 건조기 20kg (릴리 화이트)",
+      "category": "세탁·건조·의류관리",
+      "management": "이니렌탈",
+      "term": "48",
+      "monthly": 144500,
+      "gift": 346800
+    },
+    "clv-56065|이니렌탈|36": {
+      "product_id": "clv-56065",
+      "name": "트롬 워시타워 세탁기 23kg + 건조기 20kg (릴리 화이트)",
+      "category": "세탁·건조·의류관리",
+      "management": "이니렌탈",
+      "term": "36",
+      "monthly": 181600,
+      "gift": 326880
     },
     "clv-48939|BS ON|60": {
       "product_id": "clv-48939",
@@ -13130,6 +13039,60 @@
       "monthly": 99600,
       "gift": 125496
     },
+    "clv-57861|BS ON|60": {
+      "product_id": "clv-57861",
+      "name": "비스포크 AI 콤보 세탁기 25kg + 건조기 18kg (화이트)",
+      "category": "세탁·건조·의류관리",
+      "management": "BS ON",
+      "term": "60",
+      "monthly": 91700,
+      "gift": 192570
+    },
+    "clv-57861|BS ON|48": {
+      "product_id": "clv-57861",
+      "name": "비스포크 AI 콤보 세탁기 25kg + 건조기 18kg (화이트)",
+      "category": "세탁·건조·의류관리",
+      "management": "BS ON",
+      "term": "48",
+      "monthly": 107000,
+      "gift": 179760
+    },
+    "clv-57861|BS ON|36": {
+      "product_id": "clv-57861",
+      "name": "비스포크 AI 콤보 세탁기 25kg + 건조기 18kg (화이트)",
+      "category": "세탁·건조·의류관리",
+      "management": "BS ON",
+      "term": "36",
+      "monthly": 133100,
+      "gift": 167706
+    },
+    "clv-57861|현대유버스|60": {
+      "product_id": "clv-57861",
+      "name": "비스포크 AI 콤보 세탁기 25kg + 건조기 18kg (화이트)",
+      "category": "세탁·건조·의류관리",
+      "management": "현대유버스",
+      "term": "60",
+      "monthly": 94900,
+      "gift": 199290
+    },
+    "clv-57861|현대유버스|48": {
+      "product_id": "clv-57861",
+      "name": "비스포크 AI 콤보 세탁기 25kg + 건조기 18kg (화이트)",
+      "category": "세탁·건조·의류관리",
+      "management": "현대유버스",
+      "term": "48",
+      "monthly": 109400,
+      "gift": 183792
+    },
+    "clv-57861|현대유버스|36": {
+      "product_id": "clv-57861",
+      "name": "비스포크 AI 콤보 세탁기 25kg + 건조기 18kg (화이트)",
+      "category": "세탁·건조·의류관리",
+      "management": "현대유버스",
+      "term": "36",
+      "monthly": 138100,
+      "gift": 174006
+    },
     "clv-57861|LG헬로렌탈|60": {
       "product_id": "clv-57861",
       "name": "비스포크 AI 콤보 세탁기 25kg + 건조기 18kg (화이트)",
@@ -13156,60 +13119,6 @@
       "term": "36",
       "monthly": 151900,
       "gift": 328104
-    },
-    "clv-57861|BS ON|60": {
-      "product_id": "clv-57861",
-      "name": "비스포크 AI 콤보 세탁기 25kg + 건조기 18kg (화이트)",
-      "category": "세탁·건조·의류관리",
-      "management": "BS ON",
-      "term": "60",
-      "monthly": 97100,
-      "gift": 203910
-    },
-    "clv-57861|BS ON|48": {
-      "product_id": "clv-57861",
-      "name": "비스포크 AI 콤보 세탁기 25kg + 건조기 18kg (화이트)",
-      "category": "세탁·건조·의류관리",
-      "management": "BS ON",
-      "term": "48",
-      "monthly": 113200,
-      "gift": 190176
-    },
-    "clv-57861|BS ON|36": {
-      "product_id": "clv-57861",
-      "name": "비스포크 AI 콤보 세탁기 25kg + 건조기 18kg (화이트)",
-      "category": "세탁·건조·의류관리",
-      "management": "BS ON",
-      "term": "36",
-      "monthly": 140700,
-      "gift": 177282
-    },
-    "clv-57861|현대유버스|60": {
-      "product_id": "clv-57861",
-      "name": "비스포크 AI 콤보 세탁기 25kg + 건조기 18kg (화이트)",
-      "category": "세탁·건조·의류관리",
-      "management": "현대유버스",
-      "term": "60",
-      "monthly": 102000,
-      "gift": 214200
-    },
-    "clv-57861|현대유버스|48": {
-      "product_id": "clv-57861",
-      "name": "비스포크 AI 콤보 세탁기 25kg + 건조기 18kg (화이트)",
-      "category": "세탁·건조·의류관리",
-      "management": "현대유버스",
-      "term": "48",
-      "monthly": 120800,
-      "gift": 202944
-    },
-    "clv-57861|현대유버스|36": {
-      "product_id": "clv-57861",
-      "name": "비스포크 AI 콤보 세탁기 25kg + 건조기 18kg (화이트)",
-      "category": "세탁·건조·의류관리",
-      "management": "현대유버스",
-      "term": "36",
-      "monthly": 152200,
-      "gift": 191772
     },
     "clv-57861|KT가전구독|60": {
       "product_id": "clv-57861",
@@ -13352,8 +13261,8 @@
       "category": "세탁·건조·의류관리",
       "management": "BS ON",
       "term": "60",
-      "monthly": 100100,
-      "gift": 210210
+      "monthly": 94600,
+      "gift": 198660
     },
     "clv-57856|BS ON|48": {
       "product_id": "clv-57856",
@@ -13361,8 +13270,8 @@
       "category": "세탁·건조·의류관리",
       "management": "BS ON",
       "term": "48",
-      "monthly": 116600,
-      "gift": 195888
+      "monthly": 110000,
+      "gift": 184800
     },
     "clv-57856|BS ON|36": {
       "product_id": "clv-57856",
@@ -13370,8 +13279,8 @@
       "category": "세탁·건조·의류관리",
       "management": "BS ON",
       "term": "36",
-      "monthly": 145000,
-      "gift": 182700
+      "monthly": 137000,
+      "gift": 172620
     },
     "clv-57856|현대유버스|60": {
       "product_id": "clv-57856",
@@ -13379,8 +13288,8 @@
       "category": "세탁·건조·의류관리",
       "management": "현대유버스",
       "term": "60",
-      "monthly": 105200,
-      "gift": 220920
+      "monthly": 99900,
+      "gift": 209790
     },
     "clv-57856|현대유버스|48": {
       "product_id": "clv-57856",
@@ -13388,8 +13297,8 @@
       "category": "세탁·건조·의류관리",
       "management": "현대유버스",
       "term": "48",
-      "monthly": 124500,
-      "gift": 209160
+      "monthly": 112900,
+      "gift": 189672
     },
     "clv-57856|현대유버스|36": {
       "product_id": "clv-57856",
@@ -13397,8 +13306,8 @@
       "category": "세탁·건조·의류관리",
       "management": "현대유버스",
       "term": "36",
-      "monthly": 156900,
-      "gift": 197694
+      "monthly": 142400,
+      "gift": 179424
     },
     "clv-57856|KT가전구독|60": {
       "product_id": "clv-57856",
@@ -14684,8 +14593,8 @@
       "category": "세탁·건조·의류관리",
       "management": "BS ON",
       "term": "60",
-      "monthly": 100100,
-      "gift": 210210
+      "monthly": 94600,
+      "gift": 198660
     },
     "clv-57866|BS ON|48": {
       "product_id": "clv-57866",
@@ -14693,8 +14602,8 @@
       "category": "세탁·건조·의류관리",
       "management": "BS ON",
       "term": "48",
-      "monthly": 116600,
-      "gift": 195888
+      "monthly": 110000,
+      "gift": 184800
     },
     "clv-57866|BS ON|36": {
       "product_id": "clv-57866",
@@ -14702,8 +14611,8 @@
       "category": "세탁·건조·의류관리",
       "management": "BS ON",
       "term": "36",
-      "monthly": 145000,
-      "gift": 182700
+      "monthly": 137000,
+      "gift": 172620
     },
     "clv-57866|현대유버스|60": {
       "product_id": "clv-57866",
@@ -14711,8 +14620,8 @@
       "category": "세탁·건조·의류관리",
       "management": "현대유버스",
       "term": "60",
-      "monthly": 105200,
-      "gift": 220920
+      "monthly": 99900,
+      "gift": 209790
     },
     "clv-57866|현대유버스|48": {
       "product_id": "clv-57866",
@@ -14720,8 +14629,8 @@
       "category": "세탁·건조·의류관리",
       "management": "현대유버스",
       "term": "48",
-      "monthly": 124500,
-      "gift": 209160
+      "monthly": 112900,
+      "gift": 189672
     },
     "clv-57866|현대유버스|36": {
       "product_id": "clv-57866",
@@ -14729,8 +14638,8 @@
       "category": "세탁·건조·의류관리",
       "management": "현대유버스",
       "term": "36",
-      "monthly": 156900,
-      "gift": 197694
+      "monthly": 142400,
+      "gift": 179424
     },
     "clv-57866|KT가전구독|60": {
       "product_id": "clv-57866",
@@ -15395,8 +15304,8 @@
       "category": "세탁·건조·의류관리",
       "management": "이니렌탈",
       "term": "60",
-      "monthly": 38900,
-      "gift": 116700
+      "monthly": 39100,
+      "gift": 117300
     },
     "clv-14541|이니렌탈|48": {
       "product_id": "clv-14541",
@@ -15404,8 +15313,8 @@
       "category": "세탁·건조·의류관리",
       "management": "이니렌탈",
       "term": "48",
-      "monthly": 45800,
-      "gift": 109920
+      "monthly": 46000,
+      "gift": 110400
     },
     "clv-14541|이니렌탈|36": {
       "product_id": "clv-14541",
@@ -15413,8 +15322,8 @@
       "category": "세탁·건조·의류관리",
       "management": "이니렌탈",
       "term": "36",
-      "monthly": 57600,
-      "gift": 103680
+      "monthly": 57900,
+      "gift": 104220
     },
     "clv-14541|LG헬로렌탈|60": {
       "product_id": "clv-14541",
@@ -15422,8 +15331,8 @@
       "category": "세탁·건조·의류관리",
       "management": "LG헬로렌탈",
       "term": "60",
-      "monthly": 39900,
-      "gift": 143640
+      "monthly": 47900,
+      "gift": 172440
     },
     "clv-14541|LG헬로렌탈|48": {
       "product_id": "clv-14541",
@@ -15431,8 +15340,8 @@
       "category": "세탁·건조·의류관리",
       "management": "LG헬로렌탈",
       "term": "48",
-      "monthly": 48900,
-      "gift": 140832
+      "monthly": 57900,
+      "gift": 166752
     },
     "clv-14541|LG헬로렌탈|36": {
       "product_id": "clv-14541",
@@ -15440,8 +15349,8 @@
       "category": "세탁·건조·의류관리",
       "management": "LG헬로렌탈",
       "term": "36",
-      "monthly": 62900,
-      "gift": 135864
+      "monthly": 74900,
+      "gift": 161784
     },
     "clv-46751|이니렌탈|60": {
       "product_id": "clv-46751",
@@ -16190,6 +16099,33 @@
       "monthly": 224700,
       "gift": 283122
     },
+    "clv-21467|이니렌탈|60": {
+      "product_id": "clv-21467",
+      "name": "트롬 오브제컬렉션 워시콤보 세탁기 25kg + 건조기 15kg + 미니워시 (릴리 화이트)",
+      "category": "세탁·건조·의류관리",
+      "management": "이니렌탈",
+      "term": "60",
+      "monthly": 147200,
+      "gift": 441600
+    },
+    "clv-21467|이니렌탈|48": {
+      "product_id": "clv-21467",
+      "name": "트롬 오브제컬렉션 워시콤보 세탁기 25kg + 건조기 15kg + 미니워시 (릴리 화이트)",
+      "category": "세탁·건조·의류관리",
+      "management": "이니렌탈",
+      "term": "48",
+      "monthly": 173100,
+      "gift": 415440
+    },
+    "clv-21467|이니렌탈|36": {
+      "product_id": "clv-21467",
+      "name": "트롬 오브제컬렉션 워시콤보 세탁기 25kg + 건조기 15kg + 미니워시 (릴리 화이트)",
+      "category": "세탁·건조·의류관리",
+      "management": "이니렌탈",
+      "term": "36",
+      "monthly": 217600,
+      "gift": 391680
+    },
     "clv-21467|스마트렌탈|60": {
       "product_id": "clv-21467",
       "name": "트롬 오브제컬렉션 워시콤보 세탁기 25kg + 건조기 15kg + 미니워시 (릴리 화이트)",
@@ -16514,6 +16450,33 @@
       "monthly": 46000,
       "gift": 82800
     },
+    "clv-11457|현대유버스|60": {
+      "product_id": "clv-11457",
+      "name": "비스포크 에어드레서 일반용량 (코타 화이트)",
+      "category": "세탁·건조·의류관리",
+      "management": "현대유버스",
+      "term": "60",
+      "monthly": 32700,
+      "gift": 68670
+    },
+    "clv-11457|현대유버스|48": {
+      "product_id": "clv-11457",
+      "name": "비스포크 에어드레서 일반용량 (코타 화이트)",
+      "category": "세탁·건조·의류관리",
+      "management": "현대유버스",
+      "term": "48",
+      "monthly": 38900,
+      "gift": 65352
+    },
+    "clv-11457|현대유버스|36": {
+      "product_id": "clv-11457",
+      "name": "비스포크 에어드레서 일반용량 (코타 화이트)",
+      "category": "세탁·건조·의류관리",
+      "management": "현대유버스",
+      "term": "36",
+      "monthly": 49200,
+      "gift": 61992
+    },
     "clv-11457|스마트렌탈|60": {
       "product_id": "clv-11457",
       "name": "비스포크 에어드레서 일반용량 (코타 화이트)",
@@ -16540,33 +16503,6 @@
       "term": "36",
       "monthly": 48500,
       "gift": 78570
-    },
-    "clv-11457|현대유버스|60": {
-      "product_id": "clv-11457",
-      "name": "비스포크 에어드레서 일반용량 (코타 화이트)",
-      "category": "세탁·건조·의류관리",
-      "management": "현대유버스",
-      "term": "60",
-      "monthly": 33800,
-      "gift": 70980
-    },
-    "clv-11457|현대유버스|48": {
-      "product_id": "clv-11457",
-      "name": "비스포크 에어드레서 일반용량 (코타 화이트)",
-      "category": "세탁·건조·의류관리",
-      "management": "현대유버스",
-      "term": "48",
-      "monthly": 40100,
-      "gift": 67368
-    },
-    "clv-11457|현대유버스|36": {
-      "product_id": "clv-11457",
-      "name": "비스포크 에어드레서 일반용량 (코타 화이트)",
-      "category": "세탁·건조·의류관리",
-      "management": "현대유버스",
-      "term": "36",
-      "monthly": 50900,
-      "gift": 64134
     },
     "clv-11214|BS ON|60": {
       "product_id": "clv-11214",
@@ -16946,6 +16882,60 @@
       "monthly": 131900,
       "gift": 284904
     },
+    "clv-24986|LG헬로렌탈|60": {
+      "product_id": "clv-24986",
+      "name": "비스포크 양문형 냉장고 852L (코타 PCM 화이트)",
+      "category": "냉장고·김치냉장고",
+      "management": "LG헬로렌탈",
+      "term": "60",
+      "monthly": 32200,
+      "gift": 115920
+    },
+    "clv-24986|LG헬로렌탈|48": {
+      "product_id": "clv-24986",
+      "name": "비스포크 양문형 냉장고 852L (코타 PCM 화이트)",
+      "category": "냉장고·김치냉장고",
+      "management": "LG헬로렌탈",
+      "term": "48",
+      "monthly": 48900,
+      "gift": 140832
+    },
+    "clv-24986|LG헬로렌탈|36": {
+      "product_id": "clv-24986",
+      "name": "비스포크 양문형 냉장고 852L (코타 PCM 화이트)",
+      "category": "냉장고·김치냉장고",
+      "management": "LG헬로렌탈",
+      "term": "36",
+      "monthly": 63900,
+      "gift": 138024
+    },
+    "clv-24986|현대유버스|60": {
+      "product_id": "clv-24986",
+      "name": "비스포크 양문형 냉장고 852L (코타 PCM 화이트)",
+      "category": "냉장고·김치냉장고",
+      "management": "현대유버스",
+      "term": "60",
+      "monthly": 37700,
+      "gift": 79170
+    },
+    "clv-24986|현대유버스|48": {
+      "product_id": "clv-24986",
+      "name": "비스포크 양문형 냉장고 852L (코타 PCM 화이트)",
+      "category": "냉장고·김치냉장고",
+      "management": "현대유버스",
+      "term": "48",
+      "monthly": 44900,
+      "gift": 75432
+    },
+    "clv-24986|현대유버스|36": {
+      "product_id": "clv-24986",
+      "name": "비스포크 양문형 냉장고 852L (코타 PCM 화이트)",
+      "category": "냉장고·김치냉장고",
+      "management": "현대유버스",
+      "term": "36",
+      "monthly": 56900,
+      "gift": 71694
+    },
     "clv-24986|BS ON|60": {
       "product_id": "clv-24986",
       "name": "비스포크 양문형 냉장고 852L (코타 PCM 화이트)",
@@ -17000,33 +16990,6 @@
       "monthly": 57500,
       "gift": 103500
     },
-    "clv-24986|현대유버스|60": {
-      "product_id": "clv-24986",
-      "name": "비스포크 양문형 냉장고 852L (코타 PCM 화이트)",
-      "category": "냉장고·김치냉장고",
-      "management": "현대유버스",
-      "term": "60",
-      "monthly": 42100,
-      "gift": 88410
-    },
-    "clv-24986|현대유버스|48": {
-      "product_id": "clv-24986",
-      "name": "비스포크 양문형 냉장고 852L (코타 PCM 화이트)",
-      "category": "냉장고·김치냉장고",
-      "management": "현대유버스",
-      "term": "48",
-      "monthly": 49800,
-      "gift": 83664
-    },
-    "clv-24986|현대유버스|36": {
-      "product_id": "clv-24986",
-      "name": "비스포크 양문형 냉장고 852L (코타 PCM 화이트)",
-      "category": "냉장고·김치냉장고",
-      "management": "현대유버스",
-      "term": "36",
-      "monthly": 62800,
-      "gift": 79128
-    },
     "clv-24986|스마트렌탈|60": {
       "product_id": "clv-24986",
       "name": "비스포크 양문형 냉장고 852L (코타 PCM 화이트)",
@@ -17080,6 +17043,33 @@
       "term": "36",
       "monthly": 53100,
       "gift": 40000
+    },
+    "clv-24985|LG헬로렌탈|60": {
+      "product_id": "clv-24985",
+      "name": "양문형 냉장고 852L (젠틀 실버)",
+      "category": "냉장고·김치냉장고",
+      "management": "LG헬로렌탈",
+      "term": "60",
+      "monthly": 33100,
+      "gift": 119160
+    },
+    "clv-24985|LG헬로렌탈|48": {
+      "product_id": "clv-24985",
+      "name": "양문형 냉장고 852L (젠틀 실버)",
+      "category": "냉장고·김치냉장고",
+      "management": "LG헬로렌탈",
+      "term": "48",
+      "monthly": 46900,
+      "gift": 135072
+    },
+    "clv-24985|LG헬로렌탈|36": {
+      "product_id": "clv-24985",
+      "name": "양문형 냉장고 852L (젠틀 실버)",
+      "category": "냉장고·김치냉장고",
+      "management": "LG헬로렌탈",
+      "term": "36",
+      "monthly": 60900,
+      "gift": 131544
     },
     "clv-24985|BS ON|60": {
       "product_id": "clv-24985",
@@ -17411,8 +17401,8 @@
       "category": "냉장고·김치냉장고",
       "management": "BS ON",
       "term": "60",
-      "monthly": 52400,
-      "gift": 110040
+      "monthly": 51300,
+      "gift": 107730
     },
     "clv-45254|BS ON|48": {
       "product_id": "clv-45254",
@@ -17420,8 +17410,8 @@
       "category": "냉장고·김치냉장고",
       "management": "BS ON",
       "term": "48",
-      "monthly": 61200,
-      "gift": 102816
+      "monthly": 60000,
+      "gift": 100800
     },
     "clv-45254|BS ON|36": {
       "product_id": "clv-45254",
@@ -17429,8 +17419,62 @@
       "category": "냉장고·김치냉장고",
       "management": "BS ON",
       "term": "36",
-      "monthly": 76300,
-      "gift": 96138
+      "monthly": 74900,
+      "gift": 94374
+    },
+    "clv-45254|스마트렌탈|60": {
+      "product_id": "clv-45254",
+      "name": "디오스 AI 오브제컬렉션 냉장고 832L (오브제컬렉션 크림 그레이/에센스 화이트)",
+      "category": "냉장고·김치냉장고",
+      "management": "스마트렌탈",
+      "term": "60",
+      "monthly": 53500,
+      "gift": 144450
+    },
+    "clv-45254|스마트렌탈|48": {
+      "product_id": "clv-45254",
+      "name": "디오스 AI 오브제컬렉션 냉장고 832L (오브제컬렉션 크림 그레이/에센스 화이트)",
+      "category": "냉장고·김치냉장고",
+      "management": "스마트렌탈",
+      "term": "48",
+      "monthly": 63500,
+      "gift": 137160
+    },
+    "clv-45254|스마트렌탈|36": {
+      "product_id": "clv-45254",
+      "name": "디오스 AI 오브제컬렉션 냉장고 832L (오브제컬렉션 크림 그레이/에센스 화이트)",
+      "category": "냉장고·김치냉장고",
+      "management": "스마트렌탈",
+      "term": "36",
+      "monthly": 79900,
+      "gift": 129438
+    },
+    "clv-45254|현대유버스|60": {
+      "product_id": "clv-45254",
+      "name": "디오스 AI 오브제컬렉션 냉장고 832L (오브제컬렉션 크림 그레이/에센스 화이트)",
+      "category": "냉장고·김치냉장고",
+      "management": "현대유버스",
+      "term": "60",
+      "monthly": 53900,
+      "gift": 113190
+    },
+    "clv-45254|현대유버스|48": {
+      "product_id": "clv-45254",
+      "name": "디오스 AI 오브제컬렉션 냉장고 832L (오브제컬렉션 크림 그레이/에센스 화이트)",
+      "category": "냉장고·김치냉장고",
+      "management": "현대유버스",
+      "term": "48",
+      "monthly": 63700,
+      "gift": 107016
+    },
+    "clv-45254|현대유버스|36": {
+      "product_id": "clv-45254",
+      "name": "디오스 AI 오브제컬렉션 냉장고 832L (오브제컬렉션 크림 그레이/에센스 화이트)",
+      "category": "냉장고·김치냉장고",
+      "management": "현대유버스",
+      "term": "36",
+      "monthly": 80500,
+      "gift": 101430
     },
     "clv-45254|이니렌탈|60": {
       "product_id": "clv-45254",
@@ -17492,8 +17536,8 @@
       "category": "냉장고·김치냉장고",
       "management": "LG헬로렌탈",
       "term": "60",
-      "monthly": 57000,
-      "gift": 205200
+      "monthly": 53100,
+      "gift": 191160
     },
     "clv-37719|LG헬로렌탈|48": {
       "product_id": "clv-37719",
@@ -17654,8 +17698,8 @@
       "category": "냉장고·김치냉장고",
       "management": "BS ON",
       "term": "60",
-      "monthly": 86800,
-      "gift": 182280
+      "monthly": 85000,
+      "gift": 178500
     },
     "clv-56539|BS ON|48": {
       "product_id": "clv-56539",
@@ -17663,8 +17707,8 @@
       "category": "냉장고·김치냉장고",
       "management": "BS ON",
       "term": "48",
-      "monthly": 101400,
-      "gift": 170352
+      "monthly": 99400,
+      "gift": 166992
     },
     "clv-56539|BS ON|36": {
       "product_id": "clv-56539",
@@ -17672,8 +17716,35 @@
       "category": "냉장고·김치냉장고",
       "management": "BS ON",
       "term": "36",
-      "monthly": 126600,
-      "gift": 159516
+      "monthly": 124300,
+      "gift": 156618
+    },
+    "clv-56539|현대유버스|60": {
+      "product_id": "clv-56539",
+      "name": "디오스 AI 오브제컬렉션 냉장고 870L (오브제컬렉션 베이지/베이지)",
+      "category": "냉장고·김치냉장고",
+      "management": "현대유버스",
+      "term": "60",
+      "monthly": 90800,
+      "gift": 190680
+    },
+    "clv-56539|현대유버스|48": {
+      "product_id": "clv-56539",
+      "name": "디오스 AI 오브제컬렉션 냉장고 870L (오브제컬렉션 베이지/베이지)",
+      "category": "냉장고·김치냉장고",
+      "management": "현대유버스",
+      "term": "48",
+      "monthly": 107500,
+      "gift": 180600
+    },
+    "clv-56539|현대유버스|36": {
+      "product_id": "clv-56539",
+      "name": "디오스 AI 오브제컬렉션 냉장고 870L (오브제컬렉션 베이지/베이지)",
+      "category": "냉장고·김치냉장고",
+      "management": "현대유버스",
+      "term": "36",
+      "monthly": 135600,
+      "gift": 170856
     },
     "clv-56539|이니렌탈|60": {
       "product_id": "clv-56539",
@@ -17728,6 +17799,33 @@
       "term": "36",
       "monthly": 142000,
       "gift": 230040
+    },
+    "clv-56539|LG헬로렌탈|60": {
+      "product_id": "clv-56539",
+      "name": "디오스 AI 오브제컬렉션 냉장고 870L (오브제컬렉션 베이지/베이지)",
+      "category": "냉장고·김치냉장고",
+      "management": "LG헬로렌탈",
+      "term": "60",
+      "monthly": 104900,
+      "gift": 377640
+    },
+    "clv-56539|LG헬로렌탈|48": {
+      "product_id": "clv-56539",
+      "name": "디오스 AI 오브제컬렉션 냉장고 870L (오브제컬렉션 베이지/베이지)",
+      "category": "냉장고·김치냉장고",
+      "management": "LG헬로렌탈",
+      "term": "48",
+      "monthly": 127900,
+      "gift": 368352
+    },
+    "clv-56539|LG헬로렌탈|36": {
+      "product_id": "clv-56539",
+      "name": "디오스 AI 오브제컬렉션 냉장고 870L (오브제컬렉션 베이지/베이지)",
+      "category": "냉장고·김치냉장고",
+      "management": "LG헬로렌탈",
+      "term": "36",
+      "monthly": 164900,
+      "gift": 356184
     },
     "clv-46456|BS ON|60": {
       "product_id": "clv-46456",
@@ -18386,41 +18484,14 @@
       "monthly": 62100,
       "gift": 40000
     },
-    "clv-47626|LG헬로렌탈|60": {
-      "product_id": "clv-47626",
-      "name": "비스포크 AI 김치플러스 4도어 김치냉장고 490L (에센셜 다크메탈)",
-      "category": "냉장고·김치냉장고",
-      "management": "LG헬로렌탈",
-      "term": "60",
-      "monthly": 58100,
-      "gift": 209160
-    },
-    "clv-47626|LG헬로렌탈|48": {
-      "product_id": "clv-47626",
-      "name": "비스포크 AI 김치플러스 4도어 김치냉장고 490L (에센셜 다크메탈)",
-      "category": "냉장고·김치냉장고",
-      "management": "LG헬로렌탈",
-      "term": "48",
-      "monthly": 74900,
-      "gift": 215712
-    },
-    "clv-47626|LG헬로렌탈|36": {
-      "product_id": "clv-47626",
-      "name": "비스포크 AI 김치플러스 4도어 김치냉장고 490L (에센셜 다크메탈)",
-      "category": "냉장고·김치냉장고",
-      "management": "LG헬로렌탈",
-      "term": "36",
-      "monthly": 96900,
-      "gift": 209304
-    },
     "clv-47626|현대유버스|60": {
       "product_id": "clv-47626",
       "name": "비스포크 AI 김치플러스 4도어 김치냉장고 490L (에센셜 다크메탈)",
       "category": "냉장고·김치냉장고",
       "management": "현대유버스",
       "term": "60",
-      "monthly": 65500,
-      "gift": 137550
+      "monthly": 61600,
+      "gift": 129360
     },
     "clv-47626|현대유버스|48": {
       "product_id": "clv-47626",
@@ -18428,8 +18499,8 @@
       "category": "냉장고·김치냉장고",
       "management": "현대유버스",
       "term": "48",
-      "monthly": 79900,
-      "gift": 134232
+      "monthly": 73000,
+      "gift": 122640
     },
     "clv-47626|현대유버스|36": {
       "product_id": "clv-47626",
@@ -18437,8 +18508,35 @@
       "category": "냉장고·김치냉장고",
       "management": "현대유버스",
       "term": "36",
-      "monthly": 101900,
-      "gift": 128394
+      "monthly": 92100,
+      "gift": 116046
+    },
+    "clv-47626|LG헬로렌탈|60": {
+      "product_id": "clv-47626",
+      "name": "비스포크 AI 김치플러스 4도어 김치냉장고 490L (에센셜 다크메탈)",
+      "category": "냉장고·김치냉장고",
+      "management": "LG헬로렌탈",
+      "term": "60",
+      "monthly": 69900,
+      "gift": 251640
+    },
+    "clv-47626|LG헬로렌탈|48": {
+      "product_id": "clv-47626",
+      "name": "비스포크 AI 김치플러스 4도어 김치냉장고 490L (에센셜 다크메탈)",
+      "category": "냉장고·김치냉장고",
+      "management": "LG헬로렌탈",
+      "term": "48",
+      "monthly": 84900,
+      "gift": 244512
+    },
+    "clv-47626|LG헬로렌탈|36": {
+      "product_id": "clv-47626",
+      "name": "비스포크 AI 김치플러스 4도어 김치냉장고 490L (에센셜 다크메탈)",
+      "category": "냉장고·김치냉장고",
+      "management": "LG헬로렌탈",
+      "term": "36",
+      "monthly": 109900,
+      "gift": 237384
     },
     "clv-47626|KT가전구독|60": {
       "product_id": "clv-47626",
@@ -18548,6 +18646,33 @@
       "monthly": 110500,
       "gift": 40000
     },
+    "clv-47951|현대유버스|60": {
+      "product_id": "clv-47951",
+      "name": "비스포크 AI 김치플러스 4도어 김치냉장고 490L (에센셜 화이트)",
+      "category": "냉장고·김치냉장고",
+      "management": "현대유버스",
+      "term": "60",
+      "monthly": 61500,
+      "gift": 129150
+    },
+    "clv-47951|현대유버스|48": {
+      "product_id": "clv-47951",
+      "name": "비스포크 AI 김치플러스 4도어 김치냉장고 490L (에센셜 화이트)",
+      "category": "냉장고·김치냉장고",
+      "management": "현대유버스",
+      "term": "48",
+      "monthly": 72500,
+      "gift": 121800
+    },
+    "clv-47951|현대유버스|36": {
+      "product_id": "clv-47951",
+      "name": "비스포크 AI 김치플러스 4도어 김치냉장고 490L (에센셜 화이트)",
+      "category": "냉장고·김치냉장고",
+      "management": "현대유버스",
+      "term": "36",
+      "monthly": 91600,
+      "gift": 115416
+    },
     "clv-47951|LG헬로렌탈|60": {
       "product_id": "clv-47951",
       "name": "비스포크 AI 김치플러스 4도어 김치냉장고 490L (에센셜 화이트)",
@@ -18574,33 +18699,6 @@
       "term": "36",
       "monthly": 107900,
       "gift": 233064
-    },
-    "clv-47951|현대유버스|60": {
-      "product_id": "clv-47951",
-      "name": "비스포크 AI 김치플러스 4도어 김치냉장고 490L (에센셜 화이트)",
-      "category": "냉장고·김치냉장고",
-      "management": "현대유버스",
-      "term": "60",
-      "monthly": 73400,
-      "gift": 154140
-    },
-    "clv-47951|현대유버스|48": {
-      "product_id": "clv-47951",
-      "name": "비스포크 AI 김치플러스 4도어 김치냉장고 490L (에센셜 화이트)",
-      "category": "냉장고·김치냉장고",
-      "management": "현대유버스",
-      "term": "48",
-      "monthly": 85400,
-      "gift": 143472
-    },
-    "clv-47951|현대유버스|36": {
-      "product_id": "clv-47951",
-      "name": "비스포크 AI 김치플러스 4도어 김치냉장고 490L (에센셜 화이트)",
-      "category": "냉장고·김치냉장고",
-      "management": "현대유버스",
-      "term": "36",
-      "monthly": 109500,
-      "gift": 137970
     },
     "clv-47951|KT가전구독|60": {
       "product_id": "clv-47951",
@@ -18710,6 +18808,33 @@
       "monthly": 114600,
       "gift": 40000
     },
+    "clv-47946|현대유버스|60": {
+      "product_id": "clv-47946",
+      "name": "비스포크 AI 김치플러스 4도어 김치냉장고 490L (에센셜 화이트/에센셜 베이지)",
+      "category": "냉장고·김치냉장고",
+      "management": "현대유버스",
+      "term": "60",
+      "monthly": 63600,
+      "gift": 133560
+    },
+    "clv-47946|현대유버스|48": {
+      "product_id": "clv-47946",
+      "name": "비스포크 AI 김치플러스 4도어 김치냉장고 490L (에센셜 화이트/에센셜 베이지)",
+      "category": "냉장고·김치냉장고",
+      "management": "현대유버스",
+      "term": "48",
+      "monthly": 75400,
+      "gift": 126672
+    },
+    "clv-47946|현대유버스|36": {
+      "product_id": "clv-47946",
+      "name": "비스포크 AI 김치플러스 4도어 김치냉장고 490L (에센셜 화이트/에센셜 베이지)",
+      "category": "냉장고·김치냉장고",
+      "management": "현대유버스",
+      "term": "36",
+      "monthly": 95100,
+      "gift": 119826
+    },
     "clv-47946|LG헬로렌탈|60": {
       "product_id": "clv-47946",
       "name": "비스포크 AI 김치플러스 4도어 김치냉장고 490L (에센셜 화이트/에센셜 베이지)",
@@ -18736,33 +18861,6 @@
       "term": "36",
       "monthly": 115900,
       "gift": 250344
-    },
-    "clv-47946|현대유버스|60": {
-      "product_id": "clv-47946",
-      "name": "비스포크 AI 김치플러스 4도어 김치냉장고 490L (에센셜 화이트/에센셜 베이지)",
-      "category": "냉장고·김치냉장고",
-      "management": "현대유버스",
-      "term": "60",
-      "monthly": 75100,
-      "gift": 157710
-    },
-    "clv-47946|현대유버스|48": {
-      "product_id": "clv-47946",
-      "name": "비스포크 AI 김치플러스 4도어 김치냉장고 490L (에센셜 화이트/에센셜 베이지)",
-      "category": "냉장고·김치냉장고",
-      "management": "현대유버스",
-      "term": "48",
-      "monthly": 87900,
-      "gift": 147672
-    },
-    "clv-47946|현대유버스|36": {
-      "product_id": "clv-47946",
-      "name": "비스포크 AI 김치플러스 4도어 김치냉장고 490L (에센셜 화이트/에센셜 베이지)",
-      "category": "냉장고·김치냉장고",
-      "management": "현대유버스",
-      "term": "36",
-      "monthly": 114900,
-      "gift": 144774
     },
     "clv-47946|KT가전구독|60": {
       "product_id": "clv-47946",
@@ -18818,6 +18916,33 @@
       "monthly": 114700,
       "gift": 206460
     },
+    "clv-46466|현대유버스|60": {
+      "product_id": "clv-46466",
+      "name": "비스포크 AI 김치플러스 4도어 김치냉장고 490L (코타 화이트)",
+      "category": "냉장고·김치냉장고",
+      "management": "현대유버스",
+      "term": "60",
+      "monthly": 78600,
+      "gift": 165060
+    },
+    "clv-46466|현대유버스|48": {
+      "product_id": "clv-46466",
+      "name": "비스포크 AI 김치플러스 4도어 김치냉장고 490L (코타 화이트)",
+      "category": "냉장고·김치냉장고",
+      "management": "현대유버스",
+      "term": "48",
+      "monthly": 92900,
+      "gift": 156072
+    },
+    "clv-46466|현대유버스|36": {
+      "product_id": "clv-46466",
+      "name": "비스포크 AI 김치플러스 4도어 김치냉장고 490L (코타 화이트)",
+      "category": "냉장고·김치냉장고",
+      "management": "현대유버스",
+      "term": "36",
+      "monthly": 117400,
+      "gift": 147924
+    },
     "clv-46466|스마트렌탈|60": {
       "product_id": "clv-46466",
       "name": "비스포크 AI 김치플러스 4도어 김치냉장고 490L (코타 화이트)",
@@ -18845,41 +18970,14 @@
       "monthly": 130000,
       "gift": 210600
     },
-    "clv-46466|현대유버스|60": {
-      "product_id": "clv-46466",
-      "name": "비스포크 AI 김치플러스 4도어 김치냉장고 490L (코타 화이트)",
-      "category": "냉장고·김치냉장고",
-      "management": "현대유버스",
-      "term": "60",
-      "monthly": 90500,
-      "gift": 190050
-    },
-    "clv-46466|현대유버스|48": {
-      "product_id": "clv-46466",
-      "name": "비스포크 AI 김치플러스 4도어 김치냉장고 490L (코타 화이트)",
-      "category": "냉장고·김치냉장고",
-      "management": "현대유버스",
-      "term": "48",
-      "monthly": 106600,
-      "gift": 179088
-    },
-    "clv-46466|현대유버스|36": {
-      "product_id": "clv-46466",
-      "name": "비스포크 AI 김치플러스 4도어 김치냉장고 490L (코타 화이트)",
-      "category": "냉장고·김치냉장고",
-      "management": "현대유버스",
-      "term": "36",
-      "monthly": 134300,
-      "gift": 169218
-    },
     "clv-49099|현대유버스|60": {
       "product_id": "clv-49099",
       "name": "비스포크 AI 김치플러스 4도어 김치냉장고 583L (코타 화이트)",
       "category": "냉장고·김치냉장고",
       "management": "현대유버스",
       "term": "60",
-      "monthly": 113900,
-      "gift": 239190
+      "monthly": 105400,
+      "gift": 221340
     },
     "clv-49099|현대유버스|48": {
       "product_id": "clv-49099",
@@ -18887,8 +18985,8 @@
       "category": "냉장고·김치냉장고",
       "management": "현대유버스",
       "term": "48",
-      "monthly": 134800,
-      "gift": 226464
+      "monthly": 124900,
+      "gift": 209832
     },
     "clv-49099|현대유버스|36": {
       "product_id": "clv-49099",
@@ -18896,8 +18994,8 @@
       "category": "냉장고·김치냉장고",
       "management": "현대유버스",
       "term": "36",
-      "monthly": 170100,
-      "gift": 214326
+      "monthly": 157600,
+      "gift": 198576
     },
     "clv-49199|현대유버스|60": {
       "product_id": "clv-49199",
@@ -19493,33 +19591,6 @@
       "monthly": 47400,
       "gift": 102384
     },
-    "clv-39664|현대유버스|60": {
-      "product_id": "clv-39664",
-      "name": "AI 무풍 콤보 벽걸이 에어컨 7평형 (화이트)",
-      "category": "에어컨·청소기",
-      "management": "현대유버스",
-      "term": "60",
-      "monthly": 30600,
-      "gift": 64260
-    },
-    "clv-39664|현대유버스|48": {
-      "product_id": "clv-39664",
-      "name": "AI 무풍 콤보 벽걸이 에어컨 7평형 (화이트)",
-      "category": "에어컨·청소기",
-      "management": "현대유버스",
-      "term": "48",
-      "monthly": 36200,
-      "gift": 60816
-    },
-    "clv-39664|현대유버스|36": {
-      "product_id": "clv-39664",
-      "name": "AI 무풍 콤보 벽걸이 에어컨 7평형 (화이트)",
-      "category": "에어컨·청소기",
-      "management": "현대유버스",
-      "term": "36",
-      "monthly": 45600,
-      "gift": 57456
-    },
     "clv-39664|KT가전구독|60": {
       "product_id": "clv-39664",
       "name": "AI 무풍 콤보 벽걸이 에어컨 7평형 (화이트)",
@@ -19627,33 +19698,6 @@
       "term": "36",
       "monthly": 55200,
       "gift": 69552
-    },
-    "clv-37614|현대유버스|60": {
-      "product_id": "clv-37614",
-      "name": "AI 무풍 콤보 벽걸이 에어컨 11평형",
-      "category": "에어컨·청소기",
-      "management": "현대유버스",
-      "term": "60",
-      "monthly": 38300,
-      "gift": 80430
-    },
-    "clv-37614|현대유버스|48": {
-      "product_id": "clv-37614",
-      "name": "AI 무풍 콤보 벽걸이 에어컨 11평형",
-      "category": "에어컨·청소기",
-      "management": "현대유버스",
-      "term": "48",
-      "monthly": 45200,
-      "gift": 75936
-    },
-    "clv-37614|현대유버스|36": {
-      "product_id": "clv-37614",
-      "name": "AI 무풍 콤보 벽걸이 에어컨 11평형",
-      "category": "에어컨·청소기",
-      "management": "현대유버스",
-      "term": "36",
-      "monthly": 56900,
-      "gift": 71694
     },
     "clv-37614|LG헬로렌탈|60": {
       "product_id": "clv-37614",
@@ -19789,33 +19833,6 @@
       "term": "36",
       "monthly": 82500,
       "gift": 133650
-    },
-    "clv-36335|현대유버스|60": {
-      "product_id": "clv-36335",
-      "name": "AI Q9000 스탠드 에어컨 17평형 (화이트/그레이)",
-      "category": "에어컨·청소기",
-      "management": "현대유버스",
-      "term": "60",
-      "monthly": 48400,
-      "gift": 101640
-    },
-    "clv-36335|현대유버스|48": {
-      "product_id": "clv-36335",
-      "name": "AI Q9000 스탠드 에어컨 17평형 (화이트/그레이)",
-      "category": "에어컨·청소기",
-      "management": "현대유버스",
-      "term": "48",
-      "monthly": 57300,
-      "gift": 96264
-    },
-    "clv-36335|현대유버스|36": {
-      "product_id": "clv-36335",
-      "name": "AI Q9000 스탠드 에어컨 17평형 (화이트/그레이)",
-      "category": "에어컨·청소기",
-      "management": "현대유버스",
-      "term": "36",
-      "monthly": 72300,
-      "gift": 91098
     },
     "clv-36335|이니렌탈|60": {
       "product_id": "clv-36335",
@@ -20525,8 +20542,8 @@
       "category": "에어컨·청소기",
       "management": "현대유버스",
       "term": "60",
-      "monthly": 55100,
-      "gift": 115710
+      "monthly": 55300,
+      "gift": 116130
     },
     "clv-6818|현대유버스|48": {
       "product_id": "clv-6818",
@@ -20534,8 +20551,8 @@
       "category": "에어컨·청소기",
       "management": "현대유버스",
       "term": "48",
-      "monthly": 67400,
-      "gift": 113232
+      "monthly": 65300,
+      "gift": 109704
     },
     "clv-6818|현대유버스|36": {
       "product_id": "clv-6818",
@@ -20543,8 +20560,8 @@
       "category": "에어컨·청소기",
       "management": "현대유버스",
       "term": "36",
-      "monthly": 84700,
-      "gift": 106722
+      "monthly": 82600,
+      "gift": 104076
     },
     "clv-6818|이니렌탈|60": {
       "product_id": "clv-6818",
@@ -20552,8 +20569,8 @@
       "category": "에어컨·청소기",
       "management": "이니렌탈",
       "term": "60",
-      "monthly": 59800,
-      "gift": 179400
+      "monthly": 58400,
+      "gift": 175200
     },
     "clv-6818|이니렌탈|48": {
       "product_id": "clv-6818",
@@ -20561,8 +20578,8 @@
       "category": "에어컨·청소기",
       "management": "이니렌탈",
       "term": "48",
-      "monthly": 70300,
-      "gift": 168720
+      "monthly": 68700,
+      "gift": 164880
     },
     "clv-6818|이니렌탈|36": {
       "product_id": "clv-6818",
@@ -20570,8 +20587,8 @@
       "category": "에어컨·청소기",
       "management": "이니렌탈",
       "term": "36",
-      "monthly": 88400,
-      "gift": 159120
+      "monthly": 86400,
+      "gift": 155520
     },
     "clv-4655|스마트렌탈|60": {
       "product_id": "clv-4655",
@@ -20606,8 +20623,8 @@
       "category": "에어컨·청소기",
       "management": "현대유버스",
       "term": "60",
-      "monthly": 63300,
-      "gift": 132930
+      "monthly": 63200,
+      "gift": 132720
     },
     "clv-4655|현대유버스|48": {
       "product_id": "clv-4655",
@@ -20615,8 +20632,8 @@
       "category": "에어컨·청소기",
       "management": "현대유버스",
       "term": "48",
-      "monthly": 77300,
-      "gift": 129864
+      "monthly": 74800,
+      "gift": 125664
     },
     "clv-4655|현대유버스|36": {
       "product_id": "clv-4655",
@@ -20624,8 +20641,8 @@
       "category": "에어컨·청소기",
       "management": "현대유버스",
       "term": "36",
-      "monthly": 97300,
-      "gift": 122598
+      "monthly": 94400,
+      "gift": 118944
     },
     "clv-4655|이니렌탈|60": {
       "product_id": "clv-4655",
@@ -20633,8 +20650,8 @@
       "category": "에어컨·청소기",
       "management": "이니렌탈",
       "term": "60",
-      "monthly": 69000,
-      "gift": 207000
+      "monthly": 66400,
+      "gift": 199200
     },
     "clv-4655|이니렌탈|48": {
       "product_id": "clv-4655",
@@ -20642,8 +20659,8 @@
       "category": "에어컨·청소기",
       "management": "이니렌탈",
       "term": "48",
-      "monthly": 81100,
-      "gift": 194640
+      "monthly": 78100,
+      "gift": 187440
     },
     "clv-4655|이니렌탈|36": {
       "product_id": "clv-4655",
@@ -20651,8 +20668,8 @@
       "category": "에어컨·청소기",
       "management": "이니렌탈",
       "term": "36",
-      "monthly": 102000,
-      "gift": 183600
+      "monthly": 98200,
+      "gift": 176760
     },
     "clv-4998|스마트렌탈|60": {
       "product_id": "clv-4998",
@@ -20687,8 +20704,8 @@
       "category": "에어컨·청소기",
       "management": "현대유버스",
       "term": "60",
-      "monthly": 68300,
-      "gift": 143430
+      "monthly": 68100,
+      "gift": 143010
     },
     "clv-4998|현대유버스|48": {
       "product_id": "clv-4998",
@@ -20696,8 +20713,8 @@
       "category": "에어컨·청소기",
       "management": "현대유버스",
       "term": "48",
-      "monthly": 83400,
-      "gift": 140112
+      "monthly": 80500,
+      "gift": 135240
     },
     "clv-4998|현대유버스|36": {
       "product_id": "clv-4998",
@@ -20705,8 +20722,8 @@
       "category": "에어컨·청소기",
       "management": "현대유버스",
       "term": "36",
-      "monthly": 104900,
-      "gift": 132174
+      "monthly": 101500,
+      "gift": 127890
     },
     "clv-4998|이니렌탈|60": {
       "product_id": "clv-4998",
@@ -20714,8 +20731,8 @@
       "category": "에어컨·청소기",
       "management": "이니렌탈",
       "term": "60",
-      "monthly": 73400,
-      "gift": 220200
+      "monthly": 70200,
+      "gift": 210600
     },
     "clv-4998|이니렌탈|48": {
       "product_id": "clv-4998",
@@ -20723,8 +20740,8 @@
       "category": "에어컨·청소기",
       "management": "이니렌탈",
       "term": "48",
-      "monthly": 86300,
-      "gift": 207120
+      "monthly": 82500,
+      "gift": 198000
     },
     "clv-4998|이니렌탈|36": {
       "product_id": "clv-4998",
@@ -20732,8 +20749,8 @@
       "category": "에어컨·청소기",
       "management": "이니렌탈",
       "term": "36",
-      "monthly": 108500,
-      "gift": 195300
+      "monthly": 103800,
+      "gift": 186840
     },
     "clv-4999|스마트렌탈|60": {
       "product_id": "clv-4999",
@@ -20768,8 +20785,8 @@
       "category": "에어컨·청소기",
       "management": "현대유버스",
       "term": "60",
-      "monthly": 70300,
-      "gift": 147630
+      "monthly": 70000,
+      "gift": 147000
     },
     "clv-4999|현대유버스|48": {
       "product_id": "clv-4999",
@@ -20777,8 +20794,8 @@
       "category": "에어컨·청소기",
       "management": "현대유버스",
       "term": "48",
-      "monthly": 85900,
-      "gift": 144312
+      "monthly": 82800,
+      "gift": 139104
     },
     "clv-4999|현대유버스|36": {
       "product_id": "clv-4999",
@@ -20786,8 +20803,8 @@
       "category": "에어컨·청소기",
       "management": "현대유버스",
       "term": "36",
-      "monthly": 108000,
-      "gift": 136080
+      "monthly": 104400,
+      "gift": 131544
     },
     "clv-4999|이니렌탈|60": {
       "product_id": "clv-4999",
@@ -20795,8 +20812,8 @@
       "category": "에어컨·청소기",
       "management": "이니렌탈",
       "term": "60",
-      "monthly": 76400,
-      "gift": 229200
+      "monthly": 72800,
+      "gift": 218400
     },
     "clv-4999|이니렌탈|48": {
       "product_id": "clv-4999",
@@ -20804,8 +20821,8 @@
       "category": "에어컨·청소기",
       "management": "이니렌탈",
       "term": "48",
-      "monthly": 89800,
-      "gift": 215520
+      "monthly": 85600,
+      "gift": 205440
     },
     "clv-4999|이니렌탈|36": {
       "product_id": "clv-4999",
@@ -20813,8 +20830,8 @@
       "category": "에어컨·청소기",
       "management": "이니렌탈",
       "term": "36",
-      "monthly": 112900,
-      "gift": 203220
+      "monthly": 107600,
+      "gift": 193680
     },
     "clv-5000|스마트렌탈|60": {
       "product_id": "clv-5000",
@@ -20849,8 +20866,8 @@
       "category": "에어컨·청소기",
       "management": "현대유버스",
       "term": "60",
-      "monthly": 73300,
-      "gift": 153930
+      "monthly": 72900,
+      "gift": 153090
     },
     "clv-5000|현대유버스|48": {
       "product_id": "clv-5000",
@@ -20858,8 +20875,8 @@
       "category": "에어컨·청소기",
       "management": "현대유버스",
       "term": "48",
-      "monthly": 89500,
-      "gift": 150360
+      "monthly": 86200,
+      "gift": 144816
     },
     "clv-5000|현대유버스|36": {
       "product_id": "clv-5000",
@@ -20867,8 +20884,8 @@
       "category": "에어컨·청소기",
       "management": "현대유버스",
       "term": "36",
-      "monthly": 112500,
-      "gift": 141750
+      "monthly": 108900,
+      "gift": 137214
     },
     "clv-5000|이니렌탈|60": {
       "product_id": "clv-5000",
@@ -20876,8 +20893,8 @@
       "category": "에어컨·청소기",
       "management": "이니렌탈",
       "term": "60",
-      "monthly": 79300,
-      "gift": 237900
+      "monthly": 75300,
+      "gift": 225900
     },
     "clv-5000|이니렌탈|48": {
       "product_id": "clv-5000",
@@ -20885,8 +20902,8 @@
       "category": "에어컨·청소기",
       "management": "이니렌탈",
       "term": "48",
-      "monthly": 93200,
-      "gift": 223680
+      "monthly": 88600,
+      "gift": 212640
     },
     "clv-5000|이니렌탈|36": {
       "product_id": "clv-5000",
@@ -20894,8 +20911,8 @@
       "category": "에어컨·청소기",
       "management": "이니렌탈",
       "term": "36",
-      "monthly": 117200,
-      "gift": 210960
+      "monthly": 111400,
+      "gift": 200520
     },
     "clv-12523|현대유버스|60": {
       "product_id": "clv-12523",
@@ -20957,8 +20974,8 @@
       "category": "에어컨·청소기",
       "management": "현대유버스",
       "term": "60",
-      "monthly": 93500,
-      "gift": 196350
+      "monthly": 92500,
+      "gift": 194250
     },
     "clv-36540|현대유버스|48": {
       "product_id": "clv-36540",
@@ -20966,8 +20983,8 @@
       "category": "에어컨·청소기",
       "management": "현대유버스",
       "term": "48",
-      "monthly": 114300,
-      "gift": 192024
+      "monthly": 109600,
+      "gift": 184128
     },
     "clv-36540|현대유버스|36": {
       "product_id": "clv-36540",
@@ -20975,8 +20992,8 @@
       "category": "에어컨·청소기",
       "management": "현대유버스",
       "term": "36",
-      "monthly": 143600,
-      "gift": 180936
+      "monthly": 138200,
+      "gift": 174132
     },
     "clv-36540|이니렌탈|60": {
       "product_id": "clv-36540",
@@ -20984,8 +21001,8 @@
       "category": "에어컨·청소기",
       "management": "이니렌탈",
       "term": "60",
-      "monthly": 107700,
-      "gift": 323100
+      "monthly": 99200,
+      "gift": 297600
     },
     "clv-36540|이니렌탈|48": {
       "product_id": "clv-36540",
@@ -20993,8 +21010,8 @@
       "category": "에어컨·청소기",
       "management": "이니렌탈",
       "term": "48",
-      "monthly": 126600,
-      "gift": 303840
+      "monthly": 116700,
+      "gift": 280080
     },
     "clv-36540|이니렌탈|36": {
       "product_id": "clv-36540",
@@ -21002,8 +21019,8 @@
       "category": "에어컨·청소기",
       "management": "이니렌탈",
       "term": "36",
-      "monthly": 159200,
-      "gift": 286560
+      "monthly": 146700,
+      "gift": 264060
     },
     "clv-36535|스마트렌탈|60": {
       "product_id": "clv-36535",
@@ -21038,8 +21055,8 @@
       "category": "에어컨·청소기",
       "management": "현대유버스",
       "term": "60",
-      "monthly": 109500,
-      "gift": 229950
+      "monthly": 108100,
+      "gift": 227010
     },
     "clv-36535|현대유버스|48": {
       "product_id": "clv-36535",
@@ -21047,8 +21064,8 @@
       "category": "에어컨·청소기",
       "management": "현대유버스",
       "term": "48",
-      "monthly": 133700,
-      "gift": 224616
+      "monthly": 127900,
+      "gift": 214872
     },
     "clv-36535|현대유버스|36": {
       "product_id": "clv-36535",
@@ -21056,8 +21073,8 @@
       "category": "에어컨·청소기",
       "management": "현대유버스",
       "term": "36",
-      "monthly": 168200,
-      "gift": 211932
+      "monthly": 161300,
+      "gift": 203238
     },
     "clv-36535|이니렌탈|60": {
       "product_id": "clv-36535",
@@ -21065,8 +21082,8 @@
       "category": "에어컨·청소기",
       "management": "이니렌탈",
       "term": "60",
-      "monthly": 118400,
-      "gift": 355200
+      "monthly": 109000,
+      "gift": 327000
     },
     "clv-36535|이니렌탈|48": {
       "product_id": "clv-36535",
@@ -21074,8 +21091,8 @@
       "category": "에어컨·청소기",
       "management": "이니렌탈",
       "term": "48",
-      "monthly": 139200,
-      "gift": 334080
+      "monthly": 128100,
+      "gift": 307440
     },
     "clv-36535|이니렌탈|36": {
       "product_id": "clv-36535",
@@ -21083,8 +21100,8 @@
       "category": "에어컨·청소기",
       "management": "이니렌탈",
       "term": "36",
-      "monthly": 175000,
-      "gift": 315000
+      "monthly": 161100,
+      "gift": 289980
     },
     "clv-773|LG헬로렌탈|60": {
       "product_id": "clv-773",
@@ -21653,6 +21670,33 @@
       "monthly": 78900,
       "gift": 184626
     },
+    "clv-20604|스마트렌탈|60": {
+      "product_id": "clv-20604",
+      "name": "안마의자 코지더블 (베이지)",
+      "category": "안마의자",
+      "management": "스마트렌탈",
+      "term": "60",
+      "monthly": 69500,
+      "gift": 187650
+    },
+    "clv-20604|스마트렌탈|48": {
+      "product_id": "clv-20604",
+      "name": "안마의자 코지더블 (베이지)",
+      "category": "안마의자",
+      "management": "스마트렌탈",
+      "term": "48",
+      "monthly": 81900,
+      "gift": 176904
+    },
+    "clv-20604|스마트렌탈|36": {
+      "product_id": "clv-20604",
+      "name": "안마의자 코지더블 (베이지)",
+      "category": "안마의자",
+      "management": "스마트렌탈",
+      "term": "36",
+      "monthly": 99900,
+      "gift": 161838
+    },
     "clv-20604|LG헬로렌탈|60": {
       "product_id": "clv-20604",
       "name": "안마의자 코지더블 (베이지)",
@@ -21860,14 +21904,59 @@
       "monthly": 341300,
       "gift": 409560
     },
-    "clv-4267|이니렌탈|12": {
+    "clv-4267|스마트렌탈|60": {
       "product_id": "clv-4267",
       "name": "안마의자 레전드 시그니쳐",
       "category": "안마의자",
-      "management": "이니렌탈",
-      "term": "12",
-      "monthly": 655400,
-      "gift": 393240
+      "management": "스마트렌탈",
+      "term": "60",
+      "monthly": 159000,
+      "gift": 429300
+    },
+    "clv-4267|스마트렌탈|48": {
+      "product_id": "clv-4267",
+      "name": "안마의자 레전드 시그니쳐",
+      "category": "안마의자",
+      "management": "스마트렌탈",
+      "term": "48",
+      "monthly": 169000,
+      "gift": 365040
+    },
+    "clv-4267|스마트렌탈|36": {
+      "product_id": "clv-4267",
+      "name": "안마의자 레전드 시그니쳐",
+      "category": "안마의자",
+      "management": "스마트렌탈",
+      "term": "36",
+      "monthly": 198500,
+      "gift": 321570
+    },
+    "clv-10401|스마트렌탈|60": {
+      "product_id": "clv-10401",
+      "name": "안마의자 뉴에라",
+      "category": "안마의자",
+      "management": "스마트렌탈",
+      "term": "60",
+      "monthly": 165000,
+      "gift": 445500
+    },
+    "clv-10401|스마트렌탈|48": {
+      "product_id": "clv-10401",
+      "name": "안마의자 뉴에라",
+      "category": "안마의자",
+      "management": "스마트렌탈",
+      "term": "48",
+      "monthly": 189900,
+      "gift": 410184
+    },
+    "clv-10401|스마트렌탈|36": {
+      "product_id": "clv-10401",
+      "name": "안마의자 뉴에라",
+      "category": "안마의자",
+      "management": "스마트렌탈",
+      "term": "36",
+      "monthly": 235000,
+      "gift": 380700
     },
     "clv-10401|LG헬로렌탈|60": {
       "product_id": "clv-10401",
@@ -21931,15 +22020,6 @@
       "term": "24",
       "monthly": 376300,
       "gift": 451560
-    },
-    "clv-10401|이니렌탈|12": {
-      "product_id": "clv-10401",
-      "name": "안마의자 뉴에라",
-      "category": "안마의자",
-      "management": "이니렌탈",
-      "term": "12",
-      "monthly": 722600,
-      "gift": 433560
     },
     "clv-10411|LG헬로렌탈|60": {
       "product_id": "clv-10411",
