@@ -139,6 +139,8 @@ def main():
         'sitemap_url_entries': urls_seen,
         'errors': errors,
         'warnings': warnings,
+        'measurement_status': 'not_queried_by_technical_audit',
+        'measurement_report': 'Private SEO measurements workflow in the private operations repository; authenticated access required.',
         'note': 'Technical SEO audit only; live rankings, traffic and conversions are not queried.'
     }
     report = json.dumps(result, ensure_ascii=False, indent=2)
@@ -151,6 +153,7 @@ def main():
             output.write(f'- 결과: **{result["status"].upper()}**\n')
             output.write(f'- 사이트맵 URL: {urls_seen}, 확인한 정적 페이지: {len(scanned)}\n')
             output.write(f'- 오류: {len(errors)}, 참고사항: {len(warnings)}\n')
+            output.write('- 검색·방문·상담 실측: 이 정적 검사에서는 조회하지 않음. 비공개 실측 워크플로의 소스별 인증·기간·완료 상태를 별도 확인해야 함.\n')
             for label, messages in (('오류', errors), ('참고', warnings)):
                 if messages:
                     output.write('\n### ' + label + '\n')
