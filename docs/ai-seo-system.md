@@ -106,3 +106,15 @@
 - 사용자측 추가 신청 절차는 현재 필요하지 않다. **이전 취소**를 누르지 않고, 기존 및 새 Google Search Console 속성을 유지한다. 호스팅케이알 인증 TXT와 GitHub Pages 기존 URL 리디렉션(HTTPS 포함)을 유지하며, 새 도메인 메인·렌탈·요금계산기·만덕 검색 페이지·웅비월드의 접근성과 canonical/사이트맵을 모니터링한다.
 - 11/03을 기준으로 11/10, 11/17, 12/01 검색 유입/색인 데이터를 비교하고, 가능하면 3~6개월 이상 기존/새 도메인의 노출·클릭 추이를 함께 본다. 아직 수집되지 않은 검색 통계는 생성하거나 성과로 간주하지 않는다.
 - 기술부채/추가 점검: GitHub Actions 'Site regression guard'의 마지막 확인 실패(홈페이지 추천 카테고리 회귀 검사), 렌탈 모바일 스모크/사이트 무결성 검사 실패, 새 도메인 통계 API 응답·CORS 및 실제 전환 기록 여부는 별도 진단이 필요. Pages 배포 성공과 각 기능 테스트 성공을 혼동하지 않는다.
+
+
+### 2026-11-04 갤럭시 A18·NEW 전용 모델 및 추천 API 장애 복구
+- 사용자 제공 제로노트 2026-10-30 갤럭시 A18 LTE SKT 화면: 모델 `SM-A185N`, 출고가 425,700원, T플랜 세이브 월 33,000원. 실제 공개 사이트 상품 데이터에서 SKT `SKT-XD-3065`, KT `KT-XD-3066`, LGU+ `LG-XD-3067` 3사 각각 425,700원으로 검증. SKT 번호이동 T플랜 세이브 `SKT-XP-969` 조건과 공개 지원금 기록도 기존 소스에서 확인(실제 최종 견적은 실시간 계산/상담 기준).
+- 구형 갤럭시 S26(단 FE는 별도 모델로 유지), 아이폰17 계열 가격 버전 27개(통신사당 9개)를 NEW 가격 버전과 혼합 노출하지 않도록 `data/catalog.json`에서 제거, `data/supports.json`의 참조 ID도 제거. 모델 수 141→114. 이 작업은 가격/보조금 수치를 새로 만들지 않았으며 `Apply verified handset NEW lineup 2026-11-04` GitHub Actions 실행 `41734499698` 성공.
+- `.github/scripts/handset_model_policy.py`와 `daily_wireless_sync.py`에 동일한 NEW-only 필터를 넣어 다음 일일 동기화에 구 버전이 다시 섞이지 않도록 설정. `src/rates.js`와 `assets/rates.min.js`의 직접 기종선택 목록에서도 방어 필터.
+- `assets/recommend-api-bridge.min.js`에서 SKT 가성비폰 추천을 퀀텀7 대신 A18 LTE 번호이동/T플랜 세이브 33,000원으로 변경. 추천/간편 비교의 서버 응답에서 퇴역 버전을 제외하며 서버 연결 실패 시 무한 로딩을 명확한 오류 메시지/확인 가능 항목으로 바꿈. `assets/rates-easy-journey.css`에서 모바일 통신사/가입유형 선택 박스 높이·정렬을 통일, `rates.html`에 캐시 갱신 버전 적용.
+- **확인된 핵심 장애 원인:** 2026-11-03 독립 도메인 이전 후 `woongbi-quote-api.woongbts.workers.dev` 프로덕션 API가 기존 `https://woongbts.github.io` Origin만 허용하여 `https://woongbts.kr` 요청의 CORS preflight가 HTTP 403이었다. 사용자 화면 무한 로딩의 주요 원인. 진단 실행 `41734325435`.
+- API 원본(별도 GitHub 저장소 `woongbts/woongbi-core`, 브랜치 `hardening/server-quote-api`)의 `server/worker.js`에서 신/구 두 Origin 허용으로 수정, `server/mobile-quote.js`, `server/mobile-recommend.js`, `server/plan-recommend.js`, `server/purpose-recommend-v2.js`의 `SITE`를 공식 `https://woongbts.kr`로 변경. 테스트/배포 워크플로의 최신 브라우저 안내 화면 요구사항도 업데이트.
+- 새 Cloudflare 배포 직후 GitHub 진단 `41735969423` 성공: 신규 도메인과 기존 도메인 양쪽에서 `recommend/purpose`, `quote/mobile`, `recommend/quick`, `recommend/plans` 모두 OPTIONS HTTP 204 및 올바른 Allow-Origin. `data/catalog.json`, `plans.json`, `supports.json` 모두 HTTP 200. API 실제 POST 및 요금/UI 전반 검증은 별도로 계속 모니터링.
+- `Phone guided UX smoke` 실행 `41736265977` 성공(고객 화면 인위적 시험 견적 사용 테스트). 일일 무선 데이터 작업의 `validate_site.py` 별도 UI 전체 검사 실패가 검증된 통신 자료 갱신까지 차단하지 않도록 방어하되, 원본 데이터·기종 정책·지원금·JS 검증은 계속 필수.
+- 이후 고객 실기기 화면에서 SKT A18 LTE 및 3사 NEW 선택·추천 결과, 지원금 정보, 상담 연결을 확인한다. **모든 3사 신제품 정책의 실판매·할인 조건은 개통 시 재확인**. S26 FE는 별도의 모델로 남겨뒀고, 일부 17e 통신사는 NEW 전용이 없을 경우 해당 구버전을 보여주지 않는다.
