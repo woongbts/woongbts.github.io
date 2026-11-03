@@ -21,6 +21,14 @@ const assert=require('node:assert/strict');
    const category=JSON.parse(route.request().postData()||'{}').category;
    return route.fulfill({status:200,contentType:'application/json',headers:{'access-control-allow-origin':'*'},body:JSON.stringify({...fake,description:category+' 테스트 추천'})});
  });
+ // Premium recommendations recheck quotes from the server.
+ // Mock both verified methods so this offline guided test can prove the submitted price.
+ await page.route('https://woongbi-quote-api.woongbts.workers.dev/quote/mobile',route=>{
+   if(route.request().method()==='OPTIONS')return route.fulfill({status:204,headers:{'access-control-allow-origin':'*','access-control-allow-methods':'POST, OPTIONS','access-control-allow-headers':'content-type'}});
+   const input=JSON.parse(route.request().postData()||'{}');
+   const quote=input.method==='contract'?fake.items[0].contract:fake.items[0].support;
+   return route.fulfill({status:200,contentType:'application/json',headers:{'access-control-allow-origin':'*'},body:JSON.stringify({ok:true,quote})});
+ });
  await page.route('https://woongbi-consent.woongbts.workers.dev/api/store-application-policy',route=>{
   return route.fulfill({status:200,contentType:'application/json',headers:{'access-control-allow-origin':'*'},body:JSON.stringify({ok:true,policy:{version:'EASY-SMOKE',purpose:'상담 접수',items:{required:'성함·전화번호'},retention:'90일',refusal:'동의 거부 가능'}})});
  });
