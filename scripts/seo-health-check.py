@@ -9,7 +9,7 @@ import sys
 from urllib.parse import urlsplit, unquote
 import xml.etree.ElementTree as ET
 
-SITE = 'https://woongbts.github.io'
+SITE = 'https://woongbts.kr'
 ROOT = Path(sys.argv[1]).resolve() if len(sys.argv) > 1 else Path(__file__).resolve().parents[1]
 SITEMAPS = ('sitemap.xml', 'rental/sitemap.xml', 'rental/food-disposer-sitemap.xml')
 CRITICAL = ('index.html', 'rates.html', 'rental/index.html')
@@ -44,7 +44,7 @@ class Head(HTMLParser):
 
 def audit_page(location):
     url = urlsplit(location)
-    if url.scheme != 'https' or url.netloc != 'woongbts.github.io' or url.query or url.fragment:
+    if url.scheme != 'https' or url.netloc != 'woongbts.kr' or url.query or url.fragment:
         errors.append('External/noncanonical sitemap address: ' + location)
         return
     path = unquote(url.path)

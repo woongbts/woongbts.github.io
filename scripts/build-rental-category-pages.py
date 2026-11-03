@@ -109,12 +109,12 @@ def product_card(product):
 
 
 def page(category, slug, title, desc, products, policy_date):
-    canonical = f"https://woongbts.github.io/rental/{slug}/"
+    canonical = f"https://woongbts.kr/rental/{slug}/"
     page_title = f"{title} | 월요금·사은품 비교 | 웅비렌탈"
     top = sorted(products, key=lambda p:(BRAND_RANK.get(str(p.get("brand") or ""),99), metrics(p)[0] or 999999999, str(p.get("name") or "")))[:12]
     cards = "\n".join(product_card(p) for p in top)
     items = [
-        {"@type":"ListItem","position":i+1,"url":f"https://woongbts.github.io/rental/product/{quote(str(p.get('id') or ''),safe='-_')}/","name":str(p.get("name") or "")}
+        {"@type":"ListItem","position":i+1,"url":f"https://woongbts.kr/rental/product/{quote(str(p.get('id') or ''),safe='-_')}/","name":str(p.get("name") or "")}
         for i,p in enumerate(top)
     ]
     jsonld = json.dumps({"@context":"https://schema.org","@type":"ItemList","name":title,"itemListElement":items},ensure_ascii=False,separators=(",",":"))
@@ -133,7 +133,7 @@ def page(category, slug, title, desc, products, policy_date):
   <meta property="og:title" content="{html.escape(page_title,quote=True)}">
   <meta property="og:description" content="{html.escape(desc,quote=True)}">
   <meta property="og:url" content="{canonical}">
-  <meta property="og:image" content="https://woongbts.github.io/rental/assets/woongbi-rental-icon-180.png">
+  <meta property="og:image" content="https://woongbts.kr/rental/assets/woongbi-rental-icon-180.png">
   <script type="application/ld+json">{jsonld}</script>
   <title>{html.escape(page_title)}</title>
   <meta name="theme-color" content="#168FD1">

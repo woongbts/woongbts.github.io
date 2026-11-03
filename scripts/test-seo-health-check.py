@@ -27,7 +27,7 @@ class ProductPageChecks(unittest.TestCase):
         page = audit.ROOT / "rental/product/example/index.html"
         page.parent.mkdir(parents=True)
         page.write_text('<title>Example</title><meta name="description" content="Example">'
-                        '<link rel="canonical" href="https://woongbts.github.io/wrong/">',
+                        '<link rel="canonical" href="https://woongbts.kr/wrong/">',
                         encoding="utf-8")
         audit.audit_page(self.url)
         self.assertTrue(any("Wrong canonical" in e for e in audit.errors))

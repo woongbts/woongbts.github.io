@@ -61,7 +61,7 @@ def replace_meta(source: str, product: dict) -> str:
     model = str(product.get("model") or "")
     category = str(product.get("category") or "")
     minimum, maximum_monthly, maximum_gift, offer_count = metrics(product)
-    canonical = f"https://woongbts.github.io/rental/product/{quote(pid, safe='-_')}/"
+    canonical = f"https://woongbts.kr/rental/product/{quote(pid, safe='-_')}/"
     title = f"{brand} {name} 렌탈 | 웅비렌탈".strip()
     desc_parts = [f"모델 {model}" if model else ""]
     if minimum is not None:
@@ -73,9 +73,9 @@ def replace_meta(source: str, product: dict) -> str:
 
     image = str(product.get("image") or "").strip()
     if image.startswith("assets/"):
-        image = "https://woongbts.github.io/rental/" + image
+        image = "https://woongbts.kr/rental/" + image
     elif not image:
-        image = "https://woongbts.github.io/rental/assets/woongbi-rental-icon-180.png"
+        image = "https://woongbts.kr/rental/assets/woongbi-rental-icon-180.png"
 
     jsonld = {
         "@context": "https://schema.org",
