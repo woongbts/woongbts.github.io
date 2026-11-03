@@ -9,6 +9,7 @@ import urllib.parse
 import urllib.request
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from official_support import verified_lgu_support
+from handset_model_policy import source_row_is_retired, catalog_device_is_retired
 from datetime import datetime, timedelta
 from zoneinfo import ZoneInfo
 
@@ -137,6 +138,9 @@ def select_current_devices(raw_devices, carrier, today=TODAY_DATE):
     candidates, deferred = [], []
     cutoff = (today - timedelta(days=RECENT_DEVICE_DAYS)).isoformat()
     for order, device in enumerate(raw_devices, 1):
+        # Public rows can retain retired non-NEW pricing codes. Never publish them.
+        if source_row_is_retired(device):
+            continue
         release = clean(device.get("release_dt"))
         price = money(device.get("factory_price"))
         model_code = clean(device.get("device_name"))
@@ -294,6 +298,14 @@ def validate_dataset(old_catalog, old_plans, old_supports, catalog, plan_data, s
         )
         if any(token in normalized_name for token in blocked_plan_tokens):
             raise RuntimeError(f"non-handset plan leaked into public catalog: {pid} {plan.get('name')}")
+
+    retired = [d.get('id') for d in devices if catalog_device_is_retired(d)]
+    if retired:
+        raise RuntimeError(f'retired non-NEW models returned: {retired[:8]}')
+    for carrier in ('SKT', 'KT', 'LGU+'):
+        a18 = [d for d in devices if d.get('carrier') == carrier and '갤럭시 A18 LTE' in str(d.get('name') or '')]
+        if not a18 or not all(d.get('retail_price') == 425700 for d in a18):
+            raise RuntimeError(f'Galaxy A18 official price/availability not verified: {carrier}')
 
     device_ids = set()
     for device in devices:
