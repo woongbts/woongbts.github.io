@@ -180,7 +180,7 @@ function assert(condition, message) {
 
   await page.goto('http://127.0.0.1:4173/rental/water-purifier/', {waitUntil:'domcontentloaded'});
   const categoryCanonical = await page.locator('link[rel="canonical"]').getAttribute('href');
-  assert(categoryCanonical === 'https://woongbts.github.io/rental/water-purifier/', '정수기 카테고리 canonical이 올바르지 않습니다.');
+  assert(categoryCanonical === 'https://woongbts.kr/rental/water-purifier/', '정수기 카테고리 canonical이 올바르지 않습니다.');
   assert(await page.locator('.category-product').count() >= 1, '정수기 카테고리 SEO 페이지에 상품이 없습니다.');
   const categoryAiHref = await page.locator('.category-hero-actions .primary').getAttribute('href');
   assert(categoryAiHref && categoryAiHref.includes('ai=1') && categoryAiHref.includes('cat='), '카테고리 페이지 AI 추천 연결이 없습니다.');
