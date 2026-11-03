@@ -1,6 +1,6 @@
 """Import the public Zeronote card feed. Publish a complete snapshot or nothing.
 
-Run monthly on the 5th (Asia/Seoul), and manually when a policy changes.
+Run monthly on the 3rd (Asia/Seoul), and manually when a policy changes.
 The source's discount field can mix basic and promotional caps; retain labels,
 source terms and separate these rows rather than treating the largest as basic.
 """
