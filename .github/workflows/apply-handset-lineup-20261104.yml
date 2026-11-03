@@ -1,0 +1,42 @@
+name: Apply verified handset NEW lineup 2026-11-04
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/apply-handset-lineup-20261104.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: daily-wireless-data-refresh
+  cancel-in-progress: false
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate code and source data before writing
+        run: |
+          python -m py_compile .github/scripts/handset_model_policy.py .github/scripts/daily_wireless_sync.py scripts/apply-handset-lineup-20261104.py
+          python .github/scripts/test_daily_wireless_sync.py
+      - name: Apply verified source-only model and support policy
+        run: python scripts/apply-handset-lineup-20261104.py
+      - name: Commit updated public data only
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add data/catalog.json data/supports.json
+          if git diff --cached --quiet; then
+            echo "Data already matches store policy."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Hide discontinued S26/iPhone17 price SKUs and retain verified A18 for three carriers"
+          git pull --rebase origin main
+          git push origin HEAD:main
