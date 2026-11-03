@@ -1,0 +1,2374 @@
+{
+  "sourceDate": "2026-11-03",
+  "part": 1,
+  "coverage": {
+    "start": 0,
+    "end": 60,
+    "total": 60,
+    "verified": 58,
+    "failed": 2
+  },
+  "verified": {
+    "clv-23052": [
+      {
+        "provider": "이니렌탈",
+        "term": 60,
+        "monthly": 25700
+      },
+      {
+        "provider": "이니렌탈",
+        "term": 48,
+        "monthly": 30600
+      },
+      {
+        "provider": "이니렌탈",
+        "term": 36,
+        "monthly": 39100
+      },
+      {
+        "provider": "이니렌탈",
+        "term": 24,
+        "monthly": 56200
+      },
+      {
+        "provider": "이니렌탈",
+        "term": 12,
+        "monthly": 107900
+      },
+      {
+        "provider": "현대유버스",
+        "term": 60,
+        "monthly": 25900
+      },
+      {
+        "provider": "현대유버스",
+        "term": 48,
+        "monthly": 30600
+      },
+      {
+        "provider": "현대유버스",
+        "term": 36,
+        "monthly": 38600
+      },
+      {
+        "provider": "BS ON",
+        "term": 48,
+        "monthly": 29000
+      }
+    ],
+    "clv-13528": [
+      {
+        "provider": "현대유버스",
+        "term": 39,
+        "monthly": 24900
+      }
+    ],
+    "clv-5733": [
+      {
+        "provider": "스마트렌탈",
+        "term": 60,
+        "monthly": 33900
+      },
+      {
+        "provider": "스마트렌탈",
+        "term": 48,
+        "monthly": 39900
+      },
+      {
+        "provider": "스마트렌탈",
+        "term": 36,
+        "monthly": 50900
+      }
+    ],
+    "clv-8081": [
+      {
+        "provider": "BS ON",
+        "term": 60,
+        "monthly": 72900
+      }
+    ],
+    "clv-12646": [
+      {
+        "provider": "이니렌탈",
+        "term": 60,
+        "monthly": 29800
+      },
+      {
+        "provider": "이니렌탈",
+        "term": 48,
+        "monthly": 35600
+      },
+      {
+        "provider": "이니렌탈",
+        "term": 36,
+        "monthly": 45400
+      },
+      {
+        "provider": "이니렌탈",
+        "term": 24,
+        "monthly": 65200
+      },
+      {
+        "provider": "이니렌탈",
+        "term": 12,
+        "monthly": 125300
+      },
+      {
+        "provider": "BS ON",
+        "term": 48,
+        "monthly": 33000
+      },
+      {
+        "provider": "현대유버스",
+        "term": 48,
+        "monthly": 34600
+      },
+      {
+        "provider": "현대유버스",
+        "term": 36,
+        "monthly": 43700
+      }
+    ],
+    "clv-12617": [
+      {
+        "provider": "이니렌탈",
+        "term": 60,
+        "monthly": 22300
+      },
+      {
+        "provider": "이니렌탈",
+        "term": 48,
+        "monthly": 26200
+      },
+      {
+        "provider": "이니렌탈",
+        "term": 36,
+        "monthly": 33000
+      },
+      {
+        "provider": "스마트렌탈",
+        "term": 60,
+        "monthly": 24500
+      },
+      {
+        "provider": "스마트렌탈",
+        "term": 48,
+        "monthly": 28500
+      },
+      {
+        "provider": "스마트렌탈",
+        "term": 36,
+        "monthly": 35500
+      },
+      {
+        "provider": "LG헬로렌탈",
+        "term": 60,
+        "monthly": 27900
+      },
+      {
+        "provider": "LG헬로렌탈",
+        "term": 48,
+        "monthly": 32900
+      },
+      {
+        "provider": "LG헬로렌탈",
+        "term": 36,
+        "monthly": 43900
+      }
+    ],
+    "clv-36320": [
+      {
+        "provider": "LG헬로렌탈",
+        "term": 60,
+        "monthly": 54000
+      },
+      {
+        "provider": "LG헬로렌탈",
+        "term": 48,
+        "monthly": 65900
+      },
+      {
+        "provider": "LG헬로렌탈",
+        "term": 36,
+        "monthly": 84900
+      },
+      {
+        "provider": "BS ON",
+        "term": 60,
+        "monthly": 58300
+      },
+      {
+        "provider": "BS ON",
+        "term": 48,
+        "monthly": 67900
+      },
+      {
+        "provider": "BS ON",
+        "term": 36,
+        "monthly": 84300
+      },
+      {
+        "provider": "이니렌탈",
+        "term": 60,
+        "monthly": 61500
+      },
+      {
+        "provider": "이니렌탈",
+        "term": 48,
+        "monthly": 72400
+      },
+      {
+        "provider": "이니렌탈",
+        "term": 36,
+        "monthly": 91000
+      },
+      {
+        "provider": "현대유버스",
+        "term": 60,
+        "monthly": 62100
+      },
+      {
+        "provider": "현대유버스",
+        "term": 48,
+        "monthly": 73400
+      },
+      {
+        "provider": "현대유버스",
+        "term": 36,
+        "monthly": 92600
+      },
+      {
+        "provider": "스마트렌탈",
+        "term": 60,
+        "monthly": 67500
+      },
+      {
+        "provider": "스마트렌탈",
+        "term": 48,
+        "monthly": 78500
+      },
+      {
+        "provider": "스마트렌탈",
+        "term": 36,
+        "monthly": 97500
+      },
+      {
+        "provider": "KT가전구독",
+        "term": 60,
+        "monthly": 54800
+      },
+      {
+        "provider": "KT가전구독",
+        "term": 48,
+        "monthly": 67300
+      },
+      {
+        "provider": "KT가전구독",
+        "term": 36,
+        "monthly": 88600
+      }
+    ],
+    "clv-36310": [
+      {
+        "provider": "이니렌탈",
+        "term": 60,
+        "monthly": 61500
+      },
+      {
+        "provider": "이니렌탈",
+        "term": 48,
+        "monthly": 72400
+      },
+      {
+        "provider": "이니렌탈",
+        "term": 36,
+        "monthly": 91000
+      },
+      {
+        "provider": "스마트렌탈",
+        "term": 60,
+        "monthly": 67500
+      },
+      {
+        "provider": "스마트렌탈",
+        "term": 48,
+        "monthly": 78500
+      },
+      {
+        "provider": "스마트렌탈",
+        "term": 36,
+        "monthly": 97500
+      }
+    ],
+    "clv-35940": [
+      {
+        "provider": "이니렌탈",
+        "term": 60,
+        "monthly": 66300
+      },
+      {
+        "provider": "이니렌탈",
+        "term": 48,
+        "monthly": 77900
+      },
+      {
+        "provider": "이니렌탈",
+        "term": 36,
+        "monthly": 98000
+      },
+      {
+        "provider": "스마트렌탈",
+        "term": 60,
+        "monthly": 72500
+      },
+      {
+        "provider": "스마트렌탈",
+        "term": 48,
+        "monthly": 85000
+      },
+      {
+        "provider": "스마트렌탈",
+        "term": 36,
+        "monthly": 105500
+      }
+    ],
+    "clv-58159": [
+      {
+        "provider": "스마트렌탈",
+        "term": 60,
+        "monthly": 64500
+      },
+      {
+        "provider": "스마트렌탈",
+        "term": 48,
+        "monthly": 81000
+      },
+      {
+        "provider": "스마트렌탈",
+        "term": 36,
+        "monthly": 103000
+      },
+      {
+        "provider": "LG헬로렌탈",
+        "term": 60,
+        "monthly": 66900
+      },
+      {
+        "provider": "LG헬로렌탈",
+        "term": 48,
+        "monthly": 81900
+      },
+      {
+        "provider": "LG헬로렌탈",
+        "term": 36,
+        "monthly": 106900
+      }
+    ],
+    "clv-55935": [
+      {
+        "provider": "LG헬로렌탈",
+        "term": 60,
+        "monthly": 66900
+      },
+      {
+        "provider": "LG헬로렌탈",
+        "term": 48,
+        "monthly": 84900
+      },
+      {
+        "provider": "LG헬로렌탈",
+        "term": 36,
+        "monthly": 111800
+      }
+    ],
+    "clv-35750": [
+      {
+        "provider": "LG헬로렌탈",
+        "term": 60,
+        "monthly": 40800
+      },
+      {
+        "provider": "LG헬로렌탈",
+        "term": 48,
+        "monthly": 50800
+      },
+      {
+        "provider": "LG헬로렌탈",
+        "term": 36,
+        "monthly": 67800
+      },
+      {
+        "provider": "BS ON",
+        "term": 60,
+        "monthly": 48200
+      },
+      {
+        "provider": "BS ON",
+        "term": 48,
+        "monthly": 56500
+      },
+      {
+        "provider": "BS ON",
+        "term": 36,
+        "monthly": 70700
+      },
+      {
+        "provider": "현대유버스",
+        "term": 60,
+        "monthly": 48300
+      },
+      {
+        "provider": "현대유버스",
+        "term": 48,
+        "monthly": 58900
+      },
+      {
+        "provider": "현대유버스",
+        "term": 36,
+        "monthly": 74900
+      },
+      {
+        "provider": "이니렌탈",
+        "term": 60,
+        "monthly": 49100
+      },
+      {
+        "provider": "이니렌탈",
+        "term": 48,
+        "monthly": 57700
+      },
+      {
+        "provider": "이니렌탈",
+        "term": 36,
+        "monthly": 72600
+      },
+      {
+        "provider": "스마트렌탈",
+        "term": 60,
+        "monthly": 53900
+      },
+      {
+        "provider": "스마트렌탈",
+        "term": 48,
+        "monthly": 62500
+      },
+      {
+        "provider": "스마트렌탈",
+        "term": 36,
+        "monthly": 77900
+      },
+      {
+        "provider": "KT가전구독",
+        "term": 60,
+        "monthly": 47900
+      },
+      {
+        "provider": "KT가전구독",
+        "term": 48,
+        "monthly": 59100
+      },
+      {
+        "provider": "KT가전구독",
+        "term": 36,
+        "monthly": 77800
+      }
+    ],
+    "clv-35755": [
+      {
+        "provider": "BS ON",
+        "term": 60,
+        "monthly": 52800
+      },
+      {
+        "provider": "BS ON",
+        "term": 48,
+        "monthly": 61900
+      },
+      {
+        "provider": "BS ON",
+        "term": 36,
+        "monthly": 77600
+      },
+      {
+        "provider": "이니렌탈",
+        "term": 60,
+        "monthly": 53800
+      },
+      {
+        "provider": "이니렌탈",
+        "term": 48,
+        "monthly": 63200
+      },
+      {
+        "provider": "이니렌탈",
+        "term": 36,
+        "monthly": 79500
+      },
+      {
+        "provider": "현대유버스",
+        "term": 60,
+        "monthly": 58200
+      },
+      {
+        "provider": "현대유버스",
+        "term": 48,
+        "monthly": 68900
+      },
+      {
+        "provider": "현대유버스",
+        "term": 36,
+        "monthly": 86900
+      },
+      {
+        "provider": "스마트렌탈",
+        "term": 60,
+        "monthly": 58900
+      },
+      {
+        "provider": "스마트렌탈",
+        "term": 48,
+        "monthly": 69000
+      },
+      {
+        "provider": "스마트렌탈",
+        "term": 36,
+        "monthly": 85500
+      },
+      {
+        "provider": "LG헬로렌탈",
+        "term": 60,
+        "monthly": 58900
+      },
+      {
+        "provider": "LG헬로렌탈",
+        "term": 48,
+        "monthly": 73300
+      },
+      {
+        "provider": "LG헬로렌탈",
+        "term": 36,
+        "monthly": 97200
+      }
+    ],
+    "clv-35925": [
+      {
+        "provider": "BS ON",
+        "term": 60,
+        "monthly": 52800
+      },
+      {
+        "provider": "BS ON",
+        "term": 48,
+        "monthly": 61900
+      },
+      {
+        "provider": "BS ON",
+        "term": 36,
+        "monthly": 77600
+      },
+      {
+        "provider": "이니렌탈",
+        "term": 60,
+        "monthly": 53800
+      },
+      {
+        "provider": "이니렌탈",
+        "term": 48,
+        "monthly": 63200
+      },
+      {
+        "provider": "이니렌탈",
+        "term": 36,
+        "monthly": 79500
+      }
+    ],
+    "clv-35765": [
+      {
+        "provider": "BS ON",
+        "term": 60,
+        "monthly": 56800
+      },
+      {
+        "provider": "BS ON",
+        "term": 48,
+        "monthly": 66100
+      },
+      {
+        "provider": "BS ON",
+        "term": 36,
+        "monthly": 82100
+      },
+      {
+        "provider": "이니렌탈",
+        "term": 60,
+        "monthly": 59100
+      },
+      {
+        "provider": "이니렌탈",
+        "term": 48,
+        "monthly": 69500
+      },
+      {
+        "provider": "이니렌탈",
+        "term": 36,
+        "monthly": 87400
+      },
+      {
+        "provider": "스마트렌탈",
+        "term": 60,
+        "monthly": 65000
+      },
+      {
+        "provider": "스마트렌탈",
+        "term": 48,
+        "monthly": 76000
+      },
+      {
+        "provider": "스마트렌탈",
+        "term": 36,
+        "monthly": 93900
+      },
+      {
+        "provider": "LG헬로렌탈",
+        "term": 60,
+        "monthly": 67100
+      },
+      {
+        "provider": "LG헬로렌탈",
+        "term": 48,
+        "monthly": 82500
+      },
+      {
+        "provider": "LG헬로렌탈",
+        "term": 36,
+        "monthly": 108400
+      },
+      {
+        "provider": "KT가전구독",
+        "term": 60,
+        "monthly": 54200
+      },
+      {
+        "provider": "KT가전구독",
+        "term": 48,
+        "monthly": 66500
+      },
+      {
+        "provider": "KT가전구독",
+        "term": 36,
+        "monthly": 87600
+      }
+    ],
+    "clv-35950": [
+      {
+        "provider": "이니렌탈",
+        "term": 60,
+        "monthly": 58600
+      },
+      {
+        "provider": "이니렌탈",
+        "term": 48,
+        "monthly": 68900
+      },
+      {
+        "provider": "이니렌탈",
+        "term": 36,
+        "monthly": 86600
+      },
+      {
+        "provider": "현대유버스",
+        "term": 60,
+        "monthly": 63300
+      },
+      {
+        "provider": "현대유버스",
+        "term": 48,
+        "monthly": 75000
+      },
+      {
+        "provider": "현대유버스",
+        "term": 36,
+        "monthly": 94600
+      }
+    ],
+    "clv-21916": [
+      {
+        "provider": "현대유버스",
+        "term": 60,
+        "monthly": 19000
+      },
+      {
+        "provider": "현대유버스",
+        "term": 48,
+        "monthly": 22700
+      },
+      {
+        "provider": "현대유버스",
+        "term": 36,
+        "monthly": 28500
+      },
+      {
+        "provider": "BS ON",
+        "term": 60,
+        "monthly": 22100
+      },
+      {
+        "provider": "BS ON",
+        "term": 48,
+        "monthly": 25600
+      },
+      {
+        "provider": "BS ON",
+        "term": 36,
+        "monthly": 31800
+      },
+      {
+        "provider": "KT가전구독",
+        "term": 60,
+        "monthly": 18300
+      },
+      {
+        "provider": "KT가전구독",
+        "term": 48,
+        "monthly": 22600
+      },
+      {
+        "provider": "KT가전구독",
+        "term": 36,
+        "monthly": 29800
+      }
+    ],
+    "clv-55590": [
+      {
+        "provider": "이니렌탈",
+        "term": 60,
+        "monthly": 118100
+      },
+      {
+        "provider": "이니렌탈",
+        "term": 48,
+        "monthly": 138800
+      },
+      {
+        "provider": "이니렌탈",
+        "term": 36,
+        "monthly": 174500
+      },
+      {
+        "provider": "BS ON",
+        "term": 60,
+        "monthly": 120300
+      },
+      {
+        "provider": "BS ON",
+        "term": 48,
+        "monthly": 139800
+      },
+      {
+        "provider": "BS ON",
+        "term": 36,
+        "monthly": 173400
+      }
+    ],
+    "clv-55543": [
+      {
+        "provider": "LG헬로렌탈",
+        "term": 60,
+        "monthly": 95900
+      },
+      {
+        "provider": "LG헬로렌탈",
+        "term": 48,
+        "monthly": 116900
+      },
+      {
+        "provider": "LG헬로렌탈",
+        "term": 36,
+        "monthly": 150900
+      }
+    ],
+    "clv-18652": [
+      {
+        "provider": "현대유버스",
+        "term": 60,
+        "monthly": 44800
+      },
+      {
+        "provider": "현대유버스",
+        "term": 48,
+        "monthly": 54700
+      },
+      {
+        "provider": "현대유버스",
+        "term": 36,
+        "monthly": 68800
+      },
+      {
+        "provider": "BS ON",
+        "term": 60,
+        "monthly": 46300
+      },
+      {
+        "provider": "BS ON",
+        "term": 48,
+        "monthly": 53800
+      },
+      {
+        "provider": "BS ON",
+        "term": 36,
+        "monthly": 66600
+      }
+    ],
+    "clv-12807": [
+      {
+        "provider": "현대유버스",
+        "term": 60,
+        "monthly": 32300
+      },
+      {
+        "provider": "현대유버스",
+        "term": 48,
+        "monthly": 38200
+      },
+      {
+        "provider": "현대유버스",
+        "term": 36,
+        "monthly": 48300
+      }
+    ],
+    "clv-11828": [
+      {
+        "provider": "이니렌탈",
+        "term": 60,
+        "monthly": 18000
+      },
+      {
+        "provider": "이니렌탈",
+        "term": 48,
+        "monthly": 21400
+      },
+      {
+        "provider": "이니렌탈",
+        "term": 36,
+        "monthly": 27400
+      },
+      {
+        "provider": "이니렌탈",
+        "term": 24,
+        "monthly": 39300
+      },
+      {
+        "provider": "이니렌탈",
+        "term": 12,
+        "monthly": 75600
+      },
+      {
+        "provider": "스마트렌탈",
+        "term": 60,
+        "monthly": 23700
+      },
+      {
+        "provider": "스마트렌탈",
+        "term": 48,
+        "monthly": 27200
+      },
+      {
+        "provider": "스마트렌탈",
+        "term": 36,
+        "monthly": 33700
+      },
+      {
+        "provider": "현대유버스",
+        "term": 60,
+        "monthly": 27000
+      },
+      {
+        "provider": "현대유버스",
+        "term": 48,
+        "monthly": 31900
+      },
+      {
+        "provider": "현대유버스",
+        "term": 36,
+        "monthly": 40200
+      }
+    ],
+    "clv-11538": [
+      {
+        "provider": "이니렌탈",
+        "term": 60,
+        "monthly": 24000
+      },
+      {
+        "provider": "이니렌탈",
+        "term": 48,
+        "monthly": 28600
+      },
+      {
+        "provider": "이니렌탈",
+        "term": 36,
+        "monthly": 36500
+      },
+      {
+        "provider": "이니렌탈",
+        "term": 24,
+        "monthly": 52500
+      },
+      {
+        "provider": "이니렌탈",
+        "term": 12,
+        "monthly": 100800
+      },
+      {
+        "provider": "스마트렌탈",
+        "term": 60,
+        "monthly": 33400
+      },
+      {
+        "provider": "스마트렌탈",
+        "term": 48,
+        "monthly": 38500
+      },
+      {
+        "provider": "스마트렌탈",
+        "term": 36,
+        "monthly": 47600
+      },
+      {
+        "provider": "현대유버스",
+        "term": 60,
+        "monthly": 37200
+      },
+      {
+        "provider": "현대유버스",
+        "term": 48,
+        "monthly": 44000
+      },
+      {
+        "provider": "현대유버스",
+        "term": 36,
+        "monthly": 55400
+      }
+    ],
+    "clv-12830": [
+      {
+        "provider": "현대유버스",
+        "term": 60,
+        "monthly": 30800
+      },
+      {
+        "provider": "현대유버스",
+        "term": 48,
+        "monthly": 36500
+      },
+      {
+        "provider": "현대유버스",
+        "term": 36,
+        "monthly": 46000
+      }
+    ],
+    "clv-12810": [
+      {
+        "provider": "이니렌탈",
+        "term": 60,
+        "monthly": 29000
+      },
+      {
+        "provider": "이니렌탈",
+        "term": 48,
+        "monthly": 34600
+      },
+      {
+        "provider": "이니렌탈",
+        "term": 36,
+        "monthly": 44100
+      },
+      {
+        "provider": "이니렌탈",
+        "term": 24,
+        "monthly": 63400
+      },
+      {
+        "provider": "이니렌탈",
+        "term": 12,
+        "monthly": 121800
+      },
+      {
+        "provider": "현대유버스",
+        "term": 60,
+        "monthly": 32300
+      },
+      {
+        "provider": "현대유버스",
+        "term": 48,
+        "monthly": 38200
+      },
+      {
+        "provider": "현대유버스",
+        "term": 36,
+        "monthly": 48300
+      }
+    ],
+    "clv-12809": [
+      {
+        "provider": "이니렌탈",
+        "term": 60,
+        "monthly": 29000
+      },
+      {
+        "provider": "이니렌탈",
+        "term": 48,
+        "monthly": 34600
+      },
+      {
+        "provider": "이니렌탈",
+        "term": 36,
+        "monthly": 44100
+      },
+      {
+        "provider": "이니렌탈",
+        "term": 24,
+        "monthly": 63400
+      },
+      {
+        "provider": "이니렌탈",
+        "term": 12,
+        "monthly": 121800
+      },
+      {
+        "provider": "현대유버스",
+        "term": 60,
+        "monthly": 32300
+      },
+      {
+        "provider": "현대유버스",
+        "term": 48,
+        "monthly": 38200
+      },
+      {
+        "provider": "현대유버스",
+        "term": 36,
+        "monthly": 48300
+      }
+    ],
+    "clv-58086": [
+      {
+        "provider": "현대유버스",
+        "term": 60,
+        "monthly": 146600
+      },
+      {
+        "provider": "현대유버스",
+        "term": 48,
+        "monthly": 172900
+      },
+      {
+        "provider": "현대유버스",
+        "term": 36,
+        "monthly": 217900
+      }
+    ],
+    "clv-57332": [
+      {
+        "provider": "이니렌탈",
+        "term": 60,
+        "monthly": 153400
+      },
+      {
+        "provider": "이니렌탈",
+        "term": 48,
+        "monthly": 180400
+      },
+      {
+        "provider": "이니렌탈",
+        "term": 36,
+        "monthly": 226800
+      }
+    ],
+    "clv-50899": [
+      {
+        "provider": "LG헬로렌탈",
+        "term": 60,
+        "monthly": 25500
+      }
+    ],
+    "clv-23910": [
+      {
+        "provider": "현대유버스",
+        "term": 60,
+        "monthly": 42500
+      },
+      {
+        "provider": "현대유버스",
+        "term": 48,
+        "monthly": 50300
+      },
+      {
+        "provider": "현대유버스",
+        "term": 36,
+        "monthly": 63500
+      },
+      {
+        "provider": "BS ON",
+        "term": 60,
+        "monthly": 43200
+      },
+      {
+        "provider": "BS ON",
+        "term": 48,
+        "monthly": 51000
+      },
+      {
+        "provider": "BS ON",
+        "term": 36,
+        "monthly": 64200
+      },
+      {
+        "provider": "이니렌탈",
+        "term": 60,
+        "monthly": 44100
+      },
+      {
+        "provider": "이니렌탈",
+        "term": 48,
+        "monthly": 51800
+      },
+      {
+        "provider": "이니렌탈",
+        "term": 36,
+        "monthly": 65200
+      }
+    ],
+    "clv-18656": [
+      {
+        "provider": "현대유버스",
+        "term": 60,
+        "monthly": 46900
+      },
+      {
+        "provider": "현대유버스",
+        "term": 48,
+        "monthly": 57300
+      },
+      {
+        "provider": "현대유버스",
+        "term": 36,
+        "monthly": 72100
+      },
+      {
+        "provider": "BS ON",
+        "term": 60,
+        "monthly": 48400
+      },
+      {
+        "provider": "BS ON",
+        "term": 48,
+        "monthly": 56200
+      },
+      {
+        "provider": "BS ON",
+        "term": 36,
+        "monthly": 69600
+      }
+    ],
+    "clv-6816": [
+      {
+        "provider": "BS ON",
+        "term": 60,
+        "monthly": 55400
+      },
+      {
+        "provider": "BS ON",
+        "term": 48,
+        "monthly": 65300
+      },
+      {
+        "provider": "BS ON",
+        "term": 36,
+        "monthly": 82300
+      },
+      {
+        "provider": "스마트렌탈",
+        "term": 60,
+        "monthly": 63000
+      },
+      {
+        "provider": "스마트렌탈",
+        "term": 48,
+        "monthly": 75000
+      },
+      {
+        "provider": "스마트렌탈",
+        "term": 36,
+        "monthly": 95000
+      },
+      {
+        "provider": "현대유버스",
+        "term": 60,
+        "monthly": 63300
+      },
+      {
+        "provider": "현대유버스",
+        "term": 48,
+        "monthly": 77300
+      },
+      {
+        "provider": "현대유버스",
+        "term": 36,
+        "monthly": 97300
+      }
+    ],
+    "clv-6817": [
+      {
+        "provider": "BS ON",
+        "term": 60,
+        "monthly": 67600
+      },
+      {
+        "provider": "BS ON",
+        "term": 48,
+        "monthly": 79900
+      },
+      {
+        "provider": "BS ON",
+        "term": 36,
+        "monthly": 100600
+      },
+      {
+        "provider": "스마트렌탈",
+        "term": 60,
+        "monthly": 75000
+      },
+      {
+        "provider": "스마트렌탈",
+        "term": 48,
+        "monthly": 91000
+      },
+      {
+        "provider": "스마트렌탈",
+        "term": 36,
+        "monthly": 115000
+      },
+      {
+        "provider": "현대유버스",
+        "term": 60,
+        "monthly": 77900
+      },
+      {
+        "provider": "현대유버스",
+        "term": 48,
+        "monthly": 95100
+      },
+      {
+        "provider": "현대유버스",
+        "term": 36,
+        "monthly": 119600
+      },
+      {
+        "provider": "이니렌탈",
+        "term": 60,
+        "monthly": 80800
+      },
+      {
+        "provider": "이니렌탈",
+        "term": 48,
+        "monthly": 95000
+      },
+      {
+        "provider": "이니렌탈",
+        "term": 36,
+        "monthly": 119400
+      }
+    ],
+    "clv-7666": [
+      {
+        "provider": "BS ON",
+        "term": 60,
+        "monthly": 83900
+      },
+      {
+        "provider": "BS ON",
+        "term": 48,
+        "monthly": 99000
+      },
+      {
+        "provider": "BS ON",
+        "term": 36,
+        "monthly": 124800
+      },
+      {
+        "provider": "스마트렌탈",
+        "term": 60,
+        "monthly": 91500
+      },
+      {
+        "provider": "스마트렌탈",
+        "term": 48,
+        "monthly": 110000
+      },
+      {
+        "provider": "스마트렌탈",
+        "term": 36,
+        "monthly": 138500
+      },
+      {
+        "provider": "현대유버스",
+        "term": 60,
+        "monthly": 97100
+      },
+      {
+        "provider": "현대유버스",
+        "term": 48,
+        "monthly": 118500
+      },
+      {
+        "provider": "현대유버스",
+        "term": 36,
+        "monthly": 149100
+      },
+      {
+        "provider": "이니렌탈",
+        "term": 60,
+        "monthly": 97700
+      },
+      {
+        "provider": "이니렌탈",
+        "term": 48,
+        "monthly": 114900
+      },
+      {
+        "provider": "이니렌탈",
+        "term": 36,
+        "monthly": 144400
+      }
+    ],
+    "clv-4236": [
+      {
+        "provider": "BS ON",
+        "term": 60,
+        "monthly": 137300
+      },
+      {
+        "provider": "BS ON",
+        "term": 48,
+        "monthly": 162000
+      },
+      {
+        "provider": "BS ON",
+        "term": 36,
+        "monthly": 204200
+      },
+      {
+        "provider": "스마트렌탈",
+        "term": 60,
+        "monthly": 159900
+      },
+      {
+        "provider": "스마트렌탈",
+        "term": 48,
+        "monthly": 188900
+      },
+      {
+        "provider": "스마트렌탈",
+        "term": 36,
+        "monthly": 238900
+      },
+      {
+        "provider": "현대유버스",
+        "term": 60,
+        "monthly": 160300
+      },
+      {
+        "provider": "현대유버스",
+        "term": 48,
+        "monthly": 195700
+      },
+      {
+        "provider": "현대유버스",
+        "term": 36,
+        "monthly": 246200
+      },
+      {
+        "provider": "이니렌탈",
+        "term": 60,
+        "monthly": 170600
+      },
+      {
+        "provider": "이니렌탈",
+        "term": 48,
+        "monthly": 200600
+      },
+      {
+        "provider": "이니렌탈",
+        "term": 36,
+        "monthly": 252200
+      }
+    ],
+    "clv-4243": [
+      {
+        "provider": "BS ON",
+        "term": 60,
+        "monthly": 156500
+      },
+      {
+        "provider": "BS ON",
+        "term": 48,
+        "monthly": 184800
+      },
+      {
+        "provider": "BS ON",
+        "term": 36,
+        "monthly": 232700
+      },
+      {
+        "provider": "현대유버스",
+        "term": 60,
+        "monthly": 183200
+      },
+      {
+        "provider": "현대유버스",
+        "term": 48,
+        "monthly": 223600
+      },
+      {
+        "provider": "현대유버스",
+        "term": 36,
+        "monthly": 281100
+      },
+      {
+        "provider": "이니렌탈",
+        "term": 60,
+        "monthly": 186900
+      },
+      {
+        "provider": "이니렌탈",
+        "term": 48,
+        "monthly": 219800
+      },
+      {
+        "provider": "이니렌탈",
+        "term": 36,
+        "monthly": 276300
+      }
+    ],
+    "clv-39209": [
+      {
+        "provider": "현대유버스",
+        "term": 60,
+        "monthly": 43800
+      },
+      {
+        "provider": "현대유버스",
+        "term": 48,
+        "monthly": 53500
+      },
+      {
+        "provider": "현대유버스",
+        "term": 36,
+        "monthly": 67200
+      },
+      {
+        "provider": "스마트렌탈",
+        "term": 60,
+        "monthly": 44500
+      },
+      {
+        "provider": "스마트렌탈",
+        "term": 48,
+        "monthly": 52200
+      },
+      {
+        "provider": "스마트렌탈",
+        "term": 36,
+        "monthly": 64000
+      },
+      {
+        "provider": "BS ON",
+        "term": 48,
+        "monthly": 50000
+      }
+    ],
+    "clv-12811": [
+      {
+        "provider": "이니렌탈",
+        "term": 60,
+        "monthly": 24000
+      },
+      {
+        "provider": "이니렌탈",
+        "term": 48,
+        "monthly": 28600
+      },
+      {
+        "provider": "이니렌탈",
+        "term": 36,
+        "monthly": 36500
+      },
+      {
+        "provider": "이니렌탈",
+        "term": 24,
+        "monthly": 52500
+      },
+      {
+        "provider": "이니렌탈",
+        "term": 12,
+        "monthly": 100800
+      },
+      {
+        "provider": "현대유버스",
+        "term": 60,
+        "monthly": 26500
+      },
+      {
+        "provider": "현대유버스",
+        "term": 48,
+        "monthly": 31400
+      },
+      {
+        "provider": "현대유버스",
+        "term": 36,
+        "monthly": 39600
+      }
+    ],
+    "clv-24212": [
+      {
+        "provider": "BS ON",
+        "term": 60,
+        "monthly": 40000
+      },
+      {
+        "provider": "BS ON",
+        "term": 48,
+        "monthly": 47000
+      },
+      {
+        "provider": "BS ON",
+        "term": 36,
+        "monthly": 59500
+      },
+      {
+        "provider": "이니렌탈",
+        "term": 60,
+        "monthly": 41300
+      },
+      {
+        "provider": "이니렌탈",
+        "term": 48,
+        "monthly": 48600
+      },
+      {
+        "provider": "이니렌탈",
+        "term": 36,
+        "monthly": 61100
+      },
+      {
+        "provider": "현대유버스",
+        "term": 60,
+        "monthly": 46700
+      },
+      {
+        "provider": "현대유버스",
+        "term": 48,
+        "monthly": 55100
+      },
+      {
+        "provider": "현대유버스",
+        "term": 36,
+        "monthly": 69500
+      }
+    ],
+    "clv-24207": [
+      {
+        "provider": "BS ON",
+        "term": 60,
+        "monthly": 39000
+      },
+      {
+        "provider": "BS ON",
+        "term": 48,
+        "monthly": 46500
+      },
+      {
+        "provider": "BS ON",
+        "term": 36,
+        "monthly": 58500
+      },
+      {
+        "provider": "이니렌탈",
+        "term": 60,
+        "monthly": 40600
+      },
+      {
+        "provider": "이니렌탈",
+        "term": 48,
+        "monthly": 47700
+      },
+      {
+        "provider": "이니렌탈",
+        "term": 36,
+        "monthly": 60000
+      },
+      {
+        "provider": "현대유버스",
+        "term": 60,
+        "monthly": 45900
+      },
+      {
+        "provider": "현대유버스",
+        "term": 48,
+        "monthly": 54100
+      },
+      {
+        "provider": "현대유버스",
+        "term": 36,
+        "monthly": 68200
+      }
+    ],
+    "clv-46173": [
+      {
+        "provider": "LG헬로렌탈",
+        "term": 60,
+        "monthly": 59500
+      },
+      {
+        "provider": "KT가전구독",
+        "term": 60,
+        "monthly": 59600
+      },
+      {
+        "provider": "KT가전구독",
+        "term": 48,
+        "monthly": 73000
+      },
+      {
+        "provider": "KT가전구독",
+        "term": 36,
+        "monthly": 96200
+      }
+    ],
+    "clv-56311": [
+      {
+        "provider": "LG헬로렌탈",
+        "term": 60,
+        "monthly": 61900
+      },
+      {
+        "provider": "LG헬로렌탈",
+        "term": 48,
+        "monthly": 75900
+      },
+      {
+        "provider": "LG헬로렌탈",
+        "term": 36,
+        "monthly": 98900
+      }
+    ],
+    "clv-56636": [
+      {
+        "provider": "BS ON",
+        "term": 60,
+        "monthly": 63300
+      },
+      {
+        "provider": "BS ON",
+        "term": 48,
+        "monthly": 73700
+      },
+      {
+        "provider": "BS ON",
+        "term": 36,
+        "monthly": 91700
+      },
+      {
+        "provider": "현대유버스",
+        "term": 60,
+        "monthly": 65600
+      },
+      {
+        "provider": "현대유버스",
+        "term": 48,
+        "monthly": 77700
+      },
+      {
+        "provider": "현대유버스",
+        "term": 36,
+        "monthly": 97900
+      }
+    ],
+    "clv-56065": [
+      {
+        "provider": "BS ON",
+        "term": 60,
+        "monthly": 112800
+      },
+      {
+        "provider": "BS ON",
+        "term": 48,
+        "monthly": 131800
+      },
+      {
+        "provider": "BS ON",
+        "term": 36,
+        "monthly": 164200
+      },
+      {
+        "provider": "스마트렌탈",
+        "term": 60,
+        "monthly": 121900
+      },
+      {
+        "provider": "스마트렌탈",
+        "term": 48,
+        "monthly": 149000
+      },
+      {
+        "provider": "스마트렌탈",
+        "term": 36,
+        "monthly": 187500
+      },
+      {
+        "provider": "현대유버스",
+        "term": 60,
+        "monthly": 122100
+      },
+      {
+        "provider": "현대유버스",
+        "term": 48,
+        "monthly": 149100
+      },
+      {
+        "provider": "현대유버스",
+        "term": 36,
+        "monthly": 187600
+      },
+      {
+        "provider": "이니렌탈",
+        "term": 60,
+        "monthly": 122900
+      },
+      {
+        "provider": "이니렌탈",
+        "term": 48,
+        "monthly": 144500
+      },
+      {
+        "provider": "이니렌탈",
+        "term": 36,
+        "monthly": 181600
+      }
+    ],
+    "clv-48939": [
+      {
+        "provider": "BS ON",
+        "term": 60,
+        "monthly": 64300
+      },
+      {
+        "provider": "BS ON",
+        "term": 48,
+        "monthly": 75000
+      },
+      {
+        "provider": "BS ON",
+        "term": 36,
+        "monthly": 93100
+      },
+      {
+        "provider": "현대유버스",
+        "term": 60,
+        "monthly": 66700
+      },
+      {
+        "provider": "현대유버스",
+        "term": 48,
+        "monthly": 79000
+      },
+      {
+        "provider": "현대유버스",
+        "term": 36,
+        "monthly": 99600
+      }
+    ],
+    "clv-57861": [
+      {
+        "provider": "BS ON",
+        "term": 60,
+        "monthly": 91700
+      },
+      {
+        "provider": "BS ON",
+        "term": 48,
+        "monthly": 107000
+      },
+      {
+        "provider": "BS ON",
+        "term": 36,
+        "monthly": 133100
+      },
+      {
+        "provider": "현대유버스",
+        "term": 60,
+        "monthly": 94900
+      },
+      {
+        "provider": "현대유버스",
+        "term": 48,
+        "monthly": 109400
+      },
+      {
+        "provider": "현대유버스",
+        "term": 36,
+        "monthly": 138100
+      },
+      {
+        "provider": "LG헬로렌탈",
+        "term": 60,
+        "monthly": 95900
+      },
+      {
+        "provider": "LG헬로렌탈",
+        "term": 48,
+        "monthly": 116900
+      },
+      {
+        "provider": "LG헬로렌탈",
+        "term": 36,
+        "monthly": 151900
+      },
+      {
+        "provider": "KT가전구독",
+        "term": 60,
+        "monthly": 77900
+      },
+      {
+        "provider": "KT가전구독",
+        "term": 48,
+        "monthly": 96100
+      },
+      {
+        "provider": "KT가전구독",
+        "term": 36,
+        "monthly": 126600
+      }
+    ],
+    "clv-48684": [
+      {
+        "provider": "BS ON",
+        "term": 60,
+        "monthly": 107400
+      },
+      {
+        "provider": "BS ON",
+        "term": 48,
+        "monthly": 126900
+      },
+      {
+        "provider": "BS ON",
+        "term": 36,
+        "monthly": 159400
+      },
+      {
+        "provider": "현대유버스",
+        "term": 60,
+        "monthly": 123600
+      },
+      {
+        "provider": "현대유버스",
+        "term": 48,
+        "monthly": 150900
+      },
+      {
+        "provider": "현대유버스",
+        "term": 36,
+        "monthly": 189900
+      },
+      {
+        "provider": "이니렌탈",
+        "term": 60,
+        "monthly": 123600
+      },
+      {
+        "provider": "이니렌탈",
+        "term": 48,
+        "monthly": 145300
+      },
+      {
+        "provider": "이니렌탈",
+        "term": 36,
+        "monthly": 182700
+      },
+      {
+        "provider": "KT가전구독",
+        "term": 60,
+        "monthly": 102300
+      },
+      {
+        "provider": "KT가전구독",
+        "term": 48,
+        "monthly": 126400
+      },
+      {
+        "provider": "KT가전구독",
+        "term": 36,
+        "monthly": 166600
+      }
+    ],
+    "clv-57856": [
+      {
+        "provider": "BS ON",
+        "term": 60,
+        "monthly": 94600
+      },
+      {
+        "provider": "BS ON",
+        "term": 48,
+        "monthly": 110000
+      },
+      {
+        "provider": "BS ON",
+        "term": 36,
+        "monthly": 137000
+      },
+      {
+        "provider": "현대유버스",
+        "term": 60,
+        "monthly": 99900
+      },
+      {
+        "provider": "현대유버스",
+        "term": 48,
+        "monthly": 112900
+      },
+      {
+        "provider": "현대유버스",
+        "term": 36,
+        "monthly": 142400
+      },
+      {
+        "provider": "KT가전구독",
+        "term": 60,
+        "monthly": 80400
+      },
+      {
+        "provider": "KT가전구독",
+        "term": 48,
+        "monthly": 99300
+      },
+      {
+        "provider": "KT가전구독",
+        "term": 36,
+        "monthly": 130800
+      }
+    ],
+    "clv-20680": [
+      {
+        "provider": "BS ON",
+        "term": 60,
+        "monthly": 120100
+      },
+      {
+        "provider": "BS ON",
+        "term": 48,
+        "monthly": 141500
+      },
+      {
+        "provider": "BS ON",
+        "term": 36,
+        "monthly": 178000
+      },
+      {
+        "provider": "현대유버스",
+        "term": 60,
+        "monthly": 135600
+      },
+      {
+        "provider": "현대유버스",
+        "term": 48,
+        "monthly": 165500
+      },
+      {
+        "provider": "현대유버스",
+        "term": 36,
+        "monthly": 208500
+      },
+      {
+        "provider": "스마트렌탈",
+        "term": 60,
+        "monthly": 139000
+      },
+      {
+        "provider": "스마트렌탈",
+        "term": 48,
+        "monthly": 163000
+      },
+      {
+        "provider": "스마트렌탈",
+        "term": 36,
+        "monthly": 199000
+      }
+    ],
+    "clv-57876": [
+      {
+        "provider": "BS ON",
+        "term": 60,
+        "monthly": 112600
+      },
+      {
+        "provider": "BS ON",
+        "term": 48,
+        "monthly": 131100
+      },
+      {
+        "provider": "BS ON",
+        "term": 36,
+        "monthly": 162800
+      },
+      {
+        "provider": "현대유버스",
+        "term": 60,
+        "monthly": 118700
+      },
+      {
+        "provider": "현대유버스",
+        "term": 48,
+        "monthly": 140300
+      },
+      {
+        "provider": "현대유버스",
+        "term": 36,
+        "monthly": 177000
+      },
+      {
+        "provider": "KT가전구독",
+        "term": 60,
+        "monthly": 99800
+      },
+      {
+        "provider": "KT가전구독",
+        "term": 48,
+        "monthly": 123200
+      },
+      {
+        "provider": "KT가전구독",
+        "term": 36,
+        "monthly": 162300
+      }
+    ],
+    "clv-59505": [
+      {
+        "provider": "이니렌탈",
+        "term": 60,
+        "monthly": 110800
+      },
+      {
+        "provider": "이니렌탈",
+        "term": 48,
+        "monthly": 130300
+      },
+      {
+        "provider": "이니렌탈",
+        "term": 36,
+        "monthly": 163800
+      }
+    ],
+    "clv-20690": [
+      {
+        "provider": "BS ON",
+        "term": 60,
+        "monthly": 116200
+      },
+      {
+        "provider": "BS ON",
+        "term": 48,
+        "monthly": 136900
+      },
+      {
+        "provider": "BS ON",
+        "term": 36,
+        "monthly": 171900
+      },
+      {
+        "provider": "이니렌탈",
+        "term": 60,
+        "monthly": 131000
+      },
+      {
+        "provider": "이니렌탈",
+        "term": 48,
+        "monthly": 154100
+      },
+      {
+        "provider": "이니렌탈",
+        "term": 36,
+        "monthly": 193700
+      },
+      {
+        "provider": "현대유버스",
+        "term": 60,
+        "monthly": 131100
+      },
+      {
+        "provider": "현대유버스",
+        "term": 48,
+        "monthly": 160100
+      },
+      {
+        "provider": "현대유버스",
+        "term": 36,
+        "monthly": 201500
+      },
+      {
+        "provider": "스마트렌탈",
+        "term": 60,
+        "monthly": 135000
+      },
+      {
+        "provider": "스마트렌탈",
+        "term": 48,
+        "monthly": 159000
+      },
+      {
+        "provider": "스마트렌탈",
+        "term": 36,
+        "monthly": 195000
+      }
+    ],
+    "clv-61048": [
+      {
+        "provider": "LG헬로렌탈",
+        "term": 60,
+        "monthly": 37900
+      },
+      {
+        "provider": "LG헬로렌탈",
+        "term": 48,
+        "monthly": 45900
+      },
+      {
+        "provider": "LG헬로렌탈",
+        "term": 36,
+        "monthly": 59900
+      },
+      {
+        "provider": "LG헬로렌탈",
+        "term": 24,
+        "monthly": 88900
+      }
+    ],
+    "clv-44134": [
+      {
+        "provider": "현대유버스",
+        "term": 60,
+        "monthly": 31700
+      },
+      {
+        "provider": "현대유버스",
+        "term": 48,
+        "monthly": 37500
+      },
+      {
+        "provider": "현대유버스",
+        "term": 36,
+        "monthly": 47400
+      },
+      {
+        "provider": "BS ON",
+        "term": 60,
+        "monthly": 33300
+      },
+      {
+        "provider": "BS ON",
+        "term": 48,
+        "monthly": 38700
+      },
+      {
+        "provider": "BS ON",
+        "term": 36,
+        "monthly": 48200
+      },
+      {
+        "provider": "이니렌탈",
+        "term": 60,
+        "monthly": 38300
+      },
+      {
+        "provider": "이니렌탈",
+        "term": 48,
+        "monthly": 45000
+      },
+      {
+        "provider": "이니렌탈",
+        "term": 36,
+        "monthly": 56600
+      },
+      {
+        "provider": "스마트렌탈",
+        "term": 60,
+        "monthly": 40900
+      },
+      {
+        "provider": "스마트렌탈",
+        "term": 48,
+        "monthly": 47900
+      },
+      {
+        "provider": "스마트렌탈",
+        "term": 36,
+        "monthly": 59900
+      }
+    ],
+    "clv-56215": [
+      {
+        "provider": "이니렌탈",
+        "term": 60,
+        "monthly": 43600
+      },
+      {
+        "provider": "이니렌탈",
+        "term": 48,
+        "monthly": 51300
+      },
+      {
+        "provider": "이니렌탈",
+        "term": 36,
+        "monthly": 64500
+      }
+    ],
+    "clv-45244": [
+      {
+        "provider": "현대유버스",
+        "term": 60,
+        "monthly": 27500
+      },
+      {
+        "provider": "현대유버스",
+        "term": 48,
+        "monthly": 32600
+      },
+      {
+        "provider": "현대유버스",
+        "term": 36,
+        "monthly": 41100
+      },
+      {
+        "provider": "BS ON",
+        "term": 60,
+        "monthly": 29100
+      },
+      {
+        "provider": "BS ON",
+        "term": 48,
+        "monthly": 33900
+      },
+      {
+        "provider": "BS ON",
+        "term": 36,
+        "monthly": 42200
+      },
+      {
+        "provider": "이니렌탈",
+        "term": 60,
+        "monthly": 33100
+      },
+      {
+        "provider": "이니렌탈",
+        "term": 48,
+        "monthly": 38900
+      },
+      {
+        "provider": "이니렌탈",
+        "term": 36,
+        "monthly": 49000
+      },
+      {
+        "provider": "스마트렌탈",
+        "term": 60,
+        "monthly": 38500
+      },
+      {
+        "provider": "스마트렌탈",
+        "term": 48,
+        "monthly": 45000
+      },
+      {
+        "provider": "스마트렌탈",
+        "term": 36,
+        "monthly": 55900
+      }
+    ],
+    "clv-16268": [
+      {
+        "provider": "이니렌탈",
+        "term": 60,
+        "monthly": 23800
+      },
+      {
+        "provider": "이니렌탈",
+        "term": 48,
+        "monthly": 28000
+      },
+      {
+        "provider": "이니렌탈",
+        "term": 36,
+        "monthly": 35300
+      },
+      {
+        "provider": "현대유버스",
+        "term": 60,
+        "monthly": 26900
+      },
+      {
+        "provider": "현대유버스",
+        "term": 48,
+        "monthly": 32900
+      },
+      {
+        "provider": "현대유버스",
+        "term": 36,
+        "monthly": 39900
+      },
+      {
+        "provider": "스마트렌탈",
+        "term": 60,
+        "monthly": 27500
+      },
+      {
+        "provider": "스마트렌탈",
+        "term": 48,
+        "monthly": 31900
+      },
+      {
+        "provider": "스마트렌탈",
+        "term": 36,
+        "monthly": 39900
+      }
+    ],
+    "clv-56776": [
+      {
+        "provider": "LG헬로렌탈",
+        "term": 60,
+        "monthly": 35900
+      },
+      {
+        "provider": "LG헬로렌탈",
+        "term": 48,
+        "monthly": 43900
+      },
+      {
+        "provider": "LG헬로렌탈",
+        "term": 36,
+        "monthly": 56900
+      }
+    ]
+  },
+  "errors": [
+    {
+      "id": "clv-4244",
+      "type": "no_valid_offer"
+    },
+    {
+      "id": "clv-4245",
+      "type": "no_valid_offer"
+    }
+  ]
+}
