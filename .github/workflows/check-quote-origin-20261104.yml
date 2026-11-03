@@ -10,20 +10,27 @@ jobs:
   check:
     runs-on: ubuntu-latest
     steps:
-      - name: Check API CORS preflight for old vs new domain
+      - name: Assert live official-domain API CORS preflight
         shell: bash
         run: |
           set -euo pipefail
-          URL="https://woongbi-quote-api.woongbts.workers.dev/recommend/purpose"
+          URL="https://woongbi-quote-api.woongbts.workers.dev"
           for origin in "https://woongbts.github.io" "https://woongbts.kr"; do
-            echo "Checking Origin: $origin"
-            curl -sS --max-time 15 -D /tmp/headers -o /tmp/payload -X OPTIONS "$URL"               -H "Origin: $origin" -H "Access-Control-Request-Method: POST"               -H "Access-Control-Request-Headers: content-type" || true
-            grep -iE '^HTTP/|^access-control-allow-origin:|^access-control-allow-methods:|^access-control-allow-headers:' /tmp/headers || true
+            for path in "recommend/purpose" "quote/mobile" "recommend/quick" "recommend/plans"; do
+              code=$(curl -sS --max-time 15 -D /tmp/headers -o /dev/null -w '%{http_code}' -X OPTIONS "$URL/$path" \
+                -H "Origin: $origin" -H "Access-Control-Request-Method: POST" \
+                -H "Access-Control-Request-Headers: content-type")
+              echo "$origin $path -> HTTP $code"
+              test "$code" = 204
+              grep -iq "^access-control-allow-origin: $origin" /tmp/headers
+            done
           done
-      - name: Check public catalog and support payload reachability
+      - name: Check verified public catalog reachability
         shell: bash
         run: |
+          set -euo pipefail
           for path in data/catalog.json data/plans.json data/supports.json; do
-            printf "%s " "$path"
-            curl --max-time 15 -sSL -o /dev/null -w "%{http_code} (%{size_download} bytes)\n" "https://woongbts.kr/$path"
+            code=$(curl -sSL --max-time 15 -o /dev/null -w "%{http_code}" "https://woongbts.kr/$path")
+            echo "$path -> HTTP $code"
+            test "$code" = 200
           done
