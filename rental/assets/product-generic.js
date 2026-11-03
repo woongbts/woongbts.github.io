@@ -660,7 +660,7 @@
     $('#product-twitter-title')?.setAttribute('content',title);
     $('#product-twitter-description')?.setAttribute('content',desc);
     const image=imageCandidatesFor(p)[0];
-    const imageUrl=image?new URL(image,location.href).toString():'https://woongbts.github.io/rental/assets/woongbi-rental-icon-180.png';
+    const imageUrl=image?new URL(image,location.href).toString():'https://woongbts.kr/rental/assets/woongbi-rental-icon-180.png';
     $('#product-og-image')?.setAttribute('content',imageUrl);
     $('#product-og-image-alt')?.setAttribute('content',brand+' '+p.name+' 렌탈 상품 이미지');
     $('#product-twitter-image')?.setAttribute('content',imageUrl);
