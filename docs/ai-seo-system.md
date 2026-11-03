@@ -70,3 +70,12 @@
 - 새 도메인 HTTP `http://woongbts.kr/`에서 홈페이지 본문 확인. 기존 `https://woongbts.github.io/` 방문이 `http://woongbts.kr/`로 이동하는 응답도 관찰되어 기본 주소 전환이 시작된 것으로 보인다. **그러나 HTTPS `https://woongbts.kr/`, `https://www.woongbts.kr/`, 렌탈 HTTPS URL은 외부 확인 시 접근 실패**했다. 인증서 발급 또는 GitHub Pages HTTPS 강제 설정이 필요할 수 있다.
 - 다음 차단 단계: 소유자가 `https://github.com/woongbts/woongbts.github.io/settings/pages`에서 Custom domain = `woongbts.kr` 저장 여부, DNS check, 인증서 생성 및 `Enforce HTTPS` 상태를 확인한다. GitHub connector는 이 설정 메뉴의 쓰기 권한을 제공하지 않는다.
 - HTTPS 정상 접속과 주요 기능이 검증되기 전 canonical·OG URL·JSON-LD·사이트맵·SEO 운영 자동화 기준 주소의 본격적인 교체, 네이버/구글 새 속성 제출·기존 속성 폐기는 보류. 홈페이지 `/rental/` 경로를 새 도메인에서 그대로 운영하므로 렌탈을 위해 두 번째 도메인을 구매할 필요 없다.
+
+
+### 2026-11-03 HTTPS 및 검색 대표주소 전환 완료 기록
+- GitHub Pages Custom domain `woongbts.kr`: 사용자가 DNS check successful, Enforce HTTPS 활성화 화면을 제공. 외부 웹 접근 확인에서 `https://woongbts.kr/`, `https://www.woongbts.kr/`→루트, `https://woongbts.kr/rental/`, `/rates.html`, `/manduk-mobile.html` 및 렌탈 제품 상세를 정상 열람. 기존 `https://woongbts.github.io/`는 새 루트 도메인으로 리디렉션됨.
+- 도메인 이전 자동 검사 [41645352617](https://github.com/woongbts/woongbts.github.io/actions/runs/41645352617) 성공. 기존 정적 HTML(렌탈 제품·카테고리 포함), 루트·렌탈·음식물처리기 사이트맵, robots, 생성기, SEO 품질 검사와 회귀 테스트에서 대표 URL을 `https://woongbts.kr`로 이전. 자동 변경 커밋 `463ad8e944a326478f9c1fb0eb10c92ee15c6bdc`의 GitHub Pages 배포 [41645386404](https://github.com/woongbts/woongbts.github.io/actions/runs/41645386404)는 성공.
+- 실제 공개 페이지의 `canonical` 검증: 메인 `https://woongbts.kr/`, 렌탈 `https://woongbts.kr/rental/`, 요금 `/rates.html`, 만덕 `/manduk-mobile.html`, 렌탈 제품 `/rental/product/chp-7220n/`에서 모두 해당 페이지의 새 URL과 일치. 공개 사이트맵도 새 도메인 URL로 표시됨.
+- 별도로 새 호스트에서 동작하지 않던 방문/전환 통계 클라이언트의 hostname 조건을 `woongbts.kr`로 수정(`assets/analytics-config.js`, `assets/site-analytics.min.js`, `assets/conversion-tracker.min.js`)하고 렌탈 상품 이미지의 한 기본 대체 주소를 새 도메인으로 수정. **통계 전송 서버의 CORS 허용 및 실제 저장 성공 여부는 아직 검증 전**이며, 집계 가능 여부를 확인하기 전 통계가 정상 수집된다고 단정하지 않는다.
+- 남은 수동 단계: 네이버 서치어드바이저에 새 `https://woongbts.kr` 속성 등록 및 소유 확인, 새 `https://woongbts.kr/sitemap.xml` 제출. Google Search Console에서 새 속성을 등록하고 필요시 Change of Address를 설정하며, 기존 `woongbts.github.io` 속성은 전환 추적 기간 동안 유지한다. 관리자 방문 제외 설정은 origin 별로 달라 새 도메인에서 재설정할 수 있다.
+- 추적 기준: 순위 상승 보장 없음. 11/03 이전과 이후의 노출·클릭·CTR·상담 전환을 새/기존 호스트로 구분하고, 변경 직후 수집 지연과 검색 순위 변동을 고려한다. 웹사이트 콘텐츠 내용이나 상품 가격은 이번 도메인 이전만으로 바꾸지 않았다.
