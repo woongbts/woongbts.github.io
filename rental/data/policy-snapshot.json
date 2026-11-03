@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "sourcePolicyDate": "2026-10-03",
-  "fingerprint": "d4466a0a85606aa78ddab76472da10f6913808101e5ecdeebd72aca1041fe522",
+  "sourcePolicyDate": "2026-11-03",
+  "fingerprint": "ce53a13dcf649e5751b4e02de58543331dcdcc956d4c2ed55ee67992a73a6fd7",
   "products": {
     "clover-2254": {
       "name": "MEGA ICE 얼음냉온정수기 mini",
@@ -1896,7 +1896,7 @@
       "management": "방문형",
       "term": "36",
       "monthly": 48900,
-      "gift": 175000
+      "gift": 145000
     },
     "clover-2254|방문형|60": {
       "product_id": "clover-2254",
@@ -1905,7 +1905,7 @@
       "management": "방문형",
       "term": "60",
       "monthly": 45900,
-      "gift": 275000
+      "gift": 215000
     },
     "clover-2254|셀프형|36": {
       "product_id": "clover-2254",
@@ -1914,7 +1914,7 @@
       "management": "셀프형",
       "term": "36",
       "monthly": 46900,
-      "gift": 180000
+      "gift": 150000
     },
     "clover-2254|셀프형|60": {
       "product_id": "clover-2254",
@@ -1923,7 +1923,7 @@
       "management": "셀프형",
       "term": "60",
       "monthly": 44900,
-      "gift": 275000
+      "gift": 215000
     },
     "clover-2251|방문형|36": {
       "product_id": "clover-2251",
@@ -1932,7 +1932,7 @@
       "management": "방문형",
       "term": "36",
       "monthly": 56900,
-      "gift": 215000
+      "gift": 190000
     },
     "clover-2251|방문형|60": {
       "product_id": "clover-2251",
@@ -1941,7 +1941,7 @@
       "management": "방문형",
       "term": "60",
       "monthly": 53900,
-      "gift": 330000
+      "gift": 280000
     },
     "clover-2251|셀프형|36": {
       "product_id": "clover-2251",
@@ -1950,7 +1950,7 @@
       "management": "셀프형",
       "term": "36",
       "monthly": 55900,
-      "gift": 215000
+      "gift": 190000
     },
     "clover-2251|셀프형|60": {
       "product_id": "clover-2251",
@@ -1959,7 +1959,7 @@
       "management": "셀프형",
       "term": "60",
       "monthly": 52900,
-      "gift": 330000
+      "gift": 280000
     },
     "clover-2196|방문형|36": {
       "product_id": "clover-2196",
@@ -1968,7 +1968,7 @@
       "management": "방문형",
       "term": "36",
       "monthly": 55900,
-      "gift": 185000
+      "gift": 170000
     },
     "clover-2196|방문형|60": {
       "product_id": "clover-2196",
@@ -1977,7 +1977,7 @@
       "management": "방문형",
       "term": "60",
       "monthly": 50400,
-      "gift": 285000
+      "gift": 260000
     },
     "clover-2196|셀프형|36": {
       "product_id": "clover-2196",
@@ -1986,7 +1986,7 @@
       "management": "셀프형",
       "term": "36",
       "monthly": 54900,
-      "gift": 185000
+      "gift": 170000
     },
     "clover-2196|셀프형|60": {
       "product_id": "clover-2196",
@@ -1995,7 +1995,7 @@
       "management": "셀프형",
       "term": "60",
       "monthly": 49400,
-      "gift": 280000
+      "gift": 255000
     },
     "clover-2223|방문형|36": {
       "product_id": "clover-2223",
@@ -2004,7 +2004,7 @@
       "management": "방문형",
       "term": "36",
       "monthly": 37900,
-      "gift": 105000
+      "gift": 120000
     },
     "clover-2223|방문형|60": {
       "product_id": "clover-2223",
@@ -2013,7 +2013,7 @@
       "management": "방문형",
       "term": "60",
       "monthly": 32400,
-      "gift": 165000
+      "gift": 195000
     },
     "clover-2223|셀프형|36": {
       "product_id": "clover-2223",
@@ -2022,7 +2022,7 @@
       "management": "셀프형",
       "term": "36",
       "monthly": 34900,
-      "gift": 105000
+      "gift": 120000
     },
     "clover-2223|셀프형|60": {
       "product_id": "clover-2223",
@@ -2031,7 +2031,7 @@
       "management": "셀프형",
       "term": "60",
       "monthly": 29400,
-      "gift": 160000
+      "gift": 190000
     },
     "clover-2226|방문형|36": {
       "product_id": "clover-2226",
@@ -2130,7 +2130,7 @@
       "management": "셀프형",
       "term": "36",
       "monthly": 38900,
-      "gift": 155000
+      "gift": 160000
     },
     "clover-2202|셀프형|60": {
       "product_id": "clover-2202",
@@ -2139,7 +2139,7 @@
       "management": "셀프형",
       "term": "60",
       "monthly": 33400,
-      "gift": 230000
+      "gift": 240000
     },
     "clover-2104|방문형|36": {
       "product_id": "clover-2104",
@@ -4065,7 +4065,7 @@
       "management": "방문관리",
       "term": "36",
       "monthly": 37400,
-      "gift": null
+      "gift": 210000
     },
     "clover-1679|자가관리|36": {
       "product_id": "clover-1679",
@@ -4083,7 +4083,7 @@
       "management": "방문관리",
       "term": "60",
       "monthly": 35400,
-      "gift": null
+      "gift": 210000
     },
     "clover-1679|자가관리|60": {
       "product_id": "clover-1679",
@@ -4092,7 +4092,7 @@
       "management": "자가관리",
       "term": "60",
       "monthly": 28400,
-      "gift": null
+      "gift": 190000
     },
     "clover-312|기본 조건|36": {
       "product_id": "clover-312",
@@ -4191,7 +4191,7 @@
       "management": "방문관리 2개월",
       "term": "36",
       "monthly": 64900,
-      "gift": 230000
+      "gift": 255000
     },
     "chpci-8400n|방문관리 2개월|60": {
       "product_id": "chpci-8400n",
@@ -4200,7 +4200,7 @@
       "management": "방문관리 2개월",
       "term": "60",
       "monthly": 61900,
-      "gift": 260000
+      "gift": 285000
     },
     "chpci-8400n|방문관리 2개월|72": {
       "product_id": "chpci-8400n",
@@ -4209,7 +4209,7 @@
       "management": "방문관리 2개월",
       "term": "72",
       "monthly": 59900,
-      "gift": 300000
+      "gift": 330000
     },
     "chpci-8400n|방문관리 2개월|84": {
       "product_id": "chpci-8400n",
@@ -4218,7 +4218,7 @@
       "management": "방문관리 2개월",
       "term": "84",
       "monthly": 57900,
-      "gift": 300000
+      "gift": 325000
     },
     "chpci-8400n|방문관리 4개월|36": {
       "product_id": "chpci-8400n",
@@ -4227,7 +4227,7 @@
       "management": "방문관리 4개월",
       "term": "36",
       "monthly": 61900,
-      "gift": 220000
+      "gift": 250000
     },
     "chpci-8400n|방문관리 4개월|60": {
       "product_id": "chpci-8400n",
@@ -4236,7 +4236,7 @@
       "management": "방문관리 4개월",
       "term": "60",
       "monthly": 57900,
-      "gift": 250000
+      "gift": 280000
     },
     "chpci-8400n|방문관리 4개월|72": {
       "product_id": "chpci-8400n",
@@ -4245,7 +4245,7 @@
       "management": "방문관리 4개월",
       "term": "72",
       "monthly": 55900,
-      "gift": 290000
+      "gift": 320000
     },
     "chpci-8400n|방문관리 4개월|84": {
       "product_id": "chpci-8400n",
@@ -4254,7 +4254,7 @@
       "management": "방문관리 4개월",
       "term": "84",
       "monthly": 53900,
-      "gift": 290000
+      "gift": 315000
     },
     "chpi-7430n|방문관리 2개월|36": {
       "product_id": "chpi-7430n",
@@ -4542,7 +4542,7 @@
       "management": "방문관리",
       "term": "60",
       "monthly": 35900,
-      "gift": 250000
+      "gift": 260000
     },
     "chp-7220n|방문관리|72": {
       "product_id": "chp-7220n",
@@ -4578,7 +4578,7 @@
       "management": "자가관리",
       "term": "60",
       "monthly": 32900,
-      "gift": 235000
+      "gift": 245000
     },
     "chp-7220n|자가관리|72": {
       "product_id": "chp-7220n",
@@ -5919,7 +5919,7 @@
       "management": "방문형",
       "term": "36",
       "monthly": 38900,
-      "gift": 205000
+      "gift": 210000
     },
     "clover-1883|방문형|60": {
       "product_id": "clover-1883",
@@ -5937,7 +5937,7 @@
       "management": "셀프형",
       "term": "36",
       "monthly": 36900,
-      "gift": 195000
+      "gift": 210000
     },
     "clover-1883|셀프형|60": {
       "product_id": "clover-1883",
@@ -6045,7 +6045,7 @@
       "management": "기본 조건",
       "term": "36",
       "monthly": 53900,
-      "gift": 215000
+      "gift": 225000
     },
     "clover-1894|방문관리|36": {
       "product_id": "clover-1894",
@@ -6180,7 +6180,7 @@
       "management": "방문형",
       "term": "36",
       "monthly": 53900,
-      "gift": 155000
+      "gift": 215000
     },
     "clover-2248|방문형|60": {
       "product_id": "clover-2248",
@@ -6189,7 +6189,7 @@
       "management": "방문형",
       "term": "60",
       "monthly": 46900,
-      "gift": 305000
+      "gift": 340000
     },
     "clover-2248|셀프형|36": {
       "product_id": "clover-2248",
@@ -6198,7 +6198,7 @@
       "management": "셀프형",
       "term": "36",
       "monthly": 50900,
-      "gift": 150000
+      "gift": 210000
     },
     "clover-2248|셀프형|60": {
       "product_id": "clover-2248",
@@ -6207,7 +6207,7 @@
       "management": "셀프형",
       "term": "60",
       "monthly": 43900,
-      "gift": 295000
+      "gift": 330000
     },
     "clover-1799|방문형|36": {
       "product_id": "clover-1799",
@@ -6216,7 +6216,7 @@
       "management": "방문형",
       "term": "36",
       "monthly": 54900,
-      "gift": 240000
+      "gift": 300000
     },
     "clover-1799|방문형/6개월반값할인|60": {
       "product_id": "clover-1799",
@@ -6225,7 +6225,7 @@
       "management": "방문형/6개월반값할인",
       "term": "60",
       "monthly": 49900,
-      "gift": 225000
+      "gift": 285000
     },
     "clover-1799|셀프형|36": {
       "product_id": "clover-1799",
@@ -6234,7 +6234,7 @@
       "management": "셀프형",
       "term": "36",
       "monthly": 51900,
-      "gift": 235000
+      "gift": 295000
     },
     "clover-1799|셀프형/6개월반값할인|60": {
       "product_id": "clover-1799",
@@ -6243,7 +6243,7 @@
       "management": "셀프형/6개월반값할인",
       "term": "60",
       "monthly": 46900,
-      "gift": 220000
+      "gift": 280000
     },
     "clover-2216|방문형|60": {
       "product_id": "clover-2216",
@@ -6252,7 +6252,7 @@
       "management": "방문형",
       "term": "60",
       "monthly": 31900,
-      "gift": 150000
+      "gift": 195000
     },
     "clover-2145|방문형|36": {
       "product_id": "clover-2145",
@@ -6261,7 +6261,7 @@
       "management": "방문형",
       "term": "36",
       "monthly": 49900,
-      "gift": 215000
+      "gift": 275000
     },
     "clover-2145|방문형|60": {
       "product_id": "clover-2145",
@@ -6270,7 +6270,7 @@
       "management": "방문형",
       "term": "60",
       "monthly": 44900,
-      "gift": 195000
+      "gift": 255000
     },
     "clover-2170|방문형|36": {
       "product_id": "clover-2170",
@@ -6279,7 +6279,7 @@
       "management": "방문형",
       "term": "36",
       "monthly": 36900,
-      "gift": 180000
+      "gift": 240000
     },
     "clover-2170|방문형|60": {
       "product_id": "clover-2170",
@@ -6288,7 +6288,7 @@
       "management": "방문형",
       "term": "60",
       "monthly": 31900,
-      "gift": 130000
+      "gift": 190000
     },
     "clover-2151|방문형|36": {
       "product_id": "clover-2151",
@@ -6297,7 +6297,7 @@
       "management": "방문형",
       "term": "36",
       "monthly": 39900,
-      "gift": 115000
+      "gift": 175000
     },
     "clover-2151|방문형|60": {
       "product_id": "clover-2151",
@@ -6333,7 +6333,7 @@
       "management": "기본 조건",
       "term": "36",
       "monthly": 29900,
-      "gift": 85000
+      "gift": 145000
     },
     "clover-2051|기본 조건|60": {
       "product_id": "clover-2051",
@@ -6342,7 +6342,7 @@
       "management": "기본 조건",
       "term": "60",
       "monthly": 25900,
-      "gift": 90000
+      "gift": 150000
     },
     "clover-2217|방문형|36": {
       "product_id": "clover-2217",
@@ -6351,7 +6351,7 @@
       "management": "방문형",
       "term": "36",
       "monthly": 51900,
-      "gift": 205000
+      "gift": 265000
     },
     "clover-2217|방문형|60": {
       "product_id": "clover-2217",
@@ -6360,7 +6360,7 @@
       "management": "방문형",
       "term": "60",
       "monthly": 49900,
-      "gift": 260000
+      "gift": 320000
     },
     "clover-2045|방문형|36": {
       "product_id": "clover-2045",
@@ -6369,7 +6369,7 @@
       "management": "방문형",
       "term": "36",
       "monthly": 50900,
-      "gift": 250000
+      "gift": 310000
     },
     "clover-2045|방문형|60": {
       "product_id": "clover-2045",
@@ -6378,7 +6378,7 @@
       "management": "방문형",
       "term": "60",
       "monthly": 48900,
-      "gift": 305000
+      "gift": 365000
     },
     "clover-2046|방문형|36": {
       "product_id": "clover-2046",
@@ -6387,7 +6387,7 @@
       "management": "방문형",
       "term": "36",
       "monthly": 56900,
-      "gift": 260000
+      "gift": 320000
     },
     "clover-2046|방문형|60": {
       "product_id": "clover-2046",
@@ -6396,7 +6396,7 @@
       "management": "방문형",
       "term": "60",
       "monthly": 52900,
-      "gift": 250000
+      "gift": 310000
     },
     "clover-2126|방문형|36": {
       "product_id": "clover-2126",
@@ -6405,7 +6405,7 @@
       "management": "방문형",
       "term": "36",
       "monthly": 40900,
-      "gift": 220000
+      "gift": 280000
     },
     "clover-2126|방문형|60": {
       "product_id": "clover-2126",
@@ -6414,7 +6414,7 @@
       "management": "방문형",
       "term": "60",
       "monthly": 33900,
-      "gift": 220000
+      "gift": 280000
     },
     "clover-2243|방문형|36": {
       "product_id": "clover-2243",
@@ -6423,7 +6423,7 @@
       "management": "방문형",
       "term": "36",
       "monthly": 37900,
-      "gift": 100000
+      "gift": 160000
     },
     "clover-2243|방문형|60": {
       "product_id": "clover-2243",
@@ -6432,7 +6432,7 @@
       "management": "방문형",
       "term": "60",
       "monthly": 34900,
-      "gift": 110000
+      "gift": 175000
     },
     "clover-2152|방문형|36": {
       "product_id": "clover-2152",
@@ -6450,7 +6450,7 @@
       "management": "방문형",
       "term": "60",
       "monthly": 19900,
-      "gift": 75000
+      "gift": 130000
     },
     "clover-2218|기본 조건|36": {
       "product_id": "clover-2218",
@@ -6468,7 +6468,7 @@
       "management": "기본 조건",
       "term": "60",
       "monthly": 42900,
-      "gift": null
+      "gift": 295000
     },
     "clover-2241|기본 조건|36": {
       "product_id": "clover-2241",
@@ -6486,7 +6486,7 @@
       "management": "기본 조건",
       "term": "60",
       "monthly": 43900,
-      "gift": 245000
+      "gift": 305000
     },
     "clover-2057|기본 조건|36": {
       "product_id": "clover-2057",
@@ -6495,7 +6495,7 @@
       "management": "기본 조건",
       "term": "36",
       "monthly": 48900,
-      "gift": 245000
+      "gift": 305000
     },
     "clover-2057|기본 조건|60": {
       "product_id": "clover-2057",
@@ -6504,7 +6504,7 @@
       "management": "기본 조건",
       "term": "60",
       "monthly": 44900,
-      "gift": 225000
+      "gift": 285000
     },
     "clover-2054|기본 조건|36": {
       "product_id": "clover-2054",
@@ -6522,7 +6522,7 @@
       "management": "기본 조건",
       "term": "60",
       "monthly": 25900,
-      "gift": 125000
+      "gift": 185000
     },
     "clover-2205|방문형|36": {
       "product_id": "clover-2205",
@@ -6531,7 +6531,7 @@
       "management": "방문형",
       "term": "36",
       "monthly": 59900,
-      "gift": 165000
+      "gift": 225000
     },
     "clover-2205|방문형|60": {
       "product_id": "clover-2205",
@@ -6540,7 +6540,7 @@
       "management": "방문형",
       "term": "60",
       "monthly": 44900,
-      "gift": 165000
+      "gift": 225000
     },
     "clover-2205|셀프형|36": {
       "product_id": "clover-2205",
@@ -6567,7 +6567,7 @@
       "management": "기본 조건",
       "term": "36",
       "monthly": 23900,
-      "gift": 85000
+      "gift": 145000
     },
     "clover-2052|기본 조건|60": {
       "product_id": "clover-2052",
@@ -6603,7 +6603,7 @@
       "management": "기본 조건",
       "term": "36",
       "monthly": 40900,
-      "gift": 185000
+      "gift": 245000
     },
     "clover-571|기본 조건|60": {
       "product_id": "clover-571",
@@ -6612,7 +6612,7 @@
       "management": "기본 조건",
       "term": "60",
       "monthly": 37900,
-      "gift": 185000
+      "gift": 245000
     },
     "clover-2260|방문형|36": {
       "product_id": "clover-2260",
@@ -6675,7 +6675,7 @@
       "management": "기본 조건",
       "term": "36",
       "monthly": 19900,
-      "gift": 55000
+      "gift": 75000
     },
     "clover-2240|기본 조건|60": {
       "product_id": "clover-2240",
@@ -6684,7 +6684,7 @@
       "management": "기본 조건",
       "term": "60",
       "monthly": 14900,
-      "gift": 80000
+      "gift": 105000
     },
     "clover-2127|방문형|36": {
       "product_id": "clover-2127",
@@ -6783,7 +6783,7 @@
       "management": "기본 조건",
       "term": "36",
       "monthly": 24900,
-      "gift": 65000
+      "gift": 90000
     },
     "clover-729|기본 조건|48": {
       "product_id": "clover-729",
@@ -6792,7 +6792,7 @@
       "management": "기본 조건",
       "term": "48",
       "monthly": 19900,
-      "gift": 85000
+      "gift": 105000
     },
     "clover-2131|기본 조건|36": {
       "product_id": "clover-2131",
@@ -6837,7 +6837,7 @@
       "management": "기본 조건",
       "term": "36",
       "monthly": 15900,
-      "gift": 40000
+      "gift": 60000
     },
     "clover-1624|기본 조건|48": {
       "product_id": "clover-1624",
@@ -6846,7 +6846,7 @@
       "management": "기본 조건",
       "term": "48",
       "monthly": 13900,
-      "gift": 40000
+      "gift": 60000
     },
     "clover-1690|기본 조건|36": {
       "product_id": "clover-1690",
@@ -6855,7 +6855,7 @@
       "management": "기본 조건",
       "term": "36",
       "monthly": 20900,
-      "gift": 90000
+      "gift": 110000
     },
     "clover-1690|기본 조건|48": {
       "product_id": "clover-1690",
@@ -6864,7 +6864,7 @@
       "management": "기본 조건",
       "term": "48",
       "monthly": 17900,
-      "gift": 115000
+      "gift": 135000
     },
     "clover-2124|방문형|36": {
       "product_id": "clover-2124",
@@ -7296,7 +7296,7 @@
       "management": "방문형",
       "term": "36",
       "monthly": 19900,
-      "gift": null
+      "gift": 10000
     },
     "clover-2235|셀프형|36": {
       "product_id": "clover-2235",

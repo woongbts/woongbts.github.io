@@ -1,10 +1,459 @@
 {
   "schema": 1,
-  "generatedAt": "2026-10-04T08:20:50.347606+00:00",
-  "sourcePolicyDate": "2026-10-03",
-  "previousFingerprint": "",
-  "currentFingerprint": "d4466a0a85606aa78ddab76472da10f6913808101e5ecdeebd72aca1041fe522",
-  "alertCount": 0,
-  "alerts": [],
-  "status": "baseline"
+  "generatedAt": "2026-11-03T02:38:35.954922+00:00",
+  "sourcePolicyDate": "2026-11-03",
+  "previousFingerprint": "d4466a0a85606aa78ddab76472da10f6913808101e5ecdeebd72aca1041fe522",
+  "currentFingerprint": "ce53a13dcf649e5751b4e02de58543331dcdcc956d4c2ed55ee67992a73a6fd7",
+  "alertCount": 64,
+  "alerts": [
+    {
+      "level": "warn",
+      "type": "사은품",
+      "product_id": "chpci-8400n",
+      "title": "카페 얼음 냉온정수기",
+      "message": "방문관리 2개월 · 36개월: 230,000원 → 255,000원 (+25,000원)"
+    },
+    {
+      "level": "warn",
+      "type": "사은품",
+      "product_id": "chpci-8400n",
+      "title": "카페 얼음 냉온정수기",
+      "message": "방문관리 2개월 · 60개월: 260,000원 → 285,000원 (+25,000원)"
+    },
+    {
+      "level": "warn",
+      "type": "사은품",
+      "product_id": "chpci-8400n",
+      "title": "카페 얼음 냉온정수기",
+      "message": "방문관리 2개월 · 72개월: 300,000원 → 330,000원 (+30,000원)"
+    },
+    {
+      "level": "warn",
+      "type": "사은품",
+      "product_id": "chpci-8400n",
+      "title": "카페 얼음 냉온정수기",
+      "message": "방문관리 2개월 · 84개월: 300,000원 → 325,000원 (+25,000원)"
+    },
+    {
+      "level": "warn",
+      "type": "사은품",
+      "product_id": "chpci-8400n",
+      "title": "카페 얼음 냉온정수기",
+      "message": "방문관리 4개월 · 36개월: 220,000원 → 250,000원 (+30,000원)"
+    },
+    {
+      "level": "warn",
+      "type": "사은품",
+      "product_id": "chpci-8400n",
+      "title": "카페 얼음 냉온정수기",
+      "message": "방문관리 4개월 · 60개월: 250,000원 → 280,000원 (+30,000원)"
+    },
+    {
+      "level": "warn",
+      "type": "사은품",
+      "product_id": "chpci-8400n",
+      "title": "카페 얼음 냉온정수기",
+      "message": "방문관리 4개월 · 72개월: 290,000원 → 320,000원 (+30,000원)"
+    },
+    {
+      "level": "warn",
+      "type": "사은품",
+      "product_id": "chpci-8400n",
+      "title": "카페 얼음 냉온정수기",
+      "message": "방문관리 4개월 · 84개월: 290,000원 → 315,000원 (+25,000원)"
+    },
+    {
+      "level": "warn",
+      "type": "사은품",
+      "product_id": "clover-1624",
+      "title": "에어버블 비데",
+      "message": "기본 조건 · 36개월: 40,000원 → 60,000원 (+20,000원)"
+    },
+    {
+      "level": "warn",
+      "type": "사은품",
+      "product_id": "clover-1624",
+      "title": "에어버블 비데",
+      "message": "기본 조건 · 48개월: 40,000원 → 60,000원 (+20,000원)"
+    },
+    {
+      "level": "warn",
+      "type": "사은품",
+      "product_id": "clover-1690",
+      "title": "쾌변비데 B350 (리모컨)",
+      "message": "기본 조건 · 36개월: 90,000원 → 110,000원 (+20,000원)"
+    },
+    {
+      "level": "warn",
+      "type": "사은품",
+      "product_id": "clover-1690",
+      "title": "쾌변비데 B350 (리모컨)",
+      "message": "기본 조건 · 48개월: 115,000원 → 135,000원 (+20,000원)"
+    },
+    {
+      "level": "warn",
+      "type": "사은품",
+      "product_id": "clover-1799",
+      "title": "뉴 아이스트리 직수얼음냉온정수기 (할인프로모션)",
+      "message": "방문형/6개월반값할인 · 60개월: 225,000원 → 285,000원 (+60,000원)"
+    },
+    {
+      "level": "warn",
+      "type": "사은품",
+      "product_id": "clover-1799",
+      "title": "뉴 아이스트리 직수얼음냉온정수기 (할인프로모션)",
+      "message": "방문형 · 36개월: 240,000원 → 300,000원 (+60,000원)"
+    },
+    {
+      "level": "warn",
+      "type": "사은품",
+      "product_id": "clover-1799",
+      "title": "뉴 아이스트리 직수얼음냉온정수기 (할인프로모션)",
+      "message": "셀프형/6개월반값할인 · 60개월: 220,000원 → 280,000원 (+60,000원)"
+    },
+    {
+      "level": "warn",
+      "type": "사은품",
+      "product_id": "clover-1799",
+      "title": "뉴 아이스트리 직수얼음냉온정수기 (할인프로모션)",
+      "message": "셀프형 · 36개월: 235,000원 → 295,000원 (+60,000원)"
+    },
+    {
+      "level": "warn",
+      "type": "사은품",
+      "product_id": "clover-2045",
+      "title": "얼음냉온정수기 NEW 700",
+      "message": "방문형 · 36개월: 250,000원 → 310,000원 (+60,000원)"
+    },
+    {
+      "level": "warn",
+      "type": "사은품",
+      "product_id": "clover-2045",
+      "title": "얼음냉온정수기 NEW 700",
+      "message": "방문형 · 60개월: 305,000원 → 365,000원 (+60,000원)"
+    },
+    {
+      "level": "warn",
+      "type": "사은품",
+      "product_id": "clover-2046",
+      "title": "얼음냉온정수기 슈퍼 아이스트리",
+      "message": "방문형 · 36개월: 260,000원 → 320,000원 (+60,000원)"
+    },
+    {
+      "level": "warn",
+      "type": "사은품",
+      "product_id": "clover-2046",
+      "title": "얼음냉온정수기 슈퍼 아이스트리",
+      "message": "방문형 · 60개월: 250,000원 → 310,000원 (+60,000원)"
+    },
+    {
+      "level": "warn",
+      "type": "사은품",
+      "product_id": "clover-2051",
+      "title": "냉온정수기 450-L",
+      "message": "기본 조건 · 36개월: 85,000원 → 145,000원 (+60,000원)"
+    },
+    {
+      "level": "warn",
+      "type": "사은품",
+      "product_id": "clover-2051",
+      "title": "냉온정수기 450-L",
+      "message": "기본 조건 · 60개월: 90,000원 → 150,000원 (+60,000원)"
+    },
+    {
+      "level": "warn",
+      "type": "사은품",
+      "product_id": "clover-2052",
+      "title": "냉온정수기 ANNIE PLUS",
+      "message": "기본 조건 · 36개월: 85,000원 → 145,000원 (+60,000원)"
+    },
+    {
+      "level": "warn",
+      "type": "사은품",
+      "product_id": "clover-2054",
+      "title": "냉온정수기 TOTA R (토타)",
+      "message": "기본 조건 · 60개월: 125,000원 → 185,000원 (+60,000원)"
+    },
+    {
+      "level": "warn",
+      "type": "사은품",
+      "product_id": "clover-2057",
+      "title": "냉온정수기 슈퍼 트리 (할인프로모션)",
+      "message": "기본 조건 · 36개월: 245,000원 → 305,000원 (+60,000원)"
+    },
+    {
+      "level": "warn",
+      "type": "사은품",
+      "product_id": "clover-2057",
+      "title": "냉온정수기 슈퍼 트리 (할인프로모션)",
+      "message": "기본 조건 · 60개월: 225,000원 → 285,000원 (+60,000원)"
+    },
+    {
+      "level": "warn",
+      "type": "사은품",
+      "product_id": "clover-2126",
+      "title": "냉온정수기 메타 디지털 P (할인프로모션)/오트밀베이지만 가능",
+      "message": "방문형 · 36개월: 220,000원 → 280,000원 (+60,000원)"
+    },
+    {
+      "level": "warn",
+      "type": "사은품",
+      "product_id": "clover-2126",
+      "title": "냉온정수기 메타 디지털 P (할인프로모션)/오트밀베이지만 가능",
+      "message": "방문형 · 60개월: 220,000원 → 280,000원 (+60,000원)"
+    },
+    {
+      "level": "warn",
+      "type": "사은품",
+      "product_id": "clover-2145",
+      "title": "얼음냉온정수기 아이스트리 플리",
+      "message": "방문형 · 36개월: 215,000원 → 275,000원 (+60,000원)"
+    },
+    {
+      "level": "warn",
+      "type": "사은품",
+      "product_id": "clover-2145",
+      "title": "얼음냉온정수기 아이스트리 플리",
+      "message": "방문형 · 60개월: 195,000원 → 255,000원 (+60,000원)"
+    },
+    {
+      "level": "warn",
+      "type": "사은품",
+      "product_id": "clover-2151",
+      "title": "뉴 러블리트리 직수냉온정수기",
+      "message": "방문형 · 36개월: 115,000원 → 175,000원 (+60,000원)"
+    },
+    {
+      "level": "warn",
+      "type": "사은품",
+      "product_id": "clover-2152",
+      "title": "냉온정수기 ANNIE",
+      "message": "방문형 · 60개월: 75,000원 → 130,000원 (+55,000원)"
+    },
+    {
+      "level": "warn",
+      "type": "사은품",
+      "product_id": "clover-2170",
+      "title": "냉온정수기 아이스트리 플리",
+      "message": "방문형 · 36개월: 180,000원 → 240,000원 (+60,000원)"
+    },
+    {
+      "level": "warn",
+      "type": "사은품",
+      "product_id": "clover-2170",
+      "title": "냉온정수기 아이스트리 플리",
+      "message": "방문형 · 60개월: 130,000원 → 190,000원 (+60,000원)"
+    },
+    {
+      "level": "danger",
+      "type": "사은품",
+      "product_id": "clover-2196",
+      "title": "원코크 플러스 얼음물 냉온정수기",
+      "message": "방문형 · 60개월: 285,000원 → 260,000원 (-25,000원)"
+    },
+    {
+      "level": "danger",
+      "type": "사은품",
+      "product_id": "clover-2196",
+      "title": "원코크 플러스 얼음물 냉온정수기",
+      "message": "셀프형 · 60개월: 280,000원 → 255,000원 (-25,000원)"
+    },
+    {
+      "level": "warn",
+      "type": "사은품",
+      "product_id": "clover-2205",
+      "title": "빌트인 냉온정수기 블리스",
+      "message": "방문형 · 36개월: 165,000원 → 225,000원 (+60,000원)"
+    },
+    {
+      "level": "warn",
+      "type": "사은품",
+      "product_id": "clover-2205",
+      "title": "빌트인 냉온정수기 블리스",
+      "message": "방문형 · 60개월: 165,000원 → 225,000원 (+60,000원)"
+    },
+    {
+      "level": "warn",
+      "type": "사은품",
+      "product_id": "clover-2216",
+      "title": "옴니 플러스 얼음 냉온정수기",
+      "message": "방문형 · 60개월: 150,000원 → 195,000원 (+45,000원)"
+    },
+    {
+      "level": "warn",
+      "type": "사은품",
+      "product_id": "clover-2217",
+      "title": "얼음냉온정수기 NEW 700 P_할인프로모션",
+      "message": "방문형 · 36개월: 205,000원 → 265,000원 (+60,000원)"
+    },
+    {
+      "level": "warn",
+      "type": "사은품",
+      "product_id": "clover-2217",
+      "title": "얼음냉온정수기 NEW 700 P_할인프로모션",
+      "message": "방문형 · 60개월: 260,000원 → 320,000원 (+60,000원)"
+    },
+    {
+      "level": "warn",
+      "type": "사은품",
+      "product_id": "clover-2223",
+      "title": "초소형 라이트 직수 냉온정수기",
+      "message": "방문형 · 60개월: 165,000원 → 195,000원 (+30,000원)"
+    },
+    {
+      "level": "warn",
+      "type": "사은품",
+      "product_id": "clover-2223",
+      "title": "초소형 라이트 직수 냉온정수기",
+      "message": "셀프형 · 60개월: 160,000원 → 190,000원 (+30,000원)"
+    },
+    {
+      "level": "warn",
+      "type": "사은품",
+      "product_id": "clover-2240",
+      "title": "트윈 노즐 비데 B400",
+      "message": "기본 조건 · 36개월: 55,000원 → 75,000원 (+20,000원)"
+    },
+    {
+      "level": "warn",
+      "type": "사은품",
+      "product_id": "clover-2240",
+      "title": "트윈 노즐 비데 B400",
+      "message": "기본 조건 · 60개월: 80,000원 → 105,000원 (+25,000원)"
+    },
+    {
+      "level": "warn",
+      "type": "사은품",
+      "product_id": "clover-2241",
+      "title": "얼음 냉온정수기 550 P_할인 프로모션",
+      "message": "기본 조건 · 60개월: 245,000원 → 305,000원 (+60,000원)"
+    },
+    {
+      "level": "warn",
+      "type": "사은품",
+      "product_id": "clover-2243",
+      "title": "냉온정수기 TOTA MAX",
+      "message": "방문형 · 36개월: 100,000원 → 160,000원 (+60,000원)"
+    },
+    {
+      "level": "warn",
+      "type": "사은품",
+      "product_id": "clover-2243",
+      "title": "냉온정수기 TOTA MAX",
+      "message": "방문형 · 60개월: 110,000원 → 175,000원 (+65,000원)"
+    },
+    {
+      "level": "warn",
+      "type": "사은품",
+      "product_id": "clover-2248",
+      "title": "THE M 얼음 냉온정수기",
+      "message": "방문형 · 36개월: 155,000원 → 215,000원 (+60,000원)"
+    },
+    {
+      "level": "warn",
+      "type": "사은품",
+      "product_id": "clover-2248",
+      "title": "THE M 얼음 냉온정수기",
+      "message": "방문형 · 60개월: 305,000원 → 340,000원 (+35,000원)"
+    },
+    {
+      "level": "warn",
+      "type": "사은품",
+      "product_id": "clover-2248",
+      "title": "THE M 얼음 냉온정수기",
+      "message": "셀프형 · 36개월: 150,000원 → 210,000원 (+60,000원)"
+    },
+    {
+      "level": "warn",
+      "type": "사은품",
+      "product_id": "clover-2248",
+      "title": "THE M 얼음 냉온정수기",
+      "message": "셀프형 · 60개월: 295,000원 → 330,000원 (+35,000원)"
+    },
+    {
+      "level": "danger",
+      "type": "사은품",
+      "product_id": "clover-2251",
+      "title": "MEGA ICE 얼음냉온정수기",
+      "message": "방문형 · 36개월: 215,000원 → 190,000원 (-25,000원)"
+    },
+    {
+      "level": "danger",
+      "type": "사은품",
+      "product_id": "clover-2251",
+      "title": "MEGA ICE 얼음냉온정수기",
+      "message": "방문형 · 60개월: 330,000원 → 280,000원 (-50,000원)"
+    },
+    {
+      "level": "danger",
+      "type": "사은품",
+      "product_id": "clover-2251",
+      "title": "MEGA ICE 얼음냉온정수기",
+      "message": "셀프형 · 36개월: 215,000원 → 190,000원 (-25,000원)"
+    },
+    {
+      "level": "danger",
+      "type": "사은품",
+      "product_id": "clover-2251",
+      "title": "MEGA ICE 얼음냉온정수기",
+      "message": "셀프형 · 60개월: 330,000원 → 280,000원 (-50,000원)"
+    },
+    {
+      "level": "danger",
+      "type": "사은품",
+      "product_id": "clover-2254",
+      "title": "MEGA ICE 얼음냉온정수기 mini",
+      "message": "방문형 · 36개월: 175,000원 → 145,000원 (-30,000원)"
+    },
+    {
+      "level": "danger",
+      "type": "사은품",
+      "product_id": "clover-2254",
+      "title": "MEGA ICE 얼음냉온정수기 mini",
+      "message": "방문형 · 60개월: 275,000원 → 215,000원 (-60,000원)"
+    },
+    {
+      "level": "danger",
+      "type": "사은품",
+      "product_id": "clover-2254",
+      "title": "MEGA ICE 얼음냉온정수기 mini",
+      "message": "셀프형 · 36개월: 180,000원 → 150,000원 (-30,000원)"
+    },
+    {
+      "level": "danger",
+      "type": "사은품",
+      "product_id": "clover-2254",
+      "title": "MEGA ICE 얼음냉온정수기 mini",
+      "message": "셀프형 · 60개월: 275,000원 → 215,000원 (-60,000원)"
+    },
+    {
+      "level": "warn",
+      "type": "사은품",
+      "product_id": "clover-571",
+      "title": "냉온정수기 NEW 디지털",
+      "message": "기본 조건 · 36개월: 185,000원 → 245,000원 (+60,000원)"
+    },
+    {
+      "level": "warn",
+      "type": "사은품",
+      "product_id": "clover-571",
+      "title": "냉온정수기 NEW 디지털",
+      "message": "기본 조건 · 60개월: 185,000원 → 245,000원 (+60,000원)"
+    },
+    {
+      "level": "warn",
+      "type": "사은품",
+      "product_id": "clover-729",
+      "title": "살균비데 B600 Plus",
+      "message": "기본 조건 · 36개월: 65,000원 → 90,000원 (+25,000원)"
+    },
+    {
+      "level": "warn",
+      "type": "사은품",
+      "product_id": "clover-729",
+      "title": "살균비데 B600 Plus",
+      "message": "기본 조건 · 48개월: 85,000원 → 105,000원 (+20,000원)"
+    }
+  ],
+  "status": "changed"
 }
