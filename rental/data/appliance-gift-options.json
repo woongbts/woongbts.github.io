@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-03",
+  "generatedAt": "2026-11-03",
   "productCount": 184,
   "optionCount": 1430,
   "products": {
@@ -17021,5 +17021,6 @@
       "giftStatus": "customer-gift-calculated",
       "promo": "월 렌탈료와 고객사은품은 선택한 렌탈사·계약기간 기준입니다. 최종 접수 전 최신 조건을 다시 확인합니다."
     }
-  }
+  },
+  "sourcePolicyMonth": "2026-11"
 }

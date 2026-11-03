@@ -9,6 +9,8 @@ import ssl
 import time
 import unicodedata
 from pathlib import Path
+from datetime import datetime
+from zoneinfo import ZoneInfo
 from urllib.parse import urlencode, quote
 from urllib.request import Request, urlopen
 
@@ -17,6 +19,10 @@ UA = "Mozilla/5.0 (compatible; WoongbiRentalCatalogSync/2.0)"
 OUT = Path("rental/data/products.json")
 GIFT_MATCHES = Path("rental/data/gift-matches.json")
 PAGE_SIZE = 24
+
+
+def kst_today():
+    return datetime.now(ZoneInfo("Asia/Seoul")).date().isoformat()
 
 ROOTS = {
     1057: "SK매직",
@@ -224,6 +230,14 @@ def make_options(item: dict) -> list[dict]:
                 "care": "상세 조건 상담 확인",
                 "sourceOption": "",
             })
+    # Public source option-specific payout: customer-facing gift is half, never publish the payout.
+    payouts = item.get("field5s") or {}
+    if isinstance(payouts, dict):
+        for option in result:
+            amount = as_int(payouts.get(str(option.get("monthly"))))
+            if amount is not None and amount >= 0:
+                option["gift"] = amount // 2
+                option["giftPolicyMonth"] = kst_today()[:7]
     return result
 
 
@@ -338,6 +352,7 @@ def scrape() -> tuple[list[dict], dict]:
                 "options": options,
                 "sourceKind": "clover-public",
                 "availability": availability,
+                "giftStatus": "matched" if any(o.get("gift") is not None for o in options) else "unavailable",
             })
             added += 1
         stats[brand] = {"sourceTotal": total, "imported": added, "pages": pages}
@@ -368,7 +383,7 @@ def carry_forward_gifts(imported: list[dict], current: dict) -> None:
             previous = old_options.get(option_signature(option))
             if not previous:
                 continue
-            if previous.get("gift") is not None:
+            if option.get("gift") is None and previous.get("gift") is not None:
                 option["gift"] = previous.get("gift")
                 if previous.get("giftPolicyMonth"):
                     option["giftPolicyMonth"] = previous.get("giftPolicyMonth")
@@ -382,6 +397,8 @@ def apply_sanitized_gift_matches(products: list[dict]) -> dict:
         return {"matchedProducts": 0, "matchedOptions": 0}
 
     data = json.loads(GIFT_MATCHES.read_text(encoding="utf-8"))
+    if data.get("effectiveMonth") != kst_today()[:7]:
+        return {"matchedProducts": 0, "matchedOptions": 0, "staleMatchFileSkipped": True}
     matches = data.get("matches") or {}
     matched_products = 0
     matched_options = 0
@@ -393,7 +410,14 @@ def apply_sanitized_gift_matches(products: list[dict]) -> dict:
             key = str(option.get("key") or "")
             if key not in product_matches:
                 continue
-            gift = as_int(product_matches.get(key))
+            entry = product_matches.get(key)
+            if isinstance(entry, dict):
+                if (as_int(entry.get("monthly")) != as_int(option.get("monthly"))
+                        or as_int(entry.get("term")) != as_int(option.get("term"))):
+                    continue
+                gift = as_int(entry.get("gift"))
+            else:
+                gift = as_int(entry)
             if gift is None:
                 continue
             option["gift"] = gift
@@ -446,14 +470,37 @@ def merge_curated(imported: list[dict], current: dict) -> list[dict]:
 def main():
     current = json.loads(OUT.read_text(encoding="utf-8")) if OUT.exists() else {"products": []}
     imported, stats = scrape()
+    # Fail closed on incomplete category responses; never silently delete a whole brand.
+    for brand, old_info in (current.get("catalogStats") or {}).items():
+        previous = as_int((old_info or {}).get("imported")) or 0
+        incoming = as_int((stats.get(brand) or {}).get("imported")) or 0
+        if previous >= 5 and incoming < math.ceil(previous * 0.70):
+            raise RuntimeError(f"Incomplete {brand} source catalog: {incoming}/{previous}")
+    if len(imported) < 300:
+        raise RuntimeError(f"Unexpectedly small import: {len(imported)}")
+    # Keep local product images and verified editorial material for existing items.
+    prior = {str(p.get("sourceId")): p for p in current.get("products", [])
+             if p.get("sourceKind") == "clover-public" and p.get("sourceId")}
+    for product in imported:
+        old = prior.get(str(product.get("sourceId")))
+        if not old:
+            continue
+        for key in ("image", "imageSourceOriginal", "imageLocalizedFrom",
+                    "imageRepresentative", "imageRepresentativeSource",
+                    "imageRepresentativeMethod", "shortDescription", "highlights",
+                    "tags", "page"):
+            if old.get(key) not in (None, "", [], {}):
+                product[key] = old[key]
+        if not product.get("detailImages") and old.get("detailImages"):
+            product["detailImages"] = old["detailImages"]
     carry_forward_gifts(imported, current)
     products = merge_curated(imported, current)
     gift_stats = apply_sanitized_gift_matches(products)
     payload = {
-        "updatedAt": "2026-10-02",
-        "policyMonth": current.get("policyMonth", "2026-10"),
-        "policyStatus": current.get("policyStatus", "synced"),
-        "policySourceLabel": current.get("policySourceLabel", "2026년 10월 렌탈 정책"),
+        "updatedAt": kst_today(),
+        "policyMonth": kst_today()[:7],
+        "policyStatus": "synced",
+        "policySourceLabel": f"{kst_today()[:4]}년 {int(kst_today()[5:7])}월 확인된 렌탈 정책",
         "catalogSource": "woongbi.vip-rental.com public catalog",
         "catalogStats": stats,
         "giftMatchStats": gift_stats,

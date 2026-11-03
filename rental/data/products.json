@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-03",
+  "updatedAt": "2026-11-03",
   "policyMonth": "2026-10",
   "policyStatus": "synced",
   "policySourceLabel": "2026년 10월 렌탈 정책",
@@ -48,7 +48,9 @@
   },
   "giftMatchStats": {
     "matchedProducts": 226,
-    "matchedOptions": 655
+    "matchedOptions": 655,
+    "verifiedFromNovemberSchedule": 401,
+    "changedFromNovemberSchedule": 81
   },
   "products": [
     {
@@ -92,10 +94,10 @@
           "term": 36,
           "monthly": 48900,
           "card": null,
-          "gift": 175000,
+          "gift": 145000,
           "care": "방문형",
           "sourceOption": "(방문형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-option-60",
@@ -104,10 +106,10 @@
           "term": 60,
           "monthly": 45900,
           "card": null,
-          "gift": 275000,
+          "gift": 215000,
           "care": "방문형",
           "sourceOption": "(방문형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-36",
@@ -116,10 +118,10 @@
           "term": 36,
           "monthly": 46900,
           "card": null,
-          "gift": 180000,
+          "gift": 150000,
           "care": "셀프형",
           "sourceOption": "(셀프형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-60",
@@ -128,10 +130,10 @@
           "term": 60,
           "monthly": 44900,
           "card": null,
-          "gift": 275000,
+          "gift": 215000,
           "care": "셀프형",
           "sourceOption": "(셀프형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -205,10 +207,10 @@
           "term": 36,
           "monthly": 56900,
           "card": null,
-          "gift": 215000,
+          "gift": 190000,
           "care": "방문형",
           "sourceOption": "(방문형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-option-60",
@@ -217,10 +219,10 @@
           "term": 60,
           "monthly": 53900,
           "card": null,
-          "gift": 330000,
+          "gift": 280000,
           "care": "방문형",
           "sourceOption": "(방문형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-36",
@@ -229,10 +231,10 @@
           "term": 36,
           "monthly": 55900,
           "card": null,
-          "gift": 215000,
+          "gift": 190000,
           "care": "셀프형",
           "sourceOption": "(셀프형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-60",
@@ -241,10 +243,10 @@
           "term": 60,
           "monthly": 52900,
           "card": null,
-          "gift": 330000,
+          "gift": 280000,
           "care": "셀프형",
           "sourceOption": "(셀프형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -313,10 +315,10 @@
           "term": 36,
           "monthly": 55900,
           "card": null,
-          "gift": 185000,
+          "gift": 170000,
           "care": "방문형",
           "sourceOption": "(방문형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-option-60",
@@ -325,10 +327,10 @@
           "term": 60,
           "monthly": 50400,
           "card": null,
-          "gift": 285000,
+          "gift": 260000,
           "care": "방문형",
           "sourceOption": "(방문형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-36",
@@ -337,10 +339,10 @@
           "term": 36,
           "monthly": 54900,
           "card": null,
-          "gift": 185000,
+          "gift": 170000,
           "care": "셀프형",
           "sourceOption": "(셀프형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-60",
@@ -349,10 +351,10 @@
           "term": 60,
           "monthly": 49400,
           "card": null,
-          "gift": 280000,
+          "gift": 255000,
           "care": "셀프형",
           "sourceOption": "(셀프형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -415,10 +417,10 @@
           "term": 36,
           "monthly": 37900,
           "card": null,
-          "gift": 105000,
+          "gift": 120000,
           "care": "방문형",
           "sourceOption": "(방문형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-option-60",
@@ -427,10 +429,10 @@
           "term": 60,
           "monthly": 32400,
           "card": null,
-          "gift": 165000,
+          "gift": 195000,
           "care": "방문형",
           "sourceOption": "(방문형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-36",
@@ -439,10 +441,10 @@
           "term": 36,
           "monthly": 34900,
           "card": null,
-          "gift": 105000,
+          "gift": 120000,
           "care": "셀프형",
           "sourceOption": "(셀프형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-60",
@@ -451,10 +453,10 @@
           "term": 60,
           "monthly": 29400,
           "card": null,
-          "gift": 160000,
+          "gift": 190000,
           "care": "셀프형",
           "sourceOption": "(셀프형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -515,7 +517,7 @@
           "gift": 95000,
           "care": "방문형",
           "sourceOption": "(방문형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-option-60",
@@ -527,7 +529,7 @@
           "gift": 95000,
           "care": "방문형",
           "sourceOption": "(방문형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -604,7 +606,7 @@
           "gift": 160000,
           "care": "방문형",
           "sourceOption": "(방문형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-option-60",
@@ -616,7 +618,7 @@
           "gift": 160000,
           "care": "방문형",
           "sourceOption": "(방문형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-36",
@@ -628,7 +630,7 @@
           "gift": 160000,
           "care": "셀프형",
           "sourceOption": "(셀프형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-60",
@@ -640,7 +642,7 @@
           "gift": 160000,
           "care": "셀프형",
           "sourceOption": "(셀프형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -806,10 +808,10 @@
           "term": 36,
           "monthly": 38900,
           "card": null,
-          "gift": 155000,
+          "gift": 160000,
           "care": "셀프형",
           "sourceOption": "(셀프형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-60",
@@ -818,10 +820,10 @@
           "term": 60,
           "monthly": 33400,
           "card": null,
-          "gift": 230000,
+          "gift": 240000,
           "care": "셀프형",
           "sourceOption": "(셀프형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -898,7 +900,7 @@
           "gift": 130000,
           "care": "방문형",
           "sourceOption": "(방문형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-option-60",
@@ -910,7 +912,7 @@
           "gift": 130000,
           "care": "방문형",
           "sourceOption": "(방문형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-36",
@@ -922,7 +924,7 @@
           "gift": 130000,
           "care": "셀프형",
           "sourceOption": "(셀프형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-60",
@@ -934,7 +936,7 @@
           "gift": 130000,
           "care": "셀프형",
           "sourceOption": "(셀프형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -1011,7 +1013,7 @@
           "gift": 80000,
           "care": "방문형",
           "sourceOption": "(방문형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-option-60",
@@ -1023,7 +1025,7 @@
           "gift": 80000,
           "care": "방문형",
           "sourceOption": "(방문형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-36",
@@ -1035,7 +1037,7 @@
           "gift": 80000,
           "care": "셀프형",
           "sourceOption": "(셀프형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-60",
@@ -1047,7 +1049,7 @@
           "gift": 80000,
           "care": "셀프형",
           "sourceOption": "(셀프형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -1119,7 +1121,7 @@
           "gift": 35000,
           "care": "방문형",
           "sourceOption": "(방문형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-option-60",
@@ -1142,7 +1144,7 @@
           "gift": 35000,
           "care": "셀프형",
           "sourceOption": "(셀프형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-60",
@@ -1154,7 +1156,7 @@
           "gift": 35000,
           "care": "셀프형",
           "sourceOption": "(셀프형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -1220,7 +1222,7 @@
           "gift": 130000,
           "care": "방문형",
           "sourceOption": "(방문형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-1-60",
@@ -1232,7 +1234,7 @@
           "gift": 170000,
           "care": "방문형/1천원할인",
           "sourceOption": "(방문형/1천원할인)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -1308,7 +1310,7 @@
           "gift": 105000,
           "care": "방문형",
           "sourceOption": "(방문형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-option-60",
@@ -1320,7 +1322,7 @@
           "gift": 135000,
           "care": "방문형",
           "sourceOption": "(방문형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-36",
@@ -1332,7 +1334,7 @@
           "gift": 85000,
           "care": "셀프형",
           "sourceOption": "(셀프형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-60",
@@ -1344,7 +1346,7 @@
           "gift": 105000,
           "care": "셀프형",
           "sourceOption": "(셀프형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -1421,7 +1423,7 @@
           "gift": 110000,
           "care": "방문형",
           "sourceOption": "(방문형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-option-60",
@@ -1433,7 +1435,7 @@
           "gift": 145000,
           "care": "방문형",
           "sourceOption": "(방문형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-36",
@@ -1445,7 +1447,7 @@
           "gift": 90000,
           "care": "셀프형",
           "sourceOption": "(셀프형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-60",
@@ -1457,7 +1459,7 @@
           "gift": 115000,
           "care": "셀프형",
           "sourceOption": "(셀프형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -1533,7 +1535,7 @@
           "gift": 85000,
           "care": "방문형",
           "sourceOption": "(방문형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-option-60",
@@ -1545,7 +1547,7 @@
           "gift": 105000,
           "care": "방문형",
           "sourceOption": "(방문형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-36",
@@ -1557,7 +1559,7 @@
           "gift": 65000,
           "care": "셀프형",
           "sourceOption": "(셀프형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-60",
@@ -1569,7 +1571,7 @@
           "gift": 85000,
           "care": "셀프형",
           "sourceOption": "(셀프형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -1645,7 +1647,7 @@
           "gift": 100000,
           "care": "방문형",
           "sourceOption": "(방문형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-option-60",
@@ -1657,7 +1659,7 @@
           "gift": 90000,
           "care": "방문형",
           "sourceOption": "(방문형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-36",
@@ -1669,7 +1671,7 @@
           "gift": 95000,
           "care": "셀프형",
           "sourceOption": "(셀프형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-60",
@@ -1681,7 +1683,7 @@
           "gift": 85000,
           "care": "셀프형",
           "sourceOption": "(셀프형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -1757,7 +1759,7 @@
           "gift": 70000,
           "care": "방문형",
           "sourceOption": "(방문형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-option-60",
@@ -1769,7 +1771,7 @@
           "gift": 60000,
           "care": "방문형",
           "sourceOption": "(방문형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-36",
@@ -1781,7 +1783,7 @@
           "gift": 60000,
           "care": "셀프형",
           "sourceOption": "(셀프형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-60",
@@ -1793,7 +1795,7 @@
           "gift": 50000,
           "care": "셀프형",
           "sourceOption": "(셀프형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -1860,7 +1862,7 @@
           "gift": 90000,
           "care": "방문형",
           "sourceOption": "(방문형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-option-60",
@@ -1872,7 +1874,7 @@
           "gift": 85000,
           "care": "방문형",
           "sourceOption": "(방문형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-36",
@@ -1884,7 +1886,7 @@
           "gift": 90000,
           "care": "셀프형",
           "sourceOption": "(셀프형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-60",
@@ -1896,7 +1898,7 @@
           "gift": 80000,
           "care": "셀프형",
           "sourceOption": "(셀프형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -1956,7 +1958,7 @@
           "gift": 220000,
           "care": "방문형",
           "sourceOption": "(방문형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -2015,7 +2017,7 @@
           "gift": 10000,
           "care": "방문형",
           "sourceOption": "(방문형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-option-60",
@@ -2027,7 +2029,7 @@
           "gift": 5000,
           "care": "방문형",
           "sourceOption": "(방문형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -2094,7 +2096,7 @@
           "gift": 100000,
           "care": "기본 조건",
           "sourceOption": "36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "standard-option-60",
@@ -2106,7 +2108,7 @@
           "gift": 95000,
           "care": "기본 조건",
           "sourceOption": "60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -2163,7 +2165,7 @@
           "gift": 135000,
           "care": "방문형",
           "sourceOption": "(방문형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-option-60",
@@ -2175,7 +2177,7 @@
           "gift": 135000,
           "care": "방문형",
           "sourceOption": "(방문형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -2231,7 +2233,7 @@
           "gift": 95000,
           "care": "방문형",
           "sourceOption": "(방문형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-option-60",
@@ -2243,7 +2245,7 @@
           "gift": 95000,
           "care": "방문형",
           "sourceOption": "(방문형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -2307,7 +2309,7 @@
           "gift": 30000,
           "care": "기본 조건",
           "sourceOption": "36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "standard-option-60",
@@ -2319,7 +2321,7 @@
           "gift": 25000,
           "care": "기본 조건",
           "sourceOption": "60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -2463,7 +2465,7 @@
           "gift": 95000,
           "care": "방문형",
           "sourceOption": "(방문형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-option-60",
@@ -2475,7 +2477,7 @@
           "gift": 95000,
           "care": "방문형",
           "sourceOption": "(방문형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -2540,7 +2542,7 @@
           "gift": 135000,
           "care": "방문형",
           "sourceOption": "(방문형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-option-60",
@@ -2552,7 +2554,7 @@
           "gift": 135000,
           "care": "방문형",
           "sourceOption": "(방문형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -2620,7 +2622,7 @@
           "gift": 30000,
           "care": "기본 조건",
           "sourceOption": "36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "standard-option-60",
@@ -2632,7 +2634,7 @@
           "gift": 25000,
           "care": "기본 조건",
           "sourceOption": "60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -2703,7 +2705,7 @@
           "gift": 35000,
           "care": "셀프형",
           "sourceOption": "(셀프형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-60",
@@ -2715,7 +2717,7 @@
           "gift": 35000,
           "care": "셀프형",
           "sourceOption": "(셀프형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -2826,7 +2828,7 @@
           "gift": 80000,
           "care": "방문형",
           "sourceOption": "(방문형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -2894,7 +2896,7 @@
           "gift": 30000,
           "care": "기본 조건",
           "sourceOption": "36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "standard-option-60",
@@ -2906,7 +2908,7 @@
           "gift": 25000,
           "care": "기본 조건",
           "sourceOption": "60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -3124,7 +3126,7 @@
           "gift": 160000,
           "care": "방문형",
           "sourceOption": "(방문형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-option-60",
@@ -3136,7 +3138,7 @@
           "gift": 160000,
           "care": "방문형",
           "sourceOption": "(방문형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-36",
@@ -3287,7 +3289,7 @@
           "gift": 315000,
           "care": "방문형",
           "sourceOption": "(방문형)72",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -3864,7 +3866,7 @@
           "gift": 315000,
           "care": "방문형",
           "sourceOption": "(방문형)72",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -3953,7 +3955,7 @@
           "gift": 195000,
           "care": "셀프형",
           "sourceOption": "(셀프형)72",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -4041,7 +4043,7 @@
           "gift": 185000,
           "care": "셀프형",
           "sourceOption": "(셀프형)72",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -4953,7 +4955,7 @@
           "gift": 160000,
           "care": "셀프형",
           "sourceOption": "(셀프형)72",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -7633,7 +7635,7 @@
           "gift": 190000,
           "care": "셀프형",
           "sourceOption": "(셀프형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-60",
@@ -7645,7 +7647,7 @@
           "gift": 190000,
           "care": "셀프형",
           "sourceOption": "(셀프형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -7697,7 +7699,7 @@
           "gift": 170000,
           "care": "방문형",
           "sourceOption": "(방문형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-option-60",
@@ -7709,7 +7711,7 @@
           "gift": 170000,
           "care": "방문형",
           "sourceOption": "(방문형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-36",
@@ -7732,7 +7734,7 @@
           "gift": 165000,
           "care": "셀프형",
           "sourceOption": "(셀프형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -7784,7 +7786,7 @@
           "gift": 195000,
           "care": "방문형",
           "sourceOption": "(방문형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-option-60",
@@ -7796,7 +7798,7 @@
           "gift": 195000,
           "care": "방문형",
           "sourceOption": "(방문형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-36",
@@ -7819,7 +7821,7 @@
           "gift": 190000,
           "care": "셀프형",
           "sourceOption": "(셀프형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -7873,7 +7875,7 @@
           "gift": 215000,
           "care": "방문형",
           "sourceOption": "(방문형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-option-60",
@@ -7885,7 +7887,7 @@
           "gift": 215000,
           "care": "방문형",
           "sourceOption": "(방문형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-36",
@@ -7908,7 +7910,7 @@
           "gift": 215000,
           "care": "셀프형",
           "sourceOption": "(셀프형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -7959,7 +7961,7 @@
           "gift": 220000,
           "care": "방문형",
           "sourceOption": "(방문형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-option-60",
@@ -7971,7 +7973,7 @@
           "gift": 220000,
           "care": "방문형",
           "sourceOption": "(방문형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -8023,7 +8025,7 @@
           "gift": 235000,
           "care": "방문형",
           "sourceOption": "(방문형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-option-60",
@@ -8035,7 +8037,7 @@
           "gift": 235000,
           "care": "방문형",
           "sourceOption": "(방문형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-36",
@@ -8058,7 +8060,7 @@
           "gift": 235000,
           "care": "셀프형",
           "sourceOption": "(셀프형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -8109,7 +8111,7 @@
           "gift": 225000,
           "care": "방문형",
           "sourceOption": "(방문형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-option-60",
@@ -8121,7 +8123,7 @@
           "gift": 225000,
           "care": "방문형",
           "sourceOption": "(방문형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-36",
@@ -8133,7 +8135,7 @@
           "gift": 225000,
           "care": "셀프형",
           "sourceOption": "(셀프형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-60",
@@ -8145,7 +8147,7 @@
           "gift": 225000,
           "care": "셀프형",
           "sourceOption": "(셀프형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -8197,7 +8199,7 @@
           "gift": 185000,
           "care": "방문형",
           "sourceOption": "(방문형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-option-60",
@@ -8209,7 +8211,7 @@
           "gift": 185000,
           "care": "방문형",
           "sourceOption": "(방문형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -8284,7 +8286,7 @@
           "gift": 210000,
           "care": "방문형",
           "sourceOption": "(방문형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-option-60",
@@ -8296,7 +8298,7 @@
           "gift": 210000,
           "care": "방문형",
           "sourceOption": "(방문형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-36",
@@ -8308,7 +8310,7 @@
           "gift": 210000,
           "care": "셀프형",
           "sourceOption": "(셀프형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-60",
@@ -8320,7 +8322,7 @@
           "gift": 210000,
           "care": "셀프형",
           "sourceOption": "(셀프형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -8419,7 +8421,7 @@
           "gift": 195000,
           "care": "셀프형",
           "sourceOption": "(셀프형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-60",
@@ -8431,7 +8433,7 @@
           "gift": 195000,
           "care": "셀프형",
           "sourceOption": "(셀프형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -8507,7 +8509,7 @@
           "gift": 225000,
           "care": "방문관리",
           "sourceOption": "(방문관리)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-option-60",
@@ -8519,7 +8521,7 @@
           "gift": 225000,
           "care": "방문관리",
           "sourceOption": "(방문관리)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-36",
@@ -8531,7 +8533,7 @@
           "gift": 225000,
           "care": "자가관리",
           "sourceOption": "(자가관리)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-60",
@@ -8543,7 +8545,7 @@
           "gift": 225000,
           "care": "자가관리",
           "sourceOption": "(자가관리)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -8616,9 +8618,10 @@
           "term": 36,
           "monthly": 37400,
           "card": null,
-          "gift": null,
+          "gift": 210000,
           "care": "방문관리",
-          "sourceOption": "(방문관리) 36"
+          "sourceOption": "(방문관리) 36",
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-36",
@@ -8630,7 +8633,7 @@
           "gift": 190000,
           "care": "자가관리",
           "sourceOption": "(자가관리) 36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-option-60",
@@ -8639,9 +8642,10 @@
           "term": 60,
           "monthly": 35400,
           "card": null,
-          "gift": null,
+          "gift": 210000,
           "care": "방문관리",
-          "sourceOption": "(방문관리) 60"
+          "sourceOption": "(방문관리) 60",
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-60",
@@ -8650,9 +8654,10 @@
           "term": 60,
           "monthly": 28400,
           "card": null,
-          "gift": null,
+          "gift": 190000,
           "care": "자가관리",
-          "sourceOption": "(자가관리) 60"
+          "sourceOption": "(자가관리) 60",
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -8661,7 +8666,8 @@
       "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/id0105_2884_attimg_org.png",
       "imageRepresentative": true,
       "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/id0105_2884_attimg_org.png",
-      "imageRepresentativeMethod": "existing"
+      "imageRepresentativeMethod": "existing",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-312",
@@ -8709,7 +8715,7 @@
           "gift": 225000,
           "care": "기본 조건",
           "sourceOption": "36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "standard-option-60",
@@ -8721,7 +8727,7 @@
           "gift": 225000,
           "care": "기본 조건",
           "sourceOption": "60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -8786,7 +8792,7 @@
           "gift": 190000,
           "care": "셀프형",
           "sourceOption": "(셀프형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-option-60",
@@ -8810,7 +8816,7 @@
           "gift": 190000,
           "care": "셀프형",
           "sourceOption": "(셀프형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -8886,7 +8892,7 @@
           "gift": 180000,
           "care": "방문형",
           "sourceOption": "(방문형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-option-60",
@@ -8898,7 +8904,7 @@
           "gift": 180000,
           "care": "방문형",
           "sourceOption": "(방문형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-36",
@@ -8910,7 +8916,7 @@
           "gift": 170000,
           "care": "셀프형",
           "sourceOption": "(셀프형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-60",
@@ -8922,7 +8928,7 @@
           "gift": 170000,
           "care": "셀프형",
           "sourceOption": "(셀프형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -8974,9 +8980,9 @@
           "term": 36,
           "monthly": 64900,
           "card": null,
-          "gift": 230000,
+          "gift": 255000,
           "care": "방문관리 · 2개월",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit2-60",
@@ -8985,9 +8991,9 @@
           "term": 60,
           "monthly": 61900,
           "card": null,
-          "gift": 260000,
+          "gift": 285000,
           "care": "방문관리 · 2개월",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit2-72",
@@ -8996,9 +9002,9 @@
           "term": 72,
           "monthly": 59900,
           "card": null,
-          "gift": 300000,
+          "gift": 330000,
           "care": "방문관리 · 2개월",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit2-84",
@@ -9007,9 +9013,9 @@
           "term": 84,
           "monthly": 57900,
           "card": null,
-          "gift": 300000,
+          "gift": 325000,
           "care": "방문관리 · 2개월",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit4-36",
@@ -9018,9 +9024,9 @@
           "term": 36,
           "monthly": 61900,
           "card": null,
-          "gift": 220000,
+          "gift": 250000,
           "care": "방문관리 · 4개월",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit4-60",
@@ -9029,9 +9035,9 @@
           "term": 60,
           "monthly": 57900,
           "card": null,
-          "gift": 250000,
+          "gift": 280000,
           "care": "방문관리 · 4개월",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit4-72",
@@ -9040,9 +9046,9 @@
           "term": 72,
           "monthly": 55900,
           "card": null,
-          "gift": 290000,
+          "gift": 320000,
           "care": "방문관리 · 4개월",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit4-84",
@@ -9051,9 +9057,9 @@
           "term": 84,
           "monthly": 53900,
           "card": null,
-          "gift": 290000,
+          "gift": 315000,
           "care": "방문관리 · 4개월",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -9152,7 +9158,7 @@
           "card": null,
           "gift": 215000,
           "care": "방문관리 · 4개월",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit4-60",
@@ -9163,7 +9169,7 @@
           "card": null,
           "gift": 240000,
           "care": "방문관리 · 4개월",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit4-72",
@@ -9174,7 +9180,7 @@
           "card": null,
           "gift": 275000,
           "care": "방문관리 · 4개월",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit4-84",
@@ -9185,7 +9191,7 @@
           "card": null,
           "gift": 275000,
           "care": "방문관리 · 4개월",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-36",
@@ -9196,7 +9202,7 @@
           "card": null,
           "gift": 210000,
           "care": "자가관리 · 4개월 필터",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-60",
@@ -9207,7 +9213,7 @@
           "card": null,
           "gift": 230000,
           "care": "자가관리 · 4개월 필터",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-72",
@@ -9218,7 +9224,7 @@
           "card": null,
           "gift": 270000,
           "care": "자가관리 · 4개월 필터",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-84",
@@ -9229,7 +9235,7 @@
           "card": null,
           "gift": 270000,
           "care": "자가관리 · 4개월 필터",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -9284,7 +9290,7 @@
           "card": null,
           "gift": 230000,
           "care": "방문관리 · 2개월",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit2-60",
@@ -9295,7 +9301,7 @@
           "card": null,
           "gift": 255000,
           "care": "방문관리 · 2개월",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit2-72",
@@ -9306,7 +9312,7 @@
           "card": null,
           "gift": 295000,
           "care": "방문관리 · 2개월",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit2-84",
@@ -9317,7 +9323,7 @@
           "card": null,
           "gift": 295000,
           "care": "방문관리 · 2개월",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit4-36",
@@ -9328,7 +9334,7 @@
           "card": null,
           "gift": 220000,
           "care": "방문관리 · 4개월",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit4-60",
@@ -9339,7 +9345,7 @@
           "card": null,
           "gift": 250000,
           "care": "방문관리 · 4개월",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit4-72",
@@ -9350,7 +9356,7 @@
           "card": null,
           "gift": 290000,
           "care": "방문관리 · 4개월",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit4-84",
@@ -9361,7 +9367,7 @@
           "card": null,
           "gift": 285000,
           "care": "방문관리 · 4개월",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -9415,7 +9421,7 @@
           "gift": 215000,
           "care": "방문형",
           "sourceOption": "(방문형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-option-60",
@@ -9427,7 +9433,7 @@
           "gift": 240000,
           "care": "방문형",
           "sourceOption": "(방문형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -9481,7 +9487,7 @@
           "gift": 215000,
           "care": "방문형",
           "sourceOption": "(방문형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-option-60",
@@ -9493,7 +9499,7 @@
           "gift": 240000,
           "care": "방문형",
           "sourceOption": "(방문형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -9569,7 +9575,7 @@
           "gift": 215000,
           "care": "방문형",
           "sourceOption": "(방문형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-option-60",
@@ -9581,7 +9587,7 @@
           "gift": 240000,
           "care": "방문형",
           "sourceOption": "(방문형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -9657,7 +9663,7 @@
           "gift": 210000,
           "care": "방문형",
           "sourceOption": "(방문형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-option-60",
@@ -9669,7 +9675,7 @@
           "gift": 230000,
           "care": "방문형",
           "sourceOption": "(방문형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -9722,7 +9728,7 @@
           "gift": 210000,
           "care": "방문형",
           "sourceOption": "(방문형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-option-60",
@@ -9734,7 +9740,7 @@
           "gift": 230000,
           "care": "방문형",
           "sourceOption": "(방문형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -9789,7 +9795,7 @@
           "card": null,
           "gift": 205000,
           "care": "방문관리 · 4개월",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-60",
@@ -9798,9 +9804,9 @@
           "term": 60,
           "monthly": 35900,
           "card": null,
-          "gift": 250000,
+          "gift": 260000,
           "care": "방문관리 · 4개월",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-72",
@@ -9811,7 +9817,7 @@
           "card": null,
           "gift": 285000,
           "care": "방문관리 · 4개월",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-84",
@@ -9822,7 +9828,7 @@
           "card": null,
           "gift": 285000,
           "care": "방문관리 · 4개월",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-36",
@@ -9833,7 +9839,7 @@
           "card": null,
           "gift": 190000,
           "care": "자가관리",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-60",
@@ -9842,9 +9848,9 @@
           "term": 60,
           "monthly": 32900,
           "card": null,
-          "gift": 235000,
+          "gift": 245000,
           "care": "자가관리",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-72",
@@ -9855,7 +9861,7 @@
           "card": null,
           "gift": 265000,
           "care": "자가관리",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-84",
@@ -9866,7 +9872,7 @@
           "card": null,
           "gift": 265000,
           "care": "자가관리",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -9919,7 +9925,7 @@
           "gift": 205000,
           "care": "방문형",
           "sourceOption": "(방문형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-option-60",
@@ -9942,7 +9948,7 @@
           "gift": 195000,
           "care": "셀프형",
           "sourceOption": "(셀프형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-60",
@@ -9954,7 +9960,7 @@
           "gift": 215000,
           "care": "셀프형",
           "sourceOption": "(셀프형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -10003,7 +10009,7 @@
           "gift": 230000,
           "care": "기본 조건",
           "sourceOption": "36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "standard-option-60",
@@ -10015,7 +10021,7 @@
           "gift": 255000,
           "care": "기본 조건",
           "sourceOption": "60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -10068,7 +10074,7 @@
           "gift": 235000,
           "care": "기본 조건",
           "sourceOption": "36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "standard-option-60",
@@ -10080,7 +10086,7 @@
           "gift": 265000,
           "care": "기본 조건",
           "sourceOption": "60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -10132,7 +10138,7 @@
           "gift": 190000,
           "care": "기본 조건",
           "sourceOption": "36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "standard-option-60",
@@ -10144,7 +10150,7 @@
           "gift": 205000,
           "care": "기본 조건",
           "sourceOption": "60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -10199,7 +10205,7 @@
           "gift": 205000,
           "care": "방문형",
           "sourceOption": "(방문형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-option-60",
@@ -10222,7 +10228,7 @@
           "gift": 195000,
           "care": "셀프형",
           "sourceOption": "(셀프형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-60",
@@ -10234,7 +10240,7 @@
           "gift": 215000,
           "care": "셀프형",
           "sourceOption": "(셀프형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -10287,7 +10293,7 @@
           "gift": 160000,
           "care": "방문형",
           "sourceOption": "(방문형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-option-60",
@@ -10310,7 +10316,7 @@
           "gift": 160000,
           "care": "셀프형",
           "sourceOption": "(셀프형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-60",
@@ -10322,7 +10328,7 @@
           "gift": 170000,
           "care": "셀프형",
           "sourceOption": "(셀프형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -10375,7 +10381,7 @@
           "gift": 195000,
           "care": "방문형",
           "sourceOption": "(방문형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-option-60",
@@ -10387,7 +10393,7 @@
           "gift": 215000,
           "care": "방문형",
           "sourceOption": "(방문형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-36",
@@ -10410,7 +10416,7 @@
           "gift": 205000,
           "care": "셀프형",
           "sourceOption": "(셀프형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -10469,7 +10475,7 @@
           "gift": 220000,
           "care": "기본 조건",
           "sourceOption": "36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "standard-option-60",
@@ -10481,7 +10487,7 @@
           "gift": 245000,
           "care": "기본 조건",
           "sourceOption": "60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -10552,7 +10558,7 @@
           "gift": 215000,
           "care": "기본 조건",
           "sourceOption": "36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "standard-option-60",
@@ -10564,7 +10570,7 @@
           "gift": 240000,
           "care": "기본 조건",
           "sourceOption": "60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -10635,7 +10641,7 @@
           "gift": 210000,
           "care": "기본 조건",
           "sourceOption": "36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "standard-option-60",
@@ -10647,7 +10653,7 @@
           "gift": 230000,
           "care": "기본 조건",
           "sourceOption": "60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -10714,7 +10720,7 @@
           "card": null,
           "gift": 160000,
           "care": "방문관리 · 6개월",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-60",
@@ -10725,7 +10731,7 @@
           "card": null,
           "gift": 170000,
           "care": "방문관리 · 6개월",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-72",
@@ -10736,7 +10742,7 @@
           "card": null,
           "gift": 195000,
           "care": "방문관리 · 6개월",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-84",
@@ -10747,7 +10753,7 @@
           "card": null,
           "gift": 195000,
           "care": "방문관리 · 6개월",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-36",
@@ -10758,7 +10764,7 @@
           "card": null,
           "gift": 160000,
           "care": "자가관리",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-60",
@@ -10769,7 +10775,7 @@
           "card": null,
           "gift": 170000,
           "care": "자가관리",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-72",
@@ -10780,7 +10786,7 @@
           "card": null,
           "gift": 195000,
           "care": "자가관리",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-84",
@@ -10791,7 +10797,7 @@
           "card": null,
           "gift": 195000,
           "care": "자가관리",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -10867,7 +10873,7 @@
           "gift": 205000,
           "care": "방문형",
           "sourceOption": "(방문형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-option-60",
@@ -10879,7 +10885,7 @@
           "gift": 225000,
           "care": "방문형",
           "sourceOption": "(방문형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-36",
@@ -10891,7 +10897,7 @@
           "gift": 205000,
           "care": "셀프형",
           "sourceOption": "(셀프형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-60",
@@ -10903,7 +10909,7 @@
           "gift": 220000,
           "care": "셀프형",
           "sourceOption": "(셀프형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -10956,7 +10962,7 @@
           "gift": 190000,
           "care": "방문형",
           "sourceOption": "(방문형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-option-60",
@@ -10968,7 +10974,7 @@
           "gift": 205000,
           "care": "방문형",
           "sourceOption": "(방문형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -11022,7 +11028,7 @@
           "gift": 190000,
           "care": "방문형",
           "sourceOption": "(방문형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-option-60",
@@ -11034,7 +11040,7 @@
           "gift": 205000,
           "care": "방문형",
           "sourceOption": "(방문형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -11107,7 +11113,7 @@
           "gift": 235000,
           "care": "방문형",
           "sourceOption": "(방문형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-option-60",
@@ -11119,7 +11125,7 @@
           "gift": 265000,
           "care": "방문형",
           "sourceOption": "(방문형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -11190,7 +11196,7 @@
           "gift": 215000,
           "care": "방문형",
           "sourceOption": "(방문형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-option-60",
@@ -11202,7 +11208,7 @@
           "gift": 240000,
           "care": "방문형",
           "sourceOption": "(방문형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -11278,7 +11284,7 @@
           "gift": 210000,
           "care": "방문형",
           "sourceOption": "(방문형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-36",
@@ -11290,7 +11296,7 @@
           "gift": 205000,
           "care": "셀프형",
           "sourceOption": "(셀프형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-option-60",
@@ -11302,7 +11308,7 @@
           "gift": 230000,
           "care": "방문형",
           "sourceOption": "(방문형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-60",
@@ -11314,7 +11320,7 @@
           "gift": 225000,
           "care": "셀프형",
           "sourceOption": "(셀프형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -11376,7 +11382,7 @@
           "gift": 165000,
           "care": "기본 조건",
           "sourceOption": "36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "standard-option-60",
@@ -11388,7 +11394,7 @@
           "gift": 180000,
           "care": "기본 조건",
           "sourceOption": "60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -11445,7 +11451,7 @@
           "gift": 165000,
           "care": "기본 조건",
           "sourceOption": "36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -11529,7 +11535,7 @@
           "gift": 230000,
           "care": "화이트",
           "sourceOption": "(화이트)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "standard-option-60",
@@ -11541,7 +11547,7 @@
           "gift": 255000,
           "care": "화이트",
           "sourceOption": "(화이트)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -11608,7 +11614,7 @@
           "gift": 395000,
           "care": "토탈케어",
           "sourceOption": "(토탈케어)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -11666,7 +11672,7 @@
           "gift": 220000,
           "care": "기본 조건",
           "sourceOption": "36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "standard-option-60",
@@ -11678,7 +11684,7 @@
           "gift": 245000,
           "care": "기본 조건",
           "sourceOption": "60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -11730,7 +11736,7 @@
           "gift": 195000,
           "care": "토탈케어",
           "sourceOption": "(토탈케어)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -11779,7 +11785,7 @@
           "gift": 315000,
           "care": "토탈케어",
           "sourceOption": "(토탈케어)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "standard-option-84",
@@ -11791,7 +11797,7 @@
           "gift": 300000,
           "care": "토탈케어",
           "sourceOption": "(토탈케어)84",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -11840,7 +11846,7 @@
           "gift": 280000,
           "care": "토탈케어",
           "sourceOption": "(토탈케어)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "standard-option-84",
@@ -11852,7 +11858,7 @@
           "gift": 280000,
           "care": "토탈케어",
           "sourceOption": "(토탈케어)84",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -11908,7 +11914,7 @@
           "gift": 190000,
           "care": "기본 조건",
           "sourceOption": "36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "standard-option-60",
@@ -11920,7 +11926,7 @@
           "gift": 205000,
           "care": "기본 조건",
           "sourceOption": "60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -11978,7 +11984,7 @@
           "gift": 220000,
           "care": "기본 조건",
           "sourceOption": "36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -12034,7 +12040,7 @@
           "gift": 235000,
           "care": "기본 조건",
           "sourceOption": "36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -12108,7 +12114,7 @@
           "gift": 205000,
           "care": "방문관리",
           "sourceOption": "(방문관리)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-option-60",
@@ -12120,7 +12126,7 @@
           "gift": 225000,
           "care": "방문관리",
           "sourceOption": "(방문관리)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-36",
@@ -12132,7 +12138,7 @@
           "gift": 205000,
           "care": "자가관리",
           "sourceOption": "(자가관리)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-60",
@@ -12144,7 +12150,7 @@
           "gift": 220000,
           "care": "자가관리",
           "sourceOption": "(자가관리)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -12196,7 +12202,7 @@
           "gift": 300000,
           "care": "방문형",
           "sourceOption": "(방문형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-option-72",
@@ -12208,7 +12214,7 @@
           "gift": 320000,
           "care": "방문형",
           "sourceOption": "(방문형)72",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-60",
@@ -12231,7 +12237,7 @@
           "gift": 310000,
           "care": "셀프형",
           "sourceOption": "(셀프형)72",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -12302,7 +12308,7 @@
           "gift": 350000,
           "care": "방문형",
           "sourceOption": "(방문형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-option-72",
@@ -12325,7 +12331,7 @@
           "gift": 340000,
           "care": "셀프형",
           "sourceOption": "(셀프형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-72",
@@ -12337,7 +12343,7 @@
           "gift": 360000,
           "care": "셀프형",
           "sourceOption": "(셀프형)72",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -12389,7 +12395,7 @@
           "gift": 200000,
           "care": "방문형",
           "sourceOption": "(방문형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-option-72",
@@ -12401,7 +12407,7 @@
           "gift": 210000,
           "care": "방문형",
           "sourceOption": "(방문형)72",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-60",
@@ -12413,7 +12419,7 @@
           "gift": 190000,
           "care": "셀프형",
           "sourceOption": "(셀프형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-72",
@@ -12425,7 +12431,7 @@
           "gift": 205000,
           "care": "셀프형",
           "sourceOption": "(셀프형)72",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -12477,7 +12483,7 @@
           "gift": 190000,
           "care": "방문형",
           "sourceOption": "(방문형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-option-72",
@@ -12489,7 +12495,7 @@
           "gift": 205000,
           "care": "방문형",
           "sourceOption": "(방문형)72",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-60",
@@ -12501,7 +12507,7 @@
           "gift": 190000,
           "care": "셀프형",
           "sourceOption": "(셀프형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-72",
@@ -12513,7 +12519,7 @@
           "gift": 205000,
           "care": "셀프형",
           "sourceOption": "(셀프형)72",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -12566,7 +12572,7 @@
           "gift": 215000,
           "care": "방문형",
           "sourceOption": "(방문형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-option-72",
@@ -12578,7 +12584,7 @@
           "gift": 230000,
           "care": "방문형",
           "sourceOption": "(방문형)72",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-60",
@@ -12590,7 +12596,7 @@
           "gift": 210000,
           "care": "셀프형",
           "sourceOption": "(셀프형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-72",
@@ -12602,7 +12608,7 @@
           "gift": 225000,
           "care": "셀프형",
           "sourceOption": "(셀프형)72",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -12656,7 +12662,7 @@
           "gift": 210000,
           "care": "방문형",
           "sourceOption": "(방문형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-60",
@@ -12679,7 +12685,7 @@
           "gift": 225000,
           "care": "방문형",
           "sourceOption": "(방문형)72",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-72",
@@ -12691,7 +12697,7 @@
           "gift": 215000,
           "care": "셀프형",
           "sourceOption": "(셀프형)72",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -12747,7 +12753,7 @@
           "gift": 190000,
           "care": "방문형",
           "sourceOption": "(방문형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-60",
@@ -12770,7 +12776,7 @@
           "gift": 205000,
           "care": "방문형",
           "sourceOption": "(방문형)72",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-72",
@@ -12782,7 +12788,7 @@
           "gift": 205000,
           "care": "셀프형",
           "sourceOption": "(셀프형)72",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -12835,7 +12841,7 @@
           "gift": 195000,
           "care": "방문형",
           "sourceOption": "(방문형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-option-60",
@@ -12847,7 +12853,7 @@
           "gift": 195000,
           "care": "방문형",
           "sourceOption": "(방문형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-36",
@@ -12870,7 +12876,7 @@
           "gift": 195000,
           "care": "셀프형",
           "sourceOption": "(셀프형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -12923,7 +12929,7 @@
           "gift": 180000,
           "care": "방문형",
           "sourceOption": "(방문형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-option-60",
@@ -12935,7 +12941,7 @@
           "gift": 180000,
           "care": "방문형",
           "sourceOption": "(방문형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-36",
@@ -12958,7 +12964,7 @@
           "gift": 170000,
           "care": "셀프형",
           "sourceOption": "(셀프형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -13011,7 +13017,7 @@
           "gift": 180000,
           "care": "방문형",
           "sourceOption": "(방문형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-option-60",
@@ -13023,7 +13029,7 @@
           "gift": 180000,
           "care": "방문형",
           "sourceOption": "(방문형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-36",
@@ -13046,7 +13052,7 @@
           "gift": 170000,
           "care": "셀프형",
           "sourceOption": "(셀프형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -13587,7 +13593,7 @@
           "gift": 195000,
           "care": "토탈케어(슈퍼싱글",
           "sourceOption": "토탈케어(슈퍼싱글)84",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -13924,7 +13930,7 @@
           "gift": 170000,
           "care": "방문형",
           "sourceOption": "(방문형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-option-60",
@@ -13936,7 +13942,7 @@
           "gift": 170000,
           "care": "방문형",
           "sourceOption": "(방문형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -13990,7 +13996,7 @@
           "gift": 195000,
           "care": "방문형",
           "sourceOption": "(방문형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-option-60",
@@ -14002,7 +14008,7 @@
           "gift": 195000,
           "care": "방문형",
           "sourceOption": "(방문형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-36",
@@ -14014,7 +14020,7 @@
           "gift": 190000,
           "care": "셀프형",
           "sourceOption": "(셀프형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-60",
@@ -14026,7 +14032,7 @@
           "gift": 190000,
           "care": "셀프형",
           "sourceOption": "(셀프형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -14088,7 +14094,7 @@
           "gift": 185000,
           "care": "퀸(Q",
           "sourceOption": "퀸(Q)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -14161,10 +14167,10 @@
           "term": 36,
           "monthly": 38900,
           "card": null,
-          "gift": 205000,
+          "gift": 210000,
           "care": "방문형",
           "sourceOption": "(방문형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-option-60",
@@ -14184,10 +14190,10 @@
           "term": 36,
           "monthly": 36900,
           "card": null,
-          "gift": 195000,
+          "gift": 210000,
           "care": "셀프형",
           "sourceOption": "(셀프형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-60",
@@ -14199,7 +14205,7 @@
           "gift": 210000,
           "care": "셀프형",
           "sourceOption": "(셀프형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -14208,7 +14214,8 @@
       "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/id0105_4569_attimg_org.png",
       "imageRepresentative": true,
       "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/id0105_4569_attimg_org.png",
-      "imageRepresentativeMethod": "existing"
+      "imageRepresentativeMethod": "existing",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-1304",
@@ -14248,7 +14255,7 @@
           "gift": 165000,
           "care": "기본 조건",
           "sourceOption": "60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "standard-option-84",
@@ -14260,7 +14267,7 @@
           "gift": 175000,
           "care": "기본 조건",
           "sourceOption": "84",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -14313,7 +14320,7 @@
           "gift": 180000,
           "care": "방문형",
           "sourceOption": "(방문형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-option-60",
@@ -14325,7 +14332,7 @@
           "gift": 180000,
           "care": "방문형",
           "sourceOption": "(방문형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -14378,7 +14385,7 @@
           "gift": 185000,
           "care": "방문형",
           "sourceOption": "(방문형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-option-60",
@@ -14390,7 +14397,7 @@
           "gift": 185000,
           "care": "방문형",
           "sourceOption": "(방문형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-36",
@@ -14402,7 +14409,7 @@
           "gift": 185000,
           "care": "셀프형",
           "sourceOption": "(셀프형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-60",
@@ -14414,7 +14421,7 @@
           "gift": 185000,
           "care": "셀프형",
           "sourceOption": "(셀프형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -14483,7 +14490,7 @@
           "gift": 205000,
           "care": "방문관리",
           "sourceOption": "(방문관리)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-option-60",
@@ -14495,7 +14502,7 @@
           "gift": 205000,
           "care": "방문관리",
           "sourceOption": "(방문관리)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-36",
@@ -14507,7 +14514,7 @@
           "gift": 195000,
           "care": "자가관리",
           "sourceOption": "(자가관리)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-60",
@@ -14519,7 +14526,7 @@
           "gift": 195000,
           "care": "자가관리",
           "sourceOption": "(자가관리)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -14573,10 +14580,10 @@
           "term": 36,
           "monthly": 53900,
           "card": null,
-          "gift": 215000,
+          "gift": 225000,
           "care": "기본 조건",
           "sourceOption": "36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -14585,7 +14592,8 @@
       "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/id0105_1768_attimg_org.png",
       "imageRepresentative": true,
       "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/id0105_1768_attimg_org.png",
-      "imageRepresentativeMethod": "existing"
+      "imageRepresentativeMethod": "existing",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-1894",
@@ -14642,7 +14650,7 @@
           "gift": 200000,
           "care": "방문관리",
           "sourceOption": "(방문관리)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-option-60",
@@ -14654,7 +14662,7 @@
           "gift": 200000,
           "care": "방문관리",
           "sourceOption": "(방문관리)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-36",
@@ -14666,7 +14674,7 @@
           "gift": 190000,
           "care": "자가관리",
           "sourceOption": "(자가관리)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-60",
@@ -14678,7 +14686,7 @@
           "gift": 190000,
           "care": "자가관리",
           "sourceOption": "(자가관리)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -14734,7 +14742,7 @@
           "gift": 190000,
           "care": "기본 조건",
           "sourceOption": "36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "standard-option-60",
@@ -14746,7 +14754,7 @@
           "gift": 190000,
           "care": "기본 조건",
           "sourceOption": "60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -14798,7 +14806,7 @@
           "gift": 220000,
           "care": "방문관리",
           "sourceOption": "(방문관리)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-option-72",
@@ -14810,7 +14818,7 @@
           "gift": 235000,
           "care": "방문관리",
           "sourceOption": "(방문관리)72",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-60",
@@ -14822,7 +14830,7 @@
           "gift": 220000,
           "care": "자가관리",
           "sourceOption": "(자가관리)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-72",
@@ -14834,7 +14842,7 @@
           "gift": 235000,
           "care": "자가관리",
           "sourceOption": "(자가관리)72",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -14888,7 +14896,7 @@
           "gift": 220000,
           "care": "방문관리",
           "sourceOption": "(방문관리)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-option-72",
@@ -14900,7 +14908,7 @@
           "gift": 235000,
           "care": "방문관리",
           "sourceOption": "(방문관리)72",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-60",
@@ -14912,7 +14920,7 @@
           "gift": 215000,
           "care": "자가관리",
           "sourceOption": "(자가관리)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-72",
@@ -14924,7 +14932,7 @@
           "gift": 230000,
           "care": "자가관리",
           "sourceOption": "(자가관리)72",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -14999,7 +15007,7 @@
           "gift": 200000,
           "care": "방문형",
           "sourceOption": "(방문형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-option-72",
@@ -15011,7 +15019,7 @@
           "gift": 215000,
           "care": "방문형",
           "sourceOption": "(방문형)72",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-60",
@@ -15023,7 +15031,7 @@
           "gift": 190000,
           "care": "셀프형",
           "sourceOption": "(셀프형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-72",
@@ -15035,7 +15043,7 @@
           "gift": 200000,
           "care": "셀프형",
           "sourceOption": "(셀프형)72",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -15162,7 +15170,7 @@
           "gift": 165000,
           "care": "방문형",
           "sourceOption": "(방문형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-option-60",
@@ -15174,7 +15182,7 @@
           "gift": 165000,
           "care": "방문형",
           "sourceOption": "(방문형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -15318,13 +15326,15 @@
           "term": 60,
           "monthly": 61900,
           "card": null,
-          "gift": null,
+          "gift": 205000,
           "care": "토탈케어",
-          "sourceOption": "(토탈케어)60"
+          "sourceOption": "(토탈케어)60",
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
-      "availability": "inactive"
+      "availability": "inactive",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2248",
@@ -15388,10 +15398,10 @@
           "term": 36,
           "monthly": 53900,
           "card": null,
-          "gift": 155000,
+          "gift": 215000,
           "care": "방문형",
           "sourceOption": "(방문형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-option-60",
@@ -15400,10 +15410,10 @@
           "term": 60,
           "monthly": 46900,
           "card": null,
-          "gift": 305000,
+          "gift": 340000,
           "care": "방문형",
           "sourceOption": "(방문형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-36",
@@ -15412,10 +15422,10 @@
           "term": 36,
           "monthly": 50900,
           "card": null,
-          "gift": 150000,
+          "gift": 210000,
           "care": "셀프형",
           "sourceOption": "(셀프형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-60",
@@ -15424,10 +15434,10 @@
           "term": 60,
           "monthly": 43900,
           "card": null,
-          "gift": 295000,
+          "gift": 330000,
           "care": "셀프형",
           "sourceOption": "(셀프형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -15479,10 +15489,10 @@
           "term": 36,
           "monthly": 54900,
           "card": null,
-          "gift": 240000,
+          "gift": 300000,
           "care": "방문형",
           "sourceOption": "(방문형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-6-60",
@@ -15491,10 +15501,10 @@
           "term": 60,
           "monthly": 49900,
           "card": null,
-          "gift": 225000,
+          "gift": 285000,
           "care": "방문형/6개월반값할인",
           "sourceOption": "(방문형/6개월반값할인)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-36",
@@ -15503,10 +15513,10 @@
           "term": 36,
           "monthly": 51900,
           "card": null,
-          "gift": 235000,
+          "gift": 295000,
           "care": "셀프형",
           "sourceOption": "(셀프형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-6-60",
@@ -15515,10 +15525,10 @@
           "term": 60,
           "monthly": 46900,
           "card": null,
-          "gift": 220000,
+          "gift": 280000,
           "care": "셀프형/6개월반값할인",
           "sourceOption": "(셀프형/6개월반값할인)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -15568,10 +15578,10 @@
           "term": 60,
           "monthly": 31900,
           "card": null,
-          "gift": 150000,
+          "gift": 195000,
           "care": "방문형",
           "sourceOption": "(방문형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -15621,10 +15631,10 @@
           "term": 36,
           "monthly": 49900,
           "card": null,
-          "gift": 215000,
+          "gift": 275000,
           "care": "방문형",
           "sourceOption": "(방문형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-option-60",
@@ -15633,10 +15643,10 @@
           "term": 60,
           "monthly": 44900,
           "card": null,
-          "gift": 195000,
+          "gift": 255000,
           "care": "방문형",
           "sourceOption": "(방문형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -15684,10 +15694,10 @@
           "term": 36,
           "monthly": 36900,
           "card": null,
-          "gift": 180000,
+          "gift": 240000,
           "care": "방문형",
           "sourceOption": "(방문형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-option-60",
@@ -15696,10 +15706,10 @@
           "term": 60,
           "monthly": 31900,
           "card": null,
-          "gift": 130000,
+          "gift": 190000,
           "care": "방문형",
           "sourceOption": "(방문형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -15772,10 +15782,10 @@
           "term": 36,
           "monthly": 39900,
           "card": null,
-          "gift": 115000,
+          "gift": 175000,
           "care": "방문형",
           "sourceOption": "(방문형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-option-60",
@@ -15865,10 +15875,10 @@
           "term": 36,
           "monthly": 29900,
           "card": null,
-          "gift": 85000,
+          "gift": 145000,
           "care": "기본 조건",
           "sourceOption": "36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "standard-option-60",
@@ -15877,10 +15887,10 @@
           "term": 60,
           "monthly": 25900,
           "card": null,
-          "gift": 90000,
+          "gift": 150000,
           "care": "기본 조건",
           "sourceOption": "60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -15930,10 +15940,10 @@
           "term": 36,
           "monthly": 51900,
           "card": null,
-          "gift": 205000,
+          "gift": 265000,
           "care": "방문형",
           "sourceOption": "(방문형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-option-60",
@@ -15942,10 +15952,10 @@
           "term": 60,
           "monthly": 49900,
           "card": null,
-          "gift": 260000,
+          "gift": 320000,
           "care": "방문형",
           "sourceOption": "(방문형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -15995,10 +16005,10 @@
           "term": 36,
           "monthly": 50900,
           "card": null,
-          "gift": 250000,
+          "gift": 310000,
           "care": "방문형",
           "sourceOption": "(방문형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-option-60",
@@ -16007,10 +16017,10 @@
           "term": 60,
           "monthly": 48900,
           "card": null,
-          "gift": 305000,
+          "gift": 365000,
           "care": "방문형",
           "sourceOption": "(방문형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -16060,10 +16070,10 @@
           "term": 36,
           "monthly": 56900,
           "card": null,
-          "gift": 260000,
+          "gift": 320000,
           "care": "방문형",
           "sourceOption": "(방문형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-option-60",
@@ -16072,10 +16082,10 @@
           "term": 60,
           "monthly": 52900,
           "card": null,
-          "gift": 250000,
+          "gift": 310000,
           "care": "방문형",
           "sourceOption": "(방문형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -16124,10 +16134,10 @@
           "term": 36,
           "monthly": 40900,
           "card": null,
-          "gift": 220000,
+          "gift": 280000,
           "care": "방문형",
           "sourceOption": "(방문형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-option-60",
@@ -16136,10 +16146,10 @@
           "term": 60,
           "monthly": 33900,
           "card": null,
-          "gift": 220000,
+          "gift": 280000,
           "care": "방문형",
           "sourceOption": "(방문형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -16196,10 +16206,10 @@
           "term": 36,
           "monthly": 37900,
           "card": null,
-          "gift": 100000,
+          "gift": 160000,
           "care": "방문형",
           "sourceOption": "(방문형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-option-60",
@@ -16208,10 +16218,10 @@
           "term": 60,
           "monthly": 34900,
           "card": null,
-          "gift": 110000,
+          "gift": 175000,
           "care": "방문형",
           "sourceOption": "(방문형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -16270,10 +16280,10 @@
           "term": 60,
           "monthly": 19900,
           "card": null,
-          "gift": 75000,
+          "gift": 130000,
           "care": "방문형",
           "sourceOption": "(방문형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -16333,9 +16343,10 @@
           "term": 60,
           "monthly": 42900,
           "card": null,
-          "gift": null,
+          "gift": 295000,
           "care": "기본 조건",
-          "sourceOption": "60"
+          "sourceOption": "60",
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -16344,7 +16355,8 @@
       "imageLocalizedFrom": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250827160157_1.png",
       "imageRepresentative": true,
       "imageRepresentativeSource": "https://woongbi.vip-rental.com/module/vshop/imagefile.php?wsize=970&r=2&img=rental/250827160157_1.png",
-      "imageRepresentativeMethod": "existing"
+      "imageRepresentativeMethod": "existing",
+      "giftStatus": "matched"
     },
     {
       "id": "clover-2241",
@@ -16394,10 +16406,10 @@
           "term": 60,
           "monthly": 43900,
           "card": null,
-          "gift": 245000,
+          "gift": 305000,
           "care": "기본 조건",
           "sourceOption": "60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -16444,10 +16456,10 @@
           "term": 36,
           "monthly": 48900,
           "card": null,
-          "gift": 245000,
+          "gift": 305000,
           "care": "기본 조건",
           "sourceOption": "36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "standard-option-60",
@@ -16456,10 +16468,10 @@
           "term": 60,
           "monthly": 44900,
           "card": null,
-          "gift": 225000,
+          "gift": 285000,
           "care": "기본 조건",
           "sourceOption": "60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -16518,10 +16530,10 @@
           "term": 60,
           "monthly": 25900,
           "card": null,
-          "gift": 125000,
+          "gift": 185000,
           "care": "기본 조건",
           "sourceOption": "60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -16571,10 +16583,10 @@
           "term": 36,
           "monthly": 59900,
           "card": null,
-          "gift": 165000,
+          "gift": 225000,
           "care": "방문형",
           "sourceOption": "(방문형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-option-60",
@@ -16583,10 +16595,10 @@
           "term": 60,
           "monthly": 44900,
           "card": null,
-          "gift": 165000,
+          "gift": 225000,
           "care": "방문형",
           "sourceOption": "(방문형)60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-36",
@@ -16655,10 +16667,10 @@
           "term": 36,
           "monthly": 23900,
           "card": null,
-          "gift": 85000,
+          "gift": 145000,
           "care": "기본 조건",
           "sourceOption": "36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "standard-option-60",
@@ -16717,7 +16729,7 @@
           "gift": 80000,
           "care": "기본 조건",
           "sourceOption": "36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "standard-option-60",
@@ -16729,7 +16741,7 @@
           "gift": 70000,
           "care": "기본 조건",
           "sourceOption": "60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -16777,10 +16789,10 @@
           "term": 36,
           "monthly": 40900,
           "card": null,
-          "gift": 185000,
+          "gift": 245000,
           "care": "기본 조건",
           "sourceOption": "36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "standard-option-60",
@@ -16789,10 +16801,10 @@
           "term": 60,
           "monthly": 37900,
           "card": null,
-          "gift": 185000,
+          "gift": 245000,
           "care": "기본 조건",
           "sourceOption": "60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -17110,10 +17122,10 @@
           "term": 36,
           "monthly": 19900,
           "card": null,
-          "gift": 55000,
+          "gift": 75000,
           "care": "기본 조건",
           "sourceOption": "36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "standard-option-60",
@@ -17122,10 +17134,10 @@
           "term": 60,
           "monthly": 14900,
           "card": null,
-          "gift": 80000,
+          "gift": 105000,
           "care": "기본 조건",
           "sourceOption": "60",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -17505,10 +17517,10 @@
           "term": 36,
           "monthly": 24900,
           "card": null,
-          "gift": 65000,
+          "gift": 90000,
           "care": "기본 조건",
           "sourceOption": "36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "standard-option-48",
@@ -17517,10 +17529,10 @@
           "term": 48,
           "monthly": 19900,
           "card": null,
-          "gift": 85000,
+          "gift": 105000,
           "care": "기본 조건",
           "sourceOption": "48",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -19248,10 +19260,10 @@
           "term": 36,
           "monthly": 15900,
           "card": null,
-          "gift": 40000,
+          "gift": 60000,
           "care": "기본 조건",
           "sourceOption": "36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "standard-option-48",
@@ -19260,10 +19272,10 @@
           "term": 48,
           "monthly": 13900,
           "card": null,
-          "gift": 40000,
+          "gift": 60000,
           "care": "기본 조건",
           "sourceOption": "48",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -19310,10 +19322,10 @@
           "term": 36,
           "monthly": 20900,
           "card": null,
-          "gift": 90000,
+          "gift": 110000,
           "care": "기본 조건",
           "sourceOption": "36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "standard-option-48",
@@ -19322,10 +19334,10 @@
           "term": 48,
           "monthly": 17900,
           "card": null,
-          "gift": 115000,
+          "gift": 135000,
           "care": "기본 조건",
           "sourceOption": "48",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -20156,7 +20168,7 @@
           "gift": 80000,
           "care": "카운터",
           "sourceOption": "(카운터)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "standard-option-60",
@@ -20401,7 +20413,7 @@
           "gift": 155000,
           "care": "기본 조건",
           "sourceOption": "36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "standard-option-60",
@@ -20480,7 +20492,7 @@
           "gift": 120000,
           "care": "기본 조건",
           "sourceOption": "36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "standard-option-60",
@@ -20554,9 +20566,10 @@
           "term": 36,
           "monthly": 19900,
           "card": null,
-          "gift": null,
+          "gift": 10000,
           "care": "방문형",
-          "sourceOption": "(방문형)36"
+          "sourceOption": "(방문형)36",
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-36",
@@ -20729,7 +20742,7 @@
           "gift": 175000,
           "care": "방문형",
           "sourceOption": "(방문형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-36",
@@ -20815,7 +20828,7 @@
           "gift": 105000,
           "care": "방문형",
           "sourceOption": "(방문형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-36",
@@ -20910,7 +20923,7 @@
           "gift": 130000,
           "care": "방문형",
           "sourceOption": "(방문형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-option-60",
@@ -20997,7 +21010,7 @@
           "gift": 75000,
           "care": "방문형",
           "sourceOption": "(방문형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-36",
@@ -21091,7 +21104,7 @@
           "gift": 20000,
           "care": "방문형",
           "sourceOption": "(방문형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-36",
@@ -21103,7 +21116,7 @@
           "gift": 10000,
           "care": "셀프형",
           "sourceOption": "(셀프형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-option-60",
@@ -21178,7 +21191,7 @@
           "gift": 65000,
           "care": "방문형",
           "sourceOption": "(방문형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-36",
@@ -21477,7 +21490,7 @@
           "gift": 75000,
           "care": "방문형",
           "sourceOption": "(방문형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-option-60",
@@ -27022,7 +27035,7 @@
           "gift": 190000,
           "care": "기본 조건",
           "sourceOption": "36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "standard-option-48",
@@ -27092,7 +27105,7 @@
           "gift": 135000,
           "care": "기본 조건",
           "sourceOption": "36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "standard-option-48",
@@ -27228,7 +27241,7 @@
           "gift": 190000,
           "care": "기본 조건",
           "sourceOption": "36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "standard-option-48",
@@ -27306,7 +27319,7 @@
           "gift": 160000,
           "care": "방문형",
           "sourceOption": "(방문형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-option-48",
@@ -27398,7 +27411,7 @@
           "gift": 105000,
           "care": "방문형",
           "sourceOption": "(방문형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-option-48",
@@ -27510,7 +27523,7 @@
           "gift": 95000,
           "care": "카운터",
           "sourceOption": "(카운터)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "standard-option-48",
@@ -27573,7 +27586,7 @@
           "gift": 160000,
           "care": "기본 조건",
           "sourceOption": "36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "standard-option-48",
@@ -27637,7 +27650,7 @@
           "gift": 105000,
           "care": "기본 조건",
           "sourceOption": "36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "sourceKind": "clover-public",
@@ -27712,7 +27725,7 @@
           "gift": 135000,
           "care": "방문형",
           "sourceOption": "(방문형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-36",
@@ -27806,7 +27819,7 @@
           "gift": 105000,
           "care": "방문형",
           "sourceOption": "(방문형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-36",
@@ -27900,7 +27913,7 @@
           "gift": 105000,
           "care": "방문형",
           "sourceOption": "(방문형)36",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-option-36",
@@ -28428,7 +28441,7 @@
           "card": null,
           "gift": 190000,
           "care": "방문관리 · 4개월",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-60",
@@ -28439,7 +28452,7 @@
           "card": null,
           "gift": 205000,
           "care": "방문관리 · 4개월",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-72",
@@ -28450,7 +28463,7 @@
           "card": null,
           "gift": 240000,
           "care": "방문관리 · 4개월",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "visit-84",
@@ -28461,7 +28474,7 @@
           "card": null,
           "gift": 240000,
           "care": "방문관리 · 4개월",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-36",
@@ -28472,7 +28485,7 @@
           "card": null,
           "gift": 185000,
           "care": "자가관리",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-60",
@@ -28483,7 +28496,7 @@
           "card": null,
           "gift": 200000,
           "care": "자가관리",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-72",
@@ -28494,7 +28507,7 @@
           "card": null,
           "gift": 230000,
           "care": "자가관리",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         },
         {
           "key": "self-84",
@@ -28505,7 +28518,7 @@
           "card": null,
           "gift": 230000,
           "care": "자가관리",
-          "giftPolicyMonth": "2026-10"
+          "giftPolicyMonth": "2026-11"
         }
       ],
       "giftStatus": "matched",
@@ -51792,5 +51805,6 @@
       "imageRepresentativeSource": "https://storage.bilrigo.com/data/thumbnails/230607/lyrrxh4beplQwGWgZbevpnCvf23kxw.jpg",
       "imageRepresentativeMethod": "existing"
     }
-  ]
+  ],
+  "commissionVerificationMonth": "2026-11"
 }
