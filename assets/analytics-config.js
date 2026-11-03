@@ -4,7 +4,7 @@
   const queryKey = 'wb_admin_visits';
   const isExcluded = () => { try { return localStorage.getItem(key) === '1'; } catch { return false; } };
   window.woongbiAnalyticsOwnerExcluded = isExcluded;
-  if (location.hostname !== 'woongbts.github.io') return;
+  if (location.hostname !== 'woongbts.kr') return;
   const url = new URL(location.href);
   const action = url.searchParams.get(queryKey);
   if (action !== 'exclude' && action !== 'include') return;
@@ -32,10 +32,10 @@
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', announce, {once:true});
   else announce();
 })();
-window.WOONGBI_ANALYTICS={version:"20260929-2",naverCommonKey:"",naverHost:"woongbts.github.io",siteAnalyticsEndpoint:"https://woongbi-consent.woongbts.workers.dev/api/site-analytics",siteConversionEndpoint:"https://woongbi-consent.woongbts.workers.dev/api/site-conversion"};
+window.WOONGBI_ANALYTICS={version:"20260929-2",naverCommonKey:"",naverHost:"woongbts.kr",siteAnalyticsEndpoint:"https://woongbi-consent.woongbts.workers.dev/api/site-analytics",siteConversionEndpoint:"https://woongbi-consent.woongbts.workers.dev/api/site-conversion"};
 // Common page-view tracking only. Individual conversion types remain unconfigured.
 (() => {
-  if (location.hostname !== 'woongbts.github.io' || window.__WB_NAVER_WCS_COMMON__ || window.woongbiAnalyticsOwnerExcluded?.()) return;
+  if (location.hostname !== 'woongbts.kr' || window.__WB_NAVER_WCS_COMMON__ || window.woongbiAnalyticsOwnerExcluded?.()) return;
   window.__WB_NAVER_WCS_COMMON__ = true;
   const script = document.createElement('script');
   script.src = 'https://wcs.naver.net/wcslog.js';
@@ -47,7 +47,7 @@ window.WOONGBI_ANALYTICS={version:"20260929-2",naverCommonKey:"",naverHost:"woon
       window.wcs_add = window.wcs_add || {};
       window.wcs_add.wa = 's_20e798684471';
       window._nasa = window._nasa || {};
-      window.wcs.inflow('woongbts.github.io');
+      window.wcs.inflow('woongbts.kr');
       window.wcs_do();
       script.dataset.wbNaverCommon = 'initialized';
     } catch {
