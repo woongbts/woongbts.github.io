@@ -3,4 +3,5 @@ Allow: /
 
 Sitemap: https://woongbts.github.io/sitemap.xml
 
+Sitemap: https://woongbts.github.io/rental/sitemap.xml
 Sitemap: https://woongbts.github.io/rental/food-disposer-sitemap.xml
