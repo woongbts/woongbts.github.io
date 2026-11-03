@@ -162,6 +162,7 @@ def main():
         corresponding["giftStatus"]="customer-gift-calculated"
         verified+=1
     if verified<120:
+        print("Source verification failed; sample:",json.dumps(failures[:15],ensure_ascii=False))
         raise RuntimeError(f"Only {verified}/{len(tracked)} products verified; preserve all original data")
     policy["generatedAt"]=DATE
     policy["productCount"]=len(policy["products"])
