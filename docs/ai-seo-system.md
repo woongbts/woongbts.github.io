@@ -62,3 +62,11 @@
 - 새 루트/하위 `/rental/`/검색 전용 `/manduk-mobile.html`과 요금계산기·상담 링크를 HTTPS로 검증하고, 기존 GitHub 주소에서 새 도메인으로의 연결·리디렉션을 확인한다. 그 뒤 단계적으로 canonical, OG URL, JSON-LD URL, sitemap/robots, 내부 절대 URL, 분석/전환 계측 설정, SEO 검사기의 기준 도메인을 변경한다. 모든 URL을 일괄 치환하지 않고 자동화/외부 소스 참조의 영향을 확인하며 테스트 후 배포한다.
 - 네이버 서치어드바이저·Google Search Console에 새 도메인 속성 등록 및 소유권 확인, 새 sitemap 제출, 이전 도메인의 노출·클릭·색인과 새 도메인의 이전 후 추이를 병행 관찰. 실제 접근 가능한 자료만 보고한다.
 - 관리 원칙: '도메인 등록'은 '연결 완료' 또는 '검색 이전 완료'가 아니며, 신규 DNS와 GitHub Pages HTTPS가 검증되기 전에는 기존 사이트를 손상시킬 수 있는 설정·대량 정규 URL 변경을 보류한다.
+
+
+### 2026-11-03 DNS 적용 확인 및 CNAME 등록 현황
+- 사용자가 호스팅케이알에서 GitHub Pages IP 4개와 `www -> woongbts.github.io` CNAME을 저장했다고 확인했고, Google Public DNS 실제 조회에서 루트 A 4개(185.199.108.153, 185.199.109.153, 185.199.110.153, 185.199.111.153) 및 `www` CNAME이 정상 응답했다(TTL 180).
+- GitHub 저장소 루트 `CNAME` 파일에 `woongbts.kr`을 추가했다. 커밋 `11cbfa78dbbe5102f2afc52ec778021a20b556b0`. Pages 배포 실행 `41624656416`은 `completed / success` 상태 확인.
+- 새 도메인 HTTP `http://woongbts.kr/`에서 홈페이지 본문 확인. 기존 `https://woongbts.github.io/` 방문이 `http://woongbts.kr/`로 이동하는 응답도 관찰되어 기본 주소 전환이 시작된 것으로 보인다. **그러나 HTTPS `https://woongbts.kr/`, `https://www.woongbts.kr/`, 렌탈 HTTPS URL은 외부 확인 시 접근 실패**했다. 인증서 발급 또는 GitHub Pages HTTPS 강제 설정이 필요할 수 있다.
+- 다음 차단 단계: 소유자가 `https://github.com/woongbts/woongbts.github.io/settings/pages`에서 Custom domain = `woongbts.kr` 저장 여부, DNS check, 인증서 생성 및 `Enforce HTTPS` 상태를 확인한다. GitHub connector는 이 설정 메뉴의 쓰기 권한을 제공하지 않는다.
+- HTTPS 정상 접속과 주요 기능이 검증되기 전 canonical·OG URL·JSON-LD·사이트맵·SEO 운영 자동화 기준 주소의 본격적인 교체, 네이버/구글 새 속성 제출·기존 속성 폐기는 보류. 홈페이지 `/rental/` 경로를 새 도메인에서 그대로 운영하므로 렌탈을 위해 두 번째 도메인을 구매할 필요 없다.
