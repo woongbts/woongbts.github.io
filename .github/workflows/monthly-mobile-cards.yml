@@ -2,7 +2,7 @@ name: Monthly telecom affiliate cards
 
 on:
   schedule:
-    - cron: '10 2 5 * *' # monthly 5th, 11:10 Asia/Seoul; GitHub may run late
+    - cron: '10 2 3 * *' # monthly 3rd, 11:10 Asia/Seoul; GitHub may run late
   workflow_dispatch:
   push:
     branches: [main]
