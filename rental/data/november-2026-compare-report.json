@@ -1,0 +1,136 @@
+{
+  "date": "2026-11-03",
+  "source": "https://m.clvrental777.com",
+  "totalSourceProducts": 184,
+  "sourcePricePagesCaptured": 181,
+  "verifiedProducts": 181,
+  "needsReview": 3,
+  "exceptions": [
+    {
+      "id": "clv-4244",
+      "reason": "no_current_public_price"
+    },
+    {
+      "id": "clv-4245",
+      "reason": "no_current_public_price"
+    },
+    {
+      "id": "clv-3402",
+      "reason": "no_current_public_price"
+    }
+  ],
+  "priceAndGiftChanged": 109,
+  "newOptions": 36,
+  "removedOptions": 32,
+  "unchangedOptions": 1274,
+  "examples": [
+    {
+      "id": "clv-6817",
+      "provider": "이니렌탈",
+      "term": 60,
+      "oldMonthly": 73900,
+      "newMonthly": 80800,
+      "oldGift": 221700,
+      "newGift": 242400
+    },
+    {
+      "id": "clv-6817",
+      "provider": "이니렌탈",
+      "term": 48,
+      "oldMonthly": 86800,
+      "newMonthly": 95000,
+      "oldGift": 208320,
+      "newGift": 228000
+    },
+    {
+      "id": "clv-6817",
+      "provider": "이니렌탈",
+      "term": 36,
+      "oldMonthly": 109200,
+      "newMonthly": 119400,
+      "oldGift": 196560,
+      "newGift": 214920
+    },
+    {
+      "id": "clv-7666",
+      "provider": "이니렌탈",
+      "term": 60,
+      "oldMonthly": 90600,
+      "newMonthly": 97700,
+      "oldGift": 271800,
+      "newGift": 293100
+    },
+    {
+      "id": "clv-7666",
+      "provider": "이니렌탈",
+      "term": 48,
+      "oldMonthly": 106600,
+      "newMonthly": 114900,
+      "oldGift": 255840,
+      "newGift": 275760
+    },
+    {
+      "id": "clv-7666",
+      "provider": "이니렌탈",
+      "term": 36,
+      "oldMonthly": 134000,
+      "newMonthly": 144400,
+      "oldGift": 241200,
+      "newGift": 259920
+    },
+    {
+      "id": "clv-4236",
+      "provider": "이니렌탈",
+      "term": 60,
+      "oldMonthly": 157400,
+      "newMonthly": 170600,
+      "oldGift": 472200,
+      "newGift": 511800
+    },
+    {
+      "id": "clv-4236",
+      "provider": "이니렌탈",
+      "term": 48,
+      "oldMonthly": 185100,
+      "newMonthly": 200600,
+      "oldGift": 444240,
+      "newGift": 481440
+    },
+    {
+      "id": "clv-4236",
+      "provider": "이니렌탈",
+      "term": 36,
+      "oldMonthly": 232700,
+      "newMonthly": 252200,
+      "oldGift": 418860,
+      "newGift": 453960
+    },
+    {
+      "id": "clv-4243",
+      "provider": "이니렌탈",
+      "term": 60,
+      "oldMonthly": 177100,
+      "newMonthly": 186900,
+      "oldGift": 531300,
+      "newGift": 560700
+    },
+    {
+      "id": "clv-4243",
+      "provider": "이니렌탈",
+      "term": 48,
+      "oldMonthly": 208300,
+      "newMonthly": 219800,
+      "oldGift": 499920,
+      "newGift": 527520
+    },
+    {
+      "id": "clv-4243",
+      "provider": "이니렌탈",
+      "term": 36,
+      "oldMonthly": 261800,
+      "newMonthly": 276300,
+      "oldGift": 471240,
+      "newGift": 497340
+    }
+  ]
+}

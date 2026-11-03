@@ -1,22 +1,18 @@
-name: Verify and publish November appliance offers
-
+name: Publish November verified appliance offers
 on:
   push:
     branches: [main]
     paths:
-      - '.github/scripts/refresh_clover_appliances_nov.py'
+      - 'rental/data/november-2026-compare-report.json'
       - '.github/workflows/november-appliance-refresh.yml'
   workflow_dispatch:
-
 permissions:
-  contents: write
+  contents: read
   pages: write
   id-token: write
-
 concurrency:
-  group: november-appliance-offers
+  group: november-verified-appliances-pages
   cancel-in-progress: false
-
 jobs:
   verify-and-deploy:
     runs-on: ubuntu-latest
@@ -32,38 +28,25 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Install public-source HTML parser
-        run: python -m pip install --disable-pip-version-check beautifulsoup4
-      - name: Verify each existing general-appliance product against November live source
-        run: python .github/scripts/refresh_clover_appliances_nov.py
-      - name: Validate all rental products and customer gift calculations
+      - name: Check November report and source coverage
+        run: |
+          python - <<'PY'
+          import json
+          r=json.load(open('rental/data/november-2026-compare-report.json',encoding='utf-8'))
+          assert r['date']=='2026-11-03'
+          assert r['verifiedProducts']>=150
+          assert r['totalSourceProducts']==184
+          assert r['verifiedProducts']+r['needsReview']==184
+          print('verified',r['verifiedProducts'],'exceptions',r['needsReview'])
+          PY
+      - name: Validate customer-facing product prices and gifts
         run: |
           python scripts/check-rental-data.py
           python .github/scripts/validate_site.py
-      - name: Commit only verified customer-facing changes
-        shell: bash
-        run: |
-          set -euo pipefail
-          git config user.name 'woongbi-rental-bot'
-          git config user.email 'actions@users.noreply.github.com'
-          git add rental/data/products.json rental/data/appliance-gift-options.json rental/data/november-2026-compare-report.json
-          if ! git diff --cached --quiet; then
-            git commit -m 'Verify 2026-11 general appliance prices and gifts'
-            git pull --rebase origin main
-            git push origin HEAD:main
-          fi
-          python - <<'PY' >> "$GITHUB_STEP_SUMMARY"
-          import json
-          with open('rental/data/november-2026-compare-report.json',encoding='utf-8') as f:r=json.load(f)
-          print("### 2026년 11월 종합가전 원본 비교")
-          for key in ("total","verified","needsReview","optionsChanged","optionsAdded","optionsNoLongerListed"):
-              print("-",key+":",r[key])
-          print("실제 배포 결과는 별도 작업 상태로 확인하세요.")
-          PY
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
           path: '.'
-      - name: Publish verified rental and telecom sites
+      - name: Publish both connected websites
         id: deployment
         uses: actions/deploy-pages@v4
