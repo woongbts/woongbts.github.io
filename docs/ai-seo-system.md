@@ -87,3 +87,8 @@
 - `.github/scripts/update_sitemap.py`의 정적 URL 매핑과 priority를 `/world/`로 바꿨으며 생성된 `https://woongbts.kr/sitemap.xml`에서 신규 URL이 등록된 것을 확인했다. HTTPS로 실제 `/world/`이 열리고 canonical도 일치하는 것을 확인했다.
 - GitHub Pages 배포 성공은 확인했다. 기존 Site regression guard의 'homepage recommendation categories changed' 오류는 별도 기존 회귀 검사 문제이며 이번 네이버 소유 확인 파일이나 웅비월드 경로의 실패라고 단정하지 않는다.
 - 서치어드바이저에서 소유 확인 완료 후 새 도메인의 `https://woongbts.kr/sitemap.xml`을 제출하고, 이후 사이트명 'Github' 변경 여부와 검색 수집/색인을 모니터링한다. `/world/`은 웅비통신 대표 사업 홈페이지를 대체하지 않는 개인·SNS 링크 허브로 유지한다.
+
+
+### 2026-11-03 네이버 새 도메인 재수집·사이트맵 제출 사용자 완료 보고
+- 사용자가 네이버 서치어드바이저에서 새 도메인의 주요 URL(/, /rental/, /rates.html, /manduk-mobile.html, /world/) 웹페이지 수집 요청과 https://woongbts.kr/sitemap.xml 사이트맵 제출을 모두 진행했다고 알림. 실제 요청 상태와 색인 완료는 관리도구에서 별도로 확인해야 하며, 요청 제출과 색인은 구분한다.
+- 다음 수동 단계는 Google Search Console의 새 woongbts.kr 속성 등록·소유권 확인·사이트맵 제출. 구 URL https://woongbts.github.io/ 속성이 존재하고 양쪽 소유권을 검증했다면 Google 주소 변경 도구 적용 요건을 확인한다. 기존 Google 속성은 추이를 확인할 수 있도록 유지한다.
