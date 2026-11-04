@@ -32,3 +32,22 @@ body #appliances .appliance-grid .appliance-category strong,body #appliances .ap
 body #appliances .appliance-grid .appliance-category>span{background:#fff!important;color:#173f52!important;font-weight:850!important}
 body #appliances .appliance-grid .appliance-category:focus-visible{outline:3px solid #173f52;outline-offset:4px}
 body .gift-important-notice{background:#fff2e3!important;border-left:5px solid #ac4a0a;border-radius:9px;padding:15px 17px;font-size:18px!important;font-weight:800!important;line-height:1.8!important;color:#803006!important}
+
+/* Compact rental homepage sections while retaining readable controls. */
+body #products .catalog-open-row{display:grid!important;grid-template-columns:1fr 1fr!important;gap:12px!important;align-items:stretch;margin:16px 0 0}
+body #products .catalog-open-row>.btn{display:flex!important;width:100%!important;min-height:52px!important;margin:0!important;padding:12px 18px!important;box-sizing:border-box;font-size:18px!important;font-weight:850!important;line-height:1.5!important}
+body main>.hero{padding:40px 0 32px!important}
+body main>.hero .hero-grid{gap:30px!important}
+body main>.section{padding-top:38px!important;padding-bottom:38px!important;content-visibility:visible;contain-intrinsic-size:none}
+body main>.rental-fast-find{padding-top:24px!important;padding-bottom:24px!important}
+body main>.ai-recommend-section{padding:16px 0!important}
+body .section-title-row{margin-bottom:20px!important;gap:22px}
+body .rental-trust-steps{gap:12px}
+@media(max-width:640px){
+ body main>.hero{padding:28px 0 24px!important}
+ body main>.hero .hero-grid{gap:22px!important}
+ body main>.section{padding-top:26px!important;padding-bottom:26px!important}
+ body main>.rental-fast-find{padding-top:22px!important;padding-bottom:22px!important}
+ body #products .catalog-open-row{grid-template-columns:1fr!important;gap:10px!important}
+ body .section-title-row{margin-bottom:16px!important;gap:12px}
+}
