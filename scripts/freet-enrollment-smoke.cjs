@@ -59,7 +59,7 @@ async function main() {
     assert.ok(await page.locator('#freet-postpaid-feature').isVisible());
     await page.locator('[data-mvno-mode="all"]').click();
     assert.ok(await page.locator('#freet-postpaid-feature').isHidden());
-    assert.equal(await page.evaluate(()=>document.activeElement.id),'mvno-all-grid');
+    await page.waitForFunction(()=>document.activeElement.id==='mvno-all-grid');
 
     await page.locator('[data-tab="prepaid"]').click();
     await page.waitForFunction(()=>document.querySelectorAll('#prepaid-recommend-list .prepaid-recommend-card').length===3,{timeout:12000});
