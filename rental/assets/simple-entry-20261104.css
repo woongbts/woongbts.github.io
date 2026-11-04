@@ -20,3 +20,15 @@ body .rental-consult-buttons>a:hover{filter:brightness(.96)}
 body .steps article strong{display:block;font-size:20px!important;font-weight:850!important;line-height:1.5}
 body .steps article p{font-size:18px!important;font-weight:650!important;line-height:1.8!important;color:#fff!important}
 body .steps article>span{font-size:17px!important;font-weight:850!important}
+
+body .hero-copy .rental-simple-actions .rental-ai-secondary{background:#65349a!important;border-color:#65349a!important;color:#fff!important;font-weight:850!important}
+body .rental-consult-buttons .rental-consult-phone{background:#14647a!important;border-color:#14647a!important;color:#fff!important}
+body #appliances .appliance-grid .appliance-category{background:#14655d!important;border-color:#14655d!important;color:#fff!important}
+body #appliances .appliance-grid .appliance-category:nth-child(5n+2){background:#2456a6!important;border-color:#2456a6!important}
+body #appliances .appliance-grid .appliance-category:nth-child(5n+3){background:#65349a!important;border-color:#65349a!important}
+body #appliances .appliance-grid .appliance-category:nth-child(5n+4){background:#874511!important;border-color:#874511!important}
+body #appliances .appliance-grid .appliance-category:nth-child(5n+5){background:#982c50!important;border-color:#982c50!important}
+body #appliances .appliance-grid .appliance-category strong,body #appliances .appliance-grid .appliance-category small{color:#fff!important;font-weight:800!important}
+body #appliances .appliance-grid .appliance-category>span{background:#fff!important;color:#173f52!important;font-weight:850!important}
+body #appliances .appliance-grid .appliance-category:focus-visible{outline:3px solid #173f52;outline-offset:4px}
+body .gift-important-notice{background:#fff2e3!important;border-left:5px solid #ac4a0a;border-radius:9px;padding:15px 17px;font-size:18px!important;font-weight:800!important;line-height:1.8!important;color:#803006!important}
