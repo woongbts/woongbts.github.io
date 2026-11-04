@@ -7,3 +7,12 @@ body .rental-consult-shortcut{font-size:16px;line-height:1.8;color:#405b65;margi
 body .rental-consult-shortcut a{font-weight:800;color:#174d58}
 body .rental-simple-actions .btn{white-space:normal;text-align:center;word-break:keep-all}
 @media(max-width:640px){body .hero-copy .rental-simple-actions{grid-template-columns:1fr}body .hero-copy .rental-simple-actions .btn{min-height:54px}}
+
+body .rental-consult-shortcut>p{font-size:17px;font-weight:700;line-height:1.6;margin:0 0 10px;color:#365362}
+body .rental-consult-buttons{display:flex;flex-wrap:wrap;gap:10px}
+body .rental-consult-buttons>a{display:inline-flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:5px 8px;min-height:50px;padding:12px 18px;box-sizing:border-box;border:2px solid transparent;border-radius:11px;font-size:18px;font-weight:800;line-height:1.5;text-decoration:none;max-width:100%}
+body .rental-consult-buttons .rental-consult-phone{background:#e8f2fc;color:#164b78;border-color:#8eb9df}
+body .rental-consult-buttons .rental-consult-kakao{background:#fee500;color:#342b00;border-color:#e2c900}
+body .rental-consult-buttons>a:focus-visible{outline:3px solid #173f52;outline-offset:3px}
+body .rental-consult-buttons>a:hover{filter:brightness(.96)}
+@media(max-width:640px){body .rental-consult-buttons{display:grid;grid-template-columns:1fr}body .rental-consult-buttons>a{width:100%}}
