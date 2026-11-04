@@ -193,3 +193,66 @@ button,
   .text-button{font-size:14.5px!important}
   .sticky-quote a{font-size:15px!important}
 }
+
+/* 2026-11-04 product detail and application readability follow-up */
+/* Improve small decision-copy without changing displayed prices or conditions. */
+.product-page .generic-detail-grid>*,
+.product-page .detail-panel,
+.product-page .detail-actions,
+.product-page .selected-condition-strip,
+.product-page .contract-key-grid>div{min-width:0}
+.product-page #generic-title,
+.product-page #generic-description,
+.product-page .generic-highlight-list,
+.product-page .generic-recommend-list,
+.product-page .selected-condition-strip strong,
+.product-page .contract-key-grid b{overflow-wrap:anywhere;word-break:keep-all}
+.product-page .selection-flow span{min-width:0;overflow-wrap:break-word}
+.product-page .selector-help,
+.product-page .selected-condition-strip,
+.product-page .installation-quick-note span,
+.product-page .contract-key-head small{font-size:15.5px!important;line-height:1.72!important;color:#405e63!important}
+.product-page .quote-basis{font-size:15px!important;line-height:1.6!important;color:#385a60!important}
+.product-page .contract-key-head strong,
+.product-page .generic-feature-block>strong,
+.product-page .generic-recommend-block>strong{font-size:18px!important;line-height:1.5!important}
+.product-page .contract-key-grid span,
+.product-page .condition-list span{font-size:15px!important;line-height:1.55!important}
+.product-page .contract-key-grid b,
+.product-page .condition-list b{font-size:16px!important;line-height:1.6!important}
+.product-page .product-extra-details>summary{font-size:16px!important;line-height:1.6!important;overflow-wrap:break-word}
+.product-page .notice-box{border-color:#e3cfaa;background:#fffaf0}
+.product-page .notice-box strong{font-size:17px!important;line-height:1.55!important;color:#744918}
+.product-page .notice-box p{font-size:15.5px!important;line-height:1.8!important;color:#5e513f}
+.product-page .apply-reassurance strong{font-size:17px!important;line-height:1.5!important}
+.product-page .apply-reassurance span,
+.product-page .consult-copy-help{font-size:15.5px!important;line-height:1.75!important;color:#3e6063}
+.product-page .detail-actions .btn{min-height:52px!important;font-size:16px!important;line-height:1.45!important;text-align:center;white-space:normal;overflow-wrap:break-word}
+.rental-apply-dialog .rental-apply-head span{font-size:15px!important;line-height:1.5!important}
+.rental-apply-dialog .rental-apply-summary small,
+.rental-apply-dialog .rental-apply-summary p,
+.rental-apply-dialog .rental-apply-reassurance span{font-size:15.5px!important;line-height:1.75!important}
+.rental-apply-dialog .rental-apply-grid label,
+.rental-apply-dialog .rental-inquiry-label,
+.rental-apply-dialog .rental-billing summary,
+.rental-apply-dialog .rental-consent-check span,
+.rental-apply-dialog .rental-consent-check small,
+.rental-apply-dialog .rental-marketing-note{font-size:15.5px!important;line-height:1.65!important;overflow-wrap:break-word}
+.rental-apply-dialog .rental-apply-grid input,
+.rental-apply-dialog .rental-inquiry-label textarea,
+.rental-apply-dialog .rental-billing input{font-size:16px!important;max-width:100%;box-sizing:border-box}
+.rental-apply-dialog .rental-consent-check span{min-width:0}
+.rental-apply-dialog .rental-apply-gift-return-note{color:#8a3e25!important;font-weight:800}
+.rental-apply-dialog .rental-apply-submit{font-size:18px!important;min-height:54px!important}
+@media(max-width:640px){
+ .product-page .quote-box{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .product-page .quote-main,.product-page .quote-gift{min-width:0}
+ .product-page .quote-gift strong{font-size:clamp(17px,4.6vw,24px)!important;overflow-wrap:anywhere}
+ .product-page .detail-actions .btn{flex:1 1 100%;width:100%;min-width:0}
+ .product-page .contract-key-grid>div{min-width:0}
+ .product-page .contract-key-grid b{overflow-wrap:anywhere}
+ .product-page .selection-flow{min-width:0}
+ .rental-apply-dialog .rental-apply-form{min-width:0}
+ .rental-apply-dialog .rental-apply-grid{grid-template-columns:minmax(0,1fr)}
+ .rental-apply-dialog .rental-apply-grid>*{min-width:0}
+}
