@@ -55,3 +55,26 @@ body.home-modern #woongbi-storefront-deals .deal-price>strong *{color:#c1121f!im
  body.home-modern #woongbi-storefront-deals .deal-allowance-item{grid-template-columns:37px minmax(0,1fr);gap:7px;padding:7px 8px}
  body.home-modern #woongbi-storefront-deals .deal-allowance-item>span{font-size:13.5px}
 }
+
+/* Streamlined direct-choice homepage journey - 2026-11-04 */
+body.home-modern #quick-order .home-direct-menu[hidden]{display:none!important}
+body.home-modern #quick-order .home-direct-menu{scroll-margin-top:100px;padding-top:18px;margin-top:14px;border-top:1px solid #dce7e4}
+body.home-modern #quick-order .home-direct-intro h3{margin:0;color:#173e45;font-size:clamp(20px,2.5vw,25px);font-weight:900;line-height:1.35;word-break:keep-all}
+body.home-modern #quick-order .home-direct-intro p{margin:6px 0 0;color:#526e71;font-size:15px;line-height:1.6;word-break:keep-all}
+body.home-modern #quick-order .home-direct-section{margin-top:18px}
+body.home-modern #quick-order .home-direct-section h4{margin:0 0 10px;font-size:16px;font-weight:900;color:#164d55;line-height:1.4}
+body.home-modern #quick-order .home-direct-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
+body.home-modern #quick-order .home-direct-link{display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:4px;min-height:74px;min-width:0;padding:12px 14px;border:1.5px solid #bfd8d5;border-radius:13px;background:#f4faf9;color:#173f46;text-decoration:none;box-sizing:border-box;word-break:keep-all;overflow-wrap:anywhere}
+body.home-modern #quick-order .home-direct-link strong{font-size:16px;line-height:1.4;font-weight:900;color:#16454b}
+body.home-modern #quick-order .home-direct-link small{font-size:13px;line-height:1.45;font-weight:650;color:#516c70}
+body.home-modern #quick-order .home-direct-link:hover{background:#e8f5f1;border-color:#0f766e}
+body.home-modern #quick-order .home-direct-link:focus-visible{outline:3px solid #135d78;outline-offset:2px}
+body.home-modern #quick-order .home-direct-section:nth-of-type(3) .home-direct-link{background:#f5f8fc;border-color:#c7dbe4}
+body.home-modern #quick-order .home-direct-section:nth-of-type(3) .home-direct-link:hover{background:#eaf3fa;border-color:#2456a6}
+body.home-modern #quick-order .home-direct-menu .home-order-disclaimer{margin-top:15px!important}
+@media(max-width:760px){
+ body.home-modern #quick-order .home-direct-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+ body.home-modern #quick-order .home-direct-link{min-height:72px;padding:10px 12px}
+ body.home-modern #quick-order .home-direct-link strong{font-size:15.5px}
+ body.home-modern #quick-order .home-direct-link small{font-size:12.5px}
+}
