@@ -53,6 +53,53 @@
     a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid #163f45;outline-offset:3px}
     @media(max-width:480px){main{margin:20px auto 40px}.panel{padding:20px}.lead{margin-bottom:16px}}
     .footer{text-align:center;font-size:13px;color:#587074;margin:25px 0;line-height:1.6}
+    /* Two-column filled quick actions: plan comparison and phone, 2026-11-04 */
+    .panel>.links{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:10px;
+      align-items:stretch;
+      margin-top:22px;
+    }
+    .panel>.links>a{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      min-width:0;
+      width:100%;
+      min-height:64px;
+      padding:12px 9px;
+      border:2px solid transparent;
+      border-radius:13px;
+      color:#fff;
+      font-size:clamp(14px,3.5vw,17px);
+      font-weight:850;
+      line-height:1.45;
+      text-align:center;
+      text-decoration:none;
+      white-space:normal;
+      word-break:keep-all;
+      overflow-wrap:anywhere;
+      transition:background-color .15s ease;
+    }
+    .panel>.links>a:first-child{
+      background:#2456a6;
+      border-color:#2456a6;
+    }
+    .panel>.links>a:first-child:hover{background:#1b4285;border-color:#1b4285}
+    .panel>.links>a:last-child{
+      background:#69409b;
+      border-color:#69409b;
+    }
+    .panel>.links>a:last-child:hover{background:#522f7c;border-color:#522f7c}
+    .panel>.links>a:focus-visible{outline:3px solid #174753;outline-offset:3px}
+    @media(max-width:360px){
+      .panel>.links{gap:8px}
+      .panel>.links>a{font-size:14px;padding:11px 6px}
+    }
+    @media(prefers-reduced-motion:reduce){
+      .panel>.links>a{transition:none}
+    }
   </style>
 </head>
 <body>
