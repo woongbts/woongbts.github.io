@@ -24,7 +24,7 @@ body.home-modern #quick-order #home-compare-open:hover{background:#19468e;border
 /* Prominent entry controls and aligned recommendation amounts. */
 body.home-modern #quick-order #home-compare-open{background:#2456a6!important;border-color:#2456a6!important;color:#fff!important}
 body.home-modern #quick-order #home-compare-open span{font-size:18px!important;font-weight:850!important;line-height:1.6;color:#fff!important}
-body.home-modern #quick-order #home-self-compare>summary{display:block;box-sizing:border-box;width:fit-content;max-width:100%;background:#874511;color:#fff;padding:14px 20px;border:2px solid #874511;border-radius:11px;font-size:18px;font-weight:850;line-height:1.6;list-style:none}
+body.home-modern #quick-order #home-self-compare>summary{display:flex;align-items:center;justify-content:center;gap:4px;box-sizing:border-box;width:100%;max-width:100%;min-height:64px;background:#874511;color:#fff;padding:16px 18px;border:2px solid #874511;border-radius:16px;font-size:18px;font-weight:850;line-height:1.55;list-style:none;text-align:center;white-space:normal;overflow-wrap:break-word;word-break:keep-all}
 body.home-modern #quick-order #home-self-compare>summary::before{content:"＋ ";font-weight:900}
 body.home-modern .home-self-compare[open]>summary::before{content:"− "}
 body.home-modern #quick-order #home-self-compare>summary::-webkit-details-marker{display:none}
