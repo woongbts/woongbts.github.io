@@ -24,6 +24,12 @@
     if (!area || !link || !provider) return;
     const providerId = plan?.selectedOptions?.[0]?.dataset?.providerId || provider.value;
     const visible = freet(providerId);
+    const channel = $('mvno-enrollment-channel');
+    if (kind === 'postpaid' && channel) channel.textContent = visible
+      ? '프리티 요금제 · 온라인 개통신청이 가능합니다. 신청 후 접수 확인과 유심 발송을 안내합니다.'
+      : providerId && providerId !== 'all'
+        ? '선택하신 통신사 요금제 · 웅비통신 매장 방문 개통이 가능합니다. 방문 전 가입 가능 여부를 문의해 주세요.'
+        : '프리티는 온라인 개통신청 가능 · 다른 알뜰폰 통신사는 매장 방문 개통으로 안내합니다.';
     area.hidden = !visible;
     if (visible) link.href = href(kind, plan?.value || '');
   }
@@ -131,6 +137,35 @@
   }
 
   function init() {
+    const grid = $('mvno-all-grid');
+    const feature = $('freet-postpaid-feature');
+    const compact = $('freet-postpaid-compact');
+    const syncMode = () => {
+      const all = grid && !grid.hidden;
+      if (feature) feature.hidden = !!all;
+      if (compact) compact.hidden = !all;
+    };
+    if (grid) new MutationObserver(syncMode).observe(grid,{attributes:true,attributeFilter:['hidden']});
+    syncMode();
+    document.querySelector('[data-mvno-mode="all"]')?.addEventListener('click', () => {
+      requestAnimationFrame(() => {
+        syncMode();
+        if (grid && !grid.hidden) {
+          grid.setAttribute('tabindex','-1');
+          grid.focus({preventScroll:true});
+          grid.scrollIntoView({behavior:'auto',block:'start'});
+        }
+      });
+    });
+    $('freet-show-recommendations')?.addEventListener('click', () => {
+      document.querySelector('[data-mvno-mode="recommend"]')?.click();
+      requestAnimationFrame(() => {
+        syncMode();
+        feature?.setAttribute('tabindex','-1');
+        feature?.focus({preventScroll:true});
+        feature?.scrollIntoView({behavior:'auto',block:'start'});
+      });
+    });
     bindSelected('postpaid');
     bindSelected('prepaid');
     showPostpaid();

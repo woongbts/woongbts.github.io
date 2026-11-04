@@ -48,6 +48,18 @@ async function main() {
     assert.equal(await page.locator('#freet-postpaid-selected-link').getAttribute('href'),
       '/freet/apply/?type=postpaid&plan=FREETKT-202611-7G');
     console.log('POSTPAID_FREET_OK',cards.map(x=>x.slice(0,90)));
+    assert.ok(await page.locator('#freet-postpaid-feature').isHidden());
+    assert.ok(await page.locator('#freet-postpaid-compact').isVisible());
+    assert.ok(await page.locator('#mvno-all-grid').isVisible());
+    assert.match(await page.locator('#mvno-enrollment-channel').innerText(),/온라인 개통신청/);
+    await page.locator('#mvno-provider').selectOption('OTHER');
+    assert.match(await page.locator('#mvno-enrollment-channel').innerText(),/매장 방문 개통/);
+    assert.ok(await page.locator('#freet-postpaid-selected').isHidden());
+    await page.locator('#freet-show-recommendations').click();
+    assert.ok(await page.locator('#freet-postpaid-feature').isVisible());
+    await page.locator('[data-mvno-mode="all"]').click();
+    assert.ok(await page.locator('#freet-postpaid-feature').isHidden());
+    assert.equal(await page.evaluate(()=>document.activeElement.id),'mvno-all-grid');
 
     await page.locator('[data-tab="prepaid"]').click();
     await page.waitForFunction(()=>document.querySelectorAll('#prepaid-recommend-list .prepaid-recommend-card').length===3,{timeout:12000});
