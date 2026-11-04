@@ -39,6 +39,7 @@ async function main() {
     await page.waitForFunction(() => document.querySelectorAll('#freet-postpaid-list .freet-plan-card').length===3,{timeout:30000});
     const cards=await page.locator('#freet-postpaid-list .freet-plan-card').allTextContents();
     assert.ok(cards.some(x=>x.includes('SKT'))&&cards.some(x=>x.includes('KT'))&&cards.some(x=>x.includes('LG U+')),cards.join('; '));
+    console.log('POSTPAID_CARD_HTML', (await page.locator('#freet-postpaid-list').innerHTML()).slice(0,5000));
     assert.equal(await page.locator('#freet-postpaid-list a.freet-apply-link').count(),3);
     assert.match(await page.locator('#freet-postpaid-list a.freet-apply-link').first().getAttribute('href'),/^\/freet\/apply\/\?type=postpaid&plan=FREET/);
     await page.locator('#freet-postpaid-list .freet-detail-button').first().click();
