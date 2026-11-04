@@ -122,3 +122,15 @@ body.home-modern #quick-order[data-active-category="prepaid"] .home-order-option
     font-size:16px!important;padding:6px 9px;
   }
 }
+/* Keep the comparison and application actions together, in reading order. */
+.home-order-heading-actions{display:flex;flex-wrap:wrap;gap:10px;flex-shrink:0}
+body.home-modern .home-order-heading-actions .home-order-mvno-link{background:#0f635c;color:#fff!important;border-color:#0f635c}
+body.home-modern .home-order-heading-actions .home-order-mvno-link:hover{background:#0b504a;border-color:#0b504a}
+.home-order-heading-actions a:focus-visible{outline:3px solid #153b43;outline-offset:3px}
+@media(max-width:1100px){
+ .home-order-heading{flex-wrap:wrap}
+}
+@media(max-width:600px){
+ .home-order-heading-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));width:100%;gap:8px}
+ body.home-modern .home-order-heading-actions .home-order-detail-link{min-width:0;min-height:48px;padding:10px 6px;font-size:14px!important;white-space:normal;text-align:center;box-sizing:border-box}
+}

@@ -30,3 +30,7 @@
 .prepaid-recommend-card>.freet-apply-link{width:100%;margin-top:11px}
 @media(max-width:850px){.freet-feature-list{grid-template-columns:1fr}.freet-feature{padding:16px}.freet-feature-head>.freet-apply-link{width:100%}.freet-plan-card{padding:16px}}
 @media(prefers-reduced-motion:reduce){.freet-feature *{scroll-behavior:auto}}
+
+/* Leave the linked heading clear of the sticky navigation. */
+#freet-postpaid-feature{scroll-margin-top:120px}
+#freet-postpaid-feature:focus-visible{outline:3px solid #0f635c;outline-offset:4px}

@@ -219,7 +219,16 @@
     showQuickJourney();
     tab.click();
     setTimeout(()=>{restoreSelection();restoreMobilePurpose();restoreMobileDirect();restoreInternetQuick();},120);
-    if(requested!=='mobile')requestAnimationFrame(()=>panel.scrollIntoView({behavior:'auto',block:'start'}));
+    if(requested!=='mobile')requestAnimationFrame(()=>{
+      const feature=requested==='mvno'&&location.hash==='#freet-postpaid-feature'
+        ?document.getElementById('freet-postpaid-feature'):null;
+      const target=feature||panel;
+      if(feature){
+        feature.setAttribute('tabindex','-1');
+        feature.focus({preventScroll:true});
+      }
+      target.scrollIntoView({behavior:'auto',block:'start'});
+    });
   }
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',openRequestedTab,{once:true});
   else openRequestedTab();
