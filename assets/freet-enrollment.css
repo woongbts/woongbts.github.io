@@ -1,0 +1,31 @@
+/* Freet partner signup UX: separate from customer-private partner operations. */
+.freet-feature{
+  margin:18px 0 22px;padding:20px 22px;
+  border:1px solid #a4d6c7;border-radius:18px;
+  background:linear-gradient(135deg,#edfaf5,#f8fdfb);
+  box-shadow:0 4px 20px rgba(7,83,71,.06);
+}
+.freet-feature-head{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.freet-feature-head h3{font-size:clamp(22px,2.5vw,29px);margin:5px 0 9px;color:#0c504a}
+.freet-feature-head p{max-width:730px;margin:0;color:#405d5d;line-height:1.7}
+.freet-feature-head .eyebrow{color:#087564;font-weight:800;letter-spacing:.02em}
+.freet-feature-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:18px 0 10px}
+.freet-plan-card{min-width:0;display:flex;flex-direction:column;gap:9px;padding:18px;border-radius:15px;background:#fff;border:1px solid #cee6df}
+.freet-plan-tag{font-size:12px;font-weight:800;color:#067a62}
+.freet-plan-name{font-size:18px;color:#123f44;line-height:1.4}
+.freet-plan-provider{color:#596e70;font-size:13px}
+.freet-plan-price{font-size:25px;font-weight:850;color:#056c60}
+.freet-plan-specs{font-size:13px;line-height:1.65;color:#4b6264;margin:0;overflow-wrap:anywhere}
+.freet-plan-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:auto;padding-top:8px}
+.freet-detail-button,.freet-apply-link{display:inline-flex;align-items:center;justify-content:center;min-height:43px;padding:9px 13px;box-sizing:border-box;border-radius:11px;text-decoration:none;font-size:14px;font-weight:800;cursor:pointer}
+.freet-detail-button{border:1px solid #b9d2cf;background:#fff;color:#174b4e}
+.freet-apply-link{background:#087a68;border:1px solid #087a68;color:#fff!important}
+.freet-apply-link:hover,.freet-apply-link:focus-visible{background:#055e51;text-decoration:none}
+.freet-feature-note{display:block;margin-top:11px;font-size:12px;color:#5f7472;line-height:1.6}
+.freet-prepaid-feature{margin-top:16px}
+.freet-selected-apply{display:flex;flex-direction:column;gap:8px;margin:15px 0;padding:14px;background:#eff8f3;border-radius:12px;border:1px solid #c3e2d4}
+.freet-selected-apply[hidden]{display:none!important}
+.freet-selected-apply small{line-height:1.5;color:#4b6461}
+.prepaid-recommend-card>.freet-apply-link{width:100%;margin-top:11px}
+@media(max-width:850px){.freet-feature-list{grid-template-columns:1fr}.freet-feature{padding:16px}.freet-feature-head>.freet-apply-link{width:100%}.freet-plan-card{padding:16px}}
+@media(prefers-reduced-motion:reduce){.freet-feature *{scroll-behavior:auto}}
