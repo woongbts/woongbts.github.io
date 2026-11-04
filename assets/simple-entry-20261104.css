@@ -43,3 +43,15 @@ body.home-modern #quick-order .home-entry-phone a{display:inline-flex;align-item
 body.home-modern #quick-order .customer-inline-ai{background:#65349a!important;border:2px solid #65349a!important;color:#fff!important;font-size:18px!important;font-weight:850!important;min-height:50px;padding:12px 18px;border-radius:11px;line-height:1.6}
 body.home-modern #quick-order .home-entry-phone a:focus-visible,body.home-modern #quick-order .customer-inline-ai:focus-visible{outline:3px solid #173f52;outline-offset:3px}
 @media(max-width:640px){body.home-modern #quick-order .home-entry-phone a,body.home-modern #quick-order .customer-inline-ai{width:100%;justify-content:center}}
+
+/* Homepage offer-card allowances and stronger red monthly price, 2026-11-04 */
+body.home-modern #woongbi-storefront-deals .deal-allowances{display:grid;gap:6px;margin-top:10px;min-width:0}
+body.home-modern #woongbi-storefront-deals .deal-allowance-item{display:grid;grid-template-columns:40px minmax(0,1fr);gap:9px;align-items:start;min-width:0;padding:7px 9px;border-radius:9px;background:#f2f7f9;line-height:1.55}
+body.home-modern #woongbi-storefront-deals .deal-allowance-item>b{font-size:13px;line-height:1.55;font-weight:900;color:#355662}
+body.home-modern #woongbi-storefront-deals .deal-allowance-item>span{min-width:0;font-size:14px;line-height:1.55;font-weight:700;color:#25424f;overflow-wrap:anywhere;word-break:keep-all}
+body.home-modern #woongbi-storefront-deals .deal-price>strong,
+body.home-modern #woongbi-storefront-deals .deal-price>strong *{color:#c1121f!important}
+@media(max-width:640px){
+ body.home-modern #woongbi-storefront-deals .deal-allowance-item{grid-template-columns:37px minmax(0,1fr);gap:7px;padding:7px 8px}
+ body.home-modern #woongbi-storefront-deals .deal-allowance-item>span{font-size:13.5px}
+}
