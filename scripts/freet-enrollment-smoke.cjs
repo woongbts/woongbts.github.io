@@ -63,11 +63,15 @@ async function main() {
 
     await page.goto(root+'/freet/apply/?type=prepaid',{waitUntil:'domcontentloaded'});
     assert.match(await page.locator('h1').innerText(),/선불폰/);
+    assert.ok(await page.locator('#prepaid-retention').isVisible());
+    assert.match(await page.locator('#prepaid-retention').innerText(),/90일 이내 일반해지는 제한됩니다/);
+    assert.ok(await page.locator('#postpaid-retention').isHidden());
     assert.equal(await page.locator('#freet-official-apply').getAttribute('href'),agent);
     assert.match(await page.locator('main').innerText(),/유심 발송/);
     assert.match(await page.locator('main').innerText(),/신청서 접수만으로 즉시 개통되지 않습니다/);
     await page.goto(root+'/freet/apply/?type=postpaid',{waitUntil:'domcontentloaded'});
     assert.match(await page.locator('h1').innerText(),/후불 알뜰폰/);
+    assert.ok(await page.locator('#prepaid-retention').isHidden());
     assert.equal(await page.locator('#freet-official-apply').getAttribute('href'),agent);
     assert.equal(await page.locator('.process').getAttribute('open'), null);
     assert.ok(await page.locator('#postpaid-retention').isVisible());

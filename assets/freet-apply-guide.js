@@ -8,6 +8,7 @@
   $('apply-heading').textContent = title;
   document.title = title + ' | 웅비통신 덕천만덕점';
   $('postpaid-retention').hidden = prepaid;
+  $('prepaid-retention').hidden = !prepaid;
   $('back-to-calculator').href = prepaid ? '/rates.html?tab=prepaid' : '/rates.html?tab=mvno#freet-postpaid-feature';
   $('apply-lead').textContent = '요금제를 미리 고르지 않아도 신청할 수 있습니다. 아래에서 준비사항을 확인하고 프리티 신청서로 이동하세요.';
   $('next-step').replaceChildren();
