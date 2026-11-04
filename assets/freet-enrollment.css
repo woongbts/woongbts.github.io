@@ -34,3 +34,25 @@
 /* Leave the linked heading clear of the sticky navigation. */
 #freet-postpaid-feature{scroll-margin-top:120px}
 #freet-postpaid-feature:focus-visible{outline:3px solid #0f635c;outline-offset:4px}
+
+/* Larger, clearly separated plan facts and online application actions. */
+#freet-postpaid-feature .freet-online-badge{display:inline-block;margin:6px 0 12px;padding:10px 14px;background:#d6efe5;border:1px solid #7daf9e;border-radius:10px;color:#124c43;font-size:18px;font-weight:850;line-height:1.5}
+#freet-postpaid-feature .freet-feature-head p:not(.freet-online-badge){font-size:18px;line-height:1.8}
+#freet-postpaid-feature .freet-feature-head>.freet-apply-link{font-size:19px;min-height:58px;padding:14px 22px}
+#freet-postpaid-feature .freet-plan-card{gap:12px;padding:22px}
+#freet-postpaid-feature .freet-plan-tag{font-size:15px;color:#075e50}
+#freet-postpaid-feature .freet-plan-name{font-size:21px;overflow-wrap:anywhere}
+#freet-postpaid-feature .freet-plan-provider{font-size:16px;font-weight:750;color:#365552}
+#freet-postpaid-feature .freet-plan-price{font-size:30px}
+#freet-postpaid-feature .freet-plan-specs{font-size:17px;line-height:1.65;color:#253f40;margin:0;padding:12px;background:#f3f9f7;border-radius:10px}
+#freet-postpaid-feature .freet-plan-spec-row{display:grid;grid-template-columns:3em minmax(0,1fr);gap:8px;padding:5px 0}
+#freet-postpaid-feature .freet-plan-spec-row dt{font-weight:850;color:#164e48}
+#freet-postpaid-feature .freet-plan-spec-row dd{margin:0;overflow-wrap:anywhere}
+#freet-postpaid-feature .freet-plan-explainer{font-size:16px;line-height:1.75;color:#365552;padding-top:10px}
+#freet-postpaid-feature .freet-plan-actions{display:grid;grid-template-columns:1fr;gap:10px;padding-top:12px}
+#freet-postpaid-feature .freet-plan-actions .freet-detail-button{font-size:17px;min-height:52px;border-color:#769f98}
+#freet-postpaid-feature .freet-plan-actions .freet-apply-link{font-size:18px;min-height:56px;padding:12px 16px;box-shadow:0 3px 8px rgba(7,83,71,.14)}
+#freet-postpaid-feature .freet-feature-note{font-size:15px;line-height:1.8;color:#405b57;margin-top:18px}
+#freet-postpaid-feature a:focus-visible,#freet-postpaid-feature button:focus-visible{outline:3px solid #153b43;outline-offset:3px}
+@media(min-width:851px) and (max-width:1199px){#freet-postpaid-feature .freet-feature-list{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){#freet-postpaid-feature .freet-plan-card{padding:18px}#freet-postpaid-feature .freet-online-badge{font-size:17px}#freet-postpaid-feature .freet-feature-head>.freet-apply-link{width:100%}}

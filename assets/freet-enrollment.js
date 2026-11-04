@@ -81,8 +81,13 @@
         card.append(make('span','freet-plan-provider','프리티 ' + networkName(plan.network) + '망'));
         const price = make('strong','freet-plan-price',money(plan.special_monthly_fee ?? plan.monthly_fee));
         card.append(price);
-        card.append(make('p','freet-plan-specs',
-          ['데이터 '+(plan.data || '확인 필요'),'통화 '+(plan.voice || '확인 필요'),'문자 '+(plan.sms || '확인 필요')].join(' · ')));
+        const specs = make('dl','freet-plan-specs');
+        for (const [label, value] of [['데이터',plan.data],['통화',plan.voice],['문자',plan.sms]]) {
+          const row = make('div','freet-plan-spec-row');
+          row.append(make('dt','',label),make('dd','',value || '확인 필요'));
+          specs.append(row);
+        }
+        card.append(specs);
         card.append(make('p','freet-plan-explainer',plan.featuredNote));
         const more = make('div','freet-plan-actions');
         const select = make('button','freet-detail-button','요금제 상세');
@@ -100,7 +105,7 @@
           }
           $('mvno-all-grid')?.scrollIntoView({behavior:'smooth',block:'start'});
         });
-        const apply = make('a','freet-apply-link','개통 신청 →');
+        const apply = make('a','freet-apply-link','온라인 개통신청 →');
         apply.href = href('postpaid',plan.id);
         more.append(select,apply);
         card.append(more);
