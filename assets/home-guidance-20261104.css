@@ -2,3 +2,8 @@
 body.home-modern #quick-order .home-order-option.is-guidance{background:#982c50!important;border:2px solid #982c50!important;color:#fff!important;box-shadow:0 4px 12px rgba(152,44,80,.16)!important}
 body.home-modern #quick-order .home-order-option.is-guidance strong,body.home-modern #quick-order .home-order-option.is-guidance small,body.home-modern #quick-order .home-order-option.is-guidance .home-order-arrow{color:#fff!important}
 body.home-modern #quick-order .home-order-option.is-guidance:hover{background:#79223f!important;border-color:#79223f!important}
+
+/* Four entry actions: comparison, internet/TV, postpaid and prepaid. */
+body.home-modern .home-order-heading-actions .home-order-internet-link{background:#985018!important;border-color:#985018!important;color:#fff!important}
+body.home-modern .home-order-heading-actions .home-order-internet-link:hover{background:#783e12!important}
+@media(max-width:600px){body.home-modern .home-order-heading-actions>a:first-child{grid-column:auto}}
