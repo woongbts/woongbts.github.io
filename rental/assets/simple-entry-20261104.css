@@ -16,3 +16,7 @@ body .rental-consult-buttons .rental-consult-kakao{background:#fee500;color:#342
 body .rental-consult-buttons>a:focus-visible{outline:3px solid #173f52;outline-offset:3px}
 body .rental-consult-buttons>a:hover{filter:brightness(.96)}
 @media(max-width:640px){body .rental-consult-buttons{display:grid;grid-template-columns:1fr}body .rental-consult-buttons>a{width:100%}}
+
+body .steps article strong{display:block;font-size:20px!important;font-weight:850!important;line-height:1.5}
+body .steps article p{font-size:18px!important;font-weight:650!important;line-height:1.8!important;color:#fff!important}
+body .steps article>span{font-size:17px!important;font-weight:850!important}

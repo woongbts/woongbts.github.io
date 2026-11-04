@@ -5,11 +5,11 @@ body.home-modern .home-entry-grid span{font-size:16px;line-height:1.6}
 body.home-modern .home-entry-grid b{grid-column:2;grid-row:1 / 3;align-self:center;font-size:24px}
 body.home-modern .home-entry-primary{background:#0f635c;border:2px solid #0f635c;color:#fff}
 body.home-modern .home-entry-primary span{color:#fff}
-body.home-modern .home-entry-secondary{background:#2456a6;border:2px solid #2456a6;color:#fff}
+body.home-modern #quick-order #home-compare-open{background:#2456a6;border:2px solid #2456a6;color:#fff}
 body.home-modern .home-entry-phone{margin:12px 0 18px;font-size:16px;line-height:1.6;color:#405b65}
 body.home-modern .home-entry-phone a{font-weight:850;color:#174d58}
 body.home-modern .home-self-compare{border-top:1px solid #dce7e4;padding-top:10px}
-body.home-modern .home-self-compare>summary{cursor:pointer;font-weight:800;color:#315460;padding:10px 0;min-height:44px;font-size:16px}
+body.home-modern #quick-order #home-self-compare>summary{cursor:pointer;font-weight:800;color:#315460;padding:10px 0;min-height:44px;font-size:16px}
 body.home-modern .home-self-compare[open]>.home-order-heading-actions{margin:12px 0 18px}
 body.home-modern .home-self-compare .home-order-category{background:#f5f9fa!important;color:#173e45!important;box-shadow:none!important;border:1px solid #bed2d4!important}
 body.home-modern .home-self-compare .home-order-category b,body.home-modern .home-self-compare .home-order-category small{color:#173e45!important}
@@ -18,5 +18,22 @@ body.home-modern .home-entry-grid>a:focus-visible{outline:3px solid #153b43;outl
 @media(max-width:640px){body.home-modern .home-entry-grid{grid-template-columns:1fr;gap:10px;margin-top:16px}body.home-modern .home-entry-grid>a{padding:17px;min-height:100px}body.home-modern .home-entry-grid strong{font-size:20px}}
 body.home-modern #home-self-compare{scroll-margin-top:90px}
 
-body.home-modern .home-entry-secondary strong,body.home-modern .home-entry-secondary span,body.home-modern .home-entry-secondary b{color:#fff}
-body.home-modern .home-entry-secondary:hover{background:#19468e;border-color:#19468e}
+body.home-modern #quick-order #home-compare-open strong,body.home-modern #quick-order #home-compare-open span,body.home-modern #quick-order #home-compare-open b{color:#fff}
+body.home-modern #quick-order #home-compare-open:hover{background:#19468e;border-color:#19468e}
+
+/* Prominent entry controls and aligned recommendation amounts. */
+body.home-modern #quick-order #home-compare-open{background:#2456a6!important;border-color:#2456a6!important;color:#fff!important}
+body.home-modern #quick-order #home-compare-open span{font-size:18px!important;font-weight:850!important;line-height:1.6;color:#fff!important}
+body.home-modern #quick-order #home-self-compare>summary{display:block;box-sizing:border-box;width:fit-content;max-width:100%;background:#874511;color:#fff;padding:14px 20px;border:2px solid #874511;border-radius:11px;font-size:18px;font-weight:850;line-height:1.6;list-style:none}
+body.home-modern #quick-order #home-self-compare>summary::before{content:"＋ ";font-weight:900}
+body.home-modern .home-self-compare[open]>summary::before{content:"− "}
+body.home-modern #quick-order #home-self-compare>summary::-webkit-details-marker{display:none}
+body.home-modern #quick-order #home-self-compare>summary:focus-visible{outline:3px solid #173f52;outline-offset:3px}
+body.home-modern #woongbi-storefront-deals .deal-card{display:flex;flex-direction:column}
+body.home-modern #woongbi-storefront-deals .deal-body{display:flex;flex-direction:column;flex:1}
+body.home-modern #woongbi-storefront-deals .deal-body h3{min-height:3.2em;line-height:1.6;margin-bottom:8px}
+body.home-modern #woongbi-storefront-deals .deal-plan{min-height:3.4em;line-height:1.7;margin-top:0}
+body.home-modern #woongbi-storefront-deals .deal-price small{display:block;min-height:3.4em;line-height:1.7}
+body.home-modern #woongbi-storefront-deals .deal-price strong{display:block;color:#b42332!important;font-weight:900;font-size:26px;line-height:1.4;font-variant-numeric:tabular-nums}
+body.home-modern #woongbi-storefront-deals .deal-link{display:flex;align-items:center;justify-content:center;min-height:48px;padding:10px 12px;border-radius:10px;background:#2456a6;color:#fff!important;font-size:17px;font-weight:850;line-height:1.5;text-align:center;margin-top:auto;box-sizing:border-box}
+body.home-modern #woongbi-storefront-deals .deal-card:focus-visible{outline:3px solid #2456a6;outline-offset:4px}
