@@ -23,9 +23,11 @@ async function main() {
     await page.route('https://woongbi-quote-api.woongbts.workers.dev/catalog/mvno',route => {
       if(route.request().method()==='OPTIONS')return route.fulfill({status:204,headers:{'Access-Control-Allow-Origin':'*'}});
       const plans=[
-        {id:'FREETSKT-1416',provider_id:'FREETSKT',name:'심플 200분1G',network:'SKT',monthly_fee:3520,special_monthly_fee:3520,regular_monthly_fee:12100,voice:'200분',sms:'50건',data:'1GB',source_order:1},
-        {id:'FREETKT-1568',provider_id:'FREETKT',name:'프리티든든한 6G',network:'KT',monthly_fee:8800,special_monthly_fee:8800,regular_monthly_fee:28600,voice:'300분',sms:'300건',data:'6GB',source_order:9},
-        {id:'FREETLG-2178',provider_id:'FREETLG',name:'freeT 안심 15G+1M',network:'LGU+',monthly_fee:31900,special_monthly_fee:31900,regular_monthly_fee:40700,voice:'무제한',sms:'기본제공',data:'15GB+1Mbps 무제한',source_order:15},
+        {id:'FREETKT-202611-7G',provider_id:'FREETKT',name:'데이터안심7G+',network:'KT',monthly_fee:19800,special_monthly_fee:19800,regular_monthly_fee:29700,voice:'기본제공(300분)',sms:'기본제공',data:'7GB+1Mbps 무제한',source_reviewed_at:'2026-11-04'},
+        {id:'FREETKT-202611-15G',provider_id:'FREETKT',name:'데이터안심15G+1M',network:'KT',monthly_fee:25300,special_monthly_fee:25300,regular_monthly_fee:39600,voice:'기본제공(300분)',sms:'기본제공',data:'15GB+1Mbps 무제한',source_reviewed_at:'2026-11-04'},
+        {id:'FREETSKT-2031',provider_id:'FREETSKT',name:'S(유)데이터안심100분15G+',network:'SKT',monthly_fee:29700,special_monthly_fee:29700,regular_monthly_fee:41800,voice:'100분',sms:'100건',data:'15GB+3Mbps 무제한',source_reviewed_at:'2026-11-04'},
+        {id:'FREETSKT-202611-11G',provider_id:'FREETSKT',name:'USIM데이터중심11G',network:'SKT',monthly_fee:37290,special_monthly_fee:37290,regular_monthly_fee:49390,voice:'기본제공(300분)',sms:'기본제공',data:'11GB+매일 2GB+3Mbps 무제한',source_reviewed_at:'2026-11-04'},
+        {id:'FREETLG-1425',provider_id:'FREETLG',name:'L(유)데이터안심11G+',network:'LGU+',monthly_fee:43890,special_monthly_fee:43890,regular_monthly_fee:49390,voice:'기본제공(300분)',sms:'기본제공',data:'11GB+매일 2GB+3Mbps 무제한',source_reviewed_at:'2026-11-04'},
         {id:'OTHER-1',provider_id:'OTHER',name:'다른 통신사 상품',network:'KT',monthly_fee:10000,data:'2GB'}
       ];
       const catalog={meta:{updated_at:'2026-11-04'},providers:[
@@ -36,15 +38,15 @@ async function main() {
         headers:{'Access-Control-Allow-Origin':'*'},body:JSON.stringify({ok:true,catalog})});
     });
     await page.goto(root+'/rates.html?tab=mvno',{waitUntil:'domcontentloaded'});
-    await page.waitForFunction(() => document.querySelectorAll('#freet-postpaid-list .freet-plan-card').length===3,{timeout:30000});
+    await page.waitForFunction(() => document.querySelectorAll('#freet-postpaid-list .freet-plan-card').length===5,{timeout:30000});
     const cards=await page.locator('#freet-postpaid-list .freet-plan-card').allTextContents();
     assert.ok(cards.some(x=>x.includes('SKT'))&&cards.some(x=>x.includes('KT'))&&cards.some(x=>x.includes('LG U+')),cards.join('; '));
-    assert.equal(await page.locator('#freet-postpaid-list a.freet-apply-link').count(),3);
+    assert.equal(await page.locator('#freet-postpaid-list a.freet-apply-link').count(),5);
     assert.match(await page.locator('#freet-postpaid-list a.freet-apply-link').first().getAttribute('href'),/^\/freet\/apply\/\?type=postpaid&plan=FREET/);
     await page.locator('#freet-postpaid-list .freet-detail-button').first().click();
     await page.waitForFunction(()=>document.querySelector('#freet-postpaid-selected')?.hidden===false,{timeout:12000});
     assert.equal(await page.locator('#freet-postpaid-selected-link').getAttribute('href'),
-      '/freet/apply/?type=postpaid&plan=FREETSKT-1416');
+      '/freet/apply/?type=postpaid&plan=FREETKT-202611-7G');
     console.log('POSTPAID_FREET_OK',cards.map(x=>x.slice(0,90)));
 
     await page.locator('[data-tab="prepaid"]').click();
