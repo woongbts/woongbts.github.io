@@ -1,0 +1,58 @@
+name: Verify Galaxy A18 photo in all carrier calculator cards
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'assets/device-images/galaxya18.webp'
+      - 'assets/device-images.js'
+      - 'assets/rates.min.js'
+      - 'src/rates.js'
+      - 'rates.html'
+      - '.github/workflows/verify-galaxy-a18-photo.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate JavaScript syntax and authentic WebP image
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --check assets/device-images.js
+          node --check assets/rates.min.js
+          node --check src/rates.js
+          file assets/device-images/galaxya18.webp | grep -qi 'Web/P image'
+          node <<'JS'
+          const fs = require('node:fs');
+          const vm = require('node:vm');
+          const assert = require('node:assert/strict');
+          const imagePath = 'assets/device-images/galaxya18.webp';
+          const source = fs.readFileSync('assets/device-images.js', 'utf8');
+          const rates = fs.readFileSync('assets/rates.min.js','utf8');
+          const originalRates = fs.readFileSync('src/rates.js','utf8');
+          const html = fs.readFileSync('rates.html','utf8');
+          const context = { window: {} };
+          vm.runInNewContext(source, context);
+          const cases = [
+            ['SKT','SM-A185N'],
+            ['KT','SM-A185NK'],
+            ['LGU+','SM-A185N'],
+          ];
+          for (const [carrier, model_code] of cases) {
+            const path = context.window.woongbiDeviceImage({carrier, name:'갤럭시 A18 LTE', model_code});
+            assert.equal(path, imagePath, carrier+' image mapping');
+            console.log('PHOTO_OK',carrier,model_code,path);
+          }
+          assert.equal(context.window.woongbiDeviceImage({name:'갤럭시 A17',model_code:'SM-A175'}),'assets/device-images/galaxya17.png');
+          for (const code of [source,rates,originalRates]) assert.ok(code.includes('galaxya18.webp'),'image map missing');
+          assert.ok(html.includes('device-images.js?v=20261104-a18photo1'),'image cache not refreshed');
+          const image = fs.readFileSync(imagePath);
+          assert.ok(image.length>2000,'image is too small');
+          assert.equal(image.toString('ascii',0,4),'RIFF');
+          assert.equal(image.toString('ascii',8,12),'WEBP');
+          assert.equal(image.readUInt32LE(4)+8,image.length,'truncated RIFF payload');
+          console.log('IMAGE_VALID',image.length,'bytes; three-carrier A18 and A17 control passed');
+          JS
