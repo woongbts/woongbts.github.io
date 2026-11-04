@@ -71,3 +71,12 @@
 #mvno-enrollment-channel{font-weight:800}
 #mvno-form .mvno-filter-group>.field-help{grid-column:1 / -1;max-width:none;width:100%;font-size:14px;line-height:1.7;word-break:normal;overflow-wrap:break-word}
 .freet-compact button:focus-visible,#mvno-all-grid:focus-visible{outline:3px solid #174c43;outline-offset:3px}
+/* Legible supporting text in the all-plan calculator, independent of compact cards. */
+#mvno-form .mvno-filter-head strong{font-size:18px;line-height:1.5}
+#mvno-form .mvno-filter-head span{font-size:15px;line-height:1.7;color:#405b65}
+#mvno-form .mvno-filter-group>span{font-size:14px;line-height:1.5}
+#mvno-filter-count{font-size:15px;line-height:1.65}
+#mvno-form .plan-picker-label>span{font-size:17px;line-height:1.5}
+#mvno-form .plan-picker-label small,#mvno-form .plan-picker-main small{font-size:15px;line-height:1.7;color:#405b65}
+#mvno-all-grid .store-apply-trust{font-size:14px!important;line-height:1.7!important;color:#405b65!important}
+#freet-postpaid-selected small,#freet-prepaid-selected small{font-size:15px;line-height:1.7;color:#405b57}
