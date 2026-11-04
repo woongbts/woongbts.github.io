@@ -31,8 +31,8 @@ body.home-modern #quick-order #home-self-compare>summary::-webkit-details-marker
 body.home-modern #quick-order #home-self-compare>summary:focus-visible{outline:3px solid #173f52;outline-offset:3px}
 body.home-modern #woongbi-storefront-deals .deal-card{display:flex;flex-direction:column}
 body.home-modern #woongbi-storefront-deals .deal-body{display:flex;flex-direction:column;flex:1}
-body.home-modern #woongbi-storefront-deals .deal-body h3{min-height:3.2em;line-height:1.6;margin-bottom:8px}
-body.home-modern #woongbi-storefront-deals .deal-plan{min-height:3.4em;line-height:1.7;margin-top:0}
+body.home-modern #woongbi-storefront-deals .deal-body h3{min-height:0;line-height:1.4;margin:4px 0 0}
+body.home-modern #woongbi-storefront-deals .deal-plan{min-height:0;line-height:1.5;margin:8px 0 0}
 body.home-modern #woongbi-storefront-deals .deal-price small{display:block;min-height:3.4em;line-height:1.7}
 body.home-modern #woongbi-storefront-deals .deal-price strong{display:block;color:#b42332!important;font-weight:900;font-size:26px;line-height:1.4;font-variant-numeric:tabular-nums}
 body.home-modern #woongbi-storefront-deals .deal-link{display:flex;align-items:center;justify-content:center;min-height:48px;padding:10px 12px;border-radius:10px;background:#2456a6;color:#fff!important;font-size:17px;font-weight:850;line-height:1.5;text-align:center;margin-top:auto;box-sizing:border-box}
@@ -45,7 +45,7 @@ body.home-modern #quick-order .home-entry-phone a:focus-visible,body.home-modern
 @media(max-width:640px){body.home-modern #quick-order .home-entry-phone a,body.home-modern #quick-order .customer-inline-ai{width:100%;justify-content:center}}
 
 /* Homepage offer-card allowances and stronger red monthly price, 2026-11-04 */
-body.home-modern #woongbi-storefront-deals .deal-allowances{display:grid;gap:6px;margin-top:10px;min-width:0}
+body.home-modern #woongbi-storefront-deals .deal-allowances{display:grid;gap:6px;margin-top:8px;min-width:0}
 body.home-modern #woongbi-storefront-deals .deal-allowance-item{display:grid;grid-template-columns:40px minmax(0,1fr);gap:9px;align-items:start;min-width:0;padding:7px 9px;border-radius:9px;background:#f2f7f9;line-height:1.55}
 body.home-modern #woongbi-storefront-deals .deal-allowance-item>b{font-size:13px;line-height:1.55;font-weight:900;color:#355662}
 body.home-modern #woongbi-storefront-deals .deal-allowance-item>span{min-width:0;font-size:14px;line-height:1.55;font-weight:700;color:#25424f;overflow-wrap:anywhere;word-break:keep-all}
@@ -192,4 +192,30 @@ body.home-modern #woongbi-storefront-deals .deal-price+.deal-fit{
   body.home-modern #woongbi-storefront-deals .deal-price>strong{
     font-size:clamp(24px,6.6vw,30px)!important;
   }
+}
+
+/* Homepage CTA palette: yellow Kakao, red product menu · 2026-11-05 */
+body.home-modern #quick-order .home-entry-grid>a.home-entry-primary{
+  background:#f4c430!important;
+  border-color:#e6b51f!important;
+  color:#173f46!important;
+}
+body.home-modern #quick-order .home-entry-grid>a.home-entry-primary strong,
+body.home-modern #quick-order .home-entry-grid>a.home-entry-primary span,
+body.home-modern #quick-order .home-entry-grid>a.home-entry-primary b{
+  color:#173f46!important;
+}
+body.home-modern #quick-order .home-entry-grid>a.home-entry-primary:hover{
+  background:#e8b820!important;
+  border-color:#d9a714!important;
+}
+body.home-modern #quick-order .home-direct-toggle{
+  background:#c62828!important;
+  border-color:#c62828!important;
+  color:#fff!important;
+}
+body.home-modern #quick-order .home-direct-toggle:hover,
+body.home-modern #quick-order .home-direct-toggle[aria-expanded="true"]{
+  background:#a61e1e!important;
+  border-color:#a61e1e!important;
 }
