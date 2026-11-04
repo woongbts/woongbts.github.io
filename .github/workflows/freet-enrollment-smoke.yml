@@ -1,0 +1,47 @@
+name: Freet online enrollment journey smoke
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'rates.html'
+      - 'assets/freet-enrollment.js'
+      - 'assets/freet-enrollment.css'
+      - 'assets/prepaid-recommend.js'
+      - 'freet/apply/index.html'
+      - 'scripts/freet-enrollment-smoke.cjs'
+      - '.github/workflows/freet-enrollment-smoke.yml'
+  workflow_dispatch:
+concurrency:
+  group: freet-enrollment-${{ github.ref }}
+  cancel-in-progress: true
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 9
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify JavaScript syntax and internal partner link routing
+        run: |
+          node --check assets/freet-enrollment.js
+          node --check assets/prepaid-recommend.js
+          node --check scripts/freet-enrollment-smoke.cjs
+      - name: Install headless Chromium
+        run: |
+          mkdir -p /tmp/woongbi-freet-test
+          cd /tmp/woongbi-freet-test
+          npm init -y >/dev/null 2>&1
+          npm install playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Start local website preview
+        run: |
+          python3 -m http.server 4173 --directory . >/tmp/woongbi-freet-test.log 2>&1 &
+          sleep 2
+      - name: Validate Freet postpaid, prepaid, and partner application steps
+        env:
+          NODE_PATH: /tmp/woongbi-freet-test/node_modules
+        run: node scripts/freet-enrollment-smoke.cjs
