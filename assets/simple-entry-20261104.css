@@ -168,7 +168,7 @@ body.home-modern #woongbi-storefront-deals .deal-price>small{
 body.home-modern #woongbi-storefront-deals .deal-price>strong{
   display:block;
   color:#c1121f!important;
-  font-size:clamp(26px,2.7vw,33px)!important;
+  font-size:clamp(24px,2.5vw,30px)!important;
   font-weight:950;
   line-height:1.15!important;
   letter-spacing:-.045em;
@@ -190,6 +190,6 @@ body.home-modern #woongbi-storefront-deals .deal-price+.deal-fit{
     line-height:1.4;
   }
   body.home-modern #woongbi-storefront-deals .deal-price>strong{
-    font-size:clamp(27px,7.5vw,34px)!important;
+    font-size:clamp(24px,6.6vw,30px)!important;
   }
 }
