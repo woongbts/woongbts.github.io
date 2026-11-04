@@ -1,4 +1,4 @@
-/* A quiet help option beside the five phone purposes. */
-body.home-modern #quick-order .home-order-option.is-guidance{background:#fff!important;border:2px solid #59928b!important;color:#174f4b!important;box-shadow:none!important}
-body.home-modern #quick-order .home-order-option.is-guidance strong,body.home-modern #quick-order .home-order-option.is-guidance small,body.home-modern #quick-order .home-order-option.is-guidance .home-order-arrow{color:#174f4b!important}
-body.home-modern #quick-order .home-order-option.is-guidance:hover{background:#eaf6f1!important}
+/* Distinct burgundy help action beside the five phone purposes. */
+body.home-modern #quick-order .home-order-option.is-guidance{background:#982c50!important;border:2px solid #982c50!important;color:#fff!important;box-shadow:0 4px 12px rgba(152,44,80,.16)!important}
+body.home-modern #quick-order .home-order-option.is-guidance strong,body.home-modern #quick-order .home-order-option.is-guidance small,body.home-modern #quick-order .home-order-option.is-guidance .home-order-arrow{color:#fff!important}
+body.home-modern #quick-order .home-order-option.is-guidance:hover{background:#79223f!important;border-color:#79223f!important}
