@@ -1,0 +1,19 @@
+body.home-modern .home-entry-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:20px 0 10px}
+body.home-modern .home-entry-grid>a{display:grid;grid-template-columns:1fr auto;gap:6px 12px;padding:22px;border-radius:16px;text-decoration:none;min-height:112px;align-content:center;box-sizing:border-box}
+body.home-modern .home-entry-grid strong{font-size:22px;line-height:1.45;word-break:keep-all}
+body.home-modern .home-entry-grid span{font-size:16px;line-height:1.6}
+body.home-modern .home-entry-grid b{grid-column:2;grid-row:1 / 3;align-self:center;font-size:24px}
+body.home-modern .home-entry-primary{background:#0f635c;border:2px solid #0f635c;color:#fff}
+body.home-modern .home-entry-primary span{color:#fff}
+body.home-modern .home-entry-secondary{background:#f4f8fb;border:2px solid #bdcdd9;color:#173f52}
+body.home-modern .home-entry-phone{margin:12px 0 18px;font-size:16px;line-height:1.6;color:#405b65}
+body.home-modern .home-entry-phone a{font-weight:850;color:#174d58}
+body.home-modern .home-self-compare{border-top:1px solid #dce7e4;padding-top:10px}
+body.home-modern .home-self-compare>summary{cursor:pointer;font-weight:800;color:#315460;padding:10px 0;min-height:44px;font-size:16px}
+body.home-modern .home-self-compare[open]>.home-order-heading-actions{margin:12px 0 18px}
+body.home-modern .home-self-compare .home-order-category{background:#f5f9fa!important;color:#173e45!important;box-shadow:none!important;border:1px solid #bed2d4!important}
+body.home-modern .home-self-compare .home-order-category b,body.home-modern .home-self-compare .home-order-category small{color:#173e45!important}
+body.home-modern .home-self-compare .home-order-category.is-active{background:#dff0eb!important;border:2px solid #0f766e!important}
+body.home-modern .home-entry-grid>a:focus-visible{outline:3px solid #153b43;outline-offset:3px}
+@media(max-width:640px){body.home-modern .home-entry-grid{grid-template-columns:1fr;gap:10px;margin-top:16px}body.home-modern .home-entry-grid>a{padding:17px;min-height:100px}body.home-modern .home-entry-grid strong{font-size:20px}}
+body.home-modern #home-self-compare{scroll-margin-top:90px}

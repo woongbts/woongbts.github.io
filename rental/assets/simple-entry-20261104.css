@@ -1,0 +1,9 @@
+body .hero-copy h1{font-size:clamp(34px,4.2vw,56px);line-height:1.22;word-break:keep-all}
+body .hero-copy .hero-desc{max-width:620px}
+body .hero-copy .rental-simple-actions{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:620px}
+body .hero-copy .rental-search-primary{background:#155e9d!important;color:#fff!important;border-color:#155e9d!important}
+body .hero-copy .rental-ai-secondary{background:#f1ebfa!important;color:#50317d!important;border:2px solid #9a81b9!important}
+body .rental-consult-shortcut{font-size:16px;line-height:1.8;color:#405b65;margin:18px 0}
+body .rental-consult-shortcut a{font-weight:800;color:#174d58}
+body .rental-simple-actions .btn{white-space:normal;text-align:center;word-break:keep-all}
+@media(max-width:640px){body .hero-copy .rental-simple-actions{grid-template-columns:1fr}body .hero-copy .rental-simple-actions .btn{min-height:54px}}
