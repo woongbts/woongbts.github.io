@@ -150,3 +150,5 @@
   .local-seo-manduk .nav{gap:8px}
   .local-seo-manduk .nav>a:last-child{padding:8px 10px}
 }
+/* Keep regional navigation inside narrow screens. */
+@media(max-width:420px){header .nav{flex-wrap:wrap;gap:8px;padding-top:10px;padding-bottom:10px}header .navlinks{min-width:0;max-width:100%;flex-wrap:wrap;gap:8px}header .navlinks a{max-width:100%;box-sizing:border-box}}
