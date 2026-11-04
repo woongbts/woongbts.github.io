@@ -1,0 +1,44 @@
+/* Homepage spacing only: keep existing content, typography and actions. */
+body.home-modern main>.content{padding:48px 0}
+body.home-modern .quick-order-top{padding-top:28px!important;padding-bottom:18px!important}
+body.home-modern #quick-order{padding:24px;margin-top:0}
+body.home-modern .home-order-heading{margin-bottom:16px;gap:12px}
+body.home-modern .home-order-progress{margin-bottom:12px}
+body.home-modern .home-order-choice{margin-top:12px;padding:14px}
+body.home-modern .home-order-bottom{margin-top:12px;padding-top:12px}
+body.home-modern .home-order-category{min-height:96px;padding:13px}
+body.home-modern .home-order-option{min-height:76px;padding:12px}
+body.home-modern #woongbi-storefront-deals{padding-top:30px!important;padding-bottom:30px!important}
+body.home-modern #review-highlight{padding-top:30px!important;padding-bottom:30px!important}
+body.home-modern .hero{padding-top:18px}
+body.home-modern .hero-grid{gap:20px}
+body.home-modern .hero-grid.hero-grid-single{padding-bottom:8px}
+body.home-modern .home-trust-rail{margin-top:18px}
+body.home-modern .section-heading{margin-bottom:20px}
+body.home-modern .service-grid{gap:12px;margin-top:18px}
+body.home-modern .service-card{min-height:0;padding:20px}
+body.home-modern .service-card p{margin-bottom:14px}
+body.home-modern .service-local-links{margin-top:12px;padding-top:10px}
+body.home-modern .strengths,body.home-modern .location{gap:24px}
+body.home-modern .fact{padding:16px}
+body.home-modern .principle-grid{gap:12px;margin-top:20px}
+body.home-modern .principle{min-height:0;padding:18px}
+body.home-modern .news-list,body.home-modern .faq-list{margin-top:16px}
+body.home-modern .featured-reviews{gap:12px;margin:16px 0}
+body.home-modern .featured-reviews figure{padding:18px}
+body.home-modern .featured-reviews blockquote{margin:12px 0}
+body.home-modern footer{padding-top:30px;padding-bottom:90px}
+body.home-modern .footer-top p{margin-top:6px;margin-bottom:6px}
+@media(max-width:760px){
+ body.home-modern main>.content{padding:30px 0}
+ body.home-modern .quick-order-top{padding-top:16px!important;padding-bottom:14px!important}
+ body.home-modern #quick-order{padding:16px}
+ body.home-modern .home-order-category{min-height:110px;padding:12px}
+ body.home-modern .home-order-option{min-height:72px;padding:12px}
+ body.home-modern #woongbi-storefront-deals,body.home-modern #review-highlight{padding-top:24px!important;padding-bottom:24px!important}
+ body.home-modern .service-card{padding:16px}
+ body.home-modern .strengths,body.home-modern .location{gap:18px}
+ body.home-modern .principle{padding:16px}
+ body.home-modern .featured-reviews figure{padding:16px}
+ body.home-modern .home-trust-rail{margin-top:14px}
+}
