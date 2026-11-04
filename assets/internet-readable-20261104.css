@@ -1,0 +1,22 @@
+/* Readable internet/TV product details, prices and application guidance. */
+body.rate-page [data-panel="internet"] .wired-compare-card>small{font-size:15px!important;line-height:1.65;color:#405b65}
+body.rate-page [data-panel="internet"] .wired-compare-card>p{font-size:16px!important;line-height:1.75!important;color:#365362}
+body.rate-page [data-panel="internet"] .wired-recommend-badges span{font-size:14px!important;line-height:1.5;padding:5px 9px}
+body.rate-page #internet-form>label,body.rate-page #internet-form .field-row>label{font-size:17px!important;line-height:1.6}
+body.rate-page #internet-form select{font-size:17px!important;min-height:54px;line-height:1.5}
+body.rate-page #internet-form select option{font-size:16px}
+body.rate-page #internet-speed-guide,body.rate-page #tv-product-info,body.rate-page #tv-product-info p,body.rate-page #internet-form .field-help{font-size:16px!important;line-height:1.75!important;color:#365362}
+body.rate-page #internet-form .additional-tv-box>span{font-size:16px!important;line-height:1.6}
+body.rate-page #internet-form .additional-tv-box>small{font-size:15px!important;line-height:1.75!important;color:#405b65}
+body.rate-page #internet-detail{font-size:16px!important;line-height:1.75!important}
+body.rate-page [data-panel="internet"] .result-breakdown>div{gap:14px;align-items:start;padding-top:10px;padding-bottom:10px}
+body.rate-page [data-panel="internet"] .result-breakdown span,body.rate-page [data-panel="internet"] .result-breakdown b{font-size:16px!important;line-height:1.65}
+body.rate-page #internet-summary,body.rate-page #internet-quote-choice>p{font-size:16px!important;line-height:1.8!important;color:#365362}
+body.rate-page [data-panel="internet"] .store-apply-trust{font-size:14px!important;line-height:1.75!important;color:#405b65!important}
+body.rate-page [data-panel="internet"] .data-note,body.rate-page [data-panel="internet"] .rate-warning{font-size:16px!important;line-height:1.8!important}
+body.rate-page .desktop-internet-selection>div{min-width:0}
+body.rate-page .desktop-internet-selection>div>span{font-size:14px!important;line-height:1.5}
+body.rate-page #desktop-internet-selection-title{font-size:17px!important;line-height:1.6}
+body.rate-page #desktop-internet-selection-detail{font-size:15px!important;line-height:1.7!important;white-space:normal;overflow-wrap:anywhere}
+body.rate-page #wired-quote-memory .wired-quote-head span,body.rate-page #wired-quote-memory .wired-recent-title{font-size:14px!important;line-height:1.6}
+@media(max-width:600px){body.rate-page #internet-form select{font-size:16px!important}body.rate-page [data-panel="internet"] .result-breakdown>div{gap:10px}body.rate-page [data-panel="internet"] .result-breakdown b{overflow-wrap:anywhere;text-align:right}}
