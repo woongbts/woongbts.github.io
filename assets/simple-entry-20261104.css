@@ -139,3 +139,57 @@ body.home-modern #quick-order .home-direct-toggle:focus-visible{
     min-height:62px;padding:13px 9px;font-size:16px;
   }
 }
+
+/* Highlight estimated monthly charge inside a soft-red price card · 2026-11-04 */
+body.home-modern #woongbi-storefront-deals .deal-price{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  min-width:0;
+  min-height:142px;
+  margin-top:16px;
+  padding:15px 16px 17px;
+  border:1.5px solid #efb7be;
+  border-radius:15px;
+  background:#fff1f1;
+  box-sizing:border-box;
+}
+body.home-modern #woongbi-storefront-deals .deal-price>small{
+  display:block;
+  min-height:0;
+  margin:0 0 10px;
+  color:#765559!important;
+  font-size:15px!important;
+  font-weight:800;
+  line-height:1.55;
+  word-break:keep-all;
+  overflow-wrap:anywhere;
+}
+body.home-modern #woongbi-storefront-deals .deal-price>strong{
+  display:block;
+  color:#c1121f!important;
+  font-size:clamp(26px,2.7vw,33px)!important;
+  font-weight:950;
+  line-height:1.2!important;
+  letter-spacing:-.045em;
+  font-variant-numeric:tabular-nums;
+  overflow-wrap:anywhere;
+}
+body.home-modern #woongbi-storefront-deals .deal-price+.deal-fit{
+  margin-top:10px;
+}
+@media(max-width:640px){
+  body.home-modern #woongbi-storefront-deals .deal-price{
+    min-height:146px;
+    margin-top:15px;
+    padding:14px 13px;
+    border-radius:13px;
+  }
+  body.home-modern #woongbi-storefront-deals .deal-price>small{
+    font-size:14px!important;
+    line-height:1.5;
+  }
+  body.home-modern #woongbi-storefront-deals .deal-price>strong{
+    font-size:clamp(27px,7.5vw,34px)!important;
+  }
+}
