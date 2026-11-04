@@ -1,0 +1,24 @@
+/* Homepage rental guidance: readable labels and consistent supporting text. */
+body .hero-copy>.eyebrow,body main .eyebrow{font-size:16px!important;line-height:1.6!important;letter-spacing:.02em}
+body .hero-copy .hero-desc{font-size:18px!important;line-height:1.8!important;color:#36545d}
+body .hero-copy .hero-actions .btn{font-size:18px!important;line-height:1.5;min-height:52px;padding:12px 18px}
+body .hero-copy .hero-points li{font-size:16px!important;line-height:1.6!important;min-height:46px}
+body .hero-card .card-link{font-size:18px!important;line-height:1.6;display:inline-flex;align-items:center;min-height:44px}
+body .rental-fast-find-copy>p:not(.eyebrow),body .section-title-row>p{font-size:17px!important;line-height:1.8!important;color:#405b65}
+body .rental-fast-find-form>label,body .rental-fast-find-links>span{font-size:16px!important;line-height:1.6}
+body #rental-fast-find-status{font-size:15px!important;line-height:1.7!important;color:#405b65}
+body #recommend-grid .recommend-contract{font-size:16px!important;line-height:1.65!important;color:#254f57}
+body #recommend-grid .catalog-paired-note{font-size:15px!important;line-height:1.75!important;color:#405b65}
+body .ai-recommend-copy>div>p:not(.eyebrow){font-size:17px!important;line-height:1.75!important;color:#405b65}
+body .ai-recommend-banner .ai-recommend-start{font-size:18px!important;min-height:52px;line-height:1.5}
+body .appliance-grid .appliance-category>span{font-size:15px!important}
+body .appliance-grid .appliance-category>strong{font-size:20px!important;line-height:1.5}
+body .appliance-grid .appliance-category>small{font-size:16px!important;line-height:1.7!important;color:#36545d}
+body .benefit-note>strong{font-size:19px!important;line-height:1.6}
+body .benefit-note>p,body .rental-card-guide-box>div>p:not(.eyebrow),body .rental-trust-box>div>p:not(.eyebrow){font-size:17px!important;line-height:1.8!important;color:#405b65}
+body .rental-trust-steps article>strong{font-size:17px!important;line-height:1.6}
+body .rental-trust-steps article>small{font-size:16px!important;line-height:1.75!important;color:#405b65}
+body .catalog-open-row .catalog-ai-recommend{background:#6842a0!important;border:1px solid #6842a0!important;color:#fff!important;font-size:18px;min-height:50px;padding:12px 22px;cursor:pointer}
+body .catalog-open-row .catalog-ai-recommend:hover{background:#50317e!important}
+body .catalog-open-row .catalog-ai-recommend:focus-visible{outline:3px solid #123e50;outline-offset:3px}
+@media(max-width:600px){body .hero-copy .hero-desc{font-size:17px!important}body .hero-copy .hero-actions .btn{font-size:17px!important}body .hero-copy .hero-points li{font-size:15px!important}body .catalog-open-row{flex-wrap:wrap;gap:10px}body .catalog-open-row>.btn{flex:1;white-space:nowrap}body .appliance-grid .appliance-category>strong{font-size:18px!important}body .appliance-grid .appliance-category>small{font-size:15px!important}}
