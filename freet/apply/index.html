@@ -33,6 +33,25 @@
     .sub{display:block;text-align:center;margin-top:12px;color:#597074;font-size:13px;line-height:1.7}
     .links{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:22px}
     .links a{padding:9px 12px;border:1px solid #bdd9d1;border-radius:10px;text-decoration:none;font-weight:700}
+    [hidden]{display:none!important}
+    h2{font-size:18px;margin:0 0 8px;line-height:1.5}
+    .prepare,.chosen-plan{margin:18px 0;padding:16px;border:1px solid #c6dfd7;border-radius:13px;background:#f2f9f6;line-height:1.65}
+    .prepare p,.chosen-plan p{margin:6px 0;font-size:16px;overflow-wrap:anywhere}
+    .prepare small,.selection-note{color:#45625d;font-size:14px!important}
+    #chosen-name{font-size:20px;overflow-wrap:anywhere}
+    #copy-plan{padding:10px 15px;min-height:44px;border:1px solid #729d91;border-radius:9px;background:#fff;color:#164e46;font:inherit;font-weight:750;cursor:pointer}
+    #copy-status:empty{display:none}
+    .next-step{font-size:15px;line-height:1.7;word-break:keep-all}
+    .process{margin-top:22px;border-top:1px solid #dbe8e2;padding-top:15px}
+    summary{cursor:pointer;font-weight:750;line-height:1.6;padding:7px 0;min-height:40px}
+    .process .flow{margin-top:12px}
+    .retention{padding:16px;margin:18px 0}
+    .retention h2{font-size:17px;margin-bottom:5px}
+    .retention strong{font-size:17px}
+    .retention-details{margin-top:8px;font-size:14px}
+    .retention-details p{font-size:14px}
+    a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid #163f45;outline-offset:3px}
+    @media(max-width:480px){main{margin:20px auto 40px}.panel{padding:20px}.lead{margin-bottom:16px}}
     .footer{text-align:center;font-size:13px;color:#587074;margin:25px 0;line-height:1.6}
   </style>
 </head>
@@ -43,39 +62,44 @@
     <span class="eyebrow">웅비통신 × 프리티(프리텔레콤)</span>
     <h1 id="apply-heading">프리티 온라인 개통 신청</h1>
     <p class="lead" id="apply-lead">웅비통신을 통해 신청서를 작성하시면 매장에서 접수 현황을 확인한 뒤 유심 배송 및 개통 절차를 안내합니다.</p>
+    <section id="chosen-plan" class="chosen-plan" hidden aria-labelledby="chosen-heading">
+      <h2 id="chosen-heading">확인하신 추천요금제</h2>
+      <p id="chosen-status" role="status">선택하신 요금제를 확인하고 있습니다.</p>
+      <div id="chosen-content" hidden>
+        <strong id="chosen-name"></strong><p id="chosen-facts"></p>
+        <button id="copy-plan" type="button">요금제명 복사</button>
+        <p id="copy-status" role="status"></p>
+      </div>
+      <p class="selection-note">다음 프리티 신청서에서 같은 통신망과 요금제를 다시 선택해 주세요. 자동 선택되지는 않습니다.</p>
+    </section>
+    <section class="prepare" aria-labelledby="prepare-heading">
+      <h2 id="prepare-heading">신청 전 준비해 주세요</h2>
+      <p>신분증 또는 전자신분증 · 본인인증 수단 · 카메라가 있는 휴대폰</p>
+      <small>인증 방식에 따라 필요한 준비물이 다를 수 있습니다.</small>
+    </section>
+    <p class="next-step" id="next-step">다음 프리티 화면에서 <b>후불 · 통신망 · 요금제</b>를 선택하고 본인인증을 진행합니다. 요금제는 그곳에서 골라도 됩니다.</p>
+    <section id="postpaid-retention" class="retention" aria-labelledby="retention-heading">
+      <h2 id="retention-heading">후불 가입 전 꼭 확인해 주세요</h2>
+      <p><strong>약정은 없지만, 개통 후 186일 이상 유지가 필요합니다.</strong></p>
+      <details class="retention-details"><summary>유지조건 자세히 보기</summary><p>유지기간 중 해지·번호이동·정지·명의변경 또는 요금제 변경이 필요하시면 먼저 웅비통신에 문의해 주세요. 요금제 변경 가능 시점과 조건은 통신망·상품에 따라 다릅니다.</p>
+      <p>본 안내는 웅비통신 접수 경로의 유지 조건입니다. 고객에게 적용되는 해지 비용 등은 가입 상품과 실제 신청서의 약관에서 확인해 주세요.</p></details>
+    </section>
+    <a id="freet-official-apply" class="apply" href="https://agent.freet.co.kr/self/custSel?usimType=U&amp;storeAgentIdKey=PS2200532" target="_blank" rel="noopener noreferrer">개통 신청하기</a>
+    <small class="sub">프리티 신청 사이트로 이동합니다. 웅비통신에서 접수 확인 후 유심 발송과 개통 절차를 안내합니다. 신청서 접수만으로 즉시 개통되지 않습니다.</small>
+    <details class="process"><summary>신청 후 진행 과정 · 유심 안내</summary>
     <ol class="flow">
       <li><div><b>프리티 공식 신청서 작성</b><span>아래 버튼으로 신청 화면을 열어 고객 본인이 신청 정보를 입력합니다. 이 안내 페이지에서는 신분증·계좌·개인정보를 받지 않습니다.</span></div></li>
       <li><div><b>웅비통신에서 신청 내역 확인</b><span>파트너 접수 내역을 매장에서 확인하고 가입 가능 여부와 요금제 조건을 검토합니다.</span></div></li>
       <li><div><b>유심 발송 및 수령 안내</b><span>접수 내용을 확인한 후 유심 발송에 필요한 사항과 수령 방법을 별도 안내합니다. 유심 배송비·소요일은 확인 후 알려드립니다.</span></div></li>
       <li><div><b>개통실 요청 및 최종 개통</b><span>매장에서 개통실에 개통을 요청하고 완료 여부를 안내합니다. 신청서 접수만으로 즉시 개통되지 않습니다.</span></div></li>
     </ol>
-    <div class="important"><b>신청 전 확인!</b> 프리티의 선불·후불 및 통신망·요금제 선택은 실제 신청서에서 다시 확인해 주세요. 웅비통신 요금계산기에서 선택한 요금제는 프리티 신청서에 자동 입력되지 않습니다. 현재 사용 중인 유심은 개통 안내 전까지 유지하세요.</div>
-    <section id="postpaid-retention" class="retention" aria-labelledby="retention-heading">
-      <h2 id="retention-heading">후불 가입 전 꼭 확인해 주세요</h2>
-      <p><strong>약정은 없지만, 개통 후 186일 이상 유지가 필요합니다.</strong></p>
-      <p>유지기간 중 해지·번호이동·정지·명의변경 또는 요금제 변경이 필요하시면 먼저 웅비통신에 문의해 주세요. 요금제 변경 가능 시점과 조건은 통신망·상품에 따라 다릅니다.</p>
-      <p>본 안내는 웅비통신 접수 경로의 유지 조건입니다. 고객에게 적용되는 해지 비용 등은 가입 상품과 실제 신청서의 약관에서 확인해 주세요.</p>
-    </section>
-    <a id="freet-official-apply" class="apply" href="https://agent.freet.co.kr/self/custSel?usimType=U&amp;storeAgentIdKey=PS2200532" target="_blank" rel="noopener noreferrer">개통 신청하기</a>
-    <small class="sub">프리티 신청 사이트로 이동합니다. 웅비통신 전용 접수 경로이며, 접수 확인 후 개통 절차가 진행됩니다.</small>
-    <nav class="links"><a id="back-to-calculator" href="/rates.html?tab=mvno">요금계산기로 돌아가기</a><a href="tel:0513437677">문의 051-343-7677</a></nav>
+      <p class="important">현재 사용 중인 유심은 개통 안내 전까지 유지하세요. 이 안내 페이지에서는 신분증·계좌·개인정보를 받지 않습니다.</p>
+    </details>
+    <nav class="links"><a id="back-to-calculator" href="/rates.html?tab=mvno">요금제 먼저 비교하기</a><a href="tel:0513437677">문의 051-343-7677</a></nav>
   </section>
   <p class="footer">웅비통신 덕천만덕점 · 부산광역시 북구 만덕대로178번길 17</p>
 </main>
-<script>
-  (() => {
-    const params=new URLSearchParams(location.search);
-    const type=params.get('type')==='prepaid'?'prepaid':'postpaid';
-    document.getElementById('postpaid-retention').hidden=type==='prepaid';
-    const title=type==='prepaid'?'프리티 선불폰 온라인 개통 신청':'프리티 후불 알뜰폰 온라인 개통 신청';
-    document.getElementById('apply-heading').textContent=title;
-    document.title=title+' | 웅비통신 덕천만덕점';
-    document.getElementById('back-to-calculator').href='/rates.html?tab='+(type==='prepaid'?'prepaid':'mvno');
-    const lead=document.getElementById('apply-lead');
-    lead.textContent=type==='prepaid'
-      ? '프리티 선불 요금제를 온라인으로 신청하실 수 있습니다. 웅비통신에서 접수를 확인한 후 유심 발송과 선불 개통 절차를 안내합니다.'
-      : '프리티 후불 알뜰폰을 온라인으로 신청하실 수 있습니다. 웅비통신에서 접수를 확인한 후 유심 발송과 개통 절차를 안내합니다.';
-  })();
-</script>
+<script src="/assets/mvno-api-bridge.min.js?v=20261104-application" defer></script>
+<script src="/assets/freet-apply-guide.js?v=20261104-simple1" defer></script>
 </body>
 </html>

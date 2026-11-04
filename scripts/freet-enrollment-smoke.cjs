@@ -69,6 +69,21 @@ async function main() {
     await page.goto(root+'/freet/apply/?type=postpaid',{waitUntil:'domcontentloaded'});
     assert.match(await page.locator('h1').innerText(),/후불 알뜰폰/);
     assert.equal(await page.locator('#freet-official-apply').getAttribute('href'),agent);
+    assert.equal(await page.locator('.process').getAttribute('open'), null);
+    assert.ok(await page.locator('#postpaid-retention').isVisible());
+    assert.match(await page.locator('#apply-lead').innerText(), /미리 고르지 않아도/);
+    await page.goto(root+'/freet/apply/?type=postpaid&plan=FREETKT-202611-7G',{waitUntil:'domcontentloaded'});
+    await page.waitForFunction(()=>document.querySelector('#chosen-content')?.hidden===false);
+    assert.match(await page.locator('#chosen-name').innerText(), /KT망.*데이터안심7G/);
+    assert.match(await page.locator('#chosen-facts').innerText(), /19,800원/);
+    await page.context().grantPermissions(['clipboard-read','clipboard-write']);
+    await page.locator('#copy-plan').click();
+    assert.match(await page.evaluate(()=>navigator.clipboard.readText()), /KT망.*데이터안심7G/);
+    await page.goto(root+'/freet/apply/?type=postpaid&plan=UNKNOWN',{waitUntil:'domcontentloaded'});
+    assert.ok(await page.locator('#chosen-content').isHidden());
+    assert.match(await page.locator('#chosen-status').innerText(), /確認|확인하지 못했습니다/);
+    await page.goto(root+'/',{waitUntil:'domcontentloaded'});
+    assert.equal(await page.locator('.home-order-mvno-link').getAttribute('href'), '/freet/apply/?type=postpaid');
     console.log('BRANDED_PARTNER_FLOW_OK');
     if(errors.length) console.warn('Other page script errors observed:',errors.slice(0,4));
   } finally {

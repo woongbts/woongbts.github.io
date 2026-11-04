@@ -4,6 +4,8 @@ on:
     branches: [main]
     paths:
       - 'rates.html'
+      - 'index.html'
+      - 'assets/freet-apply-guide.js'
       - 'assets/freet-enrollment.js'
       - 'assets/freet-enrollment.css'
       - 'assets/prepaid-recommend.js'
@@ -28,6 +30,7 @@ jobs:
       - name: Verify JavaScript syntax and internal partner link routing
         run: |
           node --check assets/freet-enrollment.js
+          node --check assets/freet-apply-guide.js
           node --check assets/prepaid-recommend.js
           node --check scripts/freet-enrollment-smoke.cjs
       - name: Install headless Chromium
