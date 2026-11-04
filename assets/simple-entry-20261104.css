@@ -114,3 +114,28 @@ body.home-modern #quick-order .home-direct-section .home-direct-link.tone-rental
   body.home-modern #quick-order .home-direct-section .home-direct-link{transition:none}
   body.home-modern #quick-order .home-direct-section .home-direct-link:hover{transform:none}
 }
+
+
+/* Restored direct-menu call to action, 2026-11-04 */
+body.home-modern #quick-order .home-direct-toggle{
+  display:flex;align-items:center;justify-content:center;
+  width:100%;max-width:100%;min-height:66px;
+  margin:18px 0 0;padding:16px 18px;box-sizing:border-box;
+  border:2px solid #874511;border-radius:16px;
+  background:#874511;color:#fff;
+  font-family:inherit;font-size:18px;font-weight:850;line-height:1.5;
+  text-align:center;white-space:normal;word-break:keep-all;overflow-wrap:anywhere;
+  cursor:pointer;
+}
+body.home-modern #quick-order .home-direct-toggle:hover,
+body.home-modern #quick-order .home-direct-toggle[aria-expanded="true"]{
+  background:#71380b;border-color:#71380b;
+}
+body.home-modern #quick-order .home-direct-toggle:focus-visible{
+  outline:3px solid #173f52;outline-offset:3px;
+}
+@media(max-width:480px){
+  body.home-modern #quick-order .home-direct-toggle{
+    min-height:62px;padding:13px 9px;font-size:16px;
+  }
+}
