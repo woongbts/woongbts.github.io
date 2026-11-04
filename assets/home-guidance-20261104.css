@@ -7,3 +7,12 @@ body.home-modern #quick-order .home-order-option.is-guidance:hover{background:#7
 body.home-modern .home-order-heading-actions .home-order-internet-link{background:#985018!important;border-color:#985018!important;color:#fff!important}
 body.home-modern .home-order-heading-actions .home-order-internet-link:hover{background:#783e12!important}
 @media(max-width:600px){body.home-modern .home-order-heading-actions>a:first-child{grid-column:auto}}
+
+/* 2026-11-04 flexible headline actions follow-up */
+body.home-modern .home-order-heading,
+body.home-modern .home-order-heading-actions,
+body.home-modern .home-order-heading-actions>.home-order-detail-link{min-width:0}
+body.home-modern .home-order-heading-actions>.home-order-detail-link{min-height:50px;box-sizing:border-box;line-height:1.45;white-space:normal;text-align:center;overflow-wrap:break-word}
+body.home-modern .home-order-option>span:first-child{min-width:0}
+body.home-modern .home-order-option strong,
+body.home-modern .home-order-option small{overflow-wrap:break-word;word-break:keep-all}
