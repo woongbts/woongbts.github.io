@@ -72,7 +72,7 @@
     const price=document.createElement('b');price.textContent='현재 조건 확인 중';
     totals.append(title,price);
     const note=document.createElement('p');note.className='quote-amount-note';
-    note.textContent='매장 추가지원금·가족/인터넷 결합 미반영 · 최종 조건은 상담으로 확인';
+    note.textContent='매장 추가지원금·가족/인터넷 결합 미반영 · 최종 조건은 상담신청 또는 매장에서 확인';
 
     const specs=document.createElement('div');specs.className='wb-server-specs';
     [['데이터',item.data],['통화',item.voice]].forEach(([label,value])=>{
@@ -171,7 +171,7 @@
         addRow('기초연금 수급자 할인','-'+amount(selected.welfare.amount));
       addRow('문자',item.sms);
     }else addRow('예상 요금','상담 시 확인');
-    view.note.textContent='매장 추가지원금·가족/인터넷 결합 미반영 · 최종 조건은 상담으로 확인';
+    view.note.textContent='매장 추가지원금·가족/인터넷 결합 미반영 · 최종 조건은 상담신청 또는 매장에서 확인';
     ['support','contract'].forEach(kind=>{
       const c=view.choices[kind],q=available[kind],isSelected=kind===method,isBest=kind===available.best;
       c.button.disabled=!q;c.button.classList.toggle('selected',Boolean(q&&isSelected));

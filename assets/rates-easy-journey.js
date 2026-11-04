@@ -89,7 +89,7 @@
     if(choice)choice.textContent=active+' 추천 확인하기';
     filterSeniorCards();
     const cards=visibleSeniorCards();
-    const state=cards.length ? cards.length+'개 추천 상품을 확인할 수 있어요.' : (result.querySelector('.senior-type-empty')?'현재 조건에서 맞는 상품이 없어요. 다른 조건을 선택해 주세요.':'조건에 맞는 상품을 불러오는 중이에요.');
+    const state=cards.length ? cards.length+'개 추천 상품 확인 가능' : (result.querySelector('.senior-type-empty')?'현재 조건에서 맞는 상품이 없어요. 다른 조건을 선택해 주세요.':'조건에 맞는 상품을 불러오는 중이에요.');
     if(resultStatus&&!waiting)resultStatus.textContent=state;
   }
   function scrollToResult(){
