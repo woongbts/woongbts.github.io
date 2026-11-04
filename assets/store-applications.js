@@ -292,7 +292,7 @@
     }
   }
 
-  function makeApplyButton(label='신청하기'){
+  function makeApplyButton(label='상담 요청하기'){
     const button=document.createElement('button');
     button.type='button';button.className='store-apply-btn';button.textContent=label;
     return button;
@@ -304,7 +304,7 @@
       card.dataset.storeWrapped='1';
       const wrap=document.createElement('div');wrap.className='store-studyphone-item';
       card.before(wrap);wrap.append(card);
-      const apply=makeApplyButton('상담신청');
+      const apply=makeApplyButton('이 상품 상담 요청');
       apply.addEventListener('click',event=>{
         event.preventDefault();event.stopPropagation();
         card.click();
@@ -326,7 +326,7 @@
         badge.textContent='실제 완료 데이터 반영 · '+Number(signal.completed||0)+'건';
         card.querySelector('.mvno-recommend-card-head')?.append(badge);
       }
-      const apply=makeApplyButton('상담신청');
+      const apply=makeApplyButton('이 상품 상담 요청');
       apply.addEventListener('click',event=>{
         event.stopPropagation();
         openApplication(mvnoCardContext(card,source.dataset.mvnoRecommendDetail||source.dataset.mvnoRecommendConsult));
@@ -363,7 +363,7 @@
       card.dataset.storeWrapped='1';
       const wrap=document.createElement('div');wrap.className='store-mvno-picker-item';
       card.before(wrap);wrap.append(card);
-      const apply=makeApplyButton('상담신청');
+      const apply=makeApplyButton('이 상품 상담 요청');
       apply.addEventListener('click',event=>{
         event.preventDefault();event.stopPropagation();
         card.click();
@@ -410,7 +410,7 @@
     bar.id='desktop-internet-selection';
     bar.className='desktop-internet-selection';
     bar.hidden=true;
-    bar.innerHTML='<div><span>현재 선택</span><strong id="desktop-internet-selection-title">인터넷·TV 조건을 선택해 주세요.</strong><small id="desktop-internet-selection-detail"></small></div><button type="button" id="desktop-internet-selection-apply">이 조건으로 신청하기</button>';
+    bar.innerHTML='<div><span>현재 선택</span><strong id="desktop-internet-selection-title">인터넷·TV 조건을 선택해 주세요.</strong><small id="desktop-internet-selection-detail"></small></div><button type="button" id="desktop-internet-selection-apply">이 조건으로 상담 요청</button>';
     document.body.append(bar);
     $('desktop-internet-selection-apply')?.addEventListener('click',()=>{
       const ctx=selectedInternetCard?internetCardContext(selectedInternetCard):null;
@@ -495,7 +495,7 @@
   function decorateMobile(){
     const host=$('mobile-form');
     if(host && !host.querySelector('[data-store-mobile-apply]')){
-      const button=makeApplyButton('상담신청');
+      const button=makeApplyButton('이 상품 상담 요청');
       button.dataset.storeMobileApply='1';
       button.type='button';
       button.addEventListener('click',()=>{
@@ -511,7 +511,7 @@
     const container=$('purpose-results');
     if(container)container.querySelectorAll('.purpose-card').forEach(card=>{
       if(card.querySelector('[data-store-purpose-apply]'))return;
-      const button=makeApplyButton('상담신청');
+      const button=makeApplyButton('이 상품 상담 요청');
       button.dataset.storePurposeApply='1';button.type='button';
       button.addEventListener('click',event=>{
         event.preventDefault();event.stopPropagation();
@@ -525,7 +525,7 @@
   function decorateInternet(){
     document.querySelectorAll('.wired-compare-card').forEach(card=>{
       if(!card.querySelector('.store-apply-btn')){
-        const apply=makeApplyButton('신청하기');
+        const apply=makeApplyButton('이 상품 상담 요청');
         apply.addEventListener('click',event=>{
           event.preventDefault();event.stopPropagation();
           selectInternetCard(card);
@@ -545,7 +545,7 @@
     ];
     specs.forEach(([category,selector,getContext])=>{
       const host=document.querySelector(selector);if(!host||host.querySelector('[data-store-selected-apply="'+category+'"]'))return;
-      const button=category==='prepaid'?prepaidBookingLink():makeApplyButton(category==='internet'?'온라인 신청하기':'상담신청');
+      const button=category==='prepaid'?prepaidBookingLink():makeApplyButton(category==='internet'?'이 조건으로 상담 요청':'상담 요청하기');
       button.dataset.storeSelectedApply=category;
       if(category!=='prepaid')button.addEventListener('click',()=>{
         const ctx=getContext();

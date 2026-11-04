@@ -356,7 +356,7 @@
           </div>
           <small class="recommend-contract">${selectedContractLabel(m)}</small>
           <small class="catalog-paired-note">표시 요금·사은품은 동일 옵션 기준 · 다른 옵션은 상세에서 확인</small>
-          <div class="recommend-actions"><a class="recommend-link" data-rental-product-id="${product.id}" data-rental-entry="recommend" href="${href}">조건 보기 →</a><button class="compare-toggle small" type="button" data-compare-product="${product.id}">비교담기</button></div>
+          <div class="recommend-actions"><a class="recommend-link" data-rental-product-id="${product.id}" data-rental-entry="recommend" href="${href}">요금·조건 확인 →</a><button class="compare-toggle small" type="button" data-compare-product="${product.id}">비교담기</button></div>
         </div>
       </article>
     `;

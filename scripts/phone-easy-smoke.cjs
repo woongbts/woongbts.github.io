@@ -45,6 +45,8 @@ const assert=require('node:assert/strict');
    assert.equal(await page.locator('#mobile-easy-intro').count(),1,'guide present');
    assert.equal(await page.locator('#mobile-easy-advanced:not([open])').count(),1,'advanced mode folded');
    await page.waitForSelector('#purpose-results .purpose-card',{timeout:16000});
+   assert.equal(await page.locator('#customer-purpose-options').getAttribute('open'),null,'default conditions folded while results are visible');
+   await page.locator('#customer-purpose-options>summary').click();
    const btn=page.locator('#mobile-easy-see-results');
    await btn.click();
    const cards=page.locator('#purpose-results .purpose-card');
