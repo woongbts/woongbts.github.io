@@ -78,3 +78,39 @@ body.home-modern #quick-order .home-direct-menu .home-order-disclaimer{margin-to
  body.home-modern #quick-order .home-direct-link strong{font-size:15.5px}
  body.home-modern #quick-order .home-direct-link small{font-size:12.5px}
 }
+
+
+/* Distinct pastel category colors for direct-choice cards · 2026-11-04 */
+body.home-modern #quick-order .home-direct-section .home-direct-link{
+  background:var(--direct-bg,#f4faf9);
+  border-color:var(--direct-border,#bfd8d5);
+  box-shadow:inset 4px 0 0 var(--direct-accent,#0f766e);
+  transition:background-color .15s ease,border-color .15s ease,box-shadow .15s ease,transform .15s ease;
+}
+body.home-modern #quick-order .home-direct-section .home-direct-link strong{
+  color:var(--direct-title,#16454b);
+}
+body.home-modern #quick-order .home-direct-section .home-direct-link small{
+  color:#435e66;
+}
+body.home-modern #quick-order .home-direct-section .home-direct-link:hover{
+  background:var(--direct-bg,#f4faf9);
+  border-color:var(--direct-accent,#0f766e);
+  box-shadow:inset 4px 0 0 var(--direct-accent,#0f766e),0 6px 16px rgba(21,59,67,.08);
+  transform:translateY(-2px);
+}
+body.home-modern #quick-order .home-direct-section .home-direct-link.tone-senior{--direct-bg:#ecf8f0;--direct-border:#86c39e;--direct-accent:#23824e;--direct-title:#17613a}
+body.home-modern #quick-order .home-direct-section .home-direct-link.tone-kids{--direct-bg:#edf4ff;--direct-border:#91b5e6;--direct-accent:#3478c8;--direct-title:#235d9e}
+body.home-modern #quick-order .home-direct-section .home-direct-link.tone-study{--direct-bg:#ebf9f7;--direct-border:#82c8bc;--direct-accent:#158779;--direct-title:#116b61}
+body.home-modern #quick-order .home-direct-section .home-direct-link.tone-value{--direct-bg:#fff4e8;--direct-border:#edbc80;--direct-accent:#c47620;--direct-title:#97520b}
+body.home-modern #quick-order .home-direct-section .home-direct-link.tone-premium{--direct-bg:#f5efff;--direct-border:#bba2e4;--direct-accent:#8a55c6;--direct-title:#693a9d}
+body.home-modern #quick-order .home-direct-section .home-direct-link.tone-all{--direct-bg:#edf3fa;--direct-border:#9eafcf;--direct-accent:#455f93;--direct-title:#344e7b}
+body.home-modern #quick-order .home-direct-section .home-direct-link.tone-mvno{--direct-bg:#eaf9f5;--direct-border:#91ccbe;--direct-accent:#178d75;--direct-title:#126f5e}
+body.home-modern #quick-order .home-direct-section .home-direct-link.tone-mvno-apply{--direct-bg:#eef7e9;--direct-border:#add08f;--direct-accent:#5e8f35;--direct-title:#496d24}
+body.home-modern #quick-order .home-direct-section .home-direct-link.tone-prepaid{--direct-bg:#f5efff;--direct-border:#b2a0de;--direct-accent:#7553b5;--direct-title:#624197}
+body.home-modern #quick-order .home-direct-section .home-direct-link.tone-internet{--direct-bg:#edf4ff;--direct-border:#99b9e5;--direct-accent:#2f70c6;--direct-title:#245a9e}
+body.home-modern #quick-order .home-direct-section .home-direct-link.tone-rental{--direct-bg:#eaf8fc;--direct-border:#94c7da;--direct-accent:#2985a4;--direct-title:#1d6a84}
+@media(prefers-reduced-motion:reduce){
+  body.home-modern #quick-order .home-direct-section .home-direct-link{transition:none}
+  body.home-modern #quick-order .home-direct-section .home-direct-link:hover{transform:none}
+}
