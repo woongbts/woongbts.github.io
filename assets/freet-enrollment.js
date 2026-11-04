@@ -44,28 +44,22 @@
     observer.observe(plan, {childList: true});
   }
 
-  function capacity(plan) {
-    const text = String(plan?.data || '');
-    const match = text.match(/([\d.]+)\s*(GB|MB)/i);
-    if (!match) return -1;
-    return Number(match[1]) / (match[2].toUpperCase() === 'MB' ? 1024 : 1);
-  }
-
+  // The November 2026 partner table verifies these selected customer fees.
+  // Internal activation/management commissions must never appear on public pages.
+  const FEATURED = Object.freeze([
+    {id:'FREETKT-202611-7G', fee:19800, tag:'월요금 가볍게',note:'7GB 이후 최대 1Mbps · 기본제공 통화'},
+    {id:'FREETKT-202611-15G', fee:25300, tag:'가성비 데이터',note:'15GB 이후 최대 1Mbps · 기본제공 통화'},
+    {id:'FREETSKT-2031', fee:29700, tag:'15GB · 3Mbps',note:'통화 100분 · 문자 100건 · 데이터 15GB 이후 최대 3Mbps'},
+    {id:'FREETSKT-202611-11G', fee:37290, tag:'데이터 넉넉하게',note:'11GB+매일 2GB 이후 최대 3Mbps'},
+    {id:'FREETLG-1425', fee:43890, tag:'대용량 데이터',note:'11GB+매일 2GB 이후 최대 3Mbps'}
+  ]);
   function choosePlans(plans) {
-    const rules = [
-      {provider:'FREETSKT', name:'가볍게', match:gb=>gb>=0 && gb<5},
-      {provider:'FREETKT', name:'일상용', match:gb=>gb>=5 && gb<15},
-      {provider:'FREETLG', name:'데이터 넉넉히', match:gb=>gb>=15}
-    ];
-    return rules.map(rule => {
-      const options = plans.filter(plan => plan.provider_id === rule.provider &&
-        Number(plan.special_monthly_fee ?? plan.monthly_fee) > 0);
-      const matched = options.filter(plan => rule.match(capacity(plan)));
-      const chosen = (matched.length ? matched : options).sort((a,b) =>
-        Number(a.special_monthly_fee ?? a.monthly_fee) -
-        Number(b.special_monthly_fee ?? b.monthly_fee) ||
-        Number(a.source_order || 0) - Number(b.source_order || 0))[0];
-      return chosen ? {...chosen, customerTag:rule.name} : null;
+    const available = new Map((plans||[]).map(plan => [plan.id,plan]));
+    return FEATURED.map(feature => {
+      const plan=available.get(feature.id);
+      if(!plan || Number(plan.special_monthly_fee??plan.monthly_fee)!==feature.fee
+        || plan.source_reviewed_at!=='2026-11-04') return null;
+      return {...plan, customerTag:feature.tag, featuredNote:feature.note};
     }).filter(Boolean);
   }
 
@@ -89,6 +83,7 @@
         card.append(price);
         card.append(make('p','freet-plan-specs',
           ['데이터 '+(plan.data || '확인 필요'),'통화 '+(plan.voice || '확인 필요'),'문자 '+(plan.sms || '확인 필요')].join(' · ')));
+        card.append(make('p','freet-plan-explainer',plan.featuredNote));
         const more = make('div','freet-plan-actions');
         const select = make('button','freet-detail-button','요금제 상세');
         select.type = 'button';
@@ -113,7 +108,7 @@
       }
     } catch (err) {
       list.replaceChildren(make('p','freet-load-error',
-        '추천 요금제 자료를 불러오지 못했어요. 전체 요금제에서 프리티를 선택하거나 개통 신청 후 요금제를 확인해 주세요.'));
+        '11월 추천요금제 가격을 아직 확인하지 못했어요. 전체 요금제에서 프리티를 선택하거나 개통 신청 후 최신 요금을 확인해 주세요.'));
       console.warn('Freet highlighted postpaid data unavailable:',err?.message);
     }
   }
