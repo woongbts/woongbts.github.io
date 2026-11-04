@@ -147,6 +147,21 @@
     };
     if (grid) new MutationObserver(syncMode).observe(grid,{attributes:true,attributeFilter:['hidden']});
     syncMode();
+    // Switching views must not wait for the calculator's catalog requests.
+    document.querySelectorAll('[data-mvno-mode]').forEach(button => {
+      button.addEventListener('click', () => {
+        const all = button.dataset.mvnoMode === 'all';
+        if (grid) grid.hidden = !all;
+        const recommendations = $('mvno-recommend');
+        if (recommendations) recommendations.hidden = all;
+        document.querySelectorAll('[data-mvno-mode]').forEach(item => {
+          const active = item === button;
+          item.classList.toggle('active',active);
+          item.setAttribute('aria-selected',String(active));
+        });
+        syncMode();
+      });
+    });
     document.querySelector('[data-mvno-mode="all"]')?.addEventListener('click', () => {
       requestAnimationFrame(() => {
         syncMode();
