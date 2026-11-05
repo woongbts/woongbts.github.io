@@ -12,7 +12,12 @@
     });
     if(toggle){
       toggle.setAttribute('aria-expanded',String(expanded));
-      toggle.textContent=expanded?'− 상품별 메뉴 접기':'＋ 상품별 비교·개통신청 메뉴 보기';
+      const heading=toggle.querySelector('strong');
+      const description=toggle.querySelector('span');
+      const arrow=toggle.querySelector('b');
+      if(heading)heading.textContent=expanded?'상품별 메뉴 접기':'상품별 비교·개통신청';
+      if(description)description.textContent=expanded?'다시 누르면 메뉴가 닫혀요':'원하는 상품 바로 찾기';
+      if(arrow)arrow.textContent=expanded?'↑':'→';
     }
   };
   const setOpen=(expanded,focusPanel=true)=>{
