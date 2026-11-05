@@ -47,7 +47,7 @@
   }
   const location=document.querySelector('.home-entry-phone')||document.querySelector('.rate-tabs');
   if(location){
-    const button=document.createElement('button');button.type='button';button.className='customer-inline-ai';button.textContent='AI에게 먼저 질문하기';
+    const button=document.createElement('button');button.type='button';button.className='customer-inline-ai';button.textContent='AI에게 질문하기';
     button.addEventListener('click',()=>{$('woongbi-ai-launcher')?.click()});location.insertAdjacentElement('afterend',button);
   }
 })();
