@@ -51,3 +51,38 @@ body .rental-trust-steps{gap:12px}
  body #products .catalog-open-row{grid-template-columns:1fr!important;gap:10px!important}
  body .section-title-row{margin-bottom:16px!important;gap:12px}
 }
+
+/* Rental hero welcome-copy alignment, 2026-11-06 */
+body .hero-copy .hero-desc.rental-hero-message{
+  max-width:620px;
+  margin:17px 0 0;
+  text-align:left;
+  font-size:18px!important;
+  line-height:1.65!important;
+  word-break:keep-all;
+  overflow-wrap:break-word;
+}
+body .hero-copy .rental-hero-message > span{
+  display:block;
+  max-width:100%;
+  margin:0;
+}
+body .hero-copy .rental-hero-message > span + span{
+  margin-top:8px;
+}
+body .hero-copy .rental-hero-message + .hero-actions{
+  margin-top:24px;
+}
+@media(max-width:600px){
+  body .hero-copy .hero-desc.rental-hero-message{
+    font-size:17px!important;
+    line-height:1.55!important;
+    margin-top:18px;
+  }
+  body .hero-copy .rental-hero-message > span + span{
+    margin-top:8px;
+  }
+  body .hero-copy .rental-hero-message + .hero-actions{
+    margin-top:24px;
+  }
+}
