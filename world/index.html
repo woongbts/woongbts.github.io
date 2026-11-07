@@ -54,9 +54,16 @@ a{-webkit-tap-highlight-color:transparent}
 .about{margin-top:24px;border:1px solid #e2e8f1;border-radius:18px;background:#f1f5fa;padding:20px;text-align:center}
 .about p{margin:0;font-size:.91rem;line-height:1.75;color:#405367}
 .about strong{color:#152e4d}
-.home-links{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:10px;margin-top:17px}
-.home-links a{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:12px 17px;background:#fff;border:1px solid #dce4ef;border-radius:12px;color:#193c5f;text-decoration:none;font-size:.9rem;font-weight:800}
-.home-links a:hover{background:#eaf1f9}
+.home-links{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px;width:min(100%,490px);margin:20px auto 0}
+.home-link-item{display:flex;flex-direction:column;align-items:stretch;gap:8px;min-width:0}
+.home-link-label{text-align:center;color:#425970;font-size:.94rem;font-weight:850;line-height:1.45}
+.home-links a{display:flex;align-items:center;justify-content:center;gap:9px;min-width:0;min-height:57px;padding:13px 12px;border-radius:14px;color:#fff;text-decoration:none;font-size:1.05rem;font-weight:900;line-height:1.4;text-align:center;word-break:keep-all;box-shadow:0 5px 14px rgba(18,43,72,.12);transition:filter .18s ease,transform .18s ease}
+.home-links .home-link-telecom{background:#0f5962;border:2px solid #0f5962}
+.home-links .home-link-rental{background:#2469ab;border:2px solid #2469ab}
+.home-links a:hover{filter:brightness(.92);transform:translateY(-2px)}
+.home-links a span[aria-hidden]{font-size:1.05rem;line-height:1}
+@media(max-width:560px){.home-links{gap:10px;margin-top:18px}.home-link-label{font-size:.9rem}.home-links a{min-height:54px;padding:11px 8px;font-size:1rem;border-radius:13px}}
+@media(prefers-reduced-motion:reduce){.home-links a{transition:none}.home-links a:hover{transform:none}}
 .foot{text-align:center;color:#8390a0;font-size:.75rem;line-height:1.7;margin:23px 8px 0}
 .foot+.foot{margin-top:5px}
 @media(max-width:560px){.page{width:calc(100% - 26px);padding-top:13px}.hero{border-radius:23px;padding:30px 17px 29px}.hero-lead{font-size:.97rem}.formula{font-size:.77rem}.section-head{margin-top:25px}.cards{grid-template-columns:1fr;gap:10px}.card{min-height:83px;padding:12px 15px;border-radius:16px}.mark{flex-basis:50px;width:50px;height:50px;border-radius:14px}.copy strong{font-size:1.05rem}.copy small{font-size:.8rem}.about{margin-top:20px;padding:17px}.section-head h2{font-size:1.2rem}}
@@ -97,9 +104,15 @@ a{-webkit-tap-highlight-color:transparent}
 </div>
 </section>
 <div class="about"><p><strong>신웅비 + 웅비통신 + 웅비렌탈</strong><br>이 모든 게 웅비월드 🌎</p></div>
-<nav class="home-links" aria-label="웅비통신 사업 사이트">
-<a href="/">← 웅비통신</a>
-<a href="/rental/">웅비렌탈 ↗</a>
+<nav class="home-links" aria-label="웅비통신·웅비렌탈 바로가기">
+  <div class="home-link-item">
+    <span class="home-link-label">휴대폰은?</span>
+    <a class="home-link-telecom" href="/">웅비통신 <span aria-hidden="true">↗</span></a>
+  </div>
+  <div class="home-link-item">
+    <span class="home-link-label">렌탈은?</span>
+    <a class="home-link-rental" href="/rental/">웅비렌탈 <span aria-hidden="true">↗</span></a>
+  </div>
 </nav>
 <p class="foot">웅비통신 덕천만덕점 · 부산 북구 만덕대로178번길 17</p>
 <p class="foot">© 2026 웅비통신 덕천만덕점 · 페이지 구성·콘텐츠·상담 로직의 무단 복제 및 상업적 이용을 금합니다.</p>
