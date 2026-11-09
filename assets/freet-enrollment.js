@@ -145,7 +145,7 @@
   // This is a compact discovery view, not a separate set of published prices.
   const otherState = {
     plans:[], providers:[], usage:'all', provider:'all', network:'all',
-    shown:5, ready:false, pending:null
+    shown:5, ready:false, pending:null, recommendedIds:new Set()
   };
   const otherFee = plan => {
     const fee = Number(plan?.special_monthly_fee ?? plan?.monthly_fee);
@@ -181,13 +181,16 @@
       if (!groups.has(plan.provider_id)) groups.set(plan.provider_id,[]);
       groups.get(plan.provider_id).push(plan);
     }
-    const byPrice = (a,b) => (otherFee(a) ?? Infinity) - (otherFee(b) ?? Infinity) ||
+    const byPrice = (a,b) => (Number(otherState.recommendedIds.has(String(b.id))) - Number(otherState.recommendedIds.has(String(a.id)))) ||
+      (otherFee(a) ?? Infinity) - (otherFee(b) ?? Infinity) ||
       String(a.name || '').localeCompare(String(b.name || ''),'ko');
     for (const group of groups.values()) group.sort(byPrice);
     const sorted = [...groups.keys()].sort((a,b) => {
       const af = otherFee(groups.get(a)[0]) ?? Infinity;
       const bf = otherFee(groups.get(b)[0]) ?? Infinity;
-      return af - bf || String(a).localeCompare(String(b),'ko');
+      const ar = Number(otherState.recommendedIds.has(String(groups.get(a)[0].id)));
+      const br = Number(otherState.recommendedIds.has(String(groups.get(b)[0].id)));
+      return br - ar || af - bf || String(a).localeCompare(String(b),'ko');
     });
     const result = [];
     while (sorted.some(id => groups.get(id).length)) {
@@ -216,8 +219,9 @@
       const heading = make('summary','mvno-other-plan-summary');
       const text = make('span','mvno-other-plan-copy');
       const providerName = providerNames.get(plan.provider_id) || String(plan.provider_id || '등록 통신사');
+      text.append(make('small','mvno-other-plan-provider',providerName + (plan.network ? ' · ' + networkName(plan.network) + '망' : '')));
+      if (otherState.recommendedIds.has(String(plan.id))) text.append(make('small','mvno-other-plan-recommended','웅비통신 추천'));
       text.append(
-        make('small','mvno-other-plan-provider',providerName + (plan.network ? ' · ' + networkName(plan.network) + '망' : '')),
         make('strong','mvno-other-plan-name',plan.name || '요금제'),
         make('small','mvno-other-plan-data',plan.data ? '데이터 ' + String(plan.data) : '데이터 제공량 확인 필요')
       );
@@ -267,6 +271,10 @@
         const map = new Map(providers.map(p => [p.id,p]));
         const plans = Array.isArray(data.plans) ? data.plans : [];
         otherState.providers = providers;
+        const curated = data.recommendations && typeof data.recommendations === 'object' ? data.recommendations : {};
+        otherState.recommendedIds = new Set(Object.values(curated).flatMap(group => Array.isArray(group) ? group : [])
+          .map(item => item?.plan?.id ?? item?.id ?? (typeof item === 'string' ? item : null))
+          .filter(Boolean).map(String));
         otherState.plans = plans.filter(plan => {
           if (!plan?.id || !plan.provider_id || freet(plan.provider_id)) return false;
           const provider = map.get(plan.provider_id);
