@@ -41,7 +41,7 @@ body.rate-page .rate-tabs .rate-tab{
   padding:10px 13px!important;
   border:2px solid transparent!important;
   border-radius:13px!important;
-  color:#fff!important;
+  color:var(--tab-ink,#fff)!important;
   font-family:inherit;
   font-size:15.5px!important;
   font-weight:900!important;
@@ -51,11 +51,11 @@ body.rate-page .rate-tabs .rate-tab{
   box-shadow:0 3px 8px rgba(15,52,72,.09);
   transition:filter .16s ease,transform .16s ease;
 }
-body.rate-page .rate-tabs .rate-tab[data-tab="mobile"]{background:#17683f!important}
-body.rate-page .rate-tabs .rate-tab[data-tab="studyphone"]{background:#245bb8!important}
-body.rate-page .rate-tabs .rate-tab[data-tab="mvno"]{background:#70429d!important}
-body.rate-page .rate-tabs .rate-tab[data-tab="prepaid"]{background:#a34b13!important}
-body.rate-page .rate-tabs .rate-tab[data-tab="internet"]{background:#a32d61!important}
+body.rate-page .rate-tabs .rate-tab[data-tab="mobile"]{background:#185d45!important;--tab-ink:#fff}
+body.rate-page .rate-tabs .rate-tab[data-tab="studyphone"]{background:#d4e0ff!important;--tab-ink:#24457a}
+body.rate-page .rate-tabs .rate-tab[data-tab="mvno"]{background:#9d2b68!important;--tab-ink:#fff}
+body.rate-page .rate-tabs .rate-tab[data-tab="prepaid"]{background:#fbd071!important;--tab-ink:#5a3b0f}
+body.rate-page .rate-tabs .rate-tab[data-tab="internet"]{background:#15617d!important;--tab-ink:#fff}
 body.rate-page .rate-tabs .rate-tab.active,
 body.rate-page .rate-tabs .rate-tab[aria-selected="true"]{
   border-color:#fff!important;
@@ -72,9 +72,9 @@ body.rate-page .customer-inline-ai{
   min-height:45px!important;
   margin:5px 0 12px!important;
   padding:9px 16px!important;
-  border:2px solid #354861!important;
+  border:2px solid #54416b!important;
   border-radius:12px!important;
-  background:#354861!important;
+  background:#54416b!important;
   color:#fff!important;
   font-size:16px!important;
   font-weight:900!important;
@@ -90,18 +90,18 @@ body.rate-page .mvno-mode-switch button{
   padding:10px 11px!important;
   border:2px solid transparent!important;
   border-radius:12px!important;
-  background:#8c6400!important;
-  color:#fff!important;
+  background:#f4deaf!important;
+  color:var(--mode-ink,#684514)!important;
   font-size:15px!important;
   font-weight:900!important;
   line-height:1.35!important;
   word-break:keep-all;
 }
-body.rate-page .mvno-mode-switch button[data-mvno-mode="all"]{background:#087a7f!important}
+body.rate-page .mvno-mode-switch button[data-mvno-mode="all"]{background:#e5d9fb!important;--mode-ink:#523179}
 body.rate-page .mvno-mode-switch button.active,
 body.rate-page .mvno-mode-switch button[aria-selected="true"]{
-  border-color:#fff!important;
-  box-shadow:0 0 0 2px #173d50,0 3px 10px rgba(15,52,72,.18)!important;
+  border-color:#173d50!important;
+  box-shadow:0 0 0 2px #fff,0 3px 10px rgba(15,52,72,.18)!important;
 }
 body.rate-page .rate-panel-head{margin:9px 0 12px!important}
 body.rate-page .rate-panel[data-panel="mvno"] #freet-postpaid-feature{
@@ -140,26 +140,28 @@ body.rate-page #rate-cross-sell .rate-cross-sell-grid>a{
   padding:16px!important;
   border:2px solid transparent!important;
   border-radius:16px!important;
-  color:#fff!important;
+  color:var(--cross-ink,#fff)!important;
   text-decoration:none!important;
   box-shadow:0 5px 14px rgba(16,58,82,.12);
 }
 body.rate-page #rate-cross-sell .rate-cross-sell-grid>a:first-child{
-  background:#b12f39!important;
-  border-color:#b12f39!important;
+  background:#b23b31!important;
+  border-color:#b23b31!important;
+  --cross-ink:#fff;
 }
 body.rate-page #rate-cross-sell .rate-cross-sell-grid>a:last-child{
-  background:#577020!important;
-  border-color:#577020!important;
+  background:#e6f1c9!important;
+  border-color:#b0c887!important;
+  --cross-ink:#425e18;
 }
 body.rate-page #rate-cross-sell .rate-cross-sell-grid>a>b{
-  color:#fff!important;
+  color:var(--cross-ink,#fff)!important;
   font-size:20px!important;
   font-weight:950!important;
   line-height:1.4!important;
 }
 body.rate-page #rate-cross-sell .rate-cross-sell-grid>a>small{
-  color:#fff!important;
+  color:var(--cross-ink,#fff)!important;
   opacity:.96;
   font-size:15px!important;
   font-weight:750!important;
@@ -167,7 +169,7 @@ body.rate-page #rate-cross-sell .rate-cross-sell-grid>a>small{
   word-break:keep-all;
 }
 body.rate-page #rate-cross-sell .rate-cross-sell-grid>a>span{
-  color:#fff!important;
+  color:var(--cross-ink,#fff)!important;
   font-size:16px!important;
   font-weight:900!important;
   line-height:1.4!important;
