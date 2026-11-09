@@ -51,11 +51,11 @@ body.rate-page .rate-tabs .rate-tab{
   box-shadow:0 3px 8px rgba(15,52,72,.09);
   transition:filter .16s ease,transform .16s ease;
 }
-body.rate-page .rate-tabs .rate-tab[data-tab="mobile"]{background:#126c60!important}
-body.rate-page .rate-tabs .rate-tab[data-tab="studyphone"]{background:#2557a6!important}
-body.rate-page .rate-tabs .rate-tab[data-tab="mvno"]{background:#72419e!important}
-body.rate-page .rate-tabs .rate-tab[data-tab="prepaid"]{background:#ad541c!important}
-body.rate-page .rate-tabs .rate-tab[data-tab="internet"]{background:#17637e!important}
+body.rate-page .rate-tabs .rate-tab[data-tab="mobile"]{background:#17683f!important}
+body.rate-page .rate-tabs .rate-tab[data-tab="studyphone"]{background:#245bb8!important}
+body.rate-page .rate-tabs .rate-tab[data-tab="mvno"]{background:#70429d!important}
+body.rate-page .rate-tabs .rate-tab[data-tab="prepaid"]{background:#a34b13!important}
+body.rate-page .rate-tabs .rate-tab[data-tab="internet"]{background:#a32d61!important}
 body.rate-page .rate-tabs .rate-tab.active,
 body.rate-page .rate-tabs .rate-tab[aria-selected="true"]{
   border-color:#fff!important;
@@ -72,9 +72,9 @@ body.rate-page .customer-inline-ai{
   min-height:45px!important;
   margin:5px 0 12px!important;
   padding:9px 16px!important;
-  border:2px solid #69409b!important;
+  border:2px solid #354861!important;
   border-radius:12px!important;
-  background:#69409b!important;
+  background:#354861!important;
   color:#fff!important;
   font-size:16px!important;
   font-weight:900!important;
@@ -90,14 +90,14 @@ body.rate-page .mvno-mode-switch button{
   padding:10px 11px!important;
   border:2px solid transparent!important;
   border-radius:12px!important;
-  background:#126c60!important;
+  background:#8c6400!important;
   color:#fff!important;
   font-size:15px!important;
   font-weight:900!important;
   line-height:1.35!important;
   word-break:keep-all;
 }
-body.rate-page .mvno-mode-switch button[data-mvno-mode="all"]{background:#2459a7!important}
+body.rate-page .mvno-mode-switch button[data-mvno-mode="all"]{background:#087a7f!important}
 body.rate-page .mvno-mode-switch button.active,
 body.rate-page .mvno-mode-switch button[aria-selected="true"]{
   border-color:#fff!important;
@@ -145,12 +145,12 @@ body.rate-page #rate-cross-sell .rate-cross-sell-grid>a{
   box-shadow:0 5px 14px rgba(16,58,82,.12);
 }
 body.rate-page #rate-cross-sell .rate-cross-sell-grid>a:first-child{
-  background:#205a9c!important;
-  border-color:#205a9c!important;
+  background:#b12f39!important;
+  border-color:#b12f39!important;
 }
 body.rate-page #rate-cross-sell .rate-cross-sell-grid>a:last-child{
-  background:#166f72!important;
-  border-color:#166f72!important;
+  background:#577020!important;
+  border-color:#577020!important;
 }
 body.rate-page #rate-cross-sell .rate-cross-sell-grid>a>b{
   color:#fff!important;
