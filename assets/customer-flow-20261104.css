@@ -19,3 +19,201 @@ body.rate-page #purpose-results .customer-card-more>button,body.rate-page #purpo
 
 .customer-purpose-options>summary:hover b{background:#55317f;border-color:#55317f}
 body.rate-page #purpose-results .purpose-card em,body.rate-page #purpose-results .purpose-card .wb-server-reason{font-size:16px!important;font-weight:700!important;line-height:1.7!important;color:#365362!important;font-style:normal;overflow-wrap:anywhere}
+
+/* 2026-11-09 colorful compact rates navigation, shortcuts and cross-sell */
+/* Five product categories: readable filled buttons, with a clear selected state. */
+body.rate-page .rate-tabs{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:stretch;
+  gap:7px!important;
+  margin:0 0 13px!important;
+  padding:0!important;
+  overflow:visible;
+}
+body.rate-page .rate-tabs .rate-tab{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  flex:0 1 auto;
+  min-height:45px!important;
+  margin:0!important;
+  padding:10px 13px!important;
+  border:2px solid transparent!important;
+  border-radius:13px!important;
+  color:#fff!important;
+  font-family:inherit;
+  font-size:15.5px!important;
+  font-weight:900!important;
+  line-height:1.3!important;
+  word-break:keep-all;
+  white-space:nowrap;
+  box-shadow:0 3px 8px rgba(15,52,72,.09);
+  transition:filter .16s ease,transform .16s ease;
+}
+body.rate-page .rate-tabs .rate-tab[data-tab="mobile"]{background:#126c60!important}
+body.rate-page .rate-tabs .rate-tab[data-tab="studyphone"]{background:#2557a6!important}
+body.rate-page .rate-tabs .rate-tab[data-tab="mvno"]{background:#72419e!important}
+body.rate-page .rate-tabs .rate-tab[data-tab="prepaid"]{background:#ad541c!important}
+body.rate-page .rate-tabs .rate-tab[data-tab="internet"]{background:#17637e!important}
+body.rate-page .rate-tabs .rate-tab.active,
+body.rate-page .rate-tabs .rate-tab[aria-selected="true"]{
+  border-color:#fff!important;
+  outline:2px solid #173c4d;
+  outline-offset:0;
+  box-shadow:0 0 0 2px rgba(255,255,255,.8),0 4px 12px rgba(16,60,82,.2)!important;
+}
+body.rate-page .rate-tabs .rate-tab:hover{filter:brightness(.92)}
+/* Mobile inline AI button */
+body.rate-page .customer-inline-ai{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:45px!important;
+  margin:5px 0 12px!important;
+  padding:9px 16px!important;
+  border:2px solid #69409b!important;
+  border-radius:12px!important;
+  background:#69409b!important;
+  color:#fff!important;
+  font-size:16px!important;
+  font-weight:900!important;
+  line-height:1.35!important;
+}
+/* Same filled-color logic inside the MVNO page. */
+body.rate-page .mvno-mode-switch{
+  gap:9px!important;
+  margin:8px 0 12px!important;
+}
+body.rate-page .mvno-mode-switch button{
+  min-height:49px!important;
+  padding:10px 11px!important;
+  border:2px solid transparent!important;
+  border-radius:12px!important;
+  background:#126c60!important;
+  color:#fff!important;
+  font-size:15px!important;
+  font-weight:900!important;
+  line-height:1.35!important;
+  word-break:keep-all;
+}
+body.rate-page .mvno-mode-switch button[data-mvno-mode="all"]{background:#2459a7!important}
+body.rate-page .mvno-mode-switch button.active,
+body.rate-page .mvno-mode-switch button[aria-selected="true"]{
+  border-color:#fff!important;
+  box-shadow:0 0 0 2px #173d50,0 3px 10px rgba(15,52,72,.18)!important;
+}
+body.rate-page .rate-panel-head{margin:9px 0 12px!important}
+body.rate-page .rate-panel[data-panel="mvno"] #freet-postpaid-feature{
+  margin:9px 0!important;
+}
+body.rate-page .rate-panel[data-panel="mvno"] #mvno-other-feature{
+  margin:9px 0 4px!important;
+}
+/* Reduce the empty block between the last plan menu and related services. */
+body.rate-page .rate-content{padding-bottom:16px!important}
+body.rate-page #rate-cross-sell{
+  margin:0!important;
+  padding:18px 0 25px!important;
+}
+body.rate-page #rate-cross-sell .rate-cross-sell-head{
+  margin:0 0 12px!important;
+}
+body.rate-page #rate-cross-sell .rate-cross-sell-head>span{
+  font-size:15px!important;
+  font-weight:900!important;
+  color:#176c63!important;
+}
+body.rate-page #rate-cross-sell .rate-cross-sell-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  align-items:stretch;
+  gap:12px!important;
+}
+body.rate-page #rate-cross-sell .rate-cross-sell-grid>a{
+  display:flex!important;
+  flex-direction:column;
+  justify-content:center;
+  min-width:0;
+  min-height:145px!important;
+  gap:7px!important;
+  padding:16px!important;
+  border:2px solid transparent!important;
+  border-radius:16px!important;
+  color:#fff!important;
+  text-decoration:none!important;
+  box-shadow:0 5px 14px rgba(16,58,82,.12);
+}
+body.rate-page #rate-cross-sell .rate-cross-sell-grid>a:first-child{
+  background:#205a9c!important;
+  border-color:#205a9c!important;
+}
+body.rate-page #rate-cross-sell .rate-cross-sell-grid>a:last-child{
+  background:#166f72!important;
+  border-color:#166f72!important;
+}
+body.rate-page #rate-cross-sell .rate-cross-sell-grid>a>b{
+  color:#fff!important;
+  font-size:20px!important;
+  font-weight:950!important;
+  line-height:1.4!important;
+}
+body.rate-page #rate-cross-sell .rate-cross-sell-grid>a>small{
+  color:#fff!important;
+  opacity:.96;
+  font-size:15px!important;
+  font-weight:750!important;
+  line-height:1.5!important;
+  word-break:keep-all;
+}
+body.rate-page #rate-cross-sell .rate-cross-sell-grid>a>span{
+  color:#fff!important;
+  font-size:16px!important;
+  font-weight:900!important;
+  line-height:1.4!important;
+  margin-top:0!important;
+}
+body.rate-page .rate-tabs .rate-tab:focus-visible,
+body.rate-page .mvno-mode-switch button:focus-visible,
+body.rate-page .customer-inline-ai:focus-visible,
+body.rate-page #rate-cross-sell .rate-cross-sell-grid>a:focus-visible{
+  outline:3px solid #dcaa2c!important;
+  outline-offset:3px!important;
+}
+@media(max-width:760px){
+  body.rate-page .rate-tabs{
+    gap:7px!important;
+    margin-bottom:10px!important;
+  }
+  body.rate-page .rate-tabs .rate-tab{
+    min-height:44px!important;
+    padding:9px 11px!important;
+    font-size:15px!important;
+  }
+  body.rate-page .mvno-mode-switch{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    margin:8px 0 12px!important;
+  }
+  body.rate-page #rate-cross-sell .rate-cross-sell-grid{
+    grid-template-columns:1fr!important;
+    gap:10px!important;
+  }
+  body.rate-page #rate-cross-sell .rate-cross-sell-grid>a{
+    min-height:0!important;
+    padding:14px 16px!important;
+    gap:6px!important;
+    border-radius:14px!important;
+  }
+  body.rate-page #rate-cross-sell .rate-cross-sell-grid>a>b{
+    font-size:19px!important;
+  }
+  body.rate-page #rate-cross-sell .rate-cross-sell-grid>a>small{
+    font-size:14.5px!important;
+    line-height:1.5!important;
+  }
+  body.rate-page #rate-cross-sell{padding:13px 0 24px!important}
+  body.rate-page .rate-content{padding-bottom:12px!important}
+}
+@media(prefers-reduced-motion:reduce){
+  body.rate-page .rate-tabs .rate-tab{transition:none}
+}
