@@ -90,7 +90,7 @@
         );
         summary.append(
           heading,
-          make('strong','freet-plan-price',money(plan.special_monthly_fee ?? plan.monthly_fee)),
+          make('strong','freet-plan-price','월 ' + money(plan.special_monthly_fee ?? plan.monthly_fee)),
           make('span','freet-plan-chevron','⌄')
         );
         summary.querySelector('.freet-plan-chevron').setAttribute('aria-hidden','true');
