@@ -140,6 +140,198 @@
     }
   }
 
+
+  // Other postpaid MVNOs use the same public catalogue as the full calculator.
+  // This is a compact discovery view, not a separate set of published prices.
+  const otherState = {
+    plans:[], providers:[], usage:'all', provider:'all', network:'all',
+    shown:5, ready:false, pending:null
+  };
+  const otherFee = plan => {
+    const fee = Number(plan?.special_monthly_fee ?? plan?.monthly_fee);
+    return Number.isFinite(fee) && fee > 0 ? fee : null;
+  };
+  const otherGb = plan => {
+    const label = String(plan?.data || '');
+    const gb = label.match(/(\d+(?:\.\d+)?)\s*GB/i);
+    if (gb) return Number(gb[1]);
+    const mb = label.match(/(\d+(?:\.\d+)?)\s*MB/i);
+    return mb ? Number(mb[1]) / 1024 : null;
+  };
+  function filteredOtherPlans() {
+    return otherState.plans.filter(plan => {
+      if (otherState.provider !== 'all' && plan.provider_id !== otherState.provider) return false;
+      if (otherState.network !== 'all' && plan.network !== otherState.network) return false;
+      const fee = otherFee(plan);
+      const gb = otherGb(plan);
+      if (otherState.usage === 'under10') return fee !== null && fee < 10000;
+      if (otherState.usage === 'daily') return gb !== null && gb >= 5 && gb < 15;
+      if (otherState.usage === 'heavy') {
+        const data = String(plan.data || '');
+        return (gb !== null && gb >= 15) || /매일\s*\d+(?:\.\d+)?\s*(GB|MB)/i.test(data);
+      }
+      return true;
+    });
+  }
+  function diverseOtherPlans(plans) {
+    // Rotate carriers first, then their next-lowest prices, rather than showing
+    // five offers from one carrier simply because its prices sort first.
+    const groups = new Map();
+    for (const plan of plans) {
+      if (!groups.has(plan.provider_id)) groups.set(plan.provider_id,[]);
+      groups.get(plan.provider_id).push(plan);
+    }
+    const byPrice = (a,b) => (otherFee(a) ?? Infinity) - (otherFee(b) ?? Infinity) ||
+      String(a.name || '').localeCompare(String(b.name || ''),'ko');
+    for (const group of groups.values()) group.sort(byPrice);
+    const sorted = [...groups.keys()].sort((a,b) => {
+      const af = otherFee(groups.get(a)[0]) ?? Infinity;
+      const bf = otherFee(groups.get(b)[0]) ?? Infinity;
+      return af - bf || String(a).localeCompare(String(b),'ko');
+    });
+    const result = [];
+    while (sorted.some(id => groups.get(id).length)) {
+      for (const id of sorted) {
+        if (groups.get(id).length) result.push(groups.get(id).shift());
+      }
+    }
+    return result;
+  }
+  function renderOtherPlans() {
+    const list = $('mvno-other-results');
+    const counter = $('mvno-other-count');
+    const more = $('mvno-other-more');
+    if (!list || !counter || !more || !otherState.ready) return;
+    const providerNames = new Map(otherState.providers.map(provider => [provider.id,provider.name]));
+    const filtered = diverseOtherPlans(filteredOtherPlans());
+    const count = filtered.length;
+    const providerCount = new Set(filtered.map(plan => plan.provider_id)).size;
+    counter.textContent = count ?
+      providerCount.toLocaleString('ko-KR') + '개 통신사 · ' + count.toLocaleString('ko-KR') + '개 요금제 중 ' +
+      Math.min(count,otherState.shown).toLocaleString('ko-KR') + '개 표시' :
+      '현재 선택 조건에 맞는 요금제가 없습니다. 다른 조건을 선택해 주세요.';
+    list.replaceChildren();
+    for (const plan of filtered.slice(0,otherState.shown)) {
+      const card = make('details','mvno-other-card');
+      const heading = make('summary','mvno-other-plan-summary');
+      const text = make('span','mvno-other-plan-copy');
+      const providerName = providerNames.get(plan.provider_id) || String(plan.provider_id || '등록 통신사');
+      text.append(
+        make('small','mvno-other-plan-provider',providerName + (plan.network ? ' · ' + networkName(plan.network) + '망' : '')),
+        make('strong','mvno-other-plan-name',plan.name || '요금제'),
+        make('small','mvno-other-plan-data',plan.data ? '데이터 ' + String(plan.data) : '데이터 제공량 확인 필요')
+      );
+      const amount = make('strong','mvno-other-plan-price',otherFee(plan) === null ? '요금 확인 필요' : '월 ' + money(otherFee(plan)));
+      heading.append(text,amount,make('span','mvno-other-plan-arrow','⌄'));
+      heading.querySelector('.mvno-other-plan-arrow').setAttribute('aria-hidden','true');
+      const expanded = make('div','mvno-other-plan-expanded');
+      const specs = make('dl','mvno-other-plan-specs');
+      for (const [label,value] of [['데이터',plan.data],['통화',plan.voice],['문자',plan.sms]]) {
+        const row = make('div','mvno-other-plan-spec-row');
+        row.append(make('dt','',label),make('dd','',value || '확인 필요'));
+        specs.append(row);
+      }
+      expanded.append(specs);
+      if (plan.customer_note) expanded.append(make('p','mvno-other-plan-note',String(plan.customer_note)));
+      if (Number(plan.contract_months) > 0) {
+        expanded.append(make('p','mvno-other-plan-note',
+          String(plan.contract_months) + '개월 약정 조건 · 할인 기간 및 이후 요금은 최종 확인'));
+      } else if (otherFee(plan) !== null && Number(plan.regular_monthly_fee) > otherFee(plan)) {
+        expanded.append(make('p','mvno-other-plan-note','할인 적용 요금입니다. 할인 기간과 이후 요금을 확인해 주세요.'));
+      }
+      const action = make('a','mvno-other-plan-consult','매장 상담·개통 문의 →');
+      action.href = 'tel:0513437677';
+      expanded.append(action);
+      card.append(heading,expanded);
+      card.addEventListener('toggle',() => {
+        if (!card.open) return;
+        list.querySelectorAll('.mvno-other-card[open]').forEach(other => {
+          if (other !== card) other.open = false;
+        });
+      });
+      list.append(card);
+    }
+    more.hidden = count <= otherState.shown;
+    if (!more.hidden) more.textContent = '다른 요금제 더 보기 (' + (count - otherState.shown).toLocaleString('ko-KR') + '개 남음)';
+  }
+  async function loadOtherPlans() {
+    if (otherState.ready || otherState.pending) return otherState.pending;
+    const counter = $('mvno-other-count');
+    if (counter) counter.textContent = '통신사와 요금제를 확인하고 있습니다.';
+    otherState.pending = (async () => {
+      try {
+        const api = window.WoongbiMvnoApi;
+        if (!api || typeof api.loadCatalog !== 'function') throw Error('catalog API unavailable');
+        const data = await api.loadCatalog();
+        const providers = Array.isArray(data.providers) ? data.providers : [];
+        const map = new Map(providers.map(p => [p.id,p]));
+        const plans = Array.isArray(data.plans) ? data.plans : [];
+        otherState.providers = providers;
+        otherState.plans = plans.filter(plan => {
+          if (!plan?.id || !plan.provider_id || freet(plan.provider_id)) return false;
+          const provider = map.get(plan.provider_id);
+          return !/프리티|프리텔레콤/i.test(String(provider?.name || ''));
+        });
+        const picker = $('mvno-other-provider');
+        if (picker) {
+          for (const id of new Set(otherState.plans.map(plan => plan.provider_id))) {
+            const option = document.createElement('option');
+            option.value = id;
+            option.textContent = map.get(id)?.name || id;
+            picker.append(option);
+          }
+        }
+        otherState.ready = true;
+        renderOtherPlans();
+      } catch (err) {
+        if (counter) counter.textContent = '요금제 데이터를 현재 불러오지 못했습니다. 아래 상세 검색이나 전화 상담을 이용해 주세요.';
+        console.warn('Other MVNO menu unavailable:',err?.message);
+      } finally {
+        otherState.pending = null;
+      }
+    })();
+    return otherState.pending;
+  }
+  function initOtherPlans() {
+    const disclosure = $('mvno-other-disclosure');
+    if (!disclosure) return;
+    disclosure.addEventListener('toggle',() => {
+      if (disclosure.open) loadOtherPlans();
+    });
+    if (location.hash === '#mvno-other-feature') disclosure.open = true;
+    if (disclosure.open) loadOtherPlans();
+    document.querySelectorAll('[data-mvno-other-usage]').forEach(button => {
+      button.addEventListener('click',() => {
+        otherState.usage = button.dataset.mvnoOtherUsage;
+        otherState.shown = 5;
+        document.querySelectorAll('[data-mvno-other-usage]').forEach(item => {
+          const selected = item === button;
+          item.classList.toggle('active',selected);
+          item.setAttribute('aria-pressed',String(selected));
+        });
+        renderOtherPlans();
+      });
+    });
+    $('mvno-other-provider')?.addEventListener('change',event => {
+      otherState.provider = event.target.value;
+      otherState.shown = 5;
+      renderOtherPlans();
+    });
+    $('mvno-other-network')?.addEventListener('change',event => {
+      otherState.network = event.target.value;
+      otherState.shown = 5;
+      renderOtherPlans();
+    });
+    $('mvno-other-more')?.addEventListener('click',() => {
+      otherState.shown += 5;
+      renderOtherPlans();
+    });
+    $('mvno-other-full')?.addEventListener('click',() => {
+      document.querySelector('[data-mvno-mode="all"]')?.click();
+      requestAnimationFrame(() => $('mvno-all-grid')?.scrollIntoView({behavior:'auto',block:'start'}));
+    });
+  }
+
   function attachPrepaidButtons() {
     const list = $('prepaid-recommend-list');
     if (!list) return;
@@ -155,12 +347,14 @@
   function init() {
     const grid = $('mvno-all-grid');
     const feature = $('freet-postpaid-feature');
+    const otherFeature = $('mvno-other-feature');
     const compact = $('freet-postpaid-compact');
     const disclosure = $('freet-postpaid-disclosure');
     if (disclosure && location.hash === '#freet-postpaid-feature') disclosure.open = true;
     const syncMode = () => {
       const all = grid && !grid.hidden;
       if (feature) feature.hidden = !!all;
+      if (otherFeature) otherFeature.hidden = !!all;
       if (compact) compact.hidden = !all;
     };
     if (grid) new MutationObserver(syncMode).observe(grid,{attributes:true,attributeFilter:['hidden']});
@@ -200,6 +394,7 @@
         feature?.scrollIntoView({behavior:'auto',block:'start'});
       });
     });
+    initOtherPlans();
     bindSelected('postpaid');
     bindSelected('prepaid');
     showPostpaid();
