@@ -325,6 +325,20 @@
 }
 #mvno-other-feature .mvno-other-plan-copy{display:flex;min-width:0;flex-direction:column;gap:3px}
 #mvno-other-feature .mvno-other-plan-provider{font-size:12px;font-weight:850;color:#38658e;line-height:1.4}
+#mvno-other-feature .mvno-other-plan-recommended{
+  display:inline-flex;
+  align-self:flex-start;
+  width:max-content;
+  max-width:100%;
+  padding:3px 7px;
+  border:1px solid #8fc5af;
+  border-radius:7px;
+  background:#e3f6e9;
+  color:#17613c;
+  font-size:11px;
+  font-weight:900;
+  line-height:1.4;
+}
 #mvno-other-feature .mvno-other-plan-name{font-size:15px;font-weight:900;color:#173d55;line-height:1.4;word-break:keep-all;overflow-wrap:anywhere}
 #mvno-other-feature .mvno-other-plan-data{font-size:12px;color:#536778;line-height:1.4;overflow-wrap:anywhere}
 #mvno-other-feature .mvno-other-plan-price{font-size:18px;line-height:1.35;font-weight:950;color:#1a5a94;white-space:nowrap}
