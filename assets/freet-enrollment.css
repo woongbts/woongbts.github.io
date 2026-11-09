@@ -191,3 +191,204 @@
   #freet-postpaid-disclosure .freet-disclosure-arrow,
   #freet-postpaid-feature .freet-plan-chevron{transition:none}
 }
+
+/* Other MVNOs: compact accessible catalogue, 2026-11-09 */
+#mvno-other-feature{
+  margin:12px 0 18px;
+  padding:8px;
+  background:#eef3fc;
+  border:1px solid #cad8f0;
+  border-radius:16px;
+}
+#mvno-other-feature[hidden]{display:none!important}
+#mvno-other-disclosure>summary{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  align-items:center;
+  gap:10px;
+  min-height:69px;
+  padding:13px 16px;
+  border-radius:12px;
+  background:#2459a7;
+  color:#fff;
+  cursor:pointer;
+  list-style:none;
+}
+#mvno-other-disclosure>summary::-webkit-details-marker,
+#mvno-other-feature .mvno-other-plan-summary::-webkit-details-marker{display:none}
+#mvno-other-feature .mvno-other-toggle-copy{display:flex;flex-direction:column;min-width:0;gap:3px}
+#mvno-other-feature .mvno-other-toggle-copy strong{
+  color:#fff;
+  font-size:19px;
+  font-weight:900;
+  line-height:1.4;
+  word-break:keep-all;
+}
+#mvno-other-feature .mvno-other-toggle-copy small{
+  font-size:13px;
+  font-weight:750;
+  color:#e7efff;
+  line-height:1.4;
+}
+#mvno-other-feature .mvno-other-toggle-arrow{font-size:25px;line-height:1;color:#fff;transition:transform .15s ease}
+#mvno-other-disclosure[open]>.mvno-other-toggle .mvno-other-toggle-arrow{transform:rotate(180deg)}
+#mvno-other-feature .mvno-other-content{padding:14px 7px 5px}
+#mvno-other-feature .mvno-other-intro{margin:0 0 13px;color:#40566e;font-size:14px;line-height:1.65;word-break:keep-all}
+#mvno-other-feature .mvno-other-usage{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:8px;
+}
+#mvno-other-feature .mvno-other-usage button{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:flex-start;
+  gap:4px;
+  min-height:70px;
+  padding:11px 13px;
+  border-radius:11px;
+  border:2px solid #d4e0f2;
+  background:#fff;
+  text-align:left;
+  color:#213c59;
+  font-family:inherit;
+  font-size:15px;
+  font-weight:900;
+  line-height:1.4;
+  word-break:keep-all;
+  cursor:pointer;
+  box-sizing:border-box;
+}
+#mvno-other-feature .mvno-other-usage button small{font-size:12px;font-weight:750;color:#586a7e}
+#mvno-other-feature .mvno-other-usage button:nth-child(1){background:#eaf6ed;border-color:#bad9c3;color:#17613e}
+#mvno-other-feature .mvno-other-usage button:nth-child(2){background:#ebf2ff;border-color:#b7caee;color:#27569a}
+#mvno-other-feature .mvno-other-usage button:nth-child(3){background:#fff2e6;border-color:#ecc69b;color:#9c5015}
+#mvno-other-feature .mvno-other-usage button:nth-child(4){background:#f1ecfb;border-color:#cbbbe9;color:#623c94}
+#mvno-other-feature .mvno-other-usage button.active{
+  border-color:#173b64;
+  box-shadow:inset 0 0 0 1px #173b64;
+}
+#mvno-other-feature .mvno-other-selectors{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:9px;
+  margin-top:13px;
+}
+#mvno-other-feature .mvno-other-selectors label{
+  display:flex;
+  flex-direction:column;
+  min-width:0;
+  gap:6px;
+  color:#294d6c;
+  font-size:13px;
+  font-weight:900;
+}
+#mvno-other-feature .mvno-other-selectors select{
+  display:block;
+  width:100%;
+  min-width:0;
+  min-height:44px;
+  padding:9px 8px;
+  border:1.5px solid #b5c9e0;
+  border-radius:9px;
+  background:#fff;
+  color:#173e55;
+  font:inherit;
+  font-size:14px;
+  font-weight:750;
+}
+#mvno-other-feature .mvno-other-count{
+  margin:14px 0 9px;
+  color:#304e6c;
+  font-size:14px;
+  font-weight:800;
+  line-height:1.5;
+}
+#mvno-other-feature .mvno-other-results{display:grid;gap:7px}
+#mvno-other-feature .mvno-other-card{
+  min-width:0;
+  overflow:hidden;
+  border-radius:11px;
+  border:1px solid #c8d8e9;
+  background:#fff;
+}
+#mvno-other-feature .mvno-other-plan-summary{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto auto;
+  gap:8px;
+  align-items:center;
+  min-height:69px;
+  padding:10px 12px;
+  cursor:pointer;
+  list-style:none;
+}
+#mvno-other-feature .mvno-other-plan-copy{display:flex;min-width:0;flex-direction:column;gap:3px}
+#mvno-other-feature .mvno-other-plan-provider{font-size:12px;font-weight:850;color:#38658e;line-height:1.4}
+#mvno-other-feature .mvno-other-plan-name{font-size:15px;font-weight:900;color:#173d55;line-height:1.4;word-break:keep-all;overflow-wrap:anywhere}
+#mvno-other-feature .mvno-other-plan-data{font-size:12px;color:#536778;line-height:1.4;overflow-wrap:anywhere}
+#mvno-other-feature .mvno-other-plan-price{font-size:18px;line-height:1.35;font-weight:950;color:#1a5a94;white-space:nowrap}
+#mvno-other-feature .mvno-other-plan-arrow{font-size:20px;color:#567ca0;line-height:1;transition:transform .15s ease}
+#mvno-other-feature .mvno-other-card[open]>.mvno-other-plan-summary{background:#f1f6ff}
+#mvno-other-feature .mvno-other-card[open] .mvno-other-plan-arrow{transform:rotate(180deg)}
+#mvno-other-feature .mvno-other-plan-expanded{display:grid;gap:8px;padding:12px;border-top:1px solid #d9e6f4}
+#mvno-other-feature .mvno-other-plan-specs{display:grid;gap:4px;margin:0;padding:9px 10px;background:#f1f6fa;border-radius:9px}
+#mvno-other-feature .mvno-other-plan-spec-row{display:grid;grid-template-columns:45px minmax(0,1fr);gap:8px;font-size:14px;line-height:1.6;color:#294551}
+#mvno-other-feature .mvno-other-plan-spec-row dt{font-weight:900}
+#mvno-other-feature .mvno-other-plan-spec-row dd{margin:0;overflow-wrap:anywhere}
+#mvno-other-feature .mvno-other-plan-note{margin:0;color:#516577;font-size:13px;line-height:1.6;word-break:keep-all}
+#mvno-other-feature .mvno-other-plan-consult{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-height:44px;
+  padding:9px 12px;
+  border-radius:9px;
+  background:#156f82;
+  color:#fff!important;
+  font-size:14px;
+  font-weight:900;
+  text-decoration:none;
+}
+#mvno-other-feature .mvno-other-more,
+#mvno-other-feature .mvno-other-full{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  width:100%;
+  min-height:44px;
+  margin-top:9px;
+  padding:10px 12px;
+  border:1.5px solid #789ebd;
+  border-radius:10px;
+  background:#fff;
+  color:#1d5487;
+  font:inherit;
+  font-size:14px;
+  font-weight:900;
+  text-align:center;
+  cursor:pointer;
+}
+#mvno-other-feature .mvno-other-more[hidden]{display:none!important}
+#mvno-other-feature .mvno-other-full{background:#2459a7;border-color:#2459a7;color:#fff}
+#mvno-other-feature .mvno-other-notice{display:block;margin:12px 0 0;color:#5a6a7c;font-size:12px;line-height:1.65;word-break:keep-all}
+#mvno-other-feature summary:focus-visible,
+#mvno-other-feature button:focus-visible,
+#mvno-other-feature select:focus-visible,
+#mvno-other-feature a:focus-visible{outline:3px solid #176f80;outline-offset:3px}
+@media(max-width:599px){
+  #mvno-other-feature{padding:7px}
+  #mvno-other-disclosure>summary{padding:12px 13px;min-height:66px}
+  #mvno-other-feature .mvno-other-toggle-copy strong{font-size:17px}
+  #mvno-other-feature .mvno-other-content{padding:12px 4px 4px}
+  #mvno-other-feature .mvno-other-usage button{min-height:67px;padding:10px 9px;font-size:14px}
+  #mvno-other-feature .mvno-other-selectors{gap:7px}
+  #mvno-other-feature .mvno-other-selectors select{font-size:13px}
+  #mvno-other-feature .mvno-other-plan-summary{gap:6px;padding:10px 9px}
+  #mvno-other-feature .mvno-other-plan-price{font-size:16px}
+  #mvno-other-feature .mvno-other-plan-arrow{font-size:17px}
+}
+@media(prefers-reduced-motion:reduce){
+  #mvno-other-feature .mvno-other-plan-arrow,
+  #mvno-other-feature .mvno-other-toggle-arrow{transition:none}
+}
