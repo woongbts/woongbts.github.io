@@ -52,7 +52,7 @@ body.rate-page .rate-tabs .rate-tab{
   transition:filter .16s ease,transform .16s ease;
 }
 body.rate-page .rate-tabs .rate-tab[data-tab="mobile"]{background:#185d45!important;--tab-ink:#fff}
-body.rate-page .rate-tabs .rate-tab[data-tab="studyphone"]{background:#d4e0ff!important;--tab-ink:#24457a}
+body.rate-page .rate-tabs .rate-tab[data-tab="studyphone"]{background:#bfede0!important;--tab-ink:#184b42}
 body.rate-page .rate-tabs .rate-tab[data-tab="mvno"]{background:#9d2b68!important;--tab-ink:#fff}
 body.rate-page .rate-tabs .rate-tab[data-tab="prepaid"]{background:#fbd071!important;--tab-ink:#5a3b0f}
 body.rate-page .rate-tabs .rate-tab[data-tab="internet"]{background:#15617d!important;--tab-ink:#fff}
@@ -150,9 +150,9 @@ body.rate-page #rate-cross-sell .rate-cross-sell-grid>a:first-child{
   --cross-ink:#fff;
 }
 body.rate-page #rate-cross-sell .rate-cross-sell-grid>a:last-child{
-  background:#e6f1c9!important;
-  border-color:#b0c887!important;
-  --cross-ink:#425e18;
+  background:#d9f3ff!important;
+  border-color:#a9d7ea!important;
+  --cross-ink:#14506a;
 }
 body.rate-page #rate-cross-sell .rate-cross-sell-grid>a>b{
   color:var(--cross-ink,#fff)!important;
