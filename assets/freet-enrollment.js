@@ -81,20 +81,29 @@
       if (!picked.length) throw Error('No Freet postpaid plans found in verified catalog');
       list.replaceChildren();
       for (const plan of picked) {
-        const card = make('article', 'freet-plan-card');
-        card.append(make('span','freet-plan-tag',plan.customerTag));
-        card.append(make('strong','freet-plan-name',plan.name || '프리티 후불 요금제'));
-        card.append(make('span','freet-plan-provider','프리티 ' + networkName(plan.network) + '망'));
-        const price = make('strong','freet-plan-price',money(plan.special_monthly_fee ?? plan.monthly_fee));
-        card.append(price);
+        const card = make('details','freet-plan-card');
+        const summary = make('summary','freet-plan-summary');
+        const heading = make('span','freet-plan-summary-heading');
+        heading.append(
+          make('strong','freet-plan-name',plan.name || '프리티 후불 요금제'),
+          make('small','freet-plan-tag',plan.customerTag)
+        );
+        summary.append(
+          heading,
+          make('strong','freet-plan-price',money(plan.special_monthly_fee ?? plan.monthly_fee)),
+          make('span','freet-plan-chevron','⌄')
+        );
+        summary.querySelector('.freet-plan-chevron').setAttribute('aria-hidden','true');
+        const expanded = make('div','freet-plan-expanded');
+        expanded.append(make('span','freet-plan-provider','프리티 ' + networkName(plan.network) + '망'));
         const specs = make('dl','freet-plan-specs');
         for (const [label, value] of [['데이터',plan.data],['통화',plan.voice],['문자',plan.sms]]) {
           const row = make('div','freet-plan-spec-row');
           row.append(make('dt','',label),make('dd','',value || '확인 필요'));
           specs.append(row);
         }
-        card.append(specs);
-        card.append(make('p','freet-plan-explainer',plan.featuredNote));
+        expanded.append(specs);
+        expanded.append(make('p','freet-plan-explainer',plan.featuredNote));
         const more = make('div','freet-plan-actions');
         const select = make('button','freet-detail-button','요금제 상세');
         select.type = 'button';
@@ -114,7 +123,14 @@
         const apply = make('a','freet-apply-link','온라인 개통신청 →');
         apply.href = href('postpaid',plan.id);
         more.append(select,apply);
-        card.append(more);
+        expanded.append(more);
+        card.append(summary,expanded);
+        card.addEventListener('toggle',() => {
+          if (!card.open) return;
+          list.querySelectorAll('.freet-plan-card[open]').forEach(other => {
+            if (other !== card) other.open = false;
+          });
+        });
         list.append(card);
       }
     } catch (err) {
@@ -140,6 +156,8 @@
     const grid = $('mvno-all-grid');
     const feature = $('freet-postpaid-feature');
     const compact = $('freet-postpaid-compact');
+    const disclosure = $('freet-postpaid-disclosure');
+    if (disclosure && location.hash === '#freet-postpaid-feature') disclosure.open = true;
     const syncMode = () => {
       const all = grid && !grid.hidden;
       if (feature) feature.hidden = !!all;
@@ -173,6 +191,7 @@
       });
     });
     $('freet-show-recommendations')?.addEventListener('click', () => {
+      if (disclosure) disclosure.open = true;
       document.querySelector('[data-mvno-mode="recommend"]')?.click();
       requestAnimationFrame(() => {
         syncMode();
