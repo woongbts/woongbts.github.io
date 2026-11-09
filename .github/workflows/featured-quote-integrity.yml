@@ -1,0 +1,52 @@
+name: Homepage quote integrity
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'index.html'
+      - 'rates.html'
+      - 'assets/home-recommend-api.min.js'
+      - 'assets/site-pro.min.js'
+      - 'assets/senior-a17-first.js'
+      - 'assets/home-intelligence-loader.js'
+      - 'data/catalog.json'
+      - 'data/plans.json'
+      - 'data/supports.json'
+      - '.github/scripts/test_featured_quote_api.cjs'
+      - '.github/scripts/test_home_recommendations.cjs'
+      - '.github/workflows/featured-quote-integrity.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'index.html'
+      - 'rates.html'
+      - 'assets/home-recommend-api.min.js'
+      - 'assets/site-pro.min.js'
+      - 'assets/senior-a17-first.js'
+      - 'assets/home-intelligence-loader.js'
+      - 'data/catalog.json'
+      - 'data/plans.json'
+      - 'data/supports.json'
+      - '.github/scripts/test_featured_quote_api.cjs'
+      - '.github/scripts/test_home_recommendations.cjs'
+      - '.github/workflows/featured-quote-integrity.yml'
+  schedule:
+    # Daily after the wireless data refresh, 18:40 KST.
+    - cron: '40 9 * * *'
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate homepage recommendation JavaScript
+        run: |
+          node --check assets/home-recommend-api.min.js
+          node --check assets/site-pro.min.js
+          node --check assets/senior-a17-first.js
+          node --check assets/home-intelligence-loader.js
+          node .github/scripts/test_featured_quote_api.cjs
+          node .github/scripts/test_home_recommendations.cjs

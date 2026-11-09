@@ -5,7 +5,7 @@
   if(!results||!section)return;
   const API='https://woongbi-quote-api.woongbts.workers.dev/quote/mobile';
   const pins=[
-    {id:'SKT-XD-2824',carrier:'SKT',name:'갤럭시 A17 LTE',planId:'SKT-XP-969',planName:'T플랜 세이브',data:'1.5GB+400Kbps 무제한',voice:'유무선무제한',sms:'무제한'}
+    {id:'SKT-XD-3065',carrier:'SKT',name:'갤럭시 A18 LTE',planId:'SKT-XP-969',planName:'T플랜 세이브',data:'1.5GB+400Kbps 무제한',voice:'유무선무제한',sms:'무제한'}
   ];
   const cache=new Map();
   let cycle=0,scheduled=false;
