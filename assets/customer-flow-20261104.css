@@ -219,3 +219,165 @@ body.rate-page #rate-cross-sell .rate-cross-sell-grid>a:focus-visible{
 @media(prefers-reduced-motion:reduce){
   body.rate-page .rate-tabs .rate-tab{transition:none}
 }
+
+/* Customer quote modal · 2026-11-11 */
+body.rate-page #customer-quote-preview:not([hidden]){
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  margin:10px 0 13px;
+  padding:11px 15px;
+  min-height:46px;
+  border:2px solid #17675c;
+  border-radius:12px;
+  background:#e7f7f1;
+  color:#125d53;
+  font:inherit;
+  font-size:15px;
+  font-weight:900;
+  line-height:1.4;
+  cursor:pointer;
+}
+body.rate-page #customer-quote-preview[hidden]{display:none!important}
+.customer-quote-dialog{
+  position:fixed;
+  width:min(92vw,550px);
+  max-width:min(92vw,550px);
+  max-height:min(87vh,87dvh);
+  margin:auto;
+  padding:0;
+  border:1px solid #c8d8dc;
+  border-radius:20px;
+  background:#fff;
+  color:#183c47;
+  box-shadow:0 18px 70px rgba(11,39,48,.25);
+  overflow:auto;
+  overscroll-behavior:contain;
+  box-sizing:border-box;
+  font-family:inherit;
+}
+.customer-quote-dialog::backdrop{background:rgba(7,26,38,.64)}
+.customer-quote-top{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:12px;
+  padding:20px 20px 6px;
+}
+.customer-quote-top small{font-size:12px;font-weight:800;color:#49727a}
+.customer-quote-top h2{margin:5px 0 0;font-size:23px;font-weight:950;line-height:1.3;color:#173d48}
+.customer-quote-close{
+  flex:0 0 40px;
+  min-height:40px;
+  padding:8px;
+  border:1px solid #c9dce0;
+  border-radius:12px;
+  background:#f5f9f9;
+  color:#274a51;
+  font-size:17px;
+  cursor:pointer;
+}
+.customer-quote-ref{
+  margin:0 20px 14px;
+  color:#5d7178;
+  font-size:12px;
+  line-height:1.5;
+}
+.customer-quote-total{
+  display:grid;
+  gap:3px;
+  margin:0 17px 14px;
+  padding:17px;
+  border:1px solid #b3dfd2;
+  border-radius:15px;
+  background:#eaf8f3;
+}
+.customer-quote-total>span{font-size:14px;font-weight:850;color:#226b5f}
+.customer-quote-total>strong{font-size:clamp(27px,6vw,36px);font-weight:950;line-height:1.3;color:#c02631}
+.customer-quote-total>small{font-size:12px;line-height:1.5;color:#3f6067}
+.customer-quote-details{
+  display:grid;
+  gap:0;
+  margin:0 17px 14px;
+  padding:3px 13px;
+  border:1px solid #dce7ea;
+  border-radius:13px;
+}
+.customer-quote-line{
+  display:grid;
+  grid-template-columns:105px minmax(0,1fr);
+  align-items:baseline;
+  gap:11px;
+  padding:10px 0;
+  border-bottom:1px solid #e5eeef;
+}
+.customer-quote-line:last-child{border-bottom:0}
+.customer-quote-line dt{font-size:13px;font-weight:800;color:#536a72}
+.customer-quote-line dd{
+  margin:0;
+  font-size:14px;
+  font-weight:850;
+  line-height:1.55;
+  color:#1b414e;
+  word-break:keep-all;
+  overflow-wrap:anywhere;
+}
+.customer-quote-period{
+  display:grid;
+  gap:4px;
+  margin:0 17px 13px;
+  padding:13px 15px;
+  border-radius:12px;
+  background:#f1f3fa;
+}
+.customer-quote-period>strong{font-size:14px;color:#3f4a69}
+.customer-quote-period>b{font-size:22px;color:#2b487a;font-weight:950;line-height:1.35}
+.customer-quote-period>small{font-size:12px;color:#53677a;line-height:1.55}
+.customer-quote-disclaimer{
+  margin:0 20px 14px;
+  font-size:12px;
+  line-height:1.7;
+  color:#566e76;
+  word-break:keep-all;
+}
+.customer-quote-actions{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+  padding:0 17px 19px;
+}
+.customer-quote-actions button{
+  min-width:0;
+  min-height:47px;
+  padding:9px 8px;
+  border:0;
+  border-radius:10px;
+  background:#2459a7;
+  color:white;
+  font:inherit;
+  font-size:14px;
+  font-weight:900;
+  line-height:1.4;
+  cursor:pointer;
+  word-break:keep-all;
+}
+.customer-quote-actions [data-customer-share]{background:#116b5e}
+.customer-quote-actions [data-customer-visit]{background:#a75120}
+.customer-quote-actions [data-customer-consult]{
+  grid-column:1 / -1;
+  background:#513d84;
+}
+.customer-quote-dialog :focus-visible,
+body.rate-page #customer-quote-preview:focus-visible{
+  outline:3px solid #d09a22;
+  outline-offset:3px;
+}
+@media(max-width:480px){
+  .customer-quote-top{padding:17px 15px 6px}
+  .customer-quote-ref{margin:0 15px 11px}
+  .customer-quote-details,.customer-quote-total,.customer-quote-period{margin-left:12px;margin-right:12px}
+  .customer-quote-disclaimer{margin-left:16px;margin-right:16px}
+  .customer-quote-actions{padding:0 12px 14px}
+  .customer-quote-line{grid-template-columns:92px minmax(0,1fr)}
+}
