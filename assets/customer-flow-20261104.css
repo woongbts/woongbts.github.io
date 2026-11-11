@@ -381,3 +381,187 @@ body.rate-page #customer-quote-preview:focus-visible{
   .customer-quote-actions{padding:0 12px 14px}
   .customer-quote-line{grid-template-columns:92px minmax(0,1fr)}
 }
+
+/* 2026-11-11 emphasis: calculation options, use-case cards, and recommendation prices */
+/* Keep the alternative calculation menu clear and compact on narrow phones. */
+body.rate-page #mobile-easy-advanced{
+  margin:0 0 13px!important;
+  border:1.5px solid #9dc3d4!important;
+  border-radius:14px!important;
+  background:#eaf5fa!important;
+  box-shadow:0 3px 9px rgba(20,75,99,.06);
+}
+body.rate-page #mobile-easy-advanced>summary{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) 24px;
+  align-items:center;
+  gap:3px 10px;
+  min-height:65px!important;
+  padding:12px 15px!important;
+  color:#154b63!important;
+  font-size:17px!important;
+  font-weight:950!important;
+  line-height:1.35!important;
+  cursor:pointer;
+  word-break:keep-all;
+}
+body.rate-page #mobile-easy-advanced>summary small{
+  display:block;
+  grid-column:1;
+  grid-row:2;
+  min-width:0;
+  color:#285d74!important;
+  font-size:14px!important;
+  font-weight:800!important;
+  line-height:1.5!important;
+}
+body.rate-page #mobile-easy-advanced>summary::after{
+  grid-column:2;
+  grid-row:1 / 3;
+  justify-self:center;
+  color:#0a6980!important;
+  font-size:25px!important;
+  font-weight:900;
+}
+body.rate-page #mobile-easy-advanced[open]>summary{
+  border-bottom:1px solid #b5d5e1;
+}
+body.rate-page #mobile-easy-advanced>summary:focus-visible{
+  outline:3px solid #b36a21;
+  outline-offset:3px;
+}
+/* The four choice cards have distinct accent colors even when not selected. */
+body.rate-page #purpose-recommend .purpose-tabs{
+  gap:9px!important;
+  margin:0 0 13px!important;
+}
+body.rate-page #purpose-recommend .purpose-tabs button{
+  display:grid;
+  align-content:center;
+  gap:5px;
+  min-width:0;
+  min-height:91px!important;
+  padding:13px 14px!important;
+  border:2px solid var(--purpose-border,#c8dade)!important;
+  border-radius:15px!important;
+  background:var(--purpose-fill,#f5f9f8)!important;
+  color:var(--purpose-ink,#164550)!important;
+  text-align:left;
+  word-break:keep-all;
+  box-shadow:none;
+}
+body.rate-page #purpose-recommend .purpose-tabs button[data-purpose-category="senior"]{
+  --purpose-fill:#dbf1e6;--purpose-border:#99cdb5;--purpose-ink:#14583e;
+  --purpose-active:#165a40;
+}
+body.rate-page #purpose-recommend .purpose-tabs button[data-purpose-category="kids"]{
+  --purpose-fill:#e3edff;--purpose-border:#b2caed;--purpose-ink:#24558b;
+  --purpose-active:#245ba2;
+}
+body.rate-page #purpose-recommend .purpose-tabs button[data-purpose-category="value"]{
+  --purpose-fill:#fff0d4;--purpose-border:#eccb8b;--purpose-ink:#805018;
+  --purpose-active:#925013;
+}
+body.rate-page #purpose-recommend .purpose-tabs button[data-purpose-category="premium"]{
+  --purpose-fill:#efe4fa;--purpose-border:#cfb7e7;--purpose-ink:#673a88;
+  --purpose-active:#673a88;
+}
+body.rate-page #purpose-recommend .purpose-tabs button strong{
+  color:inherit!important;
+  font-size:18px!important;
+  font-weight:950!important;
+  line-height:1.35!important;
+  letter-spacing:-.02em;
+}
+body.rate-page #purpose-recommend .purpose-tabs button small{
+  color:inherit!important;
+  font-size:14px!important;
+  font-weight:780!important;
+  line-height:1.5!important;
+  opacity:.96;
+}
+body.rate-page #purpose-recommend .purpose-tabs button.active,
+body.rate-page #purpose-recommend .purpose-tabs button[aria-selected="true"]{
+  background:var(--purpose-active,#164c59)!important;
+  border-color:var(--purpose-active,#164c59)!important;
+  color:#fff!important;
+  box-shadow:0 3px 9px rgba(19,64,74,.16);
+}
+body.rate-page #purpose-recommend .purpose-tabs button.active strong,
+body.rate-page #purpose-recommend .purpose-tabs button.active small,
+body.rate-page #purpose-recommend .purpose-tabs button[aria-selected="true"] strong,
+body.rate-page #purpose-recommend .purpose-tabs button[aria-selected="true"] small{
+  color:#fff!important;
+  opacity:1;
+}
+body.rate-page #purpose-recommend .purpose-tabs button:focus-visible{
+  outline:3px solid #244c61;
+  outline-offset:3px;
+}
+/* Highlight the estimate without changing the underlying calculation. */
+body.rate-page #purpose-results .purpose-card{
+  border:1.5px solid #bdd8d2!important;
+}
+body.rate-page #purpose-results .purpose-card-top span{
+  color:#12675d!important;
+  font-size:15px!important;
+  font-weight:950!important;
+}
+body.rate-page #purpose-results .purpose-card>strong{
+  color:#123d50!important;
+  font-size:21px!important;
+  font-weight:950!important;
+  line-height:1.38!important;
+}
+body.rate-page #purpose-results .purpose-card>em{
+  color:#355667!important;
+  font-size:15px!important;
+  font-weight:780!important;
+  line-height:1.6!important;
+}
+body.rate-page #purpose-results .purpose-card-total{
+  gap:6px;
+  margin:9px 0 7px;
+  padding:14px 15px!important;
+  border:1.5px solid #ecc0bb!important;
+  border-radius:14px;
+  background:#fff0ed!important;
+}
+body.rate-page #purpose-results .purpose-card-total span{
+  color:#7b3b41!important;
+  font-size:15px!important;
+  font-weight:900!important;
+  line-height:1.5!important;
+}
+body.rate-page #purpose-results .purpose-card-total b{
+  color:#b82335!important;
+  font-size:clamp(27px,5.4vw,35px)!important;
+  font-weight:950!important;
+  line-height:1.3!important;
+  letter-spacing:-.04em;
+}
+body.rate-page #purpose-results .purpose-best{
+  color:#335466!important;
+  font-size:14px!important;
+  font-weight:800!important;
+  line-height:1.6!important;
+}
+body.rate-page #purpose-results .purpose-card-detail b,
+body.rate-page #purpose-results .purpose-method-compare b{
+  color:#173e50;
+  font-weight:900!important;
+}
+@media(max-width:640px){
+  body.rate-page #mobile-easy-advanced>summary{min-height:62px!important;padding:11px 13px!important}
+  body.rate-page #mobile-easy-advanced>summary small{font-size:13.5px!important}
+  body.rate-page #purpose-recommend .purpose-tabs button{
+    min-height:82px!important;
+    padding:12px!important;
+  }
+  body.rate-page #purpose-recommend .purpose-tabs button strong{font-size:17px!important}
+  body.rate-page #purpose-recommend .purpose-tabs button small{font-size:13.5px!important}
+  body.rate-page #purpose-results .purpose-card-total{padding:12px 13px!important}
+}
+@media(prefers-reduced-motion:reduce){
+  body.rate-page #purpose-recommend .purpose-tabs button{transition:none}
+}
