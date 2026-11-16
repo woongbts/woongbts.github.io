@@ -362,7 +362,9 @@ function assert(condition, message) {
   const selectedCardNote = await page.locator('#card-fee-note').textContent();
   assert(selectedCardNote && selectedCardNote.includes('하나카드'), '선택 카드가 계산 결과에 표시되지 않습니다.');
   const jsonLd = await page.locator('#product-jsonld').textContent();
-  assert(jsonLd && jsonLd.includes('"Product"'), '상품 구조화 데이터가 생성되지 않았습니다.');
+  assert(jsonLd && /"@type"\s*:\s*"Service"/.test(jsonLd), '상품 구조화 데이터가 렌탈 Service로 생성되지 않았습니다.');
+  assert(/("serviceType"\s*:|serviceType)/.test(jsonLd) && jsonLd.includes('provider'), '렌탈 서비스 유형·판매자 정보가 구조화 데이터에 없습니다.');
+  assert(!/"@type"\s*:\s*"Product"/.test(jsonLd), '리뷰 없는 상품에 Product 스키마가 남아 있습니다.');
 
   await page.locator('#rental-share-quote').click();
   await page.waitForTimeout(50);

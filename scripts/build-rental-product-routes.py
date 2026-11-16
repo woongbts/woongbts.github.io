@@ -77,17 +77,42 @@ def replace_meta(source: str, product: dict) -> str:
     elif not image:
         image = "https://woongbts.kr/rental/assets/woongbi-rental-icon-180.png"
 
+    # A rental page sells a rental service with monthly terms, not a one-off product purchase.
+    # Describing it as schema.org/Service keeps the honest price data (no invented reviews or
+    # ratings) and stops Google's Product-snippet report from asking for review/aggregateRating
+    # fields a rental shop has no real reviews for.
     jsonld = {
         "@context": "https://schema.org",
-        "@type": "Product",
-        "name": name,
+        "@type": "Service",
+        "@id": canonical + "#rental-service",
+        "name": f"{brand} {name} 렌탈".strip(),
+        "serviceType": "가전 렌탈",
+        "category": category or None,
         "brand": {"@type": "Brand", "name": brand or "웅비렌탈"},
         "model": model or None,
         "sku": pid,
-        "category": category or None,
         "description": desc,
         "url": canonical,
         "image": [image] if image else None,
+        "provider": {
+            "@type": "LocalBusiness",
+            "@id": "https://woongbts.kr/#store",
+            "name": "웅비통신 덕천만덕점",
+            "url": "https://woongbts.kr/",
+            "telephone": "+82-51-343-7677",
+            "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "만덕대로178번길 17",
+                "addressLocality": "북구",
+                "addressRegion": "부산광역시",
+                "addressCountry": "KR",
+            },
+        },
+        "areaServed": [
+            {"@type": "Place", "name": "만덕동, 부산 북구"},
+            {"@type": "Place", "name": "덕천동, 부산 북구"},
+            {"@type": "Place", "name": "화명동, 부산 북구"},
+        ],
         "offers": {
             "@type": "AggregateOffer",
             "priceCurrency": "KRW",
