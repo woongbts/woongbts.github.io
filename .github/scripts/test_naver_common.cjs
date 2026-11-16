@@ -2,10 +2,10 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const vm = require('node:vm');
 const code = fs.readFileSync('assets/analytics-config.js','utf8');
-function setup(host = 'woongbts.github.io') {
+function setup(host = 'woongbts.kr') {
   const scripts=[],calls=[];
   const window={};
-  const ctx=vm.createContext({window,location:{hostname:host},document:{createElement:()=>({dataset:{}}),head:{appendChild:s=>scripts.push(s)}}});
+  const ctx=vm.createContext({window,URL,location:{hostname:host,href:'https://'+host+'/'},document:{createElement:()=>({dataset:{}}),head:{appendChild:s=>scripts.push(s)}}});
   vm.runInContext(code,ctx);
   return {window,ctx,scripts,calls,load(){window.wcs={inflow:d=>calls.push(['inflow',d]),trans:()=>{throw Error('Unexpected conversion');}};window.wcs_do=()=>calls.push(['pv']);scripts[0].onload();}};
 }
@@ -15,7 +15,7 @@ assert.equal(live.scripts[0].src,'https://wcs.naver.net/wcslog.js');
 live.load();
 assert.equal(live.window.wcs_add.wa,'s_20e798684471');
 assert.equal(live.window.WOONGBI_ANALYTICS.naverCommonKey,'');
-assert.deepEqual(live.calls,[['inflow','woongbts.github.io'],['pv']]);
+assert.deepEqual(live.calls,[['inflow','woongbts.kr'],['pv']]);
 assert.equal(live.scripts[0].dataset.wbNaverCommon,'initialized');
 vm.runInContext(code,live.ctx);
 assert.equal(live.scripts.length,1);

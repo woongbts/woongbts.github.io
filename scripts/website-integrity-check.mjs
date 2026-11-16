@@ -47,6 +47,23 @@ for(const p of ['rental/assets/catalog.js','rental/assets/product-generic.js','a
 // Fail CI when a source catalogue update leaves a static landing page showing stale figures.
 const categoryGuides=['water-purifier','air-purifier','bidet','massage-chair','mattress','laundry','kitchen-appliance','tv-digital','furniture-bed','health-beauty','home-appliance','refrigerator','leisure-auto','aircon-cleaner'];
 const productIndex=new Map(products.map(p=>[String(p.id),p]));
+const giftOverrides=JSON.parse(read('rental/data/appliance-gift-options.json')).products||{};
+const catalogOverrides=JSON.parse(read('rental/data/catalog-overrides.json')).products||{};
+for(const p of products){
+  const pid=String(p.id);
+  if(catalogOverrides[pid])Object.assign(p,catalogOverrides[pid]);
+  if(p.sourceKind==='clover-import'&&giftOverrides[pid])Object.assign(p,giftOverrides[pid]);
+}
+// Same sellability and gift rounding the category page generator uses.
+const sellableOption=o=>{
+  const text=[o.managementLabel,o.sourceOption,o.care].map(v=>String(v??'')).join(' ');
+  const monthly=Number(o.monthly);
+  return Number.isFinite(monthly)&&monthly>0&&!/(?:^|\s)단종\//.test(text);
+};
+const roundGift=v=>{
+  const n=Number(v);
+  return v==null||v===''||!Number.isFinite(n)?null:Math.floor(n/1000)*1000;
+};
 const warnings=[];
 let checkedCategoryOffers=0;
 for(const dir of categoryGuides){
@@ -59,18 +76,27 @@ for(const dir of categoryGuides){
     const age=Math.floor((Date.now()-new Date(sourceDate+'T00:00:00Z').getTime())/86400000);
     if(Number.isFinite(age)&&age>45)warnings.push('Old category price policy '+page+': '+sourceDate+' ('+age+' days)');
   }
+  // Cards show the cheapest matched contract option and the largest same-option gift for
+  // the linked product, so each advertised figure must equal a figure that really exists in
+  // the catalogue (scripts/build-rental-category-pages.py builds the cards from products.json).
   const cards=[...html.matchAll(/<article class="category-product">([\s\S]*?)<\/article>/g)];
   for(const [,card] of cards){
-    const link=card.match(/href="product\/([^/"]+)\/\?mgmt=([^&"]+)&amp;term=([^"]+)"/);
-    const monthly=card.match(/월 렌탈료<strong>([\d,]+)원/);
-    const gift=card.match(/같은 조건 사은품<strong>([\d,]+원|상담 확인)/);
+    const link=card.match(/href="product\/([^/"]+)\/"/);
+    const monthly=card.match(/월 렌탈료<strong>(?:([\d,]+)원부터|상담 확인)<\/strong>/);
+    const gift=card.match(/고객사은품<strong>(?:최대 ([\d,]+)원|상담 확인)<\/strong>/);
     if(!link||!monthly||!gift){assert(false,'Incomplete price/benefit card on '+page);continue;}
-    const id=decodeURIComponent(link[1]),mgmt=decodeURIComponent(link[2]),term=decodeURIComponent(link[3]);
+    const id=decodeURIComponent(link[1]);
     const p=productIndex.get(id);
-    const matched=(p?.options||[]).some(o=>o.management===mgmt&&String(o.term)===term
-      &&Number(o.monthly)===Number(monthly[1].replaceAll(',',''))
-      &&(gift[1]==='상담 확인' ? o.gift==null || o.gift==='' : Number(o.gift)===Number(gift[1].replace('원','').replaceAll(',',''))));
-    assert(matched,'Price/gift mismatch: '+page+' / '+id+' ('+mgmt+' / '+term+')');
+    if(!p){assert(false,'Card links unknown product: '+page+' / '+id);continue;}
+    const options=(p.options||[]).filter(o=>sellableOption(o));
+    const monthlies=options.map(o=>Number(o.monthly)).filter(Number.isFinite);
+    const gifts=options.map(o=>roundGift(o.gift)).filter(v=>v!=null);
+    const expectedMonthly=monthlies.length?Math.min(...monthlies):null;
+    const expectedGift=gifts.length?Math.max(...gifts):null;
+    const shownMonthly=monthly[1]?Number(monthly[1].replaceAll(',','')):null;
+    const shownGift=gift[1]?Number(gift[1].replaceAll(',','')):null;
+    assert(shownMonthly===expectedMonthly,'Rental price mismatch: '+page+' / '+id+' (shown '+shownMonthly+', catalogue '+expectedMonthly+')');
+    assert(shownGift===expectedGift,'Gift mismatch: '+page+' / '+id+' (shown '+shownGift+', catalogue '+expectedGift+')');
     checkedCategoryOffers++;
   }
 }
