@@ -7,13 +7,14 @@ const quick=fs.readFileSync('assets/quick-order.js','utf8');
 const injected=fs.readFileSync('assets/site-pro.min.js','utf8');
 assert.match(html,/home-bold-readability-20261009\.css\?v=20261009-b1/);
 assert.ok(html.indexOf('home-bold-readability-20261009.css')>html.indexOf('quick-order.css'),'bold typography must load last');
-assert.match(html,/class="home-order-category-grid"/);
+assert.match(html,/class="home-entry-grid" id="home-order-choices"/);
 assert.match(html,/class="owner-note"/);
 assert.match(html,/class="principle-grid"/);
 assert.match(html,/class="home-trust-rail"/);
 assert.match(html,/class="access-badge"/);
 assert.match(injected,/storefront-head/);
-assert.match(quick,/home-order-option/);
+const entry=fs.readFileSync('assets/simple-entry-20261104.js','utf8');
+assert.match(entry,/home-direct-menu|home-self-compare/);
 for(const selector of [
   '.home-order-kicker','.home-order-category small','.home-order-choice-heading small',
   '.home-order-option small','.home-order-disclaimer','.home-order-detail-link',
@@ -34,7 +35,7 @@ assert.doesNotMatch(css,/@import\s+/i,'no external font download needed');
 const actions=fs.readFileSync('assets/home-link-button-nav-20261009.css','utf8');
 const dynamic=fs.readFileSync('assets/site-pro.min.js','utf8');
 assert.ok(html.includes('home-link-button-nav-20261009.css?v=20261009-color3'));
-assert.ok(html.includes('site-pro.min.js?v=20261009-linkbtn1'));
+assert.match(html,/src="assets\/site-pro\.min\.js\?v=[a-zA-Z0-9._-]+"/,'storefront link script loaded with a cache version');
 assert.ok(dynamic.includes("className='storefront-fallback-link'"));
 assert.ok(dynamic.includes('class="storefront-all"'));
 for(const key of [
@@ -55,7 +56,7 @@ console.log('Homepage CTA links and navigation: large button styles, dynamic fal
 const colors=fs.readFileSync('assets/home-colored-actions-20261009.css','utf8');
 const picker=fs.readFileSync('assets/quick-order.js','utf8');
 assert.ok(html.includes('home-colored-actions-20261009.css?v=20261009-b2'),'new 6-category palette loaded');
-assert.ok(html.includes('quick-order.js?v=20261009-b1'),'category state JS cache refreshed');
+assert.ok(html.includes('quick-order.css?v=20261104-three-actions'),'three-action picker stylesheet loaded');
 assert.ok(picker.includes('root.dataset.activeCategory=category;'),'UI state exposed for context color');
 const categories=['mobile','mvno','prepaid','internet','rental','visit'];
 for(const cat of categories)assert.ok(colors.includes('[data-quick-category="'+cat+'"]'),cat+' has own palette');

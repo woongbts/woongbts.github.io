@@ -12,7 +12,7 @@ const marker='Rental customer action clarity + readable policy details (2026-10-
 assert.ok(style.includes(marker),'shared detail stylesheet has new legibility rules');
 assert.match(home,/assets\/rental\.css\?v=[^\"]+/);
 for(const s of [template,featured])assert.ok(s.includes('assets/rental.css?v=20261017-card-picker1'),'product pages load card picker layout');
-assert.ok(catalog.includes('class="recommend-link"') && catalog.includes('조건 보기 →'),'recommend cards keep semantic link and destination');
+assert.ok(catalog.includes('class="recommend-link"') && catalog.includes('요금·조건 확인 →'),'recommend cards keep semantic link and destination');
 assert.ok(catalog.includes('class="compare-toggle small"'),'recommend compare control remains a button');
 assert.ok(catalog.includes('class="recent-card"'),'recent viewed whole-card link preserved');
 assert.ok(product.includes('조건 비교하기 →'),'alternative price comparison links preserved');

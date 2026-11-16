@@ -187,7 +187,7 @@ check("conversion-tracker.min.js" in index and "conversion-tracker.min.js" in ra
 check("pwa.min.js" in index and "pwa.min.js" in rates_html, "PWA registration wiring missing")
 check(Path("assets/device-images.js").exists(), "shared homepage device images missing")
 check("images.samsung.com" not in site, "A37 still depends on external image host")
-check("https://woongbts.github.io/rates.html" in Path("sitemap.xml").read_text(encoding="utf-8"), "rates page missing from sitemap")
+check("https://woongbts.kr/rates.html" in Path("sitemap.xml").read_text(encoding="utf-8"), "rates page missing from sitemap")
 
 # Public customer assets must not expose internal commercial/source terms.
 forbidden = ("리베이트", "판매점 수수료", "정산금액", "제로노트", "dealer_fee", "commission")

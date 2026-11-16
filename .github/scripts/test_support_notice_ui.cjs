@@ -31,7 +31,7 @@ async function render(data){
  const environment={
    HTMLDialogElement:class{},
    document,window:{localStorage:store,sessionStorage:store,addEventListener(){},removeEventListener(){}},
-   location:{origin:'https://woongbts.github.io'},
+   location:{origin:'https://woongbts.kr'},
    URL,Number,Date,JSON,Promise,
    Intl:{DateTimeFormat:class {format(){return '2026-10-08'}}},
    setTimeout:fn=>timers.push(fn),
@@ -53,10 +53,17 @@ async function render(data){
  assert.ok(summary,'fresh change has a green overview summary');
  const modelGroups=summary.children.filter(node=>node.className==='support-notice-summary-group');
  assert.equal(modelGroups.length,1,'three join types for one handset have one model heading');
- assert.equal(modelGroups[0].children[0].textContent,'KT · Moto g77','handset and carrier appear before amounts');
+ // Expectations follow the verified change data so a daily policy refresh cannot fake a pass or fail.
+ const eligible=previous.changes.filter(row=>row.before!==null&&row.after!==null&&row.before!==row.after).slice(0,3);
+ const headline=eligible[0];
+ const sameHandset=eligible.filter(row=>row.carrier===headline.carrier&&(row.device_id||row.device)===(headline.device_id||headline.device));
+ const money=value=>Number(value).toLocaleString('ko-KR')+'원';
+ assert.equal(modelGroups[0].children[0].textContent,headline.carrier+' · '+headline.device,'handset and carrier appear before amounts');
  const amountLines=modelGroups[0].children.filter(node=>node.className==='support-notice-summary-change');
- assert.equal(amountLines.length,3,'all three join-type amounts remain visible');
- assert.equal(amountLines[0].children[0].textContent,'기기변경');
- assert.equal(amountLines[0].children[1].textContent,'60,000원 → 300,000원');
+ assert.equal(amountLines.length,sameHandset.length,'every join-type amount for this handset remains visible');
+ sameHandset.forEach((row,index)=>{
+   assert.equal(amountLines[index].children[0].textContent,row.join,'join type '+index);
+   assert.equal(amountLines[index].children[1].textContent,money(row.before)+' → '+money(row.after),'support amount '+index);
+ });
  console.log('Support popup: stale notices suppressed; fresh verified changes prepared for modal.');
 })().catch(error=>{console.error(error);process.exit(1)});
