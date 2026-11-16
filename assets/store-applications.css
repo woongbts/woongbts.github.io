@@ -87,6 +87,22 @@
 }
 .store-application-intro strong{display:block;color:#245d59;font-size:.82rem}
 .store-application-intro p{margin:5px 0 0;color:#688082;font-size:.72rem;line-height:1.55}
+.store-application-response-note{
+  margin:0;
+  padding:10px 20px;
+  border-bottom:1px solid #e2ece9;
+  background:#fff;
+  color:#41605f;
+  font-size:.72rem;
+  line-height:1.6;
+}
+.store-success-card .store-application-response-note{
+  color:#5b7171;
+  font-weight:700;
+  border-bottom:0;
+  background:transparent;
+  padding:0 4px;
+}
 .store-application-summary{
   margin:14px 20px 0;
   padding:11px 12px;
