@@ -1,0 +1,96 @@
+/* Woongbi Telecom · homepage review-platform trust badges · 2026-11-17 */
+body.home-modern .home-review-proof{
+  position:relative;
+  z-index:1;
+  padding:16px 0 34px;
+}
+body.home-modern .home-review-badges{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:10px;
+}
+body.home-modern .review-badge{
+  min-width:0;
+  display:flex;
+  flex-direction:column;
+  gap:3px;
+  padding:12px 16px;
+  border:1px solid var(--home-line,#dce7e5);
+  border-radius:13px;
+  background:#fbfdfd;
+  color:var(--home-ink,#153b43);
+  text-decoration:none;
+  transition:border-color .15s ease,background .15s ease;
+}
+body.home-modern .review-badge:hover{
+  border-color:#bcdcd7;
+  background:#f2faf8;
+}
+body.home-modern .review-badge:focus-visible{
+  outline:2px solid var(--home-teal,#0f766e);
+  outline-offset:2px;
+  border-color:#bcdcd7;
+  background:#f2faf8;
+}
+body.home-modern .review-badge-platform{
+  color:#4f6b6d;
+  font-size:.88rem;
+  font-weight:850;
+  letter-spacing:-.01em;
+  line-height:1.4;
+}
+body.home-modern .review-badge-rating{
+  min-width:0;
+  display:flex;
+  align-items:center;
+  gap:7px;
+}
+body.home-modern .review-badge-stars{
+  color:#d78d09;
+  font-size:1rem;
+  line-height:1;
+  letter-spacing:.05em;
+}
+body.home-modern .review-badge-rating strong{
+  color:#123f46;
+  font-size:1.1rem;
+  font-weight:950;
+  letter-spacing:-.02em;
+  line-height:1.2;
+}
+body.home-modern .review-badge-count{
+  color:#54706f;
+  font-size:.88rem;
+  font-weight:800;
+  line-height:1.4;
+}
+body.home-modern .review-badge-count b{
+  color:#173e45;
+  font-weight:950;
+}
+body.home-modern .home-review-note{
+  margin:9px 0 0;
+  color:#5c7476;
+  font-size:.83rem;
+  font-weight:700;
+  line-height:1.5;
+}
+@media(max-width:760px){
+  body.home-modern .home-review-proof{padding:14px 0 26px}
+  body.home-modern .home-review-badges{grid-template-columns:minmax(0,1fr);gap:8px}
+  body.home-modern .review-badge{
+    display:grid;
+    grid-template-columns:minmax(0,1fr) auto;
+    align-items:center;
+    gap:2px 10px;
+    padding:11px 14px;
+  }
+  body.home-modern .review-badge-platform{grid-column:1;grid-row:1}
+  body.home-modern .review-badge-rating{grid-column:2;grid-row:1;justify-self:end}
+  body.home-modern .review-badge-count{grid-column:1/-1;grid-row:2}
+  body.home-modern .home-review-note{font-size:.85rem}
+}
+@media(max-width:360px){
+  body.home-modern .review-badge-stars{font-size:.84rem}
+  body.home-modern .review-badge-rating strong{font-size:.98rem}
+}
