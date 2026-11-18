@@ -495,7 +495,7 @@
   function decorateMobile(){
     const host=$('mobile-form');
     if(host && !host.querySelector('[data-store-mobile-apply]')){
-      const button=makeApplyButton('이 상품 상담 요청');
+      const button=makeApplyButton('이 조건으로 상담신청');
       button.dataset.storeMobileApply='1';
       button.type='button';
       button.addEventListener('click',()=>{
@@ -511,7 +511,7 @@
     const container=$('purpose-results');
     if(container)container.querySelectorAll('.purpose-card').forEach(card=>{
       if(card.querySelector('[data-store-purpose-apply]'))return;
-      const button=makeApplyButton('이 상품 상담 요청');
+      const button=makeApplyButton('이 상품 상담신청');
       button.dataset.storePurposeApply='1';button.type='button';
       button.addEventListener('click',event=>{
         event.preventDefault();event.stopPropagation();
@@ -747,6 +747,24 @@
       const detail=event.target.closest('[data-wired-provider]');
       const card=event.target.closest('.wired-compare-card');
       if(detail&&card)selectInternetCard(card);
+    });
+    // A general phone enquiry can be submitted without selecting a device first.
+    $('mobile-start-application')?.addEventListener('click',()=>{
+      openApplication({
+        category:'mobile',
+        product_id:'mobile:general-consultation',
+        product_name:'휴대폰 상담신청',
+        provider:'',
+        monthly:null,
+        gift:null,
+        detail:'희망 기종·통신사·가입유형은 상담 시 확인'
+      });
+    });
+    // Preserve the calculated handset and rate plan on the application.
+    $('mobile-quote-apply')?.addEventListener('click',()=>{
+      const ctx=selectedMobileContext();
+      if(!ctx){alert('기종과 요금제를 먼저 선택해 주세요. 일반 상담은 상단의 휴대폰 상담신청을 이용하실 수 있습니다.');return;}
+      openApplication(ctx);
     });
     ensureInternetSelectionBar();
     setupDirectQuoteChoices();
