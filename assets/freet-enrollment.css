@@ -351,6 +351,35 @@
 #mvno-other-feature .mvno-other-plan-spec-row dt{font-weight:900}
 #mvno-other-feature .mvno-other-plan-spec-row dd{margin:0;overflow-wrap:anywhere}
 #mvno-other-feature .mvno-other-plan-note{margin:0;color:#516577;font-size:13px;line-height:1.6;word-break:keep-all}
+#mvno-other-feature .mvno-other-plan-actions{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:8px;
+}
+#mvno-other-feature .mvno-other-plan-apply,
+#mvno-other-feature .mvno-other-plan-consult{
+  box-sizing:border-box;
+  width:100%;
+  min-width:0;
+  border:1px solid #156f82;
+  font-family:inherit;
+  text-align:center;
+  cursor:pointer;
+}
+#mvno-other-feature .mvno-other-plan-apply{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-height:44px;
+  padding:9px 8px;
+  border-radius:9px;
+  background:#fff;
+  color:#156f82;
+  font-size:14px;
+  font-weight:900;
+}
+#mvno-other-feature .mvno-other-plan-apply:focus-visible,
+#mvno-other-feature .mvno-other-plan-consult:focus-visible{outline:3px solid #f59e0b;outline-offset:2px}
 #mvno-other-feature .mvno-other-plan-consult{
   display:flex;
   align-items:center;
