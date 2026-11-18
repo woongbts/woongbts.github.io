@@ -243,9 +243,32 @@
       } else if (otherFee(plan) !== null && Number(plan.regular_monthly_fee) > otherFee(plan)) {
         expanded.append(make('p','mvno-other-plan-note','할인 적용 요금입니다. 할인 기간과 이후 요금을 확인해 주세요.'));
       }
-      const action = make('a','mvno-other-plan-consult','매장 상담·개통 문의 →');
+      // Keep the phone option while letting visitors request a callback for this exact plan.
+      const actions = make('div','mvno-other-plan-actions');
+      const apply = make('button','mvno-other-plan-apply','상담신청');
+      apply.type = 'button';
+      apply.addEventListener('click',() => {
+        const open = window.WoongbiStoreApplication?.open;
+        if (typeof open !== 'function') { window.location.href = 'tel:0513437677'; return; }
+        open({
+          category: 'mvno',
+          product_id: 'mvno:' + String(plan.provider_id) + ':' + String(plan.id),
+          product_name: plan.name || '알뜰폰 요금제',
+          provider: providerName,
+          monthly: otherFee(plan),
+          gift: null,
+          detail: [
+            plan.network ? networkName(plan.network) + '망' : '',
+            plan.data ? '데이터 ' + String(plan.data) : '',
+            plan.voice ? '통화 ' + String(plan.voice) : '',
+            plan.sms ? '문자 ' + String(plan.sms) : ''
+          ].filter(Boolean).join(' · ')
+        });
+      });
+      const action = make('a','mvno-other-plan-consult','전화 상담 →');
       action.href = 'tel:0513437677';
-      expanded.append(action);
+      actions.append(apply,action);
+      expanded.append(actions);
       card.append(heading,expanded);
       card.addEventListener('toggle',() => {
         if (!card.open) return;
