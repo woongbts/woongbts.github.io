@@ -453,3 +453,18 @@
   .rate-page .store-visit-btn{transition:none;}
   .rate-page .store-visit-btn:hover{transform:none;}
 }
+
+/* Visible mobile consultation entry and exact-quote application · 2026-11-18 */
+.rate-panel[data-panel="mobile"] .mobile-consult-entry{display:flex;align-items:center;justify-content:space-between;gap:14px;margin:14px 0 16px;padding:15px 16px;border:1px solid #b9dbd3;border-radius:14px;background:#f3faf7;box-sizing:border-box}
+.rate-panel[data-panel="mobile"] .mobile-consult-entry-copy{flex:1;min-width:0}
+.rate-panel[data-panel="mobile"] .mobile-consult-entry strong{display:block;color:#174f4c;font-size:17px;font-weight:900;line-height:1.4}
+.rate-panel[data-panel="mobile"] .mobile-consult-entry p{margin:5px 0 0;color:#4a6766;font-size:14px;line-height:1.55;word-break:keep-all}
+.rate-panel[data-panel="mobile"] #mobile-start-application,
+.rate-panel[data-panel="mobile"] #mobile-quote-apply{min-height:48px;box-sizing:border-box;border:0;border-radius:11px;padding:11px 18px;background:#0f766e;color:#fff;font:inherit;font-weight:900;font-size:16px;line-height:1.35;cursor:pointer;white-space:nowrap}
+.rate-panel[data-panel="mobile"] #mobile-start-application:hover,
+.rate-panel[data-panel="mobile"] #mobile-quote-apply:hover{background:#0a655e}
+.rate-panel[data-panel="mobile"] #mobile-start-application:focus-visible,
+.rate-panel[data-panel="mobile"] #mobile-quote-apply:focus-visible{outline:3px solid #e5a12c;outline-offset:3px}
+.rate-panel[data-panel="mobile"] .quote-tools #mobile-quote-apply{display:flex;align-items:center;justify-content:center;width:100%;grid-column:1/-1;white-space:normal}
+.rate-panel[data-panel="mobile"] .purpose-card-actions>.store-apply-btn{min-height:50px;font-size:16px;font-weight:950}
+@media(max-width:640px){.rate-panel[data-panel="mobile"] .mobile-consult-entry{flex-direction:column;align-items:stretch;padding:13px 14px;gap:10px}.rate-panel[data-panel="mobile"] #mobile-start-application{width:100%}}
