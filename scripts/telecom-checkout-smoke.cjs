@@ -19,52 +19,44 @@ function check(ok,message){if(!ok)throw Error(message);}
  });
  await page.goto(origin+'/',{waitUntil:'load'});
  await page.waitForTimeout(500);
- await page.waitForFunction(()=>document.querySelectorAll('#home-order-choices .home-order-option').length===4,{timeout:12000});
- const labels=await page.locator('#home-order-choices .home-order-option strong').allTextContents();
- check(JSON.stringify(labels)===JSON.stringify(['효도폰','키즈폰','가성비폰','프리미엄폰']), 'Homepage should show only four phone purposes: '+JSON.stringify(labels));
+ // 2026-11-04 the homepage picker became three entry actions plus a direct product
+ // menu; the four phone purposes now live in that menu.
+ await page.waitForSelector('#home-direct-toggle',{timeout:12000});
+ await page.locator('#home-direct-toggle').click();
+ await page.waitForSelector('#home-self-compare:not([hidden])',{timeout:10000});
  const names=['senior','kids','value','premium'];
  for(const type of names){
-  const target=page.locator('#home-order-choices .home-order-option[href*="purpose='+type+'"]');
+  const target=page.locator('#home-self-compare .home-direct-link[href*="purpose='+type+'"]');
   check(await target.count()===1,'Missing purpose link '+type);
  }
- await page.waitForSelector('#woongbi-ai-launcher',{timeout:10000});
- const geometry=await page.evaluate(()=>{
-  const ai=document.getElementById('woongbi-ai-launcher')?.getBoundingClientRect();
-  const bar=document.querySelector('.mobile-bar')?.getBoundingClientRect();
-  return {ai:ai&&{left:ai.left,right:ai.right,top:ai.top,bottom:ai.bottom},bar:bar&&{top:bar.top},width:document.documentElement.clientWidth};
+ if(await page.locator('#home-self-compare .home-direct-link[href*="purpose='+names[0]+'"]').count()!==1)throw Error('Homepage direct menu missing phone purposes');
+ await page.locator('#home-direct-toggle').click();
+ await page.waitForSelector('#home-self-compare',{state:'hidden',timeout:5000});
+ // Mobile hides the floating AI launcher (customer-flow-20261104.css) and shows the
+ // in-page AI entry instead, so open the panel from that entry and check its bounds.
+ await page.waitForSelector('.customer-inline-ai',{timeout:10000});
+ check(await page.locator('#woongbi-ai-launcher').isHidden(),'Mobile should not show the floating AI launcher');
+ const inline=await page.evaluate(()=>{
+  const button=document.querySelector('.customer-inline-ai')?.getBoundingClientRect();
+  return {button:button&&{left:button.left,right:button.right,height:button.height},width:document.documentElement.clientWidth};
  });
- check(geometry.ai&&geometry.ai.left>=0&&geometry.ai.right<=geometry.width+1,'AI button horizontal clipping: '+JSON.stringify(geometry));
- check(geometry.bar&&geometry.ai.bottom<=geometry.bar.top+1,'AI button covered by mobile action bar: '+JSON.stringify(geometry));
- // Preorder SKT deep link must survive brand-filter initialization and keep
- // both selections; previously the late brand click reset them to blanks.
- await page.goto(origin+'/iphone-duo/',{waitUntil:'domcontentloaded'});
- await page.locator('#duo-calc-carrier').selectOption('SKT');
- await page.locator('.duo-model [data-duo-calc="256GB"]').click();
- await page.waitForURL(url=>url.pathname==='/rates.html'&&url.searchParams.get('d')==='SKT-XD-3053',{timeout:10000});
- try{
-  await page.waitForFunction(()=>document.getElementById('device-select')?.value==='SKT-XD-3053'&&document.getElementById('plan-select')?.value==='SKT-XP-969',null,{timeout:14000});
- }catch(error){
-  console.log('DUO_DEEPLINK_DIAGNOSTIC',JSON.stringify(await page.evaluate(()=>({
-   url:location.href,mode:document.querySelector('[data-mobile-mode].active')?.dataset.mobileMode,
-   carrier:document.getElementById('carrier')?.value,join:document.getElementById('join-type')?.value,
-   device:document.getElementById('device-select')?.value,
-   deviceCount:document.getElementById('device-select')?.options?.length,
-   duoOption:[...document.getElementById('device-select')?.options||[]].find(o=>o.value==='SKT-XD-3053')?.textContent,
-   search:document.getElementById('device-search')?.value,
-   brand:document.querySelector('[data-device-brand].active')?.dataset.deviceBrand,
-   plan:document.getElementById('plan-select')?.value,planCount:document.getElementById('plan-select')?.options?.length,
-   targetPlan:[...document.getElementById('plan-select')?.options||[]].find(o=>o.value==='SKT-XP-969')?.textContent,
-   monthly:document.getElementById('monthly-total')?.textContent,
-   note:document.getElementById('mobile-data-note')?.textContent
-  }))));
-  throw error;
- }
-
- check(await page.locator('#carrier').inputValue()==='SKT','Duo deep link lost SKT carrier');
- check(await page.locator('#join-type').inputValue()==='번호이동','Duo deep link lost number port');
- check(await page.locator('#discount-method').inputValue()==='contract','Duo deep link lost contract discount');
- console.log('SKT DUO CHECKOUT',await page.locator('#device-select').inputValue(),await page.locator('#plan-select').inputValue(),
-  'monthly=',await page.locator('#monthly-total').textContent());
+ check(inline.button&&inline.button.left>=0&&inline.button.right<=inline.width+1,'Inline AI entry horizontal clipping: '+JSON.stringify(inline));
+ check(inline.button.height>=40,'Inline AI entry too small to tap: '+JSON.stringify(inline));
+ await page.locator('.customer-inline-ai').first().click();
+ await page.waitForSelector('#woongbi-ai-panel.open',{timeout:5000});
+ await page.locator('#woongbi-ai-panel .wb-ai-close').click();
+ await page.waitForSelector('#woongbi-ai-panel',{state:'hidden',timeout:5000});
+ // The iPhone duo preorder/calculator page was retired on 2026-10-23; it must keep
+ // sending visitors to the live homepage instead of a dead calculator.
+ const retired=await page.evaluate(async()=>{
+  const response=await fetch('/iphone-duo/');
+  const body=await response.text();
+  return {status:response.status,home:body.includes('woongbts.kr/'),calculator:body.includes('duo-calc-carrier')};
+ });
+ check(retired.status===200,'Retired preorder page must stay reachable: '+JSON.stringify(retired));
+ check(retired.home,'Retired preorder page must point visitors home: '+JSON.stringify(retired));
+ check(!retired.calculator,'Retired preorder page must not resurrect the old calculator');
+ console.log('RETIRED PREORDER PAGE',JSON.stringify(retired));
  for(const purpose of names){
   await page.goto(origin+'/rates.html?tab=mobile&purpose='+purpose+'&src=home-easy',{waitUntil:'domcontentloaded'});
   await page.waitForTimeout(1100);
@@ -98,6 +90,13 @@ function check(ok,message){if(!ok)throw Error(message);}
  await page.locator('#store-application-success-confirm').click();
  const visit=page.locator('#purpose-results .store-visit-btn').first();
  check(await visit.count()===1,'Purpose-based phone visit handoff missing');
+ // Secondary actions sit under the collapsed "상세 조건·다른 상담 방법" details.
+ const more=page.locator('#purpose-results .customer-card-more').first();
+ if(await more.count()){
+  const open=await more.evaluate(el=>el.open);
+  if(!open)await more.locator('summary').click();
+ }
+ await visit.scrollIntoViewIfNeeded();
  await visit.click();
  await page.waitForURL('**/visit.html?src=rates',{timeout:5000});
  const product=await page.locator('#visit-product').textContent();

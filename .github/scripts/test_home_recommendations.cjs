@@ -49,7 +49,8 @@ assert.ok(homeLoader.includes(html.match(/src="(\/assets\/home-recommend-api\.mi
 assert.equal(html.includes('이런 분들이 많이 찾아오세요'),false);
 assert.ok(html.includes('블로그·SNS'));
 const storefront=fs.readFileSync('assets/site-pro.min.js','utf8');
-assert.ok(storefront.includes('갤럭시 A18 LTE·갤럭시 버디5'),'homepage senior heading must match pinned device');
+assert.ok(storefront.includes('부모님폰은 저렴한 기종과 요금제를 추천합니다'),'homepage senior intro copy must keep the current simplified wording');
+assert.equal(storefront.includes('갤럭시 A18 LTE·갤럭시 버디5'),false,'homepage intro copy must not hard-code device names (pinned devices come from the recommendation API)');
 assert.ok(storefront.includes('WoongbiRecommendationV2'),'homepage must render server recommendations');
 assert.equal(storefront.includes('bookingRedirectUrl='),false);
 

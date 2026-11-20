@@ -14,11 +14,12 @@ const assert=require('node:assert/strict');
    const context=await browser.newContext({viewport:{width:target.width,height:target.height},deviceScaleFactor:1,serviceWorkers:'block'});
    const page=await context.newPage();
    await page.goto('http://127.0.0.1:4173/',{waitUntil:'domcontentloaded'});
-   await page.locator('.home-order-category small').first().waitFor();
+   await page.locator('#home-order-choices strong').first().waitFor();
    const expectations=[
     {css:'.home-order-heading .home-order-kicker',minSize:14,minWeight:850},
-    {css:'.home-order-category small',minSize:target.mobile?14:16,minWeight:700},
-    {css:'.home-order-option small',minSize:target.mobile?14:16,minWeight:700},
+    {css:'.home-entry-grid strong',minSize:target.mobile?19:21,minWeight:700},
+    {css:'.home-entry-grid span',minSize:target.mobile?14:15,minWeight:400},
+    {css:'.home-entry-phone a',minSize:target.mobile?16:17,minWeight:800},
     {css:'.home-order-disclaimer',minSize:target.mobile?14:15,minWeight:700},
     {css:'.hero .intro',minSize:target.mobile?16:18,minWeight:700},
     {css:'.home-trust-rail span',minSize:target.mobile?14:15,minWeight:700},
@@ -41,37 +42,92 @@ const assert=require('node:assert/strict');
    const layout=await page.evaluate(()=>({
      width:window.innerWidth,
      quick:(()=>{const r=document.querySelector('.home-order').getBoundingClientRect();return{left:r.left,right:r.right}})(),
-     category:(()=>{const r=document.querySelector('.home-order-category').getBoundingClientRect();return{left:r.left,right:r.right}})(),
+     entry:(()=>{const r=document.getElementById('home-order-choices').getBoundingClientRect();return{left:r.left,right:r.right}})(),
      trust:(()=>{const r=document.querySelector('.home-trust-rail').getBoundingClientRect();return{left:r.left,right:r.right}})(),
    }));
-   for(const key of ['quick','category','trust']){
+   for(const key of ['quick','entry','trust']){
     assert.ok(layout[key].left>=-3&&layout[key].right<=layout.width+3,
       target.name+' '+key+' overflow: '+JSON.stringify(layout));
    }
-   // Six category tiles, four distinct phone-purpose choices, eight real links.
-   await page.waitForFunction(()=>document.getElementById('quick-order')?.dataset.activeCategory==='mobile' && document.querySelectorAll('#home-order-choices .home-order-option').length===4);
-   const quickColors=await page.locator('.home-order-category').evaluateAll(nodes=>nodes.map(node=>{
-     const st=getComputedStyle(node);
-     const box=node.getBoundingClientRect();
-     return {type:node.dataset.quickCategory,bg:st.backgroundColor,color:st.color,left:box.left,right:box.right};
-   }));
-   assert.equal(quickColors.length,6,target.name+' six category actions');
-   assert.equal(new Set(quickColors.map(x=>x.bg)).size,6,target.name+' every category has its own background');
-   quickColors.forEach(x=>{
-     assert.equal(x.color,'rgb(255, 255, 255)',target.name+' '+x.type+' has white label');
-     assert.ok(x.left>=-3 && x.right<=target.width+3,target.name+' '+x.type+' fits viewport');
+   // Three consultation/comparison entries with distinct fills, one direct-menu toggle.
+   const entries=await page.locator('#home-order-choices > a, #home-order-choices > button').evaluateAll(nodes=>{
+     const channels=value=>{
+       const parts=(value.match(/[\d.]+/g)||[]).map(Number);
+       return parts.slice(0,3);
+     };
+     const luminance=color=>{
+       const rgb=channels(color).map(v=>{
+         const s=v/255;
+         return s<=0.03928?s/12.92:Math.pow((s+0.055)/1.055,2.4);
+       });
+       return 0.2126*rgb[0]+0.7152*rgb[1]+0.0722*rgb[2];
+     };
+     const contrast=(a,b)=>{
+       const l1=luminance(a),l2=luminance(b);
+       return (Math.max(l1,l2)+0.05)/(Math.min(l1,l2)+0.05);
+     };
+     return nodes.map(node=>{
+       const st=getComputedStyle(node),box=node.getBoundingClientRect();
+       const strong=node.querySelector('strong');
+       const color=strong?getComputedStyle(strong).color:st.color;
+       return {
+         label:node.getAttribute('id')||node.className,
+         bg:st.backgroundColor,
+         color,
+         contrast:Number(contrast(color,st.backgroundColor).toFixed(2)),
+         height:box.height,
+         left:box.left,
+         right:box.right,
+         href:node.getAttribute('href')||''
+       };
+     });
    });
-   const phoneColors=await page.locator('#home-order-choices .home-order-option').evaluateAll(nodes=>nodes.map(node=>{
-     const st=getComputedStyle(node);
-     const box=node.getBoundingClientRect();
-     return {bg:st.backgroundColor,color:st.color,left:box.left,right:box.right,href:node.href};
-   }));
-   assert.equal(phoneColors.length,4,target.name+' four phone selections');
-   assert.equal(new Set(phoneColors.map(x=>x.bg)).size,4,target.name+' each phone purpose has its own color');
-   phoneColors.forEach(x=>{
-     assert.equal(x.color,'rgb(255, 255, 255)',target.name+' phone choice is legible');
-     assert.ok(x.left>=-3 && x.right<=target.width+3,target.name+' phone choice fits viewport');
+   assert.equal(entries.length,3,target.name+' three entry actions');
+   assert.equal(new Set(entries.map(x=>x.bg)).size,3,target.name+' every entry action has its own fill');
+   entries.forEach(x=>{
+    assert.ok(x.bg!=='rgba(0, 0, 0, 0)' && x.bg!=='rgb(255, 255, 255)',target.name+' '+x.label+' has a solid fill');
+    assert.ok(x.contrast>=4.5,target.name+' '+x.label+' label contrast too low: '+JSON.stringify(x));
+    assert.ok(x.height>=90,target.name+' '+x.label+' tall enough: '+JSON.stringify(x));
+    assert.ok(x.left>=-3 && x.right<=target.width+3,target.name+' '+x.label+' fits viewport');
    });
+   const kakao=entries.find(x=>/kakao\.com/.test(x.href));
+   assert.ok(kakao,target.name+' keep the Kakao consultation entry');
+   const compare=entries.find(x=>/rates\.html/.test(x.href));
+   assert.ok(compare,target.name+' keep the direct comparison entry');
+   const phoneLink=page.locator('.home-entry-phone a').first();
+   const phoneStyles=await phoneLink.evaluate(el=>{
+     const st=getComputedStyle(el),box=el.getBoundingClientRect();
+     return {bg:st.backgroundColor,color:st.color,height:box.height,left:box.left,right:box.right};
+   });
+   assert.ok(phoneStyles.bg!=='rgba(0, 0, 0, 0)' && phoneStyles.bg!=='rgb(255, 255, 255)',target.name+' phone entry has a solid fill');
+   assert.ok(phoneStyles.height>=48,target.name+' phone entry tall enough');
+   assert.ok(phoneStyles.left>=-3 && phoneStyles.right<=target.width+3,target.name+' phone entry fits viewport');
+   // The direct product menu stays closed until asked, then offers every product route.
+   assert.equal(await page.locator('#home-self-compare').isHidden(),true,target.name+' direct menu starts closed');
+   await page.locator('#home-direct-toggle').click();
+   await page.locator('#home-self-compare').waitFor({state:'visible'});
+   assert.equal(await page.locator('#home-direct-toggle').getAttribute('aria-expanded'),'true',target.name+' toggle reports the open menu');
+   const directLinks=await page.locator('#home-self-compare .home-direct-link').evaluateAll(nodes=>nodes.map(node=>{
+     const box=node.getBoundingClientRect(),strong=node.querySelector('strong');
+     return {
+       href:node.getAttribute('href')||'',
+       height:box.height,
+       left:box.left,
+       right:box.right,
+       titleColor:strong?getComputedStyle(strong).color:''
+     };
+   }));
+   assert.equal(directLinks.length,11,target.name+' eleven direct product links');
+   directLinks.forEach(x=>{
+    assert.ok(x.href&&x.href!=='#',target.name+' direct link has a destination: '+JSON.stringify(x));
+    assert.ok(x.height>=44,target.name+' direct link tall enough: '+JSON.stringify(x));
+    assert.ok(x.left>=-3 && x.right<=target.width+3,target.name+' direct link fits viewport: '+JSON.stringify(x));
+   });
+   for(const route of ['purpose=senior','purpose=kids','tab=studyphone','purpose=value','purpose=premium','tab=mvno','/freet/apply/','tab=internet','/rental/']){
+    assert.ok(directLinks.some(x=>x.href.includes(route)),target.name+' direct menu keeps '+route);
+   }
+   await page.locator('#home-direct-toggle').click();
+   await page.locator('#home-self-compare').waitFor({state:'hidden'});
    const serviceButtons=await page.locator('.service-card .service-links a').evaluateAll(nodes=>nodes.map(node=>{
      const st=getComputedStyle(node),box=node.getBoundingClientRect();
      return {bg:st.backgroundColor,color:st.color,height:box.height,left:box.left,right:box.right,href:node.getAttribute('href')};
@@ -82,13 +138,7 @@ const assert=require('node:assert/strict');
      assert.ok(x.height>=44,target.name+' action is tall enough: '+JSON.stringify(x));
      assert.ok(x.left>=-3 && x.right<=target.width+3,target.name+' action fits: '+JSON.stringify(x));
    });
-   await page.locator('[data-quick-category="mvno"]').click();
-   await page.waitForFunction(()=>document.getElementById('quick-order')?.dataset.activeCategory==='mvno');
-   assert.equal(await page.locator('#home-order-choices .home-order-option').count(),2,target.name+' switching to MVNO keeps its two links');
-   await page.locator('[data-quick-category="mobile"]').click();
-   await page.waitForFunction(()=>document.getElementById('quick-order')?.dataset.activeCategory==='mobile');
-   assert.equal(await page.locator('#home-order-choices .home-order-option').count(),4,target.name+' mobile selections recover after switching');
-   console.log('PASS',target.name,target.width+'px: 6 colored categories, 4 phone choices, 8 service actions and 11 typography regions');
+   console.log('PASS',target.name,target.width+'px: 3 colored entry actions, 11 direct product links, 8 service actions and 12 typography regions');
    await context.close();
   }
  }finally{

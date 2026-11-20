@@ -5,7 +5,7 @@ const html=fs.readFileSync('rental/index.html','utf8');
 const css=fs.readFileSync('rental/assets/readability-20261009.css','utf8');
 assert.match(html,/readability-20261009\.css\?v=20261009-1/,'new large-text stylesheet is loaded');
 assert.ok(html.indexOf('readability-20261009.css')>html.indexOf('ai-recommend.css'),'accessibility styles override older small-type rules');
-assert.match(html,/사장님이 직접 확인하고 안내합니다\./);
+assert.match(html,/접수 전 조건은 제가 다시 확인합니다\./);
 assert.doesNotMatch(html,/웅비통신 덕천만덕점이 직접 확인하고 안내합니다/);
 assert.match(html,/href="product\/cp-aqs100ewh\/"[^>]*>이 상품 상세 조건 보기/);
 assert.ok(fs.existsSync('rental/product/cp-aqs100ewh/index.html'),'featured product resolves to a real detail page');
