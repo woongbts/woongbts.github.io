@@ -11,7 +11,7 @@
   --bg:#f3f5f8; --bg2:#ffffff; --card:#ffffff; --text:#0f1720; --muted:#5b6b7b;
   --line:#e2e7ed; --line2:#eef1f5; --code-bg:#eef2f6; --sel:#e2f2ef;
   --accent:#0f766e; --accent-soft:#d9efeb;
-  --exec:#c2680a; --file:#0369a1; --usb:#6d28d9; --system:#047857; --account:#be123c;
+  --exec:#c2680a; --file:#0369a1; --usb:#6d28d9; --wifi:#08798b; --system:#047857; --account:#be123c;
   --shadow:0 10px 30px rgba(15,23,32,.10); --shadow-s:0 2px 8px rgba(15,23,32,.06);
 }
 @media (prefers-color-scheme: dark){
@@ -19,7 +19,7 @@
     --bg:#0b1015; --bg2:#101820; --card:#141c25; --text:#e8eef5; --muted:#94a3b3;
     --line:#22303d; --line2:#1a2530; --code-bg:#0d141b; --sel:#12322d;
     --accent:#2dd4bf; --accent-soft:#0e2b28;
-    --exec:#fbbf24; --file:#38bdf8; --usb:#a78bfa; --system:#34d399; --account:#fb7185;
+    --exec:#fbbf24; --file:#38bdf8; --usb:#a78bfa; --wifi:#67e8f9; --system:#34d399; --account:#fb7185;
     --shadow:0 12px 34px rgba(0,0,0,.5); --shadow-s:0 2px 8px rgba(0,0,0,.35);
   }
 }
@@ -27,14 +27,14 @@ html[data-theme="light"]{
   --bg:#f3f5f8; --bg2:#ffffff; --card:#ffffff; --text:#0f1720; --muted:#5b6b7b;
   --line:#e2e7ed; --line2:#eef1f5; --code-bg:#eef2f6; --sel:#e2f2ef;
   --accent:#0f766e; --accent-soft:#d9efeb;
-  --exec:#c2680a; --file:#0369a1; --usb:#6d28d9; --system:#047857; --account:#be123c;
+  --exec:#c2680a; --file:#0369a1; --usb:#6d28d9; --wifi:#08798b; --system:#047857; --account:#be123c;
   --shadow:0 10px 30px rgba(15,23,32,.10); --shadow-s:0 2px 8px rgba(15,23,32,.06);
 }
 html[data-theme="dark"]{
   --bg:#0b1015; --bg2:#101820; --card:#141c25; --text:#e8eef5; --muted:#94a3b3;
   --line:#22303d; --line2:#1a2530; --code-bg:#0d141b; --sel:#12322d;
   --accent:#2dd4bf; --accent-soft:#0e2b28;
-  --exec:#fbbf24; --file:#38bdf8; --usb:#a78bfa; --system:#34d399; --account:#fb7185;
+  --exec:#fbbf24; --file:#38bdf8; --usb:#a78bfa; --wifi:#67e8f9; --system:#34d399; --account:#fb7185;
   --shadow:0 12px 34px rgba(0,0,0,.5); --shadow-s:0 2px 8px rgba(0,0,0,.35);
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
@@ -107,7 +107,7 @@ html[data-theme="dark"] .tabbar button.on, .tabbar button.on{color:#fff}
 .pill.on{background:var(--text);color:var(--bg);border-color:var(--text)}
 .pill .pdot{display:inline-block;width:6px;height:6px;border-radius:99px;margin-right:6px;vertical-align:1px;background:var(--c)}
 .pill[data-cat="exec"]{--c:var(--exec)} .pill[data-cat="file"]{--c:var(--file)}
-.pill[data-cat="usb"]{--c:var(--usb)} .pill[data-cat="system"]{--c:var(--system)}
+.pill[data-cat="usb"]{--c:var(--usb)} .pill[data-cat="wifi"]{--c:var(--wifi)} .pill[data-cat="system"]{--c:var(--system)}
 .pill[data-cat="account"]{--c:var(--account)} .pill[data-cat="all"]{--c:var(--muted)}
 
 /* ---------- cards ---------- */
@@ -401,13 +401,14 @@ mark{background:var(--accent-soft);color:inherit;border-radius:3px;padding:0 1px
    데이터
    ========================================================= */
 const CATS = {
+  wifi:   {label:'무선 네트워크',  short:'와이파이'},
   exec:   {label:'실행 흔적',      short:'실행'},
   file:   {label:'파일·폴더 열람', short:'파일'},
   usb:    {label:'USB·외부장치',   short:'USB'},
   system: {label:'시스템·네트워크',short:'시스템'},
   account:{label:'계정·보안',      short:'계정'}
 };
-const CAT_ORDER = ['exec','file','usb','system','account'];
+const CAT_ORDER = ['wifi','exec','file','usb','system','account'];
 
 const ART = [
 /* ---------------- 실행 흔적 ---------------- */
@@ -938,7 +939,7 @@ const ART = [
 },
 {
   "id": "networksig",
-  "cat": "system",
+  "cat": "wifi",
   "title": "NetworkList Signatures",
   "sub": "프로필 매핑·게이트웨이 MAC",
   "path": "HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\NetworkList\\Signatures\\Unmanaged",
@@ -971,7 +972,7 @@ const ART = [
 },
 {
   "id": "wirelessnla",
-  "cat": "system",
+  "cat": "wifi",
   "title": "NetworkList Nla Wireless",
   "sub": "무선 네트워크 보조 경로",
   "path": "HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\NetworkList\\Nla\\Wireless",
@@ -993,7 +994,7 @@ const ART = [
   ]
 },
 {
-  id:'networklist', cat:'system', hot:true,
+  id:'networklist', cat:'wifi', hot:true,
   title:'NetworkList\\Profiles',
   sub:'네트워크 프로필 · 생성/마지막 연결 기록',
   path:'HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\NetworkList\\Profiles\\{GUID}',
@@ -1378,6 +1379,24 @@ function cardHtml(a, withCat){
   </div>`;
 }
 
+/* 무선 네트워크: 레지스트리 외의 원자료를 별도 안내한다. */
+const WLAN_XML_PATH = 'C:\\ProgramData\\Microsoft\\Wlansvc\\Profiles\\Interfaces\\{인터페이스GUID}\\{프로필GUID}.xml';
+const WLAN_EVT_PATH = 'C:\\Windows\\System32\\winevt\\Logs\\Microsoft-Windows-WLAN-AutoConfig%4Operational.evtx';
+function wifiGuideHtml(){
+  return '<section class="panel" style="margin:12px 0 16px;border-left:3px solid var(--wifi)">' +
+    '<h2>📶 무선 네트워크 실기 핵심</h2>' +
+    '<p class="lead">레지스트리의 네트워크 프로필, 저장된 Wi-Fi XML, 실제 연결/해제 이벤트는 서로 다른 증거다. ProfileName은 실제 SSID와 다를 수 있다.</p>' +
+    '<div class="hrow"><div class="hl">저장된 Wi-Fi SSID · 인증/암호화 설정 (레지스트리 외 XML)</div>' +
+      '<div class="hf">'+esc(WLAN_XML_PATH)+'</div><span class="cbtn sm" data-copy="'+esc(WLAN_XML_PATH)+'" role="button" tabindex="0">복사</span></div>' +
+    '<div class="hrow"><div class="hl">연결 성공 8001 / 연결 해제 8003 (이벤트 로그)</div>' +
+      '<div class="hf">'+esc(WLAN_EVT_PATH)+'</div><span class="cbtn sm" data-copy="'+esc(WLAN_EVT_PATH)+'" role="button" tabindex="0">복사</span></div>' +
+    '<ol class="steps">' +
+      '<li><b>SOFTWARE NetworkList\\Profiles:</b> ProfileName, DateCreated, DateLastConnected 확인 (16바이트 SYSTEMTIME; 시간대 검증)</li>' +
+      '<li><b>NetworkList\\Signatures:</b> ProfileGuid로 프로필 연결, DefaultGatewayMac은 PC MAC/BSSID와 구별</li>' +
+      '<li><b>WLAN XML:</b> 저장된 SSID 확인. XML 프로필 GUID와 NetworkList 프로필 GUID가 같다고 가정하지 않기</li>' +
+      '<li><b>WLAN-AutoConfig:</b> 실제 연결/해제 시각은 8001/8003 등 이벤트 세부 정보로 보강</li>' +
+    '</ol><p class="lead">주의: 네트워크 프로필이 존재한다고 해서 사건 시각의 연결, 현장 체류 또는 실제 사용자를 확정할 수는 없다. 이벤트가 누락될 수도 있다.</p></section>';
+}
 function renderEvidence(){
   const list = state.cat==='all' ? ART : ART.filter(a=>a.cat===state.cat);
   let html = '';
@@ -1389,6 +1408,7 @@ function renderEvidence(){
       <div class="cards">${items.map(cardHtml).join('')}</div>
     </section>`;
   });
+  if(state.cat==='wifi') html = wifiGuideHtml() + html;
   if(!html) html = `<div class="empty"><div class="big">🔍</div>해당 카테고리에 아티팩트가 없어요.</div>`;
   $('#evidenceList').innerHTML = html;
 }
