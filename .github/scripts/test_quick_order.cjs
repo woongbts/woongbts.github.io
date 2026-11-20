@@ -15,10 +15,10 @@ new vm.Script(direct,{filename:'rates-deeplink.js'});
 
 // 1. Three entry actions, each with its own job: 카톡 상담 · 상품 찾기 · 요금 비교.
 assert.match(homepage,/class="home-entry-grid" id="home-order-choices" aria-label="이용 방법 선택"/);
-assert.match(homepage,/<a class="home-entry-primary" href="http:\/\/pf\.kakao\.com\/_nWwNT\/chat" target="_blank" rel="noopener noreferrer"><strong>카톡 바로 상담<\/strong><span>[^<]+<\/span>/,'카톡 상담 entry keeps the store chat link');
-assert.match(homepage,/<button type="button" class="home-direct-toggle" id="home-direct-toggle" aria-controls="home-self-compare" aria-expanded="false"><strong>상품별 바로 찾기<\/strong><span>[^<]+<\/span>/,'product entry is a real toggle button');
-assert.match(homepage,/<a class="home-entry-secondary" id="home-compare-open" href="\/rates\.html\?tab=mobile&amp;src=home-easy-fee"><strong>요금 직접 비교<\/strong><span>[^<]+<\/span>/,'fee comparison entry goes to the calculator');
-const entryLabels=['카톡 바로 상담','상품별 바로 찾기','요금 직접 비교'];
+assert.match(homepage,/<a class="home-entry-primary" href="http:\/\/pf\.kakao\.com\/_nWwNT\/chat" target="_blank" rel="noopener noreferrer"><strong>카톡으로 물어보기<\/strong><span>[^<]+<\/span>/,'카톡 상담 entry keeps the store chat link');
+assert.match(homepage,/<button type="button" class="home-direct-toggle" id="home-direct-toggle" aria-controls="home-self-compare" aria-expanded="false"><strong>상품 골라보기<\/strong><span>[^<]+<\/span>/,'product entry is a real toggle button');
+assert.match(homepage,/<a class="home-entry-secondary" id="home-compare-open" href="\/rates\.html\?tab=mobile&amp;src=home-easy-fee"><strong>월요금 계산하기<\/strong><span>[^<]+<\/span>/,'fee comparison entry goes to the calculator');
+const entryLabels=['카톡으로 물어보기','상품 골라보기','월요금 계산하기'];
 assert.equal(new Set(entryLabels).size,3);
 for(const label of entryLabels)assert.ok(homepage.includes('<strong>'+label+'</strong>'),'missing entry label: '+label);
 // The old overlapping pair (상품별 비교·개통신청 / 직접 비교해 볼게요) must not come back.
@@ -56,7 +56,8 @@ assert.match(rates,/quick-order\.css/);
 assert.match(entry,/querySelectorAll\('a\[href="#home-self-compare"\]'\)/);
 assert.match(entry,/panel\.hidden=!expanded/);
 assert.match(entry,/location\.hash==='#home-self-compare'/);
-assert.match(entry,/상품별 바로 찾기/);
+assert.match(entry,/상품 골라보기/);
+assert.match(entry,/상품 메뉴 닫기/);
 assert.match(entry,/휴대폰·알뜰폰·인터넷·렌탈/);
 assert.match(direct,/function restoreInternetQuick\(/);
 assert.match(direct,/function restoreMobileDirect\(/);

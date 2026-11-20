@@ -666,10 +666,24 @@
     $('#product-twitter-image')?.setAttribute('content',imageUrl);
     const optionCount=(p.options||[]).filter(isSellableOption).length;
     const jsonld={
-      '@context':'https://schema.org','@type':'Product',name:p.name,
+      '@context':'https://schema.org','@type':'Service',
+      '@id':canonical+'#rental-service',
+      name:brand+' '+p.name+' 렌탈',
+      serviceType:'가전 렌탈',
+      category:p.category||undefined,
       brand:{'@type':'Brand',name:brand},
-      model:p.model||undefined,sku:String(p.id||''),category:p.category||undefined,
+      model:p.model||undefined,sku:String(p.id||''),
       description:p.shortDescription||desc,url:canonical,image:[imageUrl],
+      provider:{
+        '@type':'LocalBusiness','@id':'https://woongbts.kr/#store',
+        name:'웅비통신 덕천만덕점',url:'https://woongbts.kr/',telephone:'+82-51-343-7677',
+        address:{'@type':'PostalAddress',streetAddress:'만덕대로178번길 17',addressLocality:'북구',addressRegion:'부산광역시',addressCountry:'KR'}
+      },
+      areaServed:[
+        {'@type':'Place',name:'만덕동, 부산 북구'},
+        {'@type':'Place',name:'덕천동, 부산 북구'},
+        {'@type':'Place',name:'화명동, 부산 북구'}
+      ],
       offers:m.minMonthly!=null?{
         '@type':'AggregateOffer',
         priceCurrency:'KRW',

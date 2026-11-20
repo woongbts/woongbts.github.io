@@ -339,7 +339,7 @@ function assert(condition, message) {
   await page.locator('#card-fee-more').click();
   await page.waitForSelector('#affiliate-card-dialog[open]');
   const cardDialogText = await page.locator('#affiliate-card-dialog').textContent();
-  assert(cardDialogText.includes('코웨이 ICON 우리카드') && cardDialogText.includes('발급·실적·유의사항') && cardDialogText.includes('자동납부') && cardDialogText.includes('2026년 10월 신규발급 추가 할인'), '제휴카드 상세 발급조건/유의사항이 표시되지 않습니다.');
+  assert(cardDialogText.includes('코웨이 ICON 우리카드') && cardDialogText.includes('발급·실적·유의사항') && cardDialogText.includes('자동납부') && /20\d{2}년 \d{1,2}월 신규발급 추가 할인/.test(cardDialogText), '제휴카드 상세 발급조건/유의사항이 표시되지 않습니다.');
   const cardScrollAfter = await page.evaluate(() => window.scrollY);
   assert(Math.abs(cardScrollAfter - cardScrollBefore) <= 2, '카드조건 보기 클릭 시 페이지가 먼 위치로 이동합니다.');
   await page.locator('#affiliate-card-dialog-close').click();
@@ -362,7 +362,9 @@ function assert(condition, message) {
   const selectedCardNote = await page.locator('#card-fee-note').textContent();
   assert(selectedCardNote && selectedCardNote.includes('하나카드'), '선택 카드가 계산 결과에 표시되지 않습니다.');
   const jsonLd = await page.locator('#product-jsonld').textContent();
-  assert(jsonLd && jsonLd.includes('"Product"'), '상품 구조화 데이터가 생성되지 않았습니다.');
+  assert(jsonLd && /"@type"\s*:\s*"Service"/.test(jsonLd), '상품 구조화 데이터가 렌탈 Service로 생성되지 않았습니다.');
+  assert(/("serviceType"\s*:|serviceType)/.test(jsonLd) && jsonLd.includes('provider'), '렌탈 서비스 유형·판매자 정보가 구조화 데이터에 없습니다.');
+  assert(!/"@type"\s*:\s*"Product"/.test(jsonLd), '리뷰 없는 상품에 Product 스키마가 남아 있습니다.');
 
   await page.locator('#rental-share-quote').click();
   await page.waitForTimeout(50);
