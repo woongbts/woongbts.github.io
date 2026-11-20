@@ -15,7 +15,7 @@
       const heading=toggle.querySelector('strong');
       const description=toggle.querySelector('span');
       const arrow=toggle.querySelector('b');
-      if(heading)heading.textContent=expanded?'상품별 메뉴 접기':'상품별 바로 찾기';
+      if(heading)heading.textContent=expanded?'상품 메뉴 닫기':'상품 골라보기';
       if(description)description.textContent=expanded?'다시 누르면 메뉴가 닫혀요':'휴대폰·알뜰폰·인터넷·렌탈';
       if(arrow)arrow.textContent=expanded?'↑':'→';
     }
