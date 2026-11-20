@@ -815,6 +815,16 @@
   </div>
   <script src="/assets/freet-enrollment.js?v=20261118-mvno-dual-cta1" defer></script>
   <script src="/assets/analytics-config.js?v=20261009-owner1" defer></script><script src="/assets/conversion-tracker.min.js?v=20261009-owner1" defer></script><script src="/assets/site-analytics.min.js?v=20261009-owner1" defer></script><script src="/assets/pwa.min.js?v=20261020-prepaid-tabfix1" defer></script>
-<script src="/assets/customer-flow-20261104.js?v=20261111-customer-quote2" defer></script></body>
+<script src="/assets/customer-flow-20261104.js?v=20261111-customer-quote2" defer></script><!-- 2027-CSAT-EVENT-APPLICATION-LINK -->
+<script>
+  // Open the existing consent-based mobile enquiry form only for the CSAT event link.
+  window.addEventListener('load', function () {
+    var p = new URLSearchParams(window.location.search);
+    if (p.get('src') !== '2027-csat-event' || p.get('intent') !== 'apply') return;
+    var trigger = document.getElementById('mobile-start-application');
+    if (trigger) trigger.click();
+  }, { once: true });
+</script>
+</body>
 </html>
 
