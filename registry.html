@@ -338,7 +338,7 @@ mark{background:var(--accent-soft);color:inherit;border-radius:3px;padding:0 1px
     </div>
     <div class="meta">
       <span>아티팩트 <b id="mArt">0</b></span>
-      <span>하이브 파일 <b>6</b></span>
+      <span>네트워크·레지스트리 경로</span>
       <span>트리에서 눌러서 경로·값 형식 확인</span>
     </div>
   </div>
@@ -453,10 +453,10 @@ const ART = [
   path:'HKLM\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\AppCompatCache',
   what:'실행 파일의 존재 흔적을 담는 ShimCache. 파일이 삭제된 뒤에도 경로가 남아 삭제된 악성코드를 추적할 때 쓰인다.',
   values:[
-    {n:'AppCompatCache', t:'REG_BINARY 가변', d:'엔트리마다 파일 경로, 마지막 수정 FILETIME, (Win10 1903+) 실행 플래그가 들어간다. 32/64비트·빌드별 구조가 달라 전용 도구(AppCompatCacheParser)로 파싱.'}
+    {n:'AppCompatCache', t:'REG_BINARY 가변', d:'엔트리마다 파일 경로, 마지막 수정 FILETIME, OS별 구조 차이가 있으므로 실행 판단은 별도 아티팩트로 보강해야 한다. 32/64비트·빌드별 구조가 달라 전용 도구(AppCompatCacheParser)로 파싱.'}
   ],
   tips:[
-    '기본은 "존재 증거"이지 실행 증거가 아니다. Win10 최신 빌드는 실행 플래그가 있어 실행 판단에 참고.',
+    'Windows 10에서 ShimCache 단독으로 실제 실행을 확정하기 어렵다. BAM·UserAssist·Prefetch와 대조한다.',
     'Win7은 시스템 종료 시, Win8 이후는 부팅 시 기록 — 마지막 종료·부팅 시점과 함께 해석.',
     '경로만 남고 파일이 없으면 "삭제된 실행 파일"의 단서가 된다.'
   ],
@@ -470,14 +470,14 @@ const ART = [
   what:'프로그램의 설치·존재 흔적과 실행 파일의 SHA-1, PE 컴파일 시각을 담는다. 삭제된 실행 파일의 해시를 얻을 때 가장 먼저 보는 곳.',
   values:[
     {n:'LowerCaseLongPath', t:'REG_SZ', d:'실행 파일 전체 경로(소문자).'},
-    {n:'FileId', t:'REG_SZ SHA-1', d:'SHA-1 해시. 앞에 `0000`이 붙어 있으면 떼고 40자리로 비교.'},
+    {n:'FileId', t:'REG_SZ SHA-1', d:'SHA-1 관련 식별값. 접두어 형식과 해시 대상 범위를 확인한 뒤 비교한다.'},
     {n:'LinkDate', t:'REG_SZ', d:'PE 헤더의 컴파일 시각. 파일을 복사해도 유지되는 값.'},
     {n:'Size / ProductName / Version', t:'REG_SZ', d:'파일 크기·제품명·버전 — 같은 이름의 다른 파일을 구분.'}
   ],
   tips:[
     'Win10은 `Root\\InventoryApplicationFile`, Win7/8은 `Root\\File`(볼륨 GUID·파일 참조 키, `0` 값이 SHA-1).',
     'Amcache는 실행 증거가 아닌 "존재·설치" 증거. 실행 시각은 BAM·UserAssist에서.',
-    '해시가 있어 악성코드 식별·VirusTotal 대조에 바로 쓸 수 있다.',
+    '대용량 파일은 FileId가 파일 전체가 아닌 앞부분 약 30MiB의 해시일 수 있다. 전체 파일 해시로 단정하지 않는다.',
     '`Root\\InventoryApplication`에 설치된 앱 정보가 따로 있다.'
   ],
   rel:['shimcache']
@@ -570,18 +570,18 @@ const ART = [
 {
   id:'recentdocs', cat:'file', hot:true,
   title:'RecentDocs',
-  sub:'최근 연 문서 · 파일명 · 마지막 열람 시각',
+  sub:'최근 문서 · MRU 순서 · 키 변경시각',
   path:'HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\RecentDocs',
-  what:'탐색기에서 최근 연 문서 목록. 확장자별 하위 키에 파일명·PIDL·마지막 열람 시각이 남는다.',
+  what:'탐색기에서 최근 연 문서 목록. 확장자별 하위 키에 문서명과 MRU 순서 등이 남는다. 기록만으로 정확한 마지막 열람 시각은 확정하지 않는다.',
   values:[
     {n:'MRUListEx', t:'REG_BINARY', d:'최근 순서(4바이트 인덱스 나열, `FFFFFFFF`로 끝).'},
-    {n:'0, 1, 2 … (값 이름 = 파일명)', t:'REG_BINARY', d:'SHELLITEM(PIDL) + 유니코드 파일명 + 마지막 열람 FILETIME.'}
+    {n:'0, 1, 2 … (값 이름 = 파일명)', t:'REG_BINARY', d:'바이너리 안의 파일명·셸 항목 정보. 모든 항목에 개별 마지막 열람 FILETIME이 있는 것은 아니다.'}
   ],
   tips:[
     '상위 키는 전체 최근 문서, `.txt`·`.hwp` 같은 하위 키가 확장자별 목록 — 하위 키를 봐야 실제 파일이 보인다.',
     '파일이 삭제되어도 이름·PIDL은 남는다.',
     '`%APPDATA%\\Microsoft\\Windows\\Recent`의 LNK 파일과 교차 확인(경로·접근 시각).',
-    '값 이름이 파일명이라 검색으로 특정 문서 열람 여부를 바로 확인할 수 있다.'
+    '숫자 값 데이터와 MRUListEx를 해석한다. 키 LastWrite를 모든 문서의 열람시각으로 적지 않는다.'
   ],
   rel:['shellbags','opensavepidlmru']
 },
@@ -681,12 +681,12 @@ const ART = [
   what:'USB 저장장치의 제조사·모델·시리얼과 연결 흔적. 외부 저장매체 사용 조사의 핵심.',
   values:[
     {n:'Disk&Ven_{제조사}&Prod_{제품}', t:'키 이름', d:'장치 모델.'},
-    {n:'{시리얼}&0', t:'인스턴스 ID', d:'끝자리 `&0`이면 제조사가 고유 시리얼을 제공한 것.'},
+    {n:'{시리얼}&0', t:'인스턴스 ID', d:'장치 인스턴스 식별자. `&0` 접미사만으로 고유 시리얼 여부를 확정하지 않는다.'},
     {n:'FriendlyName / DeviceDesc', t:'REG_SZ', d:'표시 이름·장치 설명.'},
     {n:'ContainerID / ParentIdPrefix', t:'REG_SZ', d:'같은 물리 장치의 다른 인터페이스·부모 장치 식별.'}
   ],
   tips:[
-    '인스턴스 ID가 `&1`, `&2`면 시리얼이 없어 순번으로 붙은 것 — 같은 모델 여러 개를 구분할 수 없다.',
+    '장치 인스턴스 ID 전체·ParentIdPrefix·ContainerID·Enum\\USB 정보를 함께 대조한다. 접미사로만 시리얼을 판정하지 않는다.',
     'USBSTOR 키 자체에는 연결 시각이 없다 — 키의 LastWrite 시각, `setupapi.dev.log`, 이벤트 로그(20001/20003)로 보완.',
     '`Enum\\USB`의 VID/PID와 짝지어 제조사·제품을 확인.',
     '`ControlSet001`·`ControlSet002`에 흔적이 나뉠 수 있어 `Select\\Current`를 먼저 확인.'
@@ -719,11 +719,11 @@ const ART = [
   path:'HKLM\\SYSTEM\\MountedDevices',
   what:'드라이브 문자와 실제 볼륨(장치)의 연결. "E:가 어느 USB였나"를 푸는 열쇠.',
   values:[
-    {n:'\\DosDevices\\E:', t:'REG_BINARY', d:'볼륨 서명·GUID. USB면 데이터 안에 `USBSTOR#Disk&Ven_...` 문자열이 들어 있다.'},
+    {n:'\\DosDevices\\E:', t:'REG_BINARY', d:'볼륨 서명·GUID. 장치에 따라 바이너리 구조가 달라진다. USBSTOR 문자열이 항상 들어 있는 것은 아니다.'},
     {n:'\\??\\Volume{GUID}', t:'REG_BINARY', d:'볼륨 GUID와 장치 경로 매핑.'}
   ],
   tips:[
-    'USB 값에는 `USBSTOR` ASCII 문자열이 보인다 — 없으면 내장 디스크.',
+    'USBSTOR 문자열이 없다고 내장 디스크로 단정하지 않는다. USBSTOR·MountPoints2 및 다른 식별정보와 대조한다.',
     'BAM의 `\\Device\\HarddiskVolume3`을 드라이브 문자로 바꿀 때 이 키를 쓴다.',
     '장치를 포맷·제거해도 키가 남는 경우가 있어 "한때 연결됐던" 증거가 된다.',
     '값이 UTF-16으로 보이면 인코딩을 바꿔 읽는다.'
@@ -775,7 +775,7 @@ const ART = [
   what:'오프라인 분석에서 `CurrentControlSet`이 실제로 어느 ControlSet인지 알려주는 키.',
   values:[
     {n:'Current', t:'REG_DWORD', d:'현재 사용 중인 세트 번호(보통 1 → `ControlSet001`).'},
-    {n:'Default', t:'REG_DWORD', d:'마지막 정상 부팅 세트.'},
+    {n:'Default', t:'REG_DWORD', d:'다음 부팅 기본 선택에 사용되는 ControlSet 번호.'},
     {n:'LastKnownGood', t:'REG_DWORD', d:'마지막으로 성공한 구성.'},
     {n:'Failed', t:'REG_DWORD', d:'부팅 실패 세트.'}
   ],
@@ -874,24 +874,143 @@ const ART = [
   rel:['osinfo']
 },
 {
+  "id": "networkcards",
+  "cat": "system",
+  "hot": true,
+  "title": "NetworkCards (랜카드 GUID)",
+  "sub": "랜카드 설명·ServiceName 인터페이스 GUID",
+  "path": "HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\NetworkCards",
+  "what": "SOFTWARE에서 랜카드 제품명과 인터페이스 GUID를 확인하고 SYSTEM의 Tcpip Interfaces와 연결한다.",
+  "values": [
+    {
+      "n": "Description",
+      "t": "REG_SZ",
+      "d": "랜카드 설명 및 모델 단서."
+    },
+    {
+      "n": "ServiceName",
+      "t": "REG_SZ",
+      "d": "인터페이스 GUID. SYSTEM Tcpip\\Parameters\\Interfaces의 같은 GUID를 확인."
+    }
+  ],
+  "tips": [
+    "SOFTWARE NetworkCards → ServiceName → SYSTEM Interfaces → EnableDHCP·IP·DHCP 시간 순으로 분석.",
+    "NetworkList 프로필 GUID와 인터페이스 GUID는 다른 식별자다.",
+    "기종·제조사는 DriverDesc 및 드라이버 공급자 정보를 함께 점검한다."
+  ],
+  "rel": [
+    "tcpip",
+    "nicdriver"
+  ]
+},
+{
+  "id": "nicdriver",
+  "cat": "system",
+  "title": "랜카드 드라이버 Class",
+  "sub": "DriverDesc · NetCfgInstanceId · ProviderName",
+  "path": "HKLM\\SYSTEM\\CurrentControlSet\\Control\\Class\\{4D36E972-E325-11CE-BFC1-08002BE10318}\\000x",
+  "what": "네트워크 어댑터 클래스의 개별 장치 인스턴스에서 장치 모델과 GUID를 확인한다.",
+  "values": [
+    {
+      "n": "DriverDesc",
+      "t": "REG_SZ",
+      "d": "장치 설명/제품명."
+    },
+    {
+      "n": "NetCfgInstanceId",
+      "t": "REG_SZ",
+      "d": "인터페이스 GUID. NetworkCards ServiceName과 대조."
+    },
+    {
+      "n": "ProviderName",
+      "t": "REG_SZ",
+      "d": "드라이버 공급자. 반드시 하드웨어 제조사와 같지는 않다."
+    }
+  ],
+  "tips": [
+    "SYSTEM Select\\Current를 먼저 확인하고 오프라인 ControlSet00x로 이동한다.",
+    "Class GUID {4D36E972-E325-11CE-BFC1-08002BE10318}은 네트워크 어댑터 클래스다."
+  ],
+  "rel": [
+    "networkcards",
+    "tcpip"
+  ]
+},
+{
+  "id": "networksig",
+  "cat": "system",
+  "title": "NetworkList Signatures",
+  "sub": "프로필 매핑·게이트웨이 MAC",
+  "path": "HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\NetworkList\\Signatures\\Unmanaged",
+  "what": "Signatures의 ProfileGuid로 Profiles를 연결하고 게이트웨이 MAC·DNS 접미사를 확인한다. Managed도 확인할 수 있다.",
+  "values": [
+    {
+      "n": "ProfileGuid",
+      "t": "REG_SZ",
+      "d": "NetworkList Profiles의 프로필 GUID와 연결."
+    },
+    {
+      "n": "DefaultGatewayMac",
+      "t": "REG_BINARY",
+      "d": "게이트웨이 MAC. PC 랜카드 MAC 또는 BSSID와 혼동하지 않는다."
+    },
+    {
+      "n": "DnsSuffix",
+      "t": "REG_SZ",
+      "d": "DNS 접미사."
+    }
+  ],
+  "tips": [
+    "ProfileGuid 대조 없이 다른 하위 키를 연결하지 않는다.",
+    "게이트웨이 MAC이나 프로필 이름만으로 실제 장소·체류시간은 확정할 수 없다."
+  ],
+  "rel": [
+    "networklist",
+    "networkcards"
+  ]
+},
+{
+  "id": "wirelessnla",
+  "cat": "system",
+  "title": "NetworkList Nla Wireless",
+  "sub": "무선 네트워크 보조 경로",
+  "path": "HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\NetworkList\\Nla\\Wireless",
+  "what": "Windows 빌드에 따라 존재·구조가 달라질 수 있는 무선 네트워크 보조 경로. 없을 때는 WLAN XML·NetworkList와 대조한다.",
+  "values": [
+    {
+      "n": "하위 키와 값",
+      "t": "버전별 상이",
+      "d": "실제로 존재하는 값과 데이터 형식을 확인. 이 경로 부재만으로 무선 연결이 없었다고 판단하지 않는다."
+    }
+  ],
+  "tips": [
+    "WLAN XML: C:\\ProgramData\\Microsoft\\Wlansvc\\Profiles\\Interfaces\\{GUID}\\{프로필GUID}.xml",
+    "특정 시각의 접속은 WLAN-AutoConfig Operational 8001(연결)/8003(연결 해제) 등과 대조."
+  ],
+  "rel": [
+    "networklist",
+    "networksig"
+  ]
+},
+{
   id:'networklist', cat:'system', hot:true,
   title:'NetworkList\\Profiles',
-  sub:'접속했던 SSID · 최초/마지막 연결 시각',
+  sub:'네트워크 프로필 · 생성/마지막 연결 기록',
   path:'HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\NetworkList\\Profiles\\{GUID}',
-  what:'접속했던 무선 SSID·유선 네트워크와 최초/마지막 연결 시각. 사용자의 이동·체류 추정에 쓰인다.',
+  what:'무선·유선 네트워크 프로필과 관련 시각. ProfileName과 장소, 실제 접속 여부는 별도로 검증해야 한다.',
   values:[
     {n:'ProfileName', t:'REG_SZ', d:'SSID·네트워크 이름.'},
-    {n:'DateCreated / DateLastConnected', t:'SYSTEMTIME 16B', d:'년·월·요일·일·시·분·초·ms 8개 WORD, UTC.'},
+    {n:'DateCreated / DateLastConnected', t:'SYSTEMTIME 16B', d:'16바이트 SYSTEMTIME(8개 WORD). 자체 시간대 정보가 없으므로 변환 기준과 표시값을 확인한다.'},
     {n:'Category', t:'REG_DWORD', d:'0 공용 / 1 사설 / 2 도메인.'},
     {n:'NameType / Managed', t:'REG_DWORD', d:'이름 유형·관리 여부.'}
   ],
   tips:[
     'SYSTEMTIME은 도구로 변환 — 바이트 순서를 직접 읽으면 요일 필드 때문에 헷갈린다.',
     '키 순서가 아니라 `DateLastConnected`로 최근 접속을 정렬.',
-    '`Signatures\\Unmanaged\\{GUID}`에 AP MAC 등 식별 정보 — 같은 공유기 재접속 추적.',
-    'SSID 목록으로 이동 경로·체류지를 추정.'
+    '`NetworkList\\Signatures\\Unmanaged`에서 ProfileGuid를 대조한다. DefaultGatewayMac은 게이트웨이 MAC이지 PC MAC 또는 BSSID가 아니다.',
+    'ProfileName이 반드시 무선 SSID와 같지는 않다. DateCreated가 실제 최초 접속을 보장하지도 않는다.'
   ],
-  rel:['tcpip']
+  rel:['tcpip','networkcards','networksig']
 },
 {
   id:'tcpip', cat:'system',
@@ -900,18 +1019,21 @@ const ART = [
   path:'HKLM\\SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters\\Interfaces\\{GUID}',
   what:'인터페이스별 IP·게이트웨이·DNS·DHCP 임대 기록.',
   values:[
-    {n:'DhcpIPAddress / DhcpServer', t:'REG_SZ', d:'할당받은 IP·DHCP 서버.'},
-    {n:'DhcpDefaultGateway', t:'REG_MULTI_SZ', d:'게이트웨이.'},
+    {n:'EnableDHCP', t:'REG_DWORD', d:'1 = DHCP, 0 = 수동 설정.'},
+    {n:'DhcpIPAddress / DhcpServer', t:'REG_SZ', d:'DHCP로 받은 인터페이스 IP / DHCP 서버 주소. 두 값은 다르다.'},
+    {n:'DhcpSubnetMask / SubnetMask', t:'REG_SZ', d:'DHCP / 수동 서브넷 마스크.'},
+    {n:'DhcpNameServer / NameServer', t:'REG_SZ', d:'DHCP / 수동 DNS 서버.'},
+    {n:'DhcpDefaultGateway / DefaultGateway', t:'REG_MULTI_SZ', d:'DHCP / 수동 기본 게이트웨이.'},
     {n:'LeaseObtainedTime / LeaseTerminatesTime', t:'Unix epoch (DWORD)', d:'임대 시작·만료 시각(초).'},
     {n:'IPAddress / SubnetMask', t:'REG_SZ', d:'고정 IP인 경우의 설정값.'}
   ],
   tips:[
     '`LeaseObtainedTime`이 Unix epoch — OS `InstallDate`와 같은 형식.',
-    '값이 `0.0.0.0`이면 그 시점 사용하지 않은 인터페이스.',
+    '설정값만으로 사건 시점에 실제로 통신했는지는 알 수 없다. DHCP 임대시간과 로그를 대조한다.',
     'APIPA(`169.254.x.x`)는 DHCP 실패 흔적.',
-    '무선 프로필(NetworkList)과 대조해 접속 네트워크를 확인.'
+    'NetworkCards ServiceName의 인터페이스 GUID와 연결한다. NetworkList의 프로필 GUID와 동일하다고 가정하지 않는다.'
   ],
-  rel:['networklist']
+  rel:['networkcards','networklist','nicdriver']
 },
 {
   id:'uninstall', cat:'system',
@@ -927,7 +1049,7 @@ const ART = [
   ],
   tips:[
     '`InstallDate`가 8자리 문자열 — 다른 키의 epoch·FILETIME과 혼동 주의.',
-    '64비트 앱은 `Uninstall`, 32비트 앱은 `Wow6432Node\\Uninstall` 아래.',
+    '32비트 앱은 `HKLM\\SOFTWARE\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall`도 확인한다.',
     '`UninstallString`에 비정상 경로가 있으면 악성 설치 단서.',
     '설치 목록에 없는데 Amcache에 있으면 "설치 없이 실행된 파일".'
   ],
@@ -958,19 +1080,19 @@ const ART = [
 {
   id:'profilelist', cat:'account', hot:true,
   title:'ProfileList',
-  sub:'SID ↔ 사용자 폴더 ↔ 마지막 로그온',
+  sub:'SID ↔ 사용자 폴더 ↔ 프로필 로드 흔적',
   path:'HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\ProfileList\\{SID}',
   what:'SID와 사용자 폴더, 프로필 로드 시각을 연결한다.',
   values:[
     {n:'ProfileImagePath', t:'REG_EXPAND_SZ', d:'`C:\\Users\\woongbi`.'},
-    {n:'ProfileLoadTimeHigh / Low', t:'REG_DWORD ×2', d:'두 값을 합쳐 FILETIME — 마지막 로그온 시각.'},
+    {n:'ProfileLoadTimeHigh / Low', t:'REG_DWORD ×2', d:'High·Low DWORD 조합으로 프로필 로드 시각을 해석할 수 있다. 로그인 성공과 구분한다.'},
     {n:'State / RefCount', t:'REG_DWORD', d:'프로필 상태·참조 수.'}
   ],
   tips:[
     'SID를 계정 이름으로 바꾸는 가장 빠른 경로 — `SAM`·`ProfileList`를 교차.',
     '계정을 지워도 폴더와 키가 남을 수 있어 "삭제된 사용자" 증거.',
     '`.bak` 키는 프로필 손상 복구 흔적.',
-    '`ProfileLoadTime`은 High·Low 두 DWORD를 합쳐 FILETIME으로 변환.'
+    '프로필 로드 흔적을 로그인 완료시각으로 단정하지 않는다. 로그인 이벤트·활동기록과 대조한다.'
   ],
   rel:['samusers']
 },
@@ -1653,8 +1775,8 @@ function renderCheat(){
     ['HKCU (NTUSER.DAT)','C:\\Users\\{계정}\\NTUSER.DAT','사용자별 실행·파일 흔적'],
     ['UsrClass.dat','C:\\Users\\{계정}\\AppData\\Local\\Microsoft\\Windows\\UsrClass.dat','Shellbags'],
     ['Amcache.hve','C:\\Windows\\AppCompat\\Programs\\Amcache.hve','프로그램 해시'],
-    ['HKU\\.DEFAULT','C:\\Windows\\System32\\config\\DEFAULT','SYSTEM 계정 설정'],
-    ['(백업)','C:\\Windows\\System32\\config\\RegBack','자동 백업 하이브']
+    ['HKU\\.DEFAULT','C:\\Windows\\System32\\config\\DEFAULT','기본 로그온 환경 설정(현재 사용자 계정과 구별)'],
+    ['(백업)','C:\\Windows\\System32\\config\\RegBack','Win10 1803 이후 자동 백업 기본 중단, 실제 파일 존재 확인']
   ];
   const formats = [
     ['FILETIME','<b>1601-01-01 UTC</b>부터 100ns. 초 = 값 ÷ 10,000,000. REG_BINARY 8바이트는 <b>리틀엔디언</b>. ShutdownTime·SAM·BAM.'],
@@ -1667,15 +1789,15 @@ function renderCheat(){
     '<b>Select\\Current</b>로 실제 ControlSet 번호 확인 → `ControlSet00N`으로 경로 치환',
     '<b>TimeZoneInformation\\Bias</b>로 UTC↔KST 기준 잡기 (서울 -540)',
     '실행 → 파일·폴더 → USB → 시스템 → 계정 순으로 증거 수집',
-    '같은 사실을 <b>2개 이상 아티팩트</b>로 교차 (예: 실행 = BAM + UserAssist + ShimCache)'
+    '같은 사실을 <b>서로 다른 아티팩트</b>로 교차 (실행 = BAM + UserAssist + Prefetch, ShimCache는 주로 존재 흔적)'
   ];
   const traps = [
     '`CurrentControlSet`은 실제 키가 아니다. 하이브 파일에서는 `Select\\Current` → `ControlSet001`로 직접 찾아야 한다.',
     '`SAM\\SAM`이 두 번 — 하이브 이름 SAM + 루트 키 SAM. 실행 중에는 잠겨 있어 오프라인/VSS로 확보.',
     'InstallDate는 키마다 형식이 다르다: OS는 Unix epoch, Uninstall은 `YYYYMMDD` 8자리 문자열.',
-    '시간은 모두 UTC로 저장된다. 답안에는 KST(+9)로 바꿔 쓰고 변환했다는 점을 밝힌다.',
+    '시간이 모두 UTC인 것은 아니다. FILETIME·Unix·SYSTEMTIME 형식과 표시 시간대를 확인하고 이미 KST인 값에 9시간을 다시 더하지 않는다.',
     'ShimCache는 원칙적으로 "존재" 증거. 실행 증거로 단정하지 말고 BAM·UserAssist로 교차한다.',
-    'USBSTOR 인스턴스 ID `&0` = 고유 시리얼, `&1`·`&2` = 시리얼 없이 순번 → 동일 모델 구분 불가.',
+    'USBSTOR의 `&0` 같은 접미사만으로 고유 시리얼 여부를 단정하지 않는다. 다른 식별정보와 교차한다.',
     'Run 키는 "등록"일 뿐 "실행"이 아니다. 실행 여부는 BAM·이벤트·프로세스로 확인.',
     'MTP(스마트폰·카메라)는 USBSTOR에 남지 않는다 → `Windows Portable Devices`·`WPDBUSENUM`을 봐야 한다.',
     'Shellbags의 파일은 `UsrClass.dat`, 논리 경로는 `HKCU\\Software\\Classes\\Local Settings\\...` — 둘을 같은 키로 착각하지 않는다.'
@@ -1688,16 +1810,36 @@ function renderCheat(){
         <span class="cbtn sm" data-copy="${esc(f)}" role="button" tabindex="0">복사</span></div>`).join('')}
     </section>
     <section class="panel">
-      <h2><span class="em">②</span> 데이터 형식 5가지</h2>
+      <h2><span class="em">②</span> 네트워크 분석 · 실기 5단계</h2>
+      <p class="lead">첨부 보완 문서의 핵심: 랜카드 이름 → GUID → IP·DHCP → 네트워크 프로필 → 시간 검증</p>
+      <ol class="steps">
+        <li><b>Autopsy:</b> SYSTEM·SOFTWARE 하이브 추출. 필요 시 LOG1·LOG2도 추출하고 원본은 보존</li>
+        <li><b>SYSTEM Select\\Current:</b> ControlSet00x 확인. MountedDevices는 ControlSet 바깥에 위치</li>
+        <li><b>SOFTWARE NetworkCards:</b> Description·ServiceName GUID 확인 → SYSTEM Tcpip Interfaces의 같은 GUID 찾기</li>
+        <li><b>IP·DHCP:</b> EnableDHCP, DhcpIPAddress, DhcpServer, DhcpDefaultGateway, LeaseObtainedTime. DHCP 서버와 할당 IP는 별개</li>
+        <li><b>네트워크:</b> NetworkList Profiles의 ProfileName·DateLastConnected, Signatures의 ProfileGuid·DefaultGatewayMac을 대조</li>
+      </ol>
+      <p class="lead">저장된 Wi-Fi 정보: C:\\ProgramData\\Microsoft\\Wlansvc\\Profiles\\Interfaces\\{GUID}\\{프로필GUID}.xml. 정확한 연결/해제는 WLAN-AutoConfig Operational 8001·8003 이벤트 등으로 교차 확인</p>
+    </section>
+    <section class="panel">
+      <h2><span class="em">③</span> DCode 시간 형식 · 답안 예시</h2>
+      <div class="fmtcard"><span class="tag">Unix Seconds</span><div class="txt">LeaseObtainedTime·LeaseTerminatesTime·OS InstallDate</div></div>
+      <div class="fmtcard"><span class="tag">SYSTEMTIME</span><div class="txt">NetworkList DateCreated·DateLastConnected: 16바이트, 8개 WORD. 구조 자체에는 시간대가 없다</div></div>
+      <div class="fmtcard"><span class="tag">FILETIME</span><div class="txt">ShutdownTime·키 LastWrite. 키 변경시각은 실제 접속시각과 구별</div></div>
+      <p class="lead">답안 예시: SOFTWARE NetworkCards의 ServiceName과 동일한 GUID의 SYSTEM Interfaces에서 DhcpIPAddress 값을 확인했다. 사건 시점의 실제 통신은 임대시각·로그 교차 검증이 필요하다.</p>
+      <p class="lead">로그 참고: 6005=로그 서비스 시작, 6006=중지, 1074=종료 요청, 1102=보안 감사 로그 삭제. User32는 계정이 아닌 이벤트 원본이다.</p>
+    </section>
+    <section class="panel">
+      <h2><span class="em">④</span> 데이터 형식 5가지</h2>
       <p class="lead">값을 읽다 막히면 여기부터. 형식만 맞추면 계산은 도구가 해준다.</p>
       ${formats.map(([t,d])=>`<div class="fmtcard"><span class="tag">${t}</span><div class="txt">${bt(d)}</div></div>`).join('')}
     </section>
     <section class="panel">
-      <h2><span class="em">③</span> 분석 순서</h2>
+      <h2><span class="em">⑤</span> 분석 순서</h2>
       <ol class="steps">${steps.map(s=>`<li>${bt(s)}</li>`).join('')}</ol>
     </section>
     <section class="panel">
-      <h2><span class="em">④</span> 자주 틀리는 함정 9</h2>
+      <h2><span class="em">⑥</span> 자주 틀리는 함정 9</h2>
       <ul class="traps">${traps.map((t,i)=>`<li><span class="num">${i+1}</span><span>${bt(t)}</span></li>`).join('')}</ul>
     </section>`;
 }
