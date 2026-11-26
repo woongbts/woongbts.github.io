@@ -1,5 +1,5 @@
 {
-  "checked_at": "2026-11-25T20:13:20+09:00",
+  "checked_at": "2026-11-26T19:48:02+09:00",
   "source": "https://www.xeronote.co.kr",
   "result": "validated",
   "counts": {
@@ -30,6 +30,15 @@
       "release_date": "0000-00-00",
       "retail_price": 0,
       "reason": "invalid_release_date"
+    },
+    {
+      "carrier": "KT",
+      "source_id": "3074",
+      "name": "산리오캐릭터즈 키즈폰",
+      "model_code": "SM-A185NK-KP",
+      "release_date": "2026-11-27",
+      "retail_price": 451000,
+      "reason": "not_released_yet"
     },
     {
       "carrier": "KT",
@@ -68,6 +77,6 @@
       "reason": "invalid_release_date"
     }
   ],
-  "run_id": "45602092494",
+  "run_id": "45804430815",
   "unverified_subsidy_entries_skipped": 0
 }
